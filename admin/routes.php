@@ -1,0 +1,7 @@
+<?php
+
+$route = [];
+
+$route[] = function() {
+
+};
