@@ -1,4 +1,4 @@
-# heinerCMS
+# heinerCMS Alpha
 heinerCMS basiert auf minicms einem kleinem Beispiel aus dem Buch "Webseiten programmieren und gestalten. Das umfassende Handbuch" von GalileoPress. Mit erlaubnis des Autors, darf ich die Software nutzen und weiter entwickeln.
 
 Die Software ist im Alpha-Stadium und soll nicht produktiv genutzt werden, weil es noch keinerlei Sicherheitsmaßnahmen enthält. Das Login zb. ist unverschlüsselt und rein rudimäntär. Jeder darf die Software zu Lernzwecken nutzen und erweitern. 
