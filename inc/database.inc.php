@@ -10,7 +10,7 @@
 $db['host'] = 'localhost';
 $db['uid']  = 'root';
 $db['pwd']  = '';
-$db['db']   = 'minicms';
+$db['db']   = 'heinercms';
 
 
 

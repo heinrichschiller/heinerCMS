@@ -10,7 +10,7 @@ $id  = filter_input(INPUT_GET, 'id');
 include 'inc/base.inc.php';
 include 'inc/database.inc.php';
 include 'inc/functions.inc.php';
-include 'inc/router.php';
+include 'inc/routes.php';
 
 
 /* Template einlesen  */
@@ -55,7 +55,7 @@ $template = file_get_contents($base['template']);
 */ 
 
 if (isset($route[$uri]) ) {
-    $base['content'] .= $route[$uri]();
+    $base['content'] .= $route[$uri]($id);
 }
  
 

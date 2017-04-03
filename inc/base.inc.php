@@ -10,7 +10,7 @@ $base['navigation'] = '<li><a href="http://heinrich-schiller.de/wordpress/" targ
 $base['content'] = '';
 $base['template'] = 'templates/main.htm';
 
-$base['adm_title'] = 'MiniCMS - Admin';
+$base['adm_title'] = 'heinerCMS - Admin';
 $base['adm_shortnav'] = '<a href="$PHP_SELF?uri=news">News</a> &middot; <a href="$PHP_SELF?uri=downloads">Downloads</a> &middot; <a href="logout.php">Logout</a>';
 $base['adm_navigation'] = '<a href="$PHP_SELF?uri=news">News</a><br><a href="$PHP_SELF?uri=downloads">Downloads</a><br><a href="$PHP_SELF?uri=links">Links</a><br><a href="$PHP_SELF?uri=articles">Artikel</a><br><br><a href="logout.php" class="red">Logout</a>';
 $base['adm_content'] = '';
