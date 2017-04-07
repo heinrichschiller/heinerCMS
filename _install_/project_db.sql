@@ -1,8 +1,8 @@
-CREATE DATABASE heinercms;
+CREATE DATABASE `heinercms` CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 USE heinercms;
 
-CREATE TABLE articles (
+CREATE TABLE `articles` (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(64) NOT NULL DEFAULT '',
   content LONGTEXT NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE articles (
   visible TINYINT(4) NOT NULL DEFAULT '0'
 );
 
-CREATE TABLE downloads (
+CREATE TABLE `downloads` (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(64) NOT NULL DEFAULT '',
   comment TEXT NOT NULL,
@@ -19,9 +19,9 @@ CREATE TABLE downloads (
   filename VARCHAR(64) NOT NULL DEFAULT '',
   datetime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   visible TINYINT(4) NOT NULL DEFAULT '0'
-);
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE links (
+CREATE TABLE `links` (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(64) NOT NULL DEFAULT '',
   uri VARCHAR(255) NOT NULL DEFAULT 'http://',
@@ -35,14 +35,19 @@ CREATE TABLE news (
   message TEXT NOT NULL,
   datetime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   visible TINYINT(4) NOT NULL DEFAULT '0'
-);
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE user (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(64) NOT NULL DEFAULT '',
-  password VARCHAR(255) NOT NULL DEFAULT '',
-  email VARCHAR(255) NOT NULL DEFAULT '',
-  active ENUM('true','false') NOT NULL DEFAULT 'false',
-  UNIQUE KEY username (username),
-  UNIQUE KEY email (email)
-);
+CREATE TABLE `users` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `username` VARCHAR(64) NOT NULL,
+  `active` ENUM('true','false') NOT NULL DEFAULT 'false',
+  PRIMARY KEY (`id`),
+  UNIQUE (`username`),
+  UNIQUE (`email`)
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -17,6 +17,10 @@ Ziele
 - Der veraltete mysql-treiber soll gegen mysqli oder pdo ausgetauscht werden.
 - Der HTML-Code soll mit Bootstrap erledigt werden.
 - Es soll ein Installer integriert werden, um die Installation zu erleichtern
-- Der Code wird von PHP5 auf PHP7 gehoben.
 - Unterstützung für mehrere Datenbanken ist angedacht, ich möchte diese Software zumindest mit SQLite und PostgreSQL-Unterstützung sehen (darum PDO)
+- Software internationalisieren (ENG, RU)
 - weiteres wenn mir einfällt...
+
+Erledigt
+
+- Der Code wird von PHP5 auf PHP7 gehoben.
