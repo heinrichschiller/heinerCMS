@@ -3,7 +3,7 @@
 /*$db = [
     'host' => 'localhost',
     'user' => 'root',
-    'passwd' => 'suse2017sql1',
+    'passwd' => '',
     'db' => 'minicms'
 ];
 */
