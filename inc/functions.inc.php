@@ -163,12 +163,16 @@ function load_admin_news()
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM news ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
-			$tmprslt .= "<p><a href=\"$_SERVER[PHP_SELF]?uri=newsadd\">News erstellen</a></p>";
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Ops</th></tr>';
+			$tmprslt .= '<p><a href="$PHP_SELF?uri=newsadd" class="btn btn-primary" role="button">News erstellen</a></p>';
+			$tmprslt .= '<table class="table table-hover table-striped">';
+			$tmprslt .= '<thead>';
+			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
+			$tmprslt .= '</thead>';
+			$tmprslt .= '<tbody>';
 			while ( $news = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $news->datetime ) . "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
 			}
+			$tmprslt .= '</tbody>';
 			$tmprslt .= '</table>';
 		}
 		mysqli_close ( $con );
@@ -254,12 +258,16 @@ function load_admin_downloads()
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, path, filename, visible FROM downloads ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
-			$tmprslt .= "<p><a href=\"$_SERVER[PHP_SELF]?uri=downloadsadd\">Download hinzufügen</a></p>";
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Pfad</th><th>Sichtbar?</th><th>Ops</th></tr>';
+			$tmprslt .= '<p><a href="$PHP_SELF?uri=downloadsadd" class="btn btn-primary" role="button">Download hinzufügen</a></p>';
+			$tmprslt .= '<table class="table table-hover table-striped">';
+			$tmprslt .= '<thead>';
+			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
+			$tmprslt .= '</thead>';
+			$tmprslt .= '<tbody>';
 			while ( $downloads = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $downloads->datetime ) . "</td><td>$downloads->title</td><td>$downloads->path$downloads->filename</td><td>" . (($downloads->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
 			}
+			$tmprslt .= '</tbody>';
 			$tmprslt .= '</table>';
 		}
 		mysqli_close ( $con );
@@ -348,12 +356,16 @@ function load_admin_links()
 		$sql = 'SELECT id, title, uri, visible FROM links ORDER BY title DESC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
-			$tmprslt .= "<p><a href=\"$_SERVER[PHP_SELF]?uri=linkadd\">Link hinzufügen</a></p>";
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>Title</th><th>URI</th><th>Sichtbar?</th><th>Ops</th></tr>';
+			$tmprslt .= '<p><a href="$PHP_SELF?uri=linkadd" class="btn btn-primary" role="button">Link hinzufügen</a></p>';
+			$tmprslt .= '<table class="table table-hover table-striped">';
+			$tmprslt .= '<thead>';
+			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
+			$tmprslt .= '</thead>';
+			$tmprslt .= '<tbody>';
 			while ( $links = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= "<tr><td>$links->title</td><td>$links->uri</td><td>" . (($links->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=linkedit&id=$links->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=linkdel&id=$links->id\">Löschen</a></tr>";
 			}
+			$tmprslt .= '</tbody>';
 			$tmprslt .= '</table>';
 		}
 		mysqli_close ( $con );
@@ -437,12 +449,16 @@ function load_admin_articles()
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM articles ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
-			$tmprslt .= "<p><a href=\"$_SERVER[PHP_SELF]?uri=articleadd\">Artikel erstellen</a></p>";
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Ops</th></tr>';
+			$tmprslt .= '<p><a href="$PHP_SELF?uri=articleadd" class="btn btn-primary" role="button">Artikel erstellen</a></p>';
+			$tmprslt .= '<table class="table table-hover table-striped">';
+			$tmprslt .= '<thead>';
+			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
+			$tmprslt .= '</thead>';
+			$tmprslt .= '<tbody>';
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $articles->datetime ) . "</td><td>$articles->title</td><td>" . (($articles->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=articleedit&id=$articles->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=articledel&id=$articles->id\">Löschen</a></tr>";
 			}
+			$tmprslt .= '</tbody>';
 			$tmprslt .= '</table>';
 		}
 		mysqli_close ( $con );
