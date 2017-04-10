@@ -96,6 +96,7 @@ function load_content_articles()
 {
 	$tmprslt = '';
 	$con = getDB ();
+	
 	if ($con) {
 		
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime FROM articles WHERE visible > -1 ORDER BY datetime ASC';
