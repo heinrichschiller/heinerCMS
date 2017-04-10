@@ -1,57 +1,41 @@
 <html>
-  <head>
-    <title>###title###</title>
-    <style type="text/css">
-        a									{ color:#006633; }
-        a.red							{ color:#FF0000; }
-        body							{ margin:0px;
-        				  					background-color:#CCCCCC;}
-        table#main				{ width:100%;
-        			      				border:none; }
-        td#logo						{ background-color:#9EDA8C;
-														border-bottom:solid 1px #000000;
-														font-size:35px;
-														padding:5px; }
-        td#shortnav				{ background-color:#DFF3D9;
-														border-bottom:solid 1px #000000;
-														font-size:13px;
-														padding:5px; }
-        td#navi						{ width:25%;
-														background-color:#EEEEEE;
-														border-right:dashed 1px #000000;
-														border-bottom:solid 1px #000000;
-														padding:5px;
-														vertical-align:top; }
-        td#content				{ width:75%;
-														background-color:#FFFFFF;
-														border-bottom:solid 1px #000000;
-														padding:5px;
-														vertical-align:top; }
-        span.uri					{ color:#008000; }
-        p#disclaimer			{ font-size:10px;
-														color:#000000;
-														text-align:center; }
-        h4								{ color:#006633; }
-        p									{ text-align:justify; }
-        tr								{ text-align:left;
-        										background-color:#DDDDDD; }
-        td								{ background-color:#EEEEEE; }
-    </style>
-  </head>
-  <body>
-    <table id="main" cellpadding="0" cellspacing="0">
-      <tr>
-        <td id="logo" colspan="2">###title###</td>
-      </tr>
-      <tr>
-        <td id="shortnav" colspan="2">###shortnav###</td>
-      </tr>
-      <tr>
-        <td id="navi">###navigation###</td>
-        <td id="content">###content###</td>
-      </tr>
-    </table>
-    <p id="disclaimer">Hier k&ouml;nnte der Text des Disclaimer stehen und rechtliche Hinweise
-      oder Kontaktm&ouml;glichkeiten.<br>Max Mustermann<br>Musterstr. 12<br>55555 Musterstadt</p>
-  </body>
+	<head>
+		<title>###title###</title>
+		<meta charset="utf8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="templates/css/admstyle.css">
+	</head>
+	<body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">###title###</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="?uri=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+        	<div class="col-sm-2">###navigation###</div>
+        	<div class="col-sm-10">###content###</div>
+        </div>
+        <footer class="container-fluid bg-4 text-center">
+            <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>
+        </footer>
+	</body>
 </html>
