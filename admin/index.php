@@ -88,7 +88,7 @@ if (is_logged_in ()) {
 	
 	/* Platzhalter ersetzen */
 	$template = str_replace ( '###title###', $base ['adm_title'], $template );
-	$template = str_replace ( '###shortnav###', $base ['adm_shortnav'], $template );
+	//$template = str_replace ( '###shortnav###', $base ['adm_shortnav'], $template );
 	$template = str_replace ( '###navigation###', $base ['adm_navigation'], $template );
 	$template = str_replace ( '###content###', $base ['adm_content'], $template );
 	$template = str_replace ( '$PHP_SELF', $_SERVER ['PHP_SELF'], $template );
