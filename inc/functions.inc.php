@@ -213,13 +213,28 @@ function load_admin_newsadd($id)
 {
 	$tmprslt = '';
 	$tmprslt .= '<form action="newsinsert.php" method="post">';
-	$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-	$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', time () ) . '</td></tr>';
-	$tmprslt .= '<tr><th>Text:</th><td><textarea name="message" cols="64" rows="16"></textarea></td></tr>';
-	$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein</td></tr>';
-	$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-	$tmprslt .= '</table>';
+	$tmprslt .= '<div class="row">';
+	$tmprslt .= '<div class="col-md-12 col-sm-12 col-xs-12">';
+	$tmprslt .= '<div class="form-group">';
+	$tmprslt .= '<label for="title">Titel:</label>';
+	$tmprslt .= '<input type="text" name="title" class="form-control" id="title" />';
+	$tmprslt .= '</div>';
+	$tmprslt .= '</div>';
+	$tmprslt .= '</div>';
+	$tmprslt .= 'Datum: ' . StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
+	$tmprslt .= '<div class="form-group">';
+	$tmprslt .= '<label for="comment">Text:</label>';
+	$tmprslt .= '<textarea name="message" rows="5" class="form-control" id="comment"></textarea>';
+	$tmprslt .= '</div>';
+	$tmprslt .= '<div class="checkbox">';
+	$tmprslt .= 'Sichtbar?<input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein';
+	$tmprslt .= '</div>';
+	$tmprslt .= '<div class="row">';
+	$tmprslt .= '<div class="col-md-12 col-sm-12 col-xs-8">';
+	$tmprslt .= '<button type="buttont" class="btn btn-success">Speichern</button>&nbsp';
+	$tmprslt .= '<button type="buttont" class="btn btn-danger">Zurücksetzen</button>';
+	$tmprslt .= '</div>';
+	$tmprslt .= '</div>';
 	$tmprslt .= '</form>';
 	return $tmprslt;
 }
