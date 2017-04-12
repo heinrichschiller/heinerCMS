@@ -10,6 +10,16 @@ function getDB()
 	}
 }
 
+function loadTemplate($template) {
+	$file = __DIR__ . '/../templates/'. $template . '.php';
+
+	if (file_exists($file)) {
+		return file_get_contents($file);
+	}
+
+	return false;
+}
+
 /* Gesamtübersicht der Nachrichten laden */
 function load_content_news()
 {
@@ -208,34 +218,16 @@ function load_admin_newsedit($id)
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
-function load_admin_newsadd($id)
+function load_admin_newsadd()
 {
-	$tmprslt = '';
-	$tmprslt .= '<form action="newsinsert.php" method="post">';
-	$tmprslt .= '<div class="row">';
-	$tmprslt .= '<div class="col-md-12 col-sm-12 col-xs-12">';
-	$tmprslt .= '<div class="form-group">';
-	$tmprslt .= '<label for="title">Titel:</label>';
-	$tmprslt .= '<input type="text" name="title" class="form-control" id="title" />';
-	$tmprslt .= '</div>';
-	$tmprslt .= '</div>';
-	$tmprslt .= '</div>';
-	$tmprslt .= 'Datum: ' . StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
-	$tmprslt .= '<div class="form-group">';
-	$tmprslt .= '<label for="comment">Text:</label>';
-	$tmprslt .= '<textarea name="message" rows="5" class="form-control" id="comment"></textarea>';
-	$tmprslt .= '</div>';
-	$tmprslt .= '<div class="checkbox">';
-	$tmprslt .= 'Sichtbar?<input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein';
-	$tmprslt .= '</div>';
-	$tmprslt .= '<div class="row">';
-	$tmprslt .= '<div class="col-md-12 col-sm-12 col-xs-8">';
-	$tmprslt .= '<button type="buttont" class="btn btn-success">Speichern</button>&nbsp';
-	$tmprslt .= '<button type="buttont" class="btn btn-danger">Zurücksetzen</button>';
-	$tmprslt .= '</div>';
-	$tmprslt .= '</div>';
-	$tmprslt .= '</form>';
-	return $tmprslt;
+	$template = '';
+
+	$time = StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
+	$template .= loadTemplate('newsadd');
+
+	$template = str_replace('###time###',$time,$template);
+	
+	return $template;
 }
 
 /* Nachricht löschen */
@@ -320,21 +312,15 @@ function load_admin_downloadsedit($id)
 }
 
 /* Formular zum Erstellen eines Downloads laden */
-function load_admin_downloadsadd($id)
+function load_admin_downloadsadd($template)
 {
-	$tmprslt = '';
-	$tmprslt .= '<form action="downloadsinsert.php" method="post">';
-	$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-	$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" value="' . $downloads->title . '" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', time () ) . '</td></tr>';
-	$tmprslt .= '<tr><th>Pfad:</th><td><input type="text" name="path" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Dateiname:</th><td><input type="text" name="filename" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Kommentar:</th><td><textarea name="comment" cols="64" rows="16"></textarea></td></tr>';
-	$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein</td></tr>';
-	$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-	$tmprslt .= '</table>';
-	$tmprslt .= '</form>';
-	return $tmprslt;
+	$template = '';
+	$time = StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
+
+	$template .= loadTemplate('downloadsadd');
+	$template = str_replace('###time###',$time,$template);
+
+	return $template;
 }
 
 /* Download löschen */
@@ -416,18 +402,12 @@ function load_admin_linkedit($id)
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
-function load_admin_linkadd($id) {
-	$tmprslt = '';
-	$tmprslt .= '<form action="linkinsert.php" method="post">';
-	$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-	$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>URI:</th><td><input type="text" name="uri" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Kommentar:</th><td><textarea name="comment" cols="64" rows="16"></textarea></td></tr>';
-	$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein</td></tr>';
-	$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-	$tmprslt .= '</table>';
-	$tmprslt .= '</form>';
-	return $tmprslt;
+function load_admin_linkadd() {
+	$template = '';
+
+	$template = loadTemplate('linkadd');
+
+	return $template;
 }
 
 /* Link löschen */
@@ -510,18 +490,14 @@ function load_admin_articleedit($id)
 /* Formular zum Erstellen eines Artikels laden */
 function load_admin_articleadd($id)
 {
-	$tmprslt = '';
-	$tmprslt .= '<form action="articleinsert.php" method="post">';
-	$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-	$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" size="64"></td></tr>';
-	$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', time () ) . '</td></tr>';
-	$tmprslt .= '<tr><th>Inhalt:</th><td><textarea name="content" cols="64" rows="16"></textarea></td></tr>';
-	$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0" checked> ja <input type="radio" name="visible" value="-1"> nein</td></tr>';
-	$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-	$tmprslt .= '</table>';
-	$tmprslt .= '</form>';
+	$template = '';
+
+	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 	
-	return $tmprslt;
+	$template = loadTemplate('articleadd');
+	$template = str_replace('###time###',$time,$template);
+	
+	return $template;
 }
 
 /* Artikel löschen */
