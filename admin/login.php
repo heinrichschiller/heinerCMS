@@ -4,12 +4,14 @@ ini_set('display_errors', true);
 
 session_start();
 
+include __DIR__ . '/../inc/database.inc.php';
+
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
 try {
-	$pdo = new PDO('mysql:host=localhost;dbname=heinercms', 'root', '');
+	$pdo = new PDO('mysql:host=localhost;dbname=heinercms', $db['uid'], $db['pwd']);
 
 	$sql = "SELECT `id`,`email`,`username`,`password` FROM `users` WHERE email = :email";
 
