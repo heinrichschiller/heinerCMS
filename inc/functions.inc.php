@@ -179,7 +179,7 @@ function load_admin_news()
 			$tmprslt .= '</thead>';
 			$tmprslt .= '<tbody>';
 			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $news->datetime ) . "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
+				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
 			}
 			$tmprslt .= '</tbody>';
 			$tmprslt .= '</table>';
@@ -193,28 +193,43 @@ function load_admin_news()
 function load_admin_newsedit($id)
 {
 
-	$tmprslt = '';
+	$template = '';
+	$isNo = '';
+	$isYes = '';
+
 	$con = getDB();
+
 	if ($con) {
 
 		$sql = 'SELECT id, title, message, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM news WHERE id = ' . $id;
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="newsupdate.php" method="post">';
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>ID:</th><td>' . $news->id . '<input type="hidden" name="id" value="' . $news->id . '"></td></tr>';
-			$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" value="' . $news->title . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $news->datetime ) . '</td></tr>';
-			$tmprslt .= '<tr><th>Text:</th><td><textarea name="message" cols="64" rows="16">' . $news->message . '</textarea></td></tr>';
-			$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0"' . (($news->visible > - 1) ? ' checked' : '') . '> ja <input type="radio" name="visible" value="-1"' . (($news->visible < 0) ? ' checked' : '') . '> nein</td></tr>';
-			$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-			$tmprslt .= '</table>';
-			$tmprslt .= '</form>';
+var_dump($news);
+			$time = strftime ( '%d.%m.%Y %H:%M', $news->datetime );
+
+			if ( $news->visible > - 1 ) {
+				$isYes = ' checked';
+			}
+			
+			if ( $news->visible < 0 ) {
+				$isNo = ' checked';
+			}
+			
+			$template .= loadTemplate('newsedit');
+
+			$template = str_replace('###news-id###', $news->id, $template);
+			$template = str_replace('###news-title###', $news->title, $template);
+			$template = str_replace('###time###', $time, $template);
+			$template = str_replace('###news-message###', $news->message, $template);
+			$template = str_replace('###chk_yes###', $isYes, $template);
+			$template = str_replace('###chk_no###', $isNo, $template);
 		}
+
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	
+	return $template;
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
