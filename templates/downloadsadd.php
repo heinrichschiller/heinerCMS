@@ -26,7 +26,7 @@
 	</div>
 	<div class="form-group">
 		<button type="submit" class="btn btn-success">Speichern</button>
-		&nbsp
+		<span></span>
 		<button type="reset" class="btn btn-danger">Zurücksetzen</button>
 	</div>
 </form>
