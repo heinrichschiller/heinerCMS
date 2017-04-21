@@ -15,7 +15,7 @@ if (is_logged_in ()) {
 	$id = filter_input ( INPUT_GET, 'id' );
 	
 	/* Template einlesen */
-	$template = file_get_contents ( $base ['adm_template'] );
+	$template = loadTemplate( 'adm_template' );
 	
 	/* Inhalt laden */
 	switch (strtolower ( $uri )) {
