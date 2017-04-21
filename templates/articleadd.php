@@ -16,7 +16,8 @@
 		<input type="radio" name="visible" value="-1"> nein
 	</div>
 	<div class="form-group">
-		<button type="submit" class="btn btn-success">Speichern</button> 
+		<button type="submit" class="btn btn-success">Speichern</button>
+		<span></span>
 		<button type="reset" class="btn btn-danger">Zurücksetzen</button>
 	</div>
 </form>

@@ -7,10 +7,10 @@
 			</div>
 		</div>
 	</div>
-	Datum: ###time###
+	<span>Datum: ###time###</span>
 	<div class="form-group">
-		<label for="comment">Text:</label>
-		<textarea name="message" rows="5" class="form-control" id="comment"></textarea>
+		<label for="text">Text:</label>
+		<textarea name="message" rows="5" class="form-control" id="text"></textarea>
 	</div>
 	<div class="checkbox">
 		Sichtbar?<input type="radio" name="visible" value="0" checked> ja <input
@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<button type="submit" class="btn btn-success">Speichern</button>
-			&nbsp
+			<span></span>
 			<button type="reset" class="btn btn-danger">Zurücksetzen</button>
 		</div>
 	</div>

@@ -21,16 +21,7 @@ $base['adm_navigation'] = '<div class="list-group">
 </div>';
 $base['adm_content'] = '';
 $base['adm_actual'] = 'Sie sind hier: ';
-$base['adm_template'] = '../templates/admmain.htm';
 
-/* Hilfsfunktionen */
 
-/* Datei als String einlesen */
-function get_file_as_string($filename)
-{
-    $tmprslt = file($filename);
-    $tmprslt = implode('',$tmprslt);
-    return $tmprslt;
-}
 
 

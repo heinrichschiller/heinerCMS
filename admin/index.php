@@ -15,8 +15,8 @@ $id = filter_input ( INPUT_GET, 'id' );
 if (is_logged_in ()) {
 	
 	/* Template einlesen */
-	$template = file_get_contents ( $base ['adm_template'] );
-
+	$template = loadTemplate( 'adm_template' );
+	
 	if(isset($route[$uri])) {
 		$base['adm_content'] = $route[$uri]($id);
 	}
