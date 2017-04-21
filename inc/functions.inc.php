@@ -205,7 +205,7 @@ function load_admin_newsedit($id)
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
-var_dump($news);
+
 			$time = strftime ( '%d.%m.%Y %H:%M', $news->datetime );
 
 			if ( $news->visible > - 1 ) {
