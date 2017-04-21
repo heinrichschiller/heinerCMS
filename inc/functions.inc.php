@@ -24,6 +24,7 @@ function loadTemplate($template) {
 function load_content_news()
 {
 	$tmprslt = '';
+	$PHP_SELF = $_SERVER['PHP_SELF'];
 	$con = getDB ();
 	
 	if ($con) {
