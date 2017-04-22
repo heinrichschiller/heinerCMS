@@ -414,28 +414,40 @@ function load_admin_links()
 function load_admin_linkedit($id)
 {
 
-	$tmprslt = '';
+	$template = '';
+	$isNo = '';
+	$isYes = '';
+
 	$con = getDB();
+	
 	if ($con) {
 
 		$sql = 'SELECT id, title, uri, comment, visible FROM links WHERE id = ' . $id;
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
 			$links = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="linkupdate.php" method="post">';
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>ID:</th><td>' . $links->id . '<input type="hidden" name="id" value="' . $links->id . '"></td></tr>';
-			$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" value="' . $links->title . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>URI:</th><td><input type="text" name="uri" value="' . $links->uri . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Kommentar:</th><td><textarea name="comment" cols="64" rows="16">' . $links->comment . '</textarea></td></tr>';
-			$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0"' . (($links->visible > - 1) ? ' checked' : '') . '> ja <input type="radio" name="visible" value="-1"' . (($links->visible < 0) ? ' checked' : '') . '> nein</td></tr>';
-			$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-			$tmprslt .= '</table>';
-			$tmprslt .= '</form>';
+
+			if ($links->visible > - 1) {
+				$isYes = ' checked';
+			}
+			
+			if ($links->visible < 0) {
+				$isNo = ' checked';
+			}
+			
+			$template = loadTemplate('linkedit');
+
+			$template = str_replace('###links-id###', $links->id, $template);
+			$template = str_replace('###links-title###', $links->title, $template);
+			$template = str_replace('###links-uri###', $links->uri, $template);
+			$template = str_replace('###links-comment###', $links->comment, $template);
+			$template = str_replace('###chk_yes###', $isYes, $template);
+			$template = str_replace('###chk_no###', $isNo, $template);
 		}
 		mysqli_close ($con);
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
