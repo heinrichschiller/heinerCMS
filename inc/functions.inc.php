@@ -277,28 +277,31 @@ function load_admin_newsdel($id)
 /* Gesamtübersicht der Downloads laden */
 function load_admin_downloads()
 {
-	$tmprslt = '';
+	$template = '';
+	$table_content = '';
+
 	$con = getDB ();
+
 	if ($con) {
 		
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, path, filename, visible FROM downloads ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
-			$tmprslt .= '<p><a href="$PHP_SELF?uri=downloadsadd" class="btn btn-primary" role="button">Download hinzufügen</a></p>';
-			$tmprslt .= '<table class="table table-hover table-striped">';
-			$tmprslt .= '<thead>';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
-			$tmprslt .= '</thead>';
-			$tmprslt .= '<tbody>';
+			$template = loadTemplate('adm_downloads');
+
 			while ( $downloads = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $downloads->datetime ) . "</td><td>$downloads->title</td><td>$downloads->path$downloads->filename</td><td>" . (($downloads->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
+				$table_content .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $downloads->datetime );
+				$table_content .= "</td><td>$downloads->title</td><td>";
+				$table_content .= (($downloads->visible > - 1) ? 'ja' : 'nein');
+				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
 			}
-			$tmprslt .= '</tbody>';
-			$tmprslt .= '</table>';
+			
+			$template = str_replace('###downloads-content###', $table_content, $template);
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Bearbeiten eines Downloads laden */
