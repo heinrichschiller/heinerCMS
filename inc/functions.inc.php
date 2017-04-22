@@ -550,17 +550,6 @@ function load_admin_articleedit($id)
 			$template = str_replace('###article-content###', $articles->content, $template);
 			$template = str_replace('###chk_yes###', $isYes, $template);
 			$template = str_replace('###chk_no###', $isNo, $template);
-			
-			/*$tmprslt .= '<form action="articleupdate.php" method="post">';
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>ID:</th><td>' . $articles->id . '<input type="hidden" name="id" value="' . $articles->id . '"></td></tr>';
-			$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" value="' . $articles->title . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $articles->datetime ) . '</td></tr>';
-			$tmprslt .= '<tr><th>Inhalt:</th><td><textarea name="content" cols="64" rows="16">' . $articles->content . '</textarea></td></tr>';
-			$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0"' . (($articles->visible > - 1) ? ' checked' : '') . '> ja <input type="radio" name="visible" value="-1"' . (($articles->visible < 0) ? ' checked' : '') . '> nein</td></tr>';
-			$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-			$tmprslt .= '</table>';
-			$tmprslt .= '</form>';*/
 		}
 		mysqli_close ($con);
 	}
