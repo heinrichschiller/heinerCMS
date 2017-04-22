@@ -386,28 +386,31 @@ function load_admin_downloadsdel($id)
 /* Gesamtübersicht der Links laden */
 function load_admin_links()
 {
-	$tmprslt = '';
+	$template = '';
+	$table_content = '';
+
 	$con = getDB ();
+
 	if ($con) {
 		
 		$sql = 'SELECT id, title, uri, visible FROM links ORDER BY title DESC';
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
-			$tmprslt .= '<p><a href="$PHP_SELF?uri=linkadd" class="btn btn-primary" role="button">Link hinzufügen</a></p>';
-			$tmprslt .= '<table class="table table-hover table-striped">';
-			$tmprslt .= '<thead>';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
-			$tmprslt .= '</thead>';
-			$tmprslt .= '<tbody>';
+			
 			while ( $links = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= "<tr><td>$links->title</td><td>$links->uri</td><td>" . (($links->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=linkedit&id=$links->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=linkdel&id=$links->id\">Löschen</a></tr>";
+				$table_content .= "<tr><td>$links->title</td><td>$links->uri</td><td>";
+				$table_content .= (($links->visible > - 1) ? 'ja' : 'nein');
+				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=linkedit&id=$links->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=linkdel&id=$links->id\">Löschen</a></tr>";
 			}
-			$tmprslt .= '</tbody>';
-			$tmprslt .= '</table>';
+			
+			$template = loadTemplate('adm_links');
+			
+			$template = str_replace('###table-content###', $table_content, $template);
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Bearbeiten eines Links laden */
