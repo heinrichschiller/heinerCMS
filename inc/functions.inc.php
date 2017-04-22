@@ -488,28 +488,31 @@ function load_admin_linkdel($id) {
 function load_admin_articles()
 {
 
-	$tmprslt = '';
+	$template = '';
+	$table_content = '';
+
 	$con = getDB ();
+
 	if ($con) {
 		
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM articles ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
-			$tmprslt .= '<p><a href="$PHP_SELF?uri=articleadd" class="btn btn-primary" role="button">Artikel erstellen</a></p>';
-			$tmprslt .= '<table class="table table-hover table-striped">';
-			$tmprslt .= '<thead>';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
-			$tmprslt .= '</thead>';
-			$tmprslt .= '<tbody>';
+			
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $articles->datetime ) . "</td><td>$articles->title</td><td>" . (($articles->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=articleedit&id=$articles->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=articledel&id=$articles->id\">Löschen</a></tr>";
+				$table_content .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
+				$table_content .= "</td><td>$articles->title</td><td>" . (($articles->visible > - 1) ? 'ja' : 'nein');
+				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=articleedit&id=$articles->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=articledel&id=$articles->id\">Löschen</a></tr>";
 			}
-			$tmprslt .= '</tbody>';
-			$tmprslt .= '</table>';
+
+			$template = loadTemplate('adm_articles');
+
+			$template = str_replace('###table-content###', $table_content, $template);
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Bearbeiten eines Artikels laden */
