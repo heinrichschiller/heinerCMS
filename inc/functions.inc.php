@@ -308,30 +308,44 @@ function load_admin_downloads()
 function load_admin_downloadsedit($id)
 {
 
-	$tmprslt = '';
+	$template = '';
+	$isNo = '';
+	$isYes = '';
+	
 	$con = getDB();
+	
 	if ($con) {
 
 		$sql = 'SELECT id, title, comment, UNIX_TIMESTAMP(datetime) AS datetime, path, filename, visible FROM downloads ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
 			$downloads = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="downloadsupdate.php" method="post">';
-			$tmprslt .= '<table width="100%" border="0" cellpadding="2" cellspacing="2">';
-			$tmprslt .= '<tr><th>ID:</th><td>' . $downloads->id . '<input type="hidden" name="id" value="' . $downloads->id . '"></td></tr>';
-			$tmprslt .= '<tr><th>Titel:</th><td><input type="text" name="title" value="' . $downloads->title . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Datum:</th><td>' . StrFTime ( '%d.%m.%Y %H:%M:%S', $downloads->datetime ) . '</td></tr>';
-			$tmprslt .= '<tr><th>Pfad:</th><td><input type="text" name="path" value="' . $downloads->path . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Dateiname:</th><td><input type="text" name="filename" value="' . $downloads->filename . '" size="64"></td></tr>';
-			$tmprslt .= '<tr><th>Kommentar:</th><td><textarea name="comment" cols="64" rows="16">' . $downloads->comment . '</textarea></td></tr>';
-			$tmprslt .= '<tr><th>Sichtbar?</th><td><input type="radio" name="visible" value="0"' . (($downloads->visible > - 1) ? ' checked' : '') . '> ja <input type="radio" name="visible" value="-1"' . (($downloads->visible < 0) ? ' checked' : '') . '> nein</td></tr>';
-			$tmprslt .= '<tr><td colspan="2"><input type="submit" value="Speichern"> <input type="reset" value="Zurücksetzen"></td></tr>';
-			$tmprslt .= '</table>';
-			$tmprslt .= '</form>';
+			
+			$time = strftime ( '%d.%m.%Y %H:%M', $downloads->datetime );
+
+			if ($downloads->visible > - 1) {
+				$isYes = ' checked';
+			}
+
+			if ($downloads->visible < 0) {
+				$isNo = ' checked';
+			}
+
+			$template = loadTemplate('downloadsedit');
+			
+			$template = str_replace('###downloads-id###', $downloads->id, $template);
+			$template = str_replace('###downloads-title###', $downloads->title, $template);
+			$template = str_replace('###time###', $time, $template);
+			$template = str_replace('###downloads-path###', $downloads->path, $template);
+			$template = str_replace('###downloads-filename###', $downloads->filename, $template);
+			$template = str_replace('###downloads-comment###', $downloads->comment, $template);
+			$template = str_replace('###chk_yes###', $isYes, $template);
+			$template = str_replace('###chk_no###', $isNo, $template);
 		}
 		mysqli_close ($con);
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Erstellen eines Downloads laden */
