@@ -167,28 +167,31 @@ function load_content_links()
 /* Gesamtübersicht der Nachrichten laden */
 function load_admin_news()
 {
-	$tmprslt = '';
+	$template = '';
+	$table_content = '';
+
 	$con = getDB ();
+
 	if ($con) {
 		
 		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM news ORDER BY datetime DESC';
 		$result = mysqli_query ( $con, $sql );
+
 		if ($result) {
-			$tmprslt .= '<p><a href="$PHP_SELF?uri=newsadd" class="btn btn-primary" role="button">News erstellen</a></p>';
-			$tmprslt .= '<table class="table table-hover table-striped">';
-			$tmprslt .= '<thead>';
-			$tmprslt .= '<tr><th>Datum</th><th>Titel</th><th>Sichtbar?</th><th>Aktionen</th></tr>';
-			$tmprslt .= '</thead>';
-			$tmprslt .= '<tbody>';
+
+			$template = loadTemplate('adm-news');
+
 			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein') . "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
+				$table_content .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
+				$table_content .= "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein');
+				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
 			}
-			$tmprslt .= '</tbody>';
-			$tmprslt .= '</table>';
+			
+			$template = str_replace('###table-content###', $table_content, $template);
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Formular zum Bearbeiten einer Nachricht laden */
