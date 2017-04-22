@@ -1,17 +1,6 @@
 <?php
 
-/*$db = [
-    'host' => 'localhost',
-    'user' => 'root',
-    'passwd' => '',
-    'db' => 'minicms'
-];
-*/
-$db['host'] = 'localhost';
-$db['uid']  = 'root';
-$db['pwd']  = '';
-$db['db']   = 'heinercms';
-
-
-
-
+$db['host'] = 'localhost';   // Host
+$db['uid']  = 'root';        // User
+$db['pwd']  = '';            // Password
+$db['db']   = 'heinercms';   // Database
