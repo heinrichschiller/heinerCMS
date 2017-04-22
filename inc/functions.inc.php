@@ -174,7 +174,7 @@ function load_admin_news()
 
 	if ($con) {
 		
-		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM news ORDER BY datetime DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `news` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -284,7 +284,7 @@ function load_admin_downloads()
 
 	if ($con) {
 		
-		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, path, filename, visible FROM downloads ORDER BY datetime DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_a`t DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -495,7 +495,7 @@ function load_admin_articles()
 
 	if ($con) {
 		
-		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM articles ORDER BY datetime DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `articles` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {

@@ -3,38 +3,47 @@ CREATE DATABASE `heinercms` CHARSET=utf8 COLLATE=utf8_unicode_ci;
 USE heinercms;
 
 CREATE TABLE `articles` (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(64) NOT NULL DEFAULT '',
-  content LONGTEXT NOT NULL,
-  datetime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  nextPageId INT NOT NULL DEFAULT '-1',
-  visible TINYINT(4) NOT NULL DEFAULT '0'
-);
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `content` LONGTEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `nextPageId` INT NOT NULL DEFAULT '-1',
+  `visible` TINYINT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `downloads` (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(64) NOT NULL DEFAULT '',
-  comment TEXT NOT NULL,
-  path VARCHAR(128) NOT NULL DEFAULT '',
-  filename VARCHAR(64) NOT NULL DEFAULT '',
-  datetime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  visible TINYINT(4) NOT NULL DEFAULT '0'
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `comment` TEXT NOT NULL,
+  `path` VARCHAR(128) NOT NULL DEFAULT '',
+  `filename` VARCHAR(64) NOT NULL DEFAULT '',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `visible` TINYINT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `links` (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(64) NOT NULL DEFAULT '',
-  uri VARCHAR(255) NOT NULL DEFAULT 'http://',
-  comment TEXT NOT NULL,
-  visible TINYINT(4) NOT NULL DEFAULT '0'
-);
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
+  `comment` TEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,  
+  `visible` TINYINT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE news (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(64) NOT NULL DEFAULT '',
-  message TEXT NOT NULL,
-  datetime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  visible TINYINT(4) NOT NULL DEFAULT '0'
+CREATE TABLE `news` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `message` TEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `visible` TINYINT(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `users` (
