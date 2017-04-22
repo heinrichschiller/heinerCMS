@@ -40,7 +40,7 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Speichern</button>
 				<span></span>
-				<button type="submit" class="btn btn-danger">Zurücksetzen</button>
+				<button type="reset" class="btn btn-danger">Zurücksetzen</button>
 			</div>
 		</div>
 	</div>
