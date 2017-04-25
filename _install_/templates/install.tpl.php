@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>###title###</title>
+		<title>Install</title>
 		<meta charset="utf8">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form method="post" action="../install.php">
+			<form method="post" action="install.php">
 				<div class="row">
 					<div class="page-header">
 						<h2>heinerCMS Installer</h2>
@@ -32,25 +32,25 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Hostname</span>
-										<input type="text" name="hostname" class="form-control" placeholder="Hostname" aria-describedby="basic-addon1">
+										<input type="text" name="hostname" class="form-control" placeholder="Hostname" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Username</span>
-										<input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+										<input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Password</span>
-										<input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+										<input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Datenbank</span>
-										<input type="text" name="database" class="form-control" placeholder="Database" aria-describedby="basic-addon1">
+										<input type="text" name="database" class="form-control" placeholder="Database" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 							</div>
@@ -66,31 +66,31 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Vorname</span>
-										<input type="text" name="hostname" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1">
+										<input type="text" name="firstname" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Nachname</span>
-										<input type="text" name="username" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1">
+										<input type="text" name="lastname" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Email</span>
-										<input type="email" name="password" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+										<input type="email" name="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Password *</span>
-										<input type="password" name="database" class="form-control" placeholder="Passwort" aria-describedby="basic-addon1">
+										<input type="password" name="passwd1" class="form-control" placeholder="Passwort" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Password *</span>
-										<input type="password" name="database" class="form-control" placeholder="Passwort wiederholen" aria-describedby="basic-addon1">
+										<input type="password" name="passwd2" class="form-control" placeholder="Passwort wiederholen" aria-describedby="basic-addon1" required>
 									</div>
 								</div>
 							</div>

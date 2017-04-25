@@ -4,14 +4,23 @@ ini_set('display_errors', true);
 
 session_start();
 
-include __DIR__ . '/../inc/database.inc.php';
-
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
+$config = __DIR__ . '/../inc/config.ini';
+
+if (file_exists($config)) {
+	$ini_array = parse_ini_file($config);
+	
+	$host = $ini_array['host'];
+	$user = $ini_array['user'];
+	$password = $ini_array['password'];
+	$database = $ini_array['database'];
+}
+
 try {
-	$pdo = new PDO('mysql:host=localhost;dbname=heinercms', $db['uid'], $db['pwd']);
+	$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
 
 	$sql = "SELECT `id`,`email`,`username`,`password` FROM `users` WHERE email = :email";
 
