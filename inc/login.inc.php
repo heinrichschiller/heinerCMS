@@ -15,8 +15,7 @@ function is_logged_in() {
 	} else {
 		$login = loadTemplate('login');
 		$template = loadTemplate('lgn_template');
-		
-		//$template = file_get_contents ( $base ['adm_template'] );
+
 		$template = str_replace ( '###title###', $base ['adm_title'], $template );
 		$template = str_replace ( '###shortnav###', '&nbsp;', $template );
 		$template = str_replace ( '###navigation###', '&nbsp;', $template );
