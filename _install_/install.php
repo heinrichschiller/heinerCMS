@@ -3,9 +3,9 @@ error_reporting ( - 1 );
 ini_set ( 'display_errors', true );
 
 include __DIR__ . '/functions.inc.php';
-include __DIR__ . '/source/Library/db_adapter/Db_Adapter.php';
-include __DIR__ . '/source/Library/installer/Db_Installer.php';
-include __DIR__ . '/source/Library/user/User.php';
+include __DIR__ . '/installer/Db_Installer.php';
+include __DIR__ . '/../source/Library/db_adapter/Db_Adapter.php';
+include __DIR__ . '/../source/Library/user/User.php';
 
 // init
 $host = filter_input(INPUT_POST ,'hostname');
@@ -62,7 +62,9 @@ $user_data = [
 	'password2' => $user_psswd_2
 ];
 
-$user = new User($db, $user_data);
+$user = new User($db);
+
+$user->fetchAll($user_data);
 $user->create();
 
 
