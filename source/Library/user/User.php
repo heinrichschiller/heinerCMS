@@ -95,11 +95,11 @@ class User {
 	 */
 	public function setPassword($password1, $password2)
 	{
-		if ( strcmp($password1, $password2) === 0) {
-			$this->_password = $password1;
-		} else {
-			$this->_password = '';
-		}
+    	if ( strcmp($password1, $password2) === 0) {
+    	    $this->_password = $password1;
+    	} else {
+    	    $this->_password = '';
+    	}
 	}
 
 	/**
@@ -163,7 +163,7 @@ class User {
 		$this->_lastname = $user_data['lastname'];
 		$this->_email = $user_data['email'];
 		$this->_username = $user_data['username'];
-		$this->_password = $this->setPassword($user_data['password1'], $user_data['password2']);
+		self::setPassword($user_data['password1'], $user_data['password2']);
 	}
 
 	/**
