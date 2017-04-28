@@ -7,9 +7,21 @@ $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
 
 include 'inc/base.inc.php';
-include 'inc/database.inc.php';
 include 'inc/functions.inc.php';
 include 'inc/routes.php';
+
+if(!file_exists($config_ini)) {
+    $PHP_SELF = $_SERVER['PHP_SELF'];
+
+    $out = '<p>Wahrscheinlich f&uuml;hren Sie heinerCMS zum erstem mal aus oder es ist ein Fehler aufgetretten.</p>';
+    $out .= 'Im Fehlerfall kontaktieren Sie bitte ihren Administrator!</p>';
+    $out .= '<p>Wenn Sie heinerCMS zum erstem mal verwerden, klicken Sie jetzt auf</p>';
+    $out .= '<a href="$PHP_SELF/../_install_/">Installieren</a>';
+
+    echo $out;
+
+    exit();
+}
 
 /* Template einlesen  */
 $template = file_get_contents($base['template']);
