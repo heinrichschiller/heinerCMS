@@ -1,10 +1,26 @@
 <?php
+
+/**
+ * Database adapter for mysql
+ * 
+ * @deprecated
+ * @return object - mysqli
+ */
 function getDB()
 {
-	include __DIR__ . '/database.inc.php';
+    $config = __DIR__ . '/../inc/config.ini';
+    
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+        
+        $host = $ini_array['host'];
+        $user = $ini_array['user'];
+        $password = $ini_array['password'];
+        $database = $ini_array['database'];
+    }
 	
 	try {
-		return mysqli_connect ( $db ['host'], $db ['uid'], $db ['pwd'], $db ['db'] );
+		return mysqli_connect ( $host, $user, $password, $database );
 	} catch ( Exception $ex ) {
 		echo $ex->getMessage ();
 	}
@@ -284,7 +300,7 @@ function load_admin_downloads()
 
 	if ($con) {
 		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_a`t DESC';
+	    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
