@@ -67,5 +67,18 @@ $user = new User($db);
 $user->fetchAll($user_data);
 $user->create();
 
+$source_path = __DIR__ .'/';
+$destiny_path = __DIR__ .'/../inc/';
+$file = 'config.ini';
 
+if(file_exists($file)) {
+    copy($source_path.$file, $destiny_path.$file);
+} else {
+    echo 'Error!';
+}
 
+$out  = '<p>Die Installation lief erfolgreich durch!</p>';
+$out .= '<p>Sie k&ouml;nnen sich nun einloggen.</p>';
+$out .= '<p><a href="'.$_SERVER['PHP_SELF'].'/../../admin/index.php">Zum Login</a></p>';
+
+echo $out;
