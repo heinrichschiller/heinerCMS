@@ -6,7 +6,7 @@ session_start();
 
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-$password = filter_input(INPUT_POST, 'password');
+$login_password = filter_input(INPUT_POST, 'password');
 
 $config = __DIR__ . '/../inc/config.ini';
 
@@ -27,12 +27,12 @@ try {
 	$stmt = $pdo->prepare($sql);
 	$result = $stmt->execute(array('email' => $email));
 	$user = $stmt->fetch();
-	
+
 } catch (Exception $ex) {
 	echo $ex->getMessage();
 }
 
-if ($user !== false && password_verify($password, $user['password'])) {
+if ($user !== false && password_verify($login_password, $user['password'])) {
 	$_SESSION['authenticated'] = true;
 	$_SESSION['user_id'] = $user['id'];
 	$_SESSION['username'] = $user['username'];
