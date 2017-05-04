@@ -2,7 +2,7 @@
 
 class Db_Adapter {
 
-	private $_link = null;
+	private $_pdo = null;
 	private $_hostName = '';
 	private $_userName = '';
 	private $_password = '';
@@ -15,19 +15,22 @@ class Db_Adapter {
 	}
 	
 	public function init()
-	{		
-		$this->_link = new mysqli($this->_hostName,
-			$this->_userName,
-			$this->_password);
-		
-		if ($this->_link->connect_errno) {
-			printf("Connect failed: %s\n", $this->_link->connect_error());
-			exit ();
-		}
+	{
+	    $host = $this->_hostName;
+	    $user = $this->_userName;
+	    $password = $this->_password;
+	    $database = $this->_database;
+
+        try {
+            $this->_pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+        } catch (PDOException $ex) {
+            printf("Error! %s", $ex->getMessage());
+        }
+
 	}
 
 	public function getAdapter() {
-		return $this->_link;
+		return $this->_pdo;
 	}
 	
 }
