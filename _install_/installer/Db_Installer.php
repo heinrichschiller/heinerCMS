@@ -2,18 +2,31 @@
 
 class Db_Installer {
 
-	private $_link = null;
+    /**
+     * Database adapter
+     * 
+     * @var null
+     */
+	private $_pdo = null;
 
-	public function __construct(Mysqli $adapter) {
-		$this->_link = $adapter;
+	public function __construct(PDO $pdo) {
+		$this->_pdo = $pdo;
 	}
 
-	public function createDB($database) {
+	/**
+	 * Create the database
+	 * 
+	 * @param string $database - Name of the database
+	 */
+	public function createDatabase($database) {
 		$sql = "CREATE DATABASE IF NOT EXISTS `$database` CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
+	/**
+	 * Create table Articles
+	 */
 	public function createTableArticles() {
 		$sql = "CREATE TABLE `articles` (
 			`id` INT NOT NULL AUTO_INCREMENT,
@@ -26,9 +39,12 @@ class Db_Installer {
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
+	/**
+	 * Create table Downloads
+	 */
 	public function createTableDownloads() {
 		$sql = "CREATE TABLE `downloads` (
 		    `id` INT NOT NULL AUTO_INCREMENT,
@@ -42,9 +58,12 @@ class Db_Installer {
 		   PRIMARY KEY (`id`)
 		   ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
+	/**
+	 * Create table Links
+	 */
 	public function createTableLinks() {
 		$sql = "CREATE TABLE `links` (
 			`id` INT NOT NULL AUTO_INCREMENT,
@@ -57,9 +76,12 @@ class Db_Installer {
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
+	/**
+	 * Create table News
+	 */
 	public function createTableNews() {
 		$sql = "CREATE TABLE `news` (
 			`id` INT NOT NULL AUTO_INCREMENT,
@@ -71,9 +93,12 @@ class Db_Installer {
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
+	/**
+	 * Create table Users
+	 */
 	public function createTableUsers() {
 		$sql = "CREATE TABLE `users` (
 			`id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -90,11 +115,18 @@ class Db_Installer {
 			UNIQUE (`email`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
-		$this->_link->query($sql);
+		$this->_pdo->exec($sql);
 	}
 
-	public function selectDB($database) {
-		$this->_link->select_db($database);
+	/**
+	 * Select a database by his name
+	 * 
+	 * @param string $database
+	 */
+	public function selectDatabase($database) {
+	    $sql = "USE `$database`";
+
+		$this->_pdo->exec($sql);
 	}
 	
 }

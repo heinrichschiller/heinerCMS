@@ -4,8 +4,8 @@ ini_set ( 'display_errors', true );
 
 include __DIR__ . '/functions.inc.php';
 include __DIR__ . '/installer/Db_Installer.php';
-include __DIR__ . '/../source/Library/db_adapter/Db_Adapter.php';
-include __DIR__ . '/../source/Library/user/User.php';
+include __DIR__ . '/../source/library/db_adapter/Db_Adapter.php';
+include __DIR__ . '/../source/controllers/user/UserController.php';
 
 // init
 $host = filter_input(INPUT_POST ,'hostname');
@@ -39,9 +39,9 @@ $db = $db_adapter->getAdapter();
 
 $installer = new Db_Installer($db);
 
-$installer->createDB($dbase);
+$installer->createDatabase($dbase);
 
-$installer->selectDB($dbase);
+$installer->selectDatabase($dbase);
 
 $installer->createTableArticles();
 
@@ -62,7 +62,7 @@ $user_data = [
 	'password2' => $user_psswd_2
 ];
 
-$user = new User($db);
+$user = new UserController($db);
 
 $user->fetchAll($user_data);
 $user->create();
