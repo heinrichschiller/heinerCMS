@@ -35,6 +35,8 @@ class UserEditModel
 
         $stmt = $this->_pdo->prepare($sql);
         $stmt->execute([$id]);
+
         return $stmt->fetch();
     }
+
 }

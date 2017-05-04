@@ -9,4 +9,9 @@ class UserEditController
         $this->_model = $model;
     }
 
+    public function main($id)
+    {
+        $this->_model->load($id);
+    }
+
 }
