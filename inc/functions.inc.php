@@ -8,7 +8,7 @@
  */
 function getDB()
 {
-    $config = __DIR__ . '/../configs/config.ini';
+    $config = __DIR__ . '/../source/configs/config.ini';
     
     if (file_exists($config)) {
         $ini_array = parse_ini_file($config);
@@ -45,11 +45,11 @@ function load_content_news()
 	
 	if ($con) {
 		
-		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime FROM news WHERE visible > -1 ORDER BY datetime DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `visible` > -1 ORDER BY `datetime` DESC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M:%S', $news->datetime );
+				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
 				$tmprslt .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
 			}
 		}
@@ -65,11 +65,11 @@ function load_content_newsdetailed($id)
 	$con = getDB ();
 	if ($con) {
 		
-		$sql = 'SELECT title, message, UNIX_TIMESTAMP(datetime) AS datetime FROM news WHERE id = ' . $id;
+		$sql = "SELECT `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M:%S', $news->datetime ) . "</h5>";
+			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</h5>";
 			$tmprslt .= "<h2>$news->title</h2>";
 			$tmprslt .= "<p>$news->message</p>";
 		}
@@ -85,7 +85,7 @@ function load_content_downloads()
 	$con = getDB ();
 	if ($con) {
 		
-		$sql = 'SELECT id, title FROM downloads WHERE visible > -1 ORDER BY title ASC';
+		$sql = 'SELECT `id`, `title` FROM `downloads` WHERE `visible` > -1 ORDER BY `title` ASC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $downloads = mysqli_fetch_object ( $result ) ) {
@@ -104,11 +104,11 @@ function load_content_downloadsdetailed($id)
 	$con = getDB ();
 	if ($con) {
 		
-		$sql = 'SELECT title, comment, path, filename, UNIX_TIMESTAMP(datetime) AS datetime FROM downloads WHERE id = ' . $id;
+		$sql = "SELECT `title`, `comment`, `path`, `filename`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `downloads` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$downloads = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M:%S', $downloads->datetime ) . "</h5>";
+			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $downloads->datetime ) . "</h5>";
 			$tmprslt .= "<h2>$downloads->title</h2>";
 			$tmprslt .= "<p>$downloads->comment</p>";
 			$tmprslt .= "<p><a href=\"$downloads->path$downloads->filename\">Hier klicken!</a></p>";
@@ -126,11 +126,11 @@ function load_content_articles()
 	
 	if ($con) {
 		
-		$sql = 'SELECT id, title, UNIX_TIMESTAMP(datetime) AS datetime FROM articles WHERE visible > -1 ORDER BY datetime ASC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `visible` > -1 ORDER BY `datetime` ASC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M:%S ', $articles->datetime );
+				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
 				$tmprslt .= "<a href=\"$PHP_SELF?uri=articlesdet&id=$articles->id\">$articles->title</a><br>\n";
 			}
 		}
@@ -146,11 +146,11 @@ function load_content_articlesdetailed($id)
 	$con = getDB ();
 	if ($con) {
 		
-		$sql = 'SELECT title, content, UNIX_TIMESTAMP(datetime) AS datetime FROM articles WHERE id = ' . $id;
+		$sql = "SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$articles = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M:%S', $articles->datetime ) . "</h5>";
+			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime ) . "</h5>";
 			$tmprslt .= "<h2>$articles->title</h2>";
 			$tmprslt .= $articles->content;
 		}
@@ -166,7 +166,7 @@ function load_content_links()
 	$con = getDB ();
 	if ($con) {
 		
-		$sql = 'SELECT title, uri, comment FROM links WHERE visible > -1 ORDER BY title ASC';
+		$sql = 'SELECT `title`, `uri`, `comment` FROM `links` WHERE `visible` > -1 ORDER BY `title` ASC';
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $links = mysqli_fetch_object ( $result ) ) {
@@ -190,7 +190,7 @@ function load_admin_news()
 
 	if ($con) {
 		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `news` ORDER BY `created_at` DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -222,7 +222,7 @@ function load_admin_newsedit($id)
 
 	if ($con) {
 
-		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `news` WHERE `id` = $id";
+		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
@@ -258,7 +258,7 @@ function load_admin_newsadd()
 {
 	$template = '';
 
-	$time = StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
+	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 	$template .= loadTemplate('newsadd');
 
 	$template = str_replace('###time###',$time,$template);
@@ -300,7 +300,7 @@ function load_admin_downloads()
 
 	if ($con) {
 		
-	    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_at` DESC';
+	    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -332,7 +332,7 @@ function load_admin_downloadsedit($id)
 	
 	if ($con) {
 
-		$sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `datetime` DESC';
+		$sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `datetime` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -368,7 +368,7 @@ function load_admin_downloadsedit($id)
 function load_admin_downloadsadd($template)
 {
 	$template = '';
-	$time = StrFTime ( '%d.%m.%Y %H:%M:%S', time () );
+	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 
 	$template .= loadTemplate('downloadsadd');
 	$template = str_replace('###time###',$time,$template);
@@ -384,7 +384,7 @@ function load_admin_downloadsdel($id)
 	$con = getDB();
 	if ($con) {
 
-		$sql = "SELECT title FROM downloads WHERE id = $id";
+		$sql = "SELECT `title` FROM `downloads` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
@@ -409,7 +409,7 @@ function load_admin_links()
 
 	if ($con) {
 		
-		$sql = 'SELECT id, title, uri, visible FROM links ORDER BY title DESC';
+		$sql = 'SELECT `id`, `title`, `uri`, `visible` FROM `links` ORDER BY `title` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -441,7 +441,7 @@ function load_admin_linkedit($id)
 	
 	if ($con) {
 
-		$sql = 'SELECT id, title, uri, comment, visible FROM links WHERE id = ' . $id;
+		$sql = "SELECT `id`, `title`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -485,7 +485,7 @@ function load_admin_linkdel($id) {
 	$con = getDB();
 	if ($con) {
 
-		$sql = "SELECT title, uri FROM links WHERE id = $id";
+		$sql = "SELECT `title`, `uri` FROM `links` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$links = mysqli_fetch_object ( $result );
@@ -511,7 +511,7 @@ function load_admin_articles()
 
 	if ($con) {
 		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `articles` ORDER BY `created_at` DESC';
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` ORDER BY `created_at` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -542,7 +542,7 @@ function load_admin_articleedit($id)
 
 	if ($con) {
 		
-		$sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
+		$sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -590,7 +590,7 @@ function load_admin_articledel($id) {
 	$tmprslt = '';
 	$con = getDB ();
 	if ($con) {
-		$sql = "SELECT title FROM articles WHERE id = $id";
+		$sql = "SELECT `title` FROM `articles` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$articles = mysqli_fetch_object ( $result );
