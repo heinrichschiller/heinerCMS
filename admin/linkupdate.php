@@ -18,7 +18,7 @@ if (is_logged_in ()) {
 	if ($con) {
 		$sql = "UPDATE links SET title = '$title', comment = '$comment', uri = '$uri', visible = $visible WHERE id = $id";
 		$result = mysqli_query ( $con, $sql );
-		header ( 'Location: index.php?cmd=links' );
+		header ( 'Location: index.php?uri=links' );
 	}
 
 	mysqli_close( $con );
