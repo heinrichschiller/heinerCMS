@@ -8,7 +8,7 @@ $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $login_password = filter_input(INPUT_POST, 'password');
 
-$config = __DIR__ . '/../configs/config.ini';var_dump($config);
+$config = __DIR__ . '/../source/configs/config.ini';
 
 if (file_exists($config)) {
 	$ini_array = parse_ini_file($config);
@@ -28,7 +28,7 @@ try {
 	$result = $stmt->execute(array('email' => $email));
 	$user = $stmt->fetch();
 
-} catch (Exception $ex) {
+} catch (PDOException $ex) {
 	echo $ex->getMessage();
 }
 

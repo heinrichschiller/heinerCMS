@@ -68,7 +68,7 @@ $user->fetchAll($user_data);
 $user->create();
 
 $source_path = __DIR__ .'/';
-$destiny_path = __DIR__ .'/../configs/';
+$destiny_path = __DIR__ .'/../source/configs/';
 $file = 'config.ini';
 
 if(file_exists($file)) {
