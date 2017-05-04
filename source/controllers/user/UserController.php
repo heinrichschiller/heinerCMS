@@ -1,13 +1,13 @@
 <?php
 
-class User {
+class UserController {
 
 	/**
 	 * Database adapter
 	 * 
 	 * @var null
 	 */
-	private $_link = null;
+	private $_pdo = null;
 
 	/**
 	 * Firstname of a user
@@ -42,9 +42,9 @@ class User {
 	 */
 	private $_password = '';
 	
-	public function __construct(Mysqli $adapter)
+	public function __construct(PDO $adapter)
 	{
-		$this->_link = $adapter;
+		$this->_pdo = $adapter;
 	}
 
 	/**
@@ -176,7 +176,7 @@ class User {
 		$sql = "INSERT INTO `users` (`firstname`, `lastname`, `email`, `username`, `password`, `active`) 
 		VALUES ('$this->_firstname','$this->_lastname','$this->_email','$this->_username','$password',true);";
 
-		$this->_link->query($sql);
+		$this->_pdo->query($sql);
 	}
 }
 
