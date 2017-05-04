@@ -8,7 +8,7 @@
  */
 function getDB()
 {
-    $config = __DIR__ . '/../inc/config.ini';
+    $config = __DIR__ . '/../configs/config.ini';
     
     if (file_exists($config)) {
         $ini_array = parse_ini_file($config);
@@ -222,7 +222,7 @@ function load_admin_newsedit($id)
 
 	if ($con) {
 
-		$sql = 'SELECT id, title, message, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM news WHERE id = ' . $id;
+		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `news` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
@@ -332,7 +332,7 @@ function load_admin_downloadsedit($id)
 	
 	if ($con) {
 
-		$sql = 'SELECT id, title, comment, UNIX_TIMESTAMP(datetime) AS datetime, path, filename, visible FROM downloads ORDER BY datetime DESC';
+		$sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(created_at) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `datetime` DESC';
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -542,7 +542,7 @@ function load_admin_articleedit($id)
 
 	if ($con) {
 		
-		$sql = 'SELECT id, title, content, UNIX_TIMESTAMP(datetime) AS datetime, visible FROM articles WHERE id = ' . $id;
+		$sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(created_at) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {

@@ -8,7 +8,7 @@ $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $login_password = filter_input(INPUT_POST, 'password');
 
-$config = __DIR__ . '/../inc/config.ini';
+$config = __DIR__ . '/../configs/config.ini';var_dump($config);
 
 if (file_exists($config)) {
 	$ini_array = parse_ini_file($config);
@@ -37,7 +37,7 @@ if ($user !== false && password_verify($login_password, $user['password'])) {
 	$_SESSION['user_id'] = $user['id'];
 	$_SESSION['username'] = $user['username'];
 
-	header('Location: index.php');
+	header('Location: index.php?uri=admin');
 } else {
 	$errorMessage = "E-Mail oder Passwort war ungültig<br>";
 	echo $errorMessage;
