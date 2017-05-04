@@ -21,6 +21,6 @@ $base['adm_content'] = '';
 $base['adm_actual'] = 'Sie sind hier: ';
 
 // config.ini for heinercms
-$config_ini = __DIR__ . '/../source/config.ini';
+$config_ini = __DIR__ . '/../source/configs/config.ini';
 
 
