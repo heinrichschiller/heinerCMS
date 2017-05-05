@@ -8,7 +8,7 @@ $base['navigation'] = '<li><a href="http://heinrich-schiller.de/wordpress/" targ
     <li><a href="$PHP_SELF?uri=aboutme">Über mich</a></li>
     <li><a href="$PHP_SELF?uri=contact">Impressum</a></li>';
 $base['content'] = '';
-$base['template'] = 'templates/main.htm';
+$base['template'] = 'templates/pub_template.php';
 
 $base['adm_title'] = 'heinerCMS - Administration';
 $base['adm_navigation'] = '<div class="list-group">
