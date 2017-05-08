@@ -17,9 +17,9 @@ $base['adm_navigation'] = '<div class="list-group">
     </a>
     </div>
     <div class="list-group">
-    <a href="#" class="list-group-item disabled">
+    <li class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Content
-    </a>
+    </li>
     <a href="$PHP_SELF?uri=news" class="list-group-item">
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> News
         <span class="badge">0</span>
@@ -38,13 +38,13 @@ $base['adm_navigation'] = '<div class="list-group">
     </a>
     </div>
     <div class="list-group">
-        <a href="#" class="list-group-item disabled">
+        <li class="list-group-item active">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Settings
-        </a>
-        <a href="#" class="list-group-item">
+        </li>
+        <a href="$PHP_SELF?uri=general" class="list-group-item">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> General
         </a>
-        <a href="#" class="list-group-item">
+        <a href="$PHP_SELF?uri=user" class="list-group-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> User
         </a>
     </div>';
