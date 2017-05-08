@@ -75,3 +75,7 @@ tr {
 td {
 	background-color: #EEEEEE;
 }
+
+.dashboard {
+	font-size: 2em;
+}

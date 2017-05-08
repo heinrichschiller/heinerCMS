@@ -37,7 +37,7 @@ if ($user !== false && password_verify($login_password, $user['password'])) {
 	$_SESSION['user_id'] = $user['id'];
 	$_SESSION['username'] = $user['username'];
 
-	header('Location: index.php?uri=admin');
+	header('Location: index.php?uri=dashboard');
 } else {
 	$errorMessage = "E-Mail oder Passwort war ungültig<br>";
 	echo $errorMessage;

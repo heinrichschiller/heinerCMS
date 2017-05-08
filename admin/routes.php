@@ -66,6 +66,10 @@ $route['articledel'] = function($id) {
 	return load_admin_articledel($id);
 };
 
+$route['dashboard'] = function() {
+    return load_dashboard();
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

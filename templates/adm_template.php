@@ -10,7 +10,7 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-		<link href="templates/css/admstyle.css">
+		<link href="../templates/css/admstyle.css">
 	</head>
 	<body>
         <nav class="navbar navbar-inverse">

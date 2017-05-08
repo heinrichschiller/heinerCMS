@@ -605,4 +605,10 @@ function load_admin_articledel($id) {
 	return $tmprslt;
 }
 
+function load_dashboard()
+{
+    $template = '';
 
+    $template = loadTemplate('dashboard');
+    return $template;
+}
