@@ -1,6 +1,7 @@
 {
     "require": {
         "twbs/bootstrap": "^3.3",
-        "components/jquery": "^3.2"
+        "components/jquery": "^3.2",
+        "tinymce/tinymce": "^4.6"
     }
 }
