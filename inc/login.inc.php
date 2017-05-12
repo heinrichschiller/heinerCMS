@@ -8,9 +8,11 @@ include_once __DIR__ . '/functions.inc.php';
 function is_logged_in() {
 	include __DIR__ . '/base.inc.php';
 	$PHP_SELF = $_SERVER['PHP_SELF'];
+
+	$authenticated = isset($_SESSION['authenticated']) ? true : false; 
 	
 	/* User angemeldet? */
-	if ($_SESSION ['authenticated'] == true) {
+	if ($authenticated) {
 		return true;
 	} else {
 		$login = loadTemplate('login');

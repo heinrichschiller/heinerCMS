@@ -4,9 +4,9 @@
 $base['title'] = 'Heinrich-Schiller.de';
 $base['navigation'] = '<li><a href="http://heinrich-schiller.de/wordpress/" target="blank">Blog</a></li>
     <li><a href="$PHP_SELF?uri=news">News</a></li>
-    <li><a href="$PHP_SELF?uri=downloads">Gallerie</a></li>
-    <li><a href="$PHP_SELF?uri=aboutme">Über mich</a></li>
-    <li><a href="$PHP_SELF?uri=contact">Impressum</a></li>';
+    <li><a href="$PHP_SELF?uri=downloads">Downloads</a></li>
+    <li><a href="$PHP_SELF?uri=links">Links</a></li>
+    <li><a href="$PHP_SELF?uri=articles">Artikel</a></li>';
 $base['content'] = '';
 $base['template'] = 'templates/pub_template.php';
 

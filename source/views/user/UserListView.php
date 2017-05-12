@@ -23,10 +23,9 @@ class UserListView
 		$html .= '<th>#</th>';
 		$html .= '<th>Vorname</th>';
 		$html .= '<th>Nachname</th>';
-		$html .= '<th>Email</th>';
-		$html .= '<th>Erstellt am</th>';
 		$html .= '<th>Username</th>';
 		$html .= '<th>Aktiv</th>';
+		$html .= '<th>Aktion</th>';
 		$html .= '</thead>';
 		$html .= '<tbody>';
 
@@ -34,10 +33,9 @@ class UserListView
 			$html .= '<tr><td>'.$values['id'].'</td>';
 			$html .= '<td>'.$values['firstname'].'</td>';
 			$html .= '<td>'.$values['lastname'].'</td>';
-			$html .= '<td>'.$values['email'].'</td>';
-			$html .= '<td>'.strftime('%d.%m.%Y', $values['datetime']).'</td>';
 			$html .= '<td>'.$values['username'].'</td>';
-			$html .= '<td>'.$values['active'].'</td></tr>';
+			$html .= '<td>'.$values['active'].'</td>';
+			$html .= '<td><a href="'.$_SERVER['PHP_SELF'].'?uri=useredit&id='.$values['id'].'">Bearbeiten</a> &middot; <a href="'.$_SERVER['PHP_SELF'].'?uri=userdel&id='.$values['id'].'">Löschen</a></td></tr>';
 		}
 
 		$html .= '</tbody>';

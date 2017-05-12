@@ -11,7 +11,7 @@ class UserListModel
 
 	public function listAll()
 	{
-		$sql = 'SELECT `id`,`firstname`,`lastname`,`email`,UNIX_TIMESTAMP(`created_at`) AS datetime,`username`,`active`'
+		$sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`'
 			. ' FROM `users` ORDER BY `firstname` DESC';
 
 		$stmt = $this->_pdo->prepare($sql);

@@ -1,9 +1,14 @@
 <form action="downloadsupdate.php" method="post">
 	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
-				<label for="ident">ID:</label><span>###downloads-id###</span>
+				<label for="ident">#&nbsp;</label><span>###downloads-id###</span>
 				<input type="hidden" name="id" value="###downloads-id###">
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+			<div class="form-group">
+				<p class="text-right">Datum: ###time###</p>
 			</div>
 		</div>
 	</div>
@@ -12,13 +17,6 @@
 			<div class="form-group">
 				<label for="title">Title:</label>
 				<input type="text" name="title" value="###downloads-title###" class="form-control" id="title">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<label>Datum:</label><span>###time###</span>
 			</div>
 		</div>
 	</div>
@@ -42,7 +40,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="comment">Kommentar:</label>
-				<textarea name="comment" rows="5" class="form-control" id="comment">###downloads-comment###</textarea>
+				<textarea name="comment" rows="10" class="form-control" id="comment">###downloads-comment###</textarea>
 			</div>
 		</div>
 	</div>

@@ -126,7 +126,7 @@ function load_content_downloads()
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $downloads = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= "<a href=\"$PHP_SELF?uri=downloadsdet&id=$downloads->id\">$downloads->title</a><br>\n";
+				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=downloadsdet&id='.$downloads->id.'"> - '.$downloads->title.'</a><br>';
 			}
 		}
 		mysqli_close ( $con );
@@ -168,7 +168,7 @@ function load_content_articles()
 		if ($result) {
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
-				$tmprslt .= "<a href=\"$PHP_SELF?uri=articlesdet&id=$articles->id\">$articles->title</a><br>\n";
+				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id=$articles->id\"> - '.$articles->title.'</a><br>';
 			}
 		}
 		mysqli_close ( $con );
@@ -265,7 +265,6 @@ function load_admin_news()
 /* Formular zum Bearbeiten einer Nachricht laden */
 function load_admin_newsedit($id)
 {
-
 	$template = '';
 	$isNo = '';
 	$isYes = '';

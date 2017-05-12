@@ -36,8 +36,9 @@
         </nav>
         <div class="container">
 	        <div class="row">
-	        	<div class="col-sm-2 col-xs-4">###navigation###</div>
-	        	<div class="col-sm-10 col-xs-8">###content###</div>
+	        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">###navigation###</div>
+	        	<div class="col-lg-7 col-md-6 col-sm-8 col-xs-4">###content###</div>
+	        	<div class="col-lg-3 col-md-2 col-sm-2 col-xs-4"></div>
 	        </div>
         </div>
         <footer class="container-fluid bg-4 text-center">

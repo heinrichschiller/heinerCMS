@@ -13,7 +13,7 @@
 		<link href="templates/css/admstyle.css">
 	</head>
 	<body>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar">
             <div class="container-fluid"></div>
         </nav>
         <div class="container">
