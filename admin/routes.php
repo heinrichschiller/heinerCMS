@@ -70,6 +70,15 @@ $route['dashboard'] = function() {
     return load_dashboard();
 };
 
+$route['user'] = function() {
+	$pdo = getPdoDB();
+
+	$model = new UserListModel($pdo);
+	$view = new UserListView($model);
+	
+	return $view->render();
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

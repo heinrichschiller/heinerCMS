@@ -44,7 +44,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon1">Password</span>
-										<input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required>
+										<input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
 									</div>
 								</div>
 								<div class="form-group">

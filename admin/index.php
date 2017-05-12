@@ -8,6 +8,13 @@ include __DIR__ . '/../inc/functions.inc.php';
 include __DIR__ . '/routes.php';
 include __DIR__ . '/../inc/login.inc.php';
 
+// models
+include __DIR__ . '/../source/models/user/UserListModel.php';
+
+// views
+include __DIR__ . '/../source/views/user/UserListView.php';
+
+
 $uri = filter_input ( INPUT_GET, 'uri' );
 $id = filter_input ( INPUT_GET, 'id' );
 
@@ -23,7 +30,7 @@ if (is_logged_in ()) {
 	
 	/* Platzhalter ersetzen */
 	$template = str_replace ( '###title###', $base ['adm_title'], $template );
-	$template = str_replace ( '###navigation###', $base ['adm_navigation'], $template );
+	$template = str_replace ( '###navigation###', load_admin_navigation(), $template );
 	$template = str_replace ( '###content###', $base ['adm_content'], $template );
 	$template = str_replace ( '$PHP_SELF', $_SERVER ['PHP_SELF'], $template );
 	

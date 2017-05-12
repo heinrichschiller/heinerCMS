@@ -1,9 +1,14 @@
 <form action="newsupdate.php" method="post">
 	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
-				<label for="ident">ID:</label><span>###news-id###</span>
+				<label for="ident">#&nbsp;<span>###news-id###</span></label>
 				<input type="hidden" name="id" value="###news-id###" class="form-control" id="ident">
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+			<div class="form-group">
+				<p class="text-right">Datum: ###time###</p>
 			</div>
 		</div>
 	</div>
@@ -18,15 +23,8 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="date">Datum:</label><span>###time###</span>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
 				<label for="text">Text:</label>
-				<textarea name="message" rows="5" class="form-control" id="text">###news-message###</textarea>
+				<textarea name="message" rows="10" class="form-control" id="text">###news-message###</textarea>
 			</div>
 		</div>
 	</div>

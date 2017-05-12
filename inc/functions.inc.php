@@ -23,7 +23,44 @@ function getDB()
 		return mysqli_connect ( $host, $user, $password, $database );
 	} catch ( Exception $ex ) {
 		echo $ex->getMessage ();
+		exit();
 	}
+}
+
+function getPdoDB()
+{
+	$config = __DIR__ . '/../source/configs/config.ini';
+	
+	if (file_exists($config)) {
+		$ini_array = parse_ini_file($config);
+		
+		$host = $ini_array['host'];
+		$user = $ini_array['user'];
+		$password = $ini_array['password'];
+		$database = $ini_array['database'];
+	}
+
+	try {
+		$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+
+		return $pdo;
+
+	} catch (PDOException $ex) {
+		echo $ex->getMessage();
+		exit();
+	}
+	
+}
+
+function countEntries($table)
+{
+	$pdo = getPdoDB();
+
+	$sql = "SELECT COUNT(`id`) FROM `$table`";
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	return  $stmt->fetchColumn();
 }
 
 function loadTemplate($template) {
@@ -179,6 +216,21 @@ function load_content_links()
 }
 
 /* Admin-Bereich */
+
+
+function load_admin_navigation()
+{
+	$template = '';
+	$tables = ['news','downloads','links','articles'];
+	$template = loadTemplate('navigation');
+
+	$template = str_replace('###count1###', countEntries('news'), $template);
+	$template = str_replace('###count2###', countEntries('downloads'), $template);
+	$template = str_replace('###count3###', countEntries('links'), $template);
+	$template = str_replace('###count4###', countEntries('articles'), $template);
+	
+	return $template;
+}
 
 /* Gesamtübersicht der Nachrichten laden */
 function load_admin_news()

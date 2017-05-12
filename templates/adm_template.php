@@ -10,6 +10,10 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<!-- TinyMCE-Editor -->
+		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
+  		<script>tinymce.init({ selector:'textarea' });</script>
 		<link href="../templates/css/admstyle.css">
 	</head>
 	<body>
