@@ -168,7 +168,7 @@ function load_content_articles()
 		if ($result) {
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
 				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
-				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id=$articles->id\"> - '.$articles->title.'</a><br>';
+				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id='.$articles->id.'\"> - '.$articles->title.'</a><br>';
 			}
 		}
 		mysqli_close ( $con );
@@ -273,7 +273,7 @@ function load_admin_newsedit($id)
 
 	if ($con) {
 
-		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
+		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";var_dump($sql);die;
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
