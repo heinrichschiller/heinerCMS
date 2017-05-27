@@ -17,7 +17,7 @@
         "replace": {
             "twitter/bootstrap": "self.version"
         },
-        "time": "2016-07-25 15:51:55",
+        "time": "2016-07-25T15:51:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -67,7 +67,7 @@
             "reference": "e5534d4ab8e80c159553d507e358ed20a806d3bf",
             "shasum": ""
         },
-        "time": "2017-03-21 07:01:49",
+        "time": "2017-03-21T07:01:49+00:00",
         "type": "component",
         "extra": {
             "component": {
@@ -98,20 +98,20 @@
     },
     {
         "name": "tinymce/tinymce",
-        "version": "4.6.1",
-        "version_normalized": "4.6.1.0",
+        "version": "4.6.2",
+        "version_normalized": "4.6.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/tinymce/tinymce-dist.git",
-            "reference": "a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7"
+            "reference": "58f9639d8b200df62a22153d79bd76234b803978"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7",
-            "reference": "a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/58f9639d8b200df62a22153d79bd76234b803978",
+            "reference": "58f9639d8b200df62a22153d79bd76234b803978",
             "shasum": ""
         },
-        "time": "2017-05-10 13:42:57",
+        "time": "2017-05-23T11:47:02+00:00",
         "type": "component",
         "extra": {
             "component": {

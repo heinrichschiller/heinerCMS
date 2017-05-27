@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d51f8f5f7f7a3f146d2ac2870ffb0cb8",
     "content-hash": "49bd76c7bf66a559a208a15309cb3769",
     "packages": [
         {
@@ -47,20 +46,20 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2017-03-21 07:01:49"
+            "time": "2017-03-21T07:01:49+00:00"
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.6.1",
+            "version": "4.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7"
+                "reference": "58f9639d8b200df62a22153d79bd76234b803978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7",
-                "reference": "a4129cbcaea6d4e9c26b103f11e2215dd85b8cb7",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/58f9639d8b200df62a22153d79bd76234b803978",
+                "reference": "58f9639d8b200df62a22153d79bd76234b803978",
                 "shasum": ""
             },
             "type": "component",
@@ -93,7 +92,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2017-05-10 13:42:57"
+            "time": "2017-05-23T11:47:02+00:00"
         },
         {
             "name": "twbs/bootstrap",
@@ -144,7 +143,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-07-25 15:51:55"
+            "time": "2016-07-25T15:51:55+00:00"
         }
     ],
     "packages-dev": [],
