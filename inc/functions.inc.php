@@ -73,6 +73,32 @@ function loadTemplate($template) {
 	return false;
 }
 
+function loadTemplateNewVersion($result,$template){
+
+    // Pfad zum Template erstellen & überprüfen ob das Template existiert.
+    $file = __DIR__ . '/../templates/'. $template . '.php';
+    
+    if (file_exists($file)){
+        // Der Output des Scripts wird n einen Buffer gespeichert, d.h.
+        // nicht gleich ausgegeben.
+        ob_start();
+        
+        // Das Template-File wird eingebunden und dessen Ausgabe in
+        // $output gespeichert.
+        include $file;
+        $output = ob_get_contents();
+        ob_end_clean();
+        
+        // Output zurückgeben.
+        return $output;
+    }
+    else {
+        // Template-File existiert nicht-> Fehlermeldung.
+        return 'could not find template';
+    }  
+    
+}
+
 /* Gesamtübersicht der Nachrichten laden */
 function load_content_news()
 {
@@ -273,7 +299,7 @@ function load_admin_newsedit($id)
 
 	if ($con) {
 
-		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";var_dump($sql);die;
+		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
@@ -556,7 +582,6 @@ function load_admin_articles()
 {
 
 	$template = '';
-	$table_content = '';
 
 	$con = getDB ();
 
@@ -566,16 +591,7 @@ function load_admin_articles()
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
-			
-			while ( $articles = mysqli_fetch_object ( $result ) ) {
-				$table_content .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
-				$table_content .= "</td><td>$articles->title</td><td>" . (($articles->visible > - 1) ? 'ja' : 'nein');
-				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=articleedit&id=$articles->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=articledel&id=$articles->id\">Löschen</a></tr>";
-			}
-
-			$template = loadTemplate('adm_articles');
-
-			$template = str_replace('###table-content###', $table_content, $template);
+			$template = loadTemplateNewVersion($result, 'adm_articles');
 		}
 		mysqli_close ( $con );
 	}
@@ -586,8 +602,6 @@ function load_admin_articles()
 function load_admin_articleedit($id)
 {
 	$template = '';
-	$isNo = '';
-	$isYes = '';
 
 	$con = getDB ();
 
@@ -597,26 +611,11 @@ function load_admin_articleedit($id)
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
-			$articles = mysqli_fetch_object ( $result );
+			$result = mysqli_fetch_assoc ( $result );
 
-			$time = strftime ( '%d.%m.%Y %H:%M', $articles->datetime );
+			$result['time'] = strftime ( '%d.%m.%Y %H:%M', $result['datetime'] );
 
-			if ($articles->visible > - 1) {
-				$isYes = ' checked';
-			}
-			
-			if ($articles->visible < 0) {
-				$isNo = ' checked';
-			}
-
-			$template = loadTemplate('articleedit');
-
-			$template = str_replace('###article-id###', $articles->id, $template);
-			$template = str_replace('###article-title###', $articles->title, $template);
-			$template = str_replace('###time###', $time, $template);
-			$template = str_replace('###article-content###', $articles->content, $template);
-			$template = str_replace('###chk_yes###', $isYes, $template);
-			$template = str_replace('###chk_no###', $isNo, $template);
+			$template = loadTemplateNewVersion($result,'articleedit');
 		}
 		mysqli_close ($con);
 	}
