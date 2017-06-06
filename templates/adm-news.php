@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="panel">
-		<h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>News</h4>
+		<h4><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> News</h4>
 	</div>
 	<table class="table table-hover table-striped">
 		<thead>

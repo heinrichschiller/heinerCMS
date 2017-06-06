@@ -70,6 +70,10 @@ $route['dashboard'] = function() {
     return load_dashboard();
 };
 
+$route['trash'] = function() {
+    return load_trash();
+};
+
 $route['user'] = function() {
 	$pdo = getPdoDB();
 

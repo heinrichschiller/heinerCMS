@@ -60,6 +60,7 @@ function countEntries($table)
 
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
+	
 	return  $stmt->fetchColumn();
 }
 
@@ -268,7 +269,7 @@ function load_admin_news()
 
 	if ($con) {
 		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` ORDER BY `created_at` DESC';
+		$sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -587,14 +588,15 @@ function load_admin_articles()
 
 	if ($con) {
 		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` ORDER BY `created_at` DESC';
-		$result = mysqli_query ( $con, $sql );
-
-		if ($result) {
+		$sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+		
+		if ($result = mysqli_query ( $con, $sql )) {
 			$template = loadTemplateNewVersion($result, 'adm_articles');
 		}
+
 		mysqli_close ( $con );
 	}
+
 	return $template;
 }
 
@@ -608,9 +610,8 @@ function load_admin_articleedit($id)
 	if ($con) {
 		
 		$sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
 
-		if ($result) {
+		if ($result = mysqli_query ( $con, $sql )) {
 			$result = mysqli_fetch_assoc ( $result );
 
 			$result['time'] = strftime ( '%d.%m.%Y %H:%M', $result['datetime'] );
@@ -660,5 +661,13 @@ function load_dashboard()
     $template = '';
 
     $template = loadTemplate('dashboard');
+
+    return $template;
+}
+
+function load_trash()
+{
+    $template = '';
+    
     return $template;
 }

@@ -24,6 +24,10 @@
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Articles
             <span class="badge">###count4###</span>
         </a>
+        <a href="$PHP_SELF?uri=trash" class="list-group-item">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash
+            <span class="badge">0</span>
+        </a>
         </div>
         <div class="list-group">
             <li class="list-group-item active">
