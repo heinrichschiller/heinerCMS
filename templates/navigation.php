@@ -26,7 +26,7 @@
         </a>
         <a href="$PHP_SELF?uri=trash" class="list-group-item">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash
-            <span class="badge">0</span>
+            <span class="badge">###count5###</span>
         </a>
         </div>
         <div class="list-group">

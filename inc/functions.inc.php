@@ -56,12 +56,24 @@ function countEntries($table)
 {
 	$pdo = getPdoDB();
 
-	$sql = "SELECT COUNT(`id`) FROM `$table`";
+	$sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false'";
 
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	
 	return  $stmt->fetchColumn();
+}
+
+function countTrashEntries($table)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'true'";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return  $stmt->fetchColumn();
 }
 
 function loadTemplate($template) {
@@ -98,6 +110,17 @@ function loadTemplateNewVersion($result,$template){
         return 'could not find template';
     }  
     
+}
+
+function loadNewsFromDB($db,$count)
+{
+    $pdo = getPdoDB();
+
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return  $stmt->fetchAll();
 }
 
 /* Gesamtübersicht der Nachrichten laden */
@@ -255,6 +278,7 @@ function load_admin_navigation()
 	$template = str_replace('###count2###', countEntries('downloads'), $template);
 	$template = str_replace('###count3###', countEntries('links'), $template);
 	$template = str_replace('###count4###', countEntries('articles'), $template);
+	$template = str_replace('###count5###', countTrashEntries('articles'), $template);
 	
 	return $template;
 }
@@ -659,8 +683,16 @@ function load_admin_articledel($id) {
 function load_dashboard()
 {
     $template = '';
+    $content = [];
 
-    $template = loadTemplate('dashboard');
+    $news = loadNewsFromDB('news', 5);
+    $articles = loadNewsFromDB('articles', 5);
+    $links = loadNewsFromDB('links', 5);
+    $downloads = loadNewsFromDB('downloads', 5);
+
+    $content = [$news, $downloads, $links, $articles];
+
+    $template = loadTemplateNewVersion($content,'dashboard');
 
     return $template;
 }
