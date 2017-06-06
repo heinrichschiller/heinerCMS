@@ -68,12 +68,22 @@ function countTrashEntries($table)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'true'";
+    $sql = "SELECT COUNT(*) as result
+        FROM (
+        SELECT `trash` FROM `articles`
+        UNION ALL
+        SELECT `trash` FROM `news`
+        UNION ALL
+        SELECT `trash` FROM `downloads`
+        UNION ALL
+        SELECT `trash` FROM `links`
+        ) as subquery
+        WHERE `trash` = 'true'";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    
-    return  $stmt->fetchColumn();
+   
+    return $stmt->fetchColumn();
 }
 
 function loadTemplate($template) {
@@ -402,7 +412,7 @@ function load_admin_downloads()
 
 	if ($con) {
 		
-	    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `created_at` DESC';
+	    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {

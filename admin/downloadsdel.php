@@ -11,8 +11,10 @@ if (is_logged_in ()) {
 	$con = getDB();
 	
 	if ($con) {
-		$sql = "DELETE FROM downloads WHERE id = $id";
+		$sql = "UPDATE `downloads` SET `trash`='true' WHERE `id`= $id";
+		
 		$result = mysqli_query ( $con, $sql );
+		
 		header ( 'Location: index.php?uri=downloads' );
 	}
 

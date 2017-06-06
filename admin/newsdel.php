@@ -11,8 +11,10 @@ if (is_logged_in ()) {
 	$con = getDB();
 
 	if ($con) {
-		$sql = "DELETE FROM news WHERE id = $id";
+		$sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
+		
 		$result = mysqli_query ( $con, $sql );
+		
 		header ( 'Location: index.php?uri=news' );
 	}
 	

@@ -28,7 +28,7 @@
 							<td><?= $news['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $news['datetime']); ?></td>
 							<td><?= $news['title'];?></td>
-							<td><?= $news['visible'];?></td>
+							<td><?= ($news['visible'] > -1) ? ' ja' : ' nein'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -58,7 +58,7 @@
 							<td><?= $downloads['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $downloads['datetime']); ?></td>
 							<td><?= $downloads['title'];?></td>
-							<td><?= $downloads['visible'];?></td>
+							<td><?= ($downloads['visible'] > -1) ? ' ja' : ' nein'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -90,7 +90,7 @@
 							<td><?= $link['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $link['datetime']); ?></td>
 							<td><?= $link['title'];?></td>
-							<td><?= $link['visible'];?></td>
+							<td><?= ($link['visible'] > -1) ? ' ja' : ' nein'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -118,7 +118,7 @@
 							<td><?= $article['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $article['datetime']); ?></td>
 							<td><?= $article['title'];?></td>
-							<td><?= $article['visible'];?></td>
+							<td><?= ($article['visible'] > -1) ? ' ja' : ' nein'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
