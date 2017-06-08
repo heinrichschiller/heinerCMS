@@ -10,23 +10,23 @@
         </li>
         <a href="$PHP_SELF?uri=news" class="list-group-item">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> News
-            <span class="badge">###count1###</span>
+            <span class="badge"><?= $result[0]; ?></span>
         </a>
         <a href="$PHP_SELF?uri=downloads" class="list-group-item">
             <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Downloads
-            <span class="badge">###count2###</span>
+            <span class="badge"><?= $result[1]; ?></span>
         </a>
         <a href="$PHP_SELF?uri=links" class="list-group-item">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Links
-            <span class="badge">###count3###</span>
+            <span class="badge"><?= $result[2]; ?></span>
         </a>
         <a href="$PHP_SELF?uri=articles" class="list-group-item">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Articles
-            <span class="badge">###count4###</span>
+            <span class="badge"><?= $result[3]; ?></span>
         </a>
         <a href="$PHP_SELF?uri=trash" class="list-group-item">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash
-            <span class="badge">###count5###</span>
+            <span class="badge"><?= $result[4]; ?></span>
         </a>
         </div>
         <div class="list-group">

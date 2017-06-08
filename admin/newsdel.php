@@ -7,9 +7,18 @@ include __DIR__ . '/../inc/login.inc.php';
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in ()) {
 	$id = filter_input(INPUT_POST, 'id');
-	
+	$action = filter_input(INPUT_POST, 'action');
+
+	// @todo Unsicher!!! Beheben!!!
+	$newsList = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
+
 	$con = getDB();
 
+	switch ( $action ) {
+	    case 'del_newsList' : deleteNewsListById($newsList);
+	       break;
+	}
+	
 	if ($con) {
 		$sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
 		

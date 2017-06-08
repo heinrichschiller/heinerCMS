@@ -52,38 +52,34 @@ function getPdoDB()
 	
 }
 
-function countEntries($table)
+function countEntries()
 {
 	$pdo = getPdoDB();
 
-	$sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false'";
+	$sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(*) as result
+                FROM (
+                SELECT `trash` FROM `articles`
+                UNION ALL
+                SELECT `trash` FROM `news`
+                UNION ALL
+                SELECT `trash` FROM `downloads`
+                UNION ALL
+                SELECT `trash` FROM `links`
+                ) as subquery
+                WHERE `trash` = 'true';";
 
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
-	
-	return  $stmt->fetchColumn();
-}
 
-function countTrashEntries($table)
-{
-    $pdo = getPdoDB();
-    
-    $sql = "SELECT COUNT(*) as result
-        FROM (
-        SELECT `trash` FROM `articles`
-        UNION ALL
-        SELECT `trash` FROM `news`
-        UNION ALL
-        SELECT `trash` FROM `downloads`
-        UNION ALL
-        SELECT `trash` FROM `links`
-        ) as subquery
-        WHERE `trash` = 'true'";
-    
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-   
-    return $stmt->fetchColumn();
+	return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
 
 function loadTemplate($template) {
@@ -122,11 +118,22 @@ function loadTemplateNewVersion($result,$template){
     
 }
 
-function loadNewsFromDB($db,$count)
+function loadFromDB($db,$count)
 {
     $pdo = getPdoDB();
 
     $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return  $stmt->fetchAll();
+}
+
+function loadTrashFromDB($db)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$db` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     
@@ -281,14 +288,10 @@ function load_content_links()
 function load_admin_navigation()
 {
 	$template = '';
-	$tables = ['news','downloads','links','articles'];
-	$template = loadTemplate('navigation');
 
-	$template = str_replace('###count1###', countEntries('news'), $template);
-	$template = str_replace('###count2###', countEntries('downloads'), $template);
-	$template = str_replace('###count3###', countEntries('links'), $template);
-	$template = str_replace('###count4###', countEntries('articles'), $template);
-	$template = str_replace('###count5###', countTrashEntries('articles'), $template);
+	countEntries();
+
+	$template = loadTemplateNewVersion(countEntries(), 'navigation');
 	
 	return $template;
 }
@@ -400,6 +403,21 @@ function load_admin_newsdel($id)
 		mysqli_close ( $con );
 	}
 	return $tmprslt;
+}
+
+function deleteNewsListById($newsList)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "DELETE FROM `news` WHERE `id` = '$newsList[0]'";
+    array_shift($newsList);
+    
+    foreach ($newsList as $key => $value) {
+        $sql .= " OR `id` = '$value'";
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
 }
 
 /* Gesamtübersicht der Downloads laden */
@@ -695,10 +713,10 @@ function load_dashboard()
     $template = '';
     $content = [];
 
-    $news = loadNewsFromDB('news', 5);
-    $articles = loadNewsFromDB('articles', 5);
-    $links = loadNewsFromDB('links', 5);
-    $downloads = loadNewsFromDB('downloads', 5);
+    $news = loadFromDB('news', 5);
+    $articles = loadFromDB('articles', 5);
+    $links = loadFromDB('links', 5);
+    $downloads = loadFromDB('downloads', 5);
 
     $content = [$news, $downloads, $links, $articles];
 
@@ -710,6 +728,16 @@ function load_dashboard()
 function load_trash()
 {
     $template = '';
+    $content = [];
+
+    $news = loadTrashFromDB('news');
+    $downloads = loadTrashFromDB('downloads');
+    $links = loadTrashFromDB('links');
+    $artikles = loadTrashFromDB('articles');
+    
+    $content = [$news,$downloads,$links,$artikles];
+    
+    $template = loadTemplateNewVersion($content, 'trash');
     
     return $template;
 }
