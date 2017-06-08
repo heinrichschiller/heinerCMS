@@ -36,6 +36,7 @@ class Db_Installer {
 			`update_at` timestamp NULL DEFAULT NULL,
 			`nextPageId` INT NOT NULL DEFAULT '-1',
 			`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
@@ -55,6 +56,7 @@ class Db_Installer {
 		    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		    `update_at` timestamp NULL DEFAULT NULL,
 		    `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
 		   PRIMARY KEY (`id`)
 		   ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
@@ -73,6 +75,7 @@ class Db_Installer {
 			`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			`update_at` timestamp NULL DEFAULT NULL,
 			`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		
@@ -90,6 +93,7 @@ class Db_Installer {
 			`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			`update_at` timestamp NULL DEFAULT NULL,
 			`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
 			PRIMARY KEY (`id`)
 			) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 		

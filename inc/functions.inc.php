@@ -420,6 +420,16 @@ function deleteNewsListById($newsList)
     $stmt->execute();
 }
 
+function setNewsAsTrash($id)
+{
+    $pdo = getPdoDB();
+
+    $sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
+    
+    $stmt = $pdo->prepare( $sql );
+    $stmt->execute();
+}
+
 /* Gesamtübersicht der Downloads laden */
 function load_admin_downloads()
 {

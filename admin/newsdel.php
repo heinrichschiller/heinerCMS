@@ -9,23 +9,18 @@ if (is_logged_in ()) {
 	$id = filter_input(INPUT_POST, 'id');
 	$action = filter_input(INPUT_POST, 'action');
 
+	$uri = '';
+
 	// @todo Unsicher!!! Beheben!!!
 	$newsList = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
 
-	$con = getDB();
-
 	switch ( $action ) {
 	    case 'del_newsList' : deleteNewsListById($newsList);
+	       $uri = 'trash';
 	       break;
+	    default: setNewsAsTrash($id);
+	       $uri = 'news';
 	}
 	
-	if ($con) {
-		$sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
-		
-		$result = mysqli_query ( $con, $sql );
-		
-		header ( 'Location: index.php?uri=news' );
-	}
-	
-	mysqli_close( $con );
+	header ( "Location: index.php?uri=$uri" );
 }
