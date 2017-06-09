@@ -14,6 +14,7 @@ if (is_logged_in ()) {
 
 	if ($con) {
 		$sql = "UPDATE news SET title = '$title', message = '$message', visible = $visible WHERE id = $id";
+
 		$result = mysqli_query ( $con, $sql );
 		header ( 'Location: index.php?uri=news' );
 	}

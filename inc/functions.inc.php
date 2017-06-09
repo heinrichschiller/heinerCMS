@@ -1,5 +1,21 @@
 <?php
 
+/* ********************************************************************************
+ * Contains all functions for heinerCMS
+ * 
+ * @author: Heinrich Schiller
+ * @date: 2017-06-09
+ * 
+ * content
+ * 
+ * generic section
+ * admin section
+ * sql section
+ * *******************************************************************************/
+
+/* ********************************************************************************
+ * generic - section
+ * *******************************************************************************/
 /**
  * Database adapter for mysql
  * 
@@ -27,6 +43,11 @@ function getDB()
 	}
 }
 
+/**
+ * Database adapter for MySQL
+ * 
+ * @return PDO
+ */
 function getPdoDB()
 {
 	$config = __DIR__ . '/../source/configs/config.ini';
@@ -50,36 +71,6 @@ function getPdoDB()
 		exit();
 	}
 	
-}
-
-function countEntries()
-{
-	$pdo = getPdoDB();
-
-	$sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(*) as result
-                FROM (
-                SELECT `trash` FROM `articles`
-                UNION ALL
-                SELECT `trash` FROM `news`
-                UNION ALL
-                SELECT `trash` FROM `downloads`
-                UNION ALL
-                SELECT `trash` FROM `links`
-                ) as subquery
-                WHERE `trash` = 'true';";
-
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-
-	return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
 
 function loadTemplate($template) {
@@ -118,32 +109,10 @@ function loadTemplateNewVersion($result,$template){
     
 }
 
-function loadFromDB($db,$count)
-{
-    $pdo = getPdoDB();
-
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    
-    return  $stmt->fetchAll();
-}
-
-function loadTrashFromDB($db)
-{
-    $pdo = getPdoDB();
-    
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$db` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    
-    return  $stmt->fetchAll();
-}
-
 /* Gesamtübersicht der Nachrichten laden */
 function load_content_news()
 {
-	$tmprslt = '';
+	$template = '';
 	$PHP_SELF = $_SERVER['PHP_SELF'];
 	$con = getDB ();
 	
@@ -153,19 +122,19 @@ function load_content_news()
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
-				$tmprslt .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
+				$template .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
+				$template .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
 			}
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Detailansicht einer Nachricht laden */
 function load_content_newsdetailed($id)
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	if ($con) {
 		
@@ -173,19 +142,19 @@ function load_content_newsdetailed($id)
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$news = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</h5>";
-			$tmprslt .= "<h2>$news->title</h2>";
-			$tmprslt .= "<p>$news->message</p>";
+			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</h5>";
+			$template .= "<h2>$news->title</h2>";
+			$template .= "<p>$news->message</p>";
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Gesamtübersicht der Downloads laden */
 function load_content_downloads()
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	if ($con) {
 		
@@ -193,18 +162,18 @@ function load_content_downloads()
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $downloads = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=downloadsdet&id='.$downloads->id.'"> - '.$downloads->title.'</a><br>';
+				$template .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=downloadsdet&id='.$downloads->id.'"> - '.$downloads->title.'</a><br>';
 			}
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Detailansicht eines Downloads laden */
 function load_content_downloadsdetailed($id)
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	if ($con) {
 		
@@ -212,20 +181,20 @@ function load_content_downloadsdetailed($id)
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$downloads = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $downloads->datetime ) . "</h5>";
-			$tmprslt .= "<h2>$downloads->title</h2>";
-			$tmprslt .= "<p>$downloads->comment</p>";
-			$tmprslt .= "<p><a href=\"$downloads->path$downloads->filename\">Hier klicken!</a></p>";
+			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $downloads->datetime ) . "</h5>";
+			$template .= "<h2>$downloads->title</h2>";
+			$template .= "<p>$downloads->comment</p>";
+			$template .= "<p><a href=\"$downloads->path$downloads->filename\">Hier klicken!</a></p>";
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Gesamtübersicht der Artikel laden */
 function load_content_articles()
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	
 	if ($con) {
@@ -234,19 +203,19 @@ function load_content_articles()
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $articles = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
-				$tmprslt .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id='.$articles->id.'\"> - '.$articles->title.'</a><br>';
+				$template .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
+				$template .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id='.$articles->id.'\"> - '.$articles->title.'</a><br>';
 			}
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Detailansicht eines Artikels laden */
 function load_content_articlesdetailed($id)
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	if ($con) {
 		
@@ -254,19 +223,19 @@ function load_content_articlesdetailed($id)
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			$articles = mysqli_fetch_object ( $result );
-			$tmprslt .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime ) . "</h5>";
-			$tmprslt .= "<h2>$articles->title</h2>";
-			$tmprslt .= $articles->content;
+			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime ) . "</h5>";
+			$template .= "<h2>$articles->title</h2>";
+			$template .= $articles->content;
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
 /* Gesamtübersicht der Links laden */
 function load_content_links()
 {
-	$tmprslt = '';
+	$template = '';
 	$con = getDB ();
 	if ($con) {
 		
@@ -274,15 +243,18 @@ function load_content_links()
 		$result = mysqli_query ( $con, $sql );
 		if ($result) {
 			while ( $links = mysqli_fetch_object ( $result ) ) {
-				$tmprslt .= "<p><a href=\"$links->uri\">$links->title</a><br>$links->comment<br><span class=\"uri\">$links->uri</span></p>";
+				$template .= "<p><a href=\"$links->uri\">$links->title</a><br>$links->comment<br><span class=\"uri\">$links->uri</span></p>";
 			}
 		}
 		mysqli_close ( $con );
 	}
-	return $tmprslt;
+	return $template;
 }
 
-/* Admin-Bereich */
+
+/* ********************************************************************************
+ * admin - section
+ * *******************************************************************************/
 
 
 function load_admin_navigation()
@@ -310,16 +282,7 @@ function load_admin_news()
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
-
-			$template = loadTemplate('adm-news');
-
-			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$table_content .= '<tr><td>' . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
-				$table_content .= "</td><td>$news->title</td><td>" . (($news->visible > - 1) ? 'ja' : 'nein');
-				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id\">Löschen</a></tr>";
-			}
-			
-			$template = str_replace('###table-content###', $table_content, $template);
+			$template = loadTemplateNewVersion($result, 'adm_news');
 		}
 		mysqli_close ( $con );
 	}
@@ -330,40 +293,10 @@ function load_admin_news()
 function load_admin_newsedit($id)
 {
 	$template = '';
-	$isNo = '';
-	$isYes = '';
 
-	$con = getDB();
+	$pdo = getPdoDB();
 
-	if ($con) {
-
-		$sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$news = mysqli_fetch_object ( $result );
-
-			$time = strftime ( '%d.%m.%Y %H:%M', $news->datetime );
-
-			if ( $news->visible > - 1 ) {
-				$isYes = ' checked';
-			}
-			
-			if ( $news->visible < 0 ) {
-				$isNo = ' checked';
-			}
-			
-			$template .= loadTemplate('newsedit');
-
-			$template = str_replace('###news-id###', $news->id, $template);
-			$template = str_replace('###news-title###', $news->title, $template);
-			$template = str_replace('###time###', $time, $template);
-			$template = str_replace('###news-message###', $news->message, $template);
-			$template = str_replace('###chk_yes###', $isYes, $template);
-			$template = str_replace('###chk_no###', $isNo, $template);
-		}
-
-		mysqli_close ( $con );
-	}
+	$template = loadTemplateNewVersion(getOneNewsRecordById($id), 'newsedit');
 	
 	return $template;
 }
@@ -374,9 +307,7 @@ function load_admin_newsadd()
 	$template = '';
 
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
-	$template .= loadTemplate('newsadd');
-
-	$template = str_replace('###time###',$time,$template);
+	$template = loadTemplateNewVersion($time, 'newsadd');
 	
 	return $template;
 }
@@ -384,50 +315,16 @@ function load_admin_newsadd()
 /* Nachricht löschen */
 function load_admin_newsdel($id)
 {
-
-	$tmprslt = '';
-	$con = getDB();
-	
-	if ($con) {
-
-		$sql = "SELECT title FROM news WHERE id = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$news = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="newsdel.php" method="post">';
-			$tmprslt .= '<p>Möchten Sie die Nachricht <b>' . $news->title . '</b> wirklich löschen?</p>';
-			$tmprslt .= '<p><input type="submit" value="Ja"> <input type="reset" value="Nein" onClick="location.href = \'index.php?uri=news\'"></p>';
-			$tmprslt .= '<input type="hidden" name="id" value="' . $id . '">';
-			$tmprslt .= '</form>';
-		}
-		mysqli_close ( $con );
-	}
-	return $tmprslt;
-}
-
-function deleteNewsListById($newsList)
-{
-    $pdo = getPdoDB();
+    $template = '';
+    $container = [];
     
-    $sql = "DELETE FROM `news` WHERE `id` = '$newsList[0]'";
-    array_shift($newsList);
+    $title = getTitleById('news', $id);
     
-    foreach ($newsList as $key => $value) {
-        $sql .= " OR `id` = '$value'";
-    }
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-}
-
-function setNewsAsTrash($id)
-{
-    $pdo = getPdoDB();
-
-    $sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
+    $container = [ 'id' => $id, 'title' => $title ];
     
-    $stmt = $pdo->prepare( $sql );
-    $stmt->execute();
+    $template = loadTemplateNewVersion($container, 'newsdel');
+    
+	return $template;
 }
 
 /* Gesamtübersicht der Downloads laden */
@@ -472,7 +369,7 @@ function load_admin_downloadsedit($id)
 	
 	if ($con) {
 
-		$sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` ORDER BY `datetime` DESC';
+		$sql = "SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` WHERE `id`=$id";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -519,53 +416,33 @@ function load_admin_downloadsadd($template)
 /* Download löschen */
 function load_admin_downloadsdel($id)
 {
-
-	$tmprslt = '';
-	$con = getDB();
-	if ($con) {
-
-		$sql = "SELECT `title` FROM `downloads` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$news = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="downloadsdel.php" method="post">';
-			$tmprslt .= '<p>Möchten Sie den Download <b>' . $news->title . '</b> wirklich löschen?</p>';
-			$tmprslt .= '<p><input type="submit" value="Ja"> <input type="reset" value="Nein" onClick="location.href = \'index.php?uri=downloads\'"></p>';
-			$tmprslt .= '<input type="hidden" name="id" value="' . $id . '">';
-			$tmprslt .= '</form>';
-		}
-		mysqli_close ($con);
-	}
-	return $tmprslt;
+	$title = getTitleById('downloads', $id);
+	
+	$container = [ 'id' => $id, 'title' => $title ];
+	
+	$template = loadTemplateNewVersion($container, 'downloadsdel');
+	
+	return $template;
 }
 
 /* Gesamtübersicht der Links laden */
 function load_admin_links()
 {
-	$template = '';
-	$table_content = '';
-
-	$con = getDB ();
-
-	if ($con) {
+    $template = '';
+    
+    $con = getDB ();
+    
+    if ($con) {
+        
+		$sql = "SELECT `id`, `title`, `uri`, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
 		
-		$sql = 'SELECT `id`, `title`, `uri`, `visible` FROM `links` ORDER BY `title` DESC';
-		$result = mysqli_query ( $con, $sql );
-
-		if ($result) {
-			
-			while ( $links = mysqli_fetch_object ( $result ) ) {
-				$table_content .= "<tr><td>$links->title</td><td>$links->uri</td><td>";
-				$table_content .= (($links->visible > - 1) ? 'ja' : 'nein');
-				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=linkedit&id=$links->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=linkdel&id=$links->id\">Löschen</a></tr>";
-			}
-			
-			$template = loadTemplate('adm_links');
-			
-			$template = str_replace('###table-content###', $table_content, $template);
+		if ($result = mysqli_query ( $con, $sql )) {
+		    $template = loadTemplateNewVersion($result, 'adm_links');
 		}
+		
 		mysqli_close ( $con );
 	}
+	
 	return $template;
 }
 
@@ -574,38 +451,11 @@ function load_admin_linkedit($id)
 {
 
 	$template = '';
-	$isNo = '';
-	$isYes = '';
 
-	$con = getDB();
+	$result = getOneLinkRecordBuId($id);
 	
-	if ($con) {
+	$template = loadTemplateNewVersion($result, 'linkedit');
 
-		$sql = "SELECT `id`, `title`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-
-		if ($result) {
-			$links = mysqli_fetch_object ( $result );
-
-			if ($links->visible > - 1) {
-				$isYes = ' checked';
-			}
-			
-			if ($links->visible < 0) {
-				$isNo = ' checked';
-			}
-			
-			$template = loadTemplate('linkedit');
-
-			$template = str_replace('###links-id###', $links->id, $template);
-			$template = str_replace('###links-title###', $links->title, $template);
-			$template = str_replace('###links-uri###', $links->uri, $template);
-			$template = str_replace('###links-comment###', $links->comment, $template);
-			$template = str_replace('###chk_yes###', $isYes, $template);
-			$template = str_replace('###chk_no###', $isNo, $template);
-		}
-		mysqli_close ($con);
-	}
 	return $template;
 }
 
@@ -621,29 +471,21 @@ function load_admin_linkadd() {
 /* Link löschen */
 function load_admin_linkdel($id) {
 
-	$tmprslt = '';
-	$con = getDB();
-	if ($con) {
-
-		$sql = "SELECT `title`, `uri` FROM `links` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$links = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="linkdel.php" method="post">';
-			$tmprslt .= '<p>Möchten Sie den Link <b>' . $links->title . ' (' . $links->uri . ')</b> wirklich löschen?</p>';
-			$tmprslt .= '<p><input type="submit" value="Ja"> <input type="reset" value="Nein" onClick="location.href = \'index.php?uri=links\'"></p>';
-			$tmprslt .= '<input type="hidden" name="id" value="' . $id . '">';
-			$tmprslt .= '</form>';
-		}
-		mysqli_close ( $con );
-	}
-	return $tmprslt;
+	$template = '';
+	$container= [];
+	
+	$title = getTitleById('links', $id);
+	
+	$container = [ 'id' => $id, 'title' => $title ];
+	
+	$template = loadTemplateNewVersion($container, 'linkdel');
+	
+	return $template;
 }
 
 /* Gesamtübersicht der Artikel laden */
 function load_admin_articles()
 {
-
 	$template = '';
 
 	$con = getDB ();
@@ -667,21 +509,10 @@ function load_admin_articleedit($id)
 {
 	$template = '';
 
-	$con = getDB ();
+	$result = getOneArticleRecordById($id);
 
-	if ($con) {
-		
-		$sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
+	$template = loadTemplateNewVersion($result,'articleedit');
 
-		if ($result = mysqli_query ( $con, $sql )) {
-			$result = mysqli_fetch_assoc ( $result );
-
-			$result['time'] = strftime ( '%d.%m.%Y %H:%M', $result['datetime'] );
-
-			$template = loadTemplateNewVersion($result,'articleedit');
-		}
-		mysqli_close ($con);
-	}
 	return $template;
 }
 
@@ -692,30 +523,25 @@ function load_admin_articleadd($id)
 
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 	
-	$template = loadTemplate('articleadd');
-	$template = str_replace('###time###',$time,$template);
+	$template = loadTemplateNewVersion($time, 'articleadd');
 	
 	return $template;
 }
 
 /* Artikel löschen */
 function load_admin_articledel($id) {
-	$tmprslt = '';
-	$con = getDB ();
-	if ($con) {
-		$sql = "SELECT `title` FROM `articles` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$articles = mysqli_fetch_object ( $result );
-			$tmprslt .= '<form action="articledel.php" method="post">';
-			$tmprslt .= '<p>Möchten Sie den Artikel <b>' . $articles->title . '</b> wirklich löschen?</p>';
-			$tmprslt .= '<p><input type="submit" value="Ja"> <input type="reset" value="Nein" onClick="location.href = \'index.php?uri=articles\'"></p>';
-			$tmprslt .= '<input type="hidden" name="id" value="' . $id . '">';
-			$tmprslt .= '</form>';
-		}
-		mysqli_close ($con);
+    $template = '';
+    $container = [];
+
+	$title = getTitleById('articles', $id);
+	
+	$container = ['id' => $id, 'title' => $title];
+
+	if ($container) {
+        $template = loadTemplateNewVersion($container, 'articledel');
 	}
-	return $tmprslt;
+
+	return $template;
 }
 
 function load_dashboard()
@@ -750,4 +576,197 @@ function load_trash()
     $template = loadTemplateNewVersion($content, 'trash');
     
     return $template;
+}
+
+/* ********************************************************************************
+ * SQL - section
+ * *******************************************************************************/
+
+/**
+ * Count all Entries for navigation information
+ * 
+ * @return array
+ */
+function countEntries()
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
+        UNION ALL
+        SELECT COUNT(*) as result
+                FROM (
+                SELECT `trash` FROM `articles`
+                UNION ALL
+                SELECT `trash` FROM `news`
+                UNION ALL
+                SELECT `trash` FROM `downloads`
+                UNION ALL
+                SELECT `trash` FROM `links`
+                ) as subquery
+                WHERE `trash` = 'true';";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+}
+
+/**
+ * 
+ * @param unknown $db
+ * @param unknown $count
+ * 
+ * @return array
+ */
+function loadFromDB($db,$count)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return  $stmt->fetchAll();
+}
+
+/**
+ * 
+ */
+function loadTrashFromDB($db)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$db` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return  $stmt->fetchAll();
+}
+
+/**
+ * Get title from a table 
+ * 
+ * @param string $table - Name of the Table
+ * @param int $id - Id
+ * 
+ * @return string
+ */
+function getTitleById($table, $id)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `title` FROM `$table` WHERE `id` = $id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+
+    return $stmt->fetchColumn();
+}
+
+
+function getOneNewsRecordById($id)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return $stmt->fetchObject();
+}
+
+function getAllLinks()
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, `uri`, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    return $stmt->fetchAll();
+}
+
+function getOneArticleRecordById($id)
+{
+    $pdo = getPdoDB();
+
+    $sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    return $stmt->fetchObject();
+}
+
+function getAllArticles()
+{
+    $pdo = getPdoDB();
+
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    return $stmt->fetchObject();
+}
+
+function getOneLinkRecordBuId($id)
+{
+    $pdo = getPdoDB();
+
+    $sql = "SELECT `id`, `title`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return $stmt->fetchObject();
+}
+
+function deleteNewsListById($newsList)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "DELETE FROM `news` WHERE `id` = '$newsList[0]'";
+    array_shift($newsList);
+    
+    foreach ($newsList as $key => $value) {
+        $sql .= " OR `id` = '$value'";
+    }
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+}
+
+function setNewsAsTrash($id)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
+    
+    $stmt = $pdo->prepare( $sql );
+    $stmt->execute();
 }
