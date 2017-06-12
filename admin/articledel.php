@@ -7,16 +7,25 @@ include __DIR__ . '/../inc/login.inc.php';
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in()) {
     $id = filter_input(INPUT_POST, 'id');
-    
+    $action = filter_input(INPUT_POST, 'action');
+
+    $uri = '';
+
     $con = getDB();
-    
-    if ($con) {
-		$sql = "UPDATE `articles` SET `trash`='true' WHERE `id`= $id";
-		
-		$result = mysqli_query($con, $sql);
-		
-        header('Location: index.php?uri=articles');
+
+    // @todo Unsicher!!! Beheben!!!
+    $list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
+
+    switch ( $action ) {
+        case 'del_articlesList' : deleteItemsById($list, 'articles');
+            $uri = 'trash';
+            break;
+        case 'del_all' : deleteAllTrashItems('articles');
+            $uri = 'trash';
+            break;
+        default: setFlagTrashById($id, 'articles');
+            $uri = 'articles';
     }
     
-    mysqli_close($con);
+    header ( "Location: index.php?uri=$uri" );
 }

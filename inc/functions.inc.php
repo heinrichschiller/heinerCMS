@@ -746,14 +746,38 @@ function getOneLinkRecordBuId($id)
     return $stmt->fetchObject();
 }
 
-function deleteNewsListById($newsList)
+/**
+ * 
+ * @param unknown $table
+ */
+function deleteAllTrashItems($table)
+{
+    $pdo = getPdoDB();
+
+    $sql = "DELETE FROM `$table` WHERE `trash` = 'true'";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+}
+
+/**
+ * 
+ * @param array $items
+ * @param string $table
+ */
+function deleteItemsById($items, $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "DELETE FROM `news` WHERE `id` = '$newsList[0]'";
-    array_shift($newsList);
+    $sql = "DELETE FROM `$table` WHERE `id` = '$items[0]'";
+    array_shift($items);
     
-    foreach ($newsList as $key => $value) {
+    foreach ($items as $key => $value) {
         $sql .= " OR `id` = '$value'";
     }
     
@@ -761,11 +785,16 @@ function deleteNewsListById($newsList)
     $stmt->execute();
 }
 
-function setNewsAsTrash($id)
+/**
+ * 
+ * @param int $id
+ * @param string $table
+ */
+function setFlagTrashById($id, $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "UPDATE `news` SET `trash`='true' WHERE `id`= $id";
+    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= $id";
     
     $stmt = $pdo->prepare( $sql );
     $stmt->execute();

@@ -12,13 +12,16 @@ if (is_logged_in ()) {
 	$uri = '';
 
 	// @todo Unsicher!!! Beheben!!!
-	$newsList = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
+	$list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
 
 	switch ( $action ) {
-	    case 'del_newsList' : deleteNewsListById($newsList);
+	    case 'del_newsList' : deleteItemsById($list, 'news');
 	       $uri = 'trash';
 	       break;
-	    default: setNewsAsTrash($id);
+	    case 'del_all' : deleteAllTrashItems('news');
+    	    $uri = 'trash';
+    	    break;
+	    default: setFlagTrashById($id, 'news');
 	       $uri = 'news';
 	}
 	
