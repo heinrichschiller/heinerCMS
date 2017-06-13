@@ -15,14 +15,14 @@ if (is_logged_in ()) {
     $list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
     
     switch ( $action ) {
-        case 'del_linkList' : deleteItemdsById($list, 'links');
+        case 'del' : deleteItemdsById($list, 'links');
             $uri = 'trash';
             break;
         case 'del_all' : deleteAllTrashItems('links');
             $uri = 'trash';
             break;
         default: setFlagTrashById($id, 'links');
-            $uri = 'link';
+            $uri = 'links';
     }
     
     header ( "Location: index.php?uri=$uri" );

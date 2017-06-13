@@ -25,6 +25,7 @@ class UserListView
 		$html .= '<th>Nachname</th>';
 		$html .= '<th>Username</th>';
 		$html .= '<th>Aktiv</th>';
+		$html .= '<th>Role</th>';
 		$html .= '<th>Aktion</th>';
 		$html .= '</thead>';
 		$html .= '<tbody>';
@@ -35,11 +36,12 @@ class UserListView
 			$html .= '<td>'.$values['lastname'].'</td>';
 			$html .= '<td>'.$values['username'].'</td>';
 			$html .= '<td>'.$values['active'].'</td>';
+			$html .= '<td>Administrator</td>';
 			$html .= '<td><a href="'.$_SERVER['PHP_SELF'].'?uri=useredit&id='.$values['id'].'">Bearbeiten</a> &middot; <a href="'.$_SERVER['PHP_SELF'].'?uri=userdel&id='.$values['id'].'">Löschen</a></td></tr>';
 		}
 
 		$html .= '</tbody>';
-
-		return $html .= '</table>';
+        $html .= '</table>';
+        return $html .= '<a href="$PHP_SELF?uri=useradd" class="btn btn-primary" role="button">Anlegen</a>';
 	}
 }

@@ -15,7 +15,7 @@ if (is_logged_in ()) {
 	$list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
 
 	switch ( $action ) {
-	    case 'del_newsList' : deleteItemsById($list, 'news');
+	    case 'del' : deleteItemsById($list, 'news');
 	       $uri = 'trash';
 	       break;
 	    case 'del_all' : deleteAllTrashItems('news');
