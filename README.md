@@ -14,7 +14,6 @@ Der Basic-Code dieser Software ist sehr simpel gehalten, weil der ursprüngliche
 Ziele
 
 - Der prozedurale Ansatz soll allmählich dem Objekt-Orientiertem Ansatz weichen.
-- Der veraltete mysql-treiber soll gegen mysqli oder pdo ausgetauscht werden.
 - Der HTML-Code soll mit Bootstrap erledigt werden.
 - Es soll ein Installer integriert werden, um die Installation zu erleichtern
 - Unterstützung für mehrere Datenbanken ist angedacht, ich möchte diese Software zumindest mit SQLite und PostgreSQL-Unterstützung sehen (darum PDO)
@@ -24,3 +23,4 @@ Ziele
 Erledigt
 
 - Der Code wird von PHP5 auf PHP7 gehoben.
+- Der veraltete mysql-treiber soll gegen mysqli oder pdo ausgetauscht werden.
