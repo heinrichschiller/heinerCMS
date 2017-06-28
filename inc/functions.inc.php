@@ -85,25 +85,20 @@ function loadTemplate($template) {
 
 function loadTemplateNewVersion($result,$template){
 
-    // Pfad zum Template erstellen & überprüfen ob das Template existiert.
     $file = __DIR__ . '/../templates/'. $template . '.php';
     
     if (file_exists($file)){
-        // Der Output des Scripts wird n einen Buffer gespeichert, d.h.
-        // nicht gleich ausgegeben.
+
         ob_start();
         
-        // Das Template-File wird eingebunden und dessen Ausgabe in
-        // $output gespeichert.
         include $file;
         $output = ob_get_contents();
         ob_end_clean();
         
-        // Output zurückgeben.
         return $output;
     }
     else {
-        // Template-File existiert nicht-> Fehlermeldung.
+
         return 'could not find template';
     }  
     
@@ -261,8 +256,6 @@ function load_admin_navigation()
 {
 	$template = '';
 
-	countEntries();
-
 	$template = loadTemplateNewVersion(countEntries(), 'navigation');
 	
 	return $template;
@@ -362,8 +355,6 @@ function load_admin_downloadsedit($id)
 {
 
 	$template = '';
-	$isNo = '';
-	$isYes = '';
 	
 	$con = getDB();
 	
@@ -375,26 +366,7 @@ function load_admin_downloadsedit($id)
 		if ($result) {
 			$downloads = mysqli_fetch_object ( $result );
 			
-			$time = strftime ( '%d.%m.%Y %H:%M', $downloads->datetime );
-
-			if ($downloads->visible > - 1) {
-				$isYes = ' checked';
-			}
-
-			if ($downloads->visible < 0) {
-				$isNo = ' checked';
-			}
-
-			$template = loadTemplate('downloadsedit');
-			
-			$template = str_replace('###downloads-id###', $downloads->id, $template);
-			$template = str_replace('###downloads-title###', $downloads->title, $template);
-			$template = str_replace('###time###', $time, $template);
-			$template = str_replace('###downloads-path###', $downloads->path, $template);
-			$template = str_replace('###downloads-filename###', $downloads->filename, $template);
-			$template = str_replace('###downloads-comment###', $downloads->comment, $template);
-			$template = str_replace('###chk_yes###', $isYes, $template);
-			$template = str_replace('###chk_no###', $isNo, $template);
+			$template = loadTemplateNewVersion($downloads, 'downloadsedit');
 		}
 		mysqli_close ($con);
 	}
@@ -452,7 +424,7 @@ function load_admin_linkedit($id)
 
 	$template = '';
 
-	$result = getOneLinkRecordBuId($id);
+	$result = getOneLinkRecordById($id);
 	
 	$template = loadTemplateNewVersion($result, 'linkedit');
 
@@ -578,6 +550,12 @@ function load_trash()
     return $template;
 }
 
+
+function load_general_settings()
+{
+    return loadTemplate('general_settings');
+}
+
 /* ********************************************************************************
  * SQL - section
  * *******************************************************************************/
@@ -611,8 +589,12 @@ function countEntries()
                 ) as subquery
                 WHERE `trash` = 'true';";
     
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
     return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
@@ -629,8 +611,13 @@ function loadFromDB($db,$count)
     $pdo = getPdoDB();
     
     $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
     return  $stmt->fetchAll();
 }
@@ -643,14 +630,19 @@ function loadTrashFromDB($db)
     $pdo = getPdoDB();
     
     $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$db` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
     return  $stmt->fetchAll();
 }
 
 /**
- * Get title from a table 
+ * Get title from a table by id
  * 
  * @param string $table - Name of the Table
  * @param int $id - Id
@@ -680,8 +672,12 @@ function getOneNewsRecordById($id)
     
     $sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
     
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
     return $stmt->fetchObject();
 }
@@ -734,14 +730,18 @@ function getAllArticles()
     return $stmt->fetchObject();
 }
 
-function getOneLinkRecordBuId($id)
+function getOneLinkRecordById($id)
 {
     $pdo = getPdoDB();
 
     $sql = "SELECT `id`, `title`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
     return $stmt->fetchObject();
 }
@@ -781,8 +781,12 @@ function deleteItemsById($items, $table)
         $sql .= " OR `id` = '$value'";
     }
     
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
 }
 
 /**
@@ -796,6 +800,10 @@ function setFlagTrashById($id, $table)
     
     $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= $id";
     
-    $stmt = $pdo->prepare( $sql );
-    $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
 }

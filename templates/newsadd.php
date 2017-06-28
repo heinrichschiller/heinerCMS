@@ -16,7 +16,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">Titel:</label>
-				<input type="text" name="title" value="" class="form-control" id="title">
+				<input type="text" name="title" value="" class="form-control" id="title" required>
 			</div>
 		</div>
 	</div>
