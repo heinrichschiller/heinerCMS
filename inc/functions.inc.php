@@ -311,7 +311,7 @@ function load_admin_newsdel($id)
     $template = '';
     $container = [];
     
-    $title = getTitleById('news', $id);
+    $title = getTitleFromTableById('news', $id);
     
     $container = [ 'id' => $id, 'title' => $title ];
     
@@ -388,7 +388,7 @@ function load_admin_downloadsadd($template)
 /* Download löschen */
 function load_admin_downloadsdel($id)
 {
-	$title = getTitleById('downloads', $id);
+	$title = getTitleFromTableById('downloads', $id);
 	
 	$container = [ 'id' => $id, 'title' => $title ];
 	
@@ -446,7 +446,7 @@ function load_admin_linkdel($id) {
 	$template = '';
 	$container= [];
 	
-	$title = getTitleById('links', $id);
+	$title = getTitleFromTableById('links', $id);
 	
 	$container = [ 'id' => $id, 'title' => $title ];
 	
@@ -505,7 +505,7 @@ function load_admin_articledel($id) {
     $template = '';
     $container = [];
 
-	$title = getTitleById('articles', $id);
+	$title = getTitleFromTableById('articles', $id);
 	
 	$container = ['id' => $id, 'title' => $title];
 
@@ -521,10 +521,10 @@ function load_dashboard()
     $template = '';
     $content = [];
 
-    $news = loadFromDB('news', 5);
-    $articles = loadFromDB('articles', 5);
-    $links = loadFromDB('links', 5);
-    $downloads = loadFromDB('downloads', 5);
+    $news = loadFromTable('news', 5);
+    $articles = loadFromTable('articles', 5);
+    $links = loadFromTable('links', 5);
+    $downloads = loadFromTable('downloads', 5);
 
     $content = [$news, $downloads, $links, $articles];
 
@@ -538,10 +538,10 @@ function load_trash()
     $template = '';
     $content = [];
 
-    $news = loadTrashFromDB('news');
-    $downloads = loadTrashFromDB('downloads');
-    $links = loadTrashFromDB('links');
-    $artikles = loadTrashFromDB('articles');
+    $news = loadTrashFromTable('news');
+    $downloads = loadTrashFromTable('downloads');
+    $links = loadTrashFromTable('links');
+    $artikles = loadTrashFromTable('articles');
     
     $content = [$news,$downloads,$links,$artikles];
     
@@ -601,16 +601,16 @@ function countEntries()
 
 /**
  * 
- * @param unknown $db
- * @param unknown $count
+ * @param string $db
+ * @param int $count
  * 
  * @return array
  */
-function loadFromDB($db,$count)
+function loadFromTable($table,$count)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$db` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -623,13 +623,16 @@ function loadFromDB($db,$count)
 }
 
 /**
+ * Get id, title and datetime from a table where trash-flag is true.
  * 
+ * @param string $table
+ * @return array
  */
-function loadTrashFromDB($db)
+function loadTrashFromTable($table)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$db` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
+    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -649,7 +652,7 @@ function loadTrashFromDB($db)
  * 
  * @return string
  */
-function getTitleById($table, $id)
+function getTitleFromTableById($table, $id)
 {
     $pdo = getPdoDB();
     
@@ -748,7 +751,7 @@ function getOneLinkRecordById($id)
 
 /**
  * 
- * @param unknown $table
+ * @param string $table
  */
 function deleteAllTrashItems($table)
 {

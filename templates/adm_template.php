@@ -35,8 +35,8 @@
                 </div>
             </div>
         </nav>
-		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-2">###navigation###</div>
-	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-10">###content###</div>
+		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">###navigation###</div>
+	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">###content###</div>
 		<footer class="footer">
         	<p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>
         </footer>
