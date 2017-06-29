@@ -74,6 +74,10 @@ $route['trash'] = function() {
     return load_trash();
 };
 
+$route['general'] = function() {
+    return load_general_settings();
+};
+
 $route['user'] = function() {
 	$pdo = getPdoDB();
 

@@ -12,7 +12,7 @@ if (is_logged_in ()) {
 	$path = filter_input(INPUT_POST,'path');
 	$filename = filter_input(INPUT_POST,'filename');
 	$visible = filter_input(INPUT_POST,'visible');
-	
+
 	$con = getDB();
 
 	if ($con) {
