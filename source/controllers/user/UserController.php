@@ -3,71 +3,6 @@
 class UserController {
 
 	/**
-	 * Database adapter
-	 * 
-	 * @var null
-	 */
-	private $_pdo = null;
-
-	/**
-	 * Firstname of a user
-	 * 
-	 * @var string
-	 */
-	private $_firstname = '';
-
-	/**
-	 * Lastname of a user
-	 * @var string
-	 */
-	private $_lastname = '';
-
-	/**
-	 * Email of a user
-	 * 
-	 * @var string
-	 */
-	private $_email = '';
-
-	/**
-	 * Username of a user
-	 * 
-	 * @var string
-	 */
-	private $_username = '';
-
-	/**
-	 * Password of a user
-	 * @var string
-	 */
-	private $_password = '';
-	
-	public function __construct(PDO $adapter)
-	{
-		$this->_pdo = $adapter;
-	}
-
-	/**
-	 * Set the firstname of a user
-	 * 
-	 * @param string $firstname - Firstname of a user
-	 */
-	public function setFirstname($firstname)
-	{
-		$this->_firstname = $firstname;
-	}
-
-	/**
-	 * Set the lastname of a user
-	 * 
-	 * @param string $lastname - Lastname of a user
-	 */
-	public function setLastname($lastname)
-	{
-		$this->_lastname = $lastname;
-	}
-
-	/**
 	 * Set the email of a user
 	 * 
 	 * @param string $email - Email of a user
@@ -77,15 +12,7 @@ class UserController {
 		$this->_email = filter_var($email, FILTER_VALIDATE_EMAIL);
 	}
 
-	/**
-	 * Set the username of a user
-	 * 
-	 * @param string $username - Username of a user
-	 */
-	public function setUsername($username)
-	{
-		$this->_username = $username;
-	}
+
 
 	/**
 	 * Set the password if values ​​are equal, otherwise the password is empty
@@ -100,56 +27,6 @@ class UserController {
     	} else {
     	    $this->_password = '';
     	}
-	}
-
-	/**
-	 * Return the firstname of a user
-	 * 
-	 * @return string
-	 */
-	public function getFirstname()
-	{
-		return $this->_firstname;
-	}
-
-	/**
-	 * Return the lastname of a user
-	 * 
-	 * @return string
-	 */
-	public function getLastname()
-	{
-		return $this->_lastname;
-	}
-
-	/**
-	 * Return the email of a user
-	 * 
-	 * @return string
-	 */
-	public function getEmail()
-	{
-		return $this->_email;
-	}
-
-	/**
-	 * Return the username of a user
-	 * 
-	 * @return string
-	 */
-	public function getUsername()
-	{
-		return $this->_username;
-	}
-
-	/**
-	 * Return the password of a user
-	 * 
-	 * @return string
-	 */
-	public function getPassword()
-	{
-		return $this->_password;
 	}
 
 	/**
