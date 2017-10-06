@@ -50,16 +50,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.6.4",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "1e499f03e719106216fdd34859f8f35a2f8a68a2"
+                "reference": "188f36662f3e31a3954db7aa5382533d6b64207c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/1e499f03e719106216fdd34859f8f35a2f8a68a2",
-                "reference": "1e499f03e719106216fdd34859f8f35a2f8a68a2",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/188f36662f3e31a3954db7aa5382533d6b64207c",
+                "reference": "188f36662f3e31a3954db7aa5382533d6b64207c",
                 "shasum": ""
             },
             "type": "component",
@@ -92,7 +92,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2017-06-13T12:49:51+00:00"
+            "time": "2017-10-03T11:25:12+00:00"
         },
         {
             "name": "twbs/bootstrap",
