@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{title}</title>
+        <title>###title###</title>
         <meta charset="utf8">
 
         <!-- Latest compiled and minified CSS -->
@@ -23,12 +23,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">{title}</a>
+                    <a class="navbar-brand" href="#">###title###</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        {navigation}
+                        ###navigation###
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="?uri=admin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -38,11 +38,10 @@
         </nav>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">{content}</div>
+				<div class="col-sm-12">###content###</div>
 			</div>
 		</div>
         <footer class="container-fluid bg-4 text-center">
             <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>
         </footer>
-    </body>
 </html>
