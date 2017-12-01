@@ -22,3 +22,33 @@ function createConfig($host,$user,$psswd,$dbase) {
 	fwrite($fp, "database = $dbase\n");
 	fclose($fp);
 }
+
+/**
+ * Database adapter for MySQL
+ *
+ * @return PDO
+ */
+function getPdoDB2()
+{
+    $config = __DIR__ . '/config.ini';
+
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+
+        $host = $ini_array['host'];
+        $user = $ini_array['user'];
+        $password = $ini_array['password'];
+        $database = $ini_array['database'];
+    }
+    
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+        
+        return $pdo;
+        
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+}

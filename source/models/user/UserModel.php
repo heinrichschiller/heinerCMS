@@ -61,6 +61,8 @@ class UserModel
      */
     private $_isActive = false;
     
+    private $_password = '';
+    
     public function __construct()
     {
         // put your code here if needed
@@ -88,7 +90,7 @@ class UserModel
      * 
      * @return string
      */
-    public function getFirstname()
+    public function getFirstName()
     {
         return $this->_firstname;
     }
@@ -125,7 +127,7 @@ class UserModel
      */
     public function getEmail()
     {
-        
+        return $this->_email;
     }
     
     /**
@@ -176,7 +178,7 @@ class UserModel
      */
     public function getUsername()
     {
-        
+        return $this->_username;
     }
     
     /**
@@ -207,4 +209,43 @@ class UserModel
     {
         $this->_isActive = $isActive;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->_password;
+    }
+    
+    /**
+     * Set the password if values ​​are equal, otherwise the password is empty
+     *
+     * @param string $password1 - Password 1
+     * @param string $password2 - Password 2
+     */
+    public function setPassword($password1, $password2)
+    {
+        if ( strcmp($password1, $password2) === 0) {
+            $this->_password = $password1;
+        } else {
+            $this->_password = '';
+        }
+    }
+
+    /**
+     * Fetch all user data
+     *
+     * @param array $user_data - Array contains all data from a user
+     */
+    public function fetchAll(Array $user_data)
+    {
+        $this->_firstname = $user_data['firstname'];
+        $this->_lastname = $user_data['lastname'];
+        $this->_email = $user_data['email'];
+        $this->_username = $user_data['username'];
+        self::setPassword($user_data['password1'], $user_data['password2']);
+    }
+    
 }

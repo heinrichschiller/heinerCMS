@@ -6,6 +6,7 @@ include __DIR__ . '/functions.inc.php';
 include __DIR__ . '/installer/Db_Installer.php';
 include __DIR__ . '/../source/library/db_adapter/Db_Adapter.php';
 include __DIR__ . '/../source/controllers/user/UserController.php';
+include __DIR__ . '/../source/models/user/UserModel.php';
 
 // init
 $host = filter_input(INPUT_POST ,'hostname');
@@ -62,9 +63,12 @@ $user_data = [
 	'password2' => $user_psswd_2
 ];
 
-$user = new UserController($db);
+$db = getPdoDB2();
 
-$user->fetchAll($user_data);
+$userModel = new UserModel();
+$user = new UserController($db, $userModel);
+
+$userModel->fetchAll($user_data);
 $user->create();
 
 $source_path = __DIR__ .'/';
