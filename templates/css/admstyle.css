@@ -76,6 +76,17 @@ td {
 	background-color: #EEEEEE;
 }
 
+.bg-4 {
+    background-color: #2f2f2f;
+    color: #fff;
+}
+
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+
 .dashboard {
 	font-size: 2em;
 }

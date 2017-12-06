@@ -11,10 +11,7 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-		
-		<!-- TinyMCE-Editor -->
-		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
-  		<script>tinymce.init({ selector:'textarea' });</script>
+
 		<link href="../templates/css/admstyle.css">
 	</head>
 	<body>
@@ -35,10 +32,23 @@
                 </div>
             </div>
         </nav>
+        <noscript>
+        	<div class="container">
+        	  	<div class="alert alert-danger" role="alert">
+                    <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
+                    <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
+                </div>
+            </div>
+        </noscript>
 		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">###navigation###</div>
-	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">###content###</div>
-		<footer class="footer">
-        	<p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>
-        </footer>
+	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6">###content###</div>
+	    
+		<footer class="container-fluid bg-4 text-center">
+  		    <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a>
+    	</footer>
+        
+        <!-- TinyMCE-Editor -->
+		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
+  		<script>tinymce.init({ selector:'textarea' });</script>
 	</body>
 </html>

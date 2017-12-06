@@ -24,7 +24,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<p class="text-center">
 			<a href="$PHP_SELF/../../index.php">
-				<span>Zurück zur Hauptseite</span>
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span>   Zurück zur Hauptseite</span>
 			</a>
 		</p>
 	</div>

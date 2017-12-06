@@ -36,6 +36,14 @@
                 </div>
             </div>
         </nav>
+        <noscript>
+        	<div class="container">
+        	  	<div class="alert alert-danger" role="alert">
+                    <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
+                    <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
+                </div>
+            </div>
+        </noscript>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">###content###</div>
