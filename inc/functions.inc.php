@@ -74,7 +74,7 @@ function getPdoDB()
 }
 
 function loadTemplate($template) {
-	$file = __DIR__ . '/../templates/'. $template . '.php';
+	$file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.php';
 
 	if (file_exists($file)) {
 		return file_get_contents($file);
@@ -85,7 +85,7 @@ function loadTemplate($template) {
 
 function loadTemplateNewVersion($result,$template){
 
-    $file = __DIR__ . '/../templates/'. $template . '.php';
+    $file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.php';
     
     if (file_exists($file)){
 
