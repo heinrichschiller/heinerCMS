@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>###title###</title>
+		<title><@title@></title>
 		<meta charset="utf8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Latest compiled and minified CSS -->
@@ -12,7 +12,7 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
-		<link href="../templates/css/admstyle.css">
+		<link href="../templates/bootstrap-3.3.7/css/admstyle.css">
 	</head>
 	<body>
         <nav class="navbar navbar-inverse">
@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">###title###</a>
+                    <a class="navbar-brand" href="#"><@title@></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
@@ -40,8 +40,8 @@
                 </div>
             </div>
         </noscript>
-		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">###navigation###</div>
-	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6">###content###</div>
+		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><@navigation@></div>
+	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6"><@content@></div>
 	    
 		<footer class="container-fluid bg-4 text-center">
   		    <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a>
