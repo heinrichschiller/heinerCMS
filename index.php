@@ -27,9 +27,9 @@ if (isset($route[$uri]) ) {
     $base['content'] .= $route[$uri]($id);
 }
 
-$template = str_replace('###title###',$base['title'],$template);
-$template = str_replace('###navigation###',$base['navigation'],$template);
-$template = str_replace('###content###',$base['content'],$template);
+$template = str_replace('<@title@>',$base['title'],$template);
+$template = str_replace('<@navigation@>',$base['navigation'],$template);
+$template = str_replace('<@content@>',$base['content'],$template);
 $template = str_replace('$PHP_SELF',$_SERVER['PHP_SELF'],$template);
 
 echo stripslashes($template);
