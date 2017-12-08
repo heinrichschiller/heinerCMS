@@ -85,7 +85,7 @@ function loadTemplate($template) {
 
 function loadTemplateNewVersion($result,$template){
 
-    $file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.tpl.php';
+    $file = __DIR__ . '/../templates/'. $_SESSION['theme'] . '/'. $template . '.tpl.php';
 
     if (file_exists($file)){
 
