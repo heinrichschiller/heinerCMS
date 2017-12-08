@@ -523,7 +523,7 @@ function load_admin_articledel($id) {
 	$container = ['id' => $id, 'title' => $title];
 
 	if ($container) {
-        $template = loadTemplateNewVersion($container, 'articledel');
+        $template = loadTemplateNewVersion($container, 'adm_article_del');
 	}
 
 	return $template;
