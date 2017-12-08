@@ -9,14 +9,16 @@ function is_logged_in() {
 	include __DIR__ . '/base.inc.php';
 	$PHP_SELF = $_SERVER['PHP_SELF'];
 
-	$authenticated = isset($_SESSION['authenticated']) ? true : false; 
+	$authenticated = isset($_SESSION['authenticated']) ? true : false;
+
+	load_session();
 	
 	/* User angemeldet? */
 	if ($authenticated) {
 		return true;
 	} else {
-		$login = loadTemplate('login');
-		$template = loadTemplate('lgn_template');
+		$login = loadTemplate('adm_login');
+		$template = loadTemplate('login_template');
 
 		$template = str_replace ( '###title###', $base ['adm_title'], $template );
 		$template = str_replace ( '###shortnav###', '&nbsp;', $template );

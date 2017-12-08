@@ -74,7 +74,7 @@ function getPdoDB()
 }
 
 function loadTemplate($template) {
-	$file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.php';
+	$file = __DIR__ . '/../templates/'. $_SESSION['theme'] . '/' . $template . '.tpl.php';
 
 	if (file_exists($file)) {
 		return file_get_contents($file);
@@ -85,8 +85,8 @@ function loadTemplate($template) {
 
 function loadTemplateNewVersion($result,$template){
 
-    $file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.php';
-    
+    $file = __DIR__ . '/../templates/bootstrap-3.3.7/'. $template . '.tpl.php';
+
     if (file_exists($file)){
 
         ob_start();
@@ -103,6 +103,19 @@ function loadTemplateNewVersion($result,$template){
     }  
     
 }
+
+function load_session()
+{
+    $config = __DIR__ . '/../source/configs/config.ini';
+    
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+        
+        $_SESSION['title'] = $ini_array['title'];
+        $_SESSION['theme'] = $ini_array['theme'];
+    }
+}
+
 
 /* Gesamtübersicht der Nachrichten laden */
 function load_content_news()
@@ -256,7 +269,7 @@ function load_admin_navigation()
 {
 	$template = '';
 
-	$template = loadTemplateNewVersion(countEntries(), 'navigation');
+	$template = loadTemplateNewVersion(countEntries(), 'adm_navigation');
 	
 	return $template;
 }
@@ -289,7 +302,7 @@ function load_admin_newsedit($id)
 
 	$pdo = getPdoDB();
 
-	$template = loadTemplateNewVersion(getOneNewsRecordById($id), 'newsedit');
+	$template = loadTemplateNewVersion(getOneNewsRecordById($id), 'adm_news_edit');
 	
 	return $template;
 }
@@ -300,7 +313,7 @@ function load_admin_newsadd()
 	$template = '';
 
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
-	$template = loadTemplateNewVersion($time, 'newsadd');
+	$template = loadTemplateNewVersion($time, 'adm_news_add');
 	
 	return $template;
 }
@@ -315,7 +328,7 @@ function load_admin_newsdel($id)
     
     $container = [ 'id' => $id, 'title' => $title ];
     
-    $template = loadTemplateNewVersion($container, 'newsdel');
+    $template = loadTemplateNewVersion($container, 'adm_news_del');
     
 	return $template;
 }
@@ -426,7 +439,7 @@ function load_admin_linkedit($id)
 
 	$result = getOneLinkRecordById($id);
 	
-	$template = loadTemplateNewVersion($result, 'linkedit');
+	$template = loadTemplateNewVersion($result, 'adm_link_edit');
 
 	return $template;
 }
@@ -435,7 +448,7 @@ function load_admin_linkedit($id)
 function load_admin_linkadd() {
 	$template = '';
 
-	$template = loadTemplate('linkadd');
+	$template = loadTemplate('adm_link_add');
 
 	return $template;
 }
@@ -450,7 +463,7 @@ function load_admin_linkdel($id) {
 	
 	$container = [ 'id' => $id, 'title' => $title ];
 	
-	$template = loadTemplateNewVersion($container, 'linkdel');
+	$template = loadTemplateNewVersion($container, 'adm_link_del');
 	
 	return $template;
 }
@@ -483,7 +496,7 @@ function load_admin_articleedit($id)
 
 	$result = getOneArticleRecordById($id);
 
-	$template = loadTemplateNewVersion($result,'articleedit');
+	$template = loadTemplateNewVersion($result,'adm_article_edit');
 
 	return $template;
 }
@@ -495,7 +508,7 @@ function load_admin_articleadd($id)
 
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 	
-	$template = loadTemplateNewVersion($time, 'articleadd');
+	$template = loadTemplateNewVersion($time, 'adm_article_add');
 	
 	return $template;
 }
@@ -528,7 +541,7 @@ function load_dashboard()
 
     $content = [$news, $downloads, $links, $articles];
 
-    $template = loadTemplateNewVersion($content,'dashboard');
+    $template = loadTemplateNewVersion($content,'adm_dashboard');
 
     return $template;
 }
@@ -545,7 +558,7 @@ function load_trash()
     
     $content = [$news,$downloads,$links,$artikles];
     
-    $template = loadTemplateNewVersion($content, 'trash');
+    $template = loadTemplateNewVersion($content, 'adm_trash');
     
     return $template;
 }
@@ -553,7 +566,13 @@ function load_trash()
 
 function load_general_settings()
 {
-    return loadTemplate('general_settings');
+    $template_dir = __DIR__ . '/../templates/';
+
+    $tmp = scandir($template_dir);
+    
+    $template = loadTemplateNewVersion($tmp, 'adm_general_settings');
+    
+    return $template;
 }
 
 /* ********************************************************************************

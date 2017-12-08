@@ -19,6 +19,13 @@ $id = filter_input ( INPUT_GET, 'id' );
 /* Einfaches Logging zu demonstationszwecken UND ONHE VERSCHLUESSELUNG. */
 if (is_logged_in ()) {
 	
+    $config = __DIR__ . '/../source/configs/config.ini';
+    
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+        $_SESSION['theme'] = $ini_array['theme'];
+    }
+
 	/* Template einlesen */
 	$template = loadTemplate( 'adm_template' );
 	
