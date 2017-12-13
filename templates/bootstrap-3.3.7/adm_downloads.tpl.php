@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				###downloads-content###
+				<@downloads-content@>
 			</tbody>
 		</table>
 	</div>
