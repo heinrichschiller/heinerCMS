@@ -78,13 +78,12 @@ $route['general'] = function() {
     return load_general_settings();
 };
 
-$route['user'] = function() {
-	$pdo = getPdoDB();
+$route['user'] = function() {    
+    return load_user_list();
+};
 
-	$model = new UserListModel($pdo);
-	$view = new UserListView($model);
-	
-	return $view->render();
+$route['useredit'] = function($id) {
+    return load_user_edit($id);
 };
 
 $route['logout'] = function() {

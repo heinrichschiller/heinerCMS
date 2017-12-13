@@ -83,6 +83,12 @@ function loadTemplate($template) {
 	return false;
 }
 
+/**
+ * @deprecated
+ * @param unknown $result
+ * @param unknown $template
+ * @return string
+ */
 function loadTemplateNewVersion($result,$template){
 
     $file = __DIR__ . '/../templates/'. $_SESSION['theme'] . '/'. $template . '.tpl.php';
@@ -356,7 +362,7 @@ function load_admin_downloads()
 				$table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
 			}
 			
-			$template = str_replace('###downloads-content###', $table_content, $template);
+			$template = str_replace('<@downloads-content@>', $table_content, $template);
 		}
 		mysqli_close ( $con );
 	}
@@ -392,7 +398,7 @@ function load_admin_downloadsadd($template)
 	$template = '';
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
 
-	$template .= loadTemplate('downloadsadd');
+	$template .= loadTemplate('adm_downloads_add');
 	$template = str_replace('###time###',$time,$template);
 
 	return $template;
@@ -405,7 +411,7 @@ function load_admin_downloadsdel($id)
 	
 	$container = [ 'id' => $id, 'title' => $title ];
 	
-	$template = loadTemplateNewVersion($container, 'downloadsdel');
+	$template = loadTemplateNewVersion($container, 'adm_downloads_del');
 	
 	return $template;
 }
@@ -571,6 +577,64 @@ function load_general_settings()
     $tmp = scandir($template_dir);
     
     $template = loadTemplateNewVersion($tmp, 'adm_general_settings');
+    
+    return $template;
+}
+
+function load_user_list()
+{
+    $template = '';
+    $table_content = '';
+    
+    $con = getDB ();
+    
+    if ($con) {
+        
+        $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`'
+            . ' FROM `users` ORDER BY `firstname` DESC';
+        $result = mysqli_query ( $con, $sql );
+        
+        if ($result) {
+            $template = loadTemplate('adm_user_list');
+            
+            while ( $user = mysqli_fetch_object ( $result ) ) {
+                $table_content .= '<tr><td>' . $user->id . '</td>';
+                $table_content .= '<td>' . $user->firstname .'</td>';
+                $table_content .= '<td>' . $user->lastname . '</td>';
+                $table_content .= '<td>' . $user->username . '</td>';
+                $table_content .= '<td>' . $user->active . '</td>';
+                $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=useredit&id=$user->id\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;"
+                    . " <a href=\"$_SERVER[PHP_SELF]?uri=userdel&id=$user->id\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
+                
+            }
+            
+            $template = str_replace('<@user_list_content@>', $table_content, $template);
+        }
+        mysqli_close ( $con );
+    }
+    return $template;
+}
+
+
+function load_user_edit($id)
+{
+    $template = '';
+    
+    $template = loadTemplate('adm_user_edit');
+    
+    $user = getUserDataById($id);
+
+    $arr = [
+      '<@id@>' => $user['id'],
+      '<@datetime@>' => '',
+      '<@firstname@>' => $user['firstname'],
+      '<@lastname@>' => $user['lastname'],
+      '<@username@>' => $user['username'],
+      '<@email@>' => $user['email'],
+      '<@public_as@>' => $user['username']
+    ];
+    
+    $template = strtr($template, $arr);
     
     return $template;
 }
@@ -828,4 +892,22 @@ function setFlagTrashById($id, $table)
     } catch (PDOException $ex) {
         echo $ex->getMessage();
     }
+}
+
+function getUserDataById($id)
+{
+    $pdo = getPdoDB();
+        
+    $sql = 'SELECT `id`,`firstname`,`lastname`,`email`,`password`,`created_at`,`updated_at`,`username`,`active`'
+        . ' FROM `users`'
+        . " WHERE `id` = ?";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+            
+    return $stmt->fetch();
 }
