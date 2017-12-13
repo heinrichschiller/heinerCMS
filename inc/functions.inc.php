@@ -469,10 +469,9 @@ function load_admin_downloadsedit(int $id) : string
 /* Formular zum Erstellen eines Downloads laden */
 /**
  * 
- * @param string $template
  * @return string
  */
-function load_admin_downloadsadd(string $template) : string
+function load_admin_downloadsadd() : string
 {
 	$template = '';
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
