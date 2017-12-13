@@ -50,5 +50,7 @@
         <!-- TinyMCE-Editor -->
 		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
   		<script>tinymce.init({ selector:'textarea' });</script>
+  		
+  		<script src="../templates/bootstrap-3.3.7/js/main.js"></script>
 	</body>
 </html>

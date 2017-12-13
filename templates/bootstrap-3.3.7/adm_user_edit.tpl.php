@@ -52,11 +52,11 @@
 			</div>
 		</div>
 	</div>
-		<div class="row">
+	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="password">Passwort:</label>
-				<button type="button" class="btn btn-default" id="password">Passwort generieren</button>
+				<button type="button" class="btn btn-default" id="password" onclick="systemMessage()">Passwort generieren</button>
 			</div>
 		</div>
 	</div>

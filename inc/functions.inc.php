@@ -73,14 +73,20 @@ function getPdoDB()
 	
 }
 
-function loadTemplate($template) {
+/**
+ * 
+ * @param string $template
+ * @return string
+ */
+function loadTemplate(string $template) : string 
+{
 	$file = __DIR__ . '/../templates/'. $_SESSION['theme'] . '/' . $template . '.tpl.php';
 
 	if (file_exists($file)) {
 		return file_get_contents($file);
 	}
 
-	return false;
+	return 'Could not found template';
 }
 
 /**
@@ -89,7 +95,8 @@ function loadTemplate($template) {
  * @param unknown $template
  * @return string
  */
-function loadTemplateNewVersion($result,$template){
+function loadTemplateNewVersion($result,$template) : string
+{
 
     $file = __DIR__ . '/../templates/'. $_SESSION['theme'] . '/'. $template . '.tpl.php';
 
@@ -110,6 +117,9 @@ function loadTemplateNewVersion($result,$template){
     
 }
 
+/**
+ * 
+ */
 function load_session()
 {
     $config = __DIR__ . '/../source/configs/config.ini';
@@ -124,7 +134,11 @@ function load_session()
 
 
 /* Gesamtübersicht der Nachrichten laden */
-function load_content_news()
+/**
+ * 
+ * @return string
+ */
+function load_content_news() : string
 {
 	$template = '';
 	$PHP_SELF = $_SERVER['PHP_SELF'];
@@ -146,7 +160,12 @@ function load_content_news()
 }
 
 /* Detailansicht einer Nachricht laden */
-function load_content_newsdetailed($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_content_newsdetailed(int $id) : string
 {
 	$template = '';
 	$con = getDB ();
@@ -166,7 +185,11 @@ function load_content_newsdetailed($id)
 }
 
 /* Gesamtübersicht der Downloads laden */
-function load_content_downloads()
+/**
+ * 
+ * @return string
+ */
+function load_content_downloads() : string
 {
 	$template = '';
 	$con = getDB ();
@@ -185,7 +208,12 @@ function load_content_downloads()
 }
 
 /* Detailansicht eines Downloads laden */
-function load_content_downloadsdetailed($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_content_downloadsdetailed(int $id) : string
 {
 	$template = '';
 	$con = getDB ();
@@ -206,7 +234,11 @@ function load_content_downloadsdetailed($id)
 }
 
 /* Gesamtübersicht der Artikel laden */
-function load_content_articles()
+/**
+ * 
+ * @return string
+ */
+function load_content_articles() : string
 {
 	$template = '';
 	$con = getDB ();
@@ -227,7 +259,12 @@ function load_content_articles()
 }
 
 /* Detailansicht eines Artikels laden */
-function load_content_articlesdetailed($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_content_articlesdetailed(int $id) : string
 {
 	$template = '';
 	$con = getDB ();
@@ -247,7 +284,11 @@ function load_content_articlesdetailed($id)
 }
 
 /* Gesamtübersicht der Links laden */
-function load_content_links()
+/**
+ * 
+ * @return string
+ */
+function load_content_links() : string
 {
 	$template = '';
 	$con = getDB ();
@@ -270,8 +311,11 @@ function load_content_links()
  * admin - section
  * *******************************************************************************/
 
-
-function load_admin_navigation()
+/**
+ * 
+ * @return string
+ */
+function load_admin_navigation() : string
 {
 	$template = '';
 
@@ -281,7 +325,11 @@ function load_admin_navigation()
 }
 
 /* Gesamtübersicht der Nachrichten laden */
-function load_admin_news()
+/**
+ * 
+ * @return string
+ */
+function load_admin_news() : string
 {
 	$template = '';
 	$table_content = '';
@@ -290,7 +338,8 @@ function load_admin_news()
 
 	if ($con) {
 		
-		$sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+		    . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -302,7 +351,12 @@ function load_admin_news()
 }
 
 /* Formular zum Bearbeiten einer Nachricht laden */
-function load_admin_newsedit($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_newsedit(int $id) : string
 {
 	$template = '';
 
@@ -314,7 +368,11 @@ function load_admin_newsedit($id)
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
-function load_admin_newsadd()
+/**
+ * 
+ * @return string
+ */
+function load_admin_newsadd() : string
 {
 	$template = '';
 
@@ -325,7 +383,12 @@ function load_admin_newsadd()
 }
 
 /* Nachricht löschen */
-function load_admin_newsdel($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_newsdel(int $id) : string
 {
     $template = '';
     $container = [];
@@ -340,7 +403,11 @@ function load_admin_newsdel($id)
 }
 
 /* Gesamtübersicht der Downloads laden */
-function load_admin_downloads()
+/**
+ * 
+ * @return string
+ */
+function load_admin_downloads() : string
 {
 	$template = '';
 	$table_content = '';
@@ -349,7 +416,8 @@ function load_admin_downloads()
 
 	if ($con) {
 		
-	    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+	    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`'
+	        . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -370,7 +438,12 @@ function load_admin_downloads()
 }
 
 /* Formular zum Bearbeiten eines Downloads laden */
-function load_admin_downloadsedit($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_downloadsedit(int $id) : string
 {
 
 	$template = '';
@@ -379,7 +452,8 @@ function load_admin_downloadsedit($id)
 	
 	if ($con) {
 
-		$sql = "SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible` FROM `downloads` WHERE `id`=$id";
+		$sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`'
+		    . " FROM `downloads` WHERE `id`=$id";
 		$result = mysqli_query ( $con, $sql );
 
 		if ($result) {
@@ -393,7 +467,12 @@ function load_admin_downloadsedit($id)
 }
 
 /* Formular zum Erstellen eines Downloads laden */
-function load_admin_downloadsadd($template)
+/**
+ * 
+ * @param string $template
+ * @return string
+ */
+function load_admin_downloadsadd(string $template) : string
 {
 	$template = '';
 	$time = StrFTime ( '%d.%m.%Y %H:%M', time () );
@@ -405,7 +484,12 @@ function load_admin_downloadsadd($template)
 }
 
 /* Download löschen */
-function load_admin_downloadsdel($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_downloadsdel(int $id) : string
 {
 	$title = getTitleFromTableById('downloads', $id);
 	
@@ -417,7 +501,11 @@ function load_admin_downloadsdel($id)
 }
 
 /* Gesamtübersicht der Links laden */
-function load_admin_links()
+/**
+ * 
+ * @return string
+ */
+function load_admin_links() : string
 {
     $template = '';
     
@@ -438,7 +526,12 @@ function load_admin_links()
 }
 
 /* Formular zum Bearbeiten eines Links laden */
-function load_admin_linkedit($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_linkedit(int $id) : string
 {
 
 	$template = '';
@@ -451,7 +544,12 @@ function load_admin_linkedit($id)
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
-function load_admin_linkadd() {
+/**
+ * 
+ * @return string
+ */
+function load_admin_linkadd() : string 
+{
 	$template = '';
 
 	$template = loadTemplate('adm_link_add');
@@ -460,7 +558,12 @@ function load_admin_linkadd() {
 }
 
 /* Link löschen */
-function load_admin_linkdel($id) {
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_linkdel(int $id) : string {
 
 	$template = '';
 	$container= [];
@@ -475,7 +578,11 @@ function load_admin_linkdel($id) {
 }
 
 /* Gesamtübersicht der Artikel laden */
-function load_admin_articles()
+/**
+ * 
+ * @return string
+ */
+function load_admin_articles() : string
 {
 	$template = '';
 
@@ -483,7 +590,8 @@ function load_admin_articles()
 
 	if ($con) {
 		
-		$sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+		    . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 		
 		if ($result = mysqli_query ( $con, $sql )) {
 			$template = loadTemplateNewVersion($result, 'adm_articles');
@@ -496,7 +604,12 @@ function load_admin_articles()
 }
 
 /* Formular zum Bearbeiten eines Artikels laden */
-function load_admin_articleedit($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_articleedit(int $id) : string
 {
 	$template = '';
 
@@ -508,7 +621,12 @@ function load_admin_articleedit($id)
 }
 
 /* Formular zum Erstellen eines Artikels laden */
-function load_admin_articleadd($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_articleadd(int $id) : string
 {
 	$template = '';
 
@@ -520,7 +638,13 @@ function load_admin_articleadd($id)
 }
 
 /* Artikel löschen */
-function load_admin_articledel($id) {
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_articledel(int $id) : string
+{
     $template = '';
     $container = [];
 
@@ -535,7 +659,11 @@ function load_admin_articledel($id) {
 	return $template;
 }
 
-function load_dashboard()
+/**
+ * 
+ * @return string
+ */
+function load_dashboard() : string
 {
     $template = '';
     $content = [];
@@ -552,7 +680,11 @@ function load_dashboard()
     return $template;
 }
 
-function load_trash()
+/**
+ * 
+ * @return string
+ */
+function load_trash() : string
 {
     $template = '';
     $content = [];
@@ -569,8 +701,11 @@ function load_trash()
     return $template;
 }
 
-
-function load_general_settings()
+/**
+ * 
+ * @return string
+ */
+function load_general_settings() : string
 {
     $template_dir = __DIR__ . '/../templates/';
 
@@ -581,7 +716,11 @@ function load_general_settings()
     return $template;
 }
 
-function load_user_list()
+/**
+ * 
+ * @return string
+ */
+function load_user_list() : string
 {
     $template = '';
     $table_content = '';
@@ -603,8 +742,10 @@ function load_user_list()
                 $table_content .= '<td>' . $user->lastname . '</td>';
                 $table_content .= '<td>' . $user->username . '</td>';
                 $table_content .= '<td>' . $user->active . '</td>';
-                $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=useredit&id=$user->id\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;"
-                    . " <a href=\"$_SERVER[PHP_SELF]?uri=userdel&id=$user->id\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
+                $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=useredit&id=$user->id\">"
+                    . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;"
+                    . " <a href=\"$_SERVER[PHP_SELF]?uri=userdel&id=$user->id\">"
+                        . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
                 
             }
             
@@ -615,8 +756,12 @@ function load_user_list()
     return $template;
 }
 
-
-function load_user_edit($id)
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_user_edit(int $id) : string
 {
     $template = '';
     
@@ -689,11 +834,12 @@ function countEntries()
  * 
  * @return array
  */
-function loadFromTable($table,$count)
+function loadFromTable(string $table, int $count)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+        . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -711,11 +857,12 @@ function loadFromTable($table,$count)
  * @param string $table
  * @return array
  */
-function loadTrashFromTable($table)
+function loadTrashFromTable(string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
+        . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -735,7 +882,7 @@ function loadTrashFromTable($table)
  * 
  * @return string
  */
-function getTitleFromTableById($table, $id)
+function getTitleFromTableById(string $table, int $id)
 {
     $pdo = getPdoDB();
     
@@ -752,7 +899,12 @@ function getTitleFromTableById($table, $id)
 }
 
 
-function getOneNewsRecordById($id)
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function getOneNewsRecordById(int $id)
 {
     $pdo = getPdoDB();
     
@@ -768,6 +920,10 @@ function getOneNewsRecordById($id)
     return $stmt->fetchObject();
 }
 
+/**
+ * 
+ * @return array
+ */
 function getAllLinks()
 {
     $pdo = getPdoDB();
@@ -784,7 +940,12 @@ function getAllLinks()
     return $stmt->fetchAll();
 }
 
-function getOneArticleRecordById($id)
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function getOneArticleRecordById(int $id)
 {
     $pdo = getPdoDB();
 
@@ -800,11 +961,16 @@ function getOneArticleRecordById($id)
     return $stmt->fetchObject();
 }
 
+/**
+ * 
+ * @return mixed
+ */
 function getAllArticles()
 {
     $pdo = getPdoDB();
 
-    $sql = "SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+        . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -816,7 +982,12 @@ function getAllArticles()
     return $stmt->fetchObject();
 }
 
-function getOneLinkRecordById($id)
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function getOneLinkRecordById(int $id)
 {
     $pdo = getPdoDB();
 
@@ -836,7 +1007,7 @@ function getOneLinkRecordById($id)
  * 
  * @param string $table
  */
-function deleteAllTrashItems($table)
+function deleteAllTrashItems(string $table)
 {
     $pdo = getPdoDB();
 
@@ -856,7 +1027,7 @@ function deleteAllTrashItems($table)
  * @param array $items
  * @param string $table
  */
-function deleteItemsById($items, $table)
+function deleteItemsById(array $items, string $table)
 {
     $pdo = getPdoDB();
     
@@ -880,7 +1051,7 @@ function deleteItemsById($items, $table)
  * @param int $id
  * @param string $table
  */
-function setFlagTrashById($id, $table)
+function setFlagTrashById(int $id, string $table)
 {
     $pdo = getPdoDB();
     
@@ -894,7 +1065,12 @@ function setFlagTrashById($id, $table)
     }
 }
 
-function getUserDataById($id)
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function getUserDataById(int $id)
 {
     $pdo = getPdoDB();
         

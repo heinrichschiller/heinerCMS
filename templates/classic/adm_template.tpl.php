@@ -23,5 +23,6 @@
     </table>
     <p id="disclaimer">Hier k&ouml;nnte der Text des Disclaimer stehen und rechtliche Hinweise
       oder Kontaktm&ouml;glichkeiten.<br>Max Mustermann<br>Musterstr. 12<br>55555 Musterstadt</p>
+      <script src="../templates/classic/js/main.js"></script>
   </body>
 </html>
