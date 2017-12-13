@@ -622,10 +622,9 @@ function load_admin_articleedit(int $id) : string
 /* Formular zum Erstellen eines Artikels laden */
 /**
  * 
- * @param int $id
  * @return string
  */
-function load_admin_articleadd(int $id) : string
+function load_admin_articleadd() : string
 {
 	$template = '';
 
