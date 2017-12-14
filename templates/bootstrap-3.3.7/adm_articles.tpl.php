@@ -10,15 +10,17 @@
 		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
-					<th>Datum</th>
-					<th>Titel</th>
-					<th>Sichtbar?</th>
-					<th>Aktionen</th>
+    				<th>#</th>
+    				<th>{date}</th>
+    				<th>{title}</th>
+    				<th>{visible}?</th>
+    				<th>{actions}</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php while ($article = mysqli_fetch_object ( $result ) ) : ?>
 				<tr>
+					<td><?= $article->id; ?></td>
 					<td><?= strftime('%d.%m.%Y',$article->datetime); ?></td>
 					<td><?= $article->title; ?></td>
 					<td><?= ($article->visible > -1) ? ' ja' : ' nein'; ?></td>
@@ -36,6 +38,6 @@
 </div>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<a href="$PHP_SELF?uri=articleadd" class="btn btn-primary" role="button">Artikel erstellen</a>
+		<a href="$PHP_SELF?uri=articleadd" class="btn btn-primary" role="button">{create article}</a>
 	</div>
 </div>

@@ -2,7 +2,7 @@
     <div class="row">
     	<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
     		<div class="panel">
-    			<h4><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</h4>
+    			<h4><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> {dashboard}</h4>
     		</div>
     	</div>
     </div>
@@ -10,16 +10,16 @@
 		<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">News</h3>
+					<h3 class="panel-title">{news}</h3>
 				</div>
 				<div class="panel-body">
 					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
     							<th>#</th>
-    							<th>Datum</th>
-    							<th>Titel</th>
-    							<th>Sichtbar</th>
+    							<th>{date}</th>
+    							<th>{title}</th>
+    							<th>{visible}</th>
     						</tr>
 						</thead>
 						<tbody>
@@ -34,22 +34,22 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="panel-body"><a href="?uri=newsadd">Anlegen</a></div>
+				<div class="panel-body"><a href="?uri=newsadd">{create}</a></div>
 			</div>
 		</div>
 		<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Downloads</h3>
+					<h3 class="panel-title">{downloads}</h3>
 				</div>
 				<div class="panel-body">
 				<table class="table table-hover table-striped">
 						<thead>
 							<tr>
     							<th>#</th>
-    							<th>Datum</th>
-    							<th>Titel</th>
-    							<th>Sichtbar</th>
+    							<th>{date}</th>
+    							<th>{title}</th>
+    							<th>{visible}</th>
     						</tr>
 						</thead>
 						<tbody>
@@ -64,7 +64,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="panel-body"><a href="?uri=downloadsadd">Anlegen</a></div>
+				<div class="panel-body"><a href="?uri=downloadsadd">{create}</a></div>
 			</div>
 		</div>
 	</div>
@@ -72,16 +72,16 @@
 		<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Links</h3>
+					<h3 class="panel-title">{links}</h3>
 				</div>
 				<div class="panel-body">
 					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
     							<th>#</th>
-    							<th>Datum</th>
-    							<th>Titel</th>
-    							<th>Sichtbar</th>
+    							<th>{date}</th>
+    							<th>{title}</th>
+    							<th>{visible}</th>
     						</tr>
 						</thead>
 						<tbody>
@@ -95,21 +95,21 @@
 						<?php endforeach;?>
 						</tbody>
 					</table></div>
-				<div class="panel-body"><a href="?uri=linkadd">Anlegen</a></div>
+				<div class="panel-body"><a href="?uri=linkadd">{create}</a></div>
 			</div>
 		</div>
 		<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Articles</h3>
+					<h3 class="panel-title">{article}</h3>
 				</div>
 				<div class="panel-body"><table class="table table-hover table-striped">
 						<thead>
 							<tr>
     							<th>#</th>
-    							<th>Datum</th>
-    							<th>Titel</th>
-    							<th>Sichtbar</th>
+    							<th>{date}</th>
+    							<th>{title}</th>
+    							<th>{visible}</th>
     						</tr>
 						</thead>
 						<tbody>
@@ -123,7 +123,7 @@
 						<?php endforeach;?>
 						</tbody>
 					</table></div>
-				<div class="panel-body"><a href="?uri=articlesadd">Anlegen</a></div>
+				<div class="panel-body"><a href="?uri=articlesadd">{create}</a></div>
 			</div>
 		</div>
 	</div>

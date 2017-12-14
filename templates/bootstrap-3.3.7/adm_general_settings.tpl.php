@@ -18,7 +18,7 @@
 		</div>
 	</div>
     <div class="row">
-    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
              <div class="form-group">
                   <label for="sel1">Themes:</label>
                   <select class="form-control" id="sel1" name="theme">
@@ -28,7 +28,19 @@
                   </select>
             </div> 
         </div>
-    </div>              
+    </div>
+    <div class="row">
+    	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+             <div class="form-group">
+                  <label for="sel1">{site language}:</label>
+                  <select class="form-control" id="sel1" name="language">
+             		   <option>{german}</option>
+             		   <option>{english}</option>
+             		   <option>{russian}</option>
+                  </select>
+            </div> 
+        </div>
+    </div>        
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">

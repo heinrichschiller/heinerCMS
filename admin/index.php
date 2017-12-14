@@ -39,6 +39,9 @@ if (is_logged_in ()) {
 	$template = str_replace ( '<@content@>', $base ['adm_content'], $template );
 	$template = str_replace ( '$PHP_SELF', $_SERVER ['PHP_SELF'], $template );
 	
+	/* translation */
+	$template = strtr($template, $arr_language_de);
+	
 	/* Template ausgeben */
 	echo stripslashes ( $template );
 }

@@ -782,6 +782,15 @@ function load_user_edit(int $id) : string
     return $template;
 }
 
+function load_user_insert() : string
+{
+    $template = '';
+    
+    $template = loadTemplate('adm_user_insert');
+    
+    return $template;
+}
+
 /* ********************************************************************************
  * SQL - section
  * *******************************************************************************/

@@ -2,7 +2,7 @@
     <div class="row">
     	<div class="col-lg-12 col-md-10 col-sm-10 col-12">
     		<div class="panel">
-    			<h4><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash</h4>
+    			<h4><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {trash}</h4>
     		</div>
     	</div>
     </div>
@@ -10,7 +10,7 @@
 		<div class="col-lg-12 col-md-4 col-sm-5 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">News</h3>
+					<h3 class="panel-title">{news}</h3>
 				</div>
 				<div class="panel-body">
 					<form method="post" action="newsdel.php">
@@ -19,9 +19,9 @@
     							<tr>
     								<th></th>
         							<th>#</th>
-        							<th>Datum</th>
-        							<th>Titel</th>
-        							<th>Aktionen</th>
+        							<th>{date}</th>
+        							<th>{title}</th>
+        							<th>{actions}</th>
         						</tr>
     						</thead>
     						<tbody>
@@ -37,9 +37,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">Auswahl löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">Alle löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
                     	</div>
 					</form>
 				</div>
@@ -48,7 +48,7 @@
 		<div class="col-lg-12 col-md-4 col-sm-5 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Downloads</h3>
+					<h3 class="panel-title">{downloads}</h3>
 				</div>
 				<div class="panel-body">
 					<form method="post" action="downloadsdel.php">
@@ -57,9 +57,9 @@
     							<tr>
     								<th></th>
         							<th>#</th>
-        							<th>Datum</th>
-        							<th>Titel</th>
-        							<th>Aktionen</th>
+        							<th>{date}</th>
+        							<th>{title}</th>
+        							<th>{actions}</th>
         						</tr>
     						</thead>
     						<tbody>
@@ -75,9 +75,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">Auswahl löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">Alle löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
                     	</div>
 					</form>
 				</div>
@@ -86,7 +86,7 @@
 		<div class="col-lg-12 col-md-4 col-sm-5 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Links</h3>
+					<h3 class="panel-title">{links}</h3>
 				</div>
 				<div class="panel-body">
 					<form method="post" action="linkdel.php">
@@ -95,9 +95,9 @@
     							<tr>
     								<th></th>
         							<th>#</th>
-        							<th>Datum</th>
-        							<th>Titel</th>
-        							<th>Aktionen</th>
+        							<th>{date}</th>
+        							<th>{title}</th>
+        							<th>{actions}</th>
         						</tr>
     						</thead>
     						<tbody>
@@ -113,9 +113,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">Auswahl löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">Alle löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
                     	</div>
 					</form>
 				</div>
@@ -124,7 +124,7 @@
 		<div class="col-lg-12 col-md-4 col-sm-5 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Articles</h3>
+					<h3 class="panel-title">{articles}</h3>
 				</div>
 				<div class="panel-body">
 					<form method="post" action="articledel.php">
@@ -133,9 +133,9 @@
     							<tr>
     								<th></th>
         							<th>#</th>
-        							<th>Datum</th>
-        							<th>Titel</th>
-        							<th>Aktionen</th>
+        							<th>{date}</th>
+        							<th>{title}</th>
+        							<th>{actions}</th>
         						</tr>
     						</thead>
     						<tbody>
@@ -151,9 +151,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">Auswahl löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">Alle löschen</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
                     	</div>
 					</form>
 				</div>

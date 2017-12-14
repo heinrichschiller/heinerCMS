@@ -86,6 +86,10 @@ $route['useredit'] = function($id) {
     return load_user_edit($id);
 };
 
+$route['userinsert'] = function() {
+    return load_user_insert();
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };
