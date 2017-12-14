@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+		<div class="panel">
+			<h4>
+				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				{new user}
+			</h4>
+		</div>
+	</div>
+</div>
+<form action="userinsert.php" method="post">
+	<div class="row">
+		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+			<div class="form-group">
+				<label for="ident">#&nbsp;</label><span>{new}</span>
+				<input type="hidden" name="id" value="" class="form-control" id="ident">
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+			<div class="form-group">
+				<p class="text-right">{date}: </p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="firstname">{firstname}:</label>
+				<input type="text" name="firstname" value="" class="form-control" id="firstname" required>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="lastname">{lastname}:</label>
+				<input type="text" name="lastname" value="" class="form-control" id="lastname" required>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="username">{username}:</label>
+				<input type="text" name="username" value="" class="form-control" id="username" required>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="email">{email}:</label>
+				<input type="email" name="email" value="" class="form-control" id="email">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="public_as">{show as public}:</label>
+				<input type="text" name="public_as" value="" class="form-control" id="public_as">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="password1">{password}:</label>
+				<input type="password" name="password1" value="" class="form-control" id="password1">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="password2">{repeat password}:</label>
+				<input type="password" name="password2" value="" class="form-control" id="password2">
+			</div>
+		</div>
+	</div>
+	<div class="checkbox">
+		<span>{visible}?</span>
+		<input type="radio" name="visible" value="0" {visible} > {yes} 
+		<input type="radio" name="visible" value="-1" {visible} > {no}
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<button type="submit" class="btn btn-success">{save}</button>
+				<span></span>
+				<button type="reset" class="btn btn-danger">{reset}</button>
+			</div>
+		</div>
+	</div>
+</form>
