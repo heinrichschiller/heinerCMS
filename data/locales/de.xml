@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language lang="de">
+	<terms>
+		<yes>ja</yes>
+		<no>nein</no>
+		<new>neu</new>
+		<firstname>Vorname</firstname>
+		<lastname>Nachname</lastname>
+		<username>Benutzername</username>
+		<email>Email</email>
+		<show_publicly_as>Öffentlich anzeigen als</show_publicly_as>
+		<password>Password</password>
+		<repeat_password>Passwort wiederholen</repeat_password>
+		<save>Speichern</save>
+		<reset>Zurücksetzen</reset>
+		<visible>Sichbar</visible>
+		<dashboard>Dashboard</dashboard>
+		<content>Inhalt</content>
+		<news>Nachrichten</news>
+		<downloads>Downloads</downloads>
+		<links>Links</links>
+		<articles>Artikel</articles>
+		<article>Artikel</article>
+		<settings>Einstellungen</settings>
+		<general>Allgemein</general>
+		<user>Benutzer</user>
+		<trash>Mülleimer</trash>
+		<new_user>Neuer Benutzer</new_user>
+		<create>Erstellen</create>
+		<create_news>Nachricht erstellen</create_news>
+		<create_download>Download erstellen</create_download>
+		<create_link>Link erstellen</create_link>
+		<create_article>Artikel erstellen</create_article>
+		<date>Datum</date>
+		<title>Titel</title>
+		<actions>Aktionen</actions>
+		<clear_selection>Auswahl löschen</clear_selection>
+		<clear_all>Alle löschen</clear_all>
+		<administration>Administration</administration>
+		<german>Deutsch</german>
+		<english>Englisch</english>
+		<russian>Russich</russian>
+		<site_language>Sprache der Anwendung</site_language>
+		<path>Pfad</path>
+		<filename>Dateiname</filename>
+		<comment>Kommentar</comment>
+		<uri>URI</uri>
+		<text>Text</text>
+		<theme>Theme</theme>
+		<active>Aktiv</active>
+		<create_user>Benutzer erstellen</create_user>
+	</terms>
+</language>
