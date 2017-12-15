@@ -3,7 +3,7 @@
 		<div class="panel">
 			<h4>
 				<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-				Einstellungen
+				{settings}
 			</h4>
 		</div>
 	</div>
@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="title">Titel:</label>
+				<label for="title">{title}:</label>
 				<input type="text" name="title" value="<?= $_SESSION['title']; ?>" class="form-control" id="title">
 			</div>
 		</div>
@@ -20,7 +20,7 @@
     <div class="row">
     	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
              <div class="form-group">
-                  <label for="sel1">Themes:</label>
+                  <label for="sel1">{theme}:</label>
                   <select class="form-control" id="sel1" name="theme">
                   <?php foreach ($result as $theme) :?>
              		   <option><?= $theme;?></option>
@@ -32,7 +32,7 @@
     <div class="row">
     	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
              <div class="form-group">
-                  <label for="sel1">{site language}:</label>
+                  <label for="sel1">{site_language}:</label>
                   <select class="form-control" id="sel1" name="language">
              		   <option>{german}</option>
              		   <option>{english}</option>

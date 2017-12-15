@@ -58,7 +58,7 @@
 							<td><?= $downloads['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $downloads['datetime']); ?></td>
 							<td><?= $downloads['title'];?></td>
-							<td><?= ($downloads['visible'] > -1) ? ' ja' : ' nein'; ?></td>
+							<td><?= ($downloads['visible'] > -1) ? ' {yes}' : ' {no}'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -90,7 +90,7 @@
 							<td><?= $link['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $link['datetime']); ?></td>
 							<td><?= $link['title'];?></td>
-							<td><?= ($link['visible'] > -1) ? ' ja' : ' nein'; ?></td>
+							<td><?= ($link['visible'] > -1) ? ' {yes}' : ' {no}'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -118,7 +118,7 @@
 							<td><?= $article['id'];?></td>
 							<td><?= strftime('%d.%m.%Y', $article['datetime']); ?></td>
 							<td><?= $article['title'];?></td>
-							<td><?= ($article['visible'] > -1) ? ' ja' : ' nein'; ?></td>
+							<td><?= ($article['visible'] > -1) ? ' {yes}' : ' {no}'; ?></td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>

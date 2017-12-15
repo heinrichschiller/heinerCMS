@@ -3,7 +3,7 @@
 		<div class="panel">
 			<h4>
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				{new user}
+				{new_user}
 			</h4>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 	<div class="row">
 		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="public_as">{show as public}:</label>
+				<label for="public_as">{show_publicly_as}:</label>
 				<input type="text" name="public_as" value="" class="form-control" id="public_as">
 			</div>
 		</div>
@@ -73,7 +73,7 @@
 	<div class="row">
 		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="password2">{repeat password}:</label>
+				<label for="password2">{repeat_password}:</label>
 				<input type="password" name="password2" value="" class="form-control" id="password2">
 			</div>
 		</div>

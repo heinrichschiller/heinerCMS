@@ -45,7 +45,7 @@
 	    
 		<footer class="container-fluid bg-4 text-center">
   		    <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a>
-    	</footer>
+    		</footer>
         
         <!-- TinyMCE-Editor -->
 		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>

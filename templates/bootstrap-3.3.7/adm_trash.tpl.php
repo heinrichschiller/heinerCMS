@@ -37,9 +37,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear_selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear_all}</button>
                     	</div>
 					</form>
 				</div>
@@ -75,9 +75,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear_selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear_all}</button>
                     	</div>
 					</form>
 				</div>
@@ -113,9 +113,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear_selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear_all}</button>
                     	</div>
 					</form>
 				</div>
@@ -151,9 +151,9 @@
     						</tbody>
     					</table>
     					<div class="form-group">
-                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear selection}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del">{clear_selection}</button>
                     		<span></span>
-                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear all}</button>
+                    		<button type="submit" class="btn btn-danger" name="action" value="del_all">{clear_all}</button>
                     	</div>
 					</form>
 				</div>

@@ -1,11 +1,11 @@
-<h4>Einstellungen</h4>
+<h4>{settings}</h4>
 
 
 <form action="general_settings.php" method="post">
 	<table>
 		<tr>
 			<td>
-				<label for="title">Titel:</label>
+				<label for="title">{title}:</label>
 			</td>
 			<td>
 				<input type="text" name="title" value="<?= $_SESSION['title']; ?>">
@@ -25,10 +25,10 @@
 		</tr>
 		<tr>
 			<td>
-				<button type="submit"">Speichern</button>
+				<button type="submit">{save}</button>
 			</td>
 			<td>
-				<button type="reset">Zurücksetzen</button>
+				<button type="reset">{reset}</button>
 			</td>
 		</tr>
 	</table>
