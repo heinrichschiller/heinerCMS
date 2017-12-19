@@ -11,6 +11,7 @@
 		<show_publicly_as>Öffentlich anzeigen als</show_publicly_as>
 		<password>Password</password>
 		<repeat_password>Passwort wiederholen</repeat_password>
+		<generate_password>Passwort generieren</generate_password>
 		<save>Speichern</save>
 		<reset>Zurücksetzen</reset>
 		<visible>Sichbar</visible>
