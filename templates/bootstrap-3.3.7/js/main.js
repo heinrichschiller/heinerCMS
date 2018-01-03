@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+function systemMessage()
+{
+	alert('Hallo!');
+}
+
