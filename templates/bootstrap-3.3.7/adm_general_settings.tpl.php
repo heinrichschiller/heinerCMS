@@ -44,9 +44,9 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<button type="submit" class="btn btn-success">Speichern</button>
+				<button type="submit" class="btn btn-success">{save}</button>
 				<span></span>
-				<button type="reset" class="btn btn-danger">Zurücksetzen</button>
+				<button type="reset" class="btn btn-danger">{reset}</button>
 			</div>
 		</div>
 	</div>
