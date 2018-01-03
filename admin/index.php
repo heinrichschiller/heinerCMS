@@ -2,9 +2,11 @@
 
 /* Konfigurationsdateien laden */
 include __DIR__ . '/../inc/base.inc.php';
-include __DIR__ . '/../inc/functions.inc.php';
+//include __DIR__ . '/../inc/functions.inc.php';
+include __DIR__ . '/../inc/general_functions.inc.php';
+include __DIR__ . '/../inc/admin_functions.inc.php';
 include __DIR__ . '/routes.php';
-include __DIR__ . '/../inc/login.inc.php';
+//include __DIR__ . '/../inc/login.inc.php';
 
 // models
 include __DIR__ . '/../source/models/user/UserListModel.php';
