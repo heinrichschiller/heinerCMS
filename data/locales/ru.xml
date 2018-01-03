@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language lang="de">
+	<terms>
+		<yes>да</yes>
+		<no>нет</no>
+		<new>новый</new>
+		<firstname>Имя</firstname>
+		<lastname>Фамилия</lastname>
+		<username>Имя пользователя</username>
+		<email>Эл. адрес</email>
+		<show_publicly_as>Публично показать</show_publicly_as>
+		<password>Пароль</password>
+		<repeat_password>Повторить пароль</repeat_password>
+		<generate_password>Generate password</generate_password>
+		<save>Сохранять</save>
+		<reset>Удалить</reset>
+		<visible>Видимый</visible>
+		<dashboard>Консоль</dashboard>
+		<content>содержание</content>
+		<news>Новости</news>
+		<downloads>Загрузки</downloads>
+		<links>Связи</links>
+		<articles>Артикль</articles>
+		<article>Артикль</article>
+		<settings>Настройки</settings>
+		<general>Основные</general>
+		<user>Пользователь</user>
+		<trash>Корзина</trash>
+		<new_user>Новый пользователь</new_user>
+		<create>Создайте</create>
+		<create_news>Создать новость</create_news>
+		<create_download>Создать загрузку</create_download>
+		<create_link>Создать связи</create_link>
+		<create_article>Создать статью</create_article>
+		<date>Дата</date>
+		<title>Звание</title>
+		<actions>Поведение</actions>
+		<clear_selection>Очистить выб</clear_selection>
+		<clear_all>Очистить все</clear_all>
+		<administration>Администрация</administration>
+		<german>Немецкий</german>
+		<english>Английский</english>
+		<russian>Русский</russian>
+		<site_language>Language</site_language>
+		<path>Path</path>
+		<filename>Filename</filename>
+		<comment>Comment</comment>
+		<uri>URI</uri>
+		<text>Text</text>
+		<theme>Theme</theme>
+		<active>Active</active>
+		<create_user>Create user</create_user>
+	</terms>
+</language>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language lang="de">
+	<terms>
+		<yes>yes</yes>
+		<no>no</no>
+		<new>new</new>
+		<firstname>Firstname</firstname>
+		<lastname>Lastname</lastname>
+		<username>Username</username>
+		<email>Email</email>
+		<show_publicly_as>Display name publicly as</show_publicly_as>
+		<password>Password</password>
+		<repeat_password>Repeat password</repeat_password>
+		<generate_password>Generate password</generate_password>
+		<save>Save</save>
+		<reset>Reset</reset>
+		<visible>Visible</visible>
+		<dashboard>Dashboard</dashboard>
+		<content>Content</content>
+		<news>News</news>
+		<downloads>Downloads</downloads>
+		<links>Links</links>
+		<articles>Articles</articles>
+		<article>Article</article>
+		<settings>Settings</settings>
+		<general>General</general>
+		<user>User</user>
+		<trash>Trash</trash>
+		<new_user>New user</new_user>
+		<create>Create</create>
+		<create_news>Create news</create_news>
+		<create_download>Create download</create_download>
+		<create_link>Create link</create_link>
+		<create_article>Create article</create_article>
+		<date>Date</date>
+		<title>Title</title>
+		<actions>Actions</actions>
+		<clear_selection>Clear selection</clear_selection>
+		<clear_all>Clear all</clear_all>
+		<administration>Administration</administration>
+		<german>German</german>
+		<english>English</english>
+		<russian>Russian</russian>
+		<site_language>Language</site_language>
+		<path>Path</path>
+		<filename>Filename</filename>
+		<comment>Comment</comment>
+		<uri>URI</uri>
+		<text>Text</text>
+		<theme>Theme</theme>
+		<active>Active</active>
+		<create_user>Create user</create_user>
+	</terms>
+</language>

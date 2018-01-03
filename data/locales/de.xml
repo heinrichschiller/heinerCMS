@@ -9,7 +9,7 @@
 		<username>Benutzername</username>
 		<email>Email</email>
 		<show_publicly_as>Öffentlich anzeigen als</show_publicly_as>
-		<password>Password</password>
+		<password>Passwort</password>
 		<repeat_password>Passwort wiederholen</repeat_password>
 		<generate_password>Passwort generieren</generate_password>
 		<save>Speichern</save>
@@ -50,5 +50,8 @@
 		<theme>Theme</theme>
 		<active>Aktiv</active>
 		<create_user>Benutzer erstellen</create_user>
+		<edit>Bearbeiten</edit>
+		<copy>Kopieren</copy>
+		<delete>Löschen</delete>
 	</terms>
 </language>
