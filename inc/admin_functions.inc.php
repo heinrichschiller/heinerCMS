@@ -34,23 +34,6 @@ function is_logged_in()
 }
 
 /**
- *
- * @param string $template
- * @return string
- */
-function loadTemplate(string $template): string
-{
-    $file = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/' . $template . '.tpl.php';
-    $error = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/error_template.tpl.php';
-    
-    if (file_exists($file)) {
-        return file_get_contents($file);
-    }
-    
-    return file_get_contents($error);
-}
-
-/**
  */
 function load_session()
 {
@@ -105,7 +88,8 @@ function load_admin_news(): string
     
     $template = loadTemplate('adm_news');
     
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
+        . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
     
     $news = pdo_select($sql, $params);
     
@@ -218,7 +202,7 @@ function load_admin_downloads(): string
             
             $template = str_replace('<@downloads-content@>', $table_content, $template);
         }
-        mysqli_close($con);
+
     }
     return $template;
 }
@@ -304,8 +288,7 @@ function load_admin_links(): string
         if ($result = mysqli_query($con, $sql)) {
             $template = loadTemplateNewVersion($result, 'adm_links');
         }
-        
-        mysqli_close($con);
+
     }
     
     return $template;
@@ -389,7 +372,6 @@ function load_admin_articles(): string
             $template = loadTemplateNewVersion($result, 'adm_articles');
         }
         
-        mysqli_close($con);
     }
     
     return $template;

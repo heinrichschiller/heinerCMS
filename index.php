@@ -4,7 +4,7 @@ $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
 
 include 'inc/base.inc.php';
-include 'inc/functions.inc.php';
+include 'inc/public_functions.inc.php';
 include 'inc/routes.php';
 
 if(!file_exists($config_ini)) {

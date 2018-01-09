@@ -72,3 +72,20 @@ function pdo_query(string $sql, array $params)
 {
     $pdo = getPdoDB();
 }
+
+/**
+ *
+ * @param string $template
+ * @return string
+ */
+function loadTemplate(string $template): string
+{
+    $file = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/' . $template . '.tpl.php';
+    $error = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/error_template.tpl.php';
+    
+    if (file_exists($file)) {
+        return file_get_contents($file);
+    }
+    
+    return file_get_contents($error);
+}
