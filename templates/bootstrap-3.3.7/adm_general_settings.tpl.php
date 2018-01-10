@@ -22,9 +22,7 @@
              <div class="form-group">
                   <label for="sel1">{theme}:</label>
                   <select class="form-control" id="sel1" name="theme">
-                  <?php foreach ($result as $theme) :?>
-             		   <option><?= $theme;?></option>
-             	 <?php endforeach;?>
+					<@theme-placeholder@>
                   </select>
             </div> 
         </div>

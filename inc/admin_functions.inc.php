@@ -129,7 +129,7 @@ function load_admin_news(): string
  * @param int $id
  * @return string
  */
-function load_admin_newsedit(int $id): string
+function load_admin_news_edit(int $id): string
 {
     $template = '';
     $params = [
@@ -150,7 +150,7 @@ function load_admin_newsedit(int $id): string
  *
  * @return string
  */
-function load_admin_newsadd(): string
+function load_admin_news_add(): string
 {
     $template = '';
     
@@ -160,13 +160,13 @@ function load_admin_newsadd(): string
     return $template;
 }
 
-/* Nachricht löschen */
 /**
- *
+ * Delete a news
+ * 
  * @param int $id
  * @return string
  */
-function load_admin_newsdel(int $id): string
+function load_admin_news_del(int $id): string
 {
     $template = '';
     $arr = [];
@@ -193,26 +193,30 @@ function load_admin_downloads(): string
     $template = '';
     $table_content = '';
     
-    $con = getPdoDB();
+    $pdo = getPdoDB();
     
-    if ($con) {
-        
-        $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-        $result = mysqli_query($con, $sql);
-        
-        if ($result) {
-            $template = loadTemplate('adm_downloads');
-            
-            while ($downloads = mysqli_fetch_object($result)) {
-                $table_content .= '<tr><td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime);
-                $table_content .= "</td><td>$downloads->title</td><td>";
-                $table_content .= (($downloads->visible > - 1) ? 'ja' : 'nein');
-                $table_content .= "</td><td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
-            }
-            
-            $template = str_replace('<@downloads-content@>', $table_content, $template);
-        }
+    $template = loadTemplate('adm_downloads');
+    
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
+            . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
     }
+       
+    while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
+        $table_content .= '<td>' . $downloads->title . '</td>';
+        $table_content .= (($downloads->visible > - 1) ? '<td> ja</td>' : '<td>nein</td>');
+        $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
+    }
+            
+    $template = str_replace('<@downloads-content@>', $table_content, $template);
+
     return $template;
 }
 
@@ -222,7 +226,7 @@ function load_admin_downloads(): string
  * @param int $id
  * @return string
  */
-function load_admin_downloadsedit(int $id): string
+function load_admin_downloads_edit(int $id): string
 {
     $template = '';
     
@@ -230,7 +234,8 @@ function load_admin_downloadsedit(int $id): string
     
     if ($con) {
         
-        $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' . " FROM `downloads` WHERE `id`=$id";
+        $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
+            . " FROM `downloads` WHERE `id`=$id";
         $result = mysqli_query($con, $sql);
         
         if ($result) {
@@ -248,7 +253,7 @@ function load_admin_downloadsedit(int $id): string
  *
  * @return string
  */
-function load_admin_downloadsadd(): string
+function load_admin_downloads_add(): string
 {
     $template = '';
     $time = StrFTime('%d.%m.%Y %H:%M', time());
@@ -265,7 +270,7 @@ function load_admin_downloadsadd(): string
  * @param int $id
  * @return string
  */
-function load_admin_downloadsdel(int $id): string
+function load_admin_downloads_del(int $id): string
 {
     $title = getTitleFromTableById('downloads', $id);
     
@@ -287,17 +292,55 @@ function load_admin_downloadsdel(int $id): string
 function load_admin_links(): string
 {
     $template = '';
+    $table_content = '';
     
-    $con = getPdoDB();
+    $pdo = getPdoDB();
+
+    $template = loadTemplate('adm_links');
+
+    $sql = "SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
     
-    if ($con) {
-        
-        $sql = "SELECT `id`, `title`, `uri`, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
-        
-        if ($result = mysqli_query($con, $sql)) {
-            $template = loadTemplate('adm_links');
-        }
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit;
     }
+
+    while($link = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . $link->id . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y',$link->datetime) . '</td>';
+        $table_content .= '<td>' . $link->title . '</td>';
+        $table_content .= $link->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
+        
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=". $link->id . ">"
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot;';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">"
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+        
+        $table_content .= "<a href=". $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">"
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+        $table_content .= '</tr>';
+    }
+    
+    /*<?php while ($link = mysqli_fetch_object ( $result ) ) : ?>
+				<tr>
+					<td><?= $link->id; ?></td>
+					<td><?= $link->title; ?></td>
+					<td><?= ($link->visible > -1) ? ' ja' : ' nein'; ?></td>
+					<td><a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot; 
+						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
+							<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot; 
+						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkdel&id=$link->id"; ?>">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+				</tr>
+				<?php endwhile; ?>*/
+    
+    $template = str_replace('<@links-content@>', $table_content, $template);
     
     return $template;
 }
@@ -308,7 +351,7 @@ function load_admin_links(): string
  * @param int $id
  * @return string
  */
-function load_admin_linkedit(int $id): string
+function load_admin_link_edit(int $id): string
 {
     $template = '';
     $params = [
@@ -329,7 +372,7 @@ function load_admin_linkedit(int $id): string
  *
  * @return string
  */
-function load_admin_linkadd(): string
+function load_admin_link_add(): string
 {
     $template = '';
     
@@ -344,7 +387,7 @@ function load_admin_linkadd(): string
  * @param int $id
  * @return string
  */
-function load_admin_linkdel(int $id): string
+function load_admin_link_del(int $id): string
 {
     $template = '';
     $container = [];
@@ -361,26 +404,51 @@ function load_admin_linkdel(int $id): string
     return $template;
 }
 
-/* Gesamtübersicht der Artikel laden */
 /**
- *
+ * Load general overview of all articles
+ * 
  * @return string
  */
 function load_admin_articles(): string
 {
     $template = '';
+    $table_content = '';
     
-    $con = getPdoDB();
+    $pdo = getPdoDB();
     
-    if ($con) {
-        
-        $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-        
-        if ($result = mysqli_query($con, $sql)) {
-            $template = loadTemplate($result, 'adm_articles');
-        }
+    $template = loadTemplate('adm_articles');
+    
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
+        . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
     }
     
+    while ($article = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . $article->id . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y',$article->datetime) . '</td>';
+        $table_content .= '<td>' . $article->title . '</td>';
+        $table_content .= '<td>' . $article->visible > -1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot;';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">"
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+        
+        $table_content .= '</tr>';
+    }
+
+    $template = str_replace('<@articles-content@>', $table_content, $template);
+
     return $template;
 }
 
@@ -390,7 +458,7 @@ function load_admin_articles(): string
  * @param int $id
  * @return string
  */
-function load_admin_articleedit(int $id): string
+function load_admin_article_edit(int $id): string
 {
     $template = '';
     $params = [
@@ -432,7 +500,7 @@ function load_admin_articleedit(int $id): string
  *
  * @return string
  */
-function load_admin_articleadd(): string
+function load_admin_article_add(): string
 {
     $template = '';
     
@@ -453,7 +521,7 @@ function load_admin_articleadd(): string
  * @param int $id
  * @return string
  */
-function load_admin_articledel(int $id): string
+function load_admin_article_del(int $id): string
 {
     $template = '';
     $container = [];
@@ -553,11 +621,18 @@ function load_trash(): string
 function load_general_settings(): string
 {
     $template_dir = __DIR__ . '/../templates/';
-    
-    $tmp = scandir($template_dir);
+    $option = '';
     
     $template = loadTemplate('adm_general_settings');
     
+    $tmp = scandir($template_dir);
+    
+    foreach ($tmp as $theme) {
+        $option .= "<option>$theme</option>";
+    }
+
+    $template = str_replace('<@theme-placeholder@>', $option, $template);
+
     return $template;
 }
 
@@ -568,34 +643,33 @@ function load_general_settings(): string
 function load_user_list(): string
 {
     $template = '';
-    $params = [];
     $table_content = '';
     
-    $con = getPdoDB();
-    
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' . ' FROM `users` ORDER BY `firstname` DESC';
-    
-    $result = pdo_select($sql, $params);
+    $pdo = getPdoDB();
     
     $template = loadTemplate('adm_user_list');
-    var_dump($result);
-    for ($i = 0; $i < count($result); $i ++) {
-        var_dump($result);
+    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' . ' FROM `users` ORDER BY `firstname` DESC';
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
     }
     
-    foreach ($result as $user) {
+    while ($user = $stmt->fetch(PDO::FETCH_OBJ)) {
         
-        $table_content .= '<tr><td>' . $result['id'] . '</td>';
-        $table_content .= '<td>' . $result['firstname'] . '</td>';
-        $table_content .= '<td>' . $result['lastname'] . '</td>';
-        $table_content .= '<td>' . $result['username'] . '</td>';
-        $table_content .= '<td>' . $result['active'] . '</td>';
-        /*
-         * $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=useredit&id=$user->id\">"
-         * . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;"
-         * . " <a href=\"$_SERVER[PHP_SELF]?uri=userdel&id=$user->id\">"
-         * . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
-         */
+        $table_content .= '<tr><td>' . $user->id . '</td>';
+        $table_content .= '<td>' . $user->firstname . '</td>';
+        $table_content .= '<td>' . $user->lastname . '</td>';
+        $table_content .= '<td>' . $user->username . '</td>';
+        $table_content .= '<td>' . $user->active . '</td>';
+
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">"
+         . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;";
+        $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">"
+         . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
+         
     }
     
     $template = str_replace('<@user_list_content@>', $table_content, $template);

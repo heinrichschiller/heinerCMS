@@ -11,8 +11,6 @@ if (is_logged_in()) {
 
     $uri = '';
 
-    $con = getDB();
-
     // @todo Unsicher!!! Beheben!!!
     $list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
 

@@ -25,6 +25,7 @@ fwrite($fp, "theme = $theme\n");
 fwrite($fp, "version = 0.0.1");
 fwrite($fp, "\n");
 fwrite($fp, "[Database]\n");
+fwrite($fp, "type = mysql");
 fwrite($fp, "host = \n");
 fwrite($fp, "user = $user\n");
 fwrite($fp, "password = $password\n");

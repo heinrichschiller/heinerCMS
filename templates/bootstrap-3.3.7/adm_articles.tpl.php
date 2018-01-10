@@ -18,20 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php while ($article = mysqli_fetch_object ( $result ) ) : ?>
-				<tr>
-					<td><?= $article->id; ?></td>
-					<td><?= strftime('%d.%m.%Y',$article->datetime); ?></td>
-					<td><?= $article->title; ?></td>
-					<td><?= ($article->visible > -1) ? ' ja' : ' nein'; ?></td>
-					<td><a href="<?= "$_SERVER[PHP_SELF]?uri=articleedit&id=$article->id"; ?>">
-							<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=articleedit&id=$article->id"; ?>">
-							<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=articledel&id=$article->id"; ?>">
-							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-				</tr>
-				<?php endwhile; ?>
+				<@articles-content@>
 			</tbody>
 		</table>
 	</div>

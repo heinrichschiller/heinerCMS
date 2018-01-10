@@ -7,15 +7,15 @@ $route['news'] = function($id) {
 };
 
 $route['newsedit'] = function($id) {
-	return load_admin_newsedit ($id);
+	return load_admin_news_edit ($id);
 };
 
 $route['newsadd'] = function($id) {
-	return load_admin_newsadd($id);
+	return load_admin_news_add($id);
 };
 
 $route['newsdel'] = function($id) {
-	return load_admin_newsdel($id);
+	return load_admin_news_del($id);
 };
 
 $route['downloads'] = function($id) {
@@ -23,15 +23,15 @@ $route['downloads'] = function($id) {
 };
 
 $route['downloadsedit'] = function($id) {
-	return load_admin_downloadsedit($id);
+	return load_admin_downloads_edit($id);
 };
 
 $route['downloadsadd'] = function($id) {
-	return load_admin_downloadsadd($id);
+	return load_admin_downloads_add($id);
 };
 
 $route['downloadsdel'] = function($id) {
-	return load_admin_downloadsdel($id);
+	return load_admin_downloads_del($id);
 };
 
 $route['links'] = function($id) {
@@ -39,15 +39,15 @@ $route['links'] = function($id) {
 };
 
 $route['linkedit'] = function($id) {
-	return load_admin_linkedit($id);
+	return load_admin_link_edit($id);
 };
 
 $route['linkadd'] = function($id) {
-	return load_admin_linkadd($id);
+	return load_admin_link_add($id);
 };
 
 $route['linkdel'] = function($id) {
-	return load_admin_linkdel($id);
+	return load_admin_link_del($id);
 };
 
 $route['articles'] = function($id) {
@@ -55,15 +55,15 @@ $route['articles'] = function($id) {
 };
 
 $route['articleedit'] = function($id) {
-	return load_admin_articleedit($id);
+	return load_admin_article_edit($id);
 };
 
 $route['articleadd'] = function($id) {
-	return load_admin_articleadd($id);
+	return load_admin_article_add($id);
 };
 
 $route['articledel'] = function($id) {
-	return load_admin_articledel($id);
+	return load_admin_article_del($id);
 };
 
 $route['dashboard'] = function() {

@@ -18,19 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php while ($link = mysqli_fetch_object ( $result ) ) : ?>
-				<tr>
-					<td><?= $link->id; ?></td>
-					<td><?= $link->title; ?></td>
-					<td><?= ($link->visible > -1) ? ' ja' : ' nein'; ?></td>
-					<td><a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkdel&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-				</tr>
-				<?php endwhile; ?>
+				<@links-content@>
 			</tbody>
 		</table>
 	</div>
