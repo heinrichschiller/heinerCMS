@@ -73,15 +73,15 @@ function load_admin_sidebar(): string
     return $template;
 }
 
-/* Gesamtübersicht der Nachrichten laden */
+
 /**
- *
+ * General overview of all news
+ * 
  * @return string
  */
 function load_admin_news(): string
 {
     $template = '';
-    $params = [];
     $table_content = '';
     
     $pdo = getPdoDB();
@@ -91,24 +91,34 @@ function load_admin_news(): string
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
         . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
     
-    $news = pdo_select($sql, $params);
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
     
-    /*
-     * <?php while ($news = mysqli_fetch_object ( $result ) ) : ?>
-     * <tr>
-     * <td><?= $news->id; ?></td>
-     * <td><?= strftime('%d.%m.%Y',$news->datetime); ?></td>
-     * <td><?= $news->title; ?></td>
-     * <td><?= ($news->visible > -1) ? ' ja' : ' nein'; ?></td>
-     * <td><a href="<?= "$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id"; ?>">
-     * <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot;
-     * <a href="<?= "$_SERVER[PHP_SELF]?uri=newsedit&id=$news->id"; ?>">
-     * <span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;
-     * <a href="<?= "$_SERVER[PHP_SELF]?uri=newsdel&id=$news->id"; ?>">
-     * <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-     * </tr>
-     * <?php endwhile; ?>
-     */
+    while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . $news->id . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y',$news->datetime) . '</td>';
+        $table_content .= '<td>' . $news->title . '</td>';
+        $table_content .= $news->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
+        
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id .">"
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id . ">"
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+        
+            
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id .">"
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+        
+        $table_content .= '</tr>';
+    }
+    
+    $template = str_replace('<@table_content@>', $table_content, $template);
     
     return $template;
 }
@@ -202,7 +212,6 @@ function load_admin_downloads(): string
             
             $template = str_replace('<@downloads-content@>', $table_content, $template);
         }
-
     }
     return $template;
 }
@@ -227,7 +236,7 @@ function load_admin_downloadsedit(int $id): string
         if ($result) {
             $downloads = mysqli_fetch_object($result);
             
-            $template = loadTemplateNewVersion($downloads, 'downloadsedit');
+            $template = loadTemplate('downloadsedit');
         }
         mysqli_close($con);
     }
@@ -265,7 +274,7 @@ function load_admin_downloadsdel(int $id): string
         'title' => $title
     ];
     
-    $template = loadTemplateNewVersion($container, 'adm_downloads_del');
+    $template = loadTemplate('adm_downloads_del');
     
     return $template;
 }
@@ -286,9 +295,8 @@ function load_admin_links(): string
         $sql = "SELECT `id`, `title`, `uri`, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
         
         if ($result = mysqli_query($con, $sql)) {
-            $template = loadTemplateNewVersion($result, 'adm_links');
+            $template = loadTemplate('adm_links');
         }
-
     }
     
     return $template;
@@ -311,7 +319,7 @@ function load_admin_linkedit(int $id): string
     
     $result = pdo_select($sql, $params);
     
-    $template = loadTemplateNewVersion($result, 'adm_link_edit');
+    $template = loadTemplate('adm_link_edit');
     
     return $template;
 }
@@ -348,7 +356,7 @@ function load_admin_linkdel(int $id): string
         'title' => $title
     ];
     
-    $template = loadTemplateNewVersion($container, 'adm_link_del');
+    $template = loadTemplate('adm_link_del');
     
     return $template;
 }
@@ -369,9 +377,8 @@ function load_admin_articles(): string
         $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
         
         if ($result = mysqli_query($con, $sql)) {
-            $template = loadTemplateNewVersion($result, 'adm_articles');
+            $template = loadTemplate($result, 'adm_articles');
         }
-        
     }
     
     return $template;
@@ -534,7 +541,7 @@ function load_trash(): string
         $artikles
     ];
     
-    $template = loadTemplateNewVersion($content, 'adm_trash');
+    $template = loadTemplate('adm_trash');
     
     return $template;
 }
@@ -549,7 +556,7 @@ function load_general_settings(): string
     
     $tmp = scandir($template_dir);
     
-    $template = loadTemplateNewVersion($tmp, 'adm_general_settings');
+    $template = loadTemplate('adm_general_settings');
     
     return $template;
 }
@@ -572,7 +579,7 @@ function load_user_list(): string
     
     $template = loadTemplate('adm_user_list');
     var_dump($result);
-    for ($i = 0; $i < count($result); $i++ ) {
+    for ($i = 0; $i < count($result); $i ++) {
         var_dump($result);
     }
     
