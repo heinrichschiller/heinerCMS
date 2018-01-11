@@ -2,7 +2,7 @@
 
 session_start ();
 
-include_once __DIR__ . '/functions.inc.php';
+include_once __DIR__ . '/admin_functions.inc.php';
 
 /* Überprüft, ob ein Login erfolgt ist */
 function is_logged_in() {

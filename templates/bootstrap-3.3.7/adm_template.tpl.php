@@ -41,7 +41,7 @@
             </div>
         </noscript>
 		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><@navigation@></div>
-	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6"><@content@></div>
+	    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9"><@content@></div>
 	    
 		<footer class="container-fluid bg-4 text-center">
   		    <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a>

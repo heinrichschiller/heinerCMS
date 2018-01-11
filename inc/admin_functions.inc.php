@@ -1,39 +1,6 @@
 <?php
 
 /**
- *  Überprüft, ob ein Login erfolgt ist 
- */
-function is_logged_in()
-{
-    session_start();
-    
-    include __DIR__ . '/base.inc.php';
-    $PHP_SELF = $_SERVER['PHP_SELF'];
-    
-    $authenticated = isset($_SESSION['authenticated']) ? true : false;
-    
-    load_session();
-    
-    /* User angemeldet? */
-    if ($authenticated) {
-        return true;
-    } else {
-        $login = loadTemplate('adm_login');
-        $template = loadTemplate('login_template');
-        
-        $template = str_replace('<@title@>', $base['adm_title'], $template);
-        $template = str_replace('<@shortnav@>', '&nbsp;', $template);
-        $template = str_replace('<@navigation@>', '&nbsp;', $template);
-        $template = str_replace('<@content@>', $login, $template);
-        $template = str_replace('$PHP_SELF', $PHP_SELF, $template);
-        
-        echo stripslashes($template);
-        
-        return false;
-    }
-}
-
-/**
  */
 function load_session()
 {
@@ -132,17 +99,38 @@ function load_admin_news(): string
 function load_admin_news_edit(int $id): string
 {
     $template = '';
+    $chkNo = '';
+    $chkYes = '';
+    
     $params = [
         $id
     ];
     
-    $sql = "SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `news` WHERE `id` = $id";
+    $sql = 'SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+        . " FROM `news` WHERE `id` = $id";
     
-    $pdo = getPdoDB();
+    $result = pdo_select($sql, $params);
     
+    if ($result['visible'] > - 1) {
+        $chkYes = ' checked';
+    }
+    
+    if ($result['visible'] < 0) {
+        $chkNo = ' checked';
+    }
+    
+    $arr = [
+        '<@id@>' => $result['id'],
+        '<@title@>' => $result['title'],
+        '<@message@>' => $result['message'],
+        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '@chk_yes@' => $chkYes,
+        '@chk_no@' => $chkNo
+    ];
+
     $template = loadTemplate('adm_news_edit');
     
-    return $template;
+    return strtr($template, $arr);
 }
 
 /* Formular zum Erstellen einer Nachricht laden */
@@ -325,20 +313,6 @@ function load_admin_links(): string
             . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
         $table_content .= '</tr>';
     }
-    
-    /*<?php while ($link = mysqli_fetch_object ( $result ) ) : ?>
-				<tr>
-					<td><?= $link->id; ?></td>
-					<td><?= $link->title; ?></td>
-					<td><?= ($link->visible > -1) ? ' ja' : ' nein'; ?></td>
-					<td><a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkedit&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot; 
-						<a href="<?= "$_SERVER[PHP_SELF]?uri=linkdel&id=$link->id"; ?>">
-							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-				</tr>
-				<?php endwhile; ?>*/
     
     $template = str_replace('<@links-content@>', $table_content, $template);
     
