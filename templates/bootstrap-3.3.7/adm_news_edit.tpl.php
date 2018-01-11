@@ -3,7 +3,7 @@
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
 				<label for="ident">#&nbsp;</label><span><@id@></span>
-				<input type="hidden" name="id" value="<?= $result->id; ?>" class="form-control" id="ident">
+				<input type="hidden" name="id" value="<@id@>" class="form-control" id="ident">
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">

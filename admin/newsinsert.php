@@ -1,4 +1,5 @@
 <?php
+
 include __DIR__ . '/../inc/base.inc.php';
 include __DIR__ . '/../inc/general_functions.inc.php';
 include __DIR__ . '/../inc/login.inc.php';
@@ -8,19 +9,29 @@ if (is_logged_in()) {
     
     $pdo = getPdoDB();
     
-    $title = filter_input(INPUT_POST, 'title');
+    $title   = filter_input(INPUT_POST, 'title');
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
     
     $sql = 'INSERT INTO `news` (`title`,`message`,`visible`)'
-        . " VALUES ('$title','$message',$visible)";
+        . " VALUES (:title, :message, :visible)";
+    
+    $input_parameters = [
+        ':title'   => $title,
+        ':message' => $message,
+        ':visible' => $visible
+    ];
     
     try {
+        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($input_parameters);
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
         exit();
+        
     }
     
     header('Location: index.php?uri=news');

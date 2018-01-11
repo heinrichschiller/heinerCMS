@@ -90,9 +90,9 @@ function load_admin_news(): string
     return $template;
 }
 
-/* Formular zum Bearbeiten einer Nachricht laden */
 /**
- *
+ * Formular zum Bearbeiten einer Nachricht laden
+ * 
  * @param int $id
  * @return string
  */
@@ -133,9 +133,9 @@ function load_admin_news_edit(int $id): string
     return strtr($template, $arr);
 }
 
-/* Formular zum Erstellen einer Nachricht laden */
 /**
- *
+ * Formular zum Erstellen einer Nachricht laden
+ * 
  * @return string
  */
 function load_admin_news_add(): string
@@ -171,9 +171,9 @@ function load_admin_news_del(int $id): string
     return $template;
 }
 
-/* Gesamtübersicht der Downloads laden */
 /**
- *
+ * Gesamtübersicht der Downloads laden
+ * 
  * @return string
  */
 function load_admin_downloads(): string
@@ -208,9 +208,9 @@ function load_admin_downloads(): string
     return $template;
 }
 
-/* Formular zum Bearbeiten eines Downloads laden */
 /**
- *
+ * Formular zum Bearbeiten eines Downloads laden
+ * 
  * @param int $id
  * @return string
  */
@@ -236,9 +236,9 @@ function load_admin_downloads_edit(int $id): string
     return $template;
 }
 
-/* Formular zum Erstellen eines Downloads laden */
 /**
- *
+ * Formular zum Erstellen eines Downloads laden
+ * 
  * @return string
  */
 function load_admin_downloads_add(): string
@@ -247,14 +247,14 @@ function load_admin_downloads_add(): string
     $time = StrFTime('%d.%m.%Y %H:%M', time());
     
     $template .= loadTemplate('adm_downloads_add');
-    $template = str_replace('###time###', $time, $template);
+    $template = str_replace('<@time@>', $time, $template);
     
     return $template;
 }
 
-/* Download löschen */
 /**
- *
+ * Download löschen
+ * 
  * @param int $id
  * @return string
  */
@@ -272,9 +272,9 @@ function load_admin_downloads_del(int $id): string
     return $template;
 }
 
-/* Gesamtübersicht der Links laden */
 /**
- *
+ * Gesamtübersicht der Links laden
+ * 
  * @return string
  */
 function load_admin_links(): string
@@ -286,7 +286,8 @@ function load_admin_links(): string
 
     $template = loadTemplate('adm_links');
 
-    $sql = "SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible` FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
+    $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible`'
+        . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -319,9 +320,9 @@ function load_admin_links(): string
     return $template;
 }
 
-/* Formular zum Bearbeiten eines Links laden */
 /**
- *
+ * Formular zum Bearbeiten eines Links laden
+ * 
  * @param int $id
  * @return string
  */
@@ -341,9 +342,9 @@ function load_admin_link_edit(int $id): string
     return $template;
 }
 
-/* Formular zum Erstellen einer Nachricht laden */
 /**
- *
+ * Formular zum Erstellen einer Nachricht laden
+ * 
  * @return string
  */
 function load_admin_link_add(): string
@@ -355,9 +356,10 @@ function load_admin_link_add(): string
     return $template;
 }
 
-/* Link löschen */
+
 /**
- *
+ * Link löschen
+ * 
  * @param int $id
  * @return string
  */
@@ -426,9 +428,9 @@ function load_admin_articles(): string
     return $template;
 }
 
-/* Formular zum Bearbeiten eines Artikels laden */
 /**
- *
+ * Formular zum Bearbeiten eines Artikels laden
+ * 
  * @param int $id
  * @return string
  */
@@ -469,9 +471,9 @@ function load_admin_article_edit(int $id): string
     return $template;
 }
 
-/* Formular zum Erstellen eines Artikels laden */
 /**
- *
+ * Formular zum Erstellen eines Artikels laden
+ * 
  * @return string
  */
 function load_admin_article_add(): string
@@ -489,9 +491,9 @@ function load_admin_article_add(): string
     return $template;
 }
 
-/* Artikel löschen */
 /**
- *
+ * Artikel löschen
+ * 
  * @param int $id
  * @return string
  */
@@ -605,7 +607,12 @@ function load_general_settings(): string
         $option .= "<option>$theme</option>";
     }
 
-    $template = str_replace('<@theme-placeholder@>', $option, $template);
+    $arr = [
+        '<@title@>' => $_SESSION['title'],
+        '<@theme-placeholder@>' => $option
+    ];
+    
+    $template = strtr($template, $arr);
 
     return $template;
 }
@@ -622,7 +629,8 @@ function load_user_list(): string
     $pdo = getPdoDB();
     
     $template = loadTemplate('adm_user_list');
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' . ' FROM `users` ORDER BY `firstname` DESC';
+    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' 
+        . ' FROM `users` ORDER BY `firstname` DESC';
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -633,16 +641,20 @@ function load_user_list(): string
     
     while ($user = $stmt->fetch(PDO::FETCH_OBJ)) {
         
-        $table_content .= '<tr><td>' . $user->id . '</td>';
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . $user->id . '</td>';
         $table_content .= '<td>' . $user->firstname . '</td>';
         $table_content .= '<td>' . $user->lastname . '</td>';
         $table_content .= '<td>' . $user->username . '</td>';
         $table_content .= '<td>' . $user->active . '</td>';
 
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">"
-         . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;";
+            . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;";
+        
         $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">"
-         . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>";
+            . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td>";
+        
+        $table_content .= '</tr>';
          
     }
     
@@ -665,7 +677,8 @@ function load_user_edit(int $id): string
     
     $template = loadTemplate('adm_user_edit');
     
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`email`,`password`,`created_at`,`updated_at`,`username`,`active`' . ' FROM `users`' . ' WHERE `id` = ?';
+    $sql = 'SELECT `id`,`firstname`,`lastname`,`email`,`password`,`created_at`,`updated_at`,`username`,`active`' 
+        . ' FROM `users`' . ' WHERE `id` = ?';
     
     $user = pdo_select($sql, $params);
     
@@ -749,7 +762,8 @@ function loadFromTable(string $table, int $count)
 {
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
+        . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -771,7 +785,8 @@ function loadTrashFromTable(string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime' . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime' 
+        . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -786,10 +801,8 @@ function loadTrashFromTable(string $table)
 /**
  * Get title from a table by id
  *
- * @param string $table
- *            - Name of the Table
- * @param int $id
- *            - Id
+ * @param string $table - Name of a table
+ * @param int $id       - Id
  *            
  * @return string
  */
@@ -797,13 +810,23 @@ function getTitleFromTableById(string $table, int $id)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `title` FROM `$table` WHERE `id` = $id";
+    $sql = "SELECT `title` FROM `:table` WHERE `id` = :id";
+    
+    $input_parameters = [
+        ':table' => $table,
+        ':id'    => $id
+    ];
     
     try {
+        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($input_parameters);
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
     
     return $stmt->fetchColumn();
@@ -817,13 +840,18 @@ function deleteAllTrashItems(string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "DELETE FROM `$table` WHERE `trash` = 'true'";
+    $sql = "DELETE FROM `:table` WHERE `trash` = 'true'";
     
     try {
+        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute(array(':table' => $table));
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
 }
 
@@ -844,10 +872,15 @@ function deleteItemsById(array $items, string $table)
     }
     
     try {
+        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
 }
 
@@ -860,12 +893,17 @@ function setFlagTrashById(int $id, string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= $id";
+    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
     
     try {
+        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute(array(':id' => $id));
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
 }

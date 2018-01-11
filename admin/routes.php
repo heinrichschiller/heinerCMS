@@ -3,7 +3,7 @@
 $route = [];
 
 $route['news'] = function($id) {
-	return load_admin_news ();
+	return load_admin_news();
 };
 
 $route['newsedit'] = function($id) {

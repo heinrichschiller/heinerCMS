@@ -1,7 +1,7 @@
 <?php
 
 include __DIR__ . '/../inc/base.inc.php';
-include __DIR__ . '/../inc/functions.inc.php';
+include __DIR__ . '/../inc/general_functions.inc.php';
 include __DIR__ . '/../inc/login.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */

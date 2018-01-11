@@ -1,22 +1,40 @@
 <?php
 
 include __DIR__ . '/../inc/base.inc.php';
-include __DIR__ . '/../inc/functions.inc.php';
+include __DIR__ . '/../inc/general_functions.inc.php';
 include __DIR__ . '/../inc/login.inc.php';
 
 if (is_logged_in ()) {
-	$id = filter_input(INPUT_POST, 'id');
-	$title = filter_input(INPUT_POST, 'title');
+    
+	$id      = filter_input(INPUT_POST, 'id');
+	$title   = filter_input(INPUT_POST, 'title');
 	$message = filter_input(INPUT_POST, 'message');
 	$visible = filter_input(INPUT_POST, 'visible');
 
-	$con = getDB();
+	$pdo = getPdoDB();
 
-	if ($con) {
-		$sql = "UPDATE news SET title = '$title', message = '$message', visible = $visible WHERE id = $id";
+	$sql = "UPDATE `news` SET `title` = :title, `message` = :message, `visible` = :visible WHERE `id` = :id";
 
-		$result = mysqli_query ( $con, $sql );
-		header ( 'Location: index.php?uri=news' );
+	$inpuit_parameters = [
+	    ':title'   => $title,
+	    ':message' => $message,
+	    ':visible' => $visible,
+	    ':id'      => $id
+	];
+	
+	try {
+	    
+	    $stmt = $pdo->prepare($sql);
+	    $stmt->execute($inpuit_parameters);
+	    
+	} catch (PDOException $ex) {
+	    
+	    echo $ex->getMessage();
+	    exit();
+	    
 	}
+	
+	header ( 'Location: index.php?uri=news');
+
 }
 
