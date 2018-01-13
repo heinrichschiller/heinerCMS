@@ -13,12 +13,12 @@
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
 				<label for="ident">#&nbsp;</label><span>{new}</span>
-				<input type="hidden" name="id" value="" class="form-control" id="ident">
+				<!-- <input type="hidden" name="id" value="" class="form-control" id="ident"> -->
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
 			<div class="form-group">
-				<p class="text-right">{date}: </p>
+				<p class="text-right">{date}: <@datetime@></p>
 			</div>
 		</div>
 	</div>
@@ -79,9 +79,9 @@
 		</div>
 	</div>
 	<div class="checkbox">
-		<span>{visible}?</span>
-		<input type="radio" name="visible" value="0" {visible} > {yes} 
-		<input type="radio" name="visible" value="-1" {visible} > {no}
+		<span>{active}?</span>
+		<input type="radio" name="active" value="true" checked > {yes} 
+		<input type="radio" name="active" value="false" > {no}
 	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

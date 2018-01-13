@@ -701,7 +701,13 @@ function load_user_insert(): string
 {
     $template = '';
     
+    $arr = [
+        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
+    ];
+    
     $template = loadTemplate('adm_user_insert');
+    
+    $template = strtr($template, $arr);
     
     return $template;
 }
