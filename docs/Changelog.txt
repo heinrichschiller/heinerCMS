@@ -1,0 +1,2 @@
+Version 0.0.1 ()
+	added, directory "docs" with changelogs file
