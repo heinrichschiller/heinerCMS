@@ -113,9 +113,7 @@ function load_admin_news_edit(int $id): string
     
     if ($result['visible'] > - 1) {
         $chkYes = ' checked';
-    }
-    
-    if ($result['visible'] < 0) {
+    } else {
         $chkNo = ' checked';
     }
     
@@ -451,9 +449,7 @@ function load_admin_article_edit(int $id): string
     
     if ($result['visible'] > - 1) {
         $chkYes = ' checked';
-    }
-    
-    if ($result['visible'] < 0) {
+    } else {
         $chkNo = ' checked';
     }
     
@@ -671,25 +667,36 @@ function load_user_list(): string
 function load_user_edit(int $id): string
 {
     $template = '';
+    $chkNo = '';
+    $chkYes = '';
+    
     $params = [
         $id
     ];
     
     $template = loadTemplate('adm_user_edit');
     
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`email`,`password`,`created_at`,`updated_at`,`username`,`active`' 
+    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, UNIX_TIMESTAMP(`created_at`) AS datetime, `updated_at`, `username`, `active`' 
         . ' FROM `users`' . ' WHERE `id` = ?';
     
     $user = pdo_select($sql, $params);
     
+    if ( strcmp($user['active'], 'true') === 0) {
+        $chkYes = ' checked';
+    } else {
+        $chkNo = ' checked';
+    }
+    
     $arr = [
         '<@id@>' => $user['id'],
-        '<@datetime@>' => '',
+        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $user['datetime']),
         '<@firstname@>' => $user['firstname'],
         '<@lastname@>' => $user['lastname'],
         '<@username@>' => $user['username'],
         '<@email@>' => $user['email'],
-        '<@public_as@>' => $user['username']
+        '<@public_as@>' => $user['username'],
+        '@chk_yes@' => $chkYes,
+        '@chk_no@' => $chkNo
     ];
     
     $template = strtr($template, $arr);
@@ -706,6 +713,25 @@ function load_user_insert(): string
     ];
     
     $template = loadTemplate('adm_user_insert');
+    
+    $template = strtr($template, $arr);
+    
+    return $template;
+}
+
+function load_user_del($id)
+{
+    $template = '';
+    $arr = [];
+    
+    $title = getUsernameById($id);
+    var_dump($title);
+    $arr = [
+        '<@id@>' => $id,
+        '<@title@>' => $title
+    ];
+    
+    $template = loadTemplate('adm_user_del');
     
     $template = strtr($template, $arr);
     
@@ -748,10 +774,15 @@ function countEntries()
                 WHERE `trash` = 'true';";
     
     try {
+        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
     
     return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -772,10 +803,15 @@ function loadFromTable(string $table, int $count)
         . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
     
     try {
+        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        
     } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
+        exit();
+        
     }
     
     return $stmt->fetchAll();
@@ -793,12 +829,17 @@ function loadTrashFromTable(string $table)
     
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime' 
         . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
-    
+        
     try {
+        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        
     } catch (PDOException $ex) {
+
         echo $ex->getMessage();
+        exit();
+        
     }
     
     return $stmt->fetchAll();
@@ -816,10 +857,9 @@ function getTitleFromTableById(string $table, int $id)
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `title` FROM `:table` WHERE `id` = :id";
+    $sql = "SELECT `title` FROM `$table` WHERE `id` = :id";
     
     $input_parameters = [
-        ':table' => $table,
         ':id'    => $id
     ];
     
@@ -838,6 +878,39 @@ function getTitleFromTableById(string $table, int $id)
     return $stmt->fetchColumn();
 }
 
+
+/**
+ * Get title from a table by id
+ *
+ * @param string $table - Name of a table
+ * @param int $id       - Id
+ *
+ * @return string
+ */
+function getUsernameById(int $id)
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `username` FROM `users` WHERE `id` = :id";
+    
+    $input_parameters = [
+        ':id'    => $id
+    ];
+    
+    try {
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($input_parameters);
+        
+    } catch (PDOException $ex) {
+        
+        echo $ex->getMessage();
+        exit();
+        
+    }
+    
+    return $stmt->fetchColumn();
+}
 /**
  *
  * @param string $table
@@ -851,7 +924,7 @@ function deleteAllTrashItems(string $table)
     try {
         
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(array(':table' => $table));
+        $stmt->execute();
         
     } catch (PDOException $ex) {
         
@@ -899,7 +972,7 @@ function setFlagTrashById(int $id, string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
+    $sql = "UPDATE `:table` SET `trash`='true' WHERE `id`= :id";
     
     try {
         

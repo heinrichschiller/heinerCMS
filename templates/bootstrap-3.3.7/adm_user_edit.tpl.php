@@ -61,9 +61,9 @@
 		</div>
 	</div>
 	<div class="checkbox">
-		<span>{visible}?</span>
-		<input type="radio" name="visible" value="0" {visible} > {yes} 
-		<input type="radio" name="visible" value="-1" {visible} > {no}
+		<span>{active}?</span>
+		<input type="radio" name="active" value="true" @chk_yes@ > {yes} 
+		<input type="radio" name="active" value="false" @chk_no@ > {no}
 	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

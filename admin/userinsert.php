@@ -13,7 +13,7 @@ if (is_logged_in()) {
     $publicAs  = filter_input(INPUT_POST, 'public_as');
     $password1 = filter_input(INPUT_POST, 'password1');
     $password2 = filter_input(INPUT_POST, 'password2');
-    $active    = "true"; //filter_input(INPUT_POST, 'active');
+    $active    = filter_input(INPUT_POST, 'active');
     
     $pdo = getPdoDB();
     
@@ -36,7 +36,7 @@ if (is_logged_in()) {
     ];
     
     try {
-        //var_dump($password, password_hash($password, PASSWORD_DEFAULT));die;
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute($input_parameters);
         

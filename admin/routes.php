@@ -90,6 +90,10 @@ $route['userinsert'] = function() {
     return load_user_insert();
 };
 
+$route['userdel'] = function($id) {
+    return load_user_del($id);
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };
