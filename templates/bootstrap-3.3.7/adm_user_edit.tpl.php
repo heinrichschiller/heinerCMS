@@ -1,3 +1,13 @@
+<div class="row">
+	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+		<div class="panel">
+			<h4>
+				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				{user}: <@firstname@> <@lastname@>
+			</h4>
+		</div>
+	</div>
+</div>
 <form action="useredit.php" method="post">
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
