@@ -9,8 +9,10 @@ function load_session()
     if (file_exists($config)) {
         $ini_array = parse_ini_file($config);
         
-        $_SESSION['title'] = $ini_array['title'];
-        $_SESSION['theme'] = $ini_array['theme'];
+        $_SESSION['title']    = $ini_array['title'];
+        $_SESSION['theme']    = $ini_array['theme'];
+        $_SESSION['tagline']  = $ini_array['tagline'];
+        $_SESSION['blog-url'] = $ini_array['blog_url'];
     }
 }
 
@@ -641,6 +643,8 @@ function load_general_settings(): string
 
     $arr = [
         '<@title@>' => $_SESSION['title'],
+        '<@tagline@>' => $_SESSION['tagline'],
+        '<@blog-url@>' => $_SESSION['blog-url'],
         '<@theme-placeholder@>' => $option
     ];
     

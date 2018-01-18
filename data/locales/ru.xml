@@ -50,5 +50,7 @@
 		<theme>Theme</theme>
 		<active>Active</active>
 		<create_user>Create user</create_user>
+		<tagline>Tagline</tagline>
+		<blog>Blog</blog>
 	</terms>
 </language>

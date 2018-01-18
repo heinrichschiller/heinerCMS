@@ -18,6 +18,19 @@
  * *******************************************************************************
 
 
+/**
+ */
+function getBlogURL()
+{
+    $config = __DIR__ . '/../source/configs/config.ini';
+    
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+        
+        return $ini_array['blog_url'];
+    }
+}
+
 /* Gesamtübersicht der Nachrichten laden */
 /**
  * 

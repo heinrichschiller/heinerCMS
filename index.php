@@ -3,9 +3,10 @@
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
 
-include 'inc/base.inc.php';
-include 'inc/public_functions.inc.php';
-include 'inc/routes.php';
+include __DIR__ . '/inc/general_functions.inc.php';
+include __DIR__ . '/inc/public_functions.inc.php';
+include __DIR__ . '/inc/base.inc.php';
+include __DIR__ . '/inc/routes.php';
 
 if(!file_exists($config_ini)) {
     $PHP_SELF = $_SERVER['PHP_SELF'];

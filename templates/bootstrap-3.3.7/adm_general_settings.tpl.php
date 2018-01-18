@@ -17,6 +17,22 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="tagline">{tagline}:</label>
+				<input type="text" name="tagline" value="<@tagline@>" class="form-control" id="tagline">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+			<div class="form-group">
+				<label for="blogUrl">{blog}-URL:</label>
+				<input type="text" name="blogUrl" value="<@blog-url@>" class="form-control" id="blogUrl">
+			</div>
+		</div>
+	</div>
     <div class="row">
     	<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
              <div class="form-group">

@@ -2,7 +2,7 @@
 
 /* Konfigurationsvariablen */
 $base['title'] = 'Heinrich-Schiller.de';
-$base['navigation'] = '<li><a href="http://heinrich-schiller.de/wordpress/" target="blank">Blog</a></li>
+$base['navigation'] = '<li><a href="'. getBlogURL() .'" target="blank">Blog</a></li>
     <li><a href="$PHP_SELF?uri=news">News</a></li>
     <li><a href="$PHP_SELF?uri=downloads">Downloads</a></li>
     <li><a href="$PHP_SELF?uri=links">Links</a></li>
