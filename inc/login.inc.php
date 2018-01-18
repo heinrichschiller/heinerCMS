@@ -6,7 +6,7 @@ include_once __DIR__ . '/admin_functions.inc.php';
 
 /* Überprüft, ob ein Login erfolgt ist */
 function is_logged_in() {
-	include __DIR__ . '/base.inc.php';
+
 	$PHP_SELF = $_SERVER['PHP_SELF'];
 
 	$authenticated = isset($_SESSION['authenticated']) ? true : false;
@@ -20,7 +20,7 @@ function is_logged_in() {
 		$login = loadTemplate('adm_login');
 		$template = loadTemplate('login_template');
 
-		$template = str_replace ( '<@title@>', $base ['adm_title'], $template );
+		$template = str_replace ( '<@title@>', $_SESSION['title'], $template );
 		$template = str_replace ( '<@shortnav@>', '&nbsp;', $template );
 		$template = str_replace ( '<@navigation@>', '&nbsp;', $template );
 		$template = str_replace ( '<@content@>', $login, $template );

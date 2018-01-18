@@ -1,27 +1,22 @@
 <?php
 
 /* Konfigurationsdateien laden */
-include __DIR__ . '/../inc/base.inc.php';
 include __DIR__ . '/../inc/general_functions.inc.php';
 include __DIR__ . '/../inc/admin_functions.inc.php';
 include __DIR__ . '/routes.php';
 include __DIR__ . '/../inc/login.inc.php';
 
-// models
-include __DIR__ . '/../source/models/user/UserListModel.php';
-
-// views
-include __DIR__ . '/../source/views/user/UserListView.php';
-
-
-$uri = filter_input ( INPUT_GET, 'uri' );
-$id = filter_input ( INPUT_GET, 'id' );
 
 // Einfaches Login zu demonstrationszwecken UND ONHE VERSCHLUESSELUNG.
 if (is_logged_in ()) {
 	
     $config = __DIR__ . '/../source/configs/config.ini';
     $xmlfile = __DIR__ . '/../data/locales/de.xml';
+    
+    $adm_content = '';
+    
+    $uri = filter_input ( INPUT_GET, 'uri' );
+    $id = filter_input ( INPUT_GET, 'id' );
     
     if (file_exists($config)) {
         $ini_array = parse_ini_file($config);
@@ -48,13 +43,13 @@ if (is_logged_in ()) {
 	$template = loadTemplate( 'adm_template' );
 	
 	if(isset($route[$uri])) {
-		$base['adm_content'] = $route[$uri]($id);
+		$adm_content = $route[$uri]($id);
 	}
 	
 	/* Platzhalter ersetzen */
-	$template = str_replace ( '<@title@>', $base ['adm_title'], $template );
+	$template = str_replace ( '<@title@>', $_SESSION['title'], $template );
 	$template = str_replace ( '<@navigation@>', load_admin_navigation(), $template );
-	$template = str_replace ( '<@content@>', $base ['adm_content'], $template );
+	$template = str_replace ( '<@content@>', $adm_content, $template );
 	$template = str_replace ( '$PHP_SELF', $_SERVER ['PHP_SELF'], $template );
 	
 	/* translation */

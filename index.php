@@ -1,12 +1,21 @@
 <?php
 
-$uri = filter_input(INPUT_GET, 'uri');
-$id  = filter_input(INPUT_GET, 'id');
+session_start();
 
 include __DIR__ . '/inc/general_functions.inc.php';
 include __DIR__ . '/inc/public_functions.inc.php';
-include __DIR__ . '/inc/base.inc.php';
 include __DIR__ . '/inc/routes.php';
+
+$uri = filter_input(INPUT_GET, 'uri');
+$id  = filter_input(INPUT_GET, 'id');
+
+$content = '';
+$title = 'Heinrich-Schiller.de';
+$template_path = 'templates/bootstrap-3.3.7/pub_template.tpl.php';
+
+$config_ini = __DIR__ . '/source/configs/config.ini';
+
+load_session();
 
 if(!file_exists($config_ini)) {
     $PHP_SELF = $_SERVER['PHP_SELF'];
@@ -22,15 +31,16 @@ if(!file_exists($config_ini)) {
 }
 
 /* Template einlesen  */
-$template = file_get_contents($base['template']);
+
+$template = file_get_contents($template_path);
 
 if (isset($route[$uri]) ) {
-    $base['content'] .= $route[$uri]($id);
+    $content .= $route[$uri]($id);
 }
 
-$template = str_replace('<@title@>',$base['title'],$template);
-$template = str_replace('<@navigation@>',$base['navigation'],$template);
-$template = str_replace('<@content@>',$base['content'],$template);
+$template = str_replace('<@title@>',$_SESSION['title'],$template);
+$template = str_replace('<@navigation@>',load_public_navigation(),$template);
+$template = str_replace('<@content@>',$content,$template);
 $template = str_replace('$PHP_SELF',$_SERVER['PHP_SELF'],$template);
 
 echo stripslashes($template);

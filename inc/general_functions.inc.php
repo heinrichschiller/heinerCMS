@@ -1,6 +1,22 @@
 <?php
 
 /**
+ */
+function load_session()
+{
+    $config = __DIR__ . '/../source/configs/config.ini';
+    
+    if (file_exists($config)) {
+        $ini_array = parse_ini_file($config);
+        
+        $_SESSION['title']    = $ini_array['title'];
+        $_SESSION['theme']    = $ini_array['theme'];
+        $_SESSION['tagline']  = $ini_array['tagline'];
+        $_SESSION['blog-url'] = $ini_array['blog_url'];
+    }
+}
+
+/**
  * Database adapter for MySQL
  *
  * @return PDO
@@ -80,8 +96,10 @@ function pdo_query(string $sql, array $params)
  */
 function loadTemplate(string $template): string
 {
-    $file = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/' . $template . '.tpl.php';
-    $error = __DIR__ . '/../templates/' . $_SESSION['theme'] . '/error_template.tpl.php';
+    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'bootstrap-3.3.7';
+    
+    $file = __DIR__ . '/../templates/' . $theme . '/' . $template . '.tpl.php';
+    $error = __DIR__ . '/../templates/' . $theme . '/error_template.tpl.php';
     
     if (file_exists($file)) {
         return file_get_contents($file);

@@ -20,7 +20,7 @@
 
 /**
  */
-function getBlogURL()
+function getBlogURL() : string
 {
     $config = __DIR__ . '/../source/configs/config.ini';
     
@@ -28,7 +28,23 @@ function getBlogURL()
         $ini_array = parse_ini_file($config);
         
         return $ini_array['blog_url'];
+    } else {
+        echo 'url not found.';
+        exit();
     }
+}
+
+function load_public_navigation() : string
+{
+    $template = '';
+    
+    $arr = [
+        '<@url@>' => getBlogURL()
+    ];
+    
+    $template = strtr(loadTemplate('pub_navigation'), $arr);
+    
+    return $template;
 }
 
 /* Gesamtübersicht der Nachrichten laden */

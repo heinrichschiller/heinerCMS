@@ -1,20 +1,5 @@
 <?php
 
-/**
- */
-function load_session()
-{
-    $config = __DIR__ . '/../source/configs/config.ini';
-    
-    if (file_exists($config)) {
-        $ini_array = parse_ini_file($config);
-        
-        $_SESSION['title']    = $ini_array['title'];
-        $_SESSION['theme']    = $ini_array['theme'];
-        $_SESSION['tagline']  = $ini_array['tagline'];
-        $_SESSION['blog-url'] = $ini_array['blog_url'];
-    }
-}
 
 /**
  *
