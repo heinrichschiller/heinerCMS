@@ -18,7 +18,7 @@ if (is_logged_in ()) {
 
     $sql = "INSERT INTO `articles` (`title`, `content`, `visible`)"
         . " VALUES (:title, :content, :visible)";
-    
+
     $input_parameters = [
         ':title'   => $title,
         ':content' => $content,

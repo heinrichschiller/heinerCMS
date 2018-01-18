@@ -15,11 +15,12 @@ if (is_logged_in()) {
     $pdo = getPdoDB();
     
     $sql = "UPDATE `articles` SET `title` = :title, `content` = :content, `visible` = :visible WHERE `id` = :id";
-    
+
     $input_parameters = [
         ':title'   => $title,
         ':content' => $content,
-        ':visible' => $visible
+        ':visible' => $visible,
+        ':id'      => $id
     ];
     
     try {

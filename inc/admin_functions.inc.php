@@ -73,14 +73,14 @@ function load_admin_news(): string
         $table_content .= $news->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id .">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot';
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
         
             
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id .">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -195,10 +195,21 @@ function load_admin_downloads(): string
        
     while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
+        $table_content .= '<td>' . $downloads->id . '</td>';
         $table_content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
         $table_content .= '<td>' . $downloads->title . '</td>';
         $table_content .= (($downloads->visible > - 1) ? '<td> ja</td>' : '<td>nein</td>');
-        $table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
+        //$table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
+    
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" .$downloads->id .">"
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot';
+            
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" .$downloads->id . ">"
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+                
+                
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id .">"
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
     }
             
     $template = str_replace('<@downloads-content@>', $table_content, $template);
@@ -215,22 +226,41 @@ function load_admin_downloads(): string
 function load_admin_downloads_edit(int $id): string
 {
     $template = '';
+    $chkNo  = '';
+    $chkYes = '';
     
-    $con = getPdoDB();
+    $params = [
+        $id
+    ];
     
-    if ($con) {
-        
-        $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
-            . " FROM `downloads` WHERE `id`=$id";
-        $result = mysqli_query($con, $sql);
-        
-        if ($result) {
-            $downloads = mysqli_fetch_object($result);
-            
-            $template = loadTemplate('downloadsedit');
-        }
-        mysqli_close($con);
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
+        . " FROM `downloads` WHERE `id`=$id";
+    
+    $result = pdo_select($sql, $params);
+    
+    if ($result['visible'] > - 1) {
+        $chkYes = ' checked';
+    } else {
+        $chkNo = ' checked';
     }
+    
+    $arr = [
+        '<@id@>'       => $result['id'],
+        '<@title@>'    => $result['title'],
+        '<@path@>'     => $result['path'],
+        '<@filename@>' => $result['filename'],
+        '<@comment@>'  => $result['comment'],
+        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '@chk_yes@'    => $chkYes,
+        '@chk_no@'     => $chkNo
+    ];
+    
+    $template = loadTemplate('adm_downloads_edit');
+    
+    $template = strtr($template, $arr);
+    
     return $template;
 }
 
@@ -303,13 +333,13 @@ function load_admin_links(): string
         $table_content .= $link->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=". $link->id . ">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot;';
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
         
         $table_content .= "<a href=". $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title={delete}"></span></a></td>';
         $table_content .= '</tr>';
     }
     
@@ -327,6 +357,9 @@ function load_admin_links(): string
 function load_admin_link_edit(int $id): string
 {
     $template = '';
+    $chkYes = '';
+    $chkNo = '';
+    
     $params = [
         $id
     ];
@@ -335,7 +368,24 @@ function load_admin_link_edit(int $id): string
     
     $result = pdo_select($sql, $params);
     
+    if ($result['visible'] > - 1) {
+        $chkYes = ' checked';
+    } else {
+        $chkNo = ' checked';
+    }
+    
+    $arr = [
+        '<@id@>'       => $result['id'],
+        '<@title@>'    => $result['title'],
+        '<@uri@>'      => $result['uri'],
+        '<@comment@>'  => $result['comment'],
+        '@chk_yes@'    => $chkYes,
+        '@chk_no@'     => $chkNo
+    ];
+    
     $template = loadTemplate('adm_link_edit');
+    $template = strtr($template, $arr);
+
     
     return $template;
 }
@@ -410,13 +460,13 @@ function load_admin_articles(): string
         $table_content .= '<td>' . $article->visible > -1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span></a> &middot;';
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="Edit"></span></a> &middot;';
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>';
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -521,20 +571,6 @@ function load_dashboard(): string
     $template = '';
     
     $template = loadTemplate('adm_dashboard');
-    
-    $news = loadFromTable('news', 5);
-    $articles = loadFromTable('articles', 5);
-    $links = loadFromTable('links', 5);
-    $downloads = loadFromTable('downloads', 5);
-    
-    $arr = [
-        '<@news_content@>' => renderHtmlTable($news),
-        '<@downloads_content@>' => renderHtmlTable($downloads),
-        '<@links_content@>' => renderHtmlTable($links),
-        '<@articles_content@>' => renderHtmlTable($articles)
-    ];
-    
-    $template = strtr($template, $arr);
     
     return $template;
 }
@@ -645,10 +681,10 @@ function load_user_list(): string
         $table_content .= '<td>' . $user->active . '</td>';
 
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">"
-            . "<span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\" title=\"Edit\"></span></a> &middot;";
-        
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+            
         $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">"
-            . "<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td>";
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
         
         $table_content .= '</tr>';
          
@@ -704,7 +740,7 @@ function load_user_edit(int $id): string
     return $template;
 }
 
-function load_user_insert(): string
+function load_user_add(): string
 {
     $template = '';
     

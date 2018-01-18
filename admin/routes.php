@@ -87,7 +87,7 @@ $route['useredit'] = function($id) {
 };
 
 $route['userinsert'] = function() {
-    return load_user_insert();
+    return load_user_add();
 };
 
 $route['userdel'] = function($id) {

@@ -19,8 +19,8 @@ if (is_logged_in ()) {
 	$visible = filter_input(INPUT_POST, 'visible');
     
 	$pdo = getPdoDB();
-	
-    $sql = "UPDATE links SET title = :title, comment = :comment, uri = :uri, visible = :visible WHERE id = :id";
+
+    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visible` = :visible WHERE `id` = :id";
     
     $input_parameters = [
         ':title' => $title,

@@ -1,2 +1,12 @@
+Version 0.0.3 (2018-01-18)
+	bugfix, edit in downloads working again
+	bugfix, edit in links working again
+	bugfix, edit in articles working again
+	bugfix, show id in downloads overview
+	update, downloads overview use glyphs for edit, copy and delete instead of text
+	update, many improvements in the cms-surface
+	update, deactivate dashboard and trash. new implementation.
+Version 0.0.2 (2018-01-17)
+	update, "user-edit" shows in header first and last name
 Version 0.0.1 ()
 	added, directory "docs" with changelogs file
