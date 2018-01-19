@@ -1,5 +1,5 @@
 Version 0.0.5 ()
-	added, sites
+	added, sites can be created
 	update, public section
 Version 0.0.4 (2018-01-18)
 	new, blog url can be set in general-settings
