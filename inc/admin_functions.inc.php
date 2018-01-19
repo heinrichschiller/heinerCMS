@@ -729,6 +729,10 @@ function load_user_edit(int $id): string
     return $template;
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_user_add(): string
 {
     $template = '';
@@ -744,6 +748,11 @@ function load_user_add(): string
     return $template;
 }
 
+/**
+ * 
+ * @param unknown $id
+ * @return string
+ */
 function load_user_del($id)
 {
     $template = '';
@@ -757,6 +766,106 @@ function load_user_del($id)
     ];
     
     $template = loadTemplate('adm_user_del');
+    
+    $template = strtr($template, $arr);
+    
+    return $template;
+}
+
+/**
+ * 
+ * @return string
+ */
+function load_admin_sites() : string
+{
+    $template = '';
+    $table_content = '';
+    
+    $pdo = getPdoDB();
+    
+    $template = loadTemplate('adm_sites');
+    
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+        . " FROM `sites` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    while ($site = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= '<tr>';
+        $table_content .= '<td>' . $site->id . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y', $site->datetime) . '</td>';
+        $table_content .= '<td>' . $site->title . '</td>';
+        $table_content .= '<td>' . $site->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
+            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
+            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=sitedel&id=" . $site->id . ">" 
+            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+        
+        $table_content .= '</tr>';
+    }
+    
+    $template = str_replace('<@sites-content@>', $table_content, $template);
+    
+    return $template;
+}
+
+/**
+ * 
+ * @return string
+ */
+function load_admin_site_add() : string
+{
+    $template = '';
+    
+    $template = loadTemplate('adm_site_add');
+    
+    return $template;
+}
+
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
+function load_admin_site_edit(int $id) : string
+{
+    $template = '';
+    $params = [
+        $id
+    ];
+    $chkNo = '';
+    $chkYes = '';
+    
+    $sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `sites` WHERE `id` = $id";
+    
+    $result = pdo_select($sql, $params);
+    
+    $template = loadTemplate('adm_site_edit');
+    
+    if ($result['visible'] > - 1) {
+        $chkYes = ' checked';
+    } else {
+        $chkNo = ' checked';
+    }
+    
+    $arr = [
+        '<@id@>' => $result['id'],
+        '<@title@>' => $result['title'],
+        '<@content@>' => $result['content'],
+        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '@chk_yes@' => $chkYes,
+        '@chk_no@' => $chkNo
+    ];
     
     $template = strtr($template, $arr);
     

@@ -44,7 +44,35 @@ function load_public_navigation() : string
     
     $template = strtr(loadTemplate('pub_navigation'), $arr);
     
+    $template .= load_sites();
+    
     return $template;
+}
+
+function load_sites() : string
+{
+    $html = '';
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `id`, `title` FROM `sites`';
+    
+    try {
+        
+        $result = $pdo->query($sql);
+        
+        foreach ($result as $key) {
+            $html .= '<li><a href="$PHP_SELF?uri=sites&id='.$key[0].'">'.$key[1].'</a></li>';
+        }
+        
+    } catch (PDOException $ex) {
+        
+        echo $ex->getMessage();
+        exit();
+        
+    }
+    
+    return $html;
 }
 
 function load_public_news() : string
@@ -67,6 +95,38 @@ function load_public_links() : string
     return  loadTemplate('pub_links');
 }
 
+function load_public_sites(int $id) : string
+{
+    $template = '';
+    
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `id`, `title`, `content` FROM `sites` WHERE `id` = :id";
+    
+    $input_parameters = [
+        ':id' => $id
+    ];
+    
+    try {
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($input_parameters);
+        
+        $site = $stmt->fetchObject();
+
+        //$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $site->datetime ) . "</h5>";
+        $template .= "<h2>$site->title</h2>";
+        $template .= "<p>$site->content</p>";
+    
+    } catch(PDOException $ex) {
+        
+        echo $ex->getMessage();
+        exit();
+        
+    }
+
+    return $template;
+}
 /* Gesamtübersicht der Nachrichten laden */
 /**
  * 

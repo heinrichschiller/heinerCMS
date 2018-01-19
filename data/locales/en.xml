@@ -52,5 +52,8 @@
 		<create_user>Create user</create_user>
 		<tagline>Tagline</tagline>
 		<blog>Blog</blog>
+		<site>Site</site>
+		<sites>Sites</sites>
+		<create_site>Create sites</create_site>
 	</terms>
 </language>

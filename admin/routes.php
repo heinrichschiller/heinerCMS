@@ -94,6 +94,18 @@ $route['userdel'] = function($id) {
     return load_user_del($id);
 };
 
+$route['sites'] = function() {
+    return load_admin_sites();
+};
+
+$route['siteadd'] = function() {
+    return load_admin_site_add();
+};
+
+$route['siteedit'] = function($id) {
+    return load_admin_site_edit($id);
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

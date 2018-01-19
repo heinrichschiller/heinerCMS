@@ -55,5 +55,8 @@
 		<delete>Löschen</delete>
 		<tagline>Untertitel</tagline>
 		<blog>Blog</blog>
+		<site>Seite</site>
+		<sites>Seiten</sites>
+		<create_site>Seite erstellen</create_site>
 	</terms>
 </language>

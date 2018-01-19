@@ -24,6 +24,10 @@
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {articles}
             <span class="badge"><?= $result[3]; ?></span>
         </a>
+        <a href="$PHP_SELF?uri=sites" class="list-group-item">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> {sites}
+            <span class="badge"><?= $result[3]; ?></span>
+        </a>
         <a href="$PHP_SELF?uri=trash" class="list-group-item">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {trash}
             <span class="badge"><?= $result[4]; ?></span>

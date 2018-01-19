@@ -64,3 +64,14 @@ CREATE TABLE `users` (
   UNIQUE (`username`),
   UNIQUE (`email`)
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `sites` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `content` LONGTEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `visible` TINYINT(4) NOT NULL DEFAULT '0',
+  `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
+  PRIMARY KEY (`id`)
+) CHARSET=utf8 COLLATE=utf8_unicode_ci;
