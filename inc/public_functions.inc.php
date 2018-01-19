@@ -47,11 +47,31 @@ function load_public_navigation() : string
     return $template;
 }
 
+function load_public_news() : string
+{
+    return loadTemplate('pub_news');
+}
+
+function load_public_articles() : string
+{
+    return loadTemplate('pub_articles');
+}
+
+function load_public_downloads() : string
+{
+    return  loadTemplate('pub_downloads');
+}
+
+function load_public_links() : string
+{
+    return  loadTemplate('pub_links');
+}
+
 /* Gesamtübersicht der Nachrichten laden */
 /**
  * 
  * @return string
- */
+ *
 function load_content_news() : string
 {
 	$template = '';
@@ -71,14 +91,14 @@ function load_content_news() : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Detailansicht einer Nachricht laden */
 /**
  * 
  * @param int $id
  * @return string
- */
+ *
 function load_content_newsdetailed(int $id) : string
 {
 	$template = '';
@@ -96,13 +116,13 @@ function load_content_newsdetailed(int $id) : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Gesamtübersicht der Downloads laden */
 /**
  * 
  * @return string
- */
+ *
 function load_content_downloads() : string
 {
 	$template = '';
@@ -119,14 +139,14 @@ function load_content_downloads() : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Detailansicht eines Downloads laden */
 /**
  * 
  * @param int $id
  * @return string
- */
+ *
 function load_content_downloadsdetailed(int $id) : string
 {
 	$template = '';
@@ -145,13 +165,13 @@ function load_content_downloadsdetailed(int $id) : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Gesamtübersicht der Artikel laden */
 /**
  * 
  * @return string
- */
+ *
 function load_content_articles() : string
 {
 	$template = '';
@@ -170,14 +190,14 @@ function load_content_articles() : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Detailansicht eines Artikels laden */
 /**
  * 
  * @param int $id
  * @return string
- */
+ *
 function load_content_articlesdetailed(int $id) : string
 {
 	$template = '';
@@ -195,13 +215,13 @@ function load_content_articlesdetailed(int $id) : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/
 
 /* Gesamtübersicht der Links laden */
 /**
  * 
  * @return string
- */
+ *
 function load_content_links() : string
 {
 	$template = '';
@@ -218,4 +238,4 @@ function load_content_links() : string
 		mysqli_close ( $con );
 	}
 	return $template;
-}
+}*/

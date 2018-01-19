@@ -4,37 +4,37 @@ $route = [];
 
 $route['news'] = function()
 {
-    return load_content_news();
+    return load_public_news();
 };
 
 $route['newsdet'] = function($id)
 {
-    return load_content_newsdetailed($id);
+    return load_public_newsdetailed($id);
 };
 
 $route['downloads'] = function()
 {
-    return load_content_downloads();
+    return load_public_downloads();
 };
 
 $route['downloadsdet'] = function($id)
 {
-    return load_content_downloadsdetailed($id);
+    return load_public_downloadsdetailed($id);
 };
 
 $route['articles'] = function()
 {
-    return load_content_articles();
+    return load_public_articles();
 };
 
 $route['articlesdet'] = function($id)
 {
-    return load_content_articlesdetailed($id);
+    return load_public_articlesdetailed($id);
 };
 
 $route['links'] = function()
 {
-    return load_content_links();
+    return load_public_links();
 };
 
 $route['admin'] = function()
