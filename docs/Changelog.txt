@@ -1,4 +1,8 @@
-Version 0.0.5 ()
+Version 0.0.6 (2018-01-19)
+	bugfix, delete in downloads works again
+	bugfix, delete in links works again
+	bugfix, delete in news works again
+Version 0.0.5 (2018-01-19)
 	added, sites can be created
 	update, public section
 Version 0.0.4 (2018-01-18)

@@ -1,6 +1,6 @@
 <form action="articledel.php" method="post">
 	<p>
-		Möchten Sie den Artikel <b><@title@></b> wirklich löschen?
+		Möchten Sie den Artikel <strong><@title@></strong> wirklich löschen?
 	</p>
 	<p>
 		<input type="submit" value="Ja">

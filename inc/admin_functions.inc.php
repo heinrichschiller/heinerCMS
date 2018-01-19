@@ -104,7 +104,7 @@ function load_admin_news_edit(int $id): string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>' => $result['id'],
         '<@title@>' => $result['title'],
         '<@message@>' => $result['message'],
@@ -115,7 +115,7 @@ function load_admin_news_edit(int $id): string
 
     $template = loadTemplate('adm_news_edit');
     
-    return strtr($template, $arr);
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -142,18 +142,19 @@ function load_admin_news_add(): string
 function load_admin_news_del(int $id): string
 {
     $template = '';
-    $arr = [];
     
     $title = getTitleFromTableById('news', $id);
     
-    $arr = [
-        'id' => $id,
-        'title' => $title
+    $placeholderList = [
+        '<@id@>' => $id,
+        '<@title@>' => $title
     ];
     
     $template = loadTemplate('adm_news_del');
+    $template = strtr($template, $placeholderList);
     
     return $template;
+
 }
 
 /**
@@ -186,8 +187,7 @@ function load_admin_downloads(): string
         $table_content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
         $table_content .= '<td>' . $downloads->title . '</td>';
         $table_content .= (($downloads->visible > - 1) ? '<td> ja</td>' : '<td>nein</td>');
-        //$table_content .= "<td><a href=\"$_SERVER[PHP_SELF]?uri=downloadsedit&id=$downloads->id\">Bearbeiten</a> &middot; <a href=\"$_SERVER[PHP_SELF]?uri=downloadsdel&id=$downloads->id\">Löschen</a></tr>";
-    
+        
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" .$downloads->id .">"
             . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot';
             
@@ -233,7 +233,7 @@ function load_admin_downloads_edit(int $id): string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>'       => $result['id'],
         '<@title@>'    => $result['title'],
         '<@path@>'     => $result['path'],
@@ -246,7 +246,7 @@ function load_admin_downloads_edit(int $id): string
     
     $template = loadTemplate('adm_downloads_edit');
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -277,12 +277,13 @@ function load_admin_downloads_del(int $id): string
 {
     $title = getTitleFromTableById('downloads', $id);
     
-    $container = [
-        'id' => $id,
-        'title' => $title
+    $placeholderList = [
+        '<@id@>' => $id,
+        '<@title@>' => $title
     ];
     
     $template = loadTemplate('adm_downloads_del');
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -361,7 +362,7 @@ function load_admin_link_edit(int $id): string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>'       => $result['id'],
         '<@title@>'    => $result['title'],
         '<@uri@>'      => $result['uri'],
@@ -371,7 +372,7 @@ function load_admin_link_edit(int $id): string
     ];
     
     $template = loadTemplate('adm_link_edit');
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
 
     
     return $template;
@@ -401,16 +402,16 @@ function load_admin_link_add(): string
 function load_admin_link_del(int $id): string
 {
     $template = '';
-    $container = [];
     
     $title = getTitleFromTableById('links', $id);
     
-    $container = [
-        'id' => $id,
-        'title' => $title
+    $placeholderList = [
+        '<@id@>' => $id,
+        '<@title@>' => $title
     ];
     
     $template = loadTemplate('adm_link_del');
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -490,7 +491,7 @@ function load_admin_article_edit(int $id): string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>' => $result['id'],
         '<@title@>' => $result['title'],
         '<@content@>' => $result['content'],
@@ -499,7 +500,7 @@ function load_admin_article_edit(int $id): string
         '@chk_no@' => $chkNo
     ];
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -515,11 +516,11 @@ function load_admin_article_add(): string
     
     $template = loadTemplate('adm_article_add');
     
-    $arr = [
+    $placeholderList = [
         '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -533,18 +534,17 @@ function load_admin_article_add(): string
 function load_admin_article_del(int $id): string
 {
     $template = '';
-    $container = [];
     
     $title = getTitleFromTableById('articles', $id);
     
-    $content = [
+    $placeholderList = [
         '<@id@>' => $id,
         '<@title@>' => $title
     ];
     
     $template = loadTemplate('adm_article_del');
     
-    $template = strtr($template, $content);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -590,7 +590,6 @@ function renderHtmlTable(array $dataList): string
 function load_trash(): string
 {
     $template = '';
-    $content = [];
     
     $news = loadTrashFromTable('news');
     $downloads = loadTrashFromTable('downloads');
@@ -626,14 +625,14 @@ function load_general_settings(): string
         $option .= "<option>$theme</option>";
     }
 
-    $arr = [
+    $placeholderList = [
         '<@title@>' => $_SESSION['title'],
         '<@tagline@>' => $_SESSION['tagline'],
         '<@blog-url@>' => $_SESSION['blog-url'],
         '<@theme-placeholder@>' => $option
     ];
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
 
     return $template;
 }
@@ -712,7 +711,7 @@ function load_user_edit(int $id): string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>' => $user['id'],
         '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $user['datetime']),
         '<@firstname@>' => $user['firstname'],
@@ -724,7 +723,7 @@ function load_user_edit(int $id): string
         '@chk_no@' => $chkNo
     ];
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -737,13 +736,13 @@ function load_user_add(): string
 {
     $template = '';
     
-    $arr = [
+    $placeholderList = [
         '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = loadTemplate('adm_user_insert');
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -756,18 +755,18 @@ function load_user_add(): string
 function load_user_del($id)
 {
     $template = '';
-    $arr = [];
+    $placeholderList = [];
     
     $title = getUsernameById($id);
-    var_dump($title);
-    $arr = [
+
+    $placeholderList = [
         '<@id@>' => $id,
         '<@title@>' => $title
     ];
     
     $template = loadTemplate('adm_user_del');
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -858,7 +857,7 @@ function load_admin_site_edit(int $id) : string
         $chkNo = ' checked';
     }
     
-    $arr = [
+    $placeholderList = [
         '<@id@>' => $result['id'],
         '<@title@>' => $result['title'],
         '<@content@>' => $result['content'],
@@ -867,7 +866,7 @@ function load_admin_site_edit(int $id) : string
         '@chk_no@' => $chkNo
     ];
     
-    $template = strtr($template, $arr);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
@@ -1106,7 +1105,7 @@ function setFlagTrashById(int $id, string $table)
 {
     $pdo = getPdoDB();
     
-    $sql = "UPDATE `:table` SET `trash`='true' WHERE `id`= :id";
+    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
     
     try {
         

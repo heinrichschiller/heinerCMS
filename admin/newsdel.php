@@ -1,6 +1,5 @@
 <?php
 
-include __DIR__ . '/../inc/base.inc.php';
 include __DIR__ . '/../inc/general_functions.inc.php';
 include __DIR__ . '/../inc/login.inc.php';
 
