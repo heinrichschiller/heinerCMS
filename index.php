@@ -11,7 +11,7 @@ $id  = filter_input(INPUT_GET, 'id');
 
 $content = '';
 $title = 'Heinrich-Schiller.de';
-$template_path = 'templates/bootstrap-3.3.7/pub_template.tpl.php';
+$template_path = 'templates/default/pub_template.tpl.php';
 
 $config_ini = __DIR__ . '/source/configs/config.ini';
 

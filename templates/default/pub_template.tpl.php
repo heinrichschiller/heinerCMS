@@ -15,39 +15,32 @@
 		<link href="templates/css/style.css">
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><@title@></a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <@navigation@>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="?uri=admin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    	<div class="container-fluid">
+        	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <a class="navbar-brand" href="#"><@title@></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                      <@navigation@>
+                    </div>
+                  </div>
+                  <ul class="nav justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav nav-link" href="?uri=admin">Sign in</a>
+                      </li>
+                  </ul>
+            </nav>
+
         <noscript>
-        	<div class="container">
-        	  	<div class="alert alert-danger" role="alert">
+        	<div class="alert alert-danger" role="alert">
                     <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
                     <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
-                </div>
             </div>
         </noscript>
-		<div class="container">
-			<div class="row">
+		<div class="row">
 				<div class="col-sm-12"><@content@></div>
-			</div>
 		</div>
         <footer class="container-fluid bg-4 text-center">
             <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>

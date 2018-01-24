@@ -62,7 +62,7 @@ function load_sites() : string
         $result = $pdo->query($sql);
         
         foreach ($result as $key) {
-            $html .= '<li><a href="$PHP_SELF?uri=sites&id='.$key[0].'">'.$key[1].'</a></li>';
+            $html .= '<a  class="nav-item nav-link" href="$PHP_SELF?uri=sites&id='.$key[0].'">'.$key[1].'</a>';
         }
         
     } catch (PDOException $ex) {

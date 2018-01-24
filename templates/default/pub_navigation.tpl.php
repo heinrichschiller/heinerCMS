@@ -1,5 +1,9 @@
-<li><a href="<@url@>" target="blank">Blog</a></li>
-<li><a href="$PHP_SELF?uri=news">News</a></li>
-<li><a href="$PHP_SELF?uri=downloads">Downloads</a></li>
-<li><a href="$PHP_SELF?uri=links">Links</a></li>
-<li><a href="$PHP_SELF?uri=articles">Artikel</a></li>
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	<div class="navbar-nav">
+        <a class="nav-item nav-link" href="<@url@>" target="blank">Blog</a>
+        <a class="nav-item nav-link" href="$PHP_SELF?uri=news">News</a>
+        <a class="nav-item nav-link" href="$PHP_SELF?uri=downloads">Downloads</a>
+        <a class="nav-item nav-link" href="$PHP_SELF?uri=links">Links</a>
+        <a class="nav-item nav-link" href="$PHP_SELF?uri=articles">Artikel</a>
+    </div>
+</div>

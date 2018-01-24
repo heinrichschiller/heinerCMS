@@ -96,7 +96,7 @@ function pdo_query(string $sql, array $params)
  */
 function loadTemplate(string $template): string
 {
-    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'bootstrap-3.3.7';
+    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
     
     $file = __DIR__ . '/../templates/' . $theme . '/' . $template . '.tpl.php';
     $error = __DIR__ . '/../templates/' . $theme . '/error_template.tpl.php';
