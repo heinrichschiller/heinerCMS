@@ -12,7 +12,7 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-		<link href="templates/css/style.css">
+		<link href="templates/css/style.css" rel="stylesheet">
     </head>
     <body>
     	<div class="container-fluid">

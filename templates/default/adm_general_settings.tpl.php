@@ -2,7 +2,7 @@
 	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
 		<div class="panel">
 			<h4>
-				<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+				<img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-gear.svg">
 				{settings}
 			</h4>
 		</div>

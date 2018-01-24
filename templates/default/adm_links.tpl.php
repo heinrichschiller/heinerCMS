@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
 		<div class="panel">
-			<h4><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> {links}</h4>
+			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-global.svg"> {links}</h4>
 		</div>
 	</div>
 </div>
