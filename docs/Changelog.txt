@@ -1,3 +1,5 @@
+Version 0.0.7 (2018-01-24)
+	update, tinymce editor (4.7.4 => 4.7.5)
 Version 0.0.6 (2018-01-19)
 	bugfix, delete in downloads works again
 	bugfix, delete in links works again
