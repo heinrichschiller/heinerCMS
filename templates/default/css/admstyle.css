@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+.leiste {
+	width: 3px;
+	border: 1px dotted rgba(115,115,155,0.6);
+}
+
+.hidden {
+	display: none;
+}
+
 .glyph-icon-16 {
 	height: 16px;
 }

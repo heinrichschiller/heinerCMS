@@ -32,9 +32,10 @@
                 </div>
             </div>
             <div class="row">
-        		<div class="col-xs-12 col-lg-3">
+        		<div class="col-xs-12 col-lg-3" id="hidden">
         			<@navigation@>
         		</div>
+        		<div class="leiste" id="hide"></div>
         	    <div class="col-xs-12 col-lg-6">
         	    	<@content@>
         	    </div>
@@ -48,6 +49,6 @@
 		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
   		<script>tinymce.init({ selector:'textarea' });</script>
   		
-  		<script src="../templates/bootstrap-3.3.7/js/main.js"></script>
+  		<script src="../templates/default/js/main.js"></script>
 	</body>
 </html>
