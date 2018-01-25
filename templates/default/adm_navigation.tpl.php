@@ -12,37 +12,37 @@
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=news">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {news}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_news@></span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=downloads">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-file-download.svg"> {downloads}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_downloads@></span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=links">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_links@></span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=articles">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {articles}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_articles@></span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=sites">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document.svg"> {sites}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_sites@></span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=trash">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-trash.svg"> {trash}
-            <span class="badge">0</span>
+            <span class="badge badge-light"><@placeholder_trash@></span>
         </a>
     </li>
 </div>

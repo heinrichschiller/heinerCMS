@@ -9,8 +9,21 @@ function load_admin_navigation(): string
 {
     $template = '';
     
+    $entries = countEntries();
+    
+    $placeholderList = [
+        '<@placeholder_news@>' => $entries[0],
+        '<@placeholder_downloads@>' => $entries[1],
+        '<@placeholder_links@>' => $entries[2],
+        '<@placeholder_articles@>' => $entries[3],
+        '<@placeholder_sites@>' => $entries[4],
+        '<@placeholder_trash@>' => $entries[5]
+    ];
+    
     $template = loadTemplate('adm_navigation');
     
+    $template = strtr($template, $placeholderList);
+
     return $template;
 }
 
@@ -59,16 +72,19 @@ function load_admin_news(): string
         $table_content .= '<td>' . $news->title . '</td>';
         $table_content .= $news->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id .">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot';
+        $table_content .= '<td>';
+        
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id .">"
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" .$news->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
             
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id .">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a>';
         
+        $table_content .= '</td>';
         $table_content .= '</tr>';
     }
     
@@ -127,8 +143,12 @@ function load_admin_news_add(): string
 {
     $template = '';
     
-    $time = StrFTime('%d.%m.%Y %H:%M', time());
+    $placeholdeList = [
+        '<@datetime@>' => StrFTime('%d.%m.%Y %H:%M', time())
+    ];
+    
     $template = loadTemplate('adm_news_add');
+    $template = strtr($template, $placeholdeList);
     
     return $template;
 }
@@ -189,14 +209,14 @@ function load_admin_downloads(): string
         $table_content .= (($downloads->visible > - 1) ? '<td> ja</td>' : '<td>nein</td>');
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" .$downloads->id .">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
             
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" .$downloads->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
                 
                 
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id .">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
     }
             
     $template = str_replace('<@downloads-content@>', $table_content, $template);
@@ -321,13 +341,13 @@ function load_admin_links(): string
         $table_content .= $link->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=". $link->id . ">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=". $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title={delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         $table_content .= '</tr>';
     }
     
@@ -448,13 +468,13 @@ function load_admin_articles(): string
         $table_content .= '<td>' . $article->visible > -1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -669,10 +689,10 @@ function load_user_list(): string
         $table_content .= '<td>' . $user->active . '</td>';
 
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">"
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
             
         $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">"
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
          
@@ -802,13 +822,13 @@ function load_admin_sites() : string
         $table_content .= '<td>' . $site->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
-            . '<span class="glyphicon glyphicon-edit" aria-hidden="true" title="{edit}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
-            . '<span class="glyphicon glyphicon-duplicate" aria-hidden="true" title="{copy}"></span></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=sitedel&id=" . $site->id . ">" 
-            . '<span class="glyphicon glyphicon-trash" aria-hidden="true" title="{delete}"></span></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -894,6 +914,8 @@ function countEntries()
         UNION ALL
         SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
         UNION ALL
+        SELECT COUNT(`id`) FROM `sites` WHERE `trash` = 'false'
+        UNION ALL
         SELECT COUNT(*) as result
                 FROM (
                 SELECT `trash` FROM `articles`
@@ -903,6 +925,8 @@ function countEntries()
                 SELECT `trash` FROM `downloads`
                 UNION ALL
                 SELECT `trash` FROM `links`
+                UNION ALL
+                SELECT `trash` FROM `sites`
                 ) as subquery
                 WHERE `trash` = 'true';";
     

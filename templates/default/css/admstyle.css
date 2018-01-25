@@ -9,6 +9,10 @@
 	display: none;
 }
 
+.badge.badge-light {
+	float: right;
+}
+
 .glyph-icon-16 {
 	height: 16px;
 }

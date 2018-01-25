@@ -18,6 +18,11 @@
         <div class="container-fluid">
         	<nav class="navbar navbar-light bg-light">
   				<a class="navbar-brand" href="#"><@title@> - {administration}</a>
+  				<ul class="nav justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav nav-link" href="?uri=logout">Sign out</a>
+                      </li>
+                  </ul>
 			</nav>
         	<div class="row">
         		<div class="col-sm-12">

@@ -2,7 +2,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4>Login</h4>
+				<h4>Sign in</h4>
 			</div>
 			<div class="panel-body">
 				<form action="login.php" method="post">
@@ -14,7 +14,7 @@
 						<label for="passwd">Passwort:</label> <input type="password"
 							name="password" class="form-control" id="passwd">
 					</div>
-					<button type="submit" class="btn btn-success">Login</button>
+					<button type="submit" class="btn btn-success">Sign in</button>
 				</form>
 			</div>
 		</div>

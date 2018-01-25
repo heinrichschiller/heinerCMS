@@ -58,5 +58,7 @@
 		<site>Seite</site>
 		<sites>Seiten</sites>
 		<create_site>Seite erstellen</create_site>
+		<edit_news>Nachricht bearbeiten</edit_news>
+		<back_to_mainpage>Zurück zur Hauptseite</back_to_mainpage>
 	</terms>
 </language>

@@ -1,3 +1,8 @@
+Version 0.0.8 ()
+	bugfix, badges works again
+	bugfix, fixed many many other minor bugs
+	added, function to hide the navigation bar on the left
+	update, update from bootstrap-3.3.7 to bootstrap-4.0.0
 Version 0.0.7 (2018-01-24)
 	update, tinymce editor (4.7.4 => 4.7.5)
 Version 0.0.6 (2018-01-19)

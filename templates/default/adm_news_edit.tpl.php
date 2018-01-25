@@ -1,3 +1,10 @@
+<div class="row">
+   	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+   		<div class="panel">
+   			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-pen.svg"> {edit_news}</h4>
+   		</div>
+   	</div>
+</div>
 <form action="newsupdate.php" method="post">
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
@@ -29,7 +36,7 @@
 		</div>
 	</div>
 	<div class="checkbox">
-		<span>visible?</span>
+		<span>{visible}?</span>
 		<input type="radio" name="visible" value="0" @chk_yes@ > {yes} 
 		<input type="radio" name="visible" value="-1" @chk_no@ > {no}
 	</div>
