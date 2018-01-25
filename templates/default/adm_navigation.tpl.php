@@ -1,11 +1,11 @@
-<div class="list-group">
+<div class="list-group spacing">
 	<li class="list-group-item">
         <a href="$PHP_SELF?uri=dashboard">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-dashboard.svg"> {dashboard}
         </a>
     </li>
 </div>
-<div class="list-group">
+<div class="list-group spacing">
     <li class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {content}
     </li>
@@ -46,7 +46,7 @@
         </a>
     </li>
 </div>
-<div class="list-group">
+<div class="list-group spacing">
     <li class="list-group-item active">
         <img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-gear-1.svg"> {settings}
     </li>

@@ -1,5 +1,10 @@
 @CHARSET "UTF-8";
 
+.spacing {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
 .leiste {
 	width: 3px;
 	border: 1px dotted rgba(115,115,155,0.6);
