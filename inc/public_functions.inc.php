@@ -75,9 +75,39 @@ function load_sites() : string
     return $html;
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_public_news() : string
 {
-    return loadTemplate('pub_news');
+    $template = '';
+    $table_content = '';
+    
+    $PHP_SELF = $_SERVER['PHP_SELF'];
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
+        . ' FROM `news` WHERE `visible` > -1 ORDER BY `datetime` DESC';
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $table_content .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
+        $table_content .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
+    }
+    
+    $template = loadTemplate('pub_news');
+    
+    $template = str_replace('<@news@>', $table_content, $template);
+    
+    return $template;
 }
 
 function load_public_articles() : string
@@ -127,31 +157,6 @@ function load_public_sites(int $id) : string
 
     return $template;
 }
-/* Gesamtübersicht der Nachrichten laden */
-/**
- * 
- * @return string
- *
-function load_content_news() : string
-{
-	$template = '';
-	$PHP_SELF = $_SERVER['PHP_SELF'];
-	$con = getDB ();
-	
-	if ($con) {
-		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `visible` > -1 ORDER BY `datetime` DESC';
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			while ( $news = mysqli_fetch_object ( $result ) ) {
-				$template .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
-				$template .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
-			}
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
 
 /* Detailansicht einer Nachricht laden */
 /**
