@@ -4,4 +4,10 @@
     <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
-<@news@>
+<div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+    		<@news@>
+    	</div>
+    </div>
+</div>

@@ -15,7 +15,7 @@
 
 /* ********************************************************************************
  * generic - section
- * *******************************************************************************
+ * *******************************************************************************/
 
 
 /**
@@ -37,14 +37,49 @@ function getBlogURL() : string
 function load_public_navigation() : string
 {
     $template = '';
+ 
+    $template .= '<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><@title@></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="<@url@>" target="blank">Blog</a>';
+    
+    if ( countTableEntries('news') !== 0) {
+        $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">News</a>';
+    }
+    
+    if ( countTableEntries('downloads') !== 0) {
+        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=downloads">Downloads</a>';
+    }
+    
+    if ( countTableEntries('links') !== 0) {
+        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=links">Links</a>';
+    }
+    
+    if ( countTableEntries('articles') !== 0) {
+        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=articles">Artikel</a>';
+    }
+
+    $template .= load_sites();
+    
+    $template .= '<ul class="nav justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav nav-link" href="?uri=admin">Sign in</a>
+                      </li>
+                  </ul>
+            </div>
+          </div>
+        </nav>';
     
     $arr = [
+        '<@title@>' => 'Heinrich-Schiller.de',
         '<@url@>' => getBlogURL()
     ];
     
-    $template = strtr(loadTemplate('pub_navigation'), $arr);
-    
-    $template .= load_sites();
+    $template = strtr($template, $arr);
     
     return $template;
 }
@@ -89,7 +124,7 @@ function load_public_news() : string
     $pdo = getPdoDB();
     
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
-        . ' FROM `news` WHERE `visible` > -1 ORDER BY `datetime` DESC';
+        . " FROM `news` WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -144,10 +179,11 @@ function load_public_sites(int $id) : string
         
         $site = $stmt->fetchObject();
 
-        //$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $site->datetime ) . "</h5>";
-        $template .= "<h2>$site->title</h2>";
-        $template .= "<p>$site->content</p>";
-    
+        $placeholderList = [
+            '<@placeholder-title@>' => $site->title,
+            '<@placeholder-content@>' => $site->content
+        ];
+
     } catch(PDOException $ex) {
         
         echo $ex->getMessage();
@@ -155,9 +191,25 @@ function load_public_sites(int $id) : string
         
     }
 
+    $template = loadTemplate('pub_site');
+    $template = strtr($template,$placeholderList);
+    
     return $template;
 }
 
+function countTableEntries(string $table) : int
+{
+    $id = 0;
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false'";
+    
+    foreach ($pdo->query($sql) as $row) {
+        $id = (int) $row[0];
+    }
+    
+    return $id;
+}
 /* Detailansicht einer Nachricht laden */
 /**
  * 

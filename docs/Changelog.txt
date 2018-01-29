@@ -1,3 +1,6 @@
+Version 0.0.9 ()
+	bugfix, fixed many many other minor bugs
+	added, dynamic navbar in public part
 Version 0.0.8 (2018-01-25)
 	bugfix, badges works again
 	bugfix, fixed many many other minor bugs
