@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+.col-xl-6 {
+	min-width: 950px;
+}
+
+.col-lg-9 {
+	max-width: 1200px;
+}
+
 .spacing {
 	margin-top: 5px;
 	margin-bottom: 10px;
