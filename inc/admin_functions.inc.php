@@ -846,7 +846,12 @@ function load_admin_site_add() : string
 {
     $template = '';
     
+    $placeholdeList = [
+        '<@datetime@>' => StrFTime('%d.%m.%Y %H:%M', time())
+    ];
+    
     $template = loadTemplate('adm_site_add');
+    $template = strtr($template, $placeholdeList);
     
     return $template;
 }
@@ -865,7 +870,7 @@ function load_admin_site_edit(int $id) : string
     $chkNo = '';
     $chkYes = '';
     
-    $sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `sites` WHERE `id` = $id";
+    $sql = "SELECT `id`, `title`, `tagline`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `sites` WHERE `id` = $id";
     
     $result = pdo_select($sql, $params);
     
@@ -880,6 +885,7 @@ function load_admin_site_edit(int $id) : string
     $placeholderList = [
         '<@id@>' => $result['id'],
         '<@title@>' => $result['title'],
+        '<@tagline@>' => $result['tagline'],
         '<@content@>' => $result['content'],
         '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
         '@chk_yes@' => $chkYes,

@@ -166,7 +166,7 @@ function load_public_sites(int $id) : string
     
     $pdo = getPdoDB();
     
-    $sql = "SELECT `id`, `title`, `content` FROM `sites` WHERE `id` = :id";
+    $sql = "SELECT `id`, `title`, `tagline`,`content` FROM `sites` WHERE `id` = :id";
     
     $input_parameters = [
         ':id' => $id
@@ -181,6 +181,7 @@ function load_public_sites(int $id) : string
 
         $placeholderList = [
             '<@placeholder-title@>' => $site->title,
+            '<@placeholder-tagline@>' => $site->tagline,
             '<@placeholder-content@>' => $site->content
         ];
 

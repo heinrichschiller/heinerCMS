@@ -68,6 +68,7 @@ CREATE TABLE `users` (
 CREATE TABLE `sites` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `tagline` VARCHAR(140) NOT NULL DEFAULT '',
   `content` LONGTEXT NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_at` timestamp NULL DEFAULT NULL,

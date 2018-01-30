@@ -12,15 +12,17 @@ if (is_logged_in ()) {
     $pdo = getPdoDB();
     
     $title   = filter_input(INPUT_POST, 'title');
+    $tagline = filter_input(INPUT_POST, 'tagline');
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
 
 
-    $sql = "INSERT INTO `sites` (`title`, `content`, `visible`)"
-        . " VALUES (:title, :content, :visible)";
+    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visible`)"
+        . " VALUES (:title, :tagline, :content, :visible)";
 
     $input_parameters = [
         ':title'   => $title,
+        ':tagline' => $tagline,
         ':content' => $content,
         ':visible' => $visible
     ];
