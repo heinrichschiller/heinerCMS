@@ -1,3 +1,7 @@
+Version 0.1.1 ()
+	added, mainpage
+	added, contact enqiery
+	bugfix, fixed many many other minor bugs
 Version 0.1.0 (2018-01-30)
 	added, tagline in sites
 	bugfix, fixed many many other minor bugs

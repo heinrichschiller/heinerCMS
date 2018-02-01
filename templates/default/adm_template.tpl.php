@@ -3,7 +3,10 @@
 		<title><@title@></title>
 		<meta charset="utf8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap-reboot.min.css">
+		<link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap-grid.min.css">
 		<link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 
 		<!-- jQuery library -->

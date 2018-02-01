@@ -42,6 +42,10 @@ $route['sites'] = function($id)
     return load_public_sites($id);
 };
 
+$route['mainpage'] = function() {
+    return load_public_mainpage();
+};
+
 $route['admin'] = function()
 {
     header('Location: admin/index.php');

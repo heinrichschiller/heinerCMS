@@ -39,7 +39,7 @@ function load_public_navigation() : string
     $template = '';
  
     $template .= '<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><@title@></a>
+        <a class="navbar-brand" href="$PHP_SELF?uri=mainpage"><@title@></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -196,6 +196,11 @@ function load_public_sites(int $id) : string
     $template = strtr($template,$placeholderList);
     
     return $template;
+}
+
+function load_public_mainpage() : string
+{
+    return loadTemplate('pub_mainpage');
 }
 
 function countTableEntries(string $table) : int

@@ -8,4 +8,9 @@ window.addEventListener("load", function() {
 		
 		hidden.classList.toggle("hidden");
 	}, false);
+	
+	$('.carousel').carousel({
+		  interval: 2000
+		})
 }, false);
+

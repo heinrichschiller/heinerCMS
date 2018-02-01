@@ -17,7 +17,7 @@
 		<visible>Sichbar</visible>
 		<dashboard>Dashboard</dashboard>
 		<content>Inhalt</content>
-		<news>Nachrichten</news>
+		<news>Neuigkeiten</news>
 		<downloads>Downloads</downloads>
 		<links>Links</links>
 		<articles>Artikel</articles>
@@ -60,5 +60,7 @@
 		<create_site>Seite erstellen</create_site>
 		<edit_news>Nachricht bearbeiten</edit_news>
 		<back_to_mainpage>Zurück zur Hauptseite</back_to_mainpage>
+		<communication>Kommunikation</communication>
+		<contact_inquiry>Kontakt anfragen</contact_inquiry>
 	</terms>
 </language>
