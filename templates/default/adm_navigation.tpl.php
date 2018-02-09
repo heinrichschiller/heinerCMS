@@ -67,6 +67,11 @@
         </a>
     </li>
     <li class="list-group-item">
+        <a href="$PHP_SELF?uri=mainpage">
+            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-gear.svg"> {mainpage}
+        </a>
+    </li>
+    <li class="list-group-item">
         <a href="$PHP_SELF?uri=user">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-person-people.svg"> {user}
         </a>

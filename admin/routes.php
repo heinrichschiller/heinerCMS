@@ -106,6 +106,10 @@ $route['siteedit'] = function($id) {
     return load_admin_site_edit($id);
 };
 
+$route['mainpage'] = function() {
+    return load_admin_mainpage();  
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

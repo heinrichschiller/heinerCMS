@@ -1,4 +1,5 @@
 Version 0.1.1 ()
+	added, settings for mainpage
 	added, mainpage
 	added, contact enqiery
 	bugfix, fixed many many other minor bugs

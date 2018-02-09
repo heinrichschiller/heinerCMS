@@ -897,6 +897,15 @@ function load_admin_site_edit(int $id) : string
     return $template;
 }
 
+/**
+ * 
+ * @return string
+ */
+function load_admin_mainpage()
+{
+    return loadTemplate('mainpage');    
+}
+
 /*
  * *******************************************************************************
  * SQL - section
