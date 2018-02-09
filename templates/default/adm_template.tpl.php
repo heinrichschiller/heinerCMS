@@ -39,12 +39,12 @@
                     </noscript>
                 </div>
             </div>
-            <div class="row">
+            <div class="row navi">
         		<div class="col-xl-3 col-lg-3 col-xs-12" id="hidden">
         			<@navigation@>
         		</div>
         		<div class="leiste" id="hide"></div>
-        	    <div class="col-xl-6 col-lg-9 col-xs-12">
+        	    <div class="col-xl-6 col-lg-9 col-xs-12 content-section">
         	    	<@content@>
         	    </div>
     	    </div>

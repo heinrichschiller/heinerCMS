@@ -8,6 +8,10 @@
 	max-width: 1200px;
 }
 
+.list-group-item {
+	padding: 0.50rem 1.25rem;
+}
+
 .spacing {
 	margin-top: 5px;
 	margin-bottom: 10px;
