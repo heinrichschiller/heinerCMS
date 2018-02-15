@@ -10,7 +10,7 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-		<link href="templates/css/admstyle.css">
+		<link href="../templates/default/css/admstyle.css" rel="stylesheet">
 	</head>
 	<body>
         <nav class="navbar">

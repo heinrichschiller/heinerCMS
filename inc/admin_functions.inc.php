@@ -633,28 +633,52 @@ function load_trash(): string
  * @return string
  */
 function load_general_settings(): string
-{
-    $template_dir = __DIR__ . '/../templates/';
-    $option = '';
-    
+{    
     $template = loadTemplate('adm_general_settings');
-    
-    $tmp = scandir($template_dir);
-    
-    foreach ($tmp as $theme) {
-        $option .= "<option>$theme</option>";
-    }
 
     $placeholderList = [
         '<@title@>' => $_SESSION['title'],
         '<@tagline@>' => $_SESSION['tagline'],
         '<@blog-url@>' => $_SESSION['blog-url'],
-        '<@theme-placeholder@>' => $option
+        '<@placeholder-select-theme@>' => load_theme_options()
     ];
     
     $template = strtr($template, $placeholderList);
 
     return $template;
+}
+
+/**
+ * 
+ * @return string
+ */
+function load_theme_options() : string {
+    
+    $html = '';
+    
+    $template_dir = __DIR__ . '/../templates/';
+    
+    $files = scandir($template_dir);
+    
+    // remove . and ..
+    array_shift($files);
+    array_shift($files);
+
+    $html .= '<select class="form-control" id="sel1" name="theme">';
+    
+    foreach ($files as $theme) {
+        if ( $theme === $_SESSION['theme']) {
+            $select = ' selected';
+        } else {
+            $select = '';
+        }
+        
+        $html .= "<option $select>$theme</option>";
+    }
+    
+    $html .= '</select>';
+    
+    return $html;
 }
 
 /**

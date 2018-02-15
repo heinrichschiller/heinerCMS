@@ -44,8 +44,11 @@ function load_public_navigation() : string
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="<@url@>" target="blank">Blog</a>';
+            <div class="navbar-nav">';
+    
+    if ( !empty(getBlogURL())) {
+        $template .= ' <a class="nav-item nav-link" href="' .getBlogURL().'" target="blank">Blog</a>';
+    }
     
     if ( countTableEntries('news') !== 0) {
         $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">News</a>';
@@ -67,7 +70,7 @@ function load_public_navigation() : string
     
     $template .= '<ul class="nav justify-content-end">
                       <li class="nav-item">
-                        <a class="nav nav-link" href="?uri=admin">Sign in</a>
+                        <a class="nav nav-link" href="index.php?uri=admin">Sign in</a>
                       </li>
                   </ul>
             </div>

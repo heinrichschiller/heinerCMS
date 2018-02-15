@@ -36,10 +36,8 @@
     <div class="row">
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
              <div class="form-group">
-                  <label for="sel1">{theme}:</label>
-                  <select class="form-control" id="sel1" name="theme">
-					<@theme-placeholder@>
-                  </select>
+                <label for="sel1">{theme}:</label>
+				<@placeholder-select-theme@>
             </div> 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
