@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 .col-xl-6 {
 	min-width: 950px;
 }
@@ -10,6 +11,11 @@
 
 .list-group-item {
 	padding: 0.50rem 1.25rem;
+}
+
+.list-group-item.active {
+	background-color: #337ab7;
+	border-color: #337ab7;
 }
 
 .spacing {

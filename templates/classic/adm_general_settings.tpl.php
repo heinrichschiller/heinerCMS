@@ -8,7 +8,7 @@
 				<label for="title">{title}:</label>
 			</td>
 			<td>
-				<input type="text" name="title" value="<?= $_SESSION['title']; ?>">
+				<input type="text" name="title" value="<@title@>">
 			</td>
 		</tr>
 		<tr>
@@ -16,11 +16,7 @@
 				<label for="sel1">Themes:</label>
 			</td>
 			<td>
-				<select class="form-control" name="theme">
-                  <?php foreach ($result as $theme) :?>
-             		   <option><?= $theme;?></option>
-             	 <?php endforeach;?>
-                  </select>
+				<@placeholder-select-theme@>
             </td>
 		</tr>
 		<tr>
