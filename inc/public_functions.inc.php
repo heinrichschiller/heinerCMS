@@ -67,7 +67,7 @@ function load_public_navigation() : string
     
     $template .= '<ul class="nav justify-content-end">
                       <li class="nav-item">
-                        <a class="nav nav-link" href="?uri=admin">Sign in</a>
+                        <a class="nav nav-link" href="index.php?uri=admin">Sign in</a>
                       </li>
                   </ul>
             </div>
