@@ -637,10 +637,10 @@ function load_general_settings(): string
     $template = loadTemplate('adm_general_settings');
 
     $placeholderList = [
-        '<@title@>' => $_SESSION['title'],
-        '<@tagline@>' => $_SESSION['tagline'],
-        '<@blog-url@>' => $_SESSION['blog-url'],
-        '<@placeholder-select-theme@>' => load_theme_options()
+        '<@placeholder-title@>' => $_SESSION['title'],
+        '<@placeholder-tagline@>' => $_SESSION['tagline'],
+        '<@placeholder-blog-url@>' => $_SESSION['blog-url'],
+        '<@placeholder-option-theme@>' => load_theme_options()
     ];
     
     $template = strtr($template, $placeholderList);
@@ -659,24 +659,16 @@ function load_theme_options() : string {
     $template_dir = __DIR__ . '/../templates/';
     
     $files = scandir($template_dir);
-    
-    // remove . and ..
-    array_shift($files);
-    array_shift($files);
 
-    $html .= '<select class="form-control" id="sel1" name="theme">';
-    
-    foreach ($files as $theme) {
-        if ( $theme === $_SESSION['theme']) {
+    for($i = 2; $i <= count($files) - 1; $i++) {
+        if ( $files[$i] === $_SESSION['theme']) {
             $select = ' selected';
         } else {
             $select = '';
         }
         
-        $html .= "<option $select>$theme</option>";
+        $html .= "<option $select>$files[$i]</option>";
     }
-    
-    $html .= '</select>';
     
     return $html;
 }

@@ -13,7 +13,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="<@title@>" class="form-control" id="title">
+				<input type="text" name="title" value="<@placeholder-title@>" class="form-control" id="title">
 			</div>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="tagline">{tagline}:</label>
-				<input type="text" name="tagline" value="<@tagline@>" class="form-control" id="tagline">
+				<input type="text" name="tagline" value="<@placeholder-tagline@>" class="form-control" id="tagline">
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
 			<div class="form-group">
 				<label for="blogUrl">{blog}-URL:</label>
-				<input type="text" name="blogUrl" value="<@blog-url@>" class="form-control" id="blogUrl">
+				<input type="text" name="blogUrl" value="<@placeholder-blog-url@>" class="form-control" id="blogUrl">
 			</div>
 		</div>
 	</div>
@@ -37,7 +37,9 @@
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
              <div class="form-group">
                 <label for="sel1">{theme}:</label>
-				<@placeholder-select-theme@>
+                <select class="form-control" id="sel1" name="theme">
+					<@placeholder-option-theme@>
+				</select>
             </div> 
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
