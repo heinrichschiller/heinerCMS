@@ -2,33 +2,24 @@
 
 session_start();
 
-include __DIR__ . '/inc/general_functions.inc.php';
-include __DIR__ . '/inc/public_functions.inc.php';
-include __DIR__ . '/inc/routes.php';
+include __DIR__ . '/cms-config.php';
+
+include __DIR__ . '/include/general_functions.inc.php';
+include __DIR__ . '/include/public_functions.inc.php';
+include __DIR__ . '/include/routes.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
 
 $content = '';
-$title = 'Heinrich-Schiller.de';
+
 $template_path = 'templates/default/pub_template.tpl.php';
 
-$config_ini = __DIR__ . '/source/configs/config.ini';
+if (!file_exists('cms-config.php')) {
+    header("Location: _installer_/index.php?uri=language"); 
+}
 
 load_session();
-
-if(!file_exists($config_ini)) {
-    $PHP_SELF = $_SERVER['PHP_SELF'];
-
-    $out = '<p>Wahrscheinlich f&uuml;hren Sie heinerCMS zum erstem mal aus oder es ist ein Fehler aufgetretten.</p>';
-    $out .= 'Im Fehlerfall kontaktieren Sie bitte ihren Administrator!</p>';
-    $out .= '<p>Wenn Sie heinerCMS zum erstem mal verwerden, klicken Sie jetzt auf</p>';
-    $out .= '<a href="$PHP_SELF/../_install_/">Installieren</a>';
-
-    echo $out;
-
-    exit();
-}
 
 /* Template einlesen  */
 

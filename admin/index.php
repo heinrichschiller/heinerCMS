@@ -1,16 +1,16 @@
 <?php
 
-/* Konfigurationsdateien laden */
-include __DIR__ . '/../inc/general_functions.inc.php';
-include __DIR__ . '/../inc/admin_functions.inc.php';
+include __DIR__ . '/../cms-config.php';
+
+include __DIR__ . '/../include/general_functions.inc.php';
+include __DIR__ . '/../include/admin_functions.inc.php';
 include __DIR__ . '/routes.php';
-include __DIR__ . '/../inc/login.inc.php';
+include __DIR__ . '/../include/login.inc.php';
 
 
 // Einfaches Login zu demonstrationszwecken UND ONHE VERSCHLUESSELUNG.
 if (is_logged_in ()) {
 	
-    $config = __DIR__ . '/../source/configs/config.ini';
     $xmlfile = __DIR__ . '/../data/locales/de.xml';
     
     $adm_content = '';
@@ -18,10 +18,7 @@ if (is_logged_in ()) {
     $uri = filter_input ( INPUT_GET, 'uri' );
     $id = filter_input ( INPUT_GET, 'id' );
     
-    if (file_exists($config)) {
-        $ini_array = parse_ini_file($config);
-        $_SESSION['theme'] = $ini_array['theme'];
-    }
+    $_SESSION['theme'] = 'default';
 
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);
