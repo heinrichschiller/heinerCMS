@@ -1,8 +1,9 @@
 <?php
 
-include __DIR__ . '/../inc/base.inc.php';
-include __DIR__ . '/../inc/general_functions.inc.php';
-include __DIR__ . '/../inc/login.inc.php';
+include __DIR__ . '/../cms-config.php';
+
+include __DIR__ . '/../include/general_functions.inc.php';
+include __DIR__ . '/../include/login.inc.php';
 
 if (is_logged_in ()) {
     

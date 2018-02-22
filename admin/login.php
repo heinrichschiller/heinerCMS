@@ -2,23 +2,14 @@
 
 session_start();
 
+include __DIR__ . '/../cms-config.php';
+
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $login_password = filter_input(INPUT_POST, 'password');
 
-$config = __DIR__ . '/../source/configs/config.ini';
-
-if (file_exists($config)) {
-	$ini_array = parse_ini_file($config);
-	
-	$host = $ini_array['host'];
-	$user = $ini_array['user'];
-	$password = $ini_array['password'];
-	$database = $ini_array['database'];
-}
-
 try {
-	$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+	$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
 
 	$sql = "SELECT `id`,`email`,`username`,`password` FROM `users` WHERE email = :email";
 
