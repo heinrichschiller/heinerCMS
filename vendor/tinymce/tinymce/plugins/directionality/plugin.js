@@ -20,6 +20,7 @@ var directionality = (function () {
       editor.nodeChanged();
     }
   };
+<<<<<<< HEAD
   var $_5xi3f9a2jd08mcha = { setDir: setDir };
 
   var register = function (editor) {
@@ -31,6 +32,19 @@ var directionality = (function () {
     });
   };
   var $_1ubugia1jd08mch7 = { register: register };
+=======
+  var $_7in3qnabjducwqr0 = { setDir: setDir };
+
+  var register = function (editor) {
+    editor.addCommand('mceDirectionLTR', function () {
+      $_7in3qnabjducwqr0.setDir(editor, 'ltr');
+    });
+    editor.addCommand('mceDirectionRTL', function () {
+      $_7in3qnabjducwqr0.setDir(editor, 'rtl');
+    });
+  };
+  var $_blvs6aaajducwqqy = { register: register };
+>>>>>>> installer
 
   var generateSelector = function (dir) {
     var selector = [];
@@ -51,11 +65,19 @@ var directionality = (function () {
       stateSelector: generateSelector('rtl')
     });
   };
+<<<<<<< HEAD
   var $_11r5hna4jd08mchb = { register: register$1 };
 
   PluginManager.add('directionality', function (editor) {
     $_1ubugia1jd08mch7.register(editor);
     $_11r5hna4jd08mchb.register(editor);
+=======
+  var $_5gbxnyadjducwqr2 = { register: register$1 };
+
+  PluginManager.add('directionality', function (editor) {
+    $_blvs6aaajducwqqy.register(editor);
+    $_5gbxnyadjducwqr2.register(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -63,4 +85,4 @@ var directionality = (function () {
   return Plugin;
 
 }());
-})()
+})();

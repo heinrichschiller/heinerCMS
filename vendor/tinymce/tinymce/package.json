@@ -1,6 +1,10 @@
 {
 	"name": "tinymce",
+<<<<<<< HEAD
 	"version": "4.7.6",
+=======
+	"version": "4.7.7",
+>>>>>>> installer
 	"description": "Web based JavaScript HTML WYSIWYG editor control.",
 	"author": "Ephox Corporation",
 	"main": "tinymce.js",

@@ -53,7 +53,11 @@ var imagetools = (function () {
     canvas.height = height;
     return canvas;
   }
+<<<<<<< HEAD
   var $_ff7gkwcgjd08mcs0 = {
+=======
+  var $_b135f4cpjducwr3j = {
+>>>>>>> installer
     create: create,
     clone: clone,
     resize: resize,
@@ -67,7 +71,11 @@ var imagetools = (function () {
   function getHeight(image) {
     return image.naturalHeight || image.height;
   }
+<<<<<<< HEAD
   var $_dlc4vachjd08mcs3 = {
+=======
+  var $_a2i3c1cqjducwr3l = {
+>>>>>>> installer
     getWidth: getWidth,
     getHeight: getHeight
   };
@@ -288,7 +296,11 @@ var imagetools = (function () {
   };
   var never = constant(false);
   var always = constant(true);
+<<<<<<< HEAD
   var $_b2v6wackjd08mcsc = {
+=======
+  var $_7e8sfvctjducwr3z = {
+>>>>>>> installer
     noop: noop,
     noarg: noarg,
     compose: compose,
@@ -304,8 +316,13 @@ var imagetools = (function () {
     always: always
   };
 
+<<<<<<< HEAD
   var never$1 = $_b2v6wackjd08mcsc.never;
   var always$1 = $_b2v6wackjd08mcsc.always;
+=======
+  var never$1 = $_7e8sfvctjducwr3z.never;
+  var always$1 = $_7e8sfvctjducwr3z.always;
+>>>>>>> installer
   var none = function () {
     return NONE;
   };
@@ -348,7 +365,11 @@ var imagetools = (function () {
       toArray: function () {
         return [];
       },
+<<<<<<< HEAD
       toString: $_b2v6wackjd08mcsc.constant('none()')
+=======
+      toString: $_7e8sfvctjducwr3z.constant('none()')
+>>>>>>> installer
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -417,7 +438,11 @@ var imagetools = (function () {
   var from = function (value) {
     return value === null || value === undefined ? NONE : some(value);
   };
+<<<<<<< HEAD
   var $_7ah24ocjjd08mcs9 = {
+=======
+  var Option = {
+>>>>>>> installer
     some: some,
     none: none,
     from: from
@@ -450,7 +475,11 @@ var imagetools = (function () {
     var parts = name.split('.');
     return forge(parts, target);
   };
+<<<<<<< HEAD
   var $_aapy3ocnjd08mcsh = {
+=======
+  var $_4guhq9cwjducwr45 = {
+>>>>>>> installer
     path: path,
     resolve: resolve,
     forge: forge,
@@ -458,7 +487,11 @@ var imagetools = (function () {
   };
 
   var unsafe = function (name, scope) {
+<<<<<<< HEAD
     return $_aapy3ocnjd08mcsh.resolve(name, scope);
+=======
+    return $_4guhq9cwjducwr45.resolve(name, scope);
+>>>>>>> installer
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -466,24 +499,40 @@ var imagetools = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
+<<<<<<< HEAD
   var $_2wyswxcmjd08mcsf = { getOrDie: getOrDie };
 
   function Blob (parts, properties) {
     var f = $_2wyswxcmjd08mcsf.getOrDie('Blob');
+=======
+  var $_4dfafycvjducwr42 = { getOrDie: getOrDie };
+
+  function Blob (parts, properties) {
+    var f = $_4dfafycvjducwr42.getOrDie('Blob');
+>>>>>>> installer
     return new f(parts, properties);
   }
 
   function FileReader () {
+<<<<<<< HEAD
     var f = $_2wyswxcmjd08mcsf.getOrDie('FileReader');
+=======
+    var f = $_4dfafycvjducwr42.getOrDie('FileReader');
+>>>>>>> installer
     return new f();
   }
 
   function Uint8Array (arr) {
+<<<<<<< HEAD
     var f = $_2wyswxcmjd08mcsf.getOrDie('Uint8Array');
+=======
+    var f = $_4dfafycvjducwr42.getOrDie('Uint8Array');
+>>>>>>> installer
     return new f(arr);
   }
 
   var requestAnimationFrame = function (callback) {
+<<<<<<< HEAD
     var f = $_2wyswxcmjd08mcsf.getOrDie('requestAnimationFrame');
     f(callback);
   };
@@ -492,6 +541,16 @@ var imagetools = (function () {
     return f(base64);
   };
   var $_dpi6qvcrjd08mcsn = {
+=======
+    var f = $_4dfafycvjducwr42.getOrDie('requestAnimationFrame');
+    f(callback);
+  };
+  var atob = function (base64) {
+    var f = $_4dfafycvjducwr42.getOrDie('atob');
+    return f(base64);
+  };
+  var $_f4hs87d0jducwr49 = {
+>>>>>>> installer
     atob: atob,
     requestAnimationFrame: requestAnimationFrame
   };
@@ -575,11 +634,19 @@ var imagetools = (function () {
     var data = uri.split(',');
     var matches = /data:([^;]+)/.exec(data[0]);
     if (!matches)
+<<<<<<< HEAD
       return $_7ah24ocjjd08mcs9.none();
     var mimetype = matches[1];
     var base64 = data[1];
     var sliceSize = 1024;
     var byteCharacters = $_dpi6qvcrjd08mcsn.atob(base64);
+=======
+      return Option.none();
+    var mimetype = matches[1];
+    var base64 = data[1];
+    var sliceSize = 1024;
+    var byteCharacters = $_f4hs87d0jducwr49.atob(base64);
+>>>>>>> installer
     var bytesLength = byteCharacters.length;
     var slicesCount = Math.ceil(bytesLength / sliceSize);
     var byteArrays = new Array(slicesCount);
@@ -592,7 +659,11 @@ var imagetools = (function () {
       }
       byteArrays[sliceIndex] = Uint8Array(bytes);
     }
+<<<<<<< HEAD
     return $_7ah24ocjjd08mcs9.some(Blob(byteArrays, { type: mimetype }));
+=======
+    return Option.some(Blob(byteArrays, { type: mimetype }));
+>>>>>>> installer
   }
   function dataUriToBlob(uri) {
     return new Promise(function (resolve, reject) {
@@ -632,8 +703,13 @@ var imagetools = (function () {
     return blobToImage(blob).then(function (image) {
       revokeImageUrl(image);
       var context, canvas;
+<<<<<<< HEAD
       canvas = $_ff7gkwcgjd08mcs0.create($_dlc4vachjd08mcs3.getWidth(image), $_dlc4vachjd08mcs3.getHeight(image));
       context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+      canvas = $_b135f4cpjducwr3j.create($_a2i3c1cqjducwr3l.getWidth(image), $_a2i3c1cqjducwr3l.getHeight(image));
+      context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
       context.drawImage(image, 0, 0);
       return canvas;
     });
@@ -655,7 +731,11 @@ var imagetools = (function () {
   function revokeImageUrl(image) {
     URL.revokeObjectURL(image.src);
   }
+<<<<<<< HEAD
   var $_bjnwsucfjd08mcrl = {
+=======
+  var $_gbsncwcojducwr30 = {
+>>>>>>> installer
     blobToImage: blobToImage,
     imageToBlob: imageToBlob,
     blobToDataUri: blobToDataUri,
@@ -668,6 +748,7 @@ var imagetools = (function () {
   };
 
   var blobToImage$1 = function (image) {
+<<<<<<< HEAD
     return $_bjnwsucfjd08mcrl.blobToImage(image);
   };
   var imageToBlob$1 = function (blob) {
@@ -686,6 +767,26 @@ var imagetools = (function () {
     return $_7ah24ocjjd08mcs9.from($_bjnwsucfjd08mcrl.uriToBlob(uri));
   };
   var $_8wv43ycejd08mcrh = {
+=======
+    return $_gbsncwcojducwr30.blobToImage(image);
+  };
+  var imageToBlob$1 = function (blob) {
+    return $_gbsncwcojducwr30.imageToBlob(blob);
+  };
+  var blobToDataUri$1 = function (blob) {
+    return $_gbsncwcojducwr30.blobToDataUri(blob);
+  };
+  var blobToBase64$1 = function (blob) {
+    return $_gbsncwcojducwr30.blobToBase64(blob);
+  };
+  var dataUriToBlobSync$1 = function (uri) {
+    return $_gbsncwcojducwr30.dataUriToBlobSync(uri);
+  };
+  var uriToBlob$1 = function (uri) {
+    return Option.from($_gbsncwcojducwr30.uriToBlob(uri));
+  };
+  var $_qw14zcnjducwr2u = {
+>>>>>>> installer
     blobToImage: blobToImage$1,
     imageToBlob: imageToBlob$1,
     blobToDataUri: blobToDataUri$1,
@@ -696,7 +797,11 @@ var imagetools = (function () {
 
   function create$1(getCanvas, blob, uri) {
     var initialType = blob.type;
+<<<<<<< HEAD
     var getType = $_b2v6wackjd08mcsc.constant(initialType);
+=======
+    var getType = $_7e8sfvctjducwr3z.constant(initialType);
+>>>>>>> installer
     function toBlob() {
       return Promise.resolve(blob);
     }
@@ -708,12 +813,20 @@ var imagetools = (function () {
     }
     function toAdjustedBlob(type, quality) {
       return getCanvas.then(function (canvas) {
+<<<<<<< HEAD
         return $_bjnwsucfjd08mcrl.canvasToBlob(canvas, type, quality);
+=======
+        return $_gbsncwcojducwr30.canvasToBlob(canvas, type, quality);
+>>>>>>> installer
       });
     }
     function toAdjustedDataURL(type, quality) {
       return getCanvas.then(function (canvas) {
+<<<<<<< HEAD
         return $_bjnwsucfjd08mcrl.canvasToDataURL(canvas, type, quality);
+=======
+        return $_gbsncwcojducwr30.canvasToDataURL(canvas, type, quality);
+>>>>>>> installer
       });
     }
     function toAdjustedBase64(type, quality) {
@@ -722,7 +835,11 @@ var imagetools = (function () {
       });
     }
     function toCanvas() {
+<<<<<<< HEAD
       return getCanvas.then($_ff7gkwcgjd08mcs0.clone);
+=======
+      return getCanvas.then($_b135f4cpjducwr3j.clone);
+>>>>>>> installer
     }
     return {
       getType: getType,
@@ -736,24 +853,43 @@ var imagetools = (function () {
     };
   }
   function fromBlob(blob) {
+<<<<<<< HEAD
     return $_bjnwsucfjd08mcrl.blobToDataUri(blob).then(function (uri) {
       return create$1($_bjnwsucfjd08mcrl.blobToCanvas(blob), blob, uri);
     });
   }
   function fromCanvas(canvas, type) {
     return $_bjnwsucfjd08mcrl.canvasToBlob(canvas, type).then(function (blob) {
+=======
+    return $_gbsncwcojducwr30.blobToDataUri(blob).then(function (uri) {
+      return create$1($_gbsncwcojducwr30.blobToCanvas(blob), blob, uri);
+    });
+  }
+  function fromCanvas(canvas, type) {
+    return $_gbsncwcojducwr30.canvasToBlob(canvas, type).then(function (blob) {
+>>>>>>> installer
       return create$1(Promise.resolve(canvas), blob, canvas.toDataURL());
     });
   }
   function fromImage(image) {
+<<<<<<< HEAD
     return $_bjnwsucfjd08mcrl.imageToBlob(image).then(function (blob) {
+=======
+    return $_gbsncwcojducwr30.imageToBlob(image).then(function (blob) {
+>>>>>>> installer
       return fromBlob(blob);
     });
   }
   var fromBlobAndUrlSync = function (blob, url) {
+<<<<<<< HEAD
     return create$1($_bjnwsucfjd08mcrl.blobToCanvas(blob), blob, url);
   };
   var $_8ajqxccujd08mcsx = {
+=======
+    return create$1($_gbsncwcojducwr30.blobToCanvas(blob), blob, url);
+  };
+  var $_7um52id3jducwr4o = {
+>>>>>>> installer
     fromBlob: fromBlob,
     fromCanvas: fromCanvas,
     fromImage: fromImage,
@@ -1164,7 +1300,11 @@ var imagetools = (function () {
       1
     ], value));
   }
+<<<<<<< HEAD
   var $_a9kxkocvjd08mct3 = {
+=======
+  var $_91gydid4jducwr4w = {
+>>>>>>> installer
     identity: identity$1,
     adjust: adjust,
     multiply: multiply,
@@ -1183,7 +1323,11 @@ var imagetools = (function () {
     });
   }
   function applyColorFilter(canvas, type, matrix) {
+<<<<<<< HEAD
     var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+    var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
     var pixels;
     function applyMatrix(pixels, m) {
       var d = pixels.data, r, g, b, a, i, m0 = m[0], m1 = m[1], m2 = m[2], m3 = m[3], m4 = m[4], m5 = m[5], m6 = m[6], m7 = m[7], m8 = m[8], m9 = m[9], m10 = m[10], m11 = m[11], m12 = m[12], m13 = m[13], m14 = m[14], m15 = m[15], m16 = m[16], m17 = m[17], m18 = m[18], m19 = m[19];
@@ -1201,7 +1345,11 @@ var imagetools = (function () {
     }
     pixels = applyMatrix(context.getImageData(0, 0, canvas.width, canvas.height), matrix);
     context.putImageData(pixels, 0, 0);
+<<<<<<< HEAD
     return $_8ajqxccujd08mcsx.fromCanvas(canvas, type);
+=======
+    return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+>>>>>>> installer
   }
   function convoluteFilter(ir, matrix) {
     return ir.toCanvas().then(function (canvas) {
@@ -1209,7 +1357,11 @@ var imagetools = (function () {
     });
   }
   function applyConvoluteFilter(canvas, type, matrix) {
+<<<<<<< HEAD
     var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+    var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
     var pixelsIn, pixelsOut;
     function applyMatrix(pixelsIn, pixelsOut, matrix) {
       var rgba, drgba, side, halfSide, x, y, r, g, b, cx, cy, scx, scy, offset, wt, w, h;
@@ -1253,11 +1405,19 @@ var imagetools = (function () {
     pixelsOut = context.getImageData(0, 0, canvas.width, canvas.height);
     pixelsOut = applyMatrix(pixelsIn, pixelsOut, matrix);
     context.putImageData(pixelsOut, 0, 0);
+<<<<<<< HEAD
     return $_8ajqxccujd08mcsx.fromCanvas(canvas, type);
   }
   function functionColorFilter(colorFn) {
     var filterImpl = function (canvas, type, value) {
       var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+    return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+  }
+  function functionColorFilter(colorFn) {
+    var filterImpl = function (canvas, type, value) {
+      var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
       var pixels, i, lookup = new Array(256);
       function applyLookup(pixels, lookup) {
         var d = pixels.data, i;
@@ -1273,7 +1433,11 @@ var imagetools = (function () {
       }
       pixels = applyLookup(context.getImageData(0, 0, canvas.width, canvas.height), lookup);
       context.putImageData(pixels, 0, 0);
+<<<<<<< HEAD
       return $_8ajqxccujd08mcsx.fromCanvas(canvas, type);
+=======
+      return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+>>>>>>> installer
     };
     return function (ir, value) {
       return ir.toCanvas().then(function (canvas) {
@@ -1283,7 +1447,11 @@ var imagetools = (function () {
   }
   function complexAdjustableColorFilter(matrixAdjustFn) {
     return function (ir, adjust) {
+<<<<<<< HEAD
       return colorFilter(ir, matrixAdjustFn($_a9kxkocvjd08mct3.identity(), adjust));
+=======
+      return colorFilter(ir, matrixAdjustFn($_91gydid4jducwr4w.identity(), adjust));
+>>>>>>> installer
     };
   }
   function basicColorFilter(matrix) {
@@ -1296,7 +1464,11 @@ var imagetools = (function () {
       return convoluteFilter(ir, kernel);
     };
   }
+<<<<<<< HEAD
   var $_b0c2xctjd08mcss = {
+=======
+  var $_1hbhv1d2jducwr4g = {
+>>>>>>> installer
     invert: basicColorFilter([
       -1,
       0,
@@ -1319,6 +1491,7 @@ var imagetools = (function () {
       1,
       0
     ]),
+<<<<<<< HEAD
     brightness: complexAdjustableColorFilter($_a9kxkocvjd08mct3.adjustBrightness),
     hue: complexAdjustableColorFilter($_a9kxkocvjd08mct3.adjustHue),
     saturate: complexAdjustableColorFilter($_a9kxkocvjd08mct3.adjustSaturation),
@@ -1327,6 +1500,16 @@ var imagetools = (function () {
     sepia: complexAdjustableColorFilter($_a9kxkocvjd08mct3.adjustSepia),
     colorize: function (ir, adjustR, adjustG, adjustB) {
       return colorFilter(ir, $_a9kxkocvjd08mct3.adjustColors($_a9kxkocvjd08mct3.identity(), adjustR, adjustG, adjustB));
+=======
+    brightness: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustBrightness),
+    hue: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustHue),
+    saturate: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustSaturation),
+    contrast: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustContrast),
+    grayscale: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustGrayscale),
+    sepia: complexAdjustableColorFilter($_91gydid4jducwr4w.adjustSepia),
+    colorize: function (ir, adjustR, adjustG, adjustB) {
+      return colorFilter(ir, $_91gydid4jducwr4w.adjustColors($_91gydid4jducwr4w.identity(), adjustR, adjustG, adjustB));
+>>>>>>> installer
     },
     sharpen: basicConvolutionFilter([
       0,
@@ -1361,8 +1544,13 @@ var imagetools = (function () {
   };
 
   function scale(image, dW, dH) {
+<<<<<<< HEAD
     var sW = $_dlc4vachjd08mcs3.getWidth(image);
     var sH = $_dlc4vachjd08mcs3.getHeight(image);
+=======
+    var sW = $_a2i3c1cqjducwr3l.getWidth(image);
+    var sH = $_a2i3c1cqjducwr3l.getHeight(image);
+>>>>>>> installer
     var wRatio = dW / sW;
     var hRatio = dH / sH;
     var scaleCapped = false;
@@ -1381,17 +1569,30 @@ var imagetools = (function () {
   }
   function _scale(image, wRatio, hRatio) {
     return new Promise(function (resolve) {
+<<<<<<< HEAD
       var sW = $_dlc4vachjd08mcs3.getWidth(image);
       var sH = $_dlc4vachjd08mcs3.getHeight(image);
       var dW = Math.floor(sW * wRatio);
       var dH = Math.floor(sH * hRatio);
       var canvas = $_ff7gkwcgjd08mcs0.create(dW, dH);
       var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+      var sW = $_a2i3c1cqjducwr3l.getWidth(image);
+      var sH = $_a2i3c1cqjducwr3l.getHeight(image);
+      var dW = Math.floor(sW * wRatio);
+      var dH = Math.floor(sH * hRatio);
+      var canvas = $_b135f4cpjducwr3j.create(dW, dH);
+      var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
       context.drawImage(image, 0, 0, sW, sH, 0, 0, dW, dH);
       resolve(canvas);
     });
   }
+<<<<<<< HEAD
   var $_5k8acncxjd08mctc = { scale: scale };
+=======
+  var $_9tgx6td6jducwr59 = { scale: scale };
+>>>>>>> installer
 
   function rotate(ir, angle) {
     return ir.toCanvas().then(function (canvas) {
@@ -1399,12 +1600,21 @@ var imagetools = (function () {
     });
   }
   function applyRotate(image, type, angle) {
+<<<<<<< HEAD
     var canvas = $_ff7gkwcgjd08mcs0.create(image.width, image.height);
     var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
     var translateX = 0, translateY = 0;
     angle = angle < 0 ? 360 + angle : angle;
     if (angle == 90 || angle == 270) {
       $_ff7gkwcgjd08mcs0.resize(canvas, canvas.height, canvas.width);
+=======
+    var canvas = $_b135f4cpjducwr3j.create(image.width, image.height);
+    var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+    var translateX = 0, translateY = 0;
+    angle = angle < 0 ? 360 + angle : angle;
+    if (angle == 90 || angle == 270) {
+      $_b135f4cpjducwr3j.resize(canvas, canvas.height, canvas.width);
+>>>>>>> installer
     }
     if (angle == 90 || angle == 180) {
       translateX = canvas.width;
@@ -1415,7 +1625,11 @@ var imagetools = (function () {
     context.translate(translateX, translateY);
     context.rotate(angle * Math.PI / 180);
     context.drawImage(image, 0, 0);
+<<<<<<< HEAD
     return $_8ajqxccujd08mcsx.fromCanvas(canvas, type);
+=======
+    return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+>>>>>>> installer
   }
   function flip(ir, axis) {
     return ir.toCanvas().then(function (canvas) {
@@ -1423,8 +1637,13 @@ var imagetools = (function () {
     });
   }
   function applyFlip(image, type, axis) {
+<<<<<<< HEAD
     var canvas = $_ff7gkwcgjd08mcs0.create(image.width, image.height);
     var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
+=======
+    var canvas = $_b135f4cpjducwr3j.create(image.width, image.height);
+    var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+>>>>>>> installer
     if (axis == 'v') {
       context.scale(1, -1);
       context.drawImage(image, 0, -canvas.height);
@@ -1432,7 +1651,11 @@ var imagetools = (function () {
       context.scale(-1, 1);
       context.drawImage(image, -canvas.width, 0);
     }
+<<<<<<< HEAD
     return $_8ajqxccujd08mcsx.fromCanvas(canvas, type);
+=======
+    return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+>>>>>>> installer
   }
   function crop(ir, x, y, w, h) {
     return ir.toCanvas().then(function (canvas) {
@@ -1440,6 +1663,7 @@ var imagetools = (function () {
     });
   }
   function applyCrop(image, type, x, y, w, h) {
+<<<<<<< HEAD
     var canvas = $_ff7gkwcgjd08mcs0.create(w, h);
     var context = $_ff7gkwcgjd08mcs0.get2dContext(canvas);
     context.drawImage(image, -x, -y);
@@ -1453,6 +1677,21 @@ var imagetools = (function () {
     });
   }
   var $_709g93cwjd08mct9 = {
+=======
+    var canvas = $_b135f4cpjducwr3j.create(w, h);
+    var context = $_b135f4cpjducwr3j.get2dContext(canvas);
+    context.drawImage(image, -x, -y);
+    return $_7um52id3jducwr4o.fromCanvas(canvas, type);
+  }
+  function resize$1(ir, w, h) {
+    return ir.toCanvas().then(function (canvas) {
+      return $_9tgx6td6jducwr59.scale(canvas, w, h).then(function (newCanvas) {
+        return $_7um52id3jducwr4o.fromCanvas(newCanvas, ir.getType());
+      });
+    });
+  }
+  var $_4bf0crd5jducwr54 = {
+>>>>>>> installer
     rotate: rotate,
     flip: flip,
     crop: crop,
@@ -1460,6 +1699,7 @@ var imagetools = (function () {
   };
 
   var invert = function (ir) {
+<<<<<<< HEAD
     return $_b0c2xctjd08mcss.invert(ir);
   };
   var sharpen = function (ir) {
@@ -1508,6 +1748,56 @@ var imagetools = (function () {
     return $_709g93cwjd08mct9.rotate(ir, angle);
   };
   var $_c34z08csjd08mcso = {
+=======
+    return $_1hbhv1d2jducwr4g.invert(ir);
+  };
+  var sharpen = function (ir) {
+    return $_1hbhv1d2jducwr4g.sharpen(ir);
+  };
+  var emboss = function (ir) {
+    return $_1hbhv1d2jducwr4g.emboss(ir);
+  };
+  var gamma = function (ir, value) {
+    return $_1hbhv1d2jducwr4g.gamma(ir, value);
+  };
+  var exposure = function (ir, value) {
+    return $_1hbhv1d2jducwr4g.exposure(ir, value);
+  };
+  var colorize = function (ir, adjustR, adjustG, adjustB) {
+    return $_1hbhv1d2jducwr4g.colorize(ir, adjustR, adjustG, adjustB);
+  };
+  var brightness = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.brightness(ir, adjust);
+  };
+  var hue = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.hue(ir, adjust);
+  };
+  var saturate = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.saturate(ir, adjust);
+  };
+  var contrast = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.contrast(ir, adjust);
+  };
+  var grayscale = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.grayscale(ir, adjust);
+  };
+  var sepia = function (ir, adjust) {
+    return $_1hbhv1d2jducwr4g.sepia(ir, adjust);
+  };
+  var flip$1 = function (ir, axis) {
+    return $_4bf0crd5jducwr54.flip(ir, axis);
+  };
+  var crop$1 = function (ir, x, y, w, h) {
+    return $_4bf0crd5jducwr54.crop(ir, x, y, w, h);
+  };
+  var resize$2 = function (ir, w, h) {
+    return $_4bf0crd5jducwr54.resize(ir, w, h);
+  };
+  var rotate$1 = function (ir, angle) {
+    return $_4bf0crd5jducwr54.rotate(ir, angle);
+  };
+  var $_9tpokfd1jducwr4b = {
+>>>>>>> installer
     invert: invert,
     sharpen: sharpen,
     emboss: emboss,
@@ -1527,6 +1817,7 @@ var imagetools = (function () {
   };
 
   var blobToImageResult = function (blob) {
+<<<<<<< HEAD
     return $_8ajqxccujd08mcsx.fromBlob(blob);
   };
   var fromBlobAndUrlSync$1 = function (blob, uri) {
@@ -1534,6 +1825,15 @@ var imagetools = (function () {
   };
   var imageToImageResult = function (image) {
     return $_8ajqxccujd08mcsx.fromImage(image);
+=======
+    return $_7um52id3jducwr4o.fromBlob(blob);
+  };
+  var fromBlobAndUrlSync$1 = function (blob, uri) {
+    return $_7um52id3jducwr4o.fromBlobAndUrlSync(blob, uri);
+  };
+  var imageToImageResult = function (image) {
+    return $_7um52id3jducwr4o.fromImage(image);
+>>>>>>> installer
   };
   var imageResultToBlob = function (ir, type, quality) {
     if (type === undefined && quality === undefined) {
@@ -1548,7 +1848,11 @@ var imagetools = (function () {
   var imageResultToDataURL = function (ir) {
     return ir.toDataURL();
   };
+<<<<<<< HEAD
   var $_1wkopvcyjd08mcte = {
+=======
+  var $_a2nzwvd7jducwr5a = {
+>>>>>>> installer
     blobToImageResult: blobToImageResult,
     fromBlobAndUrlSync: fromBlobAndUrlSync$1,
     imageToImageResult: imageToImageResult,
@@ -1558,7 +1862,11 @@ var imagetools = (function () {
   };
 
   var url = function () {
+<<<<<<< HEAD
     return $_2wyswxcmjd08mcsf.getOrDie('URL');
+=======
+    return $_4dfafycvjducwr42.getOrDie('URL');
+>>>>>>> installer
   };
   var createObjectURL = function (blob) {
     return url().createObjectURL(blob);
@@ -1566,7 +1874,11 @@ var imagetools = (function () {
   var revokeObjectURL = function (u) {
     url().revokeObjectURL(u);
   };
+<<<<<<< HEAD
   var $_3i2p7sczjd08mctf = {
+=======
+  var $_8h1aqxd8jducwr5c = {
+>>>>>>> installer
     createObjectURL: createObjectURL,
     revokeObjectURL: revokeObjectURL
   };
@@ -1583,457 +1895,14 @@ var imagetools = (function () {
   var getProxyUrl = function (editor) {
     return editor.getParam('imagetools_proxy');
   };
+<<<<<<< HEAD
   var $_g17dn9d3jd08mcto = {
+=======
+  var $_dw9k5sdcjducwr5d = {
+>>>>>>> installer
     getToolbarItems: getToolbarItems,
     getProxyUrl: getProxyUrl
   };
-
-  function getImageSize(img) {
-    var width, height;
-    function isPxValue(value) {
-      return /^[0-9\.]+px$/.test(value);
-    }
-    width = img.style.width;
-    height = img.style.height;
-    if (width || height) {
-      if (isPxValue(width) && isPxValue(height)) {
-        return {
-          w: parseInt(width, 10),
-          h: parseInt(height, 10)
-        };
-      }
-      return null;
-    }
-    width = img.width;
-    height = img.height;
-    if (width && height) {
-      return {
-        w: parseInt(width, 10),
-        h: parseInt(height, 10)
-      };
-    }
-    return null;
-  }
-  function setImageSize(img, size) {
-    var width, height;
-    if (size) {
-      width = img.style.width;
-      height = img.style.height;
-      if (width || height) {
-        img.style.width = size.w + 'px';
-        img.style.height = size.h + 'px';
-        img.removeAttribute('data-mce-style');
-      }
-      width = img.width;
-      height = img.height;
-      if (width || height) {
-        img.setAttribute('width', size.w);
-        img.setAttribute('height', size.h);
-      }
-    }
-  }
-  function getNaturalImageSize(img) {
-    return {
-      w: img.naturalWidth,
-      h: img.naturalHeight
-    };
-  }
-  var $_8imxajd4jd08mctp = {
-    getImageSize: getImageSize,
-    setImageSize: setImageSize,
-    getNaturalImageSize: getNaturalImageSize
-  };
-
-  var rawIndexOf = function () {
-    var pIndexOf = Array.prototype.indexOf;
-    var fastIndex = function (xs, x) {
-      return pIndexOf.call(xs, x);
-    };
-    var slowIndex = function (xs, x) {
-      return slowIndexOf(xs, x);
-    };
-    return pIndexOf === undefined ? slowIndex : fastIndex;
-  }();
-  var indexOf = function (xs, x) {
-    var r = rawIndexOf(xs, x);
-    return r === -1 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(r);
-  };
-  var contains = function (xs, x) {
-    return rawIndexOf(xs, x) > -1;
-  };
-  var exists = function (xs, pred) {
-    return findIndex(xs, pred).isSome();
-  };
-  var range = function (num, f) {
-    var r = [];
-    for (var i = 0; i < num; i++) {
-      r.push(f(i));
-    }
-    return r;
-  };
-  var chunk = function (array, size) {
-    var r = [];
-    for (var i = 0; i < array.length; i += size) {
-      var s = array.slice(i, i + size);
-      r.push(s);
-    }
-    return r;
-  };
-  var map = function (xs, f) {
-    var len = xs.length;
-    var r = new Array(len);
-    for (var i = 0; i < len; i++) {
-      var x = xs[i];
-      r[i] = f(x, i, xs);
-    }
-    return r;
-  };
-  var each = function (xs, f) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var eachr = function (xs, f) {
-    for (var i = xs.length - 1; i >= 0; i--) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var partition = function (xs, pred) {
-    var pass = [];
-    var fail = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      var arr = pred(x, i, xs) ? pass : fail;
-      arr.push(x);
-    }
-    return {
-      pass: pass,
-      fail: fail
-    };
-  };
-  var filter = function (xs, pred) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        r.push(x);
-      }
-    }
-    return r;
-  };
-  var groupBy = function (xs, f) {
-    if (xs.length === 0) {
-      return [];
-    } else {
-      var wasType = f(xs[0]);
-      var r = [];
-      var group = [];
-      for (var i = 0, len = xs.length; i < len; i++) {
-        var x = xs[i];
-        var type = f(x);
-        if (type !== wasType) {
-          r.push(group);
-          group = [];
-        }
-        wasType = type;
-        group.push(x);
-      }
-      if (group.length !== 0) {
-        r.push(group);
-      }
-      return r;
-    }
-  };
-  var foldr = function (xs, f, acc) {
-    eachr(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
-  var foldl = function (xs, f, acc) {
-    each(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
-  var find = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        return $_7ah24ocjjd08mcs9.some(x);
-      }
-    }
-    return $_7ah24ocjjd08mcs9.none();
-  };
-  var findIndex = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        return $_7ah24ocjjd08mcs9.some(i);
-      }
-    }
-    return $_7ah24ocjjd08mcs9.none();
-  };
-  var slowIndexOf = function (xs, x) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (xs[i] === x) {
-        return i;
-      }
-    }
-    return -1;
-  };
-  var push = Array.prototype.push;
-  var flatten = function (xs) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (!Array.prototype.isPrototypeOf(xs[i]))
-        throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
-      push.apply(r, xs[i]);
-    }
-    return r;
-  };
-  var bind = function (xs, f) {
-    var output = map(xs, f);
-    return flatten(output);
-  };
-  var forall = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      var x = xs[i];
-      if (pred(x, i, xs) !== true) {
-        return false;
-      }
-    }
-    return true;
-  };
-  var equal = function (a1, a2) {
-    return a1.length === a2.length && forall(a1, function (x, i) {
-      return x === a2[i];
-    });
-  };
-  var slice = Array.prototype.slice;
-  var reverse = function (xs) {
-    var r = slice.call(xs, 0);
-    r.reverse();
-    return r;
-  };
-  var difference = function (a1, a2) {
-    return filter(a1, function (x) {
-      return !contains(a2, x);
-    });
-  };
-  var mapToObject = function (xs, f) {
-    var r = {};
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      r[String(x)] = f(x, i);
-    }
-    return r;
-  };
-  var pure = function (x) {
-    return [x];
-  };
-  var sort = function (xs, comparator) {
-    var copy = slice.call(xs, 0);
-    copy.sort(comparator);
-    return copy;
-  };
-  var head = function (xs) {
-    return xs.length === 0 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(xs[0]);
-  };
-  var last = function (xs) {
-    return xs.length === 0 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(xs[xs.length - 1]);
-  };
-  var $_dbu383d7jd08mctx = {
-    map: map,
-    each: each,
-    eachr: eachr,
-    partition: partition,
-    filter: filter,
-    groupBy: groupBy,
-    indexOf: indexOf,
-    foldr: foldr,
-    foldl: foldl,
-    find: find,
-    findIndex: findIndex,
-    flatten: flatten,
-    bind: bind,
-    forall: forall,
-    exists: exists,
-    contains: contains,
-    equal: equal,
-    reverse: reverse,
-    chunk: chunk,
-    difference: difference,
-    mapToObject: mapToObject,
-    pure: pure,
-    sort: sort,
-    range: range,
-    head: head,
-    last: last
-  };
-
-  function XMLHttpRequest$1 () {
-    var f = $_2wyswxcmjd08mcsf.getOrDie('XMLHttpRequest');
-    return new f();
-  }
-
-  var isValue = function (obj) {
-    return obj !== null && obj !== undefined;
-  };
-  var traverse = function (json, path) {
-    var value;
-    value = path.reduce(function (result, key) {
-      return isValue(result) ? result[key] : undefined;
-    }, json);
-    return isValue(value) ? value : null;
-  };
-  var requestUrlAsBlob = function (url, headers) {
-    return new Promise$1(function (resolve) {
-      var xhr;
-      xhr = new XMLHttpRequest$1();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          resolve({
-            status: xhr.status,
-            blob: this.response
-          });
-        }
-      };
-      xhr.open('GET', url, true);
-      Tools.each(headers, function (value, key) {
-        xhr.setRequestHeader(key, value);
-      });
-      xhr.responseType = 'blob';
-      xhr.send();
-    });
-  };
-  var readBlob = function (blob) {
-    return new Promise$1(function (resolve) {
-      var fr = new FileReader();
-      fr.onload = function (e) {
-        var data = e.target;
-        resolve(data.result);
-      };
-      fr.readAsText(blob);
-    });
-  };
-  var parseJson = function (text) {
-    var json;
-    try {
-      json = JSON.parse(text);
-    } catch (ex) {
-    }
-    return json;
-  };
-  var $_a8xo06d8jd08mcu5 = {
-    traverse: traverse,
-    readBlob: readBlob,
-    requestUrlAsBlob: requestUrlAsBlob,
-    parseJson: parseJson
-  };
-
-  var friendlyHttpErrors = [
-    {
-      code: 404,
-      message: 'Could not find Image Proxy'
-    },
-    {
-      code: 403,
-      message: 'Rejected request'
-    },
-    {
-      code: 0,
-      message: 'Incorrect Image Proxy URL'
-    }
-  ];
-  var friendlyServiceErrors = [
-    {
-      type: 'key_missing',
-      message: 'The request did not include an api key.'
-    },
-    {
-      type: 'key_not_found',
-      message: 'The provided api key could not be found.'
-    },
-    {
-      type: 'domain_not_trusted',
-      message: 'The api key is not valid for the request origins.'
-    }
-  ];
-  var isServiceErrorCode = function (code) {
-    return code === 400 || code === 403 || code === 500;
-  };
-  var getHttpErrorMsg = function (status) {
-    var message = $_dbu383d7jd08mctx.find(friendlyHttpErrors, function (error) {
-      return status === error.code;
-    }).fold($_b2v6wackjd08mcsc.constant('Unknown ImageProxy error'), function (error) {
-      return error.message;
-    });
-    return 'ImageProxy HTTP error: ' + message;
-  };
-  var handleHttpError = function (status) {
-    var message = getHttpErrorMsg(status);
-    return Promise$1.reject(message);
-  };
-  var getServiceErrorMsg = function (type) {
-    return $_dbu383d7jd08mctx.find(friendlyServiceErrors, function (error) {
-      return error.type === type;
-    }).fold($_b2v6wackjd08mcsc.constant('Unknown service error'), function (error) {
-      return error.message;
-    });
-  };
-  var getServiceError = function (text) {
-    var serviceError = $_a8xo06d8jd08mcu5.parseJson(text);
-    var errorType = $_a8xo06d8jd08mcu5.traverse(serviceError, [
-      'error',
-      'type'
-    ]);
-    var errorMsg = errorType ? getServiceErrorMsg(errorType) : 'Invalid JSON in service error message';
-    return 'ImageProxy Service error: ' + errorMsg;
-  };
-  var handleServiceError = function (status, blob) {
-    return $_a8xo06d8jd08mcu5.readBlob(blob).then(function (text) {
-      var serviceError = getServiceError(text);
-      return Promise$1.reject(serviceError);
-    });
-  };
-  var handleServiceErrorResponse = function (status, blob) {
-    return isServiceErrorCode(status) ? handleServiceError(status, blob) : handleHttpError(status);
-  };
-  var $_92gpfsd6jd08mctt = {
-    handleServiceErrorResponse: handleServiceErrorResponse,
-    handleHttpError: handleHttpError,
-    getHttpErrorMsg: getHttpErrorMsg,
-    getServiceErrorMsg: getServiceErrorMsg
-  };
-
-  var appendApiKey = function (url, apiKey) {
-    var separator = url.indexOf('?') === -1 ? '?' : '&';
-    if (/[?&]apiKey=/.test(url) || !apiKey) {
-      return url;
-    } else {
-      return url + separator + 'apiKey=' + encodeURIComponent(apiKey);
-    }
-  };
-  var requestServiceBlob = function (url, apiKey) {
-    return $_a8xo06d8jd08mcu5.requestUrlAsBlob(appendApiKey(url, apiKey), {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'tiny-api-key': apiKey
-    }).then(function (result) {
-      return result.status < 200 || result.status >= 300 ? $_92gpfsd6jd08mctt.handleServiceErrorResponse(result.status, result.blob) : Promise$1.resolve(result.blob);
-    });
-  };
-  function requestBlob(url) {
-    return $_a8xo06d8jd08mcu5.requestUrlAsBlob(url, {}).then(function (result) {
-      return result.status < 200 || result.status >= 300 ? $_92gpfsd6jd08mctt.handleHttpError(result.status) : Promise$1.resolve(result.blob);
-    });
-  }
-  var getUrl = function (url, apiKey) {
-    return apiKey ? requestServiceBlob(url, apiKey) : requestBlob(url);
-  };
-  var $_a3pgqwd5jd08mctr = { getUrl: getUrl };
 
   var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
@@ -2076,6 +1945,33 @@ var imagetools = (function () {
       canRedo: canRedo
     };
   }
+<<<<<<< HEAD
+  var $_8imxajd4jd08mctp = {
+    getImageSize: getImageSize,
+    setImageSize: setImageSize,
+    getNaturalImageSize: getNaturalImageSize
+  };
+
+  var rawIndexOf = function () {
+    var pIndexOf = Array.prototype.indexOf;
+    var fastIndex = function (xs, x) {
+      return pIndexOf.call(xs, x);
+    };
+    var slowIndex = function (xs, x) {
+      return slowIndexOf(xs, x);
+    };
+    return pIndexOf === undefined ? slowIndex : fastIndex;
+  }();
+  var indexOf = function (xs, x) {
+    var r = rawIndexOf(xs, x);
+    return r === -1 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(r);
+  };
+  var contains = function (xs, x) {
+    return rawIndexOf(xs, x) > -1;
+  };
+  var exists = function (xs, pred) {
+    return findIndex(xs, pred).isSome();
+=======
 
   var Rect = tinymce.util.Tools.resolve('tinymce.geom.Rect');
 
@@ -2091,8 +1987,9 @@ var imagetools = (function () {
         image.addEventListener('load', loaded);
       }
     });
+>>>>>>> installer
   };
-  var $_dmqmn6dgjd08mcuw = { loadImage: loadImage$1 };
+  var $_c5ey3ndjjducwr6b = { loadImage: loadImage$1 };
 
   var DomQuery = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
 
@@ -2332,6 +2229,44 @@ var imagetools = (function () {
       });
       updateElementRect('move', rect);
     }
+<<<<<<< HEAD
+  };
+  var foldr = function (xs, f, acc) {
+    eachr(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
+  var foldl = function (xs, f, acc) {
+    each(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
+  var find = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        return $_7ah24ocjjd08mcs9.some(x);
+      }
+    }
+    return $_7ah24ocjjd08mcs9.none();
+  };
+  var findIndex = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        return $_7ah24ocjjd08mcs9.some(i);
+      }
+    }
+    return $_7ah24ocjjd08mcs9.none();
+  };
+  var slowIndexOf = function (xs, x) {
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      if (xs[i] === x) {
+        return i;
+      }
+=======
     function setRect(rect) {
       currentRect = rect;
       repaint(currentRect);
@@ -2342,6 +2277,7 @@ var imagetools = (function () {
     }
     function setInnerRect(rect) {
       setRect(getAbsoluteRect(clampRect, rect));
+>>>>>>> installer
     }
     function setClampRect(rect) {
       clampRect = rect;
@@ -2353,6 +2289,81 @@ var imagetools = (function () {
       });
       dragHelpers = [];
     }
+<<<<<<< HEAD
+    return true;
+  };
+  var equal = function (a1, a2) {
+    return a1.length === a2.length && forall(a1, function (x, i) {
+      return x === a2[i];
+    });
+  };
+  var slice = Array.prototype.slice;
+  var reverse = function (xs) {
+    var r = slice.call(xs, 0);
+    r.reverse();
+    return r;
+  };
+  var difference = function (a1, a2) {
+    return filter(a1, function (x) {
+      return !contains(a2, x);
+    });
+  };
+  var mapToObject = function (xs, f) {
+    var r = {};
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      r[String(x)] = f(x, i);
+    }
+    return r;
+  };
+  var pure = function (x) {
+    return [x];
+  };
+  var sort = function (xs, comparator) {
+    var copy = slice.call(xs, 0);
+    copy.sort(comparator);
+    return copy;
+  };
+  var head = function (xs) {
+    return xs.length === 0 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? $_7ah24ocjjd08mcs9.none() : $_7ah24ocjjd08mcs9.some(xs[xs.length - 1]);
+  };
+  var $_dbu383d7jd08mctx = {
+    map: map,
+    each: each,
+    eachr: eachr,
+    partition: partition,
+    filter: filter,
+    groupBy: groupBy,
+    indexOf: indexOf,
+    foldr: foldr,
+    foldl: foldl,
+    find: find,
+    findIndex: findIndex,
+    flatten: flatten,
+    bind: bind,
+    forall: forall,
+    exists: exists,
+    contains: contains,
+    equal: equal,
+    reverse: reverse,
+    chunk: chunk,
+    difference: difference,
+    mapToObject: mapToObject,
+    pure: pure,
+    sort: sort,
+    range: range,
+    head: head,
+    last: last
+  };
+
+  function XMLHttpRequest$1 () {
+    var f = $_2wyswxcmjd08mcsf.getOrDie('XMLHttpRequest');
+    return new f();
+  }
+=======
     render();
     instance = Tools.extend({
       toggleVisibility: toggleVisibility,
@@ -2390,7 +2401,7 @@ var imagetools = (function () {
       imageSrc: function (url) {
         var self = this, img = new Image();
         img.src = url;
-        $_dmqmn6dgjd08mcuw.loadImage(img).then(function () {
+        $_c5ey3ndjjducwr6b.loadImage(img).then(function () {
           var rect, $img;
           var lastRect = self.state.get('viewRect');
           $img = self.$el.find('img');
@@ -2526,17 +2537,18 @@ var imagetools = (function () {
     });
     return new ImagePanel(settings);
   };
-  var $_2fsrm6dejd08mcur = { create: create$2 };
+  var $_2gvfytdhjducwr64 = { create: create$2 };
+>>>>>>> installer
 
   function createState(blob) {
     return {
       blob: blob,
-      url: $_3i2p7sczjd08mctf.createObjectURL(blob)
+      url: $_8h1aqxd8jducwr5c.createObjectURL(blob)
     };
   }
   function destroyState(state) {
     if (state) {
-      $_3i2p7sczjd08mctf.revokeObjectURL(state.url);
+      $_8h1aqxd8jducwr5c.revokeObjectURL(state.url);
     }
   }
   function destroyStates(states) {
@@ -2606,8 +2618,8 @@ var imagetools = (function () {
     }
     function crop() {
       var rect = imagePanel.selection();
-      $_1wkopvcyjd08mcte.blobToImageResult(currentState.blob).then(function (ir) {
-        $_c34z08csjd08mcso.crop(ir, rect.x, rect.y, rect.w, rect.h).then(imageResultToBlob).then(function (blob) {
+      $_a2nzwvd7jducwr5a.blobToImageResult(currentState.blob).then(function (ir) {
+        $_9tpokfd1jducwr4b.crop(ir, rect.x, rect.y, rect.w, rect.h).then(imageResultToBlob).then(function (blob) {
           addBlobState(blob);
           cancel();
         });
@@ -2617,7 +2629,7 @@ var imagetools = (function () {
       var args = [].slice.call(arguments, 1);
       return function () {
         var state = tempState || currentState;
-        $_1wkopvcyjd08mcte.blobToImageResult(state.blob).then(function (ir) {
+        $_a2nzwvd7jducwr5a.blobToImageResult(state.blob).then(function (ir) {
           fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addTempState);
         });
       };
@@ -2629,16 +2641,40 @@ var imagetools = (function () {
       }
       var args = [].slice.call(arguments, 1);
       return function () {
-        $_1wkopvcyjd08mcte.blobToImageResult(currentState.blob).then(function (ir) {
+        $_a2nzwvd7jducwr5a.blobToImageResult(currentState.blob).then(function (ir) {
           fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addBlobState);
         });
       };
     }
+<<<<<<< HEAD
+    return json;
+  };
+  var $_a8xo06d8jd08mcu5 = {
+    traverse: traverse,
+    readBlob: readBlob,
+    requestUrlAsBlob: requestUrlAsBlob,
+    parseJson: parseJson
+  };
+
+  var friendlyHttpErrors = [
+    {
+      code: 404,
+      message: 'Could not find Image Proxy'
+    },
+    {
+      code: 403,
+      message: 'Rejected request'
+    },
+    {
+      code: 0,
+      message: 'Incorrect Image Proxy URL'
+=======
     function cancel() {
       displayState(currentState);
       destroyState(tempState);
       switchPanel(mainPanel)();
       updateButtonUndoStates();
+>>>>>>> installer
     }
     function waitForTempState(times, applyCall) {
       if (tempState) {
@@ -2653,6 +2689,97 @@ var imagetools = (function () {
         }, 10);
       }
     }
+<<<<<<< HEAD
+  ];
+  var isServiceErrorCode = function (code) {
+    return code === 400 || code === 403 || code === 500;
+  };
+  var getHttpErrorMsg = function (status) {
+    var message = $_dbu383d7jd08mctx.find(friendlyHttpErrors, function (error) {
+      return status === error.code;
+    }).fold($_b2v6wackjd08mcsc.constant('Unknown ImageProxy error'), function (error) {
+      return error.message;
+    });
+    return 'ImageProxy HTTP error: ' + message;
+  };
+  var handleHttpError = function (status) {
+    var message = getHttpErrorMsg(status);
+    return Promise$1.reject(message);
+  };
+  var getServiceErrorMsg = function (type) {
+    return $_dbu383d7jd08mctx.find(friendlyServiceErrors, function (error) {
+      return error.type === type;
+    }).fold($_b2v6wackjd08mcsc.constant('Unknown service error'), function (error) {
+      return error.message;
+    });
+  };
+  var getServiceError = function (text) {
+    var serviceError = $_a8xo06d8jd08mcu5.parseJson(text);
+    var errorType = $_a8xo06d8jd08mcu5.traverse(serviceError, [
+      'error',
+      'type'
+    ]);
+    var errorMsg = errorType ? getServiceErrorMsg(errorType) : 'Invalid JSON in service error message';
+    return 'ImageProxy Service error: ' + errorMsg;
+  };
+  var handleServiceError = function (status, blob) {
+    return $_a8xo06d8jd08mcu5.readBlob(blob).then(function (text) {
+      var serviceError = getServiceError(text);
+      return Promise$1.reject(serviceError);
+    });
+  };
+  var handleServiceErrorResponse = function (status, blob) {
+    return isServiceErrorCode(status) ? handleServiceError(status, blob) : handleHttpError(status);
+  };
+  var $_92gpfsd6jd08mctt = {
+    handleServiceErrorResponse: handleServiceErrorResponse,
+    handleHttpError: handleHttpError,
+    getHttpErrorMsg: getHttpErrorMsg,
+    getServiceErrorMsg: getServiceErrorMsg
+  };
+
+  var appendApiKey = function (url, apiKey) {
+    var separator = url.indexOf('?') === -1 ? '?' : '&';
+    if (/[?&]apiKey=/.test(url) || !apiKey) {
+      return url;
+    } else {
+      return url + separator + 'apiKey=' + encodeURIComponent(apiKey);
+    }
+  };
+  var requestServiceBlob = function (url, apiKey) {
+    return $_a8xo06d8jd08mcu5.requestUrlAsBlob(appendApiKey(url, apiKey), {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'tiny-api-key': apiKey
+    }).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_92gpfsd6jd08mctt.handleServiceErrorResponse(result.status, result.blob) : Promise$1.resolve(result.blob);
+    });
+  };
+  function requestBlob(url) {
+    return $_a8xo06d8jd08mcu5.requestUrlAsBlob(url, {}).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_92gpfsd6jd08mctt.handleHttpError(result.status) : Promise$1.resolve(result.blob);
+    });
+  }
+  var getUrl = function (url, apiKey) {
+    return apiKey ? requestServiceBlob(url, apiKey) : requestBlob(url);
+  };
+  var $_a3pgqwd5jd08mctr = { getUrl: getUrl };
+
+  var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+
+  var Factory = tinymce.util.Tools.resolve('tinymce.ui.Factory');
+
+  function UndoStack () {
+    var data = [];
+    var index = -1;
+    function add(state) {
+      var removed;
+      removed = data.splice(++index);
+      data.push(state);
+      return {
+        state: state,
+        removed: removed
+      };
+=======
     function applyTempState() {
       if (tempState) {
         addBlobState(tempState.blob);
@@ -2708,6 +2835,850 @@ var imagetools = (function () {
         items: items
       });
     }
+    var imageResultToBlob = function (ir) {
+      return ir.toBlob();
+    };
+    function createFilterPanel(title, filter) {
+      return createPanel(reverseIfRtl([
+        {
+          text: 'Back',
+          onclick: cancel
+        },
+        {
+          type: 'spacer',
+          flex: 1
+        },
+        {
+          text: 'Apply',
+          subtype: 'primary',
+          onclick: applyTempState
+        }
+      ])).hide().on('show', function () {
+        disableUndoRedo();
+        $_a2nzwvd7jducwr5a.blobToImageResult(currentState.blob).then(function (ir) {
+          return filter(ir);
+        }).then(imageResultToBlob).then(function (blob) {
+          var newTempState = createState(blob);
+          displayState(newTempState);
+          destroyState(tempState);
+          tempState = newTempState;
+        });
+      });
+>>>>>>> installer
+    }
+    function createVariableFilterPanel(title, filter, value, min, max) {
+      function update(value) {
+        $_a2nzwvd7jducwr5a.blobToImageResult(currentState.blob).then(function (ir) {
+          return filter(ir, value);
+        }).then(imageResultToBlob).then(function (blob) {
+          var newTempState = createState(blob);
+          displayState(newTempState);
+          destroyState(tempState);
+          tempState = newTempState;
+        });
+      }
+      return createPanel(reverseIfRtl([
+        {
+          text: 'Back',
+          onclick: cancel
+        },
+        {
+          type: 'spacer',
+          flex: 1
+        },
+        {
+          type: 'slider',
+          flex: 1,
+          ondragend: function (e) {
+            update(e.value);
+          },
+          minValue: editor.rtl ? max : min,
+          maxValue: editor.rtl ? min : max,
+          value: value,
+          previewFilter: floatToPercent
+        },
+        {
+          type: 'spacer',
+          flex: 1
+        },
+        {
+          text: 'Apply',
+          subtype: 'primary',
+          onclick: applyTempState
+        }
+      ])).hide().on('show', function () {
+        this.find('slider').value(value);
+        disableUndoRedo();
+      });
+    }
+    function createRgbFilterPanel(title, filter) {
+      function update() {
+        var r, g, b;
+        r = win.find('#r')[0].value();
+        g = win.find('#g')[0].value();
+        b = win.find('#b')[0].value();
+        $_a2nzwvd7jducwr5a.blobToImageResult(currentState.blob).then(function (ir) {
+          return filter(ir, r, g, b);
+        }).then(imageResultToBlob).then(function (blob) {
+          var newTempState = createState(blob);
+          displayState(newTempState);
+          destroyState(tempState);
+          tempState = newTempState;
+        });
+      }
+      var min = editor.rtl ? 2 : 0;
+      var max = editor.rtl ? 0 : 2;
+      return createPanel(reverseIfRtl([
+        {
+          text: 'Back',
+          onclick: cancel
+        },
+        {
+          type: 'spacer',
+          flex: 1
+        },
+        {
+          type: 'slider',
+          label: 'R',
+          name: 'r',
+          minValue: min,
+          value: 1,
+          maxValue: max,
+          ondragend: update,
+          previewFilter: floatToPercent
+        },
+        {
+          type: 'slider',
+          label: 'G',
+          name: 'g',
+          minValue: min,
+          value: 1,
+          maxValue: max,
+          ondragend: update,
+          previewFilter: floatToPercent
+        },
+        {
+          type: 'slider',
+          label: 'B',
+          name: 'b',
+          minValue: min,
+          value: 1,
+          maxValue: max,
+          ondragend: update,
+          previewFilter: floatToPercent
+        },
+        {
+          type: 'spacer',
+          flex: 1
+        },
+        {
+          text: 'Apply',
+          subtype: 'primary',
+          onclick: applyTempState
+        }
+      ])).hide().on('show', function () {
+        win.find('#r,#g,#b').value(1);
+        disableUndoRedo();
+      });
+    }
+    cropPanel = createPanel(reverseIfRtl([
+      {
+        text: 'Back',
+        onclick: cancel
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        text: 'Apply',
+        subtype: 'primary',
+        onclick: crop
+      }
+    ])).hide().on('show hide', function (e) {
+      imagePanel.toggleCropRect(e.type === 'show');
+    }).on('show', disableUndoRedo);
+    function toggleConstrain(e) {
+      if (e.control.value() === true) {
+        ratioW = height / width;
+        ratioH = width / height;
+      }
+    }
+<<<<<<< HEAD
+    return {
+      data: data,
+      add: add,
+      undo: undo,
+      redo: redo,
+      canUndo: canUndo,
+      canRedo: canRedo
+    };
+  }
+
+  var Rect = tinymce.util.Tools.resolve('tinymce.geom.Rect');
+
+  var loadImage$1 = function (image) {
+    return new Promise$1(function (resolve) {
+      var loaded = function () {
+        image.removeEventListener('load', loaded);
+        resolve(image);
+      };
+      if (image.complete) {
+        resolve(image);
+      } else {
+        image.addEventListener('load', loaded);
+      }
+    });
+  };
+  var $_dmqmn6dgjd08mcuw = { loadImage: loadImage$1 };
+
+  var DomQuery = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
+
+  var Observable = tinymce.util.Tools.resolve('tinymce.util.Observable');
+
+  var VK = tinymce.util.Tools.resolve('tinymce.util.VK');
+
+  var count = 0;
+  function CropRect (currentRect, viewPortRect, clampRect, containerElm, action) {
+    var instance;
+    var handles;
+    var dragHelpers;
+    var blockers;
+    var prefix = 'mce-';
+    var id = prefix + 'crid-' + count++;
+    handles = [
+=======
+    resizePanel = createPanel(reverseIfRtl([
+      {
+        text: 'Back',
+        onclick: cancel
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        type: 'textbox',
+        name: 'w',
+        label: 'Width',
+        size: 4,
+        onkeyup: recalcSize
+      },
+      {
+        type: 'textbox',
+        name: 'h',
+        label: 'Height',
+        size: 4,
+        onkeyup: recalcSize
+      },
+      {
+        type: 'checkbox',
+        name: 'constrain',
+        text: 'Constrain proportions',
+        checked: true,
+        onchange: toggleConstrain
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        text: 'Apply',
+        subtype: 'primary',
+        onclick: 'submit'
+      }
+    ])).hide().on('submit', function (e) {
+      var width = parseInt(win.find('#w').value(), 10), height = parseInt(win.find('#h').value(), 10);
+      e.preventDefault();
+      action($_9tpokfd1jducwr4b.resize, width, height)();
+      cancel();
+    }).on('show', disableUndoRedo);
+    flipRotatePanel = createPanel(reverseIfRtl([
+>>>>>>> installer
+      {
+        text: 'Back',
+        onclick: cancel
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        icon: 'fliph',
+        tooltip: 'Flip horizontally',
+        onclick: tempAction($_9tpokfd1jducwr4b.flip, 'h')
+      },
+      {
+        icon: 'flipv',
+        tooltip: 'Flip vertically',
+        onclick: tempAction($_9tpokfd1jducwr4b.flip, 'v')
+      },
+      {
+        icon: 'rotateleft',
+        tooltip: 'Rotate counterclockwise',
+        onclick: tempAction($_9tpokfd1jducwr4b.rotate, -90)
+      },
+      {
+        icon: 'rotateright',
+        tooltip: 'Rotate clockwise',
+        onclick: tempAction($_9tpokfd1jducwr4b.rotate, 90)
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        text: 'Apply',
+        subtype: 'primary',
+        onclick: applyTempState
+      }
+<<<<<<< HEAD
+      Tools.each(handles, function (handle) {
+        DomQuery('#' + id + '-' + handle.name, containerElm).css({
+          left: rect.w * handle.xMul + rect.x,
+          top: rect.h * handle.yMul + rect.y
+        });
+      });
+      updateElementRect('top', {
+        x: viewPortRect.x,
+        y: viewPortRect.y,
+        w: viewPortRect.w,
+        h: rect.y - viewPortRect.y
+      });
+      updateElementRect('right', {
+        x: rect.x + rect.w,
+        y: rect.y,
+        w: viewPortRect.w - rect.x - rect.w + viewPortRect.x,
+        h: rect.h
+      });
+      updateElementRect('bottom', {
+        x: viewPortRect.x,
+        y: rect.y + rect.h,
+        w: viewPortRect.w,
+        h: viewPortRect.h - rect.y - rect.h + viewPortRect.y
+      });
+      updateElementRect('left', {
+        x: viewPortRect.x,
+        y: rect.y,
+        w: rect.x - viewPortRect.x,
+        h: rect.h
+      });
+      updateElementRect('move', rect);
+    }
+    function setRect(rect) {
+      currentRect = rect;
+      repaint(currentRect);
+    }
+    function setViewPortRect(rect) {
+      viewPortRect = rect;
+      repaint(currentRect);
+    }
+    function setInnerRect(rect) {
+      setRect(getAbsoluteRect(clampRect, rect));
+    }
+    function setClampRect(rect) {
+      clampRect = rect;
+      repaint(currentRect);
+    }
+    function destroy() {
+      Tools.each(dragHelpers, function (helper) {
+        helper.destroy();
+      });
+      dragHelpers = [];
+    }
+    render();
+    instance = Tools.extend({
+      toggleVisibility: toggleVisibility,
+      setClampRect: setClampRect,
+      setRect: setRect,
+      getInnerRect: getInnerRect,
+      setInnerRect: setInnerRect,
+      setViewPortRect: setViewPortRect,
+      destroy: destroy
+    }, Observable);
+    return instance;
+  }
+
+  var create$2 = function (settings) {
+    var Control = Factory.get('Control');
+    var ImagePanel = Control.extend({
+      Defaults: { classes: 'imagepanel' },
+      selection: function (rect) {
+        if (arguments.length) {
+          this.state.set('rect', rect);
+          return this;
+        }
+        return this.state.get('rect');
+=======
+    ])).hide().on('show', disableUndoRedo);
+    invertPanel = createFilterPanel('Invert', $_9tpokfd1jducwr4b.invert);
+    sharpenPanel = createFilterPanel('Sharpen', $_9tpokfd1jducwr4b.sharpen);
+    embossPanel = createFilterPanel('Emboss', $_9tpokfd1jducwr4b.emboss);
+    brightnessPanel = createVariableFilterPanel('Brightness', $_9tpokfd1jducwr4b.brightness, 0, -1, 1);
+    huePanel = createVariableFilterPanel('Hue', $_9tpokfd1jducwr4b.hue, 180, 0, 360);
+    saturatePanel = createVariableFilterPanel('Saturate', $_9tpokfd1jducwr4b.saturate, 0, -1, 1);
+    contrastPanel = createVariableFilterPanel('Contrast', $_9tpokfd1jducwr4b.contrast, 0, -1, 1);
+    grayscalePanel = createVariableFilterPanel('Grayscale', $_9tpokfd1jducwr4b.grayscale, 0, 0, 1);
+    sepiaPanel = createVariableFilterPanel('Sepia', $_9tpokfd1jducwr4b.sepia, 0, 0, 1);
+    colorizePanel = createRgbFilterPanel('Colorize', $_9tpokfd1jducwr4b.colorize);
+    gammaPanel = createVariableFilterPanel('Gamma', $_9tpokfd1jducwr4b.gamma, 0, -1, 1);
+    exposurePanel = createVariableFilterPanel('Exposure', $_9tpokfd1jducwr4b.exposure, 1, 0, 2);
+    filtersPanel = createPanel(reverseIfRtl([
+      {
+        text: 'Back',
+        onclick: cancel
+>>>>>>> installer
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      },
+      {
+        text: 'hue',
+        icon: 'hue',
+        onclick: switchPanel(huePanel)
+      },
+<<<<<<< HEAD
+      imageSrc: function (url) {
+        var self = this, img = new Image();
+        img.src = url;
+        $_dmqmn6dgjd08mcuw.loadImage(img).then(function () {
+          var rect, $img;
+          var lastRect = self.state.get('viewRect');
+          $img = self.$el.find('img');
+          if ($img[0]) {
+            $img.replaceWith(img);
+          } else {
+            var bg = document.createElement('div');
+            bg.className = 'mce-imagepanel-bg';
+            self.getEl().appendChild(bg);
+            self.getEl().appendChild(img);
+          }
+          rect = {
+            x: 0,
+            y: 0,
+            w: img.naturalWidth,
+            h: img.naturalHeight
+          };
+          self.state.set('viewRect', rect);
+          self.state.set('rect', Rect.inflate(rect, -20, -20));
+          if (!lastRect || lastRect.w !== rect.w || lastRect.h !== rect.h) {
+            self.zoomFit();
+          }
+          self.repaintImage();
+          self.fire('load');
+        });
+=======
+      {
+        text: 'saturate',
+        icon: 'saturate',
+        onclick: switchPanel(saturatePanel)
+>>>>>>> installer
+      },
+      {
+        text: 'sepia',
+        icon: 'sepia',
+        onclick: switchPanel(sepiaPanel)
+      },
+      {
+        text: 'emboss',
+        icon: 'emboss',
+        onclick: switchPanel(embossPanel)
+      },
+      {
+        text: 'exposure',
+        icon: 'exposure',
+        onclick: switchPanel(exposurePanel)
+      },
+      {
+        type: 'spacer',
+        flex: 1
+      }
+    ])).hide();
+    mainPanel = createPanel(reverseIfRtl([
+      {
+        tooltip: 'Crop',
+        icon: 'crop',
+        onclick: switchPanel(cropPanel)
+      },
+      {
+        tooltip: 'Resize',
+        icon: 'resize2',
+        onclick: switchPanel(resizePanel)
+      },
+      {
+        tooltip: 'Orientation',
+        icon: 'orientation',
+        onclick: switchPanel(flipRotatePanel)
+      },
+      {
+        tooltip: 'Brightness',
+        icon: 'sun',
+        onclick: switchPanel(brightnessPanel)
+      },
+      {
+        tooltip: 'Sharpen',
+        icon: 'sharpen',
+        onclick: switchPanel(sharpenPanel)
+      },
+      {
+        tooltip: 'Contrast',
+        icon: 'contrast',
+        onclick: switchPanel(contrastPanel)
+      },
+      {
+        tooltip: 'Color levels',
+        icon: 'drop',
+        onclick: switchPanel(colorizePanel)
+      },
+      {
+        tooltip: 'Gamma',
+        icon: 'gamma',
+        onclick: switchPanel(gammaPanel)
+      },
+      {
+        tooltip: 'Invert',
+        icon: 'invert',
+        onclick: switchPanel(invertPanel)
+      }
+    ]));
+    imagePanel = $_2gvfytdhjducwr64.create({
+      flex: 1,
+      imageSrc: currentState.url
+    });
+    sidePanel = Factory.create('Container', {
+      layout: 'flex',
+      direction: 'column',
+      pack: 'start',
+      border: '0 1 0 0',
+      padding: 5,
+      spacing: 5,
+      items: [
+        {
+          type: 'button',
+          icon: 'undo',
+          tooltip: 'Undo',
+          name: 'undo',
+          onclick: undo
+        },
+        {
+          type: 'button',
+          icon: 'redo',
+          tooltip: 'Redo',
+          name: 'redo',
+          onclick: redo
+        },
+        {
+          type: 'button',
+          icon: 'zoomin',
+          tooltip: 'Zoom in',
+          onclick: zoomIn
+        },
+        {
+          type: 'button',
+          icon: 'zoomout',
+          tooltip: 'Zoom out',
+          onclick: zoomOut
+        }
+      ]
+    });
+    mainViewContainer = Factory.create('Container', {
+      type: 'container',
+      layout: 'flex',
+      direction: 'row',
+      align: 'stretch',
+      flex: 1,
+      items: reverseIfRtl([
+        sidePanel,
+        imagePanel
+      ])
+    });
+    panels = [
+      mainPanel,
+      cropPanel,
+      resizePanel,
+      flipRotatePanel,
+      filtersPanel,
+      invertPanel,
+      brightnessPanel,
+      huePanel,
+      saturatePanel,
+      contrastPanel,
+      grayscalePanel,
+      sepiaPanel,
+      colorizePanel,
+      sharpenPanel,
+      embossPanel,
+      gammaPanel,
+      exposurePanel
+    ];
+    win = editor.windowManager.open({
+      layout: 'flex',
+      direction: 'column',
+      align: 'stretch',
+      minWidth: Math.min(DOMUtils.DOM.getViewPort().w, 800),
+      minHeight: Math.min(DOMUtils.DOM.getViewPort().h, 650),
+      title: 'Edit image',
+      items: panels.concat([mainViewContainer]),
+      buttons: reverseIfRtl([
+        {
+          text: 'Save',
+          name: 'save',
+          subtype: 'primary',
+          onclick: save
+        },
+        {
+          text: 'Cancel',
+          onclick: 'close'
+        }
+      ])
+    });
+<<<<<<< HEAD
+    return new ImagePanel(settings);
+  };
+  var $_2fsrm6dejd08mcur = { create: create$2 };
+
+  function createState(blob) {
+    return {
+      blob: blob,
+      url: $_3i2p7sczjd08mctf.createObjectURL(blob)
+    };
+  }
+  function destroyState(state) {
+    if (state) {
+      $_3i2p7sczjd08mctf.revokeObjectURL(state.url);
+    }
+=======
+    win.on('close', function () {
+      reject();
+      destroyStates(undoStack.data);
+      undoStack = null;
+      tempState = null;
+    });
+    undoStack.add(currentState);
+    updateButtonUndoStates();
+    imagePanel.on('load', function () {
+      width = imagePanel.imageSize().w;
+      height = imagePanel.imageSize().h;
+      ratioW = height / width;
+      ratioH = width / height;
+      win.find('#w').value(width);
+      win.find('#h').value(height);
+    });
+    imagePanel.on('crop', crop);
+>>>>>>> installer
+  }
+  function edit(editor, imageResult) {
+    return new Promise$1(function (resolve, reject) {
+      return imageResult.toBlob().then(function (blob) {
+        open(editor, createState(blob), resolve, reject);
+      });
+    });
+  }
+<<<<<<< HEAD
+  function open(editor, currentState, resolve, reject) {
+    var win, undoStack = UndoStack(), mainPanel, filtersPanel, tempState, cropPanel, resizePanel, flipRotatePanel, imagePanel, sidePanel, mainViewContainer, invertPanel, brightnessPanel, huePanel, saturatePanel, contrastPanel, grayscalePanel, sepiaPanel, colorizePanel, sharpenPanel, embossPanel, gammaPanel, exposurePanel, panels, width, height, ratioW, ratioH;
+    var reverseIfRtl = function (items) {
+      return editor.rtl ? items.reverse() : items;
+    };
+    function recalcSize(e) {
+      var widthCtrl, heightCtrl, newWidth, newHeight;
+      widthCtrl = win.find('#w')[0];
+      heightCtrl = win.find('#h')[0];
+      newWidth = parseInt(widthCtrl.value(), 10);
+      newHeight = parseInt(heightCtrl.value(), 10);
+      if (win.find('#constrain')[0].checked() && width && height && newWidth && newHeight) {
+        if (e.control.settings.name === 'w') {
+          newHeight = Math.round(newWidth * ratioW);
+          heightCtrl.value(newHeight);
+        } else {
+          newWidth = Math.round(newHeight * ratioH);
+          widthCtrl.value(newWidth);
+        }
+      }
+      width = newWidth;
+      height = newHeight;
+    }
+    function floatToPercent(value) {
+      return Math.round(value * 100) + '%';
+    }
+    function updateButtonUndoStates() {
+      win.find('#undo').disabled(!undoStack.canUndo());
+      win.find('#redo').disabled(!undoStack.canRedo());
+      win.statusbar.find('#save').disabled(!undoStack.canUndo());
+    }
+    function disableUndoRedo() {
+      win.find('#undo').disabled(true);
+      win.find('#redo').disabled(true);
+=======
+  var $_8wsujuddjducwr5g = { edit: edit };
+
+  function getImageSize(img) {
+    var width, height;
+    function isPxValue(value) {
+      return /^[0-9\.]+px$/.test(value);
+>>>>>>> installer
+    }
+    width = img.style.width;
+    height = img.style.height;
+    if (width || height) {
+      if (isPxValue(width) && isPxValue(height)) {
+        return {
+          w: parseInt(width, 10),
+          h: parseInt(height, 10)
+        };
+      }
+      return null;
+    }
+<<<<<<< HEAD
+    function switchPanel(targetPanel) {
+      return function () {
+        var hidePanels = Tools.grep(panels, function (panel) {
+          return panel.settings.name !== targetPanel;
+        });
+        Tools.each(hidePanels, function (panel) {
+          panel.hide();
+        });
+        targetPanel.show();
+        targetPanel.focus();
+      };
+    }
+    function addTempState(blob) {
+      tempState = createState(blob);
+      displayState(tempState);
+    }
+    function addBlobState(blob) {
+      currentState = createState(blob);
+      displayState(currentState);
+      destroyStates(undoStack.add(currentState).removed);
+      updateButtonUndoStates();
+    }
+    function crop() {
+      var rect = imagePanel.selection();
+      $_1wkopvcyjd08mcte.blobToImageResult(currentState.blob).then(function (ir) {
+        $_c34z08csjd08mcso.crop(ir, rect.x, rect.y, rect.w, rect.h).then(imageResultToBlob).then(function (blob) {
+          addBlobState(blob);
+          cancel();
+        });
+      });
+    }
+    var tempAction = function (fn) {
+      var args = [].slice.call(arguments, 1);
+      return function () {
+        var state = tempState || currentState;
+        $_1wkopvcyjd08mcte.blobToImageResult(state.blob).then(function (ir) {
+          fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addTempState);
+        });
+      };
+    };
+    function action(fn) {
+      var arg = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+        arg[_i - 1] = arguments[_i];
+      }
+      var args = [].slice.call(arguments, 1);
+      return function () {
+        $_1wkopvcyjd08mcte.blobToImageResult(currentState.blob).then(function (ir) {
+          fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addBlobState);
+        });
+=======
+    width = img.width;
+    height = img.height;
+    if (width && height) {
+      return {
+        w: parseInt(width, 10),
+        h: parseInt(height, 10)
+>>>>>>> installer
+      };
+    }
+    return null;
+  }
+  function setImageSize(img, size) {
+    var width, height;
+    if (size) {
+      width = img.style.width;
+      height = img.style.height;
+      if (width || height) {
+        img.style.width = size.w + 'px';
+        img.style.height = size.h + 'px';
+        img.removeAttribute('data-mce-style');
+      }
+      width = img.width;
+      height = img.height;
+      if (width || height) {
+        img.setAttribute('width', size.w);
+        img.setAttribute('height', size.h);
+      }
+    }
+  }
+  function getNaturalImageSize(img) {
+    return {
+      w: img.naturalWidth,
+      h: img.naturalHeight
+    };
+  }
+  var $_g3ygkfdojducwr6n = {
+    getImageSize: getImageSize,
+    setImageSize: setImageSize,
+    getNaturalImageSize: getNaturalImageSize
+  };
+
+  var rawIndexOf = function () {
+    var pIndexOf = Array.prototype.indexOf;
+    var fastIndex = function (xs, x) {
+      return pIndexOf.call(xs, x);
+    };
+    var slowIndex = function (xs, x) {
+      return slowIndexOf(xs, x);
+    };
+    return pIndexOf === undefined ? slowIndex : fastIndex;
+  }();
+  var indexOf = function (xs, x) {
+    var r = rawIndexOf(xs, x);
+    return r === -1 ? Option.none() : Option.some(r);
+  };
+  var contains = function (xs, x) {
+    return rawIndexOf(xs, x) > -1;
+  };
+  var exists = function (xs, pred) {
+    return findIndex(xs, pred).isSome();
+  };
+  var range = function (num, f) {
+    var r = [];
+    for (var i = 0; i < num; i++) {
+      r.push(f(i));
+    }
+    return r;
+  };
+  var chunk = function (array, size) {
+    var r = [];
+    for (var i = 0; i < array.length; i += size) {
+      var s = array.slice(i, i + size);
+      r.push(s);
+    }
+    return r;
+  };
+  var map = function (xs, f) {
+    var len = xs.length;
+    var r = new Array(len);
+    for (var i = 0; i < len; i++) {
+      var x = xs[i];
+      r[i] = f(x, i, xs);
+    }
+    return r;
+  };
+  var each = function (xs, f) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      f(x, i, xs);
+    }
+  };
+  var eachr = function (xs, f) {
+    for (var i = xs.length - 1; i >= 0; i--) {
+      var x = xs[i];
+      f(x, i, xs);
+    }
+<<<<<<< HEAD
     var imageResultToBlob = function (ir) {
       return ir.toBlob();
     };
@@ -3095,9 +4066,218 @@ var imagetools = (function () {
           icon: 'zoomout',
           tooltip: 'Zoom out',
           onclick: zoomOut
+=======
+  };
+  var partition = function (xs, pred) {
+    var pass = [];
+    var fail = [];
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      var arr = pred(x, i, xs) ? pass : fail;
+      arr.push(x);
+    }
+    return {
+      pass: pass,
+      fail: fail
+    };
+  };
+  var filter = function (xs, pred) {
+    var r = [];
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        r.push(x);
+      }
+    }
+    return r;
+  };
+  var groupBy = function (xs, f) {
+    if (xs.length === 0) {
+      return [];
+    } else {
+      var wasType = f(xs[0]);
+      var r = [];
+      var group = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        var type = f(x);
+        if (type !== wasType) {
+          r.push(group);
+          group = [];
         }
-      ]
+        wasType = type;
+        group.push(x);
+      }
+      if (group.length !== 0) {
+        r.push(group);
+      }
+      return r;
+    }
+  };
+  var foldr = function (xs, f, acc) {
+    eachr(xs, function (x) {
+      acc = f(acc, x);
     });
+    return acc;
+  };
+  var foldl = function (xs, f, acc) {
+    each(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
+  var find = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+  };
+  var findIndex = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        return Option.some(i);
+      }
+    }
+    return Option.none();
+  };
+  var slowIndexOf = function (xs, x) {
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      if (xs[i] === x) {
+        return i;
+      }
+    }
+    return -1;
+  };
+  var push = Array.prototype.push;
+  var flatten = function (xs) {
+    var r = [];
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      if (!Array.prototype.isPrototypeOf(xs[i]))
+        throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
+      push.apply(r, xs[i]);
+    }
+    return r;
+  };
+  var bind = function (xs, f) {
+    var output = map(xs, f);
+    return flatten(output);
+  };
+  var forall = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      var x = xs[i];
+      if (pred(x, i, xs) !== true) {
+        return false;
+      }
+    }
+    return true;
+  };
+  var equal = function (a1, a2) {
+    return a1.length === a2.length && forall(a1, function (x, i) {
+      return x === a2[i];
+    });
+  };
+  var slice = Array.prototype.slice;
+  var reverse = function (xs) {
+    var r = slice.call(xs, 0);
+    r.reverse();
+    return r;
+  };
+  var difference = function (a1, a2) {
+    return filter(a1, function (x) {
+      return !contains(a2, x);
+    });
+  };
+  var mapToObject = function (xs, f) {
+    var r = {};
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      r[String(x)] = f(x, i);
+    }
+    return r;
+  };
+  var pure = function (x) {
+    return [x];
+  };
+  var sort = function (xs, comparator) {
+    var copy = slice.call(xs, 0);
+    copy.sort(comparator);
+    return copy;
+  };
+  var head = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+  };
+  var $_bq7x4zdrjducwr6v = {
+    map: map,
+    each: each,
+    eachr: eachr,
+    partition: partition,
+    filter: filter,
+    groupBy: groupBy,
+    indexOf: indexOf,
+    foldr: foldr,
+    foldl: foldl,
+    find: find,
+    findIndex: findIndex,
+    flatten: flatten,
+    bind: bind,
+    forall: forall,
+    exists: exists,
+    contains: contains,
+    equal: equal,
+    reverse: reverse,
+    chunk: chunk,
+    difference: difference,
+    mapToObject: mapToObject,
+    pure: pure,
+    sort: sort,
+    range: range,
+    head: head,
+    last: last
+  };
+
+  function XMLHttpRequest$1 () {
+    var f = $_4dfafycvjducwr42.getOrDie('XMLHttpRequest');
+    return new f();
+  }
+
+  var isValue = function (obj) {
+    return obj !== null && obj !== undefined;
+  };
+  var traverse = function (json, path) {
+    var value;
+    value = path.reduce(function (result, key) {
+      return isValue(result) ? result[key] : undefined;
+    }, json);
+    return isValue(value) ? value : null;
+  };
+  var requestUrlAsBlob = function (url, headers) {
+    return new Promise$1(function (resolve) {
+      var xhr;
+      xhr = new XMLHttpRequest$1();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          resolve({
+            status: xhr.status,
+            blob: this.response
+          });
+>>>>>>> installer
+        }
+      };
+      xhr.open('GET', url, true);
+      Tools.each(headers, function (value, key) {
+        xhr.setRequestHeader(key, value);
+      });
+      xhr.responseType = 'blob';
+      xhr.send();
+    });
+<<<<<<< HEAD
     mainViewContainer = Factory.create('Container', {
       type: 'container',
       layout: 'flex',
@@ -3148,33 +4328,138 @@ var imagetools = (function () {
           onclick: 'close'
         }
       ])
+=======
+  };
+  var readBlob = function (blob) {
+    return new Promise$1(function (resolve) {
+      var fr = new FileReader();
+      fr.onload = function (e) {
+        var data = e.target;
+        resolve(data.result);
+      };
+      fr.readAsText(blob);
     });
-    win.on('close', function () {
-      reject();
-      destroyStates(undoStack.data);
-      undoStack = null;
-      tempState = null;
+  };
+  var parseJson = function (text) {
+    var json;
+    try {
+      json = JSON.parse(text);
+    } catch (ex) {
+    }
+    return json;
+  };
+  var $_7frxtedsjducwr71 = {
+    traverse: traverse,
+    readBlob: readBlob,
+    requestUrlAsBlob: requestUrlAsBlob,
+    parseJson: parseJson
+  };
+
+  var friendlyHttpErrors = [
+    {
+      code: 404,
+      message: 'Could not find Image Proxy'
+    },
+    {
+      code: 403,
+      message: 'Rejected request'
+    },
+    {
+      code: 0,
+      message: 'Incorrect Image Proxy URL'
+    }
+  ];
+  var friendlyServiceErrors = [
+    {
+      type: 'key_missing',
+      message: 'The request did not include an api key.'
+    },
+    {
+      type: 'key_not_found',
+      message: 'The provided api key could not be found.'
+    },
+    {
+      type: 'domain_not_trusted',
+      message: 'The api key is not valid for the request origins.'
+    }
+  ];
+  var isServiceErrorCode = function (code) {
+    return code === 400 || code === 403 || code === 500;
+  };
+  var getHttpErrorMsg = function (status) {
+    var message = $_bq7x4zdrjducwr6v.find(friendlyHttpErrors, function (error) {
+      return status === error.code;
+    }).fold($_7e8sfvctjducwr3z.constant('Unknown ImageProxy error'), function (error) {
+      return error.message;
+>>>>>>> installer
     });
-    undoStack.add(currentState);
-    updateButtonUndoStates();
-    imagePanel.on('load', function () {
-      width = imagePanel.imageSize().w;
-      height = imagePanel.imageSize().h;
-      ratioW = height / width;
-      ratioH = width / height;
-      win.find('#w').value(width);
-      win.find('#h').value(height);
+    return 'ImageProxy HTTP error: ' + message;
+  };
+  var handleHttpError = function (status) {
+    var message = getHttpErrorMsg(status);
+    return Promise$1.reject(message);
+  };
+  var getServiceErrorMsg = function (type) {
+    return $_bq7x4zdrjducwr6v.find(friendlyServiceErrors, function (error) {
+      return error.type === type;
+    }).fold($_7e8sfvctjducwr3z.constant('Unknown service error'), function (error) {
+      return error.message;
     });
-    imagePanel.on('crop', crop);
+  };
+  var getServiceError = function (text) {
+    var serviceError = $_7frxtedsjducwr71.parseJson(text);
+    var errorType = $_7frxtedsjducwr71.traverse(serviceError, [
+      'error',
+      'type'
+    ]);
+    var errorMsg = errorType ? getServiceErrorMsg(errorType) : 'Invalid JSON in service error message';
+    return 'ImageProxy Service error: ' + errorMsg;
+  };
+  var handleServiceError = function (status, blob) {
+    return $_7frxtedsjducwr71.readBlob(blob).then(function (text) {
+      var serviceError = getServiceError(text);
+      return Promise$1.reject(serviceError);
+    });
+  };
+  var handleServiceErrorResponse = function (status, blob) {
+    return isServiceErrorCode(status) ? handleServiceError(status, blob) : handleHttpError(status);
+  };
+  var $_fqvj3udqjducwr6r = {
+    handleServiceErrorResponse: handleServiceErrorResponse,
+    handleHttpError: handleHttpError,
+    getHttpErrorMsg: getHttpErrorMsg,
+    getServiceErrorMsg: getServiceErrorMsg
+  };
+
+  var appendApiKey = function (url, apiKey) {
+    var separator = url.indexOf('?') === -1 ? '?' : '&';
+    if (/[?&]apiKey=/.test(url) || !apiKey) {
+      return url;
+    } else {
+      return url + separator + 'apiKey=' + encodeURIComponent(apiKey);
+    }
+  };
+  var requestServiceBlob = function (url, apiKey) {
+    return $_7frxtedsjducwr71.requestUrlAsBlob(appendApiKey(url, apiKey), {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'tiny-api-key': apiKey
+    }).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_fqvj3udqjducwr6r.handleServiceErrorResponse(result.status, result.blob) : Promise$1.resolve(result.blob);
+    });
+  };
+  function requestBlob(url) {
+    return $_7frxtedsjducwr71.requestUrlAsBlob(url, {}).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_fqvj3udqjducwr6r.handleHttpError(result.status) : Promise$1.resolve(result.blob);
+    });
   }
-  function edit(editor, imageResult) {
-    return new Promise$1(function (resolve, reject) {
-      return imageResult.toBlob().then(function (blob) {
-        open(editor, createState(blob), resolve, reject);
-      });
-    });
-  }
+<<<<<<< HEAD
   var $_foawebdajd08mcuc = { edit: edit };
+=======
+  var getUrl = function (url, apiKey) {
+    return apiKey ? requestServiceBlob(url, apiKey) : requestBlob(url);
+  };
+  var $_48leuodpjducwr6p = { getUrl: getUrl };
+>>>>>>> installer
 
   var count$1 = 0;
   var isEditableImage = function (editor, img) {
@@ -3213,6 +4498,7 @@ var imagetools = (function () {
   var imageToBlob$2 = function (editor, img) {
     var src = img.src, apiKey;
     if (isCorsImage(editor, img)) {
+<<<<<<< HEAD
       return $_a3pgqwd5jd08mctr.getUrl(img.src, null);
     }
     if (!isLocalImage(editor, img)) {
@@ -3222,6 +4508,17 @@ var imagetools = (function () {
       return $_a3pgqwd5jd08mctr.getUrl(src, apiKey);
     }
     return $_8wv43ycejd08mcrh.imageToBlob(img);
+=======
+      return $_48leuodpjducwr6p.getUrl(img.src, null);
+    }
+    if (!isLocalImage(editor, img)) {
+      src = $_dw9k5sdcjducwr5d.getProxyUrl(editor);
+      src += (src.indexOf('?') === -1 ? '?' : '&') + 'url=' + encodeURIComponent(img.src);
+      apiKey = getApiKey(editor);
+      return $_48leuodpjducwr6p.getUrl(src, apiKey);
+    }
+    return $_qw14zcnjducwr2u.imageToBlob(img);
+>>>>>>> installer
   };
   var findSelectedBlob = function (editor) {
     var blobInfo;
@@ -3240,7 +4537,7 @@ var imagetools = (function () {
   var cancelTimedUpload = function (imageUploadTimerState) {
     clearTimeout(imageUploadTimerState.get());
   };
-  var updateSelectedImage = function (editor, ir, uploadImmediately, imageUploadTimerState) {
+  var updateSelectedImage = function (editor, ir, uploadImmediately, imageUploadTimerState, size) {
     return ir.toBlob().then(function (blob) {
       var uri, name, blobCache, blobInfo, selectedImage;
       blobCache = editor.editorUpload.blobCache;
@@ -3275,15 +4572,26 @@ var imagetools = (function () {
           }
         }
         editor.$(selectedImage).on('load', imageLoadedHandler);
+        if (size) {
+          editor.$(selectedImage).attr({
+            width: size.w,
+            height: size.h
+          });
+        }
         editor.$(selectedImage).attr({ src: blobInfo.blobUri() }).removeAttr('data-mce-src');
       });
       return blobInfo;
     });
   };
-  var selectedImageOperation = function (editor, imageUploadTimerState, fn) {
+  var selectedImageOperation = function (editor, imageUploadTimerState, fn, size) {
     return function () {
+<<<<<<< HEAD
       return editor._scanForImages().then($_b2v6wackjd08mcsc.curry(findSelectedBlob, editor)).then($_1wkopvcyjd08mcte.blobToImageResult).then(fn).then(function (imageResult) {
         return updateSelectedImage(editor, imageResult, false, imageUploadTimerState);
+=======
+      return editor._scanForImages().then($_7e8sfvctjducwr3z.curry(findSelectedBlob, editor)).then($_a2nzwvd7jducwr5a.blobToImageResult).then(fn).then(function (imageResult) {
+        return updateSelectedImage(editor, imageResult, false, imageUploadTimerState, size);
+>>>>>>> installer
       }, function (error) {
         displayError(editor, error);
       });
@@ -3291,7 +4599,13 @@ var imagetools = (function () {
   };
   var rotate$2 = function (editor, imageUploadTimerState, angle) {
     return function () {
+      var size = $_g3ygkfdojducwr6n.getImageSize(getSelectedImage(editor));
+      var flippedSize = size ? {
+        w: size.h,
+        h: size.w
+      } : null;
       return selectedImageOperation(editor, imageUploadTimerState, function (imageResult) {
+<<<<<<< HEAD
         var size = $_8imxajd4jd08mctp.getImageSize(getSelectedImage(editor));
         if (size) {
           $_8imxajd4jd08mctp.setImageSize(getSelectedImage(editor), {
@@ -3301,17 +4615,26 @@ var imagetools = (function () {
         }
         return $_c34z08csjd08mcso.rotate(imageResult, angle);
       })();
+=======
+        return $_9tpokfd1jducwr4b.rotate(imageResult, angle);
+      }, flippedSize)();
+>>>>>>> installer
     };
   };
   var flip$2 = function (editor, imageUploadTimerState, axis) {
     return function () {
       return selectedImageOperation(editor, imageUploadTimerState, function (imageResult) {
+<<<<<<< HEAD
         return $_c34z08csjd08mcso.flip(imageResult, axis);
+=======
+        return $_9tpokfd1jducwr4b.flip(imageResult, axis);
+>>>>>>> installer
       })();
     };
   };
   var editImageDialog = function (editor, imageUploadTimerState) {
     return function () {
+<<<<<<< HEAD
       var img = getSelectedImage(editor), originalSize = $_8imxajd4jd08mctp.getNaturalImageSize(img);
       var handleDialogBlob = function (blob) {
         return new Promise$1(function (resolve) {
@@ -3323,22 +4646,47 @@ var imagetools = (function () {
               }
             }
             $_3i2p7sczjd08mctf.revokeObjectURL(newImage.src);
+=======
+      var img = getSelectedImage(editor), originalSize = $_g3ygkfdojducwr6n.getNaturalImageSize(img);
+      var handleDialogBlob = function (blob) {
+        return new Promise$1(function (resolve) {
+          $_qw14zcnjducwr2u.blobToImage(blob).then(function (newImage) {
+            var newSize = $_g3ygkfdojducwr6n.getNaturalImageSize(newImage);
+            if (originalSize.w !== newSize.w || originalSize.h !== newSize.h) {
+              if ($_g3ygkfdojducwr6n.getImageSize(img)) {
+                $_g3ygkfdojducwr6n.setImageSize(img, newSize);
+              }
+            }
+            $_8h1aqxd8jducwr5c.revokeObjectURL(newImage.src);
+>>>>>>> installer
             resolve(blob);
           });
         });
       };
       var openDialog = function (editor, imageResult) {
+<<<<<<< HEAD
         return $_foawebdajd08mcuc.edit(editor, imageResult).then(handleDialogBlob).then($_1wkopvcyjd08mcte.blobToImageResult).then(function (imageResult) {
+=======
+        return $_8wsujuddjducwr5g.edit(editor, imageResult).then(handleDialogBlob).then($_a2nzwvd7jducwr5a.blobToImageResult).then(function (imageResult) {
+>>>>>>> installer
           return updateSelectedImage(editor, imageResult, true, imageUploadTimerState);
         }, function () {
         });
       };
+<<<<<<< HEAD
       findSelectedBlob(editor).then($_1wkopvcyjd08mcte.blobToImageResult).then($_b2v6wackjd08mcsc.curry(openDialog, editor), function (error) {
+=======
+      findSelectedBlob(editor).then($_a2nzwvd7jducwr5a.blobToImageResult).then($_7e8sfvctjducwr3z.curry(openDialog, editor), function (error) {
+>>>>>>> installer
         displayError(editor, error);
       });
     };
   };
+<<<<<<< HEAD
   var $_e3p2ftcdjd08mcr0 = {
+=======
+  var $_bfmhlbcmjducwr2c = {
+>>>>>>> installer
     rotate: rotate$2,
     flip: flip$2,
     editImageDialog: editImageDialog,
@@ -3348,31 +4696,55 @@ var imagetools = (function () {
 
   var register = function (editor, imageUploadTimerState) {
     Tools.each({
+<<<<<<< HEAD
       mceImageRotateLeft: $_e3p2ftcdjd08mcr0.rotate(editor, imageUploadTimerState, -90),
       mceImageRotateRight: $_e3p2ftcdjd08mcr0.rotate(editor, imageUploadTimerState, 90),
       mceImageFlipVertical: $_e3p2ftcdjd08mcr0.flip(editor, imageUploadTimerState, 'v'),
       mceImageFlipHorizontal: $_e3p2ftcdjd08mcr0.flip(editor, imageUploadTimerState, 'h'),
       mceEditImage: $_e3p2ftcdjd08mcr0.editImageDialog(editor, imageUploadTimerState)
+=======
+      mceImageRotateLeft: $_bfmhlbcmjducwr2c.rotate(editor, imageUploadTimerState, -90),
+      mceImageRotateRight: $_bfmhlbcmjducwr2c.rotate(editor, imageUploadTimerState, 90),
+      mceImageFlipVertical: $_bfmhlbcmjducwr2c.flip(editor, imageUploadTimerState, 'v'),
+      mceImageFlipHorizontal: $_bfmhlbcmjducwr2c.flip(editor, imageUploadTimerState, 'h'),
+      mceEditImage: $_bfmhlbcmjducwr2c.editImageDialog(editor, imageUploadTimerState)
+>>>>>>> installer
     }, function (fn, cmd) {
       editor.addCommand(cmd, fn);
     });
   };
+<<<<<<< HEAD
   var $_fp8x0hcbjd08mcqs = { register: register };
+=======
+  var $_bzjpr9ckjducwr28 = { register: register };
+>>>>>>> installer
 
   var setup = function (editor, imageUploadTimerState, lastSelectedImageState) {
     editor.on('NodeChange', function (e) {
       var lastSelectedImage = lastSelectedImageState.get();
       if (lastSelectedImage && lastSelectedImage.src !== e.element.src) {
+<<<<<<< HEAD
         $_e3p2ftcdjd08mcr0.cancelTimedUpload(imageUploadTimerState);
         editor.editorUpload.uploadImagesAuto();
         lastSelectedImageState.set(null);
       }
       if ($_e3p2ftcdjd08mcr0.isEditableImage(editor, e.element)) {
+=======
+        $_bfmhlbcmjducwr2c.cancelTimedUpload(imageUploadTimerState);
+        editor.editorUpload.uploadImagesAuto();
+        lastSelectedImageState.set(null);
+      }
+      if ($_bfmhlbcmjducwr2c.isEditableImage(editor, e.element)) {
+>>>>>>> installer
         lastSelectedImageState.set(e.element);
       }
     });
   };
+<<<<<<< HEAD
   var $_fj8xc7dljd08mczs = { setup: setup };
+=======
+  var $_6matsldujducwr77 = { setup: setup };
+>>>>>>> installer
 
   var register$1 = function (editor) {
     editor.addButton('rotateleft', {
@@ -3401,20 +4773,36 @@ var imagetools = (function () {
       cmd: 'mceImage'
     });
   };
+<<<<<<< HEAD
   var $_ewgrv0dmjd08mczv = { register: register$1 };
 
   var register$2 = function (editor) {
     editor.addContextToolbar($_b2v6wackjd08mcsc.curry($_e3p2ftcdjd08mcr0.isEditableImage, editor), $_g17dn9d3jd08mcto.getToolbarItems(editor));
   };
   var $_yt4g9dnjd08mczx = { register: register$2 };
+=======
+  var $_4cmt7udvjducwr79 = { register: register$1 };
+
+  var register$2 = function (editor) {
+    editor.addContextToolbar($_7e8sfvctjducwr3z.curry($_bfmhlbcmjducwr2c.isEditableImage, editor), $_dw9k5sdcjducwr5d.getToolbarItems(editor));
+  };
+  var $_402gxydwjducwr7b = { register: register$2 };
+>>>>>>> installer
 
   PluginManager.add('imagetools', function (editor) {
     var imageUploadTimerState = Cell(0);
     var lastSelectedImageState = Cell(null);
+<<<<<<< HEAD
     $_fp8x0hcbjd08mcqs.register(editor, imageUploadTimerState);
     $_ewgrv0dmjd08mczv.register(editor);
     $_yt4g9dnjd08mczx.register(editor);
     $_fj8xc7dljd08mczs.setup(editor, imageUploadTimerState, lastSelectedImageState);
+=======
+    $_bzjpr9ckjducwr28.register(editor, imageUploadTimerState);
+    $_4cmt7udvjducwr79.register(editor);
+    $_402gxydwjducwr7b.register(editor);
+    $_6matsldujducwr77.setup(editor, imageUploadTimerState, lastSelectedImageState);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -3422,4 +4810,4 @@ var imagetools = (function () {
   return Plugin;
 
 }());
-})()
+})();

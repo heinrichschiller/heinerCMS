@@ -34,7 +34,11 @@ var textpattern = (function () {
       getPatterns: getPatterns
     };
   };
+<<<<<<< HEAD
   var $_a4abw2q3jd08mfex = { get: get };
+=======
+  var $_5jvyzaqgjducwts0 = { get: get };
+>>>>>>> installer
 
   var defaultPatterns = [
     {
@@ -95,7 +99,11 @@ var textpattern = (function () {
   var getPatterns = function (editorSettings) {
     return editorSettings.textpattern_patterns !== undefined ? editorSettings.textpattern_patterns : defaultPatterns;
   };
+<<<<<<< HEAD
   var $_x7l6zq4jd08mfey = { getPatterns: getPatterns };
+=======
+  var $_ex60acqhjducwts1 = { getPatterns: getPatterns };
+>>>>>>> installer
 
   var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
@@ -144,7 +152,11 @@ var textpattern = (function () {
       }
     }
   };
+<<<<<<< HEAD
   var $_afn692qcjd08mff9 = {
+=======
+  var $_86wlu0qpjducwtsb = {
+>>>>>>> installer
     findPattern: findPattern,
     findEndPattern: findEndPattern
   };
@@ -166,7 +178,11 @@ var textpattern = (function () {
     if (container.nodeType !== 3) {
       return;
     }
+<<<<<<< HEAD
     var endPattern = $_afn692qcjd08mff9.findEndPattern(patterns, text, rng.startOffset, delta);
+=======
+    var endPattern = $_86wlu0qpjducwtsb.findEndPattern(patterns, text, rng.startOffset, delta);
+>>>>>>> installer
     if (endPattern === undefined) {
       return;
     }
@@ -179,7 +195,11 @@ var textpattern = (function () {
     var patternRng = document.createRange();
     patternRng.setStart(container, startOffset);
     patternRng.setEnd(container, endOffset + endPattern.end.length);
+<<<<<<< HEAD
     var startPattern = $_afn692qcjd08mff9.findPattern(patterns, patternRng.toString());
+=======
+    var startPattern = $_86wlu0qpjducwtsb.findPattern(patterns, patternRng.toString());
+>>>>>>> installer
     if (endPattern === undefined || startPattern !== endPattern || container.data.length <= endPattern.start.length + endPattern.end.length) {
       return;
     }
@@ -235,7 +255,11 @@ var textpattern = (function () {
         }
       }
       if (firstTextNode) {
+<<<<<<< HEAD
         pattern = $_afn692qcjd08mff9.findPattern(patterns, firstTextNode.data);
+=======
+        pattern = $_86wlu0qpjducwtsb.findPattern(patterns, firstTextNode.data);
+>>>>>>> installer
         if (!pattern) {
           return;
         }
@@ -267,7 +291,11 @@ var textpattern = (function () {
       }
     }
   };
+<<<<<<< HEAD
   var $_acwqfiq9jd08mff5 = {
+=======
+  var $_w6wv7qmjducwts7 = {
+>>>>>>> installer
     patternFromRng: patternFromRng,
     applyInlineFormatSpace: applyInlineFormatSpace,
     applyInlineFormatEnter: applyInlineFormatEnter,
@@ -276,18 +304,30 @@ var textpattern = (function () {
 
   function handleEnter(editor, patterns) {
     var wrappedTextNode, rng;
+<<<<<<< HEAD
     wrappedTextNode = $_acwqfiq9jd08mff5.applyInlineFormatEnter(editor, patterns);
+=======
+    wrappedTextNode = $_w6wv7qmjducwts7.applyInlineFormatEnter(editor, patterns);
+>>>>>>> installer
     if (wrappedTextNode) {
       rng = editor.dom.createRng();
       rng.setStart(wrappedTextNode, wrappedTextNode.data.length);
       rng.setEnd(wrappedTextNode, wrappedTextNode.data.length);
       editor.selection.setRng(rng);
     }
+<<<<<<< HEAD
     $_acwqfiq9jd08mff5.applyBlockFormat(editor, patterns);
   }
   function handleInlineKey(editor, patterns) {
     var wrappedTextNode, lastChar, lastCharNode, rng, dom;
     wrappedTextNode = $_acwqfiq9jd08mff5.applyInlineFormatSpace(editor, patterns);
+=======
+    $_w6wv7qmjducwts7.applyBlockFormat(editor, patterns);
+  }
+  function handleInlineKey(editor, patterns) {
+    var wrappedTextNode, lastChar, lastCharNode, rng, dom;
+    wrappedTextNode = $_w6wv7qmjducwts7.applyInlineFormatSpace(editor, patterns);
+>>>>>>> installer
     if (wrappedTextNode) {
       dom = editor.dom;
       lastChar = wrappedTextNode.data.slice(-1);
@@ -319,7 +359,11 @@ var textpattern = (function () {
       return chr.charCodeAt(0) === event.charCode;
     });
   };
+<<<<<<< HEAD
   var $_3vqxhlq8jd08mff3 = {
+=======
+  var $_5q19wqljducwts4 = {
+>>>>>>> installer
     handleEnter: handleEnter,
     handleInlineKey: handleInlineKey,
     checkCharCode: checkCharCode,
@@ -338,6 +382,7 @@ var textpattern = (function () {
     var keyCodes = [32];
     editor.on('keydown', function (e) {
       if (e.keyCode === 13 && !VK.modifierPressed(e)) {
+<<<<<<< HEAD
         $_3vqxhlq8jd08mff3.handleEnter(editor, patternsState.get());
       }
     }, true);
@@ -350,16 +395,39 @@ var textpattern = (function () {
       if ($_3vqxhlq8jd08mff3.checkCharCode(charCodes, e)) {
         Delay.setEditorTimeout(editor, function () {
           $_3vqxhlq8jd08mff3.handleInlineKey(editor, patternsState.get());
+=======
+        $_5q19wqljducwts4.handleEnter(editor, patternsState.get());
+      }
+    }, true);
+    editor.on('keyup', function (e) {
+      if ($_5q19wqljducwts4.checkKeyCode(keyCodes, e)) {
+        $_5q19wqljducwts4.handleInlineKey(editor, patternsState.get());
+      }
+    });
+    editor.on('keypress', function (e) {
+      if ($_5q19wqljducwts4.checkCharCode(charCodes, e)) {
+        Delay.setEditorTimeout(editor, function () {
+          $_5q19wqljducwts4.handleInlineKey(editor, patternsState.get());
+>>>>>>> installer
         });
       }
     });
   };
+<<<<<<< HEAD
   var $_6tbfwjq5jd08mfez = { setup: setup };
 
   PluginManager.add('textpattern', function (editor) {
     var patternsState = Cell($_x7l6zq4jd08mfey.getPatterns(editor.settings));
     $_6tbfwjq5jd08mfez.setup(editor, patternsState);
     return $_a4abw2q3jd08mfex.get(patternsState);
+=======
+  var $_b43h66qijducwts2 = { setup: setup };
+
+  PluginManager.add('textpattern', function (editor) {
+    var patternsState = Cell($_ex60acqhjducwts1.getPatterns(editor.settings));
+    $_b43h66qijducwts2.setup(editor, patternsState);
+    return $_5jvyzaqgjducwts0.get(patternsState);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -367,4 +435,4 @@ var textpattern = (function () {
   return Plugin;
 
 }());
-})()
+})();

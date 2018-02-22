@@ -48,7 +48,11 @@ var image = (function () {
   var getUploadCredentials = function (editor) {
     return editor.getParam('images_upload_credentials');
   };
+<<<<<<< HEAD
   var $_ff63w1bqjd08mcnz = {
+=======
+  var $_4a5ue9bzjducwqyp = {
+>>>>>>> installer
     hasDimensions: hasDimensions,
     hasAdvTab: hasAdvTab,
     getPrependUrl: getPrependUrl,
@@ -92,7 +96,11 @@ var image = (function () {
     var parts = name.split('.');
     return forge(parts, target);
   };
+<<<<<<< HEAD
   var $_6r188zbujd08mcoh = {
+=======
+  var $_ewxhkvc3jducwqza = {
+>>>>>>> installer
     path: path,
     resolve: resolve,
     forge: forge,
@@ -100,7 +108,11 @@ var image = (function () {
   };
 
   var unsafe = function (name, scope) {
+<<<<<<< HEAD
     return $_6r188zbujd08mcoh.resolve(name, scope);
+=======
+    return $_ewxhkvc3jducwqza.resolve(name, scope);
+>>>>>>> installer
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -108,10 +120,17 @@ var image = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
+<<<<<<< HEAD
   var $_fzdo92btjd08mcob = { getOrDie: getOrDie };
 
   function FileReader () {
     var f = $_fzdo92btjd08mcob.getOrDie('FileReader');
+=======
+  var $_2i7qrnc2jducwqz4 = { getOrDie: getOrDie };
+
+  function FileReader () {
+    var f = $_2i7qrnc2jducwqz4.getOrDie('FileReader');
+>>>>>>> installer
     return new f();
   }
 
@@ -211,7 +230,11 @@ var image = (function () {
     return css;
   };
   var createImageList = function (editor, callback) {
+<<<<<<< HEAD
     var imageList = $_ff63w1bqjd08mcnz.getImageList(editor);
+=======
+    var imageList = $_4a5ue9bzjducwqyp.getImageList(editor);
+>>>>>>> installer
     if (typeof imageList === 'string') {
       XHR.send({
         url: imageList,
@@ -234,7 +257,11 @@ var image = (function () {
       }
     }
     imgElm.onload = function () {
+<<<<<<< HEAD
       if (!data.width && !data.height && $_ff63w1bqjd08mcnz.hasDimensions(editor)) {
+=======
+      if (!data.width && !data.height && $_4a5ue9bzjducwqyp.hasDimensions(editor)) {
+>>>>>>> installer
         editor.dom.setAttribs(imgElm, {
           width: imgElm.clientWidth,
           height: imgElm.clientHeight
@@ -256,7 +283,11 @@ var image = (function () {
       reader.readAsDataURL(blob);
     });
   };
+<<<<<<< HEAD
   var $_ebfwb0brjd08mco4 = {
+=======
+  var $_a0aua8c0jducwqyt = {
+>>>>>>> installer
     getImageSize: getImageSize,
     buildListItems: buildListItems,
     removePixelSuffix: removePixelSuffix,
@@ -271,28 +302,47 @@ var image = (function () {
     return function (evt) {
       var dom = editor.dom;
       var rootControl = evt.control.rootControl;
+<<<<<<< HEAD
       if (!$_ff63w1bqjd08mcnz.hasAdvTab(editor)) {
+=======
+      if (!$_4a5ue9bzjducwqyp.hasAdvTab(editor)) {
+>>>>>>> installer
         return;
       }
       var data = rootControl.toJSON();
       var css = dom.parseStyle(data.style);
       rootControl.find('#vspace').value('');
       rootControl.find('#hspace').value('');
+<<<<<<< HEAD
       css = $_ebfwb0brjd08mco4.mergeMargins(css);
       if (css['margin-top'] && css['margin-bottom'] || css['margin-right'] && css['margin-left']) {
         if (css['margin-top'] === css['margin-bottom']) {
           rootControl.find('#vspace').value($_ebfwb0brjd08mco4.removePixelSuffix(css['margin-top']));
+=======
+      css = $_a0aua8c0jducwqyt.mergeMargins(css);
+      if (css['margin-top'] && css['margin-bottom'] || css['margin-right'] && css['margin-left']) {
+        if (css['margin-top'] === css['margin-bottom']) {
+          rootControl.find('#vspace').value($_a0aua8c0jducwqyt.removePixelSuffix(css['margin-top']));
+>>>>>>> installer
         } else {
           rootControl.find('#vspace').value('');
         }
         if (css['margin-right'] === css['margin-left']) {
+<<<<<<< HEAD
           rootControl.find('#hspace').value($_ebfwb0brjd08mco4.removePixelSuffix(css['margin-right']));
+=======
+          rootControl.find('#hspace').value($_a0aua8c0jducwqyt.removePixelSuffix(css['margin-right']));
+>>>>>>> installer
         } else {
           rootControl.find('#hspace').value('');
         }
       }
       if (css['border-width']) {
+<<<<<<< HEAD
         rootControl.find('#border').value($_ebfwb0brjd08mco4.removePixelSuffix(css['border-width']));
+=======
+        rootControl.find('#border').value($_a0aua8c0jducwqyt.removePixelSuffix(css['border-width']));
+>>>>>>> installer
       }
       rootControl.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
     };
@@ -315,10 +365,6 @@ var image = (function () {
           packV: 'start',
           columns: 2,
           padding: 0,
-          alignH: [
-            'left',
-            'right'
-          ],
           defaults: {
             type: 'textbox',
             maxWidth: 50,
@@ -332,19 +378,79 @@ var image = (function () {
               name: 'vspace'
             },
             {
+              label: 'Border width',
+              name: 'border'
+            },
+            {
               label: 'Horizontal space',
               name: 'hspace'
             },
             {
-              label: 'Border',
-              name: 'border'
+              label: 'Border style',
+              type: 'listbox',
+              name: 'borderStyle',
+              width: 90,
+              maxWidth: 90,
+              onselect: function (evt) {
+                updateStyle(editor, evt.control.rootControl);
+              },
+              values: [
+                {
+                  text: 'Select...',
+                  value: ''
+                },
+                {
+                  text: 'Solid',
+                  value: 'solid'
+                },
+                {
+                  text: 'Dotted',
+                  value: 'dotted'
+                },
+                {
+                  text: 'Dashed',
+                  value: 'dashed'
+                },
+                {
+                  text: 'Double',
+                  value: 'double'
+                },
+                {
+                  text: 'Groove',
+                  value: 'groove'
+                },
+                {
+                  text: 'Ridge',
+                  value: 'ridge'
+                },
+                {
+                  text: 'Inset',
+                  value: 'inset'
+                },
+                {
+                  text: 'Outset',
+                  value: 'outset'
+                },
+                {
+                  text: 'None',
+                  value: 'none'
+                },
+                {
+                  text: 'Hidden',
+                  value: 'hidden'
+                }
+              ]
             }
           ]
         }
       ]
     };
   };
+<<<<<<< HEAD
   var $_5smvn7byjd08mcom = { makeTab: makeTab };
+=======
+  var $_fzs5uzc7jducwqzj = { makeTab: makeTab };
+>>>>>>> installer
 
   var doSyncSize = function (widthCtrl, heightCtrl) {
     widthCtrl.state.set('oldVal', widthCtrl.value());
@@ -424,7 +530,11 @@ var image = (function () {
       ]
     };
   };
+<<<<<<< HEAD
   var $_d98gfpc0jd08mcoq = {
+=======
+  var $_7l1v9ic9jducwqzr = {
+>>>>>>> installer
     createUi: createUi,
     syncSize: syncSize,
     updateSize: updateSize
@@ -444,17 +554,29 @@ var image = (function () {
     });
     if (!meta.width && !meta.height) {
       srcURL = editor.convertURL(control.value(), 'src');
+<<<<<<< HEAD
       prependURL = $_ff63w1bqjd08mcnz.getPrependUrl(editor);
+=======
+      prependURL = $_4a5ue9bzjducwqyp.getPrependUrl(editor);
+>>>>>>> installer
       absoluteURLPattern = new RegExp('^(?:[a-z]+:)?//', 'i');
       if (prependURL && !absoluteURLPattern.test(srcURL) && srcURL.substring(0, prependURL.length) !== prependURL) {
         srcURL = prependURL + srcURL;
       }
       control.value(srcURL);
+<<<<<<< HEAD
       $_ebfwb0brjd08mco4.getImageSize(editor.documentBaseURI.toAbsolute(control.value()), function (data) {
         if (data.width && data.height && $_ff63w1bqjd08mcnz.hasDimensions(editor)) {
           rootControl.find('#width').value(data.width);
           rootControl.find('#height').value(data.height);
           $_d98gfpc0jd08mcoq.updateSize(rootControl);
+=======
+      $_a0aua8c0jducwqyt.getImageSize(editor.documentBaseURI.toAbsolute(control.value()), function (data) {
+        if (data.width && data.height && $_4a5ue9bzjducwqyp.hasDimensions(editor)) {
+          rootControl.find('#width').value(data.width);
+          rootControl.find('#height').value(data.height);
+          $_7l1v9ic9jducwqzr.updateSize(rootControl);
+>>>>>>> installer
         }
       });
     }
@@ -477,29 +599,48 @@ var image = (function () {
       },
       imageListCtrl
     ];
+<<<<<<< HEAD
     if ($_ff63w1bqjd08mcnz.hasDescription(editor)) {
+=======
+    if ($_4a5ue9bzjducwqyp.hasDescription(editor)) {
+>>>>>>> installer
       generalFormItems.push({
         name: 'alt',
         type: 'textbox',
         label: 'Image description'
       });
     }
+<<<<<<< HEAD
     if ($_ff63w1bqjd08mcnz.hasImageTitle(editor)) {
+=======
+    if ($_4a5ue9bzjducwqyp.hasImageTitle(editor)) {
+>>>>>>> installer
       generalFormItems.push({
         name: 'title',
         type: 'textbox',
         label: 'Image Title'
       });
     }
+<<<<<<< HEAD
     if ($_ff63w1bqjd08mcnz.hasDimensions(editor)) {
       generalFormItems.push($_d98gfpc0jd08mcoq.createUi());
     }
     if ($_ff63w1bqjd08mcnz.getClassList(editor)) {
+=======
+    if ($_4a5ue9bzjducwqyp.hasDimensions(editor)) {
+      generalFormItems.push($_7l1v9ic9jducwqzr.createUi());
+    }
+    if ($_4a5ue9bzjducwqyp.getClassList(editor)) {
+>>>>>>> installer
       generalFormItems.push({
         name: 'class',
         type: 'listbox',
         label: 'Class',
+<<<<<<< HEAD
         values: $_ebfwb0brjd08mco4.buildListItems($_ff63w1bqjd08mcnz.getClassList(editor), function (item) {
+=======
+        values: $_a0aua8c0jducwqyt.buildListItems($_4a5ue9bzjducwqyp.getClassList(editor), function (item) {
+>>>>>>> installer
           if (item.value) {
             item.textStyle = function () {
               return editor.formatter.getCssText({
@@ -511,7 +652,11 @@ var image = (function () {
         })
       });
     }
+<<<<<<< HEAD
     if ($_ff63w1bqjd08mcnz.hasImageCaption(editor)) {
+=======
+    if ($_4a5ue9bzjducwqyp.hasImageCaption(editor)) {
+>>>>>>> installer
       generalFormItems.push({
         name: 'caption',
         type: 'checkbox',
@@ -527,13 +672,21 @@ var image = (function () {
       items: getGeneralItems(editor, imageListCtrl)
     };
   };
+<<<<<<< HEAD
   var $_cb4ypxbzjd08mcoo = {
+=======
+  var $_7tody5c8jducwqzo = {
+>>>>>>> installer
     makeTab: makeTab$1,
     getGeneralItems: getGeneralItems
   };
 
   var url = function () {
+<<<<<<< HEAD
     return $_fzdo92btjd08mcob.getOrDie('URL');
+=======
+    return $_2i7qrnc2jducwqz4.getOrDie('URL');
+>>>>>>> installer
   };
   var createObjectURL = function (blob) {
     return url().createObjectURL(blob);
@@ -541,7 +694,11 @@ var image = (function () {
   var revokeObjectURL = function (u) {
     url().revokeObjectURL(u);
   };
+<<<<<<< HEAD
   var $_6ebpqhc2jd08mcoz = {
+=======
+  var $_6zhyoscbjducwqzw = {
+>>>>>>> installer
     createObjectURL: createObjectURL,
     revokeObjectURL: revokeObjectURL
   };
@@ -549,7 +706,11 @@ var image = (function () {
   var Factory = tinymce.util.Tools.resolve('tinymce.ui.Factory');
 
   function XMLHttpRequest () {
+<<<<<<< HEAD
     var f = $_fzdo92btjd08mcob.getOrDie('XMLHttpRequest');
+=======
+    var f = $_2i7qrnc2jducwqz4.getOrDie('XMLHttpRequest');
+>>>>>>> installer
     return new f();
   }
 
@@ -618,6 +779,7 @@ var image = (function () {
       var rootControl = evt.control.rootControl;
       var throbber = new Throbber(rootControl.getEl());
       var file = evt.control.value();
+<<<<<<< HEAD
       var blobUri = $_6ebpqhc2jd08mcoz.createObjectURL(file);
       var uploader = Uploader({
         url: $_ff63w1bqjd08mcnz.getUploadUrl(editor),
@@ -631,6 +793,21 @@ var image = (function () {
       };
       throbber.show();
       return $_ebfwb0brjd08mco4.blobToDataUri(file).then(function (dataUrl) {
+=======
+      var blobUri = $_6zhyoscbjducwqzw.createObjectURL(file);
+      var uploader = Uploader({
+        url: $_4a5ue9bzjducwqyp.getUploadUrl(editor),
+        basePath: $_4a5ue9bzjducwqyp.getUploadBasePath(editor),
+        credentials: $_4a5ue9bzjducwqyp.getUploadCredentials(editor),
+        handler: $_4a5ue9bzjducwqyp.getUploadHandler(editor)
+      });
+      var finalize = function () {
+        throbber.hide();
+        $_6zhyoscbjducwqzw.revokeObjectURL(blobUri);
+      };
+      throbber.show();
+      return $_a0aua8c0jducwqyt.blobToDataUri(file).then(function (dataUrl) {
+>>>>>>> installer
         var blobInfo = editor.editorUpload.blobCache.create({
           blob: file,
           blobUri: blobUri,
@@ -690,16 +867,25 @@ var image = (function () {
       ]
     };
   };
+<<<<<<< HEAD
   var $_4t38hsc1jd08mcou = { makeTab: makeTab$2 };
 
   function Dialog (editor) {
     var updateStyle = function (editor, rootControl) {
       if (!$_ff63w1bqjd08mcnz.hasAdvTab(editor)) {
+=======
+  var $_ak89nycajducwqzt = { makeTab: makeTab$2 };
+
+  function Dialog (editor) {
+    var updateStyle = function (editor, rootControl) {
+      if (!$_4a5ue9bzjducwqyp.hasAdvTab(editor)) {
+>>>>>>> installer
         return;
       }
       var dom = editor.dom;
       var data = rootControl.toJSON();
       var css = dom.parseStyle(data.style);
+<<<<<<< HEAD
       css = $_ebfwb0brjd08mco4.mergeMargins(css);
       if (data.vspace) {
         css['margin-top'] = css['margin-bottom'] = $_ebfwb0brjd08mco4.addPixelSuffix(data.vspace);
@@ -709,6 +895,20 @@ var image = (function () {
       }
       if (data.border) {
         css['border-width'] = $_ebfwb0brjd08mco4.addPixelSuffix(data.border);
+=======
+      css = $_a0aua8c0jducwqyt.mergeMargins(css);
+      if (data.vspace) {
+        css['margin-top'] = css['margin-bottom'] = $_a0aua8c0jducwqyt.addPixelSuffix(data.vspace);
+      }
+      if (data.hspace) {
+        css['margin-left'] = css['margin-right'] = $_a0aua8c0jducwqyt.addPixelSuffix(data.hspace);
+      }
+      if (data.border) {
+        css['border-width'] = $_a0aua8c0jducwqyt.addPixelSuffix(data.border);
+      }
+      if (data.borderStyle) {
+        css['border-style'] = data.borderStyle;
+>>>>>>> installer
       }
       rootControl.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
     };
@@ -718,7 +918,11 @@ var image = (function () {
       var imageListCtrl;
       function onSubmitForm() {
         var figureElm, oldImg;
+<<<<<<< HEAD
         $_d98gfpc0jd08mcoq.updateSize(win);
+=======
+        $_7l1v9ic9jducwqzr.updateSize(win);
+>>>>>>> installer
         updateStyle(editor, win);
         data = Tools.extend(data, win.toJSON());
         if (!data.alt) {
@@ -800,7 +1004,11 @@ var image = (function () {
             }
             return;
           }
+<<<<<<< HEAD
           $_ebfwb0brjd08mco4.waitLoadImage(editor, data, imgElm);
+=======
+          $_a0aua8c0jducwqyt.waitLoadImage(editor, data, imgElm);
+>>>>>>> installer
         });
       }
       imgElm = editor.selection.getNode();
@@ -827,7 +1035,11 @@ var image = (function () {
           type: 'listbox',
           label: 'Image list',
           name: 'image-list',
+<<<<<<< HEAD
           values: $_ebfwb0brjd08mco4.buildListItems(imageList, function (item) {
+=======
+          values: $_a0aua8c0jducwqyt.buildListItems(imageList, function (item) {
+>>>>>>> installer
             item.value = editor.convertURL(item.value || item.url, 'src');
           }, [{
               text: 'None',
@@ -846,6 +1058,7 @@ var image = (function () {
           }
         };
       }
+<<<<<<< HEAD
       if ($_ff63w1bqjd08mcnz.hasAdvTab(editor) || $_ff63w1bqjd08mcnz.hasUploadUrl(editor) || $_ff63w1bqjd08mcnz.hasUploadHandler(editor)) {
         var body = [$_cb4ypxbzjd08mcoo.makeTab(editor, imageListCtrl)];
         if ($_ff63w1bqjd08mcnz.hasAdvTab(editor)) {
@@ -858,13 +1071,35 @@ var image = (function () {
             }
             if (imgElm.style.borderWidth) {
               data.border = $_ebfwb0brjd08mco4.removePixelSuffix(imgElm.style.borderWidth);
+=======
+      if ($_4a5ue9bzjducwqyp.hasAdvTab(editor) || $_4a5ue9bzjducwqyp.hasUploadUrl(editor) || $_4a5ue9bzjducwqyp.hasUploadHandler(editor)) {
+        var body = [$_7tody5c8jducwqzo.makeTab(editor, imageListCtrl)];
+        if ($_4a5ue9bzjducwqyp.hasAdvTab(editor)) {
+          if (imgElm) {
+            if (imgElm.style.marginLeft && imgElm.style.marginRight && imgElm.style.marginLeft === imgElm.style.marginRight) {
+              data.hspace = $_a0aua8c0jducwqyt.removePixelSuffix(imgElm.style.marginLeft);
             }
+            if (imgElm.style.marginTop && imgElm.style.marginBottom && imgElm.style.marginTop === imgElm.style.marginBottom) {
+              data.vspace = $_a0aua8c0jducwqyt.removePixelSuffix(imgElm.style.marginTop);
+            }
+            if (imgElm.style.borderWidth) {
+              data.border = $_a0aua8c0jducwqyt.removePixelSuffix(imgElm.style.borderWidth);
+>>>>>>> installer
+            }
+            data.borderStyle = imgElm.style.borderStyle;
             data.style = editor.dom.serializeStyle(editor.dom.parseStyle(editor.dom.getAttrib(imgElm, 'style')));
           }
+<<<<<<< HEAD
           body.push($_5smvn7byjd08mcom.makeTab(editor, updateStyle));
         }
         if ($_ff63w1bqjd08mcnz.hasUploadUrl(editor) || $_ff63w1bqjd08mcnz.hasUploadHandler(editor)) {
           body.push($_4t38hsc1jd08mcou.makeTab(editor));
+=======
+          body.push($_fzs5uzc7jducwqzj.makeTab(editor, updateStyle));
+        }
+        if ($_4a5ue9bzjducwqyp.hasUploadUrl(editor) || $_4a5ue9bzjducwqyp.hasUploadHandler(editor)) {
+          body.push($_ak89nycajducwqzt.makeTab(editor));
+>>>>>>> installer
         }
         win = editor.windowManager.open({
           title: 'Insert/edit image',
@@ -877,6 +1112,7 @@ var image = (function () {
         win = editor.windowManager.open({
           title: 'Insert/edit image',
           data: data,
+<<<<<<< HEAD
           body: $_cb4ypxbzjd08mcoo.getGeneralItems(editor, imageListCtrl),
           onSubmit: onSubmitForm
         });
@@ -885,6 +1121,16 @@ var image = (function () {
     }
     function open() {
       $_ebfwb0brjd08mco4.createImageList(editor, showDialog);
+=======
+          body: $_7tody5c8jducwqzo.getGeneralItems(editor, imageListCtrl),
+          onSubmit: onSubmitForm
+        });
+      }
+      $_7l1v9ic9jducwqzr.syncSize(win);
+    }
+    function open() {
+      $_a0aua8c0jducwqyt.createImageList(editor, showDialog);
+>>>>>>> installer
     }
     return { open: open };
   }
@@ -892,7 +1138,11 @@ var image = (function () {
   var register = function (editor) {
     editor.addCommand('mceImage', Dialog(editor).open);
   };
+<<<<<<< HEAD
   var $_6je65lbnjd08mcno = { register: register };
+=======
+  var $_3u9u7ubwjducwqyh = { register: register };
+>>>>>>> installer
 
   var hasImageClass = function (node) {
     var className = node.attr('class');
@@ -919,7 +1169,11 @@ var image = (function () {
       editor.serializer.addNodeFilter('figure', toggleContentEditableState(false));
     });
   };
+<<<<<<< HEAD
   var $_tvj4zc6jd08mcp4 = { setup: setup };
+=======
+  var $_fc10d3cfjducwr02 = { setup: setup };
+>>>>>>> installer
 
   var register$1 = function (editor) {
     editor.addButton('image', {
@@ -936,12 +1190,21 @@ var image = (function () {
       prependToContext: true
     });
   };
+<<<<<<< HEAD
   var $_aixks2c7jd08mcp6 = { register: register$1 };
 
   PluginManager.add('image', function (editor) {
     $_tvj4zc6jd08mcp4.setup(editor);
     $_aixks2c7jd08mcp6.register(editor);
     $_6je65lbnjd08mcno.register(editor);
+=======
+  var $_o3zg3cgjducwr05 = { register: register$1 };
+
+  PluginManager.add('image', function (editor) {
+    $_fc10d3cfjducwr02.setup(editor);
+    $_o3zg3cgjducwr05.register(editor);
+    $_3u9u7ubwjducwqyh.register(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -949,4 +1212,4 @@ var image = (function () {
   return Plugin;
 
 }());
-})()
+})();

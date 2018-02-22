@@ -45,6 +45,7 @@
     },
     {
         "name": "tinymce/tinymce",
+<<<<<<< HEAD
         "version": "4.7.6",
         "version_normalized": "4.7.6.0",
         "source": {
@@ -59,6 +60,22 @@
             "shasum": ""
         },
         "time": "2018-01-29T13:34:32+00:00",
+=======
+        "version": "4.7.7",
+        "version_normalized": "4.7.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tinymce/tinymce-dist.git",
+            "reference": "cfc045b07507159aa74f36a3f0e8988c0b3509a5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/cfc045b07507159aa74f36a3f0e8988c0b3509a5",
+            "reference": "cfc045b07507159aa74f36a3f0e8988c0b3509a5",
+            "shasum": ""
+        },
+        "time": "2018-02-19T15:13:21+00:00",
+>>>>>>> installer
         "type": "component",
         "extra": {
             "component": {
@@ -78,7 +95,7 @@
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "LGPL-2.1"
+            "LGPL-2.1-only"
         ],
         "description": "Web based JavaScript HTML WYSIWYG editor control.",
         "homepage": "http://www.tinymce.com",

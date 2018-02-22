@@ -12,7 +12,11 @@ var autolink = (function () {
   var getDefaultLinkTarget = function (editor) {
     return editor.getParam('default_link_target', '');
   };
+<<<<<<< HEAD
   var $_a76cgr7vjd08mc92 = {
+=======
+  var $_kp1eq84jducwqcq = {
+>>>>>>> installer
     getAutoLinkPattern: getAutoLinkPattern,
     getDefaultLinkTarget: getDefaultLinkTarget
   };
@@ -57,8 +61,13 @@ var autolink = (function () {
   };
   var parseCurrentLine = function (editor, endOffset, delimiter) {
     var rng, end, start, endContainer, bookmark, text, matches, prev, len, rngText;
+<<<<<<< HEAD
     var autoLinkPattern = $_a76cgr7vjd08mc92.getAutoLinkPattern(editor);
     var defaultLinkTarget = $_a76cgr7vjd08mc92.getDefaultLinkTarget(editor);
+=======
+    var autoLinkPattern = $_kp1eq84jducwqcq.getAutoLinkPattern(editor);
+    var defaultLinkTarget = $_kp1eq84jducwqcq.getDefaultLinkTarget(editor);
+>>>>>>> installer
     if (editor.selection.getNode().tagName === 'A') {
       return;
     }
@@ -166,10 +175,17 @@ var autolink = (function () {
       }
     });
   };
+<<<<<<< HEAD
   var $_1wqr57tjd08mc8t = { setup: setup };
 
   PluginManager.add('autolink', function (editor) {
     $_1wqr57tjd08mc8t.setup(editor);
+=======
+  var $_5tyl7o82jducwqcg = { setup: setup };
+
+  PluginManager.add('autolink', function (editor) {
+    $_5tyl7o82jducwqcg.setup(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -177,4 +193,4 @@ var autolink = (function () {
   return Plugin;
 
 }());
-})()
+})();

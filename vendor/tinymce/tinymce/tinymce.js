@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // 4.7.6 (2018-01-29)
+=======
+// 4.7.7 (2018-02-19)
+>>>>>>> installer
 (function () {
 (function () {
   'use strict';
@@ -56,7 +60,11 @@
   };
   var never = constant(false);
   var always = constant(true);
+<<<<<<< HEAD
   var $_9msgtx6jd08m99c = {
+=======
+  var $_60qu7r6jducwn73 = {
+>>>>>>> installer
     noop: noop,
     noarg: noarg,
     compose: compose,
@@ -72,8 +80,13 @@
     always: always
   };
 
+<<<<<<< HEAD
   var never$1 = $_9msgtx6jd08m99c.never;
   var always$1 = $_9msgtx6jd08m99c.always;
+=======
+  var never$1 = $_60qu7r6jducwn73.never;
+  var always$1 = $_60qu7r6jducwn73.always;
+>>>>>>> installer
   var none = function () {
     return NONE;
   };
@@ -116,7 +129,11 @@
       toArray: function () {
         return [];
       },
+<<<<<<< HEAD
       toString: $_9msgtx6jd08m99c.constant('none()')
+=======
+      toString: $_60qu7r6jducwn73.constant('none()')
+>>>>>>> installer
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -185,7 +202,11 @@
   var from = function (value) {
     return value === null || value === undefined ? NONE : some(value);
   };
+<<<<<<< HEAD
   var $_zhkqu5jd08m996 = {
+=======
+  var Option = {
+>>>>>>> installer
     some: some,
     none: none,
     from: from
@@ -203,7 +224,11 @@
   }();
   var indexOf = function (xs, x) {
     var r = rawIndexOf(xs, x);
+<<<<<<< HEAD
     return r === -1 ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(r);
+=======
+    return r === -1 ? Option.none() : Option.some(r);
+>>>>>>> installer
   };
   var contains = function (xs, x) {
     return rawIndexOf(xs, x) > -1;
@@ -309,19 +334,33 @@
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
+<<<<<<< HEAD
         return $_zhkqu5jd08m996.some(x);
       }
     }
     return $_zhkqu5jd08m996.none();
+=======
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+>>>>>>> installer
   };
   var findIndex = function (xs, pred) {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
+<<<<<<< HEAD
         return $_zhkqu5jd08m996.some(i);
       }
     }
     return $_zhkqu5jd08m996.none();
+=======
+        return Option.some(i);
+      }
+    }
+    return Option.none();
+>>>>>>> installer
   };
   var slowIndexOf = function (xs, x) {
     for (var i = 0, len = xs.length; i < len; ++i) {
@@ -387,12 +426,21 @@
     return copy;
   };
   var head = function (xs) {
+<<<<<<< HEAD
     return xs.length === 0 ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(xs[0]);
   };
   var last = function (xs) {
     return xs.length === 0 ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(xs[xs.length - 1]);
   };
   var $_65yphx4jd08m98n = {
+=======
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+  };
+  var $_2dw1bj4jducwn6g = {
+>>>>>>> installer
     map: map,
     each: each,
     eachr: eachr,
@@ -448,7 +496,11 @@
     var parts = name.split('.');
     return forge(parts, target);
   };
+<<<<<<< HEAD
   var $_cf1844cjd08m9bt = {
+=======
+  var $_4e16w2cjducwn9k = {
+>>>>>>> installer
     path: path,
     resolve: resolve,
     forge: forge,
@@ -456,7 +508,11 @@
   };
 
   var unsafe = function (name, scope) {
+<<<<<<< HEAD
     return $_cf1844cjd08m9bt.resolve(name, scope);
+=======
+    return $_4e16w2cjducwn9k.resolve(name, scope);
+>>>>>>> installer
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -464,10 +520,17 @@
       throw name + ' not available on this browser';
     return actual;
   };
+<<<<<<< HEAD
   var $_7jpcjvbjd08m9bq = { getOrDie: getOrDie };
 
   var url = function () {
     return $_7jpcjvbjd08m9bq.getOrDie('URL');
+=======
+  var $_850zr7bjducwn9g = { getOrDie: getOrDie };
+
+  var url = function () {
+    return $_850zr7bjducwn9g.getOrDie('URL');
+>>>>>>> installer
   };
   var createObjectURL = function (blob) {
     return url().createObjectURL(blob);
@@ -475,7 +538,11 @@
   var revokeObjectURL = function (u) {
     url().revokeObjectURL(u);
   };
+<<<<<<< HEAD
   var $_6s3x45ajd08m9bo = {
+=======
+  var $_bqa5nlajducwn9f = {
+>>>>>>> installer
     createObjectURL: createObjectURL,
     revokeObjectURL: revokeObjectURL
   };
@@ -509,7 +576,11 @@
   gecko = !webkit && !ie11 && /Gecko/.test(userAgent);
   mac = userAgent.indexOf('Mac') !== -1;
   iDevice = /(iPad|iPhone)/.test(userAgent);
+<<<<<<< HEAD
   fileApi = 'FormData' in window && 'FileReader' in window && 'URL' in window && !!$_6s3x45ajd08m9bo.createObjectURL;
+=======
+  fileApi = 'FormData' in window && 'FileReader' in window && 'URL' in window && !!$_bqa5nlajducwn9f.createObjectURL;
+>>>>>>> installer
   phone = matchMediaQuery('only screen and (max-device-width: 480px)') && (android || iDevice);
   tablet = matchMediaQuery('only screen and (min-width: 800px)') && (android || iDevice);
   windowsPhone = userAgent.indexOf('Windows Phone') !== -1;
@@ -517,7 +588,11 @@
     webkit = false;
   }
   var contentEditable = !iDevice || fileApi || parseInt(userAgent.match(/AppleWebKit\/(\d*)/)[1], 10) >= 534;
+<<<<<<< HEAD
   var $_6pkc2e9jd08m9bi = {
+=======
+  var $_cum1kc9jducwn99 = {
+>>>>>>> installer
     opera: opera,
     webkit: webkit,
     ie: ie,
@@ -762,7 +837,11 @@
     };
     return func;
   };
+<<<<<<< HEAD
   var $_tkwl7gjd08m9ds = {
+=======
+  var $_83mf8ygjducwnbc = {
+>>>>>>> installer
     requestAnimationFrame: function (callback, element) {
       if (requestAnimationFramePromise) {
         requestAnimationFramePromise.then(callback);
@@ -841,8 +920,8 @@
     if (path && path.length > 0) {
       target = path[0];
     }
-    if (event.deepPath) {
-      path = event.deepPath();
+    if (event.composedPath) {
+      path = event.composedPath();
       if (path && path.length > 0) {
         target = path[0];
       }
@@ -860,7 +939,11 @@
     if (!event.target) {
       event.target = event.srcElement || document;
     }
+<<<<<<< HEAD
     if ($_6pkc2e9jd08m9bi.experimentalShadowDom) {
+=======
+    if ($_cum1kc9jducwn99.experimentalShadowDom) {
+>>>>>>> installer
       event.target = getTargetFromShadowDom(originalEvent, event.target);
     }
     if (originalEvent && mouseEventRe.test(originalEvent.type) && originalEvent.pageX === undefined && originalEvent.clientX !== undefined) {
@@ -929,12 +1012,20 @@
       try {
         doc.documentElement.doScroll('left');
       } catch (ex) {
+<<<<<<< HEAD
         $_tkwl7gjd08m9ds.setTimeout(tryScroll);
+=======
+        $_83mf8ygjducwnbc.setTimeout(tryScroll);
+>>>>>>> installer
         return;
       }
       readyHandler();
     };
+<<<<<<< HEAD
     if (doc.addEventListener && !($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 11)) {
+=======
+    if (doc.addEventListener && !($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 11)) {
+>>>>>>> installer
       if (isDocReady()) {
         readyHandler();
       } else {
@@ -2333,7 +2424,11 @@
   var last$1 = function (collection) {
     return collection[collection.length - 1];
   };
+<<<<<<< HEAD
   var $_c05hv0kjd08m9gg = {
+=======
+  var $_e6e6g1kjducwnfd = {
+>>>>>>> installer
     isArray: isArray,
     toArray: toArray,
     each: each$1,
@@ -2354,7 +2449,11 @@
     if (!type) {
       return obj !== undefined;
     }
+<<<<<<< HEAD
     if (type === 'array' && $_c05hv0kjd08m9gg.isArray(obj)) {
+=======
+    if (type === 'array' && $_e6e6g1kjducwnfd.isArray(obj)) {
+>>>>>>> installer
       return true;
     }
     return typeof obj === type;
@@ -2461,7 +2560,11 @@
       if (n) {
         o = o[n];
       }
+<<<<<<< HEAD
       $_c05hv0kjd08m9gg.each(o, function (o, i) {
+=======
+      $_e6e6g1kjducwnfd.each(o, function (o, i) {
+>>>>>>> installer
         if (f.call(s, o, i, n) === false) {
           return false;
         }
@@ -2498,15 +2601,23 @@
     if (!s || is(s, 'array')) {
       return s;
     }
+<<<<<<< HEAD
     return $_c05hv0kjd08m9gg.map(s.split(d || ','), trim);
   };
   var _addCacheSuffix = function (url) {
     var cacheSuffix = $_6pkc2e9jd08m9bi.cacheSuffix;
+=======
+    return $_e6e6g1kjducwnfd.map(s.split(d || ','), trim);
+  };
+  var _addCacheSuffix = function (url) {
+    var cacheSuffix = $_cum1kc9jducwn99.cacheSuffix;
+>>>>>>> installer
     if (cacheSuffix) {
       url += (url.indexOf('?') === -1 ? '?' : '&') + cacheSuffix;
     }
     return url;
   };
+<<<<<<< HEAD
   var $_gfka90jjd08m9g9 = {
     trim: trim,
     isArray: $_c05hv0kjd08m9gg.isArray,
@@ -2517,6 +2628,18 @@
     map: $_c05hv0kjd08m9gg.map,
     grep: $_c05hv0kjd08m9gg.filter,
     inArray: $_c05hv0kjd08m9gg.indexOf,
+=======
+  var $_8i2houjjducwnd2 = {
+    trim: trim,
+    isArray: $_e6e6g1kjducwnfd.isArray,
+    is: is,
+    toArray: $_e6e6g1kjducwnfd.toArray,
+    makeMap: makeMap,
+    each: $_e6e6g1kjducwnfd.each,
+    map: $_e6e6g1kjducwnfd.map,
+    grep: $_e6e6g1kjducwnfd.filter,
+    inArray: $_e6e6g1kjducwnfd.indexOf,
+>>>>>>> installer
     hasOwn: hasOwnProperty,
     extend: extend,
     create: create,
@@ -2532,7 +2655,11 @@
   var slice$2 = Array.prototype.slice;
   var rquickExpr$1 = /^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/;
   var Event = EventUtils.Event;
+<<<<<<< HEAD
   var skipUniques = $_gfka90jjd08m9g9.makeMap('children,contents,next,prev');
+=======
+  var skipUniques = $_8i2houjjducwnd2.makeMap('children,contents,next,prev');
+>>>>>>> installer
   var isDefined = function (obj) {
     return typeof obj !== 'undefined';
   };
@@ -2597,8 +2724,13 @@
     });
     return elements;
   };
+<<<<<<< HEAD
   var numericCssMap = $_gfka90jjd08m9g9.makeMap('fillOpacity fontWeight lineHeight opacity orphans widows zIndex zoom', ' ');
   var booleanMap = $_gfka90jjd08m9g9.makeMap('checked compact declare defer disabled ismap multiple nohref noshade nowrap readonly selected', ' ');
+=======
+  var numericCssMap = $_8i2houjjducwnd2.makeMap('fillOpacity fontWeight lineHeight opacity orphans widows zIndex zoom', ' ');
+  var booleanMap = $_8i2houjjducwnd2.makeMap('checked compact declare defer disabled ismap multiple nohref noshade nowrap readonly selected', ' ');
+>>>>>>> installer
   var propFix = {
     for: 'htmlFor',
     class: 'className',
@@ -2731,7 +2863,11 @@
       return self;
     },
     toArray: function () {
+<<<<<<< HEAD
       return $_gfka90jjd08m9g9.toArray(this);
+=======
+      return $_8i2houjjducwnd2.toArray(this);
+>>>>>>> installer
     },
     add: function (items, sort) {
       var self = this;
@@ -3132,16 +3268,28 @@
     sort: [].sort,
     splice: [].splice
   };
+<<<<<<< HEAD
   $_gfka90jjd08m9g9.extend(DomQuery, {
     extend: $_gfka90jjd08m9g9.extend,
+=======
+  $_8i2houjjducwnd2.extend(DomQuery, {
+    extend: $_8i2houjjducwnd2.extend,
+>>>>>>> installer
     makeArray: function (object) {
       if (isWindow(object) || object.nodeType) {
         return [object];
       }
+<<<<<<< HEAD
       return $_gfka90jjd08m9g9.toArray(object);
     },
     inArray: inArray,
     isArray: $_gfka90jjd08m9g9.isArray,
+=======
+      return $_8i2houjjducwnd2.toArray(object);
+    },
+    inArray: inArray,
+    isArray: $_8i2houjjducwnd2.isArray,
+>>>>>>> installer
     each: each$2,
     trim: trim$1,
     grep: grep,
@@ -3237,7 +3385,11 @@
       return sibling(node.firstChild, 'nextSibling', 1);
     },
     contents: function (node) {
+<<<<<<< HEAD
       return $_gfka90jjd08m9g9.toArray((node.nodeName === 'iframe' ? node.contentDocument || node.contentWindow.document : node).childNodes);
+=======
+      return $_8i2houjjducwnd2.toArray((node.nodeName === 'iframe' ? node.contentDocument || node.contentWindow.document : node).childNodes);
+>>>>>>> installer
     }
   }, function (name, fn) {
     DomQuery.fn[name] = function (selector) {
@@ -3330,7 +3482,11 @@
       targetHooks[name][prop] = func;
     });
   };
+<<<<<<< HEAD
   if ($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 8) {
+=======
+  if ($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 8) {
+>>>>>>> installer
     appendHooks(attrHooks, 'get', {
       maxlength: function (elm) {
         var value = elm.maxLength;
@@ -3366,7 +3522,11 @@
       }
     });
   }
+<<<<<<< HEAD
   if ($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 9) {
+=======
+  if ($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 9) {
+>>>>>>> installer
     cssFix.float = 'styleFloat';
     appendHooks(cssHooks, 'set', {
       opacity: function (elm, value) {
@@ -3394,7 +3554,11 @@
       return r;
     };
   };
+<<<<<<< HEAD
   var $_fit0zmnjd08m9gw = { cached: cached };
+=======
+  var $_2tix6bnjducwnfu = { cached: cached };
+>>>>>>> installer
 
   var firstMatch = function (regexes, s) {
     for (var i = 0; i < regexes.length; i++) {
@@ -3431,7 +3595,11 @@
       minor: minor
     };
   };
+<<<<<<< HEAD
   var $_7vtntcqjd08m9h6 = {
+=======
+  var $_84ynlaqjducwng0 = {
+>>>>>>> installer
     nu: nu,
     detect: detect,
     unknown: unknown
@@ -3451,7 +3619,11 @@
   var unknown$1 = function () {
     return nu$1({
       current: undefined,
+<<<<<<< HEAD
       version: $_7vtntcqjd08m9h6.unknown()
+=======
+      version: $_84ynlaqjducwng0.unknown()
+>>>>>>> installer
     });
   };
   var nu$1 = function (info) {
@@ -3468,6 +3640,7 @@
       isSafari: isBrowser(safari, current)
     };
   };
+<<<<<<< HEAD
   var $_gcrp3ipjd08m9h0 = {
     unknown: unknown$1,
     nu: nu$1,
@@ -3477,6 +3650,17 @@
     opera: $_9msgtx6jd08m99c.constant(opera$1),
     firefox: $_9msgtx6jd08m99c.constant(firefox),
     safari: $_9msgtx6jd08m99c.constant(safari)
+=======
+  var $_g5txropjducwnfw = {
+    unknown: unknown$1,
+    nu: nu$1,
+    edge: $_60qu7r6jducwn73.constant(edge),
+    chrome: $_60qu7r6jducwn73.constant(chrome),
+    ie: $_60qu7r6jducwn73.constant(ie$1),
+    opera: $_60qu7r6jducwn73.constant(opera$1),
+    firefox: $_60qu7r6jducwn73.constant(firefox),
+    safari: $_60qu7r6jducwn73.constant(safari)
+>>>>>>> installer
   };
 
   var windows = 'Windows';
@@ -3494,7 +3678,11 @@
   var unknown$2 = function () {
     return nu$2({
       current: undefined,
+<<<<<<< HEAD
       version: $_7vtntcqjd08m9h6.unknown()
+=======
+      version: $_84ynlaqjducwng0.unknown()
+>>>>>>> installer
     });
   };
   var nu$2 = function (info) {
@@ -3512,6 +3700,7 @@
       isFreeBSD: isOS(freebsd, current)
     };
   };
+<<<<<<< HEAD
   var $_9tgo31rjd08m9he = {
     unknown: unknown$2,
     nu: nu$2,
@@ -3522,6 +3711,18 @@
     osx: $_9msgtx6jd08m99c.constant(osx),
     solaris: $_9msgtx6jd08m99c.constant(solaris),
     freebsd: $_9msgtx6jd08m99c.constant(freebsd)
+=======
+  var $_3jpctqrjducwng2 = {
+    unknown: unknown$2,
+    nu: nu$2,
+    windows: $_60qu7r6jducwn73.constant(windows),
+    ios: $_60qu7r6jducwn73.constant(ios),
+    android: $_60qu7r6jducwn73.constant(android$1),
+    linux: $_60qu7r6jducwn73.constant(linux),
+    osx: $_60qu7r6jducwn73.constant(osx),
+    solaris: $_60qu7r6jducwn73.constant(solaris),
+    freebsd: $_60qu7r6jducwn73.constant(freebsd)
+>>>>>>> installer
   };
 
   function DeviceType (os, browser, userAgent) {
@@ -3534,6 +3735,7 @@
     var isPhone = isTouch && !isTablet;
     var iOSwebview = browser.isSafari() && os.isiOS() && /safari/i.test(userAgent) === false;
     return {
+<<<<<<< HEAD
       isiPad: $_9msgtx6jd08m99c.constant(isiPad),
       isiPhone: $_9msgtx6jd08m99c.constant(isiPhone),
       isTablet: $_9msgtx6jd08m99c.constant(isTablet),
@@ -3542,18 +3744,36 @@
       isAndroid: os.isAndroid,
       isiOS: os.isiOS,
       isWebView: $_9msgtx6jd08m99c.constant(iOSwebview)
+=======
+      isiPad: $_60qu7r6jducwn73.constant(isiPad),
+      isiPhone: $_60qu7r6jducwn73.constant(isiPhone),
+      isTablet: $_60qu7r6jducwn73.constant(isTablet),
+      isPhone: $_60qu7r6jducwn73.constant(isPhone),
+      isTouch: $_60qu7r6jducwn73.constant(isTouch),
+      isAndroid: os.isAndroid,
+      isiOS: os.isiOS,
+      isWebView: $_60qu7r6jducwn73.constant(iOSwebview)
+>>>>>>> installer
     };
   }
 
   var detect$1 = function (candidates, userAgent) {
     var agent = String(userAgent).toLowerCase();
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.find(candidates, function (candidate) {
+=======
+    return $_2dw1bj4jducwn6g.find(candidates, function (candidate) {
+>>>>>>> installer
       return candidate.search(agent);
     });
   };
   var detectBrowser = function (browsers, userAgent) {
     return detect$1(browsers, userAgent).map(function (browser) {
+<<<<<<< HEAD
       var version = $_7vtntcqjd08m9h6.detect(browser.versionRegexes, userAgent);
+=======
+      var version = $_84ynlaqjducwng0.detect(browser.versionRegexes, userAgent);
+>>>>>>> installer
       return {
         current: browser.name,
         version: version
@@ -3562,14 +3782,22 @@
   };
   var detectOs = function (oses, userAgent) {
     return detect$1(oses, userAgent).map(function (os) {
+<<<<<<< HEAD
       var version = $_7vtntcqjd08m9h6.detect(os.versionRegexes, userAgent);
+=======
+      var version = $_84ynlaqjducwng0.detect(os.versionRegexes, userAgent);
+>>>>>>> installer
       return {
         current: os.name,
         version: version
       };
     });
   };
+<<<<<<< HEAD
   var $_b51xy1tjd08m9hm = {
+=======
+  var $_9uwohctjducwng7 = {
+>>>>>>> installer
     detectBrowser: detectBrowser,
     detectOs: detectOs
   };
@@ -3586,7 +3814,11 @@
   var removeFromEnd = function (str, numChars) {
     return str.substring(0, str.length - numChars);
   };
+<<<<<<< HEAD
   var $_g8lrriwjd08m9hy = {
+=======
+  var $_ezyal9wjducwngi = {
+>>>>>>> installer
     addToStart: addToStart,
     addToEnd: addToEnd,
     removeFromStart: removeFromStart,
@@ -3600,12 +3832,21 @@
     return str.substr(str.length - count, str.length);
   };
   var head$1 = function (str) {
+<<<<<<< HEAD
     return str === '' ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(str.substr(0, 1));
   };
   var tail = function (str) {
     return str === '' ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(str.substring(1));
   };
   var $_6ckaglxjd08m9i0 = {
+=======
+    return str === '' ? Option.none() : Option.some(str.substr(0, 1));
+  };
+  var tail = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substring(1));
+  };
+  var $_a5k34jxjducwngk = {
+>>>>>>> installer
     first: first,
     last: last$2,
     head: head$1,
@@ -3631,6 +3872,7 @@
     });
   };
   var removeLeading = function (str, prefix) {
+<<<<<<< HEAD
     return startsWith(str, prefix) ? $_g8lrriwjd08m9hy.removeFromStart(str, prefix.length) : str;
   };
   var removeTrailing = function (str, prefix) {
@@ -3641,13 +3883,30 @@
   };
   var ensureTrailing = function (str, prefix) {
     return endsWith(str, prefix) ? str : $_g8lrriwjd08m9hy.addToEnd(str, prefix);
+=======
+    return startsWith(str, prefix) ? $_ezyal9wjducwngi.removeFromStart(str, prefix.length) : str;
+  };
+  var removeTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? $_ezyal9wjducwngi.removeFromEnd(str, prefix.length) : str;
+  };
+  var ensureLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? str : $_ezyal9wjducwngi.addToStart(str, prefix);
+  };
+  var ensureTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? str : $_ezyal9wjducwngi.addToEnd(str, prefix);
+>>>>>>> installer
   };
   var contains$2 = function (str, substr) {
     return str.indexOf(substr) !== -1;
   };
   var capitalize = function (str) {
+<<<<<<< HEAD
     return $_6ckaglxjd08m9i0.head(str).bind(function (head) {
       return $_6ckaglxjd08m9i0.tail(str).map(function (tail) {
+=======
+    return $_a5k34jxjducwngk.head(str).bind(function (head) {
+      return $_a5k34jxjducwngk.tail(str).map(function (tail) {
+>>>>>>> installer
         return head.toUpperCase() + tail;
       });
     }).getOr(str);
@@ -3667,7 +3926,11 @@
   var rTrim = function (str) {
     return str.replace(/\s+$/g, '');
   };
+<<<<<<< HEAD
   var $_59mp2gvjd08m9hw = {
+=======
+  var $_vrlmtvjducwngg = {
+>>>>>>> installer
     supplant: supplant,
     startsWith: startsWith,
     removeLeading: removeLeading,
@@ -3685,7 +3948,11 @@
   var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
   var checkContains = function (target) {
     return function (uastring) {
+<<<<<<< HEAD
       return $_59mp2gvjd08m9hw.contains(uastring, target);
+=======
+      return $_vrlmtvjducwngg.contains(uastring, target);
+>>>>>>> installer
     };
   };
   var browsers = [
@@ -3693,7 +3960,11 @@
       name: 'Edge',
       versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
       search: function (uastring) {
+<<<<<<< HEAD
         var monstrosity = $_59mp2gvjd08m9hw.contains(uastring, 'edge/') && $_59mp2gvjd08m9hw.contains(uastring, 'chrome') && $_59mp2gvjd08m9hw.contains(uastring, 'safari') && $_59mp2gvjd08m9hw.contains(uastring, 'applewebkit');
+=======
+        var monstrosity = $_vrlmtvjducwngg.contains(uastring, 'edge/') && $_vrlmtvjducwngg.contains(uastring, 'chrome') && $_vrlmtvjducwngg.contains(uastring, 'safari') && $_vrlmtvjducwngg.contains(uastring, 'applewebkit');
+>>>>>>> installer
         return monstrosity;
       }
     },
@@ -3704,7 +3975,11 @@
         normalVersionRegex
       ],
       search: function (uastring) {
+<<<<<<< HEAD
         return $_59mp2gvjd08m9hw.contains(uastring, 'chrome') && !$_59mp2gvjd08m9hw.contains(uastring, 'chromeframe');
+=======
+        return $_vrlmtvjducwngg.contains(uastring, 'chrome') && !$_vrlmtvjducwngg.contains(uastring, 'chromeframe');
+>>>>>>> installer
       }
     },
     {
@@ -3714,7 +3989,11 @@
         /.*?rv:([0-9]+)\.([0-9]+).*/
       ],
       search: function (uastring) {
+<<<<<<< HEAD
         return $_59mp2gvjd08m9hw.contains(uastring, 'msie') || $_59mp2gvjd08m9hw.contains(uastring, 'trident');
+=======
+        return $_vrlmtvjducwngg.contains(uastring, 'msie') || $_vrlmtvjducwngg.contains(uastring, 'trident');
+>>>>>>> installer
       }
     },
     {
@@ -3737,7 +4016,11 @@
         /.*?cpu os ([0-9]+)_([0-9]+).*/
       ],
       search: function (uastring) {
+<<<<<<< HEAD
         return ($_59mp2gvjd08m9hw.contains(uastring, 'safari') || $_59mp2gvjd08m9hw.contains(uastring, 'mobile/')) && $_59mp2gvjd08m9hw.contains(uastring, 'applewebkit');
+=======
+        return ($_vrlmtvjducwngg.contains(uastring, 'safari') || $_vrlmtvjducwngg.contains(uastring, 'mobile/')) && $_vrlmtvjducwngg.contains(uastring, 'applewebkit');
+>>>>>>> installer
       }
     }
   ];
@@ -3750,7 +4033,11 @@
     {
       name: 'iOS',
       search: function (uastring) {
+<<<<<<< HEAD
         return $_59mp2gvjd08m9hw.contains(uastring, 'iphone') || $_59mp2gvjd08m9hw.contains(uastring, 'ipad');
+=======
+        return $_vrlmtvjducwngg.contains(uastring, 'iphone') || $_vrlmtvjducwngg.contains(uastring, 'ipad');
+>>>>>>> installer
       },
       versionRegexes: [
         /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
@@ -3784,6 +4071,7 @@
       versionRegexes: []
     }
   ];
+<<<<<<< HEAD
   var $_eorjg7ujd08m9hr = {
     browsers: $_9msgtx6jd08m99c.constant(browsers),
     oses: $_9msgtx6jd08m99c.constant(oses)
@@ -3794,6 +4082,18 @@
     var oses = $_eorjg7ujd08m9hr.oses();
     var browser = $_b51xy1tjd08m9hm.detectBrowser(browsers, userAgent).fold($_gcrp3ipjd08m9h0.unknown, $_gcrp3ipjd08m9h0.nu);
     var os = $_b51xy1tjd08m9hm.detectOs(oses, userAgent).fold($_9tgo31rjd08m9he.unknown, $_9tgo31rjd08m9he.nu);
+=======
+  var $_fywjeoujducwnga = {
+    browsers: $_60qu7r6jducwn73.constant(browsers),
+    oses: $_60qu7r6jducwn73.constant(oses)
+  };
+
+  var detect$2 = function (userAgent) {
+    var browsers = $_fywjeoujducwnga.browsers();
+    var oses = $_fywjeoujducwnga.oses();
+    var browser = $_9uwohctjducwng7.detectBrowser(browsers, userAgent).fold($_g5txropjducwnfw.unknown, $_g5txropjducwnfw.nu);
+    var os = $_9uwohctjducwng7.detectOs(oses, userAgent).fold($_3jpctqrjducwng2.unknown, $_3jpctqrjducwng2.nu);
+>>>>>>> installer
     var deviceType = DeviceType(os, browser, userAgent);
     return {
       browser: browser,
@@ -3801,6 +4101,7 @@
       deviceType: deviceType
     };
   };
+<<<<<<< HEAD
   var $_6uw75yojd08m9gy = { detect: detect$2 };
 
   var detect$3 = $_fit0zmnjd08m9gw.cached(function () {
@@ -3808,6 +4109,15 @@
     return $_6uw75yojd08m9gy.detect(userAgent);
   });
   var $_min5rmjd08m9gu = { detect: detect$3 };
+=======
+  var $_12k257ojducwnfv = { detect: detect$2 };
+
+  var detect$3 = $_2tix6bnjducwnfu.cached(function () {
+    var userAgent = navigator.userAgent;
+    return $_12k257ojducwnfv.detect(userAgent);
+  });
+  var $_5hshlmmjducwnfr = { detect: detect$3 };
+>>>>>>> installer
 
   var fromHtml = function (html, scope) {
     var doc = scope || document;
@@ -3832,12 +4142,21 @@
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
+<<<<<<< HEAD
     return { dom: $_9msgtx6jd08m99c.constant(node) };
   };
   var fromPoint = function (doc, x, y) {
     return $_zhkqu5jd08m996.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
   };
   var $_f4wyrxyjd08m9i5 = {
+=======
+    return { dom: $_60qu7r6jducwn73.constant(node) };
+  };
+  var fromPoint = function (doc, x, y) {
+    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
+  };
+  var $_5s4uzoyjducwngo = {
+>>>>>>> installer
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -3845,7 +4164,11 @@
     fromPoint: fromPoint
   };
 
+<<<<<<< HEAD
   var $_api0y10jd08m9ib = {
+=======
+  var $_1iw4nj10jducwngu = {
+>>>>>>> installer
     ATTRIBUTE: 2,
     CDATA_SECTION: 4,
     COMMENT: 8,
@@ -3876,12 +4199,21 @@
     };
   };
   var isComment = function (element) {
+<<<<<<< HEAD
     return type(element) === $_api0y10jd08m9ib.COMMENT || name(element) === '#comment';
   };
   var isElement = isType($_api0y10jd08m9ib.ELEMENT);
   var isText = isType($_api0y10jd08m9ib.TEXT);
   var isDocument = isType($_api0y10jd08m9ib.DOCUMENT);
   var $_d4s1fbzjd08m9ia = {
+=======
+    return type(element) === $_1iw4nj10jducwngu.COMMENT || name(element) === '#comment';
+  };
+  var isElement = isType($_1iw4nj10jducwngu.ELEMENT);
+  var isText = isType($_1iw4nj10jducwngu.TEXT);
+  var isDocument = isType($_1iw4nj10jducwngu.DOCUMENT);
+  var $_47qy15zjducwngt = {
+>>>>>>> installer
     name: name,
     type: type,
     value: value,
@@ -3906,7 +4238,11 @@
       return typeOf(value) === type;
     };
   };
+<<<<<<< HEAD
   var $_erj73112jd08m9ip = {
+=======
+  var $_c7y6af12jducwnh8 = {
+>>>>>>> installer
     isString: isType$1('string'),
     isObject: isType$1('object'),
     isArray: isType$1('array'),
@@ -3979,10 +4315,17 @@
       var i = props[k];
       var x = obj[i];
       if (pred(x, i, obj)) {
+<<<<<<< HEAD
         return $_zhkqu5jd08m996.some(x);
       }
     }
     return $_zhkqu5jd08m996.none();
+=======
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+>>>>>>> installer
   };
   var values = function (obj) {
     return mapToArray(obj, function (v) {
@@ -3992,7 +4335,11 @@
   var size = function (obj) {
     return values(obj).length;
   };
+<<<<<<< HEAD
   var $_2uvydk13jd08m9ir = {
+=======
+  var $_84vepq13jducwnh9 = {
+>>>>>>> installer
     bifilter: bifilter,
     each: each$3,
     map: objectMap,
@@ -4005,7 +4352,11 @@
   };
 
   var rawSet = function (dom, key, value) {
+<<<<<<< HEAD
     if ($_erj73112jd08m9ip.isString(value) || $_erj73112jd08m9ip.isBoolean(value) || $_erj73112jd08m9ip.isNumber(value)) {
+=======
+    if ($_c7y6af12jducwnh8.isString(value) || $_c7y6af12jducwnh8.isBoolean(value) || $_c7y6af12jducwnh8.isNumber(value)) {
+>>>>>>> installer
       dom.setAttribute(key, value + '');
     } else {
       console.error('Invalid call to Attr.set. Key ', key, ':: Value ', value, ':: Element ', dom);
@@ -4017,7 +4368,11 @@
   };
   var setAll = function (element, attrs) {
     var dom = element.dom();
+<<<<<<< HEAD
     $_2uvydk13jd08m9ir.each(attrs, function (v, k) {
+=======
+    $_84vepq13jducwnh9.each(attrs, function (v, k) {
+>>>>>>> installer
       rawSet(dom, k, v);
     });
   };
@@ -4037,7 +4392,11 @@
     return attrs === undefined || attrs === null || attrs.length === 0;
   };
   var clone = function (element) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.foldl(element.dom().attributes, function (acc, attr) {
+=======
+    return $_2dw1bj4jducwn6g.foldl(element.dom().attributes, function (acc, attr) {
+>>>>>>> installer
       acc[attr.name] = attr.value;
       return acc;
     }, {});
@@ -4047,6 +4406,7 @@
       set(destination, attr, get(source, attr));
   };
   var transfer = function (source, destination, attrs) {
+<<<<<<< HEAD
     if (!$_d4s1fbzjd08m9ia.isElement(source) || !$_d4s1fbzjd08m9ia.isElement(destination))
       return;
     $_65yphx4jd08m98n.each(attrs, function (attr) {
@@ -4054,6 +4414,15 @@
     });
   };
   var $_1wgh8c14jd08m9iv = {
+=======
+    if (!$_47qy15zjducwngt.isElement(source) || !$_47qy15zjducwngt.isElement(destination))
+      return;
+    $_2dw1bj4jducwn6g.each(attrs, function (attr) {
+      transferOne(source, destination, attr);
+    });
+  };
+  var $_60196814jducwnhd = {
+>>>>>>> installer
     clone: clone,
     set: set,
     setAll: setAll,
@@ -4065,19 +4434,33 @@
   };
 
   var inBody = function (element) {
+<<<<<<< HEAD
     var dom = $_d4s1fbzjd08m9ia.isText(element) ? element.dom().parentNode : element.dom();
     return dom !== undefined && dom !== null && dom.ownerDocument.body.contains(dom);
   };
   var body = $_fit0zmnjd08m9gw.cached(function () {
     return getBody($_f4wyrxyjd08m9i5.fromDom(document));
+=======
+    var dom = $_47qy15zjducwngt.isText(element) ? element.dom().parentNode : element.dom();
+    return dom !== undefined && dom !== null && dom.ownerDocument.body.contains(dom);
+  };
+  var body = $_2tix6bnjducwnfu.cached(function () {
+    return getBody($_5s4uzoyjducwngo.fromDom(document));
+>>>>>>> installer
   });
   var getBody = function (doc) {
     var body = doc.dom().body;
     if (body === null || body === undefined)
       throw 'Body is not available yet';
+<<<<<<< HEAD
     return $_f4wyrxyjd08m9i5.fromDom(body);
   };
   var $_8r1tav15jd08m9j3 = {
+=======
+    return $_5s4uzoyjducwngo.fromDom(body);
+  };
+  var $_4u3ohv15jducwnhl = {
+>>>>>>> installer
     body: body,
     getBody: getBody,
     inBody: inBody
@@ -4086,6 +4469,7 @@
   var isSupported = function (dom) {
     return dom.style !== undefined;
   };
+<<<<<<< HEAD
   var $_fz8dx916jd08m9j6 = { isSupported: isSupported };
 
   var internalSet = function (dom, property, value) {
@@ -4098,6 +4482,20 @@
   };
   var internalRemove = function (dom, property) {
     if ($_fz8dx916jd08m9j6.isSupported(dom))
+=======
+  var $_97xer116jducwnho = { isSupported: isSupported };
+
+  var internalSet = function (dom, property, value) {
+    if (!$_c7y6af12jducwnh8.isString(value)) {
+      console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
+      throw new Error('CSS value must be a string: ' + value);
+    }
+    if ($_97xer116jducwnho.isSupported(dom))
+      dom.style.setProperty(property, value);
+  };
+  var internalRemove = function (dom, property) {
+    if ($_97xer116jducwnho.isSupported(dom))
+>>>>>>> installer
       dom.style.removeProperty(property);
   };
   var set$1 = function (element, property, value) {
@@ -4106,13 +4504,21 @@
   };
   var setAll$1 = function (element, css) {
     var dom = element.dom();
+<<<<<<< HEAD
     $_2uvydk13jd08m9ir.each(css, function (v, k) {
+=======
+    $_84vepq13jducwnh9.each(css, function (v, k) {
+>>>>>>> installer
       internalSet(dom, k, v);
     });
   };
   var setOptions = function (element, css) {
     var dom = element.dom();
+<<<<<<< HEAD
     $_2uvydk13jd08m9ir.each(css, function (v, k) {
+=======
+    $_84vepq13jducwnh9.each(css, function (v, k) {
+>>>>>>> installer
       v.fold(function () {
         internalRemove(dom, k);
       }, function (value) {
@@ -4124,23 +4530,39 @@
     var dom = element.dom();
     var styles = window.getComputedStyle(dom);
     var r = styles.getPropertyValue(property);
+<<<<<<< HEAD
     var v = r === '' && !$_8r1tav15jd08m9j3.inBody(element) ? getUnsafeProperty(dom, property) : r;
     return v === null ? undefined : v;
   };
   var getUnsafeProperty = function (dom, property) {
     return $_fz8dx916jd08m9j6.isSupported(dom) ? dom.style.getPropertyValue(property) : '';
+=======
+    var v = r === '' && !$_4u3ohv15jducwnhl.inBody(element) ? getUnsafeProperty(dom, property) : r;
+    return v === null ? undefined : v;
+  };
+  var getUnsafeProperty = function (dom, property) {
+    return $_97xer116jducwnho.isSupported(dom) ? dom.style.getPropertyValue(property) : '';
+>>>>>>> installer
   };
   var getRaw = function (element, property) {
     var dom = element.dom();
     var raw = getUnsafeProperty(dom, property);
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.from(raw).filter(function (r) {
+=======
+    return Option.from(raw).filter(function (r) {
+>>>>>>> installer
       return r.length > 0;
     });
   };
   var getAllRaw = function (element) {
     var css = {};
     var dom = element.dom();
+<<<<<<< HEAD
     if ($_fz8dx916jd08m9j6.isSupported(dom)) {
+=======
+    if ($_97xer116jducwnho.isSupported(dom)) {
+>>>>>>> installer
       for (var i = 0; i < dom.style.length; i++) {
         var ruleName = dom.style.item(i);
         css[ruleName] = dom.style[ruleName];
@@ -4149,7 +4571,11 @@
     return css;
   };
   var isValidValue = function (tag, property, value) {
+<<<<<<< HEAD
     var element = $_f4wyrxyjd08m9i5.fromTag(tag);
+=======
+    var element = $_5s4uzoyjducwngo.fromTag(tag);
+>>>>>>> installer
     set$1(element, property, value);
     var style = getRaw(element, property);
     return style.isSome();
@@ -4157,6 +4583,7 @@
   var remove$1 = function (element, property) {
     var dom = element.dom();
     internalRemove(dom, property);
+<<<<<<< HEAD
     if ($_1wgh8c14jd08m9iv.has(element, 'style') && $_59mp2gvjd08m9hw.trim($_1wgh8c14jd08m9iv.get(element, 'style')) === '') {
       $_1wgh8c14jd08m9iv.remove(element, 'style');
     }
@@ -4165,13 +4592,27 @@
     var oldStyles = $_1wgh8c14jd08m9iv.get(element, 'style');
     var result = f(element);
     var restore = oldStyles === undefined ? $_1wgh8c14jd08m9iv.remove : $_1wgh8c14jd08m9iv.set;
+=======
+    if ($_60196814jducwnhd.has(element, 'style') && $_vrlmtvjducwngg.trim($_60196814jducwnhd.get(element, 'style')) === '') {
+      $_60196814jducwnhd.remove(element, 'style');
+    }
+  };
+  var preserve = function (element, f) {
+    var oldStyles = $_60196814jducwnhd.get(element, 'style');
+    var result = f(element);
+    var restore = oldStyles === undefined ? $_60196814jducwnhd.remove : $_60196814jducwnhd.set;
+>>>>>>> installer
     restore(element, 'style', oldStyles);
     return result;
   };
   var copy = function (source, target) {
     var sourceDom = source.dom();
     var targetDom = target.dom();
+<<<<<<< HEAD
     if ($_fz8dx916jd08m9j6.isSupported(sourceDom) && $_fz8dx916jd08m9j6.isSupported(targetDom)) {
+=======
+    if ($_97xer116jducwnho.isSupported(sourceDom) && $_97xer116jducwnho.isSupported(targetDom)) {
+>>>>>>> installer
       targetDom.style.cssText = sourceDom.style.cssText;
     }
   };
@@ -4185,6 +4626,7 @@
     });
   };
   var transfer$1 = function (source, destination, styles) {
+<<<<<<< HEAD
     if (!$_d4s1fbzjd08m9ia.isElement(source) || !$_d4s1fbzjd08m9ia.isElement(destination))
       return;
     $_65yphx4jd08m98n.each(styles, function (style) {
@@ -4192,6 +4634,15 @@
     });
   };
   var $_frbcp511jd08m9id = {
+=======
+    if (!$_47qy15zjducwngt.isElement(source) || !$_47qy15zjducwngt.isElement(destination))
+      return;
+    $_2dw1bj4jducwn6g.each(styles, function (style) {
+      transferOne$1(source, destination, style);
+    });
+  };
+  var $_6dooji11jducwngx = {
+>>>>>>> installer
     copy: copy,
     set: set$1,
     preserve: preserve,
@@ -4215,8 +4666,13 @@
       if (fields.length !== values.length)
         throw new Error('Wrong number of arguments to struct. Expected "[' + fields.length + ']", got ' + values.length + ' arguments');
       var struct = {};
+<<<<<<< HEAD
       $_65yphx4jd08m98n.each(fields, function (name, i) {
         struct[name] = $_9msgtx6jd08m99c.constant(values[i]);
+=======
+      $_2dw1bj4jducwn6g.each(fields, function (name, i) {
+        struct[name] = $_60qu7r6jducwn73.constant(values[i]);
+>>>>>>> installer
       });
       return struct;
     };
@@ -4232,10 +4688,17 @@
     throw new Error('Unsupported keys for object: ' + sort$1(unsupported).join(', '));
   };
   var validateStrArr = function (label, array) {
+<<<<<<< HEAD
     if (!$_erj73112jd08m9ip.isArray(array))
       throw new Error('The ' + label + ' fields must be an array. Was: ' + array + '.');
     $_65yphx4jd08m98n.each(array, function (a) {
       if (!$_erj73112jd08m9ip.isString(a))
+=======
+    if (!$_c7y6af12jducwnh8.isArray(array))
+      throw new Error('The ' + label + ' fields must be an array. Was: ' + array + '.');
+    $_2dw1bj4jducwn6g.each(array, function (a) {
+      if (!$_c7y6af12jducwnh8.isString(a))
+>>>>>>> installer
         throw new Error('The value ' + a + ' in the ' + label + ' fields was not a string.');
     });
   };
@@ -4244,14 +4707,22 @@
   };
   var checkDupes = function (everything) {
     var sorted = sort$1(everything);
+<<<<<<< HEAD
     var dupe = $_65yphx4jd08m98n.find(sorted, function (s, i) {
+=======
+    var dupe = $_2dw1bj4jducwn6g.find(sorted, function (s, i) {
+>>>>>>> installer
       return i < sorted.length - 1 && s === sorted[i + 1];
     });
     dupe.each(function (d) {
       throw new Error('The field: ' + d + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
     });
   };
+<<<<<<< HEAD
   var $_d50vqm1bjd08m9jv = {
+=======
+  var $_tfxv91bjducwnib = {
+>>>>>>> installer
     sort: sort$1,
     reqMessage: reqMessage,
     unsuppMessage: unsuppMessage,
@@ -4264,6 +4735,7 @@
     var everything = required.concat(optional);
     if (everything.length === 0)
       throw new Error('You must specify at least one required or optional field.');
+<<<<<<< HEAD
     $_d50vqm1bjd08m9jv.validateStrArr('required', required);
     $_d50vqm1bjd08m9jv.validateStrArr('optional', optional);
     $_d50vqm1bjd08m9jv.checkDupes(everything);
@@ -4285,12 +4757,39 @@
       });
       $_65yphx4jd08m98n.each(optional, function (opt) {
         r[opt] = $_9msgtx6jd08m99c.constant(Object.prototype.hasOwnProperty.call(obj, opt) ? $_zhkqu5jd08m996.some(obj[opt]) : $_zhkqu5jd08m996.none());
+=======
+    $_tfxv91bjducwnib.validateStrArr('required', required);
+    $_tfxv91bjducwnib.validateStrArr('optional', optional);
+    $_tfxv91bjducwnib.checkDupes(everything);
+    return function (obj) {
+      var keys = $_84vepq13jducwnh9.keys(obj);
+      var allReqd = $_2dw1bj4jducwn6g.forall(required, function (req) {
+        return $_2dw1bj4jducwn6g.contains(keys, req);
+      });
+      if (!allReqd)
+        $_tfxv91bjducwnib.reqMessage(required, keys);
+      var unsupported = $_2dw1bj4jducwn6g.filter(keys, function (key) {
+        return !$_2dw1bj4jducwn6g.contains(everything, key);
+      });
+      if (unsupported.length > 0)
+        $_tfxv91bjducwnib.unsuppMessage(unsupported);
+      var r = {};
+      $_2dw1bj4jducwn6g.each(required, function (req) {
+        r[req] = $_60qu7r6jducwn73.constant(obj[req]);
+      });
+      $_2dw1bj4jducwn6g.each(optional, function (opt) {
+        r[opt] = $_60qu7r6jducwn73.constant(Object.prototype.hasOwnProperty.call(obj, opt) ? Option.some(obj[opt]) : Option.none());
+>>>>>>> installer
       });
       return r;
     };
   }
 
+<<<<<<< HEAD
   var $_egy9xb18jd08m9jo = {
+=======
+  var $_295afp18jducwni4 = {
+>>>>>>> installer
     immutable: Immutable,
     immutableBag: MixedBag
   };
@@ -4307,10 +4806,17 @@
     } while (cur.isSome());
     return r;
   };
+<<<<<<< HEAD
   var $_b0gid31cjd08m9jy = { toArray: toArray$1 };
 
   var node = function () {
     var f = $_7jpcjvbjd08m9bq.getOrDie('Node');
+=======
+  var $_8cslsm1cjducwnid = { toArray: toArray$1 };
+
+  var node = function () {
+    var f = $_850zr7bjducwn9g.getOrDie('Node');
+>>>>>>> installer
     return f;
   };
   var compareDocumentPosition = function (a, b, match) {
@@ -4322,13 +4828,22 @@
   var documentPositionContainedBy = function (a, b) {
     return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
   };
+<<<<<<< HEAD
   var $_fmdqdu1ejd08m9k6 = {
+=======
+  var $_94urfo1ejducwnik = {
+>>>>>>> installer
     documentPositionPreceding: documentPositionPreceding,
     documentPositionContainedBy: documentPositionContainedBy
   };
 
+<<<<<<< HEAD
   var ELEMENT = $_api0y10jd08m9ib.ELEMENT;
   var DOCUMENT = $_api0y10jd08m9ib.DOCUMENT;
+=======
+  var ELEMENT = $_1iw4nj10jducwngu.ELEMENT;
+  var DOCUMENT = $_1iw4nj10jducwngu.DOCUMENT;
+>>>>>>> installer
   var is$1 = function (element, selector) {
     var elem = element.dom();
     if (elem.nodeType !== ELEMENT)
@@ -4349,6 +4864,7 @@
   };
   var all = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
+<<<<<<< HEAD
     return bypassSelector(base) ? [] : $_65yphx4jd08m98n.map(base.querySelectorAll(selector), $_f4wyrxyjd08m9i5.fromDom);
   };
   var one = function (selector, scope) {
@@ -4356,6 +4872,15 @@
     return bypassSelector(base) ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.from(base.querySelector(selector)).map($_f4wyrxyjd08m9i5.fromDom);
   };
   var $_g3mfaw1fjd08m9k7 = {
+=======
+    return bypassSelector(base) ? [] : $_2dw1bj4jducwn6g.map(base.querySelectorAll(selector), $_5s4uzoyjducwngo.fromDom);
+  };
+  var one = function (selector, scope) {
+    var base = scope === undefined ? document : scope.dom();
+    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map($_5s4uzoyjducwngo.fromDom);
+  };
+  var $_3yrc4b1fjducwnim = {
+>>>>>>> installer
     all: all,
     is: is$1,
     one: one
@@ -4368,22 +4893,35 @@
     return e1.dom().isEqualNode(e2.dom());
   };
   var member = function (element, elements) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.exists(elements, $_9msgtx6jd08m99c.curry(eq, element));
+=======
+    return $_2dw1bj4jducwn6g.exists(elements, $_60qu7r6jducwn73.curry(eq, element));
+>>>>>>> installer
   };
   var regularContains = function (e1, e2) {
     var d1 = e1.dom(), d2 = e2.dom();
     return d1 === d2 ? false : d1.contains(d2);
   };
   var ieContains = function (e1, e2) {
+<<<<<<< HEAD
     return $_fmdqdu1ejd08m9k6.documentPositionContainedBy(e1.dom(), e2.dom());
   };
   var browser = $_min5rmjd08m9gu.detect().browser;
   var contains$3 = browser.isIE() ? ieContains : regularContains;
   var $_9gmgw51djd08m9k0 = {
+=======
+    return $_94urfo1ejducwnik.documentPositionContainedBy(e1.dom(), e2.dom());
+  };
+  var browser = $_5hshlmmjducwnfr.detect().browser;
+  var contains$3 = browser.isIE() ? ieContains : regularContains;
+  var $_4qdq5m1djducwnie = {
+>>>>>>> installer
     eq: eq,
     isEqualNode: isEqualNode,
     member: member,
     contains: contains$3,
+<<<<<<< HEAD
     is: $_g3mfaw1fjd08m9k7.is
   };
 
@@ -4393,31 +4931,63 @@
   var documentElement = function (element) {
     var doc = owner(element);
     return $_f4wyrxyjd08m9i5.fromDom(doc.dom().documentElement);
+=======
+    is: $_3yrc4b1fjducwnim.is
+  };
+
+  var owner = function (element) {
+    return $_5s4uzoyjducwngo.fromDom(element.dom().ownerDocument);
+  };
+  var documentElement = function (element) {
+    var doc = owner(element);
+    return $_5s4uzoyjducwngo.fromDom(doc.dom().documentElement);
+>>>>>>> installer
   };
   var defaultView = function (element) {
     var el = element.dom();
     var defaultView = el.ownerDocument.defaultView;
+<<<<<<< HEAD
     return $_f4wyrxyjd08m9i5.fromDom(defaultView);
   };
   var parent = function (element) {
     var dom = element.dom();
     return $_zhkqu5jd08m996.from(dom.parentNode).map($_f4wyrxyjd08m9i5.fromDom);
+=======
+    return $_5s4uzoyjducwngo.fromDom(defaultView);
+  };
+  var parent = function (element) {
+    var dom = element.dom();
+    return Option.from(dom.parentNode).map($_5s4uzoyjducwngo.fromDom);
+>>>>>>> installer
   };
   var findIndex$2 = function (element) {
     return parent(element).bind(function (p) {
       var kin = children(p);
+<<<<<<< HEAD
       return $_65yphx4jd08m98n.findIndex(kin, function (elem) {
         return $_9gmgw51djd08m9k0.eq(element, elem);
+=======
+      return $_2dw1bj4jducwn6g.findIndex(kin, function (elem) {
+        return $_4qdq5m1djducwnie.eq(element, elem);
+>>>>>>> installer
       });
     });
   };
   var parents = function (element, isRoot) {
+<<<<<<< HEAD
     var stop = $_erj73112jd08m9ip.isFunction(isRoot) ? isRoot : $_9msgtx6jd08m99c.constant(false);
+=======
+    var stop = $_c7y6af12jducwnh8.isFunction(isRoot) ? isRoot : $_60qu7r6jducwn73.constant(false);
+>>>>>>> installer
     var dom = element.dom();
     var ret = [];
     while (dom.parentNode !== null && dom.parentNode !== undefined) {
       var rawParent = dom.parentNode;
+<<<<<<< HEAD
       var parent = $_f4wyrxyjd08m9i5.fromDom(rawParent);
+=======
+      var parent = $_5s4uzoyjducwngo.fromDom(rawParent);
+>>>>>>> installer
       ret.push(parent);
       if (stop(parent) === true)
         break;
@@ -4428,14 +4998,20 @@
   };
   var siblings = function (element) {
     var filterSelf = function (elements) {
+<<<<<<< HEAD
       return $_65yphx4jd08m98n.filter(elements, function (x) {
         return !$_9gmgw51djd08m9k0.eq(element, x);
+=======
+      return $_2dw1bj4jducwn6g.filter(elements, function (x) {
+        return !$_4qdq5m1djducwnie.eq(element, x);
+>>>>>>> installer
       });
     };
     return parent(element).map(children).map(filterSelf).getOr([]);
   };
   var offsetParent = function (element) {
     var dom = element.dom();
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.from(dom.offsetParent).map($_f4wyrxyjd08m9i5.fromDom);
   };
   var prevSibling = function (element) {
@@ -4459,6 +5035,31 @@
   var child = function (element, index) {
     var children = element.dom().childNodes;
     return $_zhkqu5jd08m996.from(children[index]).map($_f4wyrxyjd08m9i5.fromDom);
+=======
+    return Option.from(dom.offsetParent).map($_5s4uzoyjducwngo.fromDom);
+  };
+  var prevSibling = function (element) {
+    var dom = element.dom();
+    return Option.from(dom.previousSibling).map($_5s4uzoyjducwngo.fromDom);
+  };
+  var nextSibling = function (element) {
+    var dom = element.dom();
+    return Option.from(dom.nextSibling).map($_5s4uzoyjducwngo.fromDom);
+  };
+  var prevSiblings = function (element) {
+    return $_2dw1bj4jducwn6g.reverse($_8cslsm1cjducwnid.toArray(element, prevSibling));
+  };
+  var nextSiblings = function (element) {
+    return $_8cslsm1cjducwnid.toArray(element, nextSibling);
+  };
+  var children = function (element) {
+    var dom = element.dom();
+    return $_2dw1bj4jducwn6g.map(dom.childNodes, $_5s4uzoyjducwngo.fromDom);
+  };
+  var child = function (element, index) {
+    var children = element.dom().childNodes;
+    return Option.from(children[index]).map($_5s4uzoyjducwngo.fromDom);
+>>>>>>> installer
   };
   var firstChild = function (element) {
     return child(element, 0);
@@ -4472,12 +5073,20 @@
   var hasChildNodes = function (element) {
     return element.dom().hasChildNodes();
   };
+<<<<<<< HEAD
   var spot = $_egy9xb18jd08m9jo.immutable('element', 'offset');
+=======
+  var spot = $_295afp18jducwni4.immutable('element', 'offset');
+>>>>>>> installer
   var leaf = function (element, offset) {
     var cs = children(element);
     return cs.length > 0 && offset < cs.length ? spot(cs[offset], 0) : spot(element, offset);
   };
+<<<<<<< HEAD
   var $_8xk2kp17jd08m9j8 = {
+=======
+  var $_f0qt4317jducwnhq = {
+>>>>>>> installer
     owner: owner,
     defaultView: defaultView,
     documentElement: documentElement,
@@ -4499,6 +5108,7 @@
     leaf: leaf
   };
 
+<<<<<<< HEAD
   var browser$1 = $_min5rmjd08m9gu.detect().browser;
   var firstElement = function (nodes) {
     return $_65yphx4jd08m98n.find(nodes, $_d4s1fbzjd08m9ia.isElement);
@@ -4509,6 +5119,18 @@
         return $_d4s1fbzjd08m9ia.name(elm) === 'caption';
       }).bind(function (caption) {
         return firstElement($_8xk2kp17jd08m9j8.nextSiblings(caption)).map(function (body) {
+=======
+  var browser$1 = $_5hshlmmjducwnfr.detect().browser;
+  var firstElement = function (nodes) {
+    return $_2dw1bj4jducwn6g.find(nodes, $_47qy15zjducwngt.isElement);
+  };
+  var getTableCaptionDeltaY = function (elm) {
+    if (browser$1.isFirefox() && $_47qy15zjducwngt.name(elm) === 'table') {
+      return firstElement($_f0qt4317jducwnhq.children(elm)).filter(function (elm) {
+        return $_47qy15zjducwngt.name(elm) === 'caption';
+      }).bind(function (caption) {
+        return firstElement($_f0qt4317jducwnhq.nextSiblings(caption)).map(function (body) {
+>>>>>>> installer
           var bodyTop = body.dom().offsetTop;
           var captionTop = caption.dom().offsetTop;
           var captionHeight = caption.dom().offsetHeight;
@@ -4525,7 +5147,11 @@
     var pos;
     rootElm = rootElm ? rootElm : body;
     if (elm) {
+<<<<<<< HEAD
       if (rootElm === body && elm.getBoundingClientRect && $_frbcp511jd08m9id.get($_f4wyrxyjd08m9i5.fromDom(body), 'position') === 'static') {
+=======
+      if (rootElm === body && elm.getBoundingClientRect && $_6dooji11jducwngx.get($_5s4uzoyjducwngo.fromDom(body), 'position') === 'static') {
+>>>>>>> installer
         pos = elm.getBoundingClientRect();
         x = pos.left + (doc.documentElement.scrollLeft || body.scrollLeft) - doc.documentElement.clientLeft;
         y = pos.top + (doc.documentElement.scrollTop || body.scrollTop) - doc.documentElement.clientTop;
@@ -4546,17 +5172,28 @@
         y -= offsetParent.scrollTop || 0;
         offsetParent = offsetParent.parentNode;
       }
+<<<<<<< HEAD
       y += getTableCaptionDeltaY($_f4wyrxyjd08m9i5.fromDom(elm));
+=======
+      y += getTableCaptionDeltaY($_5s4uzoyjducwngo.fromDom(elm));
+>>>>>>> installer
     }
     return {
       x: x,
       y: y
     };
   };
+<<<<<<< HEAD
   var $_13un0zljd08m9gk = { getPos: getPos };
 
   var nu$3 = function (baseFn) {
     var data = $_zhkqu5jd08m996.none();
+=======
+  var $_4jv3c6ljducwnfj = { getPos: getPos };
+
+  var nu$3 = function (baseFn) {
+    var data = Option.none();
+>>>>>>> installer
     var callbacks = [];
     var map = function (f) {
       return nu$3(function (nCallback) {
@@ -4572,7 +5209,11 @@
         callbacks.push(nCallback);
     };
     var set = function (x) {
+<<<<<<< HEAD
       data = $_zhkqu5jd08m996.some(x);
+=======
+      data = Option.some(x);
+>>>>>>> installer
       run(callbacks);
       callbacks = [];
     };
@@ -4580,7 +5221,11 @@
       return data.isSome();
     };
     var run = function (cbs) {
+<<<<<<< HEAD
       $_65yphx4jd08m98n.each(cbs, call);
+=======
+      $_2dw1bj4jducwn6g.each(cbs, call);
+>>>>>>> installer
     };
     var call = function (cb) {
       data.each(function (x) {
@@ -4601,7 +5246,11 @@
       callback(a);
     });
   };
+<<<<<<< HEAD
   var $_6q9vvx1ijd08m9kn = {
+=======
+  var LazyValue = {
+>>>>>>> installer
     nu: nu$3,
     pure: pure$1
   };
@@ -4615,11 +5264,19 @@
       }, 0);
     };
   };
+<<<<<<< HEAD
   var $_ej3uup1jjd08m9kp = { bounce: bounce };
 
   var nu$4 = function (baseFn) {
     var get = function (callback) {
       baseFn($_ej3uup1jjd08m9kp.bounce(callback));
+=======
+  var $_bzefsp1jjducwnj5 = { bounce: bounce };
+
+  var nu$4 = function (baseFn) {
+    var get = function (callback) {
+      baseFn($_bzefsp1jjducwnj5.bounce(callback));
+>>>>>>> installer
     };
     var map = function (fab) {
       return nu$4(function (callback) {
@@ -4644,7 +5301,11 @@
       });
     };
     var toLazy = function () {
+<<<<<<< HEAD
       return $_6q9vvx1ijd08m9kn.nu(get);
+=======
+      return LazyValue.nu(get);
+>>>>>>> installer
     };
     return {
       map: map,
@@ -4659,7 +5320,11 @@
       callback(a);
     });
   };
+<<<<<<< HEAD
   var $_eysf061hjd08m9km = {
+=======
+  var Future = {
+>>>>>>> installer
     nu: nu$4,
     pure: pure$2
   };
@@ -4680,12 +5345,17 @@
       if (asyncValues.length === 0) {
         callback([]);
       } else {
+<<<<<<< HEAD
         $_65yphx4jd08m98n.each(asyncValues, function (asyncValue, i) {
+=======
+        $_2dw1bj4jducwn6g.each(asyncValues, function (asyncValue, i) {
+>>>>>>> installer
           asyncValue.get(cb(i));
         });
       }
     });
   };
+<<<<<<< HEAD
   var $_b1uhos1ljd08m9ks = { par: par };
 
   var par$1 = function (futures) {
@@ -4693,6 +5363,15 @@
   };
   var mapM = function (array, fn) {
     var futures = $_65yphx4jd08m98n.map(array, fn);
+=======
+  var $_ax3akv1ljducwnj8 = { par: par };
+
+  var par$1 = function (futures) {
+    return $_ax3akv1ljducwnj8.par(futures, Future.nu);
+  };
+  var mapM = function (array, fn) {
+    var futures = $_2dw1bj4jducwn6g.map(array, fn);
+>>>>>>> installer
     return par$1(futures);
   };
   var compose$1 = function (f, g) {
@@ -4700,7 +5379,11 @@
       return g(a).bind(f);
     };
   };
+<<<<<<< HEAD
   var $_27vrzl1kjd08m9kr = {
+=======
+  var $_2m9thz1kjducwnj6 = {
+>>>>>>> installer
     par: par$1,
     mapM: mapM,
     compose: compose$1
@@ -4735,6 +5418,7 @@
       return f(o);
     };
     var toOption = function () {
+<<<<<<< HEAD
       return $_zhkqu5jd08m996.some(o);
     };
     return {
@@ -4744,6 +5428,17 @@
       getOr: $_9msgtx6jd08m99c.constant(o),
       getOrThunk: $_9msgtx6jd08m99c.constant(o),
       getOrDie: $_9msgtx6jd08m99c.constant(o),
+=======
+      return Option.some(o);
+    };
+    return {
+      is: is,
+      isValue: $_60qu7r6jducwn73.always,
+      isError: $_60qu7r6jducwn73.never,
+      getOr: $_60qu7r6jducwn73.constant(o),
+      getOrThunk: $_60qu7r6jducwn73.constant(o),
+      getOrDie: $_60qu7r6jducwn73.constant(o),
+>>>>>>> installer
       or: or,
       orThunk: orThunk,
       fold: fold,
@@ -4760,7 +5455,11 @@
       return f();
     };
     var getOrDie = function () {
+<<<<<<< HEAD
       return $_9msgtx6jd08m99c.die(message)();
+=======
+      return $_60qu7r6jducwn73.die(message)();
+>>>>>>> installer
     };
     var or = function (opt) {
       return opt;
@@ -4778,16 +5477,24 @@
       return onError(message);
     };
     return {
+<<<<<<< HEAD
       is: $_9msgtx6jd08m99c.constant(false),
       isValue: $_9msgtx6jd08m99c.constant(false),
       isError: $_9msgtx6jd08m99c.constant(true),
       getOr: $_9msgtx6jd08m99c.identity,
+=======
+      is: $_60qu7r6jducwn73.never,
+      isValue: $_60qu7r6jducwn73.never,
+      isError: $_60qu7r6jducwn73.always,
+      getOr: $_60qu7r6jducwn73.identity,
+>>>>>>> installer
       getOrThunk: getOrThunk,
       getOrDie: getOrDie,
       or: or,
       orThunk: orThunk,
       fold: fold,
       map: map,
+<<<<<<< HEAD
       each: $_9msgtx6jd08m99c.noop,
       bind: bind,
       exists: $_9msgtx6jd08m99c.constant(false),
@@ -4796,6 +5503,16 @@
     };
   };
   var $_dnz9b11mjd08m9kv = {
+=======
+      each: $_60qu7r6jducwn73.noop,
+      bind: bind,
+      exists: $_60qu7r6jducwn73.never,
+      forall: $_60qu7r6jducwn73.always,
+      toOption: Option.none
+    };
+  };
+  var Result = {
+>>>>>>> installer
     value: value$1,
     error: error
   };
@@ -4838,7 +5555,11 @@
       var wait = function (testCallback, waitCallback) {
         if (!testCallback()) {
           if (new Date().getTime() - startTime < maxLoadTime) {
+<<<<<<< HEAD
             $_tkwl7gjd08m9ds.setTimeout(waitCallback);
+=======
+            $_83mf8ygjducwnbc.setTimeout(waitCallback);
+>>>>>>> installer
           } else {
             failed();
           }
@@ -4868,7 +5589,11 @@
           }
         }, waitForGeckoLinkLoaded);
       };
+<<<<<<< HEAD
       url = $_gfka90jjd08m9g9._addCacheSuffix(url);
+=======
+      url = $_8i2houjjducwnd2._addCacheSuffix(url);
+>>>>>>> installer
       if (!loadedStates[url]) {
         state = {
           passed: [],
@@ -4920,6 +5645,7 @@
       link.href = url;
     };
     var loadF = function (url) {
+<<<<<<< HEAD
       return $_eysf061hjd08m9km.nu(function (resolve) {
         load(url, $_9msgtx6jd08m99c.compose(resolve, $_9msgtx6jd08m99c.constant($_dnz9b11mjd08m9kv.value(url))), $_9msgtx6jd08m99c.compose(resolve, $_9msgtx6jd08m99c.constant($_dnz9b11mjd08m9kv.error(url))));
       });
@@ -4930,6 +5656,18 @@
     var loadAll = function (urls, success, failure) {
       $_27vrzl1kjd08m9kr.par($_65yphx4jd08m98n.map(urls, loadF)).get(function (result) {
         var parts = $_65yphx4jd08m98n.partition(result, function (r) {
+=======
+      return Future.nu(function (resolve) {
+        load(url, $_60qu7r6jducwn73.compose(resolve, $_60qu7r6jducwn73.constant(Result.value(url))), $_60qu7r6jducwn73.compose(resolve, $_60qu7r6jducwn73.constant(Result.error(url))));
+      });
+    };
+    var unbox = function (result) {
+      return result.fold($_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity);
+    };
+    var loadAll = function (urls, success, failure) {
+      $_2m9thz1kjducwnj6.par($_2dw1bj4jducwn6g.map(urls, loadF)).get(function (result) {
+        var parts = $_2dw1bj4jducwn6g.partition(result, function (r) {
+>>>>>>> installer
           return r.isValue();
         });
         if (parts.fail.length > 0) {
@@ -5132,17 +5870,29 @@
   var lazyLookup = function (items) {
     var lookup;
     return function (node) {
+<<<<<<< HEAD
       lookup = lookup ? lookup : $_65yphx4jd08m98n.mapToObject(items, $_9msgtx6jd08m99c.constant(true));
       return lookup.hasOwnProperty($_d4s1fbzjd08m9ia.name(node));
+=======
+      lookup = lookup ? lookup : $_2dw1bj4jducwn6g.mapToObject(items, $_60qu7r6jducwn73.constant(true));
+      return lookup.hasOwnProperty($_47qy15zjducwngt.name(node));
+>>>>>>> installer
     };
   };
   var isHeading = lazyLookup(headings);
   var isBlock = lazyLookup(blocks);
   var isInline = function (node) {
+<<<<<<< HEAD
     return $_d4s1fbzjd08m9ia.isElement(node) && !isBlock(node);
   };
   var isBr = function (node) {
     return $_d4s1fbzjd08m9ia.isElement(node) && $_d4s1fbzjd08m9ia.name(node) === 'br';
+=======
+    return $_47qy15zjducwngt.isElement(node) && !isBlock(node);
+  };
+  var isBr = function (node) {
+    return $_47qy15zjducwngt.isElement(node) && $_47qy15zjducwngt.name(node) === 'br';
+>>>>>>> installer
   };
   var isTextBlock = lazyLookup(textBlocks);
   var isList = lazyLookup(lists);
@@ -5205,6 +5955,12 @@
   var isBogus = function (node) {
     return isElement$1(node) && node.hasAttribute('data-mce-bogus');
   };
+  var isBogusAll = function (node) {
+    return isElement$1(node) && node.getAttribute('data-mce-bogus') === 'all';
+  };
+  var isTable = function (node) {
+    return isElement$1(node) && node.tagName === 'TABLE';
+  };
   var hasContentEditableState = function (value) {
     return function (node) {
       if (isElement$1(node)) {
@@ -5224,7 +5980,11 @@
   var isBr$1 = matchNodeNames('br');
   var isContentEditableTrue = hasContentEditableState('true');
   var isContentEditableFalse = hasContentEditableState('false');
+<<<<<<< HEAD
   var $_2qai0u1qjd08m9l9 = {
+=======
+  var $_fj238m1qjducwnjm = {
+>>>>>>> installer
     isText: isText$1,
     isElement: isElement$1,
     isComment: isComment$1,
@@ -5237,7 +5997,9 @@
     hasAttribute: hasAttribute,
     hasAttributeValue: hasAttributeValue,
     matchStyleValues: matchStyleValues,
-    isBogus: isBogus
+    isBogus: isBogus,
+    isBogusAll: isBogusAll,
+    isTable: isTable
   };
 
   var surroundedBySpans = function (node) {
@@ -5250,27 +6012,45 @@
   };
   var trimNode = function (dom, node) {
     var i, children = node.childNodes;
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isElement(node) && isBookmarkNode(node)) {
+=======
+    if ($_fj238m1qjducwnjm.isElement(node) && isBookmarkNode(node)) {
+>>>>>>> installer
       return;
     }
     for (i = children.length - 1; i >= 0; i--) {
       trimNode(dom, children[i]);
     }
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isDocument(node) === false) {
       if ($_2qai0u1qjd08m9l9.isText(node) && node.nodeValue.length > 0) {
         var trimmedLength = $_gfka90jjd08m9g9.trim(node.nodeValue).length;
+=======
+    if ($_fj238m1qjducwnjm.isDocument(node) === false) {
+      if ($_fj238m1qjducwnjm.isText(node) && node.nodeValue.length > 0) {
+        var trimmedLength = $_8i2houjjducwnd2.trim(node.nodeValue).length;
+>>>>>>> installer
         if (dom.isBlock(node.parentNode) || trimmedLength > 0) {
           return;
         }
         if (trimmedLength === 0 && surroundedBySpans(node)) {
           return;
         }
+<<<<<<< HEAD
       } else if ($_2qai0u1qjd08m9l9.isElement(node)) {
+=======
+      } else if ($_fj238m1qjducwnjm.isElement(node)) {
+>>>>>>> installer
         children = node.childNodes;
         if (children.length === 1 && isBookmarkNode(children[0])) {
           node.parentNode.insertBefore(children[0], node);
         }
+<<<<<<< HEAD
         if (children.length || isVoid($_f4wyrxyjd08m9i5.fromDom(node))) {
+=======
+        if (children.length || isVoid($_5s4uzoyjducwngo.fromDom(node))) {
+>>>>>>> installer
           return;
         }
       }
@@ -5278,9 +6058,15 @@
     }
     return node;
   };
+<<<<<<< HEAD
   var $_bvkmom1ojd08m9l1 = { trimNode: trimNode };
 
   var makeMap$1 = $_gfka90jjd08m9g9.makeMap;
+=======
+  var $_f6ekvb1ojducwnje = { trimNode: trimNode };
+
+  var makeMap$1 = $_8i2houjjducwnd2.makeMap;
+>>>>>>> installer
   var namedEntities;
   var baseEntities;
   var reverseEntities;
@@ -5334,7 +6120,11 @@
   };
   var nativeDecode = function (text) {
     var elm;
+<<<<<<< HEAD
     elm = $_f4wyrxyjd08m9i5.fromTag('div').dom();
+=======
+    elm = $_5s4uzoyjducwngo.fromTag('div').dom();
+>>>>>>> installer
     elm.innerHTML = text;
     return elm.textContent || elm.innerText || text;
   };
@@ -5431,7 +6221,11 @@
       return reverseEntities[all] || namedEntities[all] || nativeDecode(all);
     });
   };
+<<<<<<< HEAD
   var $_6p0pbx1rjd08m9lf = {
+=======
+  var $_g4jbz61rjducwnjq = {
+>>>>>>> installer
     encodeRaw: encodeRaw,
     encodeAllRaw: encodeAllRaw,
     encodeNumeric: encodeNumeric,
@@ -5442,6 +6236,7 @@
 
   var mapCache = {};
   var dummyObj = {};
+<<<<<<< HEAD
   var makeMap$2 = $_gfka90jjd08m9g9.makeMap;
   var each$4 = $_gfka90jjd08m9g9.each;
   var extend$1 = $_gfka90jjd08m9g9.extend;
@@ -5449,6 +6244,15 @@
   var inArray$1 = $_gfka90jjd08m9g9.inArray;
   var split = function (items, delim) {
     items = $_gfka90jjd08m9g9.trim(items);
+=======
+  var makeMap$2 = $_8i2houjjducwnd2.makeMap;
+  var each$4 = $_8i2houjjducwnd2.each;
+  var extend$1 = $_8i2houjjducwnd2.extend;
+  var explode$1 = $_8i2houjjducwnd2.explode;
+  var inArray$1 = $_8i2houjjducwnd2.inArray;
+  var split = function (items, delim) {
+    items = $_8i2houjjducwnd2.trim(items);
+>>>>>>> installer
     return items ? items.split(delim || ' ') : [];
   };
   var compileSchema = function (type) {
@@ -6321,10 +7125,17 @@
     };
   }
 
+<<<<<<< HEAD
   var each$5 = $_gfka90jjd08m9g9.each;
   var is$2 = $_gfka90jjd08m9g9.is;
   var grep$1 = $_gfka90jjd08m9g9.grep;
   var isIE = $_6pkc2e9jd08m9bi.ie;
+=======
+  var each$5 = $_8i2houjjducwnd2.each;
+  var is$2 = $_8i2houjjducwnd2.is;
+  var grep$1 = $_8i2houjjducwnd2.grep;
+  var isIE = $_cum1kc9jducwn99.ie;
+>>>>>>> installer
   var simpleSelectorRe = /^([a-z0-9],?)+$/i;
   var whiteSpaceRegExp$2 = /^[ \t\r\n]*$/;
   var setupAttrHooks = function (domUtils, settings) {
@@ -6663,7 +7474,11 @@
         return b.toUpperCase();
       });
       if (name === 'float') {
+<<<<<<< HEAD
         name = $_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 12 ? 'styleFloat' : 'cssFloat';
+=======
+        name = $_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 12 ? 'styleFloat' : 'cssFloat';
+>>>>>>> installer
       }
       return elm[0] && elm[0].style ? elm[0].style[name] : undefined;
     },
@@ -6734,7 +7549,11 @@
       return value;
     },
     getPos: function (elm, rootElm) {
+<<<<<<< HEAD
       return $_13un0zljd08m9gk.getPos(this.doc.body, this.get(elm), rootElm);
+=======
+      return $_4jv3c6ljducwnfj.getPos(this.doc.body, this.get(elm), rootElm);
+>>>>>>> installer
     },
     parseStyle: function (cssText) {
       return this.styles.parse(cssText);
@@ -6787,7 +7606,11 @@
       head = doc.getElementsByTagName('head')[0];
       each$5(url.split(','), function (url) {
         var link;
+<<<<<<< HEAD
         url = $_gfka90jjd08m9g9._addCacheSuffix(url);
+=======
+        url = $_8i2houjjducwnd2._addCacheSuffix(url);
+>>>>>>> installer
         if (self.files[url]) {
           return;
         }
@@ -6874,8 +7697,13 @@
         self.remove(DomQuery(this).html(html), true);
       });
     },
+<<<<<<< HEAD
     decode: $_6p0pbx1rjd08m9lf.decode,
     encode: $_6p0pbx1rjd08m9lf.encodeAllRaw,
+=======
+    decode: $_g4jbz61rjducwnjq.decode,
+    encode: $_g4jbz61rjducwnjq.encodeAllRaw,
+>>>>>>> installer
     insertAfter: function (node, referenceNode) {
       referenceNode = this.get(referenceNode);
       return this.run(node, function (node) {
@@ -6934,7 +7762,11 @@
       return ps;
     },
     toHex: function (rgbVal) {
+<<<<<<< HEAD
       return this.styles.toHex($_gfka90jjd08m9g9.trim(rgbVal));
+=======
+      return this.styles.toHex($_8i2houjjducwnd2.trim(rgbVal));
+>>>>>>> installer
     },
     run: function (elm, func, scope) {
       var self = this;
@@ -7052,20 +7884,32 @@
         r.setEnd(parentElm.parentNode, self.nodeIndex(parentElm) + 1);
         aft = r.extractContents();
         pa = parentElm.parentNode;
+<<<<<<< HEAD
         pa.insertBefore($_bvkmom1ojd08m9l1.trimNode(self, bef), parentElm);
+=======
+        pa.insertBefore($_f6ekvb1ojducwnje.trimNode(self, bef), parentElm);
+>>>>>>> installer
         if (replacementElm) {
           pa.insertBefore(replacementElm, parentElm);
         } else {
           pa.insertBefore(splitElm, parentElm);
         }
+<<<<<<< HEAD
         pa.insertBefore($_bvkmom1ojd08m9l1.trimNode(self, aft), parentElm);
+=======
+        pa.insertBefore($_f6ekvb1ojducwnje.trimNode(self, aft), parentElm);
+>>>>>>> installer
         self.remove(parentElm);
         return replacementElm || splitElm;
       }
     },
     bind: function (target, name, func, scope) {
       var self = this;
+<<<<<<< HEAD
       if ($_gfka90jjd08m9g9.isArray(target)) {
+=======
+      if ($_8i2houjjducwnd2.isArray(target)) {
+>>>>>>> installer
         var i = target.length;
         while (i--) {
           target[i] = self.bind(target[i], name, func, scope);
@@ -7085,7 +7929,11 @@
     unbind: function (target, name, func) {
       var self = this;
       var i;
+<<<<<<< HEAD
       if ($_gfka90jjd08m9g9.isArray(target)) {
+=======
+      if ($_8i2houjjducwnd2.isArray(target)) {
+>>>>>>> installer
         i = target.length;
         while (i--) {
           target[i] = self.unbind(target[i], name, func);
@@ -7177,8 +8025,13 @@
   DOMUtils.nodeIndex = nodeIndex;
 
   var DOM = DOMUtils.DOM;
+<<<<<<< HEAD
   var each$6 = $_gfka90jjd08m9g9.each;
   var grep$2 = $_gfka90jjd08m9g9.grep;
+=======
+  var each$6 = $_8i2houjjducwnd2.each;
+  var grep$2 = $_8i2houjjducwnd2.grep;
+>>>>>>> installer
   var isFunction = function (f) {
     return typeof f === 'function';
   };
@@ -7215,7 +8068,11 @@
       elm = document.createElement('script');
       elm.id = id;
       elm.type = 'text/javascript';
+<<<<<<< HEAD
       elm.src = $_gfka90jjd08m9g9._addCacheSuffix(url);
+=======
+      elm.src = $_8i2houjjducwnd2._addCacheSuffix(url);
+>>>>>>> installer
       if ('onreadystatechange' in elm) {
         elm.onreadystatechange = function () {
           if (/loaded|complete/.test(elm.readyState)) {
@@ -7324,7 +8181,11 @@
   };
   ScriptLoader.ScriptLoader = new ScriptLoader();
 
+<<<<<<< HEAD
   var each$7 = $_gfka90jjd08m9g9.each;
+=======
+  var each$7 = $_8i2houjjducwnd2.each;
+>>>>>>> installer
   var AddOnManager = function () {
     var self = this;
     self.items = [];
@@ -7366,7 +8227,11 @@
         instance: addOn,
         dependencies: dependencies
       };
+<<<<<<< HEAD
       var result = $_65yphx4jd08m98n.partition(this._listeners, function (listener) {
+=======
+      var result = $_2dw1bj4jducwn6g.partition(this._listeners, function (listener) {
+>>>>>>> installer
         return listener.name === id;
       });
       this._listeners = result.fail;
@@ -7449,14 +8314,23 @@
   var trim$3 = function (text) {
     return text.replace(new RegExp(ZWSP, 'g'), '');
   };
+<<<<<<< HEAD
   var $_1xlbjk21jd08m9p1 = {
+=======
+  var $_fz0k4u21jducwnmu = {
+>>>>>>> installer
     isZwsp: isZwsp,
     ZWSP: ZWSP,
     trim: trim$3
   };
 
+<<<<<<< HEAD
   var isElement$2 = $_2qai0u1qjd08m9l9.isElement;
   var isText$2 = $_2qai0u1qjd08m9l9.isText;
+=======
+  var isElement$2 = $_fj238m1qjducwnjm.isElement;
+  var isText$2 = $_fj238m1qjducwnjm.isText;
+>>>>>>> installer
   var isCaretContainerBlock = function (node) {
     if (isText$2(node)) {
       node = node.parentNode;
@@ -7464,18 +8338,30 @@
     return isElement$2(node) && node.hasAttribute('data-mce-caret');
   };
   var isCaretContainerInline = function (node) {
+<<<<<<< HEAD
     return isText$2(node) && $_1xlbjk21jd08m9p1.isZwsp(node.data);
+=======
+    return isText$2(node) && $_fz0k4u21jducwnmu.isZwsp(node.data);
+>>>>>>> installer
   };
   var isCaretContainer = function (node) {
     return isCaretContainerBlock(node) || isCaretContainerInline(node);
   };
   var hasContent = function (node) {
+<<<<<<< HEAD
     return node.firstChild !== node.lastChild || !$_2qai0u1qjd08m9l9.isBr(node.firstChild);
+=======
+    return node.firstChild !== node.lastChild || !$_fj238m1qjducwnjm.isBr(node.firstChild);
+>>>>>>> installer
   };
   var insertInline = function (node, before) {
     var doc, sibling, textNode, parentNode;
     doc = node.ownerDocument;
+<<<<<<< HEAD
     textNode = doc.createTextNode($_1xlbjk21jd08m9p1.ZWSP);
+=======
+    textNode = doc.createTextNode($_fz0k4u21jducwnmu.ZWSP);
+>>>>>>> installer
     parentNode = node.parentNode;
     if (!before) {
       sibling = node.nextSibling;
@@ -7507,6 +8393,7 @@
     }
     return textNode;
   };
+<<<<<<< HEAD
   var prependInline = function (node) {
     if ($_2qai0u1qjd08m9l9.isText(node)) {
       var data = node.data;
@@ -7534,6 +8421,15 @@
   };
   var isAfterInline = function (pos) {
     return pos && $_2qai0u1qjd08m9l9.isText(pos.container()) && pos.container().data.charAt(pos.offset() - 1) === $_1xlbjk21jd08m9p1.ZWSP;
+=======
+  var isBeforeInline = function (pos) {
+    var container = pos.container();
+    return pos && $_fj238m1qjducwnjm.isText(container) && container.data.charAt(pos.offset()) === $_fz0k4u21jducwnmu.ZWSP;
+  };
+  var isAfterInline = function (pos) {
+    var container = pos.container();
+    return pos && $_fj238m1qjducwnjm.isText(container) && container.data.charAt(pos.offset() - 1) === $_fz0k4u21jducwnmu.ZWSP;
+>>>>>>> installer
   };
   var createBogusBr = function () {
     var br = document.createElement('br');
@@ -7560,15 +8456,26 @@
     return blockNode;
   };
   var startsWithCaretContainer = function (node) {
+<<<<<<< HEAD
     return isText$2(node) && node.data[0] === $_1xlbjk21jd08m9p1.ZWSP;
   };
   var endsWithCaretContainer = function (node) {
     return isText$2(node) && node.data[node.data.length - 1] === $_1xlbjk21jd08m9p1.ZWSP;
+=======
+    return isText$2(node) && node.data[0] === $_fz0k4u21jducwnmu.ZWSP;
+  };
+  var endsWithCaretContainer = function (node) {
+    return isText$2(node) && node.data[node.data.length - 1] === $_fz0k4u21jducwnmu.ZWSP;
+>>>>>>> installer
   };
   var trimBogusBr = function (elm) {
     var brs = elm.getElementsByTagName('br');
     var lastBr = brs[brs.length - 1];
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isBogus(lastBr)) {
+=======
+    if ($_fj238m1qjducwnjm.isBogus(lastBr)) {
+>>>>>>> installer
       lastBr.parentNode.removeChild(lastBr);
     }
   };
@@ -7583,6 +8490,7 @@
     }
     return null;
   };
+<<<<<<< HEAD
   var $_euzg3m20jd08m9ow = {
     isCaretContainer: isCaretContainer,
     isCaretContainerBlock: isCaretContainerBlock,
@@ -7607,6 +8515,20 @@
   var isAtomicInline = $_2qai0u1qjd08m9l9.matchNodeNames('img input textarea hr iframe video audio object');
   var isTable = $_2qai0u1qjd08m9l9.matchNodeNames('table');
   var isCaretContainer$1 = $_euzg3m20jd08m9ow.isCaretContainer;
+=======
+  var isRangeInCaretContainerBlock = function (range) {
+    return isCaretContainerBlock(range.startContainer);
+  };
+
+  var isContentEditableTrue$1 = $_fj238m1qjducwnjm.isContentEditableTrue;
+  var isContentEditableFalse$1 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isBr$2 = $_fj238m1qjducwnjm.isBr;
+  var isText$3 = $_fj238m1qjducwnjm.isText;
+  var isInvalidTextElement = $_fj238m1qjducwnjm.matchNodeNames('script style textarea');
+  var isAtomicInline = $_fj238m1qjducwnjm.matchNodeNames('img input textarea hr iframe video audio object');
+  var isTable$1 = $_fj238m1qjducwnjm.matchNodeNames('table');
+  var isCaretContainer$1 = isCaretContainer;
+>>>>>>> installer
   var isCaretCandidate = function (node) {
     if (isCaretContainer$1(node)) {
       return false;
@@ -7617,10 +8539,14 @@
       }
       return true;
     }
+<<<<<<< HEAD
     return isAtomicInline(node) || isBr$2(node) || isTable(node) || isContentEditableFalse$1(node);
+=======
+    return isAtomicInline(node) || isBr$2(node) || isTable$1(node) || isContentEditableFalse$1(node);
+>>>>>>> installer
   };
-  var isInEditable = function (node, rootNode) {
-    for (node = node.parentNode; node && node !== rootNode; node = node.parentNode) {
+  var isInEditable = function (node, root) {
+    for (node = node.parentNode; node && node !== root; node = node.parentNode) {
       if (isContentEditableFalse$1(node)) {
         return false;
       }
@@ -7634,13 +8560,18 @@
     if (!isContentEditableFalse$1(node)) {
       return false;
     }
+<<<<<<< HEAD
     return $_c05hv0kjd08m9gg.reduce(node.getElementsByTagName('*'), function (result, elm) {
+=======
+    return $_e6e6g1kjducwnfd.reduce(node.getElementsByTagName('*'), function (result, elm) {
+>>>>>>> installer
       return result || isContentEditableTrue$1(elm);
     }, false) !== true;
   };
   var isAtomic = function (node) {
     return isAtomicInline(node) || isAtomicContentEditableFalse(node);
   };
+<<<<<<< HEAD
   var isEditableCaretCandidate = function (node, rootNode) {
     return isCaretCandidate(node) && isInEditable(node, rootNode);
   };
@@ -7649,6 +8580,10 @@
     isInEditable: isInEditable,
     isAtomic: isAtomic,
     isEditableCaretCandidate: isEditableCaretCandidate
+=======
+  var isEditableCaretCandidate = function (node, root) {
+    return isCaretCandidate(node) && isInEditable(node, root);
+>>>>>>> installer
   };
 
   var round = Math.round;
@@ -7672,62 +8607,42 @@
       height: round(rect.height)
     };
   };
-  var collapse = function (clientRect, toStart) {
-    clientRect = clone$1(clientRect);
+  var collapse = function (rect, toStart) {
+    rect = clone$1(rect);
     if (toStart) {
-      clientRect.right = clientRect.left;
+      rect.right = rect.left;
     } else {
-      clientRect.left = clientRect.left + clientRect.width;
-      clientRect.right = clientRect.left;
+      rect.left = rect.left + rect.width;
+      rect.right = rect.left;
     }
-    clientRect.width = 0;
-    return clientRect;
+    rect.width = 0;
+    return rect;
   };
   var isEqual = function (rect1, rect2) {
     return rect1.left === rect2.left && rect1.top === rect2.top && rect1.bottom === rect2.bottom && rect1.right === rect2.right;
   };
-  var isValidOverflow = function (overflowY, clientRect1, clientRect2) {
-    return overflowY >= 0 && overflowY <= Math.min(clientRect1.height, clientRect2.height) / 2;
+  var isValidOverflow = function (overflowY, rect1, rect2) {
+    return overflowY >= 0 && overflowY <= Math.min(rect1.height, rect2.height) / 2;
   };
-  var isAbove = function (clientRect1, clientRect2) {
-    if (clientRect1.bottom - clientRect1.height / 2 < clientRect2.top) {
+  var isAbove = function (rect1, rect2) {
+    if (rect1.bottom - rect1.height / 2 < rect2.top) {
       return true;
     }
-    if (clientRect1.top > clientRect2.bottom) {
+    if (rect1.top > rect2.bottom) {
       return false;
     }
-    return isValidOverflow(clientRect2.top - clientRect1.bottom, clientRect1, clientRect2);
+    return isValidOverflow(rect2.top - rect1.bottom, rect1, rect2);
   };
-  var isBelow = function (clientRect1, clientRect2) {
-    if (clientRect1.top > clientRect2.bottom) {
+  var isBelow = function (rect1, rect2) {
+    if (rect1.top > rect2.bottom) {
       return true;
     }
-    if (clientRect1.bottom < clientRect2.top) {
+    if (rect1.bottom < rect2.top) {
       return false;
     }
-    return isValidOverflow(clientRect2.bottom - clientRect1.top, clientRect1, clientRect2);
+    return isValidOverflow(rect2.bottom - rect1.top, rect1, rect2);
   };
-  var isLeft = function (clientRect1, clientRect2) {
-    return clientRect1.left < clientRect2.left;
-  };
-  var isRight = function (clientRect1, clientRect2) {
-    return clientRect1.right > clientRect2.right;
-  };
-  var compare = function (clientRect1, clientRect2) {
-    if (isAbove(clientRect1, clientRect2)) {
-      return -1;
-    }
-    if (isBelow(clientRect1, clientRect2)) {
-      return 1;
-    }
-    if (isLeft(clientRect1, clientRect2)) {
-      return -1;
-    }
-    if (isRight(clientRect1, clientRect2)) {
-      return 1;
-    }
-    return 0;
-  };
+<<<<<<< HEAD
   var containsXY = function (clientRect, clientX, clientY) {
     return clientX >= clientRect.left && clientX <= clientRect.right && clientY >= clientRect.top && clientY <= clientRect.bottom;
   };
@@ -7741,6 +8656,10 @@
     isRight: isRight,
     compare: compare,
     containsXY: containsXY
+=======
+  var containsXY = function (rect, clientX, clientY) {
+    return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+>>>>>>> installer
   };
 
   var getSelectedNode = function (range) {
@@ -7759,10 +8678,13 @@
     }
     return container;
   };
+<<<<<<< HEAD
   var $_1pqk4723jd08m9p6 = {
     getSelectedNode: getSelectedNode,
     getNode: getNode
   };
+=======
+>>>>>>> installer
 
   var extendingChars = new RegExp('[\u0300-\u036f\u0483-\u0487\u0488-\u0489\u0591-\u05bd\u05bf\u05c1-\u05c2\u05c4-\u05c5\u05c7\u0610-\u061a' + '\u064b-\u065f\u0670\u06d6-\u06dc\u06df-\u06e4\u06e7-\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u07a6-\u07b0' + '\u07eb-\u07f3\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0859-\u085b\u08E3-\u0902\u093a\u093c' + '\u0941-\u0948\u094d\u0951-\u0957\u0962-\u0963\u0981\u09bc\u09be\u09c1-\u09c4\u09cd\u09d7\u09e2-\u09e3' + '\u0a01-\u0a02\u0a3c\u0a41-\u0a42\u0a47-\u0a48\u0a4b-\u0a4d\u0a51\u0a70-\u0a71\u0a75\u0a81-\u0a82\u0abc' + '\u0ac1-\u0ac5\u0ac7-\u0ac8\u0acd\u0ae2-\u0ae3\u0b01\u0b3c\u0b3e\u0b3f\u0b41-\u0b44\u0b4d\u0b56\u0b57' + '\u0b62-\u0b63\u0b82\u0bbe\u0bc0\u0bcd\u0bd7\u0c00\u0c3e-\u0c40\u0c46-\u0c48\u0c4a-\u0c4d\u0c55-\u0c56' + '\u0c62-\u0c63\u0c81\u0cbc\u0cbf\u0cc2\u0cc6\u0ccc-\u0ccd\u0cd5-\u0cd6\u0ce2-\u0ce3\u0d01\u0d3e\u0d41-\u0d44' + '\u0d4d\u0d57\u0d62-\u0d63\u0dca\u0dcf\u0dd2-\u0dd4\u0dd6\u0ddf\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9' + '\u0ebb-\u0ebc\u0ec8-\u0ecd\u0f18-\u0f19\u0f35\u0f37\u0f39\u0f71-\u0f7e\u0f80-\u0f84\u0f86-\u0f87\u0f8d-\u0f97' + '\u0f99-\u0fbc\u0fc6\u102d-\u1030\u1032-\u1037\u1039-\u103a\u103d-\u103e\u1058-\u1059\u105e-\u1060\u1071-\u1074' + '\u1082\u1085-\u1086\u108d\u109d\u135d-\u135f\u1712-\u1714\u1732-\u1734\u1752-\u1753\u1772-\u1773\u17b4-\u17b5' + '\u17b7-\u17bd\u17c6\u17c9-\u17d3\u17dd\u180b-\u180d\u18a9\u1920-\u1922\u1927-\u1928\u1932\u1939-\u193b\u1a17-\u1a18' + '\u1a1b\u1a56\u1a58-\u1a5e\u1a60\u1a62\u1a65-\u1a6c\u1a73-\u1a7c\u1a7f\u1ab0-\u1abd\u1ABE\u1b00-\u1b03\u1b34' + '\u1b36-\u1b3a\u1b3c\u1b42\u1b6b-\u1b73\u1b80-\u1b81\u1ba2-\u1ba5\u1ba8-\u1ba9\u1bab-\u1bad\u1be6\u1be8-\u1be9' + '\u1bed\u1bef-\u1bf1\u1c2c-\u1c33\u1c36-\u1c37\u1cd0-\u1cd2\u1cd4-\u1ce0\u1ce2-\u1ce8\u1ced\u1cf4\u1cf8-\u1cf9' + '\u1dc0-\u1df5\u1dfc-\u1dff\u200c-\u200d\u20d0-\u20dc\u20DD-\u20E0\u20e1\u20E2-\u20E4\u20e5-\u20f0\u2cef-\u2cf1' + '\u2d7f\u2de0-\u2dff\u302a-\u302d\u302e-\u302f\u3099-\u309a\ua66f\uA670-\uA672\ua674-\ua67d\uA69E-\ua69f\ua6f0-\ua6f1' + '\ua802\ua806\ua80b\ua825-\ua826\ua8c4\ua8e0-\ua8f1\ua926-\ua92d\ua947-\ua951\ua980-\ua982\ua9b3\ua9b6-\ua9b9\ua9bc' + '\ua9e5\uaa29-\uaa2e\uaa31-\uaa32\uaa35-\uaa36\uaa43\uaa4c\uaa7c\uaab0\uaab2-\uaab4\uaab7-\uaab8\uaabe-\uaabf\uaac1' + '\uaaec-\uaaed\uaaf6\uabe5\uabe8\uabed\ufb1e\ufe00-\ufe0f\ufe20-\uFE2F\uff9e-\uff9f]');
   var isExtendingChar = function (ch) {
@@ -7831,7 +8753,11 @@
   };
   var noop$1 = function () {
   };
+<<<<<<< HEAD
   var $_fys1am25jd08m9pb = {
+=======
+  var $_6183wb25jducwnn2 = {
+>>>>>>> installer
     constant: constant$1,
     negate: negate,
     and: and,
@@ -7841,6 +8767,7 @@
     noop: noop$1
   };
 
+<<<<<<< HEAD
   var isElement$3 = $_2qai0u1qjd08m9l9.isElement;
   var isCaretCandidate$1 = $_es00wu1zjd08m9ou.isCaretCandidate;
   var isBlock$1 = $_2qai0u1qjd08m9l9.matchStyleValues('display', 'block table');
@@ -7851,17 +8778,32 @@
   var isBr$3 = $_2qai0u1qjd08m9l9.isBr;
   var nodeIndex$1 = DOMUtils.nodeIndex;
   var resolveIndex = $_1pqk4723jd08m9p6.getNode;
+=======
+  var isElement$3 = $_fj238m1qjducwnjm.isElement;
+  var isCaretCandidate$1 = isCaretCandidate;
+  var isBlock$1 = $_fj238m1qjducwnjm.matchStyleValues('display', 'block table');
+  var isFloated = $_fj238m1qjducwnjm.matchStyleValues('float', 'left right');
+  var isValidElementCaretCandidate = $_6183wb25jducwnn2.and(isElement$3, isCaretCandidate$1, $_6183wb25jducwnn2.negate(isFloated));
+  var isNotPre = $_6183wb25jducwnn2.negate($_fj238m1qjducwnjm.matchStyleValues('white-space', 'pre pre-line pre-wrap'));
+  var isText$4 = $_fj238m1qjducwnjm.isText;
+  var isBr$3 = $_fj238m1qjducwnjm.isBr;
+  var nodeIndex$1 = DOMUtils.nodeIndex;
+  var resolveIndex = getNode;
+>>>>>>> installer
   var createRange = function (doc) {
     return 'createRange' in doc ? doc.createRange() : DOMUtils.DOM.createRng();
   };
   var isWhiteSpace = function (chr) {
     return chr && /[\r\n\t ]/.test(chr);
   };
+  var isRange = function (rng) {
+    return !!rng.setStart && !!rng.setEnd;
+  };
   var isHiddenWhiteSpaceRange = function (range) {
     var container = range.startContainer;
     var offset = range.startOffset;
     var text;
-    if (isWhiteSpace(range.toString()) && isNotPre(container.parentNode)) {
+    if (isWhiteSpace(range.toString()) && isNotPre(container.parentNode) && $_fj238m1qjducwnjm.isText(container)) {
       text = container.data;
       if (isWhiteSpace(text[offset - 1]) || isWhiteSpace(text[offset + 1])) {
         return true;
@@ -7869,9 +8811,61 @@
     }
     return false;
   };
+  var getBrClientRect = function (brNode) {
+    var doc = brNode.ownerDocument;
+    var rng = createRange(doc);
+    var nbsp = doc.createTextNode('\xA0');
+    var parentNode = brNode.parentNode;
+    var clientRect;
+    parentNode.insertBefore(nbsp, brNode);
+    rng.setStart(nbsp, 0);
+    rng.setEnd(nbsp, 1);
+    clientRect = clone$1(rng.getBoundingClientRect());
+    parentNode.removeChild(nbsp);
+    return clientRect;
+  };
+  var getBoundingClientRectWebKitText = function (rng) {
+    var sc = rng.startContainer;
+    var ec = rng.endContainer;
+    var so = rng.startOffset;
+    var eo = rng.endOffset;
+    if (sc === ec && $_fj238m1qjducwnjm.isText(ec) && so === 0 && eo === 1) {
+      var newRng = rng.cloneRange();
+      newRng.setEndAfter(ec);
+      return getBoundingClientRect(newRng);
+    } else {
+      return null;
+    }
+  };
+  var isZeroRect = function (r) {
+    return r.left === 0 && r.right === 0 && r.top === 0 && r.bottom === 0;
+  };
+  var getBoundingClientRect = function (item) {
+    var clientRect, clientRects;
+    clientRects = item.getClientRects();
+    if (clientRects.length > 0) {
+      clientRect = clone$1(clientRects[0]);
+    } else {
+      clientRect = clone$1(item.getBoundingClientRect());
+    }
+    if (!isRange(item) && isBr$3(item) && isZeroRect(clientRect)) {
+      return getBrClientRect(item);
+    }
+    if (isZeroRect(clientRect) && isRange(item)) {
+      return getBoundingClientRectWebKitText(item);
+    }
+    return clientRect;
+  };
+  var collapseAndInflateWidth = function (clientRect, toStart) {
+    var newClientRect = collapse(clientRect, toStart);
+    newClientRect.width = 1;
+    newClientRect.right = newClientRect.left + 1;
+    return newClientRect;
+  };
   var getCaretPositionClientRects = function (caretPosition) {
     var clientRects = [];
     var beforeNode, node;
+<<<<<<< HEAD
     var getBrClientRect = function (brNode) {
       var doc = brNode.ownerDocument;
       var rng = createRange(doc);
@@ -7904,12 +8898,18 @@
       clientRect.right = clientRect.left + 1;
       return clientRect;
     };
+=======
+>>>>>>> installer
     var addUniqueAndValidRect = function (clientRect) {
       if (clientRect.height === 0) {
         return;
       }
       if (clientRects.length > 0) {
+<<<<<<< HEAD
         if ($_a2gimq22jd08m9p3.isEqual(clientRect, clientRects[clientRects.length - 1])) {
+=======
+        if (isEqual(clientRect, clientRects[clientRects.length - 1])) {
+>>>>>>> installer
           return;
         }
       }
@@ -8009,22 +9009,27 @@
     var isVisible = function () {
       return getClientRects().length > 0;
     };
-    var isEqual = function (caretPosition) {
+    var isEqual$$1 = function (caretPosition) {
       return caretPosition && container === caretPosition.container() && offset === caretPosition.offset();
     };
-    var getNode = function (before) {
+    var getNode$$1 = function (before) {
       return resolveIndex(container, before ? offset - 1 : offset);
     };
     return {
+<<<<<<< HEAD
       container: $_fys1am25jd08m9pb.constant(container),
       offset: $_fys1am25jd08m9pb.constant(offset),
+=======
+      container: $_6183wb25jducwnn2.constant(container),
+      offset: $_6183wb25jducwnn2.constant(offset),
+>>>>>>> installer
       toRange: toRange,
       getClientRects: getClientRects,
       isVisible: isVisible,
       isAtStart: isAtStart,
       isAtEnd: isAtEnd,
-      isEqual: isEqual,
-      getNode: getNode
+      isEqual: isEqual$$1,
+      getNode: getNode$$1
     };
   }
   (function (CaretPosition) {
@@ -8040,6 +9045,23 @@
     CaretPosition.before = function (node) {
       return CaretPosition(node.parentNode, nodeIndex$1(node));
     };
+<<<<<<< HEAD
+  }
+  (function (CaretPosition) {
+    CaretPosition.fromRangeStart = function (range) {
+      return CaretPosition(range.startContainer, range.startOffset);
+    };
+    CaretPosition.fromRangeEnd = function (range) {
+      return CaretPosition(range.endContainer, range.endOffset);
+    };
+    CaretPosition.after = function (node) {
+      return CaretPosition(node.parentNode, nodeIndex$1(node) + 1);
+    };
+    CaretPosition.before = function (node) {
+      return CaretPosition(node.parentNode, nodeIndex$1(node));
+    };
+=======
+>>>>>>> installer
     CaretPosition.isAtStart = function (pos) {
       return pos ? pos.isAtStart() : false;
     };
@@ -8047,11 +9069,16 @@
       return pos ? pos.isAtEnd() : false;
     };
     CaretPosition.isTextPosition = function (pos) {
+<<<<<<< HEAD
       return pos ? $_2qai0u1qjd08m9l9.isText(pos.container()) : false;
+=======
+      return pos ? $_fj238m1qjducwnjm.isText(pos.container()) : false;
+>>>>>>> installer
     };
   }(CaretPosition || (CaretPosition = {})));
   var CaretPosition$1 = CaretPosition;
 
+<<<<<<< HEAD
   var isContentEditableTrue$2 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
   var isContentEditableFalse$2 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
   var isBlockLike = $_2qai0u1qjd08m9l9.matchStyleValues('display', 'block table table-cell table-caption list-item');
@@ -8065,16 +9092,83 @@
   };
   var isBackwards = function (direction) {
     return direction < 0;
+=======
+  var isElement$4 = $_fj238m1qjducwnjm.isElement;
+  var isText$5 = $_fj238m1qjducwnjm.isText;
+  var removeNode = function (node) {
+    var parentNode = node.parentNode;
+    if (parentNode) {
+      parentNode.removeChild(node);
+    }
   };
-  var skipCaretContainers = function (walk, shallow) {
-    var node;
-    while (node = walk(shallow)) {
-      if (!isCaretContainerBlock$1(node)) {
-        return node;
+  var getNodeValue = function (node) {
+    try {
+      return node.nodeValue;
+    } catch (ex) {
+      return '';
+    }
+  };
+  var setNodeValue = function (node, text) {
+    if (text.length === 0) {
+      removeNode(node);
+    } else {
+      node.nodeValue = text;
+    }
+  };
+  var trimCount = function (text) {
+    var trimmedText = $_fz0k4u21jducwnmu.trim(text);
+    return {
+      count: text.length - trimmedText.length,
+      text: trimmedText
+    };
+  };
+  var removeUnchanged = function (caretContainer, pos) {
+    remove$2(caretContainer);
+    return pos;
+  };
+  var removeTextAndReposition = function (caretContainer, pos) {
+    var before = trimCount(caretContainer.data.substr(0, pos.offset()));
+    var after = trimCount(caretContainer.data.substr(pos.offset()));
+    var text = before.text + after.text;
+    if (text.length > 0) {
+      setNodeValue(caretContainer, text);
+      return CaretPosition$1(caretContainer, pos.offset() - before.count);
+    } else {
+      return pos;
+    }
+  };
+  var removeElementAndReposition = function (caretContainer, pos) {
+    var parentNode = pos.container();
+    var newPosition = $_2dw1bj4jducwn6g.indexOf(parentNode.childNodes, caretContainer).map(function (index) {
+      return index < pos.offset() ? CaretPosition$1(parentNode, pos.offset() - 1) : pos;
+    }).getOr(pos);
+    remove$2(caretContainer);
+    return newPosition;
+  };
+  var removeTextCaretContainer = function (caretContainer, pos) {
+    return isText$5(caretContainer) && pos.container() === caretContainer ? removeTextAndReposition(caretContainer, pos) : removeUnchanged(caretContainer, pos);
+  };
+  var removeElementCaretContainer = function (caretContainer, pos) {
+    return pos.container() === caretContainer.parentNode ? removeElementAndReposition(caretContainer, pos) : removeUnchanged(caretContainer, pos);
+  };
+  var removeAndReposition = function (container, pos) {
+    return CaretPosition$1.isTextPosition(pos) ? removeTextCaretContainer(container, pos) : removeElementCaretContainer(container, pos);
+>>>>>>> installer
+  };
+  var remove$2 = function (caretContainerNode) {
+    if (isElement$4(caretContainerNode) && isCaretContainer(caretContainerNode)) {
+      if (hasContent(caretContainerNode)) {
+        caretContainerNode.removeAttribute('data-mce-caret');
+      } else {
+        removeNode(caretContainerNode);
       }
     }
-    return null;
+    if (isText$5(caretContainerNode)) {
+      var text = $_fz0k4u21jducwnmu.trim(getNodeValue(caretContainerNode));
+      setNodeValue(caretContainerNode, text);
+    }
   };
+<<<<<<< HEAD
   var findNode = function (node, direction, predicateFn, rootNode, shallow) {
     var walker = new TreeWalker(node, rootNode);
     if (isBackwards(direction)) {
@@ -8102,32 +9196,91 @@
           return node;
         }
       }
-    }
-    return null;
+=======
+  var $_53zrlo29jducwnnv = {
+    removeAndReposition: removeAndReposition,
+    remove: remove$2
   };
-  var getEditingHost = function (node, rootNode) {
-    for (node = node.parentNode; node && node !== rootNode; node = node.parentNode) {
-      if (isContentEditableTrue$2(node)) {
-        return node;
+
+  var walkToPositionIn = function (forward, root, start) {
+    var position = forward ? CaretPosition$1.before(start) : CaretPosition$1.after(start);
+    return fromPosition(forward, root, position);
+  };
+  var afterElement = function (node) {
+    return $_fj238m1qjducwnjm.isBr(node) ? CaretPosition$1.before(node) : CaretPosition$1.after(node);
+  };
+  var isBeforeOrStart = function (position) {
+    if (CaretPosition$1.isTextPosition(position)) {
+      return position.offset() === 0;
+    } else {
+      return isCaretCandidate(position.getNode());
+    }
+  };
+  var isAfterOrEnd = function (position) {
+    if (CaretPosition$1.isTextPosition(position)) {
+      var container = position.container();
+      return position.offset() === container.data.length;
+    } else {
+      return isCaretCandidate(position.getNode(true));
+>>>>>>> installer
+    }
+  };
+  var isBeforeAfterSameElement = function (from, to) {
+    return !CaretPosition$1.isTextPosition(from) && !CaretPosition$1.isTextPosition(to) && from.getNode() === to.getNode(true);
+  };
+  var isAtBr = function (position) {
+    return !CaretPosition$1.isTextPosition(position) && $_fj238m1qjducwnjm.isBr(position.getNode());
+  };
+  var shouldSkipPosition = function (forward, from, to) {
+    if (forward) {
+      return !isBeforeAfterSameElement(from, to) && !isAtBr(from) && isAfterOrEnd(from) && isBeforeOrStart(to);
+    } else {
+      return !isBeforeAfterSameElement(to, from) && isBeforeOrStart(from) && isAfterOrEnd(to);
+    }
+  };
+  var fromPosition = function (forward, root, pos) {
+    var walker = CaretWalker(root);
+    return Option.from(forward ? walker.next(pos) : walker.prev(pos));
+  };
+  var navigate = function (forward, root, from) {
+    return fromPosition(forward, root, from).bind(function (to) {
+      if (isInSameBlock(from, to, root) && shouldSkipPosition(forward, from, to)) {
+        return fromPosition(forward, root, to);
+      } else {
+        return Option.some(to);
       }
-    }
-    return rootNode;
+    });
   };
-  var getParentBlock = function (node, rootNode) {
-    while (node && node !== rootNode) {
-      if (isBlockLike(node)) {
-        return node;
+  var positionIn = function (forward, element) {
+    var startNode = forward ? element.firstChild : element.lastChild;
+    if ($_fj238m1qjducwnjm.isText(startNode)) {
+      return Option.some(CaretPosition$1(startNode, forward ? 0 : startNode.data.length));
+    } else if (startNode) {
+      if (isCaretCandidate(startNode)) {
+        return Option.some(forward ? CaretPosition$1.before(startNode) : afterElement(startNode));
+      } else {
+        return walkToPositionIn(forward, element, startNode);
       }
-      node = node.parentNode;
+    } else {
+      return Option.none();
     }
-    return null;
   };
-  var isInSameBlock = function (caretPosition1, caretPosition2, rootNode) {
-    return getParentBlock(caretPosition1.container(), rootNode) === getParentBlock(caretPosition2.container(), rootNode);
+  var $_dq07eg2bjducwno6 = {
+    fromPosition: fromPosition,
+    nextPosition: $_60qu7r6jducwn73.curry(fromPosition, true),
+    prevPosition: $_60qu7r6jducwn73.curry(fromPosition, false),
+    navigate: navigate,
+    positionIn: positionIn,
+    firstPositionIn: $_60qu7r6jducwn73.curry(positionIn, true),
+    lastPositionIn: $_60qu7r6jducwn73.curry(positionIn, false)
   };
-  var isInSameEditingHost = function (caretPosition1, caretPosition2, rootNode) {
-    return getEditingHost(caretPosition1.container(), rootNode) === getEditingHost(caretPosition2.container(), rootNode);
+
+  var isContentEditableTrue$2 = $_fj238m1qjducwnjm.isContentEditableTrue;
+  var isContentEditableFalse$2 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var showCaret = function (direction, editor, node, before) {
+    return editor._selectionOverrides.showCaret(direction, node, before);
   };
+<<<<<<< HEAD
   var getChildNodeAtRelativeOffset = function (relativeOffset, caretPosition) {
     var container, offset;
     if (!caretPosition) {
@@ -8136,31 +9289,32 @@
     container = caretPosition.container();
     offset = caretPosition.offset();
     if (!isElement$4(container)) {
+=======
+  var getNodeRange = function (node) {
+    var rng = node.ownerDocument.createRange();
+    rng.selectNode(node);
+    return rng;
+  };
+  var selectNode = function (editor, node) {
+    var e;
+    e = editor.fire('BeforeObjectSelected', { target: node });
+    if (e.isDefaultPrevented()) {
+>>>>>>> installer
       return null;
     }
-    return container.childNodes[offset + relativeOffset];
+    return getNodeRange(node);
   };
-  var beforeAfter = function (before, node) {
-    var range = node.ownerDocument.createRange();
-    if (before) {
-      range.setStartBefore(node);
-      range.setEndBefore(node);
-    } else {
-      range.setStartAfter(node);
-      range.setEndAfter(node);
+  var renderCaretAtRange = function (editor, range) {
+    var caretPosition, ceRoot;
+    range = normalizeRange(1, editor.getBody(), range);
+    caretPosition = CaretPosition$1.fromRangeStart(range);
+    if (isContentEditableFalse$2(caretPosition.getNode())) {
+      return showCaret(1, editor, caretPosition.getNode(), !caretPosition.isAtEnd());
     }
-    return range;
-  };
-  var isNodesInSameBlock = function (rootNode, node1, node2) {
-    return getParentBlock(node1, rootNode) === getParentBlock(node2, rootNode);
-  };
-  var lean = function (left, rootNode, node) {
-    var sibling, siblingName;
-    if (left) {
-      siblingName = 'previousSibling';
-    } else {
-      siblingName = 'nextSibling';
+    if (isContentEditableFalse$2(caretPosition.getNode(true))) {
+      return showCaret(1, editor, caretPosition.getNode(true), false);
     }
+<<<<<<< HEAD
     while (node && node !== rootNode) {
       sibling = node[siblingName];
       if (isCaretContainer$2(sibling)) {
@@ -8307,9 +9461,39 @@
   var nodeAtIndex = function (container, offset) {
     if (container.hasChildNodes() && offset < container.childNodes.length) {
       return container.childNodes[offset];
+=======
+    ceRoot = editor.dom.getParent(caretPosition.getNode(), function (node) {
+      return isContentEditableFalse$2(node) || isContentEditableTrue$2(node);
+    });
+    if (isContentEditableFalse$2(ceRoot)) {
+      return showCaret(1, editor, ceRoot, false);
     }
     return null;
   };
+  var renderRangeCaret = function (editor, range) {
+    var caretRange;
+    if (!range || !range.collapsed) {
+      return range;
+    }
+    caretRange = renderCaretAtRange(editor, range);
+    if (caretRange) {
+      return caretRange;
+    }
+    return range;
+  };
+
+  var cat = function (arr) {
+    var r = [];
+    var push = function (x) {
+      r.push(x);
+    };
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].each(push);
+>>>>>>> installer
+    }
+    return r;
+  };
+<<<<<<< HEAD
   var getCaretCandidatePosition = function (direction, node) {
     if (isForwards$1(direction)) {
       if (isCaretCandidate$3(node.previousSibling) && !isText$5(node.previousSibling)) {
@@ -8356,9 +9540,71 @@
       if (isBackwards$1(direction) && isCaretCandidate$3(rootNode.lastChild) && isElement$5(rootNode.lastChild)) {
         return isBr$4(rootNode.lastChild) ? CaretPosition$1.before(rootNode.lastChild) : caretPosition;
       }
-    } else {
-      caretPosition = startCaretPosition;
+=======
+  var findMap = function (arr, f) {
+    for (var i = 0; i < arr.length; i++) {
+      var r = f(arr[i], i);
+      if (r.isSome()) {
+        return r;
+      }
     }
+    return Option.none();
+  };
+  var liftN = function (arr, f) {
+    var r = [];
+    for (var i = 0; i < arr.length; i++) {
+      var x = arr[i];
+      if (x.isSome()) {
+        r.push(x.getOrDie());
+      } else {
+        return Option.none();
+      }
+    }
+    return Option.some(f.apply(null, r));
+  };
+  var $_87ppqy2ejducwnol = {
+    cat: cat,
+    findMap: findMap,
+    liftN: liftN
+  };
+
+  var BreakType;
+  (function (BreakType) {
+    BreakType[BreakType['Br'] = 0] = 'Br';
+    BreakType[BreakType['Block'] = 1] = 'Block';
+    BreakType[BreakType['Wrap'] = 2] = 'Wrap';
+    BreakType[BreakType['Eol'] = 3] = 'Eol';
+  }(BreakType || (BreakType = {})));
+  var isAbove$1 = function (pos1, pos2) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_2dw1bj4jducwn6g.head(pos2.getClientRects()),
+      $_2dw1bj4jducwn6g.last(pos1.getClientRects())
+    ], isAbove).getOr(false);
+  };
+  var isBelow$1 = function (pos1, pos2) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_2dw1bj4jducwn6g.last(pos2.getClientRects()),
+      $_2dw1bj4jducwn6g.head(pos1.getClientRects())
+    ], function (r1, r2) {
+      return isBelow(r1, r2);
+    }).getOr(false);
+  };
+  var flip = function (direction, positions) {
+    return direction === HDirection.Backwards ? positions.reverse() : positions;
+  };
+  var walk$1 = function (direction, caretWalker, pos) {
+    return direction === HDirection.Forwards ? caretWalker.next(pos) : caretWalker.prev(pos);
+  };
+  var getBreakType = function (scope, direction, currentPos, nextPos) {
+    if ($_fj238m1qjducwnjm.isBr(nextPos.getNode(direction === HDirection.Forwards))) {
+      return BreakType.Br;
+    } else if (isInSameBlock(currentPos, nextPos) === false) {
+      return BreakType.Block;
+>>>>>>> installer
+    } else {
+      return BreakType.Wrap;
+    }
+<<<<<<< HEAD
     container = caretPosition.container();
     offset = caretPosition.offset();
     if (isText$5(container)) {
@@ -8424,9 +9670,49 @@
         caretPosition = CaretPosition$1.after(rootContentEditableFalseElm);
       } else {
         caretPosition = CaretPosition$1.before(rootContentEditableFalseElm);
+=======
+  };
+  var getPositionsUntil = function (predicate, direction, scope, start) {
+    var caretWalker = CaretWalker(scope);
+    var currentPos = start, nextPos;
+    var positions = [];
+    while (currentPos) {
+      nextPos = walk$1(direction, caretWalker, currentPos);
+      if (!nextPos) {
+        break;
       }
-      return caretPosition;
+      if ($_fj238m1qjducwnjm.isBr(nextPos.getNode(false))) {
+        if (direction === HDirection.Forwards) {
+          return {
+            positions: flip(direction, positions).concat([nextPos]),
+            breakType: BreakType.Br,
+            breakAt: Option.some(nextPos)
+          };
+        } else {
+          return {
+            positions: flip(direction, positions),
+            breakType: BreakType.Br,
+            breakAt: Option.some(nextPos)
+          };
+        }
+      }
+      if (!nextPos.isVisible()) {
+        currentPos = nextPos;
+        continue;
+      }
+      if (predicate(currentPos, nextPos)) {
+        var breakType = getBreakType(scope, direction, currentPos, nextPos);
+        return {
+          positions: flip(direction, positions),
+          breakType: breakType,
+          breakAt: Option.some(nextPos)
+        };
+>>>>>>> installer
+      }
+      positions.push(nextPos);
+      currentPos = nextPos;
     }
+<<<<<<< HEAD
     if (nextNode) {
       return getCaretCandidatePosition(direction, nextNode);
     }
@@ -8442,54 +9728,90 @@
       }
     };
   }
+=======
+    return {
+      positions: flip(direction, positions),
+      breakType: BreakType.Eol,
+      breakAt: Option.none()
+    };
+  };
+  var getAdjacentLinePositions = function (direction, getPositionsUntilBreak, scope, start) {
+    return getPositionsUntilBreak(scope, start).breakAt.map(function (pos) {
+      var positions = getPositionsUntilBreak(scope, pos).positions;
+      return direction === HDirection.Backwards ? positions.concat(pos) : [pos].concat(positions);
+    }).getOr([]);
+  };
+  var findClosestHorizontalPositionFromPoint = function (positions, x) {
+    return $_2dw1bj4jducwn6g.foldl(positions, function (acc, newPos) {
+      return acc.fold(function () {
+        return Option.some(newPos);
+      }, function (lastPos) {
+        return $_87ppqy2ejducwnol.liftN([
+          $_2dw1bj4jducwn6g.head(lastPos.getClientRects()),
+          $_2dw1bj4jducwn6g.head(newPos.getClientRects())
+        ], function (lastRect, newRect) {
+          var lastDist = Math.abs(x - lastRect.left);
+          var newDist = Math.abs(x - newRect.left);
+          return newDist <= lastDist ? newPos : lastPos;
+        }).or(acc);
+      });
+    }, Option.none());
+  };
+  var findClosestHorizontalPosition = function (positions, pos) {
+    return $_2dw1bj4jducwn6g.head(pos.getClientRects()).bind(function (targetRect) {
+      return findClosestHorizontalPositionFromPoint(positions, targetRect.left);
+    });
+  };
+  var getPositionsUntilPreviousLine = $_60qu7r6jducwn73.curry(getPositionsUntil, isAbove$1, -1);
+  var getPositionsUntilNextLine = $_60qu7r6jducwn73.curry(getPositionsUntil, isBelow$1, 1);
+  var getPositionsAbove = $_60qu7r6jducwn73.curry(getAdjacentLinePositions, -1, getPositionsUntilPreviousLine);
+  var getPositionsBelow = $_60qu7r6jducwn73.curry(getAdjacentLinePositions, 1, getPositionsUntilNextLine);
+  var getFirstLinePositions = function (scope) {
+    return $_dq07eg2bjducwno6.firstPositionIn(scope).map(function (pos) {
+      return [pos].concat(getPositionsUntilNextLine(scope, pos).positions);
+    }).getOr([]);
+  };
+  var getLastLinePositions = function (scope) {
+    return $_dq07eg2bjducwno6.lastPositionIn(scope).map(function (pos) {
+      return getPositionsUntilPreviousLine(scope, pos).positions.concat(pos);
+    }).getOr([]);
+  };
+>>>>>>> installer
 
-  var hasOnlyOneChild = function (node) {
-    return node.firstChild && node.firstChild === node.lastChild;
+  var all$1 = function (predicate) {
+    return descendants($_4u3ohv15jducwnhl.body(), predicate);
   };
-  var isPaddingNode = function (node) {
-    return node.name === 'br' || node.value === '\xA0';
+  var ancestors = function (scope, predicate, isRoot) {
+    return $_2dw1bj4jducwn6g.filter($_f0qt4317jducwnhq.parents(scope, isRoot), predicate);
   };
-  var isPaddedEmptyBlock = function (schema, node) {
-    var blockElements = schema.getBlockElements();
-    return blockElements[node.name] && hasOnlyOneChild(node) && isPaddingNode(node.firstChild);
+  var siblings$1 = function (scope, predicate) {
+    return $_2dw1bj4jducwn6g.filter($_f0qt4317jducwnhq.siblings(scope), predicate);
   };
-  var isEmptyFragmentElement = function (schema, node) {
-    var nonEmptyElements = schema.getNonEmptyElements();
-    return node && (node.isEmpty(nonEmptyElements) || isPaddedEmptyBlock(schema, node));
+  var children$1 = function (scope, predicate) {
+    return $_2dw1bj4jducwn6g.filter($_f0qt4317jducwnhq.children(scope), predicate);
   };
-  var isListFragment = function (schema, fragment) {
-    var firstChild = fragment.firstChild;
-    var lastChild = fragment.lastChild;
-    if (firstChild && firstChild.name === 'meta') {
-      firstChild = firstChild.next;
-    }
-    if (lastChild && lastChild.attr('id') === 'mce_marker') {
-      lastChild = lastChild.prev;
-    }
-    if (isEmptyFragmentElement(schema, lastChild)) {
-      lastChild = lastChild.prev;
-    }
-    if (!firstChild || firstChild !== lastChild) {
-      return false;
-    }
-    return firstChild.name === 'ul' || firstChild.name === 'ol';
+  var descendants = function (scope, predicate) {
+    var result = [];
+    $_2dw1bj4jducwn6g.each($_f0qt4317jducwnhq.children(scope), function (x) {
+      if (predicate(x)) {
+        result = result.concat([x]);
+      }
+      result = result.concat(descendants(x, predicate));
+    });
+    return result;
   };
-  var cleanupDomFragment = function (domFragment) {
-    var firstChild = domFragment.firstChild;
-    var lastChild = domFragment.lastChild;
-    if (firstChild && firstChild.nodeName === 'META') {
-      firstChild.parentNode.removeChild(firstChild);
-    }
-    if (lastChild && lastChild.id === 'mce_marker') {
-      lastChild.parentNode.removeChild(lastChild);
-    }
-    return domFragment;
+  var $_4h43y02hjducwnov = {
+    all: all$1,
+    ancestors: ancestors,
+    siblings: siblings$1,
+    children: children$1,
+    descendants: descendants
   };
-  var toDomFragment = function (dom, serializer, fragment) {
-    var html = serializer.serialize(fragment);
-    var domFragment = dom.createFragment(html);
-    return cleanupDomFragment(domFragment);
+
+  var all$2 = function (selector) {
+    return $_3yrc4b1fjducwnim.all(selector);
   };
+<<<<<<< HEAD
   var listItems$1 = function (elm) {
     return $_gfka90jjd08m9g9.grep(elm.childNodes, function (child) {
       return child.nodeName === 'LI';
@@ -8497,33 +9819,87 @@
   };
   var isPadding = function (node) {
     return node.data === '\xA0' || $_2qai0u1qjd08m9l9.isBr(node);
+=======
+  var ancestors$1 = function (scope, selector, isRoot) {
+    return $_4h43y02hjducwnov.ancestors(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    }, isRoot);
   };
-  var isListItemPadded = function (node) {
-    return node && node.firstChild && node.firstChild === node.lastChild && isPadding(node.firstChild);
+  var siblings$2 = function (scope, selector) {
+    return $_4h43y02hjducwnov.siblings(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    });
   };
-  var isEmptyOrPadded = function (elm) {
-    return !elm.firstChild || isListItemPadded(elm);
+  var children$2 = function (scope, selector) {
+    return $_4h43y02hjducwnov.children(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    });
+>>>>>>> installer
   };
-  var trimListItems = function (elms) {
-    return elms.length > 0 && isEmptyOrPadded(elms[elms.length - 1]) ? elms.slice(0, -1) : elms;
+  var descendants$1 = function (scope, selector) {
+    return $_3yrc4b1fjducwnim.all(selector, scope);
   };
-  var getParentLi = function (dom, node) {
-    var parentBlock = dom.getParent(node, dom.isBlock);
-    return parentBlock && parentBlock.nodeName === 'LI' ? parentBlock : null;
+  var $_47k8tx2gjducwnot = {
+    all: all$2,
+    ancestors: ancestors$1,
+    siblings: siblings$2,
+    children: children$2,
+    descendants: descendants$1
   };
-  var isParentBlockLi = function (dom, node) {
-    return !!getParentLi(dom, node);
+
+  var deflate = function (rect, delta) {
+    return {
+      left: rect.left - delta,
+      top: rect.top - delta,
+      right: rect.right + delta * 2,
+      bottom: rect.bottom + delta * 2,
+      width: rect.width + delta,
+      height: rect.height + delta
+    };
   };
-  var getSplit = function (parentNode, rng) {
-    var beforeRng = rng.cloneRange();
-    var afterRng = rng.cloneRange();
-    beforeRng.setStartBefore(parentNode);
-    afterRng.setEndAfter(parentNode);
-    return [
-      beforeRng.cloneContents(),
-      afterRng.cloneContents()
-    ];
+  var getCorners = function (getYAxisValue, tds) {
+    return $_2dw1bj4jducwn6g.bind(tds, function (td) {
+      var rect = deflate(td.getBoundingClientRect(), -1);
+      return [
+        {
+          x: rect.left,
+          y: getYAxisValue(rect),
+          cell: td
+        },
+        {
+          x: rect.right,
+          y: getYAxisValue(rect),
+          cell: td
+        }
+      ];
+    });
   };
+  var findClosestCorner = function (corners, x, y) {
+    return $_2dw1bj4jducwn6g.foldl(corners, function (acc, newCorner) {
+      return acc.fold(function () {
+        return Option.some(newCorner);
+      }, function (oldCorner) {
+        var oldDist = Math.sqrt(Math.abs(oldCorner.x - x) + Math.abs(oldCorner.y - y));
+        var newDist = Math.sqrt(Math.abs(newCorner.x - x) + Math.abs(newCorner.y - y));
+        return Option.some(newDist < oldDist ? newCorner : oldCorner);
+      });
+    }, Option.none());
+  };
+  var getClosestCell = function (getYAxisValue, isTargetCorner, table, x, y) {
+    var cells = $_47k8tx2gjducwnot.descendants($_5s4uzoyjducwngo.fromDom(table), 'td,th').map(function (e) {
+      return e.dom();
+    });
+    var corners = $_2dw1bj4jducwn6g.filter(getCorners(getYAxisValue, cells), function (corner) {
+      return isTargetCorner(corner, y);
+    });
+    return findClosestCorner(corners, x, y).map(function (corner) {
+      return corner.cell;
+    });
+  };
+  var getBottomValue = function (rect) {
+    return rect.bottom;
+  };
+<<<<<<< HEAD
   var findFirstIn = function (node, rootNode) {
     var caretPos = CaretPosition$1.before(node);
     var caretWalker = CaretWalker(rootNode);
@@ -8542,22 +9918,46 @@
     parentElm.insertBefore(parts[0], target);
     $_gfka90jjd08m9g9.each(elms, function (li) {
       parentElm.insertBefore(li, target);
-    });
-    parentElm.insertBefore(parts[1], target);
-    parentElm.removeChild(target);
-    return findLastOf(elms[elms.length - 1], rootNode);
+=======
+  var getTopValue = function (rect) {
+    return rect.top;
   };
+  var isAbove$2 = function (corner, y) {
+    return corner.y < y;
+  };
+  var isBelow$2 = function (corner, y) {
+    return corner.y > y;
+  };
+  var getClosestCellAbove = $_60qu7r6jducwn73.curry(getClosestCell, getBottomValue, isAbove$2);
+  var getClosestCellBelow = $_60qu7r6jducwn73.curry(getClosestCell, getTopValue, isBelow$2);
+  var findClosestPositionInAboveCell = function (table, pos) {
+    return $_2dw1bj4jducwn6g.head(pos.getClientRects()).bind(function (rect) {
+      return getClosestCellAbove(table, rect.left, rect.top);
+    }).bind(function (cell) {
+      return findClosestHorizontalPosition(getLastLinePositions(cell), pos);
+>>>>>>> installer
+    });
+  };
+<<<<<<< HEAD
   var insertBefore = function (target, elms, rootNode) {
     var parentElm = target.parentNode;
     $_gfka90jjd08m9g9.each(elms, function (elm) {
       parentElm.insertBefore(elm, target);
+=======
+  var findClosestPositionInBelowCell = function (table, pos) {
+    return $_2dw1bj4jducwn6g.last(pos.getClientRects()).bind(function (rect) {
+      return getClosestCellBelow(table, rect.left, rect.top);
+    }).bind(function (cell) {
+      return findClosestHorizontalPosition(getFirstLinePositions(cell), pos);
+>>>>>>> installer
     });
-    return findFirstIn(target, rootNode);
   };
-  var insertAfter = function (target, elms, rootNode, dom) {
-    dom.insertAfter(elms.reverse(), target);
-    return findLastOf(elms[0], rootNode);
+
+  var browser$2 = $_5hshlmmjducwnfr.detect().browser;
+  var isFakeCaretTableBrowser = function () {
+    return browser$2.isIE() || browser$2.isEdge() || browser$2.isFirefox();
   };
+<<<<<<< HEAD
   var insertAtCaret = function (serializer, dom, rng, fragment) {
     var domFragment = toDomFragment(dom, serializer, fragment);
     var liTarget = getParentLi(dom, rng.startContainer);
@@ -8574,9 +9974,19 @@
       return insertBefore(liTarget, liElms, rootNode);
     } else if (isAt(END)) {
       return insertAfter(liTarget, liElms, rootNode, dom);
+=======
+  var isAtTableCellLine = function (getPositionsUntil, scope, pos) {
+    var lineInfo = getPositionsUntil(scope, pos);
+    if (lineInfo.breakType === BreakType.Wrap && lineInfo.positions.length === 0) {
+      return lineInfo.breakAt.map(function (breakPos) {
+        return getPositionsUntil(scope, breakPos).breakAt.isNone();
+      }).getOr(true);
+    } else {
+      return lineInfo.breakAt.isNone();
+>>>>>>> installer
     }
-    return insertMiddle(liTarget, liElms, rootNode, rng);
   };
+<<<<<<< HEAD
   var $_4bq81q1xjd08m9og = {
     isListFragment: isListFragment,
     insertAtCaret: insertAtCaret,
@@ -8592,9 +10002,27 @@
     var parentNode = node.parentNode;
     if (isBogus$1(parentNode)) {
       return normalizedParent(parentNode);
-    }
-    return parentNode;
+=======
+  var isAtFirstTableCellLine = $_6183wb25jducwnn2.curry(isAtTableCellLine, getPositionsUntilPreviousLine);
+  var isAtLastTableCellLine = $_6183wb25jducwnn2.curry(isAtTableCellLine, getPositionsUntilNextLine);
+  var isCaretAtStartOrEndOfTable = function (forward, rng, table) {
+    var caretPos = CaretPosition$1.fromRangeStart(rng);
+    return $_dq07eg2bjducwno6.positionIn(!forward, table).map(function (pos) {
+      return pos.isEqual(caretPos);
+    }).getOr(false);
   };
+  var navigateHorizontally = function (editor, forward, table, td) {
+    var rng = editor.selection.getRng();
+    var direction = forward ? 1 : -1;
+    if (isFakeCaretTableBrowser() && isCaretAtStartOrEndOfTable(forward, rng, table)) {
+      var newRng = showCaret(direction, editor, table, !forward);
+      editor.selection.setRng(newRng);
+      return true;
+>>>>>>> installer
+    }
+    return false;
+  };
+<<<<<<< HEAD
   var getChildNodes = function (node) {
     if (!node) {
       return [];
@@ -8607,21 +10035,48 @@
       }
       return result;
     }, []);
+=======
+  var getClosestAbovePosition = function (root, table, start) {
+    return findClosestPositionInAboveCell(table, start).orThunk(function () {
+      return $_2dw1bj4jducwn6g.head(start.getClientRects()).bind(function (rect) {
+        return findClosestHorizontalPositionFromPoint(getPositionsAbove(root, CaretPosition$1.before(table)), rect.left);
+      });
+    }).getOr(CaretPosition$1.before(table));
+>>>>>>> installer
   };
-  var normalizedTextOffset = function (textNode, offset) {
-    while (textNode = textNode.previousSibling) {
-      if (!isText$6(textNode)) {
-        break;
-      }
-      offset += textNode.data.length;
+  var getClosestBelowPosition = function (root, table, start) {
+    return findClosestPositionInBelowCell(table, start).orThunk(function () {
+      return $_2dw1bj4jducwn6g.head(start.getClientRects()).bind(function (rect) {
+        return findClosestHorizontalPositionFromPoint(getPositionsBelow(root, CaretPosition$1.after(table)), rect.left);
+      });
+    }).getOr(CaretPosition$1.after(table));
+  };
+  var navigateVertically = function (editor, down, table, td) {
+    var rng = editor.selection.getRng();
+    var pos = CaretPosition$1.fromRangeStart(rng);
+    var root = editor.getBody();
+    if (!down && isAtFirstTableCellLine(td, pos)) {
+      var newPos = getClosestAbovePosition(root, table, pos);
+      editor.selection.setRng(newPos.toRange());
+      return true;
+    } else if (down && isAtLastTableCellLine(td, pos)) {
+      var newPos = getClosestBelowPosition(root, table, pos);
+      editor.selection.setRng(newPos.toRange());
+      return true;
+    } else {
+      return false;
     }
-    return offset;
   };
-  var equal$1 = function (targetValue) {
-    return function (value) {
-      return targetValue === value;
+  var moveH = function (editor, forward) {
+    return function () {
+      return Option.from(editor.dom.getParent(editor.selection.getNode(), 'td,th')).bind(function (td) {
+        return Option.from(editor.dom.getParent(td, 'table')).map(function (table) {
+          return navigateHorizontally(editor, forward, table, td);
+        });
+      }).getOr(false);
     };
   };
+<<<<<<< HEAD
   var normalizedNodeIndex = function (node) {
     var nodes, index, numTextFragments;
     nodes = getChildNodes(normalizedParent(node));
@@ -8636,26 +10091,86 @@
     nodes = $_c05hv0kjd08m9gg.filter(nodes, $_2qai0u1qjd08m9l9.matchNodeNames(node.nodeName));
     index = $_c05hv0kjd08m9gg.findIndex(nodes, equal$1(node), node);
     return index - numTextFragments;
+=======
+  var moveV = function (editor, forward) {
+    return function () {
+      return Option.from(editor.dom.getParent(editor.selection.getNode(), 'td,th')).bind(function (td) {
+        return Option.from(editor.dom.getParent(td, 'table')).map(function (table) {
+          return navigateVertically(editor, forward, table, td);
+        });
+      }).getOr(false);
+    };
+>>>>>>> installer
   };
-  var createPathItem = function (node) {
-    var name;
-    if (isText$6(node)) {
-      name = 'text()';
+
+  var isContentEditableFalse$3 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isTableCell$1 = function (node) {
+    return $_fj238m1qjducwnjm.isElement(node) && /^(TD|TH)$/i.test(node.tagName);
+  };
+  var hasFocus = function (root) {
+    return root.ownerDocument.activeElement === root;
+  };
+  var getAbsoluteClientRect = function (root, element, before) {
+    var clientRect = collapse(element.getBoundingClientRect(), before);
+    var docElm, scrollX, scrollY, margin, rootRect;
+    if (root.tagName === 'BODY') {
+      docElm = root.ownerDocument.documentElement;
+      scrollX = root.scrollLeft || docElm.scrollLeft;
+      scrollY = root.scrollTop || docElm.scrollTop;
     } else {
-      name = node.nodeName.toLowerCase();
+      rootRect = root.getBoundingClientRect();
+      scrollX = root.scrollLeft - rootRect.left;
+      scrollY = root.scrollTop - rootRect.top;
     }
-    return name + '[' + normalizedNodeIndex(node) + ']';
+    clientRect.left += scrollX;
+    clientRect.right += scrollX;
+    clientRect.top += scrollY;
+    clientRect.bottom += scrollY;
+    clientRect.width = 1;
+    margin = element.offsetWidth - element.clientWidth;
+    if (margin > 0) {
+      if (before) {
+        margin *= -1;
+      }
+      clientRect.left += margin;
+      clientRect.right += margin;
+    }
+    return clientRect;
   };
+<<<<<<< HEAD
   var parentsUntil = function (root, node, predicate) {
     var parents = [];
     for (node = node.parentNode; node !== root; node = node.parentNode) {
       if (predicate && predicate(node)) {
         break;
+=======
+  var trimInlineCaretContainers = function (root) {
+    var contentEditableFalseNodes, node, sibling, i, data;
+    contentEditableFalseNodes = DomQuery('*[contentEditable=false]', root);
+    for (i = 0; i < contentEditableFalseNodes.length; i++) {
+      node = contentEditableFalseNodes[i];
+      sibling = node.previousSibling;
+      if (endsWithCaretContainer(sibling)) {
+        data = sibling.data;
+        if (data.length === 1) {
+          sibling.parentNode.removeChild(sibling);
+        } else {
+          sibling.deleteData(data.length - 1, 1);
+        }
       }
-      parents.push(node);
+      sibling = node.nextSibling;
+      if (startsWithCaretContainer(sibling)) {
+        data = sibling.data;
+        if (data.length === 1) {
+          sibling.parentNode.removeChild(sibling);
+        } else {
+          sibling.deleteData(0, 1);
+        }
+>>>>>>> installer
+      }
     }
-    return parents;
   };
+<<<<<<< HEAD
   var create$1 = function (root, caretPosition) {
     var container, offset, path = [], outputOffset, childNodes, parents;
     container = caretPosition.container();
@@ -8667,9 +10182,41 @@
       if (offset >= childNodes.length) {
         outputOffset = 'after';
         offset = childNodes.length - 1;
-      } else {
-        outputOffset = 'before';
+=======
+  var FakeCaret = function (root, isBlock) {
+    var cursorInterval, $lastVisualCaret = null, caretContainerNode;
+    var show = function (before, element) {
+      var clientRect, rng;
+      hide();
+      if (isTableCell$1(element)) {
+        return null;
       }
+      if (isBlock(element)) {
+        caretContainerNode = insertBlock('p', element, before);
+        clientRect = getAbsoluteClientRect(root, element, before);
+        DomQuery(caretContainerNode).css('top', clientRect.top);
+        $lastVisualCaret = DomQuery('<div class="mce-visual-caret" data-mce-bogus="all"></div>').css(clientRect).appendTo(root);
+        if (before) {
+          $lastVisualCaret.addClass('mce-visual-caret-before');
+        }
+        startBlink();
+        rng = element.ownerDocument.createRange();
+        rng.setStart(caretContainerNode, 0);
+        rng.setEnd(caretContainerNode, 0);
+>>>>>>> installer
+      } else {
+        caretContainerNode = insertInline(element, before);
+        rng = element.ownerDocument.createRange();
+        if (isContentEditableFalse$3(caretContainerNode.nextSibling)) {
+          rng.setStart(caretContainerNode, 0);
+          rng.setEnd(caretContainerNode, 0);
+        } else {
+          rng.setStart(caretContainerNode, 1);
+          rng.setEnd(caretContainerNode, 1);
+        }
+        return rng;
+      }
+<<<<<<< HEAD
       container = childNodes[offset];
     }
     path.push(createPathItem(container));
@@ -8687,24 +10234,69 @@
     });
     nodes = $_c05hv0kjd08m9gg.filter(nodes, $_2qai0u1qjd08m9l9.matchNodeNames(name));
     return nodes[index];
+=======
+      return rng;
+    };
+    var hide = function () {
+      trimInlineCaretContainers(root);
+      if (caretContainerNode) {
+        $_53zrlo29jducwnnv.remove(caretContainerNode);
+        caretContainerNode = null;
+      }
+      if ($lastVisualCaret) {
+        $lastVisualCaret.remove();
+        $lastVisualCaret = null;
+      }
+      clearInterval(cursorInterval);
+    };
+    var startBlink = function () {
+      cursorInterval = $_83mf8ygjducwnbc.setInterval(function () {
+        if (hasFocus(root)) {
+          DomQuery('div.mce-visual-caret', root).toggleClass('mce-visual-caret-hidden');
+        } else {
+          DomQuery('div.mce-visual-caret', root).addClass('mce-visual-caret-hidden');
+        }
+      }, 500);
+    };
+    var destroy = function () {
+      return $_83mf8ygjducwnbc.clearInterval(cursorInterval);
+    };
+    var getCss = function () {
+      return '.mce-visual-caret {' + 'position: absolute;' + 'background-color: black;' + 'background-color: currentcolor;' + '}' + '.mce-visual-caret-hidden {' + 'display: none;' + '}' + '*[data-mce-caret] {' + 'position: absolute;' + 'left: -1000px;' + 'right: auto;' + 'top: 0;' + 'margin: 0;' + 'padding: 0;' + '}';
+    };
+    return {
+      show: show,
+      hide: hide,
+      getCss: getCss,
+      destroy: destroy
+    };
   };
-  var findTextPosition = function (container, offset) {
-    var node = container, targetOffset = 0, dataLen;
-    while (isText$6(node)) {
-      dataLen = node.data.length;
-      if (offset >= targetOffset && offset <= targetOffset + dataLen) {
-        container = node;
-        offset = offset - targetOffset;
-        break;
+  var isFakeCaretTarget = function (node) {
+    return isContentEditableFalse$3(node) || $_fj238m1qjducwnjm.isTable(node) && isFakeCaretTableBrowser();
+>>>>>>> installer
+  };
+
+  var isContentEditableFalse$4 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isBlockLike = $_fj238m1qjducwnjm.matchStyleValues('display', 'block table table-cell table-caption list-item');
+  var isCaretContainer$2 = isCaretContainer;
+  var isCaretContainerBlock$1 = isCaretContainerBlock;
+  var curry$2 = $_6183wb25jducwnn2.curry;
+  var isElement$5 = $_fj238m1qjducwnjm.isElement;
+  var isCaretCandidate$2 = isCaretCandidate;
+  var isForwards = function (direction) {
+    return direction > 0;
+  };
+  var isBackwards = function (direction) {
+    return direction < 0;
+  };
+  var skipCaretContainers = function (walk, shallow) {
+    var node;
+    while (node = walk(shallow)) {
+      if (!isCaretContainerBlock$1(node)) {
+        return node;
       }
-      if (!isText$6(node.nextSibling)) {
-        container = node;
-        offset = dataLen;
-        break;
-      }
-      targetOffset += dataLen;
-      node = node.nextSibling;
     }
+<<<<<<< HEAD
     if (isText$6(container) && offset > container.data.length) {
       offset = container.data.length;
     }
@@ -8722,25 +10314,61 @@
       value = /([\w\-\(\)]+)\[([0-9]+)\]/.exec(value);
       if (!value) {
         return null;
+=======
+    return null;
+  };
+  var findNode = function (node, direction, predicateFn, rootNode, shallow) {
+    var walker = new TreeWalker(node, rootNode);
+    if (isBackwards(direction)) {
+      if (isContentEditableFalse$4(node) || isCaretContainerBlock$1(node)) {
+        node = skipCaretContainers(walker.prev, true);
+        if (predicateFn(node)) {
+          return node;
+        }
       }
-      if (value[1] === 'text()') {
-        value[1] = '#text';
+      while (node = skipCaretContainers(walker.prev, shallow)) {
+        if (predicateFn(node)) {
+          return node;
+        }
       }
+    }
+    if (isForwards(direction)) {
+      if (isContentEditableFalse$4(node) || isCaretContainerBlock$1(node)) {
+        node = skipCaretContainers(walker.next, true);
+        if (predicateFn(node)) {
+          return node;
+        }
+>>>>>>> installer
+      }
+      while (node = skipCaretContainers(walker.next, shallow)) {
+        if (predicateFn(node)) {
+          return node;
+        }
+      }
+<<<<<<< HEAD
       return resolvePathItem(result, value[1], parseInt(value[2], 10));
     }, root);
     if (!container) {
       return null;
+=======
+>>>>>>> installer
     }
-    if (!isText$6(container)) {
-      if (offset === 'after') {
-        offset = nodeIndex$2(container) + 1;
-      } else {
-        offset = nodeIndex$2(container);
-      }
-      return CaretPosition$1(container.parentNode, offset);
-    }
-    return findTextPosition(container, parseInt(offset, 10));
+    return null;
   };
+  var getParentBlock = function (node, rootNode) {
+    while (node && node !== rootNode) {
+      if (isBlockLike(node)) {
+        return node;
+      }
+<<<<<<< HEAD
+      return CaretPosition$1(container.parentNode, offset);
+=======
+      node = node.parentNode;
+>>>>>>> installer
+    }
+    return null;
+  };
+<<<<<<< HEAD
   var $_61kp9g2bjd08m9q8 = {
     create: create$1,
     resolve: resolve$2
@@ -8752,9 +10380,24 @@
     trimmedOffset = trim(container.data.slice(0, offset)).length;
     for (node = container.previousSibling; node && $_2qai0u1qjd08m9l9.isText(node); node = node.previousSibling) {
       trimmedOffset += trim(node.data).length;
-    }
-    return trimmedOffset;
+=======
+  var isInSameBlock = function (caretPosition1, caretPosition2, rootNode) {
+    return getParentBlock(caretPosition1.container(), rootNode) === getParentBlock(caretPosition2.container(), rootNode);
   };
+  var getChildNodeAtRelativeOffset = function (relativeOffset, caretPosition) {
+    var container, offset;
+    if (!caretPosition) {
+      return null;
+>>>>>>> installer
+    }
+    container = caretPosition.container();
+    offset = caretPosition.offset();
+    if (!isElement$5(container)) {
+      return null;
+    }
+    return container.childNodes[offset + relativeOffset];
+  };
+<<<<<<< HEAD
   var getPoint = function (dom, trim, normalized, rng, start) {
     var container = rng[start ? 'startContainer' : 'endContainer'];
     var offset = rng[start ? 'startOffset' : 'endOffset'];
@@ -8763,27 +10406,23 @@
     var root = dom.getRoot();
     if ($_2qai0u1qjd08m9l9.isText(container)) {
       point.push(normalized ? getNormalizedTextOffset(trim, container, offset) : offset);
+=======
+  var beforeAfter = function (before, node) {
+    var range = node.ownerDocument.createRange();
+    if (before) {
+      range.setStartBefore(node);
+      range.setEndBefore(node);
+>>>>>>> installer
     } else {
-      childNodes = container.childNodes;
-      if (offset >= childNodes.length && childNodes.length) {
-        after = 1;
-        offset = Math.max(0, childNodes.length - 1);
-      }
-      point.push(dom.nodeIndex(childNodes[offset], normalized) + after);
+      range.setStartAfter(node);
+      range.setEndAfter(node);
     }
-    for (; container && container !== root; container = container.parentNode) {
-      point.push(dom.nodeIndex(container, normalized));
-    }
-    return point;
+    return range;
   };
-  var getLocation = function (trim, selection, normalized, rng) {
-    var dom = selection.dom, bookmark = {};
-    bookmark.start = getPoint(dom, trim, normalized, rng, true);
-    if (!selection.isCollapsed()) {
-      bookmark.end = getPoint(dom, trim, normalized, rng, false);
-    }
-    return bookmark;
+  var isNodesInSameBlock = function (root, node1, node2) {
+    return getParentBlock(node1, root) === getParentBlock(node2, root);
   };
+<<<<<<< HEAD
   var trimEmptyTextNode = function (node) {
     if ($_2qai0u1qjd08m9l9.isText(node) && node.data.length === 0) {
       node.parentNode.removeChild(node);
@@ -8794,10 +10433,27 @@
     $_gfka90jjd08m9g9.each(dom.select(name), function (node) {
       if (node.getAttribute('data-mce-bogus') === 'all') {
         return;
+=======
+  var lean = function (left, root, node) {
+    var sibling, siblingName;
+    if (left) {
+      siblingName = 'previousSibling';
+    } else {
+      siblingName = 'nextSibling';
+    }
+    while (node && node !== root) {
+      sibling = node[siblingName];
+      if (isCaretContainer$2(sibling)) {
+        sibling = sibling[siblingName];
+>>>>>>> installer
       }
-      if (node === element) {
-        return false;
+      if (isContentEditableFalse$4(sibling)) {
+        if (isNodesInSameBlock(root, sibling, node)) {
+          return sibling;
+        }
+        break;
       }
+<<<<<<< HEAD
       count++;
     });
     return count;
@@ -8813,9 +10469,16 @@
       if (container) {
         offset = start ? 0 : container.childNodes.length;
         rng['set' + (start ? 'Start' : 'End')](container, offset);
+=======
+      if (isCaretCandidate$2(sibling)) {
+        break;
+>>>>>>> installer
       }
+      node = node.parentNode;
     }
+    return null;
   };
+<<<<<<< HEAD
   var normalizeTableCellSelection = function (rng) {
     moveEndPoint(rng, true);
     moveEndPoint(rng, false);
@@ -8832,91 +10495,148 @@
     if ($_euzg3m20jd08m9ow.isCaretContainer(node)) {
       if ($_2qai0u1qjd08m9l9.isText(node) && $_euzg3m20jd08m9ow.isCaretContainerBlock(node)) {
         node = node.parentNode;
+=======
+  var before = curry$2(beforeAfter, true);
+  var after = curry$2(beforeAfter, false);
+  var normalizeRange = function (direction, root, range) {
+    var node, container, offset, location;
+    var leanLeft = curry$2(lean, true, root);
+    var leanRight = curry$2(lean, false, root);
+    container = range.startContainer;
+    offset = range.startOffset;
+    if (isCaretContainerBlock(container)) {
+      if (!isElement$5(container)) {
+        container = container.parentNode;
       }
-      sibling = node.previousSibling;
-      if (isContentEditableFalse$4(sibling)) {
-        return sibling;
+      location = container.getAttribute('data-mce-caret');
+      if (location === 'before') {
+        node = container.nextSibling;
+        if (isFakeCaretTarget(node)) {
+          return before(node);
+        }
       }
-      sibling = node.nextSibling;
-      if (isContentEditableFalse$4(sibling)) {
-        return sibling;
+      if (location === 'after') {
+        node = container.previousSibling;
+        if (isFakeCaretTarget(node)) {
+          return after(node);
+        }
       }
     }
-  };
-  var findAdjacentContentEditableFalseElm = function (rng) {
-    return findSibling(rng.startContainer, rng.startOffset) || findSibling(rng.endContainer, rng.endOffset);
-  };
-  var getOffsetBookmark = function (trim, normalized, selection) {
-    var element = selection.getNode();
-    var name = element ? element.nodeName : null;
-    var rng = selection.getRng();
-    if (isContentEditableFalse$4(element) || name === 'IMG') {
-      return {
-        name: name,
-        index: findIndex$3(selection.dom, name, element)
-      };
+    if (!range.collapsed) {
+      return range;
     }
-    element = findAdjacentContentEditableFalseElm(rng);
-    if (element) {
-      name = element.tagName;
-      return {
-        name: name,
-        index: findIndex$3(selection.dom, name, element)
-      };
+    if ($_fj238m1qjducwnjm.isText(container)) {
+      if (isCaretContainer$2(container)) {
+        if (direction === 1) {
+          node = leanRight(container);
+          if (node) {
+            return before(node);
+          }
+          node = leanLeft(container);
+          if (node) {
+            return after(node);
+          }
+        }
+        if (direction === -1) {
+          node = leanLeft(container);
+          if (node) {
+            return after(node);
+          }
+          node = leanRight(container);
+          if (node) {
+            return before(node);
+          }
+        }
+        return range;
+>>>>>>> installer
+      }
+      if (endsWithCaretContainer(container) && offset >= container.data.length - 1) {
+        if (direction === 1) {
+          node = leanRight(container);
+          if (node) {
+            return before(node);
+          }
+        }
+        return range;
+      }
+      if (startsWithCaretContainer(container) && offset <= 1) {
+        if (direction === -1) {
+          node = leanLeft(container);
+          if (node) {
+            return after(node);
+          }
+        }
+        return range;
+      }
+      if (offset === container.data.length) {
+        node = leanRight(container);
+        if (node) {
+          return before(node);
+        }
+        return range;
+      }
+      if (offset === 0) {
+        node = leanLeft(container);
+        if (node) {
+          return after(node);
+        }
+        return range;
+      }
     }
-    return getLocation(trim, selection, normalized, rng);
+    return range;
   };
+  var isNextToContentEditableFalse = function (relativeOffset, caretPosition) {
+    var node = getChildNodeAtRelativeOffset(relativeOffset, caretPosition);
+    return isContentEditableFalse$4(node) && !$_fj238m1qjducwnjm.isBogusAll(node);
+  };
+<<<<<<< HEAD
   var getCaretBookmark = function (selection) {
     var rng = selection.getRng();
     return {
       start: $_61kp9g2bjd08m9q8.create(selection.dom.getRoot(), CaretPosition$1.fromRangeStart(rng)),
       end: $_61kp9g2bjd08m9q8.create(selection.dom.getRoot(), CaretPosition$1.fromRangeEnd(rng))
     };
+=======
+  var isNextToTable = function (relativeOffset, caretPosition) {
+    return $_fj238m1qjducwnjm.isTable(getChildNodeAtRelativeOffset(relativeOffset, caretPosition));
+>>>>>>> installer
   };
-  var getRangeBookmark = function (selection) {
-    return { rng: selection.getRng() };
+  var getRelativeCefElm = function (forward, caretPosition) {
+    return Option.from(getChildNodeAtRelativeOffset(forward ? 0 : -1, caretPosition)).filter(isContentEditableFalse$4);
   };
-  var getPersistentBookmark = function (selection) {
-    var dom = selection.dom;
-    var rng = selection.getRng();
-    var id = dom.uniqueId();
-    var collapsed = selection.isCollapsed();
-    var styles = 'overflow:hidden;line-height:0px';
-    var element = selection.getNode();
-    var name = element.nodeName;
-    var chr = '&#xFEFF;';
-    if (name === 'IMG') {
-      return {
-        name: name,
-        index: findIndex$3(dom, name, element)
-      };
+  var getNormalizedRangeEndPoint = function (direction, root, range) {
+    var normalizedRange = normalizeRange(direction, root, range);
+    if (direction === -1) {
+      return CaretPosition.fromRangeStart(normalizedRange);
     }
-    var rng2 = normalizeTableCellSelection(rng.cloneRange());
-    if (!collapsed) {
-      rng2.collapse(false);
-      var endBookmarkNode = dom.create('span', {
-        'data-mce-type': 'bookmark',
-        'id': id + '_end',
-        'style': styles
-      }, chr);
-      rng2.insertNode(endBookmarkNode);
-      trimEmptyTextNode(endBookmarkNode.nextSibling);
-    }
-    rng = normalizeTableCellSelection(rng);
-    rng.collapse(true);
-    var startBookmarkNode = dom.create('span', {
-      'data-mce-type': 'bookmark',
-      'id': id + '_start',
-      'style': styles
-    }, chr);
-    rng.insertNode(startBookmarkNode);
-    trimEmptyTextNode(startBookmarkNode.previousSibling);
-    selection.moveToBookmark({
-      id: id,
-      keep: 1
-    });
-    return { id: id };
+    return CaretPosition.fromRangeEnd(normalizedRange);
   };
+  var isBeforeContentEditableFalse = curry$2(isNextToContentEditableFalse, 0);
+  var isAfterContentEditableFalse = curry$2(isNextToContentEditableFalse, -1);
+  var isBeforeTable = curry$2(isNextToTable, 0);
+  var isAfterTable = curry$2(isNextToTable, -1);
+
+  var HDirection;
+  (function (HDirection) {
+    HDirection[HDirection['Backwards'] = -1] = 'Backwards';
+    HDirection[HDirection['Forwards'] = 1] = 'Forwards';
+  }(HDirection || (HDirection = {})));
+  var isContentEditableFalse$5 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isText$6 = $_fj238m1qjducwnjm.isText;
+  var isElement$6 = $_fj238m1qjducwnjm.isElement;
+  var isBr$4 = $_fj238m1qjducwnjm.isBr;
+  var isCaretCandidate$3 = isCaretCandidate;
+  var isAtomic$1 = isAtomic;
+  var isEditableCaretCandidate$1 = isEditableCaretCandidate;
+  var getParents = function (node, root) {
+    var parents = [];
+    while (node && node !== root) {
+      parents.push(node);
+      node = node.parentNode;
+    }
+    return parents;
+  };
+<<<<<<< HEAD
   var getBookmark = function (selection, type, normalized) {
     if (type === 2) {
       return getOffsetBookmark($_1xlbjk21jd08m9p1.trim, normalized, selection);
@@ -8926,8 +10646,15 @@
       return getRangeBookmark(selection);
     } else {
       return getPersistentBookmark(selection);
+=======
+  var nodeAtIndex = function (container, offset) {
+    if (container.hasChildNodes() && offset < container.childNodes.length) {
+      return container.childNodes[offset];
+>>>>>>> installer
     }
+    return null;
   };
+<<<<<<< HEAD
   var $_9z2j312ajd08m9q3 = {
     getBookmark: getBookmark,
     getUndoBookmark: $_9msgtx6jd08m99c.curry(getOffsetBookmark, $_9msgtx6jd08m99c.identity, true)
@@ -8940,16 +10667,26 @@
     };
     for (var i = 0; i < arr.length; i++) {
       arr[i].each(push);
+=======
+  var getCaretCandidatePosition = function (direction, node) {
+    if (isForwards(direction)) {
+      if (isCaretCandidate$3(node.previousSibling) && !isText$6(node.previousSibling)) {
+        return CaretPosition$1.before(node);
+      }
+      if (isText$6(node)) {
+        return CaretPosition$1(node, 0);
+      }
+>>>>>>> installer
     }
-    return r;
-  };
-  var findMap = function (arr, f) {
-    for (var i = 0; i < arr.length; i++) {
-      var r = f(arr[i], i);
-      if (r.isSome()) {
-        return r;
+    if (isBackwards(direction)) {
+      if (isCaretCandidate$3(node.nextSibling) && !isText$6(node.nextSibling)) {
+        return CaretPosition$1.after(node);
+      }
+      if (isText$6(node)) {
+        return CaretPosition$1(node, node.data.length);
       }
     }
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.none();
   };
   var liftN = function (arr, f) {
@@ -8960,8 +10697,15 @@
         r.push(x.getOrDie());
       } else {
         return $_zhkqu5jd08m996.none();
+=======
+    if (isBackwards(direction)) {
+      if (isBr$4(node)) {
+        return CaretPosition$1.before(node);
+>>>>>>> installer
       }
+      return CaretPosition$1.after(node);
     }
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.some(f.apply(null, r));
   };
   var $_7gtuy32djd08m9ql = {
@@ -8984,59 +10728,65 @@
     pos = $_61kp9g2bjd08m9q8.resolve(dom.getRoot(), bookmark.end);
     rng.setEnd(pos.container(), pos.offset());
     return rng;
+=======
+    return CaretPosition$1.before(node);
   };
-  var setEndPoint = function (dom, start, bookmark, rng) {
-    var point = bookmark[start ? 'start' : 'end'];
-    var i, node, offset, children;
-    var root = dom.getRoot();
-    if (point) {
-      offset = point[0];
-      for (node = root, i = point.length - 1; i >= 1; i--) {
-        children = node.childNodes;
-        if (point[i] > children.length - 1) {
-          return;
-        }
-        node = children[point[i]];
-      }
-      if (node.nodeType === 3) {
-        offset = Math.min(point[0], node.nodeValue.length);
-      }
-      if (node.nodeType === 1) {
-        offset = Math.min(point[0], node.childNodes.length);
-      }
-      if (start) {
-        rng.setStart(node, offset);
-      } else {
-        rng.setEnd(node, offset);
-      }
+  var isBrBeforeBlock = function (node, root) {
+    var next;
+    if (!$_fj238m1qjducwnjm.isBr(node)) {
+      return false;
     }
-    return true;
+    next = findCaretPosition(1, CaretPosition$1.after(node), root);
+    if (!next) {
+      return false;
+    }
+    return !isInSameBlock(CaretPosition$1.before(node), CaretPosition$1.before(next), root);
+>>>>>>> installer
   };
-  var restoreEndPoint = function (dom, suffix, bookmark) {
-    var marker = dom.get(bookmark.id + '_' + suffix), node, idx, next, prev;
-    var keep = bookmark.keep;
-    var container, offset;
-    if (marker) {
-      node = marker.parentNode;
-      if (suffix === 'start') {
-        if (!keep) {
-          idx = dom.nodeIndex(marker);
-        } else {
-          node = marker.firstChild;
-          idx = 1;
-        }
-        container = node;
-        offset = idx;
-      } else {
-        if (!keep) {
-          idx = dom.nodeIndex(marker);
-        } else {
-          node = marker.firstChild;
-          idx = 1;
-        }
-        container = node;
-        offset = idx;
+  var findCaretPosition = function (direction, startPos, root) {
+    var node, nextNode, innerNode;
+    var rootContentEditableFalseElm, caretPosition;
+    if (!isElement$6(root) || !startPos) {
+      return null;
+    }
+    if (startPos.isEqual(CaretPosition$1.after(root)) && root.lastChild) {
+      caretPosition = CaretPosition$1.after(root.lastChild);
+      if (isBackwards(direction) && isCaretCandidate$3(root.lastChild) && isElement$6(root.lastChild)) {
+        return isBr$4(root.lastChild) ? CaretPosition$1.before(root.lastChild) : caretPosition;
       }
+    } else {
+      caretPosition = startPos;
+    }
+    var container = caretPosition.container();
+    var offset = caretPosition.offset();
+    if (isText$6(container)) {
+      if (isBackwards(direction) && offset > 0) {
+        return CaretPosition$1(container, --offset);
+      }
+      if (isForwards(direction) && offset < container.length) {
+        return CaretPosition$1(container, ++offset);
+      }
+      node = container;
+    } else {
+      if (isBackwards(direction) && offset > 0) {
+        nextNode = nodeAtIndex(container, offset - 1);
+        if (isCaretCandidate$3(nextNode)) {
+          if (!isAtomic$1(nextNode)) {
+            innerNode = findNode(nextNode, direction, isEditableCaretCandidate$1, nextNode);
+            if (innerNode) {
+              if (isText$6(innerNode)) {
+                return CaretPosition$1(innerNode, innerNode.data.length);
+              }
+              return CaretPosition$1.after(innerNode);
+            }
+          }
+          if (isText$6(nextNode)) {
+            return CaretPosition$1(nextNode, nextNode.data.length);
+          }
+          return CaretPosition$1.before(nextNode);
+        }
+      }
+<<<<<<< HEAD
       if (!keep) {
         prev = marker.previousSibling;
         next = marker.nextSibling;
@@ -9058,9 +10808,30 @@
           } else {
             container = prev;
             offset = idx;
+=======
+      if (isForwards(direction) && offset < container.childNodes.length) {
+        nextNode = nodeAtIndex(container, offset);
+        if (isCaretCandidate$3(nextNode)) {
+          if (isBrBeforeBlock(nextNode, root)) {
+            return findCaretPosition(direction, CaretPosition$1.after(nextNode), root);
           }
+          if (!isAtomic$1(nextNode)) {
+            innerNode = findNode(nextNode, direction, isEditableCaretCandidate$1, nextNode);
+            if (innerNode) {
+              if (isText$6(innerNode)) {
+                return CaretPosition$1(innerNode, 0);
+              }
+              return CaretPosition$1.before(innerNode);
+            }
+          }
+          if (isText$6(nextNode)) {
+            return CaretPosition$1(nextNode, 0);
+>>>>>>> installer
+          }
+          return CaretPosition$1.after(nextNode);
         }
       }
+<<<<<<< HEAD
       return $_zhkqu5jd08m996.some(CaretPosition$1(container, offset));
     } else {
       return $_zhkqu5jd08m996.none();
@@ -9110,8 +10881,27 @@
         return resolveIndex$1(dom, bookmark);
       } else if (bookmark.rng) {
         return $_zhkqu5jd08m996.some(bookmark.rng);
+=======
+      node = nextNode ? nextNode : caretPosition.getNode();
+    }
+    if (isForwards(direction) && caretPosition.isAtEnd() || isBackwards(direction) && caretPosition.isAtStart()) {
+      node = findNode(node, direction, $_6183wb25jducwnn2.constant(true), root, true);
+      if (isEditableCaretCandidate$1(node, root)) {
+        return getCaretCandidatePosition(direction, node);
       }
     }
+    nextNode = findNode(node, direction, isEditableCaretCandidate$1, root);
+    rootContentEditableFalseElm = $_e6e6g1kjducwnfd.last($_e6e6g1kjducwnfd.filter(getParents(container, root), isContentEditableFalse$5));
+    if (rootContentEditableFalseElm && (!nextNode || !rootContentEditableFalseElm.contains(nextNode))) {
+      if (isForwards(direction)) {
+        caretPosition = CaretPosition$1.after(rootContentEditableFalseElm);
+      } else {
+        caretPosition = CaretPosition$1.before(rootContentEditableFalseElm);
+>>>>>>> installer
+      }
+      return caretPosition;
+    }
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.none();
   };
   var $_dmnnny2cjd08m9qf = { resolve: resolve$3 };
@@ -9204,21 +10994,76 @@
     }, function (v) {
       parent.dom().insertBefore(element.dom(), v.dom());
     });
+=======
+    if (nextNode) {
+      return getCaretCandidatePosition(direction, nextNode);
+    }
+    return null;
   };
-  var append = function (parent, element) {
-    parent.dom().appendChild(element.dom());
+  var CaretWalker = function (root) {
+    return {
+      next: function (caretPosition) {
+        return findCaretPosition(HDirection.Forwards, caretPosition, root);
+      },
+      prev: function (caretPosition) {
+        return findCaretPosition(HDirection.Backwards, caretPosition, root);
+      }
+    };
   };
+
+  var hasOnlyOneChild = function (node) {
+    return node.firstChild && node.firstChild === node.lastChild;
+  };
+  var isPaddingNode = function (node) {
+    return node.name === 'br' || node.value === '\xA0';
+  };
+  var isPaddedEmptyBlock = function (schema, node) {
+    var blockElements = schema.getBlockElements();
+    return blockElements[node.name] && hasOnlyOneChild(node) && isPaddingNode(node.firstChild);
+>>>>>>> installer
+  };
+  var isEmptyFragmentElement = function (schema, node) {
+    var nonEmptyElements = schema.getNonEmptyElements();
+    return node && (node.isEmpty(nonEmptyElements) || isPaddedEmptyBlock(schema, node));
+  };
+<<<<<<< HEAD
   var appendAt = function (parent, element, index) {
     $_8xk2kp17jd08m9j8.child(parent, index).fold(function () {
       append(parent, element);
     }, function (v) {
       before$1(v, element);
     });
+=======
+  var isListFragment = function (schema, fragment) {
+    var firstChild = fragment.firstChild;
+    var lastChild = fragment.lastChild;
+    if (firstChild && firstChild.name === 'meta') {
+      firstChild = firstChild.next;
+    }
+    if (lastChild && lastChild.attr('id') === 'mce_marker') {
+      lastChild = lastChild.prev;
+    }
+    if (isEmptyFragmentElement(schema, lastChild)) {
+      lastChild = lastChild.prev;
+    }
+    if (!firstChild || firstChild !== lastChild) {
+      return false;
+    }
+    return firstChild.name === 'ul' || firstChild.name === 'ol';
+>>>>>>> installer
   };
-  var wrap$1 = function (element, wrapper) {
-    before$1(element, wrapper);
-    append(wrapper, element);
+  var cleanupDomFragment = function (domFragment) {
+    var firstChild = domFragment.firstChild;
+    var lastChild = domFragment.lastChild;
+    if (firstChild && firstChild.nodeName === 'META') {
+      firstChild.parentNode.removeChild(firstChild);
+    }
+    if (lastChild && lastChild.id === 'mce_marker') {
+      lastChild.parentNode.removeChild(lastChild);
+    }
+    return domFragment;
   };
+<<<<<<< HEAD
   var $_5x9l922fjd08m9qy = {
     before: before$1,
     after: after$1,
@@ -9261,12 +11106,38 @@
     $_65yphx4jd08m98n.each($_8xk2kp17jd08m9j8.children(element), function (rogue) {
       remove$2(rogue);
     });
+=======
+  var toDomFragment = function (dom, serializer, fragment) {
+    var html = serializer.serialize(fragment);
+    var domFragment = dom.createFragment(html);
+    return cleanupDomFragment(domFragment);
   };
-  var remove$2 = function (element) {
-    var dom = element.dom();
-    if (dom.parentNode !== null)
-      dom.parentNode.removeChild(dom);
+  var listItems$1 = function (elm) {
+    return $_8i2houjjducwnd2.grep(elm.childNodes, function (child) {
+      return child.nodeName === 'LI';
+    });
   };
+  var isPadding = function (node) {
+    return node.data === '\xA0' || $_fj238m1qjducwnjm.isBr(node);
+  };
+  var isListItemPadded = function (node) {
+    return node && node.firstChild && node.firstChild === node.lastChild && isPadding(node.firstChild);
+  };
+  var isEmptyOrPadded = function (elm) {
+    return !elm.firstChild || isListItemPadded(elm);
+  };
+  var trimListItems = function (elms) {
+    return elms.length > 0 && isEmptyOrPadded(elms[elms.length - 1]) ? elms.slice(0, -1) : elms;
+  };
+  var getParentLi = function (dom, node) {
+    var parentBlock = dom.getParent(node, dom.isBlock);
+    return parentBlock && parentBlock.nodeName === 'LI' ? parentBlock : null;
+>>>>>>> installer
+  };
+  var isParentBlockLi = function (dom, node) {
+    return !!getParentLi(dom, node);
+  };
+<<<<<<< HEAD
   var unwrap = function (wrapper) {
     var children = $_8xk2kp17jd08m9j8.children(wrapper);
     if (children.length > 0)
@@ -9312,13 +11183,53 @@
   var api = NodeValue($_d4s1fbzjd08m9ia.isText, 'text');
   var get$2 = function (element) {
     return api.get(element);
+=======
+  var getSplit = function (parentNode, rng) {
+    var beforeRng = rng.cloneRange();
+    var afterRng = rng.cloneRange();
+    beforeRng.setStartBefore(parentNode);
+    afterRng.setEndAfter(parentNode);
+    return [
+      beforeRng.cloneContents(),
+      afterRng.cloneContents()
+    ];
   };
-  var getOption = function (element) {
-    return api.getOption(element);
+  var findFirstIn = function (node, rootNode) {
+    var caretPos = CaretPosition$1.before(node);
+    var caretWalker = CaretWalker(rootNode);
+    var newCaretPos = caretWalker.next(caretPos);
+    return newCaretPos ? newCaretPos.toRange() : null;
   };
-  var set$2 = function (element, value) {
-    api.set(element, value);
+  var findLastOf = function (node, rootNode) {
+    var caretPos = CaretPosition$1.after(node);
+    var caretWalker = CaretWalker(rootNode);
+    var newCaretPos = caretWalker.prev(caretPos);
+    return newCaretPos ? newCaretPos.toRange() : null;
   };
+  var insertMiddle = function (target, elms, rootNode, rng) {
+    var parts = getSplit(target, rng);
+    var parentElm = target.parentNode;
+    parentElm.insertBefore(parts[0], target);
+    $_8i2houjjducwnd2.each(elms, function (li) {
+      parentElm.insertBefore(li, target);
+    });
+    parentElm.insertBefore(parts[1], target);
+    parentElm.removeChild(target);
+    return findLastOf(elms[elms.length - 1], rootNode);
+>>>>>>> installer
+  };
+  var insertBefore = function (target, elms, rootNode) {
+    var parentElm = target.parentNode;
+    $_8i2houjjducwnd2.each(elms, function (elm) {
+      parentElm.insertBefore(elm, target);
+    });
+    return findFirstIn(target, rootNode);
+  };
+  var insertAfter = function (target, elms, rootNode, dom) {
+    dom.insertAfter(elms.reverse(), target);
+    return findLastOf(elms[0], rootNode);
+  };
+<<<<<<< HEAD
   var $_bk9b42ijd08m9r6 = {
     get: get$2,
     getOption: getOption,
@@ -9371,8 +11282,139 @@
   var children$2 = function (scope, selector) {
     return $_3vwvev2ljd08m9rg.children(scope, function (e) {
       return $_g3mfaw1fjd08m9k7.is(e, selector);
-    });
+=======
+  var insertAtCaret = function (serializer, dom, rng, fragment) {
+    var domFragment = toDomFragment(dom, serializer, fragment);
+    var liTarget = getParentLi(dom, rng.startContainer);
+    var liElms = trimListItems(listItems$1(domFragment.firstChild));
+    var BEGINNING = 1, END = 2;
+    var rootNode = dom.getRoot();
+    var isAt = function (location) {
+      var caretPos = CaretPosition$1.fromRangeStart(rng);
+      var caretWalker = CaretWalker(dom.getRoot());
+      var newPos = location === BEGINNING ? caretWalker.prev(caretPos) : caretWalker.next(caretPos);
+      return newPos ? getParentLi(dom, newPos.getNode()) !== liTarget : true;
+    };
+    if (isAt(BEGINNING)) {
+      return insertBefore(liTarget, liElms, rootNode);
+    } else if (isAt(END)) {
+      return insertAfter(liTarget, liElms, rootNode, dom);
+    }
+    return insertMiddle(liTarget, liElms, rootNode, rng);
   };
+  var $_g0kxnx1xjducwnm8 = {
+    isListFragment: isListFragment,
+    insertAtCaret: insertAtCaret,
+    isParentBlockLi: isParentBlockLi,
+    trimListItems: trimListItems,
+    listItems: listItems$1
+  };
+
+  var isText$7 = $_fj238m1qjducwnjm.isText;
+  var isBogus$1 = $_fj238m1qjducwnjm.isBogus;
+  var nodeIndex$2 = DOMUtils.nodeIndex;
+  var normalizedParent = function (node) {
+    var parentNode = node.parentNode;
+    if (isBogus$1(parentNode)) {
+      return normalizedParent(parentNode);
+    }
+    return parentNode;
+  };
+  var getChildNodes = function (node) {
+    if (!node) {
+      return [];
+    }
+    return $_e6e6g1kjducwnfd.reduce(node.childNodes, function (result, node) {
+      if (isBogus$1(node) && node.nodeName !== 'BR') {
+        result = result.concat(getChildNodes(node));
+      } else {
+        result.push(node);
+      }
+      return result;
+    }, []);
+  };
+  var normalizedTextOffset = function (node, offset) {
+    while (node = node.previousSibling) {
+      if (!isText$7(node)) {
+        break;
+      }
+      offset += node.data.length;
+    }
+    return offset;
+  };
+  var equal$1 = function (a) {
+    return function (b) {
+      return a === b;
+    };
+  };
+  var normalizedNodeIndex = function (node) {
+    var nodes, index, numTextFragments;
+    nodes = getChildNodes(normalizedParent(node));
+    index = $_e6e6g1kjducwnfd.findIndex(nodes, equal$1(node), node);
+    nodes = nodes.slice(0, index + 1);
+    numTextFragments = $_e6e6g1kjducwnfd.reduce(nodes, function (result, node, i) {
+      if (isText$7(node) && isText$7(nodes[i - 1])) {
+        result++;
+      }
+      return result;
+    }, 0);
+    nodes = $_e6e6g1kjducwnfd.filter(nodes, $_fj238m1qjducwnjm.matchNodeNames(node.nodeName));
+    index = $_e6e6g1kjducwnfd.findIndex(nodes, equal$1(node), node);
+    return index - numTextFragments;
+  };
+  var createPathItem = function (node) {
+    var name;
+    if (isText$7(node)) {
+      name = 'text()';
+    } else {
+      name = node.nodeName.toLowerCase();
+    }
+    return name + '[' + normalizedNodeIndex(node) + ']';
+  };
+  var parentsUntil = function (root, node, predicate) {
+    var parents = [];
+    for (node = node.parentNode; node !== root; node = node.parentNode) {
+      if (predicate && predicate(node)) {
+        break;
+      }
+      parents.push(node);
+    }
+    return parents;
+  };
+  var create$1 = function (root, caretPosition) {
+    var container, offset, path = [], outputOffset, childNodes, parents;
+    container = caretPosition.container();
+    offset = caretPosition.offset();
+    if (isText$7(container)) {
+      outputOffset = normalizedTextOffset(container, offset);
+    } else {
+      childNodes = container.childNodes;
+      if (offset >= childNodes.length) {
+        outputOffset = 'after';
+        offset = childNodes.length - 1;
+      } else {
+        outputOffset = 'before';
+      }
+      container = childNodes[offset];
+    }
+    path.push(createPathItem(container));
+    parents = parentsUntil(root, container);
+    parents = $_e6e6g1kjducwnfd.filter(parents, $_6183wb25jducwnn2.negate($_fj238m1qjducwnjm.isBogus));
+    path = path.concat($_e6e6g1kjducwnfd.map(parents, function (node) {
+      return createPathItem(node);
+    }));
+    return path.reverse().join('/') + ',' + outputOffset;
+  };
+  var resolvePathItem = function (node, name, index) {
+    var nodes = getChildNodes(node);
+    nodes = $_e6e6g1kjducwnfd.filter(nodes, function (node, index) {
+      return !isText$7(node) || !isText$7(nodes[index - 1]);
+>>>>>>> installer
+    });
+    nodes = $_e6e6g1kjducwnfd.filter(nodes, $_fj238m1qjducwnjm.matchNodeNames(name));
+    return nodes[index];
+  };
+<<<<<<< HEAD
   var descendants$1 = function (scope, selector) {
     return $_g3mfaw1fjd08m9k7.all(selector, scope);
   };
@@ -9398,8 +11440,31 @@
     var brs = $_65yphx4jd08m98n.filter(getLastChildren(elm).slice(-1), isBr);
     if (allBrs.length === brs.length) {
       $_65yphx4jd08m98n.each(brs, $_63nckq2gjd08m9r0.remove);
+=======
+  var findTextPosition = function (container, offset) {
+    var node = container, targetOffset = 0, dataLen;
+    while (isText$7(node)) {
+      dataLen = node.data.length;
+      if (offset >= targetOffset && offset <= targetOffset + dataLen) {
+        container = node;
+        offset = offset - targetOffset;
+        break;
+      }
+      if (!isText$7(node.nextSibling)) {
+        container = node;
+        offset = dataLen;
+        break;
+      }
+      targetOffset += dataLen;
+      node = node.nextSibling;
     }
+    if (isText$7(container) && offset > container.data.length) {
+      offset = container.data.length;
+>>>>>>> installer
+    }
+    return CaretPosition$1(container, offset);
   };
+<<<<<<< HEAD
   var fillWithPaddingBr = function (elm) {
     $_63nckq2gjd08m9r0.empty(elm);
     $_5x9l922fjd08m9qy.append(elm, $_f4wyrxyjd08m9i5.fromHtml('<br data-mce-bogus="1">'));
@@ -9614,15 +11679,79 @@
       return position.offset() === 0;
     } else {
       return $_es00wu1zjd08m9ou.isCaretCandidate(position.getNode());
+=======
+  var resolve$2 = function (root, path) {
+    var parts, container, offset;
+    if (!path) {
+      return null;
     }
+    parts = path.split(',');
+    path = parts[0].split('/');
+    offset = parts.length > 1 ? parts[1] : 'before';
+    container = $_e6e6g1kjducwnfd.reduce(path, function (result, value) {
+      value = /([\w\-\(\)]+)\[([0-9]+)\]/.exec(value);
+      if (!value) {
+        return null;
+      }
+      if (value[1] === 'text()') {
+        value[1] = '#text';
+      }
+      return resolvePathItem(result, value[1], parseInt(value[2], 10));
+    }, root);
+    if (!container) {
+      return null;
+    }
+    if (!isText$7(container)) {
+      if (offset === 'after') {
+        offset = nodeIndex$2(container) + 1;
+      } else {
+        offset = nodeIndex$2(container);
+      }
+      return CaretPosition$1(container.parentNode, offset);
+    }
+    return findTextPosition(container, parseInt(offset, 10));
   };
+
+  var isContentEditableFalse$6 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var getNormalizedTextOffset = function (trim, container, offset) {
+    var node, trimmedOffset;
+    trimmedOffset = trim(container.data.slice(0, offset)).length;
+    for (node = container.previousSibling; node && $_fj238m1qjducwnjm.isText(node); node = node.previousSibling) {
+      trimmedOffset += trim(node.data).length;
+>>>>>>> installer
+    }
+    return trimmedOffset;
+  };
+<<<<<<< HEAD
   var isAfterOrEnd = function (position) {
     if (CaretPosition$1.isTextPosition(position)) {
       return position.offset() === position.container().data.length;
     } else {
       return $_es00wu1zjd08m9ou.isCaretCandidate(position.getNode(true));
+=======
+  var getPoint = function (dom, trim, normalized, rng, start) {
+    var container = rng[start ? 'startContainer' : 'endContainer'];
+    var offset = rng[start ? 'startOffset' : 'endOffset'];
+    var point = [];
+    var childNodes, after = 0;
+    var root = dom.getRoot();
+    if ($_fj238m1qjducwnjm.isText(container)) {
+      point.push(normalized ? getNormalizedTextOffset(trim, container, offset) : offset);
+    } else {
+      childNodes = container.childNodes;
+      if (offset >= childNodes.length && childNodes.length) {
+        after = 1;
+        offset = Math.max(0, childNodes.length - 1);
+      }
+      point.push(dom.nodeIndex(childNodes[offset], normalized) + after);
+>>>>>>> installer
     }
+    for (; container && container !== root; container = container.parentNode) {
+      point.push(dom.nodeIndex(container, normalized));
+    }
+    return point;
   };
+<<<<<<< HEAD
   var isBeforeAfterSameElement = function (from, to) {
     return !CaretPosition$1.isTextPosition(from) && !CaretPosition$1.isTextPosition(to) && from.getNode() === to.getNode(true);
   };
@@ -9634,8 +11763,17 @@
       return !isBeforeAfterSameElement(from, to) && !isAtBr(from) && isAfterOrEnd(from) && isBeforeOrStart(to);
     } else {
       return !isBeforeAfterSameElement(to, from) && isBeforeOrStart(from) && isAfterOrEnd(to);
+=======
+  var getLocation = function (trim, selection, normalized, rng) {
+    var dom = selection.dom, bookmark = {};
+    bookmark.start = getPoint(dom, trim, normalized, rng, true);
+    if (!selection.isCollapsed()) {
+      bookmark.end = getPoint(dom, trim, normalized, rng, false);
+>>>>>>> installer
     }
+    return bookmark;
   };
+<<<<<<< HEAD
   var fromPosition = function (forward, rootNode, position) {
     var walker = CaretWalker(rootNode);
     return $_zhkqu5jd08m996.from(forward ? walker.next(position) : walker.prev(position));
@@ -9646,9 +11784,27 @@
         return fromPosition(forward, rootNode, to);
       } else {
         return $_zhkqu5jd08m996.some(to);
-      }
-    });
+=======
+  var trimEmptyTextNode = function (node) {
+    if ($_fj238m1qjducwnjm.isText(node) && node.data.length === 0) {
+      node.parentNode.removeChild(node);
+    }
   };
+  var findIndex$3 = function (dom, name, element) {
+    var count = 0;
+    $_8i2houjjducwnd2.each(dom.select(name), function (node) {
+      if (node.getAttribute('data-mce-bogus') === 'all') {
+        return;
+      }
+      if (node === element) {
+        return false;
+>>>>>>> installer
+      }
+      count++;
+    });
+    return count;
+  };
+<<<<<<< HEAD
   var positionIn = function (forward, element) {
     var startNode = forward ? element.firstChild : element.lastChild;
     if ($_2qai0u1qjd08m9l9.isText(startNode)) {
@@ -9688,31 +11844,191 @@
         return createRange$1(startPos.container(), startPos.offset(), newEndPos.container(), newEndPos.offset());
       } else {
         return rng;
+=======
+  var moveEndPoint = function (rng, start) {
+    var container, offset, childNodes;
+    var prefix = start ? 'start' : 'end';
+    container = rng[prefix + 'Container'];
+    offset = rng[prefix + 'Offset'];
+    if ($_fj238m1qjducwnjm.isElement(container) && container.nodeName === 'TR') {
+      childNodes = container.childNodes;
+      container = childNodes[Math.min(start ? offset : offset - 1, childNodes.length - 1)];
+      if (container) {
+        offset = start ? 0 : container.childNodes.length;
+        rng['set' + (start ? 'Start' : 'End')](container, offset);
       }
-    }).getOr(rng);
+    }
   };
-  var normalizeBlockSelection = function (rng) {
-    return rng.collapsed ? rng : normalizeBlockSelectionRange(rng);
+  var normalizeTableCellSelection = function (rng) {
+    moveEndPoint(rng, true);
+    moveEndPoint(rng, false);
+    return rng;
   };
-  var normalize = function (rng) {
-    return normalizeBlockSelection(rng);
+  var findSibling = function (node, offset) {
+    var sibling;
+    if ($_fj238m1qjducwnjm.isElement(node)) {
+      node = getNode(node, offset);
+      if (isContentEditableFalse$6(node)) {
+        return node;
+>>>>>>> installer
+      }
+    }
+    if (isCaretContainer(node)) {
+      if ($_fj238m1qjducwnjm.isText(node) && isCaretContainerBlock(node)) {
+        node = node.parentNode;
+      }
+      sibling = node.previousSibling;
+      if (isContentEditableFalse$6(sibling)) {
+        return sibling;
+      }
+      sibling = node.nextSibling;
+      if (isContentEditableFalse$6(sibling)) {
+        return sibling;
+      }
+    }
   };
+  var findAdjacentContentEditableFalseElm = function (rng) {
+    return findSibling(rng.startContainer, rng.startOffset) || findSibling(rng.endContainer, rng.endOffset);
+  };
+  var getOffsetBookmark = function (trim, normalized, selection) {
+    var element = selection.getNode();
+    var name = element ? element.nodeName : null;
+    var rng = selection.getRng();
+    if (isContentEditableFalse$6(element) || name === 'IMG') {
+      return {
+        name: name,
+        index: findIndex$3(selection.dom, name, element)
+      };
+    }
+    element = findAdjacentContentEditableFalseElm(rng);
+    if (element) {
+      name = element.tagName;
+      return {
+        name: name,
+        index: findIndex$3(selection.dom, name, element)
+      };
+    }
+    return getLocation(trim, selection, normalized, rng);
+  };
+<<<<<<< HEAD
   var $_3ao8u62ojd08m9ru = { normalize: normalize };
 
   var isTableCell$1 = $_2qai0u1qjd08m9l9.matchNodeNames('td th');
   var validInsertion = function (editor, value, parentNode) {
     if (parentNode.getAttribute('data-mce-bogus') === 'all') {
       parentNode.parentNode.insertBefore(editor.dom.createFragment(value), parentNode);
+=======
+  var getCaretBookmark = function (selection) {
+    var rng = selection.getRng();
+    return {
+      start: create$1(selection.dom.getRoot(), CaretPosition$1.fromRangeStart(rng)),
+      end: create$1(selection.dom.getRoot(), CaretPosition$1.fromRangeEnd(rng))
+    };
+  };
+  var getRangeBookmark = function (selection) {
+    return { rng: selection.getRng() };
+  };
+  var getPersistentBookmark = function (selection) {
+    var dom = selection.dom;
+    var rng = selection.getRng();
+    var id = dom.uniqueId();
+    var collapsed = selection.isCollapsed();
+    var styles = 'overflow:hidden;line-height:0px';
+    var element = selection.getNode();
+    var name = element.nodeName;
+    var chr = '&#xFEFF;';
+    if (name === 'IMG') {
+      return {
+        name: name,
+        index: findIndex$3(dom, name, element)
+      };
+    }
+    var rng2 = normalizeTableCellSelection(rng.cloneRange());
+    if (!collapsed) {
+      rng2.collapse(false);
+      var endBookmarkNode = dom.create('span', {
+        'data-mce-type': 'bookmark',
+        'id': id + '_end',
+        'style': styles
+      }, chr);
+      rng2.insertNode(endBookmarkNode);
+      trimEmptyTextNode(endBookmarkNode.nextSibling);
+    }
+    rng = normalizeTableCellSelection(rng);
+    rng.collapse(true);
+    var startBookmarkNode = dom.create('span', {
+      'data-mce-type': 'bookmark',
+      'id': id + '_start',
+      'style': styles
+    }, chr);
+    rng.insertNode(startBookmarkNode);
+    trimEmptyTextNode(startBookmarkNode.previousSibling);
+    selection.moveToBookmark({
+      id: id,
+      keep: 1
+    });
+    return { id: id };
+  };
+  var getBookmark = function (selection, type, normalized) {
+    if (type === 2) {
+      return getOffsetBookmark($_fz0k4u21jducwnmu.trim, normalized, selection);
+    } else if (type === 3) {
+      return getCaretBookmark(selection);
+    } else if (type) {
+      return getRangeBookmark(selection);
+>>>>>>> installer
     } else {
-      var node = parentNode.firstChild;
-      var node2 = parentNode.lastChild;
-      if (!node || node === node2 && node.nodeName === 'BR') {
-        editor.dom.setHTML(parentNode, value);
-      } else {
-        editor.selection.setContent(value);
-      }
+      return getPersistentBookmark(selection);
     }
   };
+  var $_epzga02kjducwnp2 = {
+    getBookmark: getBookmark,
+    getUndoBookmark: $_60qu7r6jducwn73.curry(getOffsetBookmark, $_60qu7r6jducwn73.identity, true)
+  };
+
+  var addBogus = function (dom, node) {
+    if (dom.isBlock(node) && !node.innerHTML && !$_cum1kc9jducwn99.ie) {
+      node.innerHTML = '<br data-mce-bogus="1" />';
+    }
+    return node;
+  };
+  var resolveCaretPositionBookmark = function (dom, bookmark) {
+    var rng, pos;
+    rng = dom.createRng();
+    pos = resolve$2(dom.getRoot(), bookmark.start);
+    rng.setStart(pos.container(), pos.offset());
+    pos = resolve$2(dom.getRoot(), bookmark.end);
+    rng.setEnd(pos.container(), pos.offset());
+    return rng;
+  };
+  var setEndPoint = function (dom, start, bookmark, rng) {
+    var point = bookmark[start ? 'start' : 'end'];
+    var i, node, offset, children;
+    var root = dom.getRoot();
+    if (point) {
+      offset = point[0];
+      for (node = root, i = point.length - 1; i >= 1; i--) {
+        children = node.childNodes;
+        if (point[i] > children.length - 1) {
+          return;
+        }
+        node = children[point[i]];
+      }
+      if (node.nodeType === 3) {
+        offset = Math.min(point[0], node.nodeValue.length);
+      }
+      if (node.nodeType === 1) {
+        offset = Math.min(point[0], node.childNodes.length);
+      }
+      if (start) {
+        rng.setStart(node, offset);
+      } else {
+        rng.setEnd(node, offset);
+      }
+    }
+    return true;
+  };
+<<<<<<< HEAD
   var trimBrsFromTableCell = function (dom, elm) {
     $_zhkqu5jd08m996.from(dom.getParent(elm, 'td,th')).map($_f4wyrxyjd08m9i5.fromDom).each($_a2rsin2ejd08m9qo.trimBlockTrailingBr);
   };
@@ -9734,32 +12050,45 @@
           html = html.replace(/^&nbsp;/, ' ');
         } else if (!hasSiblingText('previousSibling')) {
           html = html.replace(/^ /, '&nbsp;');
+=======
+  var restoreEndPoint = function (dom, suffix, bookmark) {
+    var marker = dom.get(bookmark.id + '_' + suffix), node, idx, next, prev;
+    var keep = bookmark.keep;
+    var container, offset;
+    if (marker) {
+      node = marker.parentNode;
+      if (suffix === 'start') {
+        if (!keep) {
+          idx = dom.nodeIndex(marker);
+        } else {
+          node = marker.firstChild;
+          idx = 1;
+>>>>>>> installer
         }
-        if (offset < container.length) {
-          html = html.replace(/&nbsp;(<br>|)$/, ' ');
-        } else if (!hasSiblingText('nextSibling')) {
-          html = html.replace(/(&nbsp;| )(<br>|)$/, '&nbsp;');
+        container = node;
+        offset = idx;
+      } else {
+        if (!keep) {
+          idx = dom.nodeIndex(marker);
+        } else {
+          node = marker.firstChild;
+          idx = 1;
         }
+        container = node;
+        offset = idx;
       }
-      return html;
-    };
-    var trimNbspAfterDeleteAndPaddValue = function () {
-      var rng, container, offset;
-      rng = selection.getRng();
-      container = rng.startContainer;
-      offset = rng.startOffset;
-      if (container.nodeType === 3 && rng.collapsed) {
-        if (container.data[offset] === '\xA0') {
-          container.deleteData(offset, 1);
-          if (!/[\u00a0| ]$/.test(value)) {
-            value += ' ';
+      if (!keep) {
+        prev = marker.previousSibling;
+        next = marker.nextSibling;
+        $_8i2houjjducwnd2.each($_8i2houjjducwnd2.grep(marker.childNodes), function (node) {
+          if ($_fj238m1qjducwnjm.isText(node)) {
+            node.nodeValue = node.nodeValue.replace(/\uFEFF/g, '');
           }
-        } else if (container.data[offset - 1] === '\xA0') {
-          container.deleteData(offset - 1, 1);
-          if (!/[\u00a0| ]$/.test(value)) {
-            value = ' ' + value;
-          }
+        });
+        while (marker = dom.get(bookmark.id + '_' + suffix)) {
+          dom.remove(marker, 1);
         }
+<<<<<<< HEAD
       }
     };
     var reduceInlineTextElements = function () {
@@ -9770,17 +12099,22 @@
             if (textInlineElements[node.nodeName.toLowerCase()] && elementUtils_1.compare(testNode, node)) {
               dom.remove(node, true);
             }
+=======
+        if (prev && next && prev.nodeType === next.nodeType && $_fj238m1qjducwnjm.isText(prev) && !$_cum1kc9jducwn99.opera) {
+          idx = prev.nodeValue.length;
+          prev.appendData(next.nodeValue);
+          dom.remove(next);
+          if (suffix === 'start') {
+            container = prev;
+            offset = idx;
+          } else {
+            container = prev;
+            offset = idx;
+>>>>>>> installer
           }
-        });
-      }
-    };
-    var markFragmentElements = function (fragment) {
-      var node = fragment;
-      while (node = node.walk()) {
-        if (node.type === 1) {
-          node.attr('data-mce-fragment', '1');
         }
       }
+<<<<<<< HEAD
     };
     var umarkFragmentElements = function (elm) {
       $_gfka90jjd08m9g9.each(elm.getElementsByTagName('*'), function (elm) {
@@ -10037,8 +12371,64 @@
     sibling: sibling$1,
     child: child$1,
     descendant: descendant
+=======
+      return Option.some(CaretPosition$1(container, offset));
+    } else {
+      return Option.none();
+    }
   };
+  var alt = function (o1, o2) {
+    return o1.isSome() ? o1 : o2;
+  };
+  var resolvePaths = function (dom, bookmark) {
+    var rng = dom.createRng();
+    if (setEndPoint(dom, true, bookmark, rng) && setEndPoint(dom, false, bookmark, rng)) {
+      return Option.some(rng);
+    } else {
+      return Option.none();
+    }
+  };
+  var resolveId = function (dom, bookmark) {
+    var startPos = restoreEndPoint(dom, 'start', bookmark);
+    var endPos = restoreEndPoint(dom, 'end', bookmark);
+    return $_87ppqy2ejducwnol.liftN([
+      startPos,
+      alt(endPos, startPos)
+    ], function (spos, epos) {
+      var rng = dom.createRng();
+      rng.setStart(addBogus(dom, spos.container()), spos.offset());
+      rng.setEnd(addBogus(dom, epos.container()), epos.offset());
+      return rng;
+    });
+  };
+  var resolveIndex$1 = function (dom, bookmark) {
+    return Option.from(dom.select(bookmark.name)[bookmark.index]).map(function (elm) {
+      var rng = dom.createRng();
+      rng.selectNode(elm);
+      return rng;
+    });
+  };
+  var resolve$3 = function (selection, bookmark) {
+    var dom = selection.dom;
+    if (bookmark) {
+      if ($_8i2houjjducwnd2.isArray(bookmark.start)) {
+        return resolvePaths(dom, bookmark);
+      } else if (typeof bookmark.start === 'string') {
+        return Option.some(resolveCaretPositionBookmark(dom, bookmark));
+      } else if (bookmark.id) {
+        return resolveId(dom, bookmark);
+      } else if (bookmark.name) {
+        return resolveIndex$1(dom, bookmark);
+      } else if (bookmark.rng) {
+        return Option.some(bookmark.rng);
+      }
+    }
+    return Option.none();
+>>>>>>> installer
+  };
+  var $_azom222mjducwnph = { resolve: resolve$3 };
 
+<<<<<<< HEAD
   var sectionResult = $_egy9xb18jd08m9jo.immutable('sections', 'settings');
   var detection = $_min5rmjd08m9gu.detect();
   var isTouch = detection.deviceType.isTouch();
@@ -10061,53 +12451,79 @@
   var extractSections = function (keys, settings) {
     var result = $_2uvydk13jd08m9ir.bifilter(settings, function (value, key) {
       return $_65yphx4jd08m98n.contains(keys, key);
-    });
-    return sectionResult(result.t, result.f);
+=======
+  var getBookmark$1 = function (selection, type, normalized) {
+    return $_epzga02kjducwnp2.getBookmark(selection, type, normalized);
   };
+  var moveToBookmark = function (selection, bookmark) {
+    $_azom222mjducwnph.resolve(selection, bookmark).each(function (rng) {
+      selection.setRng(rng);
+>>>>>>> installer
+    });
+  };
+<<<<<<< HEAD
   var getSection = function (sectionResult, name, defaults) {
     var sections = sectionResult.sections();
     var sectionSettings = sections.hasOwnProperty(name) ? sections[name] : {};
     return $_gfka90jjd08m9g9.extend({}, defaults, sectionSettings);
+=======
+  var isBookmarkNode$1 = function (node) {
+    return $_fj238m1qjducwnjm.isElement(node) && node.tagName === 'SPAN' && node.getAttribute('data-mce-type') === 'bookmark';
+>>>>>>> installer
   };
-  var hasSection = function (sectionResult, name) {
-    return sectionResult.sections().hasOwnProperty(name);
+  var $_dcl0u12jjducwnp0 = {
+    getBookmark: getBookmark$1,
+    moveToBookmark: moveToBookmark,
+    isBookmarkNode: isBookmarkNode$1
   };
-  var getDefaultSettings = function (id, documentBaseUrl, editor) {
-    return {
-      id: id,
-      theme: 'modern',
-      delta_width: 0,
-      delta_height: 0,
-      popup_css: '',
-      plugins: '',
-      document_base_url: documentBaseUrl,
-      add_form_submit_trigger: true,
-      submit_patch: true,
-      add_unload_trigger: true,
-      convert_urls: true,
-      relative_urls: true,
-      remove_script_host: true,
-      object_resizing: true,
-      doctype: '<!DOCTYPE html>',
-      visual: true,
-      font_size_style_values: 'xx-small,x-small,small,medium,large,x-large,xx-large',
-      font_size_legacy_values: 'xx-small,small,medium,large,x-large,xx-large,300%',
-      forced_root_block: 'p',
-      hidden_input: true,
-      padd_empty_editor: true,
-      render_ui: true,
-      indentation: '30px',
-      inline_styles: true,
-      convert_fonts_to_spans: true,
-      indent: 'simple',
-      indent_before: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
-      indent_after: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
-      entity_encoding: 'named',
-      url_converter: editor.convertURL,
-      url_converter_scope: editor,
-      ie7_compat: true
+
+  var each$8 = $_8i2houjjducwnd2.each;
+  var ElementUtils = function (dom) {
+    this.compare = function (node1, node2) {
+      if (node1.nodeName !== node2.nodeName) {
+        return false;
+      }
+      var getAttribs = function (node) {
+        var attribs = {};
+        each$8(dom.getAttribs(node), function (attr) {
+          var name = attr.nodeName.toLowerCase();
+          if (name.indexOf('_') !== 0 && name !== 'style' && name.indexOf('data-') !== 0) {
+            attribs[name] = dom.getAttrib(node, name);
+          }
+        });
+        return attribs;
+      };
+      var compareObjects = function (obj1, obj2) {
+        var value, name;
+        for (name in obj1) {
+          if (obj1.hasOwnProperty(name)) {
+            value = obj2[name];
+            if (typeof value === 'undefined') {
+              return false;
+            }
+            if (obj1[name] !== value) {
+              return false;
+            }
+            delete obj2[name];
+          }
+        }
+        for (name in obj2) {
+          if (obj2.hasOwnProperty(name)) {
+            return false;
+          }
+        }
+        return true;
+      };
+      if (!compareObjects(getAttribs(node1), getAttribs(node2))) {
+        return false;
+      }
+      if (!compareObjects(dom.parseStyle(dom.getAttrib(node1, 'style')), dom.parseStyle(dom.getAttrib(node2, 'style')))) {
+        return false;
+      }
+      return !$_dcl0u12jjducwnp0.isBookmarkNode(node1) && !$_dcl0u12jjducwnp0.isBookmarkNode(node2);
     };
   };
+<<<<<<< HEAD
   var getExternalPlugins = function (overrideSettings, settings) {
     var userDefinedExternalPlugins = settings.external_plugins ? settings.external_plugins : {};
     if (overrideSettings && overrideSettings.external_plugins) {
@@ -10125,24 +12541,47 @@
     var platformPlugins = isTouchDevice && hasSection(sectionResult, 'mobile') ? filterMobilePlugins(plugins) : plugins;
     var combinedPlugins = combinePlugins(forcedPlugins, platformPlugins);
     return $_gfka90jjd08m9g9.extend(settings, { plugins: combinedPlugins.join(' ') });
+=======
+
+  var before$1 = function (marker, element) {
+    var parent = $_f0qt4317jducwnhq.parent(marker);
+    parent.each(function (v) {
+      v.dom().insertBefore(element.dom(), marker.dom());
+    });
+>>>>>>> installer
   };
-  var isOnMobile = function (isTouchDevice, sectionResult) {
-    var isInline = sectionResult.settings().inline;
-    return isTouchDevice && hasSection(sectionResult, 'mobile') && !isInline;
+  var after$1 = function (marker, element) {
+    var sibling = $_f0qt4317jducwnhq.nextSibling(marker);
+    sibling.fold(function () {
+      var parent = $_f0qt4317jducwnhq.parent(marker);
+      parent.each(function (v) {
+        append(v, element);
+      });
+    }, function (v) {
+      before$1(v, element);
+    });
   };
+<<<<<<< HEAD
   var combineSettings = function (isTouchDevice, defaultSettings, defaultOverrideSettings, settings) {
     var sectionResult = extractSections(['mobile'], settings);
     var extendedSettings = $_gfka90jjd08m9g9.extend(defaultSettings, defaultOverrideSettings, sectionResult.settings(), isOnMobile(isTouchDevice, sectionResult) ? getSection(sectionResult, 'mobile', defaultMobileSettings) : {}, {
       validate: true,
       content_editable: sectionResult.settings().inline,
       external_plugins: getExternalPlugins(defaultOverrideSettings, sectionResult.settings())
+=======
+  var prepend = function (parent, element) {
+    var firstChild = $_f0qt4317jducwnhq.firstChild(parent);
+    firstChild.fold(function () {
+      append(parent, element);
+    }, function (v) {
+      parent.dom().insertBefore(element.dom(), v.dom());
+>>>>>>> installer
     });
-    return processPlugins(isTouchDevice, sectionResult, defaultOverrideSettings, extendedSettings);
   };
-  var getEditorSettings = function (editor, id, documentBaseUrl, defaultOverrideSettings, settings) {
-    var defaultSettings = getDefaultSettings(id, documentBaseUrl, editor);
-    return combineSettings(isTouch, defaultSettings, defaultOverrideSettings, settings);
+  var append = function (parent, element) {
+    parent.dom().appendChild(element.dom());
   };
+<<<<<<< HEAD
   var getFiltered = function (predicate, editor, name) {
     return $_zhkqu5jd08m996.from(editor.settings[name]).filter(predicate);
   };
@@ -10182,12 +12621,34 @@
     } else {
       return value;
     }
+=======
+  var appendAt = function (parent, element, index) {
+    $_f0qt4317jducwnhq.child(parent, index).fold(function () {
+      append(parent, element);
+    }, function (v) {
+      before$1(v, element);
+    });
+  };
+  var wrap$1 = function (element, wrapper) {
+    before$1(element, wrapper);
+    append(wrapper, element);
+  };
+  var $_ejmufn2ojducwnpy = {
+    before: before$1,
+    after: after$1,
+    prepend: prepend,
+    append: append,
+    appendAt: appendAt,
+    wrap: wrap$1
+>>>>>>> installer
   };
 
-  var strongRtl = /[\u0591-\u07FF\uFB1D-\uFDFF\uFE70-\uFEFC]/;
-  var hasStrongRtl = function (text) {
-    return strongRtl.test(text);
+  var before$2 = function (marker, elements) {
+    $_2dw1bj4jducwn6g.each(elements, function (x) {
+      $_ejmufn2ojducwnpy.before(marker, x);
+    });
   };
+<<<<<<< HEAD
 
   var isInlineTarget = function (editor, elm) {
     var selector = getString(editor, 'inline_boundaries_selector').getOr('a[href],code');
@@ -10251,8 +12712,89 @@
   var isBeforeRoot = function (rootNode) {
     return function (elm) {
       return $_9gmgw51djd08m9k0.eq(rootNode, $_f4wyrxyjd08m9i5.fromDom(elm.dom().parentNode));
-    };
+=======
+  var after$2 = function (marker, elements) {
+    $_2dw1bj4jducwn6g.each(elements, function (x, i) {
+      var e = i === 0 ? marker : elements[i - 1];
+      $_ejmufn2ojducwnpy.after(e, x);
+    });
   };
+  var prepend$1 = function (parent, elements) {
+    $_2dw1bj4jducwn6g.each(elements.slice().reverse(), function (x) {
+      $_ejmufn2ojducwnpy.prepend(parent, x);
+    });
+  };
+  var append$1 = function (parent, elements) {
+    $_2dw1bj4jducwn6g.each(elements, function (x) {
+      $_ejmufn2ojducwnpy.append(parent, x);
+    });
+  };
+  var $_ehpp912qjducwnq3 = {
+    before: before$2,
+    after: after$2,
+    prepend: prepend$1,
+    append: append$1
+  };
+
+  var empty = function (element) {
+    element.dom().textContent = '';
+    $_2dw1bj4jducwn6g.each($_f0qt4317jducwnhq.children(element), function (rogue) {
+      remove$3(rogue);
+    });
+  };
+  var remove$3 = function (element) {
+    var dom = element.dom();
+    if (dom.parentNode !== null)
+      dom.parentNode.removeChild(dom);
+  };
+  var unwrap = function (wrapper) {
+    var children = $_f0qt4317jducwnhq.children(wrapper);
+    if (children.length > 0)
+      $_ehpp912qjducwnq3.before(wrapper, children);
+    remove$3(wrapper);
+  };
+  var $_34vweg2pjducwnq0 = {
+    empty: empty,
+    remove: remove$3,
+    unwrap: unwrap
+  };
+
+  function NodeValue (is, name) {
+    var get = function (element) {
+      if (!is(element))
+        throw new Error('Can only get ' + name + ' value of a ' + name + ' node');
+      return getOption(element).getOr('');
+    };
+    var getOptionIE10 = function (element) {
+      try {
+        return getOptionSafe(element);
+      } catch (e) {
+        return Option.none();
+      }
+    };
+    var getOptionSafe = function (element) {
+      return is(element) ? Option.from(element.dom().nodeValue) : Option.none();
+>>>>>>> installer
+    };
+    var browser = $_5hshlmmjducwnfr.detect().browser;
+    var getOption = browser.isIE() && browser.version.major === 10 ? getOptionIE10 : getOptionSafe;
+    var set = function (element, value) {
+      if (!is(element))
+        throw new Error('Can only set raw ' + name + ' value of a ' + name + ' node');
+      element.dom().nodeValue = value;
+    };
+    return {
+      get: get,
+      getOption: getOption,
+      set: set
+    };
+  }
+
+  var api = NodeValue($_47qy15zjducwngt.isText, 'text');
+  var get$2 = function (element) {
+    return api.get(element);
+  };
+<<<<<<< HEAD
   var getParentBlock$1 = function (rootNode, elm) {
     return $_9gmgw51djd08m9k0.contains(rootNode, elm) ? $_3j750t2ujd08m9sy.closest(elm, function (element) {
       return isTextBlock(element) || isListItem(element);
@@ -10385,19 +12927,107 @@
         if (isBogusAll(node)) {
           node = walker.next(true);
           continue;
+=======
+  var getOption = function (element) {
+    return api.getOption(element);
+  };
+  var set$2 = function (element, value) {
+    api.set(element, value);
+  };
+  var $_8l99zr2rjducwnq7 = {
+    get: get$2,
+    getOption: getOption,
+    set: set$2
+  };
+
+  var getLastChildren = function (elm) {
+    var children = [];
+    var rawNode = elm.dom();
+    while (rawNode) {
+      children.push($_5s4uzoyjducwngo.fromDom(rawNode));
+      rawNode = rawNode.lastChild;
+    }
+    return children;
+  };
+  var removeTrailingBr = function (elm) {
+    var allBrs = $_47k8tx2gjducwnot.descendants(elm, 'br');
+    var brs = $_2dw1bj4jducwn6g.filter(getLastChildren(elm).slice(-1), isBr);
+    if (allBrs.length === brs.length) {
+      $_2dw1bj4jducwn6g.each(brs, $_34vweg2pjducwnq0.remove);
+    }
+  };
+  var fillWithPaddingBr = function (elm) {
+    $_34vweg2pjducwnq0.empty(elm);
+    $_ejmufn2ojducwnpy.append(elm, $_5s4uzoyjducwngo.fromHtml('<br data-mce-bogus="1">'));
+  };
+  var isPaddingContents = function (elm) {
+    return $_47qy15zjducwngt.isText(elm) ? $_8l99zr2rjducwnq7.get(elm) === '\xA0' : isBr(elm);
+  };
+  var isPaddedElement = function (elm) {
+    return $_2dw1bj4jducwn6g.filter($_f0qt4317jducwnhq.children(elm), isPaddingContents).length === 1;
+  };
+  var trimBlockTrailingBr = function (elm) {
+    $_f0qt4317jducwnhq.lastChild(elm).each(function (lastChild) {
+      $_f0qt4317jducwnhq.prevSibling(lastChild).each(function (lastChildPrevSibling) {
+        if (isBlock(elm) && isBr(lastChild) && isBlock(lastChildPrevSibling)) {
+          $_34vweg2pjducwnq0.remove(lastChild);
         }
-        if (isBogus$2(node)) {
-          node = walker.next();
-          continue;
+      });
+    });
+  };
+  var $_7sfvvk2njducwnpo = {
+    removeTrailingBr: removeTrailingBr,
+    fillWithPaddingBr: fillWithPaddingBr,
+    isPaddedElement: isPaddedElement,
+    trimBlockTrailingBr: trimBlockTrailingBr
+  };
+
+  var makeMap$3 = $_8i2houjjducwnd2.makeMap;
+  function Writer (settings) {
+    var html = [];
+    var indent, indentBefore, indentAfter, encode, htmlOutput;
+    settings = settings || {};
+    indent = settings.indent;
+    indentBefore = makeMap$3(settings.indent_before || '');
+    indentAfter = makeMap$3(settings.indent_after || '');
+    encode = $_g4jbz61rjducwnjq.getEncodeFunc(settings.entity_encoding || 'raw', settings.entities);
+    htmlOutput = settings.element_format === 'html';
+    return {
+      start: function (name, attrs, empty) {
+        var i, l, attr, value;
+        if (indent && indentBefore[name] && html.length > 0) {
+          value = html[html.length - 1];
+          if (value.length > 0 && value !== '\n') {
+            html.push('\n');
+          }
+>>>>>>> installer
         }
+        html.push('<', name);
+        if (attrs) {
+          for (i = 0, l = attrs.length; i < l; i++) {
+            attr = attrs[i];
+            html.push(' ', attr.name, '="', encode(attr.value, true), '"');
+          }
+        }
+<<<<<<< HEAD
         if ($_2qai0u1qjd08m9l9.isBr(node)) {
           brCount++;
           node = walker.next();
           continue;
+=======
+        if (!empty || htmlOutput) {
+          html[html.length] = '>';
+        } else {
+          html[html.length] = ' />';
+>>>>>>> installer
         }
-        if (isContent(targetNode, node)) {
-          return false;
+        if (empty && indent && indentAfter[name] && html.length > 0) {
+          value = html[html.length - 1];
+          if (value.length > 0 && value !== '\n') {
+            html.push('\n');
+          }
         }
+<<<<<<< HEAD
         node = walker.next();
       } while (node);
       return brCount <= 1;
@@ -10671,20 +13301,138 @@
           fold: function () {
             if (arguments.length !== cases.length) {
               throw new Error('Wrong number of arguments to fold. Expected ' + cases.length + ', got ' + arguments.length);
-            }
-            var target = arguments[count];
-            return target.apply(null, args);
-          },
-          match: match,
-          log: function (label) {
-            console.log(label, {
-              constructors: constructors,
-              constructor: key,
-              params: args
-            });
+=======
+      },
+      end: function (name) {
+        var value;
+        html.push('</', name, '>');
+        if (indent && indentAfter[name] && html.length > 0) {
+          value = html[html.length - 1];
+          if (value.length > 0 && value !== '\n') {
+            html.push('\n');
           }
-        };
+        }
+      },
+      text: function (text, raw) {
+        if (text.length > 0) {
+          html[html.length] = raw ? text : encode(text);
+        }
+      },
+      cdata: function (text) {
+        html.push('<![CDATA[', text, ']]>');
+      },
+      comment: function (text) {
+        html.push('<!--', text, '-->');
+      },
+      pi: function (name, text) {
+        if (text) {
+          html.push('<?', name, ' ', encode(text), '?>');
+        } else {
+          html.push('<?', name, '?>');
+        }
+        if (indent) {
+          html.push('\n');
+        }
+      },
+      doctype: function (text) {
+        html.push('<!DOCTYPE', text, '>', indent ? '\n' : '');
+      },
+      reset: function () {
+        html.length = 0;
+      },
+      getContent: function () {
+        return html.join('').replace(/\n$/, '');
+      }
+    };
+  }
+
+  function HtmlSerializer (settings, schema) {
+    if (schema === void 0) {
+      schema = Schema();
+    }
+    var writer = Writer(settings);
+    settings = settings || {};
+    settings.validate = 'validate' in settings ? settings.validate : true;
+    var serialize = function (node) {
+      var handlers, validate;
+      validate = settings.validate;
+      handlers = {
+        3: function (node) {
+          writer.text(node.value, node.raw);
+        },
+        8: function (node) {
+          writer.comment(node.value);
+        },
+        7: function (node) {
+          writer.pi(node.name, node.value);
+        },
+        10: function (node) {
+          writer.doctype(node.value);
+        },
+        4: function (node) {
+          writer.cdata(node.value);
+        },
+        11: function (node) {
+          if (node = node.firstChild) {
+            do {
+              walk(node);
+            } while (node = node.next);
+          }
+        }
       };
+      writer.reset();
+      var walk = function (node) {
+        var handler = handlers[node.type];
+        var name, isEmpty, attrs, attrName, attrValue, sortedAttrs, i, l, elementRule;
+        if (!handler) {
+          name = node.name;
+          isEmpty = node.shortEnded;
+          attrs = node.attributes;
+          if (validate && attrs && attrs.length > 1) {
+            sortedAttrs = [];
+            sortedAttrs.map = {};
+            elementRule = schema.getElementRule(node.name);
+            if (elementRule) {
+              for (i = 0, l = elementRule.attributesOrder.length; i < l; i++) {
+                attrName = elementRule.attributesOrder[i];
+                if (attrName in attrs.map) {
+                  attrValue = attrs.map[attrName];
+                  sortedAttrs.map[attrName] = attrValue;
+                  sortedAttrs.push({
+                    name: attrName,
+                    value: attrValue
+                  });
+                }
+              }
+              for (i = 0, l = attrs.length; i < l; i++) {
+                attrName = attrs[i].name;
+                if (!(attrName in sortedAttrs.map)) {
+                  attrValue = attrs.map[attrName];
+                  sortedAttrs.map[attrName] = attrValue;
+                  sortedAttrs.push({
+                    name: attrName,
+                    value: attrValue
+                  });
+                }
+              }
+              attrs = sortedAttrs;
+            }
+          }
+          writer.start(node.name, attrs, isEmpty);
+          if (!isEmpty) {
+            if (node = node.firstChild) {
+              do {
+                walk(node);
+              } while (node = node.next);
+>>>>>>> installer
+            }
+            writer.end(name);
+          }
+        } else {
+          handler(node);
+        }
+      };
+<<<<<<< HEAD
     });
     return adt;
   };
@@ -10735,9 +13483,37 @@
         return $_zhkqu5jd08m996.some(DeleteAction.moveToPosition(to));
       } else {
         return $_zhkqu5jd08m996.none();
+=======
+      if (node.type === 1 && !settings.inner) {
+        walk(node);
+      } else {
+        handlers[11](node);
       }
-    });
+      return writer.getContent();
+    };
+    return { serialize: serialize };
+  }
+
+  var createRange$1 = function (sc, so, ec, eo) {
+    var rng = document.createRange();
+    rng.setStart(sc, so);
+    rng.setEnd(ec, eo);
+    return rng;
   };
+  var normalizeBlockSelectionRange = function (rng) {
+    var startPos = CaretPosition$1.fromRangeStart(rng);
+    var endPos = CaretPosition$1.fromRangeEnd(rng);
+    var rootNode = rng.commonAncestorContainer;
+    return $_dq07eg2bjducwno6.fromPosition(false, rootNode, endPos).map(function (newEndPos) {
+      if (!isInSameBlock(startPos, endPos, rootNode) && isInSameBlock(startPos, newEndPos, rootNode)) {
+        return createRange$1(startPos.container(), startPos.offset(), newEndPos.container(), newEndPos.offset());
+      } else {
+        return rng;
+>>>>>>> installer
+      }
+    }).getOr(rng);
+  };
+<<<<<<< HEAD
   var getContentEditableBlockAction = function (forward, elm) {
     if (forward && $_2qai0u1qjd08m9l9.isContentEditableFalse(elm.nextSibling)) {
       return $_zhkqu5jd08m996.some(DeleteAction.moveToElement(elm.nextSibling));
@@ -10848,11 +13624,61 @@
     }, function (pos) {
       editor.selection.setRng(pos.toRange(), forward);
     });
+=======
+  var normalizeBlockSelection = function (rng) {
+    return rng.collapsed ? rng : normalizeBlockSelectionRange(rng);
   };
-  var eqRawNode = function (rawNode) {
-    return function (elm) {
-      return elm.dom() === rawNode;
+  var normalize = function (rng) {
+    return normalizeBlockSelection(rng);
+  };
+  var $_5b11cd2vjducwnqi = { normalize: normalize };
+
+  var isTableCell$2 = $_fj238m1qjducwnjm.matchNodeNames('td th');
+  var validInsertion = function (editor, value, parentNode) {
+    if (parentNode.getAttribute('data-mce-bogus') === 'all') {
+      parentNode.parentNode.insertBefore(editor.dom.createFragment(value), parentNode);
+    } else {
+      var node = parentNode.firstChild;
+      var node2 = parentNode.lastChild;
+      if (!node || node === node2 && node.nodeName === 'BR') {
+        editor.dom.setHTML(parentNode, value);
+      } else {
+        editor.selection.setContent(value);
+      }
+    }
+  };
+  var trimBrsFromTableCell = function (dom, elm) {
+    Option.from(dom.getParent(elm, 'td,th')).map($_5s4uzoyjducwngo.fromDom).each($_7sfvvk2njducwnpo.trimBlockTrailingBr);
+>>>>>>> installer
+  };
+  var insertHtmlAtCaret = function (editor, value, details) {
+    var parser, serializer, parentNode, rootNode, fragment, args;
+    var marker, rng, node, node2, bookmarkHtml, merge;
+    var textInlineElements = editor.schema.getTextInlineElements();
+    var selection = editor.selection, dom = editor.dom;
+    var trimOrPaddLeftRight = function (html) {
+      var rng, container, offset;
+      rng = selection.getRng();
+      container = rng.startContainer;
+      offset = rng.startOffset;
+      var hasSiblingText = function (siblingName) {
+        return container[siblingName] && container[siblingName].nodeType === 3;
+      };
+      if (container.nodeType === 3) {
+        if (offset > 0) {
+          html = html.replace(/^&nbsp;/, ' ');
+        } else if (!hasSiblingText('previousSibling')) {
+          html = html.replace(/^ /, '&nbsp;');
+        }
+        if (offset < container.length) {
+          html = html.replace(/&nbsp;(<br>|)$/, ' ');
+        } else if (!hasSiblingText('nextSibling')) {
+          html = html.replace(/(&nbsp;| )(<br>|)$/, '&nbsp;');
+        }
+      }
+      return html;
     };
+<<<<<<< HEAD
   };
   var isBlock$2 = function (editor, elm) {
     return elm && editor.schema.getBlockElements().hasOwnProperty($_d4s1fbzjd08m9ia.name(elm));
@@ -10924,13 +13750,59 @@
       var pos = forward ? CaretPosition$1.before(element) : CaretPosition$1.after(element);
       editor.selection.setRng(pos.toRange());
       return true;
+=======
+    var trimNbspAfterDeleteAndPaddValue = function () {
+      var rng, container, offset;
+      rng = selection.getRng();
+      container = rng.startContainer;
+      offset = rng.startOffset;
+      if (container.nodeType === 3 && rng.collapsed) {
+        if (container.data[offset] === '\xA0') {
+          container.deleteData(offset, 1);
+          if (!/[\u00a0| ]$/.test(value)) {
+            value += ' ';
+          }
+        } else if (container.data[offset - 1] === '\xA0') {
+          container.deleteData(offset - 1, 1);
+          if (!/[\u00a0| ]$/.test(value)) {
+            value = ' ' + value;
+          }
+        }
+      }
     };
-  };
-  var moveToPosition = function (editor) {
-    return function (pos) {
-      editor.selection.setRng(pos.toRange());
-      return true;
+    var reduceInlineTextElements = function () {
+      if (merge) {
+        var root_1 = editor.getBody(), elementUtils_1 = new ElementUtils(dom);
+        $_8i2houjjducwnd2.each(dom.select('*[data-mce-fragment]'), function (node) {
+          for (var testNode = node.parentNode; testNode && testNode !== root_1; testNode = testNode.parentNode) {
+            if (textInlineElements[node.nodeName.toLowerCase()] && elementUtils_1.compare(testNode, node)) {
+              dom.remove(node, true);
+            }
+          }
+        });
+      }
     };
+    var markFragmentElements = function (fragment) {
+      var node = fragment;
+      while (node = node.walk()) {
+        if (node.type === 1) {
+          node.attr('data-mce-fragment', '1');
+        }
+      }
+    };
+    var umarkFragmentElements = function (elm) {
+      $_8i2houjjducwnd2.each(elm.getElementsByTagName('*'), function (elm) {
+        elm.removeAttribute('data-mce-fragment');
+      });
+    };
+    var isPartOfFragment = function (node) {
+      return !!node.getAttribute('data-mce-fragment');
+>>>>>>> installer
+    };
+    var canHaveChildren = function (node) {
+      return node && !editor.schema.getShortEndedElements()[node.nodeName];
+    };
+<<<<<<< HEAD
   };
   var backspaceDeleteCaret = function (editor, forward) {
     var result = read$1(editor.getBody(), forward, editor.selection.getRng()).map(function (deleteAction) {
@@ -11008,18 +13880,42 @@
       } else {
         node.insertData(0, $_1xlbjk21jd08m9p1.ZWSP);
         return node;
+=======
+    var moveSelectionToMarker = function (marker) {
+      var parentEditableFalseElm, parentBlock, nextRng;
+      var getContentEditableFalseParent = function (node) {
+        var root = editor.getBody();
+        for (; node && node !== root; node = node.parentNode) {
+          if (editor.dom.getContentEditable(node) === 'false') {
+            return node;
+          }
+        }
+        return null;
+      };
+      if (!marker) {
+        return;
       }
-    } else {
-      var newNode = createZwsp(node);
-      node.parentNode.insertBefore(newNode, node);
-      return newNode;
-    }
-  };
-  var insertAfter$1 = function (node) {
-    if (isText$7(node.nextSibling)) {
-      if (startsWithCaretContainer$1(node.nextSibling)) {
-        return node.nextSibling;
+      selection.scrollIntoView(marker);
+      parentEditableFalseElm = getContentEditableFalseParent(marker);
+      if (parentEditableFalseElm) {
+        dom.remove(marker);
+        selection.select(parentEditableFalseElm);
+        return;
+>>>>>>> installer
+      }
+      rng = dom.createRng();
+      node = marker.previousSibling;
+      if (node && node.nodeType === 3) {
+        rng.setStart(node, node.nodeValue.length);
+        if (!$_cum1kc9jducwn99.ie) {
+          node2 = marker.nextSibling;
+          if (node2 && node2.nodeType === 3) {
+            node.appendData(node2.data);
+            node2.parentNode.removeChild(node2);
+          }
+        }
       } else {
+<<<<<<< HEAD
         node.nextSibling.insertData(0, $_1xlbjk21jd08m9p1.ZWSP);
         return node.nextSibling;
       }
@@ -11029,16 +13925,74 @@
       } else {
         node.appendData($_1xlbjk21jd08m9p1.ZWSP);
         return node;
+=======
+        rng.setStartBefore(marker);
+        rng.setEndBefore(marker);
       }
-    } else {
-      var newNode = createZwsp(node);
-      if (node.nextSibling) {
-        node.parentNode.insertBefore(newNode, node.nextSibling);
-      } else {
-        node.parentNode.appendChild(newNode);
+      var findNextCaretRng = function (rng) {
+        var caretPos = CaretPosition$1.fromRangeStart(rng);
+        var caretWalker = CaretWalker(editor.getBody());
+        caretPos = caretWalker.next(caretPos);
+        if (caretPos) {
+          return caretPos.toRange();
+        }
+      };
+      parentBlock = dom.getParent(marker, dom.isBlock);
+      dom.remove(marker);
+      if (parentBlock && dom.isEmpty(parentBlock)) {
+        editor.$(parentBlock).empty();
+        rng.setStart(parentBlock, 0);
+        rng.setEnd(parentBlock, 0);
+        if (!isTableCell$2(parentBlock) && !isPartOfFragment(parentBlock) && (nextRng = findNextCaretRng(rng))) {
+          rng = nextRng;
+          dom.remove(parentBlock);
+        } else {
+          dom.add(parentBlock, dom.create('br', { 'data-mce-bogus': '1' }));
+        }
+>>>>>>> installer
       }
-      return newNode;
+      selection.setRng(rng);
+    };
+    if (/^ | $/.test(value)) {
+      value = trimOrPaddLeftRight(value);
     }
+    parser = editor.parser;
+    merge = details.merge;
+    serializer = HtmlSerializer({ validate: editor.settings.validate }, editor.schema);
+    bookmarkHtml = '<span id="mce_marker" data-mce-type="bookmark">&#xFEFF;&#x200B;</span>';
+    args = {
+      content: value,
+      format: 'html',
+      selection: true,
+      paste: details.paste
+    };
+    args = editor.fire('BeforeSetContent', args);
+    if (args.isDefaultPrevented()) {
+      editor.fire('SetContent', {
+        content: args.content,
+        format: 'html',
+        selection: true,
+        paste: details.paste
+      });
+      return;
+    }
+    value = args.content;
+    if (value.indexOf('{$caret}') === -1) {
+      value += '{$caret}';
+    }
+    value = value.replace(/\{\$caret\}/, bookmarkHtml);
+    rng = selection.getRng();
+    var caretElement = rng.startContainer || (rng.parentElement ? rng.parentElement() : null);
+    var body = editor.getBody();
+    if (caretElement === body && selection.isCollapsed()) {
+      if (dom.isBlock(body.firstChild) && canHaveChildren(body.firstChild) && dom.isEmpty(body.firstChild)) {
+        rng = dom.createRng();
+        rng.setStart(body.firstChild, 0);
+        rng.setEnd(body.firstChild, 0);
+        selection.setRng(rng);
+      }
+    }
+<<<<<<< HEAD
   };
   var insertInline$1 = function (before, node) {
     return before ? insertBefore$1(node) : insertAfter$1(node);
@@ -11055,33 +14009,100 @@
     var parentNode = node.parentNode;
     if (parentNode) {
       parentNode.removeChild(node);
+=======
+    if (!selection.isCollapsed()) {
+      editor.selection.setRng($_5b11cd2vjducwnqi.normalize(editor.selection.getRng()));
+      editor.getDoc().execCommand('Delete', false, null);
+      trimNbspAfterDeleteAndPaddValue();
+>>>>>>> installer
     }
-  };
-  var getNodeValue = function (node) {
-    try {
-      return node.nodeValue;
-    } catch (ex) {
-      return '';
+    parentNode = selection.getNode();
+    var parserArgs = {
+      context: parentNode.nodeName.toLowerCase(),
+      data: details.data,
+      insert: true
+    };
+    fragment = parser.parse(value, parserArgs);
+    if (details.paste === true && $_g0kxnx1xjducwnm8.isListFragment(editor.schema, fragment) && $_g0kxnx1xjducwnm8.isParentBlockLi(dom, parentNode)) {
+      rng = $_g0kxnx1xjducwnm8.insertAtCaret(serializer, dom, editor.selection.getRng(true), fragment);
+      editor.selection.setRng(rng);
+      editor.fire('SetContent', args);
+      return;
     }
-  };
-  var setNodeValue = function (node, text) {
-    if (text.length === 0) {
-      removeNode(node);
+    markFragmentElements(fragment);
+    node = fragment.lastChild;
+    if (node.attr('id') === 'mce_marker') {
+      marker = node;
+      for (node = node.prev; node; node = node.walk(true)) {
+        if (node.type === 3 || !dom.isBlock(node.name)) {
+          if (editor.schema.isValidChild(node.parent.name, 'span')) {
+            node.parent.insert(marker, node, node.name === 'br');
+          }
+          break;
+        }
+      }
+    }
+    editor._selectionOverrides.showBlockCaretContainer(parentNode);
+    if (!parserArgs.invalid) {
+      value = serializer.serialize(fragment);
+      validInsertion(editor, value, parentNode);
     } else {
-      node.nodeValue = text;
+      selection.setContent(bookmarkHtml);
+      parentNode = selection.getNode();
+      rootNode = editor.getBody();
+      if (parentNode.nodeType === 9) {
+        parentNode = node = rootNode;
+      } else {
+        node = parentNode;
+      }
+      while (node !== rootNode) {
+        parentNode = node;
+        node = node.parentNode;
+      }
+      value = parentNode === rootNode ? rootNode.innerHTML : dom.getOuterHTML(parentNode);
+      value = serializer.serialize(parser.parse(value.replace(/<span (id="mce_marker"|id=mce_marker).+?<\/span>/i, function () {
+        return serializer.serialize(fragment);
+      })));
+      if (parentNode === rootNode) {
+        dom.setHTML(rootNode, value);
+      } else {
+        dom.setOuterHTML(parentNode, value);
+      }
     }
+    reduceInlineTextElements();
+    moveSelectionToMarker(dom.get('mce_marker'));
+    umarkFragmentElements(editor.getBody());
+    trimBrsFromTableCell(editor.dom, editor.selection.getStart());
+    editor.fire('SetContent', args);
+    editor.addVisual();
   };
+<<<<<<< HEAD
   var trimCount = function (text) {
     var trimmedText = $_1xlbjk21jd08m9p1.trim(text);
+=======
+  var processValue = function (value) {
+    var details;
+    if (typeof value !== 'string') {
+      details = $_8i2houjjducwnd2.extend({
+        paste: value.paste,
+        data: { paste: value.paste }
+      }, value);
+      return {
+        content: value.content,
+        details: details
+      };
+    }
+>>>>>>> installer
     return {
-      count: text.length - trimmedText.length,
-      text: trimmedText
+      content: value,
+      details: {}
     };
   };
-  var removeUnchanged = function (caretContainer, pos) {
-    remove$3(caretContainer);
-    return pos;
+  var insertAtCaret$1 = function (editor, value) {
+    var result = processValue(value);
+    insertHtmlAtCaret(editor, result.content, result.details);
   };
+<<<<<<< HEAD
   var removeTextAndReposition = function (caretContainer, pos) {
     var before = trimCount(caretContainer.data.substr(0, pos.offset()));
     var after = trimCount(caretContainer.data.substr(pos.offset()));
@@ -11103,10 +14124,45 @@
   };
   var removeTextCaretContainer = function (caretContainer, pos) {
     return isText$8(caretContainer) && pos.container() === caretContainer ? removeTextAndReposition(caretContainer, pos) : removeUnchanged(caretContainer, pos);
+=======
+  var $_42g77d1wjducwnlx = { insertAtCaret: insertAtCaret$1 };
+
+  function ClosestOrAncestor (is, ancestor, scope, a, isRoot) {
+    return is(scope, a) ? Option.some(scope) : $_c7y6af12jducwnh8.isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
+  }
+
+  var first$1 = function (predicate) {
+    return descendant($_4u3ohv15jducwnhl.body(), predicate);
   };
-  var removeElementCaretContainer = function (caretContainer, pos) {
-    return pos.container() === caretContainer.parentNode ? removeElementAndReposition(caretContainer, pos) : removeUnchanged(caretContainer, pos);
+  var ancestor = function (scope, predicate, isRoot) {
+    var element = scope.dom();
+    var stop = $_c7y6af12jducwnh8.isFunction(isRoot) ? isRoot : $_60qu7r6jducwn73.constant(false);
+    while (element.parentNode) {
+      element = element.parentNode;
+      var el = $_5s4uzoyjducwngo.fromDom(element);
+      if (predicate(el))
+        return Option.some(el);
+      else if (stop(el))
+        break;
+    }
+    return Option.none();
   };
+  var closest = function (scope, predicate, isRoot) {
+    var is = function (scope) {
+      return predicate(scope);
+    };
+    return ClosestOrAncestor(is, ancestor, scope, predicate, isRoot);
+>>>>>>> installer
+  };
+  var sibling$1 = function (scope, predicate) {
+    var element = scope.dom();
+    if (!element.parentNode)
+      return Option.none();
+    return child$1($_5s4uzoyjducwngo.fromDom(element.parentNode), function (x) {
+      return !$_4qdq5m1djducwnie.eq(scope, x) && predicate(x);
+    });
+  };
+<<<<<<< HEAD
   var removeAndReposition = function (container, pos) {
     return CaretPosition$1.isTextPosition(pos) ? removeTextCaretContainer(container, pos) : removeElementCaretContainer(container, pos);
   };
@@ -11172,8 +14228,60 @@
       var text = $_2d9lg33bjd08m9w2.insertInlineAfter(element);
       caret.set(text);
       return $_zhkqu5jd08m996.some(CaretPosition$1(text, 1));
+=======
+  var child$1 = function (scope, predicate) {
+    var result = $_2dw1bj4jducwn6g.find(scope.dom().childNodes, $_60qu7r6jducwn73.compose(predicate, $_5s4uzoyjducwngo.fromDom));
+    return result.map($_5s4uzoyjducwngo.fromDom);
+  };
+  var descendant = function (scope, predicate) {
+    var descend = function (element) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        if (predicate($_5s4uzoyjducwngo.fromDom(element.childNodes[i])))
+          return Option.some($_5s4uzoyjducwngo.fromDom(element.childNodes[i]));
+        var res = descend(element.childNodes[i]);
+        if (res.isSome())
+          return res;
+      }
+      return Option.none();
+    };
+    return descend(scope.dom());
+  };
+  var $_3et3di30jducwnr0 = {
+    first: first$1,
+    ancestor: ancestor,
+    closest: closest,
+    sibling: sibling$1,
+    child: child$1,
+    descendant: descendant
+  };
+
+  var sectionResult = $_295afp18jducwni4.immutable('sections', 'settings');
+  var detection = $_5hshlmmjducwnfr.detect();
+  var isTouch = detection.deviceType.isTouch();
+  var mobilePlugins = [
+    'lists',
+    'autolink',
+    'autosave'
+  ];
+  var defaultMobileSettings = { theme: 'mobile' };
+  var normalizePlugins = function (plugins) {
+    var pluginNames = $_c7y6af12jducwnh8.isArray(plugins) ? plugins.join(' ') : plugins;
+    var trimmedPlugins = $_2dw1bj4jducwn6g.map($_c7y6af12jducwnh8.isString(pluginNames) ? pluginNames.split(' ') : [], $_vrlmtvjducwngg.trim);
+    return $_2dw1bj4jducwn6g.filter(trimmedPlugins, function (item) {
+      return item.length > 0;
     });
   };
+  var filterMobilePlugins = function (plugins) {
+    return $_2dw1bj4jducwn6g.filter(plugins, $_60qu7r6jducwn73.curry($_2dw1bj4jducwn6g.contains, mobilePlugins));
+  };
+  var extractSections = function (keys, settings) {
+    var result = $_84vepq13jducwnh9.bifilter(settings, function (value, key) {
+      return $_2dw1bj4jducwn6g.contains(keys, key);
+>>>>>>> installer
+    });
+    return sectionResult(result.t, result.f);
+  };
+<<<<<<< HEAD
   var $_ejhn3k3ajd08m9vz = { renderCaret: renderCaret };
 
   var isInlineBlock = function (node) {
@@ -11218,59 +14326,152 @@
         }
       }
     }
+=======
+  var getSection = function (sectionResult, name, defaults) {
+    var sections = sectionResult.sections();
+    var sectionSettings = sections.hasOwnProperty(name) ? sections[name] : {};
+    return $_8i2houjjducwnd2.extend({}, defaults, sectionSettings);
   };
-  var isTextBlock$1 = function (editor, name) {
-    if (name.nodeType) {
-      name = name.nodeName;
+  var hasSection = function (sectionResult, name) {
+    return sectionResult.sections().hasOwnProperty(name);
+  };
+  var getDefaultSettings = function (id, documentBaseUrl, editor) {
+    return {
+      id: id,
+      theme: 'modern',
+      delta_width: 0,
+      delta_height: 0,
+      popup_css: '',
+      plugins: '',
+      document_base_url: documentBaseUrl,
+      add_form_submit_trigger: true,
+      submit_patch: true,
+      add_unload_trigger: true,
+      convert_urls: true,
+      relative_urls: true,
+      remove_script_host: true,
+      object_resizing: true,
+      doctype: '<!DOCTYPE html>',
+      visual: true,
+      font_size_style_values: 'xx-small,x-small,small,medium,large,x-large,xx-large',
+      font_size_legacy_values: 'xx-small,small,medium,large,x-large,xx-large,300%',
+      forced_root_block: 'p',
+      hidden_input: true,
+      padd_empty_editor: true,
+      render_ui: true,
+      indentation: '30px',
+      inline_styles: true,
+      convert_fonts_to_spans: true,
+      indent: 'simple',
+      indent_before: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
+      indent_after: 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,th,ul,ol,li,dl,dt,dd,area,table,thead,' + 'tfoot,tbody,tr,section,article,hgroup,aside,figure,figcaption,option,optgroup,datalist',
+      entity_encoding: 'named',
+      url_converter: editor.convertURL,
+      url_converter_scope: editor,
+      ie7_compat: true
+    };
+>>>>>>> installer
+  };
+  var getExternalPlugins = function (overrideSettings, settings) {
+    var userDefinedExternalPlugins = settings.external_plugins ? settings.external_plugins : {};
+    if (overrideSettings && overrideSettings.external_plugins) {
+      return $_8i2houjjducwnd2.extend({}, overrideSettings.external_plugins, userDefinedExternalPlugins);
+    } else {
+      return userDefinedExternalPlugins;
     }
-    return !!editor.schema.getTextBlockElements()[name.toLowerCase()];
   };
-  var isValid = function (ed, parent, child) {
-    return ed.schema.isValidChild(parent, child);
+  var combinePlugins = function (forcedPlugins, plugins) {
+    return [].concat(normalizePlugins(forcedPlugins)).concat(normalizePlugins(plugins));
   };
+<<<<<<< HEAD
   var isWhiteSpaceNode = function (node) {
     return node && node.nodeType === 3 && /^([\t \r\n]+|)$/.test(node.nodeValue);
+=======
+  var processPlugins = function (isTouchDevice, sectionResult, defaultOverrideSettings, settings) {
+    var forcedPlugins = normalizePlugins(defaultOverrideSettings.forced_plugins);
+    var plugins = normalizePlugins(settings.plugins);
+    var platformPlugins = isTouchDevice && hasSection(sectionResult, 'mobile') ? filterMobilePlugins(plugins) : plugins;
+    var combinedPlugins = combinePlugins(forcedPlugins, platformPlugins);
+    return $_8i2houjjducwnd2.extend(settings, { plugins: combinedPlugins.join(' ') });
+>>>>>>> installer
   };
-  var replaceVars = function (value, vars) {
-    if (typeof value !== 'string') {
-      value = value(vars);
-    } else if (vars) {
-      value = value.replace(/%(\w+)/g, function (str, name) {
-        return vars[name] || str;
-      });
-    }
-    return value;
+  var isOnMobile = function (isTouchDevice, sectionResult) {
+    var isInline = sectionResult.settings().inline;
+    return isTouchDevice && hasSection(sectionResult, 'mobile') && !isInline;
   };
+<<<<<<< HEAD
   var isEq = function (str1, str2) {
     str1 = str1 || '';
     str2 = str2 || '';
     str1 = '' + (str1.nodeName || str1);
     str2 = '' + (str2.nodeName || str2);
     return str1.toLowerCase() === str2.toLowerCase();
-  };
-  var normalizeStyleValue = function (dom, value, name) {
-    if (name === 'color' || name === 'backgroundColor') {
-      value = dom.toHex(value);
-    }
-    if (name === 'fontWeight' && value === 700) {
-      value = 'bold';
-    }
-    if (name === 'fontFamily') {
-      value = value.replace(/[\'\"]/g, '').replace(/,\s+/g, ',');
-    }
-    return '' + value;
-  };
-  var getStyle = function (dom, node, name) {
-    return normalizeStyleValue(dom, dom.getStyle(node, name), name);
-  };
-  var getTextDecoration = function (dom, node) {
-    var decoration;
-    dom.getParent(node, function (n) {
-      decoration = dom.getStyle(n, 'text-decoration');
-      return decoration && decoration !== 'none';
+=======
+  var combineSettings = function (isTouchDevice, defaultSettings, defaultOverrideSettings, settings) {
+    var sectionResult = extractSections(['mobile'], settings);
+    var extendedSettings = $_8i2houjjducwnd2.extend(defaultSettings, defaultOverrideSettings, sectionResult.settings(), isOnMobile(isTouchDevice, sectionResult) ? getSection(sectionResult, 'mobile', defaultMobileSettings) : {}, {
+      validate: true,
+      content_editable: sectionResult.settings().inline,
+      external_plugins: getExternalPlugins(defaultOverrideSettings, sectionResult.settings())
     });
-    return decoration;
+    return processPlugins(isTouchDevice, sectionResult, defaultOverrideSettings, extendedSettings);
+>>>>>>> installer
   };
+  var getEditorSettings = function (editor, id, documentBaseUrl, defaultOverrideSettings, settings) {
+    var defaultSettings = getDefaultSettings(id, documentBaseUrl, editor);
+    return combineSettings(isTouch, defaultSettings, defaultOverrideSettings, settings);
+  };
+  var getFiltered = function (predicate, editor, name) {
+    return Option.from(editor.settings[name]).filter(predicate);
+  };
+  var getString = $_60qu7r6jducwn73.curry(getFiltered, $_c7y6af12jducwnh8.isString);
+  var getParamObject = function (value) {
+    var output = {};
+    if (typeof value === 'string') {
+      $_2dw1bj4jducwn6g.each(value.indexOf('=') > 0 ? value.split(/[;,](?![^=;,]*(?:[;,]|$))/) : value.split(','), function (value) {
+        value = value.split('=');
+        if (value.length > 1) {
+          output[$_8i2houjjducwnd2.trim(value[0])] = $_8i2houjjducwnd2.trim(value[1]);
+        } else {
+          output[$_8i2houjjducwnd2.trim(value[0])] = $_8i2houjjducwnd2.trim(value);
+        }
+      });
+    } else {
+      output = value;
+    }
+    return output;
+  };
+  var getParam = function (editor, name, defaultVal, type) {
+    var value = name in editor.settings ? editor.settings[name] : defaultVal;
+    if (type === 'hash') {
+      return getParamObject(value);
+    } else if (type === 'string') {
+      return getFiltered($_c7y6af12jducwnh8.isString, editor, name).getOr(defaultVal);
+    } else if (type === 'number') {
+      return getFiltered($_c7y6af12jducwnh8.isNumber, editor, name).getOr(defaultVal);
+    } else if (type === 'boolean') {
+      return getFiltered($_c7y6af12jducwnh8.isBoolean, editor, name).getOr(defaultVal);
+    } else if (type === 'object') {
+      return getFiltered($_c7y6af12jducwnh8.isObject, editor, name).getOr(defaultVal);
+    } else if (type === 'array') {
+      return getFiltered($_c7y6af12jducwnh8.isArray, editor, name).getOr(defaultVal);
+    } else if (type === 'function') {
+      return getFiltered($_c7y6af12jducwnh8.isFunction, editor, name).getOr(defaultVal);
+    } else {
+      return value;
+    }
+  };
+
+  var strongRtl = /[\u0591-\u07FF\uFB1D-\uFDFF\uFE70-\uFEFC]/;
+  var hasStrongRtl = function (text) {
+    return strongRtl.test(text);
+  };
+
+  var isInlineTarget = function (editor, elm) {
+    var selector = getString(editor, 'inline_boundaries_selector').getOr('a[href],code');
+    return $_3yrc4b1fjducwnim.is($_5s4uzoyjducwngo.fromDom(elm), selector);
+  };
+<<<<<<< HEAD
   var getParents$1 = function (dom, node, selector) {
     return dom.getParents(node, selector, dom.getRoot());
   };
@@ -11301,100 +14502,104 @@
       node = node.childNodes[offset];
       if (node) {
         offset = node.nodeType === 3 ? node.length : node.childNodes.length;
-      }
-    }
-    return {
-      node: node,
-      offset: offset
-    };
+=======
+  var isRtl = function (element) {
+    return DOMUtils.DOM.getStyle(element, 'direction', true) === 'rtl' || hasStrongRtl(element.textContent);
   };
-  var excludeTrailingWhitespace = function (endContainer, endOffset) {
-    var leaf = findLeaf(endContainer, endOffset);
-    if (leaf.node) {
-      while (leaf.node && leaf.offset === 0 && leaf.node.previousSibling) {
-        leaf = findLeaf(leaf.node.previousSibling);
-      }
-      if (leaf.node && leaf.offset > 0 && leaf.node.nodeType === 3 && leaf.node.nodeValue.charAt(leaf.offset - 1) === ' ') {
-        if (leaf.offset > 1) {
-          endContainer = leaf.node;
-          endContainer.splitText(leaf.offset - 1);
+  var findInlineParents = function (isInlineTarget, rootNode, pos) {
+    return $_2dw1bj4jducwn6g.filter(DOMUtils.DOM.getParents(pos.container(), '*', rootNode), isInlineTarget);
+  };
+  var findRootInline = function (isInlineTarget, rootNode, pos) {
+    var parents = findInlineParents(isInlineTarget, rootNode, pos);
+    return Option.from(parents[parents.length - 1]);
+  };
+  var hasSameParentBlock = function (rootNode, node1, node2) {
+    var block1 = getParentBlock(node1, rootNode);
+    var block2 = getParentBlock(node2, rootNode);
+    return block1 && block1 === block2;
+  };
+  var isAtZwsp = function (pos) {
+    return isBeforeInline(pos) || isAfterInline(pos);
+  };
+  var normalizePosition = function (forward, pos) {
+    var container = pos.container(), offset = pos.offset();
+    if (forward) {
+      if (isCaretContainerInline(container)) {
+        if ($_fj238m1qjducwnjm.isText(container.nextSibling)) {
+          return CaretPosition$1(container.nextSibling, 0);
+        } else {
+          return CaretPosition$1.after(container);
         }
-      }
-    }
-    return endContainer;
-  };
-  var isBogusBr = function (node) {
-    return node.nodeName === 'BR' && node.getAttribute('data-mce-bogus') && !node.nextSibling;
-  };
-  var findParentContentEditable = function (dom, node) {
-    var parent = node;
-    while (parent) {
-      if (parent.nodeType === 1 && dom.getContentEditable(parent)) {
-        return dom.getContentEditable(parent) === 'false' ? parent : node;
-      }
-      parent = parent.parentNode;
-    }
-    return node;
-  };
-  var findSpace = function (start, remove, node, offset) {
-    var pos, pos2;
-    var str = node.nodeValue;
-    if (typeof offset === 'undefined') {
-      offset = start ? str.length : 0;
-    }
-    if (start) {
-      pos = str.lastIndexOf(' ', offset);
-      pos2 = str.lastIndexOf('\xA0', offset);
-      pos = pos > pos2 ? pos : pos2;
-      if (pos !== -1 && !remove) {
-        pos++;
+      } else {
+        return isBeforeInline(pos) ? CaretPosition$1(container, offset + 1) : pos;
       }
     } else {
-      pos = str.indexOf(' ', offset);
-      pos2 = str.indexOf('\xA0', offset);
-      pos = pos !== -1 && (pos2 === -1 || pos < pos2) ? pos : pos2;
-    }
-    return pos;
-  };
-  var findWordEndPoint = function (dom, body, container, offset, start, remove) {
-    var walker, node, pos, lastTextNode;
-    if (container.nodeType === 3) {
-      pos = findSpace(start, remove, container, offset);
-      if (pos !== -1) {
-        return {
-          container: container,
-          offset: pos
-        };
-      }
-      lastTextNode = container;
-    }
-    walker = new TreeWalker(container, dom.getParent(container, dom.isBlock) || body);
-    while (node = walker[start ? 'prev' : 'next']()) {
-      if (node.nodeType === 3) {
-        lastTextNode = node;
-        pos = findSpace(start, remove, node);
-        if (pos !== -1) {
-          return {
-            container: node,
-            offset: pos
-          };
+      if (isCaretContainerInline(container)) {
+        if ($_fj238m1qjducwnjm.isText(container.previousSibling)) {
+          return CaretPosition$1(container.previousSibling, container.previousSibling.data.length);
+        } else {
+          return CaretPosition$1.before(container);
         }
-      } else if (dom.isBlock(node)) {
-        break;
-      }
-    }
-    if (lastTextNode) {
-      if (start) {
-        offset = 0;
       } else {
-        offset = lastTextNode.length;
+        return isAfterInline(pos) ? CaretPosition$1(container, offset - 1) : pos;
+>>>>>>> installer
       }
-      return {
-        container: lastTextNode,
-        offset: offset
-      };
     }
   };
+  var normalizeForwards = $_60qu7r6jducwn73.curry(normalizePosition, true);
+  var normalizeBackwards = $_60qu7r6jducwn73.curry(normalizePosition, false);
+  var $_4m240x32jducwnrf = {
+    isInlineTarget: isInlineTarget,
+    findRootInline: findRootInline,
+    isRtl: isRtl,
+    isAtZwsp: isAtZwsp,
+    normalizePosition: normalizePosition,
+    normalizeForwards: normalizeForwards,
+    normalizeBackwards: normalizeBackwards,
+    hasSameParentBlock: hasSameParentBlock
+  };
+
+  var isBeforeRoot = function (rootNode) {
+    return function (elm) {
+      return $_4qdq5m1djducwnie.eq(rootNode, $_5s4uzoyjducwngo.fromDom(elm.dom().parentNode));
+    };
+  };
+  var getParentBlock$1 = function (rootNode, elm) {
+    return $_4qdq5m1djducwnie.contains(rootNode, elm) ? $_3et3di30jducwnr0.closest(elm, function (element) {
+      return isTextBlock(element) || isListItem(element);
+    }, isBeforeRoot(rootNode)) : Option.none();
+  };
+  var placeCaretInEmptyBody = function (editor) {
+    var body = editor.getBody();
+    var node = body.firstChild && editor.dom.isBlock(body.firstChild) ? body.firstChild : body;
+    editor.selection.setCursorLocation(node, 0);
+  };
+  var paddEmptyBody = function (editor) {
+    if (editor.dom.isEmpty(editor.getBody())) {
+      editor.setContent('');
+      placeCaretInEmptyBody(editor);
+    }
+  };
+  var willDeleteLastPositionInElement = function (forward, fromPos, elm) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_dq07eg2bjducwno6.firstPositionIn(elm),
+      $_dq07eg2bjducwno6.lastPositionIn(elm)
+    ], function (firstPos, lastPos) {
+      var normalizedFirstPos = $_4m240x32jducwnrf.normalizePosition(true, firstPos);
+      var normalizedLastPos = $_4m240x32jducwnrf.normalizePosition(false, lastPos);
+      var normalizedFromPos = $_4m240x32jducwnrf.normalizePosition(false, fromPos);
+      if (forward) {
+        return $_dq07eg2bjducwno6.nextPosition(elm, normalizedFromPos).map(function (nextPos) {
+          return nextPos.isEqual(normalizedLastPos) && fromPos.isEqual(normalizedFirstPos);
+        }).getOr(false);
+      } else {
+        return $_dq07eg2bjducwno6.prevPosition(elm, normalizedFromPos).map(function (prevPos) {
+          return prevPos.isEqual(normalizedFirstPos) && fromPos.isEqual(normalizedLastPos);
+        }).getOr(false);
+      }
+    }).getOr(true);
+  };
+<<<<<<< HEAD
   var findSelectorEndPoint = function (dom, format, rng, container, siblingName) {
     var parents, i, y, curFormat;
     if (container.nodeType === 3 && container.nodeValue.length === 0 && container[siblingName]) {
@@ -11405,15 +14610,124 @@
       for (y = 0; y < format.length; y++) {
         curFormat = format[y];
         if ('collapsed' in curFormat && curFormat.collapsed !== rng.collapsed) {
+=======
+  var $_5jcxyf2zjducwnqv = {
+    getParentBlock: getParentBlock$1,
+    paddEmptyBody: paddEmptyBody,
+    willDeleteLastPositionInElement: willDeleteLastPositionInElement
+  };
+
+  var first$2 = function (selector) {
+    return $_3yrc4b1fjducwnim.one(selector);
+  };
+  var ancestor$1 = function (scope, selector, isRoot) {
+    return $_3et3di30jducwnr0.ancestor(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    }, isRoot);
+  };
+  var sibling$2 = function (scope, selector) {
+    return $_3et3di30jducwnr0.sibling(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    });
+  };
+  var child$2 = function (scope, selector) {
+    return $_3et3di30jducwnr0.child(scope, function (e) {
+      return $_3yrc4b1fjducwnim.is(e, selector);
+    });
+  };
+  var descendant$1 = function (scope, selector) {
+    return $_3yrc4b1fjducwnim.one(selector, scope);
+  };
+  var closest$1 = function (scope, selector, isRoot) {
+    return ClosestOrAncestor($_3yrc4b1fjducwnim.is, ancestor$1, scope, selector, isRoot);
+  };
+  var $_eh73s937jducwns3 = {
+    first: first$2,
+    ancestor: ancestor$1,
+    sibling: sibling$2,
+    child: child$2,
+    descendant: descendant$1,
+    closest: closest$1
+  };
+
+  var any = function (selector) {
+    return $_eh73s937jducwns3.first(selector).isSome();
+  };
+  var ancestor$2 = function (scope, selector, isRoot) {
+    return $_eh73s937jducwns3.ancestor(scope, selector, isRoot).isSome();
+  };
+  var sibling$3 = function (scope, selector) {
+    return $_eh73s937jducwns3.sibling(scope, selector).isSome();
+  };
+  var child$3 = function (scope, selector) {
+    return $_eh73s937jducwns3.child(scope, selector).isSome();
+  };
+  var descendant$2 = function (scope, selector) {
+    return $_eh73s937jducwns3.descendant(scope, selector).isSome();
+  };
+  var closest$2 = function (scope, selector, isRoot) {
+    return $_eh73s937jducwns3.closest(scope, selector, isRoot).isSome();
+  };
+  var $_7siog436jducwns2 = {
+    any: any,
+    ancestor: ancestor$2,
+    sibling: sibling$3,
+    child: child$3,
+    descendant: descendant$2,
+    closest: closest$2
+  };
+
+  var hasWhitespacePreserveParent = function (rootNode, node) {
+    var rootElement = $_5s4uzoyjducwngo.fromDom(rootNode);
+    var startNode = $_5s4uzoyjducwngo.fromDom(node);
+    return $_7siog436jducwns2.ancestor(startNode, 'pre,code', $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, rootElement));
+  };
+  var isWhitespace = function (rootNode, node) {
+    return $_fj238m1qjducwnjm.isText(node) && /^[ \t\r\n]*$/.test(node.data) && hasWhitespacePreserveParent(rootNode, node) === false;
+  };
+  var isNamedAnchor = function (node) {
+    return $_fj238m1qjducwnjm.isElement(node) && node.nodeName === 'A' && node.hasAttribute('name');
+  };
+  var isContent = function (rootNode, node) {
+    return isCaretCandidate(node) && isWhitespace(rootNode, node) === false || isNamedAnchor(node) || isBookmark(node);
+  };
+  var isBookmark = $_fj238m1qjducwnjm.hasAttribute('data-mce-bookmark');
+  var isBogus$2 = $_fj238m1qjducwnjm.hasAttribute('data-mce-bogus');
+  var isBogusAll$1 = $_fj238m1qjducwnjm.hasAttributeValue('data-mce-bogus', 'all');
+  var isEmptyNode = function (targetNode) {
+    var walker, node, brCount = 0;
+    if (isContent(targetNode, targetNode)) {
+      return false;
+    } else {
+      node = targetNode.firstChild;
+      if (!node) {
+        return true;
+      }
+      walker = new TreeWalker(node, targetNode);
+      do {
+        if (isBogusAll$1(node)) {
+          node = walker.next(true);
+>>>>>>> installer
           continue;
         }
-        if (dom.is(parents[i], curFormat.selector)) {
-          return parents[i];
+        if (isBogus$2(node)) {
+          node = walker.next();
+          continue;
         }
-      }
+        if ($_fj238m1qjducwnjm.isBr(node)) {
+          brCount++;
+          node = walker.next();
+          continue;
+        }
+        if (isContent(targetNode, node)) {
+          return false;
+        }
+        node = walker.next();
+      } while (node);
+      return brCount <= 1;
     }
-    return container;
   };
+<<<<<<< HEAD
   var findBlockEndPoint = function (editor, format, container, siblingName) {
     var node;
     var dom = editor.dom;
@@ -11436,11 +14750,51 @@
         node = node[siblingName];
         if ($_f8rk1v3gjd08m9xb.isEq(node, 'br')) {
           break;
-        }
-      }
-    }
-    return node || container;
+=======
+  var isEmpty = function (elm) {
+    return isEmptyNode(elm.dom());
   };
+  var $_baf2ia35jducwnrx = { isEmpty: isEmpty };
+
+  var BlockPosition = $_295afp18jducwni4.immutable('block', 'position');
+  var BlockBoundary = $_295afp18jducwni4.immutable('from', 'to');
+  var getBlockPosition = function (rootNode, pos) {
+    var rootElm = $_5s4uzoyjducwngo.fromDom(rootNode);
+    var containerElm = $_5s4uzoyjducwngo.fromDom(pos.container());
+    return $_5jcxyf2zjducwnqv.getParentBlock(rootElm, containerElm).map(function (block) {
+      return BlockPosition(block, pos);
+    });
+  };
+  var isDifferentBlocks = function (blockBoundary) {
+    return $_4qdq5m1djducwnie.eq(blockBoundary.from().block(), blockBoundary.to().block()) === false;
+  };
+  var hasSameParent = function (blockBoundary) {
+    return $_f0qt4317jducwnhq.parent(blockBoundary.from().block()).bind(function (parent1) {
+      return $_f0qt4317jducwnhq.parent(blockBoundary.to().block()).filter(function (parent2) {
+        return $_4qdq5m1djducwnie.eq(parent1, parent2);
+      });
+    }).isSome();
+  };
+  var isEditable = function (blockBoundary) {
+    return $_fj238m1qjducwnjm.isContentEditableFalse(blockBoundary.from().block()) === false && $_fj238m1qjducwnjm.isContentEditableFalse(blockBoundary.to().block()) === false;
+  };
+  var skipLastBr = function (rootNode, forward, blockPosition) {
+    if ($_fj238m1qjducwnjm.isBr(blockPosition.position().getNode()) && $_baf2ia35jducwnrx.isEmpty(blockPosition.block()) === false) {
+      return $_dq07eg2bjducwno6.positionIn(false, blockPosition.block().dom()).bind(function (lastPositionInBlock) {
+        if (lastPositionInBlock.isEqual(blockPosition.position())) {
+          return $_dq07eg2bjducwno6.fromPosition(forward, rootNode, lastPositionInBlock).bind(function (to) {
+            return getBlockPosition(rootNode, to);
+          });
+        } else {
+          return Option.some(blockPosition);
+>>>>>>> installer
+        }
+      }).getOr(blockPosition);
+    } else {
+      return blockPosition;
+    }
+  };
+<<<<<<< HEAD
   var findParentContainer = function (dom, format, startContainer, startOffset, endContainer, endOffset, start) {
     var container, parent, sibling, siblingName, root;
     container = parent = start ? startContainer : endContainer;
@@ -11566,20 +14920,62 @@
       }
     }
     return false;
-  };
-  var matchParents = function (editor, node, name, vars) {
-    var root = editor.dom.getRoot();
-    if (node === root) {
-      return false;
-    }
-    node = editor.dom.getParent(node, function (node) {
-      if (matchesUnInheritedFormatSelector(editor, node, name)) {
-        return true;
-      }
-      return node.parentNode === root || !!matchNode(editor, node, name, vars, true);
+=======
+  var readFromRange = function (rootNode, forward, rng) {
+    var fromBlockPos = getBlockPosition(rootNode, CaretPosition$1.fromRangeStart(rng));
+    var toBlockPos = fromBlockPos.bind(function (blockPos) {
+      return $_dq07eg2bjducwno6.fromPosition(forward, rootNode, blockPos.position()).bind(function (to) {
+        return getBlockPosition(rootNode, to).map(function (blockPos) {
+          return skipLastBr(rootNode, forward, blockPos);
+        });
+      });
     });
-    return matchNode(editor, node, name, vars);
+    return $_87ppqy2ejducwnol.liftN([
+      fromBlockPos,
+      toBlockPos
+    ], BlockBoundary).filter(function (blockBoundary) {
+      return isDifferentBlocks(blockBoundary) && hasSameParent(blockBoundary) && isEditable(blockBoundary);
+    });
   };
+  var read = function (rootNode, forward, rng) {
+    return rng.collapsed ? readFromRange(rootNode, forward, rng) : Option.none();
+  };
+  var $_eqrydb2yjducwnqo = { read: read };
+
+  var dropLast = function (xs) {
+    return xs.slice(0, -1);
+>>>>>>> installer
+  };
+  var parentsUntil$1 = function (startNode, rootElm, predicate) {
+    if ($_4qdq5m1djducwnie.contains(rootElm, startNode)) {
+      return dropLast($_f0qt4317jducwnhq.parents(startNode, function (elm) {
+        return predicate(elm) || $_4qdq5m1djducwnie.eq(elm, rootElm);
+      }));
+    } else {
+      return [];
+    }
+  };
+  var parents$1 = function (startNode, rootElm) {
+    return parentsUntil$1(startNode, rootElm, $_60qu7r6jducwn73.constant(false));
+  };
+  var parentsAndSelf = function (startNode, rootElm) {
+    return [startNode].concat(parents$1(startNode, rootElm));
+  };
+  var $_b22jto39jducwnsg = {
+    parentsUntil: parentsUntil$1,
+    parents: parents$1,
+    parentsAndSelf: parentsAndSelf
+  };
+
+  var getChildrenUntilBlockBoundary = function (block) {
+    var children = $_f0qt4317jducwnhq.children(block);
+    return $_2dw1bj4jducwn6g.findIndex(children, isBlock).fold(function () {
+      return children;
+    }, function (index) {
+      return children.slice(0, index);
+    });
+  };
+<<<<<<< HEAD
   var matchName = function (dom, node, format) {
     if (isEq$1(node, format.inline)) {
       return true;
@@ -11621,64 +15017,74 @@
             return format;
           }
         }
-      }
-    }
-    return format;
+=======
+  var extractChildren = function (block) {
+    var children = getChildrenUntilBlockBoundary(block);
+    $_2dw1bj4jducwn6g.each(children, function (node) {
+      $_34vweg2pjducwnq0.remove(node);
+    });
+    return children;
   };
-  var matchNode = function (ed, node, name, vars, similar) {
-    var formatList = ed.formatter.get(name);
-    var format, i, x, classes;
-    var dom = ed.dom;
-    if (formatList && node) {
-      for (i = 0; i < formatList.length; i++) {
-        format = formatList[i];
-        if (matchName(ed.dom, node, format) && matchItems(dom, node, format, 'attributes', similar, vars) && matchItems(dom, node, format, 'styles', similar, vars)) {
-          if (classes = format.classes) {
-            for (x = 0; x < classes.length; x++) {
-              if (!ed.dom.hasClass(node, classes[x])) {
-                return;
-              }
-            }
-          }
-          return format;
-        }
+  var trimBr = function (first, block) {
+    $_dq07eg2bjducwno6.positionIn(first, block.dom()).each(function (position) {
+      var node = position.getNode();
+      if ($_fj238m1qjducwnjm.isBr(node)) {
+        $_34vweg2pjducwnq0.remove($_5s4uzoyjducwngo.fromDom(node));
+>>>>>>> installer
       }
+    });
+  };
+  var removeEmptyRoot = function (rootNode, block) {
+    var parents = $_b22jto39jducwnsg.parentsAndSelf(block, rootNode);
+    return $_2dw1bj4jducwn6g.find(parents.reverse(), $_baf2ia35jducwnrx.isEmpty).each($_34vweg2pjducwnq0.remove);
+  };
+  var findParentInsertPoint = function (toBlock, block) {
+    var parents = $_f0qt4317jducwnhq.parents(block, function (elm) {
+      return $_4qdq5m1djducwnie.eq(elm, toBlock);
+    });
+    return Option.from(parents[parents.length - 2]);
+  };
+  var getInsertionPoint = function (fromBlock, toBlock) {
+    if ($_4qdq5m1djducwnie.contains(toBlock, fromBlock)) {
+      return $_f0qt4317jducwnhq.parent(fromBlock).bind(function (parent) {
+        return $_4qdq5m1djducwnie.eq(parent, toBlock) ? Option.some(fromBlock) : findParentInsertPoint(toBlock, fromBlock);
+      });
+    } else {
+      return Option.none();
     }
   };
-  var match = function (editor, name, vars, node) {
-    var startNode;
-    if (node) {
-      return matchParents(editor, node, name, vars);
-    }
-    node = editor.selection.getNode();
-    if (matchParents(editor, node, name, vars)) {
-      return true;
-    }
-    startNode = editor.selection.getStart();
-    if (startNode !== node) {
-      if (matchParents(editor, startNode, name, vars)) {
-        return true;
+  var mergeBlockInto = function (rootNode, fromBlock, toBlock) {
+    if ($_baf2ia35jducwnrx.isEmpty(toBlock)) {
+      $_34vweg2pjducwnq0.remove(toBlock);
+      if ($_baf2ia35jducwnrx.isEmpty(fromBlock)) {
+        $_7sfvvk2njducwnpo.fillWithPaddingBr(fromBlock);
       }
+      return $_dq07eg2bjducwno6.firstPositionIn(fromBlock.dom());
+    } else {
+      trimBr(true, fromBlock);
+      trimBr(false, toBlock);
+      var children_1 = extractChildren(fromBlock);
+      return getInsertionPoint(fromBlock, toBlock).fold(function () {
+        removeEmptyRoot(rootNode, fromBlock);
+        var position = $_dq07eg2bjducwno6.lastPositionIn(toBlock.dom());
+        $_2dw1bj4jducwn6g.each(children_1, function (node) {
+          $_ejmufn2ojducwnpy.append(toBlock, node);
+        });
+        return position;
+      }, function (target) {
+        var position = $_dq07eg2bjducwno6.prevPosition(toBlock.dom(), CaretPosition$1.before(target.dom()));
+        $_2dw1bj4jducwn6g.each(children_1, function (node) {
+          $_ejmufn2ojducwnpy.before(target, node);
+        });
+        removeEmptyRoot(rootNode, fromBlock);
+        return position;
+      });
     }
-    return false;
   };
-  var matchAll = function (editor, names, vars) {
-    var startElement;
-    var matchedFormatNames = [];
-    var checkedMap = {};
-    startElement = editor.selection.getStart();
-    editor.dom.getParent(startElement, function (node) {
-      var i, name;
-      for (i = 0; i < names.length; i++) {
-        name = names[i];
-        if (!checkedMap[name] && matchNode(editor, node, name, vars)) {
-          checkedMap[name] = true;
-          matchedFormatNames.push(name);
-        }
-      }
-    }, editor.dom.getRoot());
-    return matchedFormatNames;
+  var mergeBlocks = function (rootNode, forward, block1, block2) {
+    return forward ? mergeBlockInto(rootNode, block2, block1) : mergeBlockInto(rootNode, block1, block2);
   };
+<<<<<<< HEAD
   var canApply = function (editor, name) {
     var formatList = editor.formatter.get(name);
     var startNode, parents, i, x, selector;
@@ -11696,10 +15102,41 @@
             return true;
           }
         }
-      }
-    }
-    return false;
+=======
+  var $_eqe3hs38jducwns7 = { mergeBlocks: mergeBlocks };
+
+  var backspaceDelete = function (editor, forward) {
+    var position;
+    var rootNode = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    position = $_eqrydb2yjducwnqo.read(rootNode.dom(), forward, editor.selection.getRng()).bind(function (blockBoundary) {
+      return $_eqe3hs38jducwns7.mergeBlocks(rootNode, forward, blockBoundary.from().block(), blockBoundary.to().block());
+    });
+    position.each(function (pos) {
+      editor.selection.setRng(pos.toRange());
+    });
+    return position.isSome();
   };
+  var $_d0w5iz2xjducwnqm = { backspaceDelete: backspaceDelete };
+
+  var deleteRangeMergeBlocks = function (rootNode, selection) {
+    var rng = selection.getRng();
+    return $_87ppqy2ejducwnol.liftN([
+      $_5jcxyf2zjducwnqv.getParentBlock(rootNode, $_5s4uzoyjducwngo.fromDom(rng.startContainer)),
+      $_5jcxyf2zjducwnqv.getParentBlock(rootNode, $_5s4uzoyjducwngo.fromDom(rng.endContainer))
+    ], function (block1, block2) {
+      if ($_4qdq5m1djducwnie.eq(block1, block2) === false) {
+        rng.deleteContents();
+        $_eqe3hs38jducwns7.mergeBlocks(rootNode, true, block1, block2).each(function (pos) {
+          selection.setRng(pos.toRange());
+        });
+        return true;
+      } else {
+        return false;
+>>>>>>> installer
+      }
+    }).getOr(false);
+  };
+<<<<<<< HEAD
   var $_5zk6t13hjd08m9xg = {
     matchNode: matchNode,
     matchName: matchName,
@@ -11707,11 +15144,17 @@
     matchAll: matchAll,
     canApply: canApply,
     matchesUnInheritedFormatSelector: matchesUnInheritedFormatSelector
+=======
+  var isRawNodeInTable = function (root, rawNode) {
+    var node = $_5s4uzoyjducwngo.fromDom(rawNode);
+    var isRoot = $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, root);
+    return $_3et3di30jducwnr0.ancestor(node, isTableCell, isRoot).isSome();
+>>>>>>> installer
   };
-
-  var splitText = function (node, offset) {
-    return node.splitText(offset);
+  var isSelectionInTable = function (root, rng) {
+    return isRawNodeInTable(root, rng.startContainer) || isRawNodeInTable(root, rng.endContainer);
   };
+<<<<<<< HEAD
   var split$1 = function (rng) {
     var startContainer = rng.startContainer, startOffset = rng.startOffset, endContainer = rng.endContainer, endOffset = rng.endOffset;
     if (startContainer === endContainer && $_2qai0u1qjd08m9l9.isText(startContainer)) {
@@ -11750,38 +15193,109 @@
   var CARET_ID = '_mce_caret';
   var importNode = function (ownerDocument, node) {
     return ownerDocument.importNode(node, true);
+=======
+  var isEverythingSelected = function (root, rng) {
+    var noPrevious = $_dq07eg2bjducwno6.prevPosition(root.dom(), CaretPosition$1.fromRangeStart(rng)).isNone();
+    var noNext = $_dq07eg2bjducwno6.nextPosition(root.dom(), CaretPosition$1.fromRangeEnd(rng)).isNone();
+    return !isSelectionInTable(root, rng) && noPrevious && noNext;
   };
-  var isCaretNode = function (node) {
-    return node.nodeType === 1 && node.id === CARET_ID;
+  var emptyEditor = function (editor) {
+    editor.setContent('');
+    editor.selection.setCursorLocation();
+    return true;
+>>>>>>> installer
   };
-  var getEmptyCaretContainers = function (node) {
-    var nodes = [];
-    while (node) {
-      if (node.nodeType === 3 && node.nodeValue !== ZWSP$1 || node.childNodes.length > 1) {
-        return [];
-      }
-      if (node.nodeType === 1) {
-        nodes.push(node);
-      }
-      node = node.firstChild;
+  var deleteRange = function (editor) {
+    var rootNode = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    var rng = editor.selection.getRng();
+    return isEverythingSelected(rootNode, rng) ? emptyEditor(editor) : deleteRangeMergeBlocks(rootNode, editor.selection);
+  };
+  var backspaceDelete$1 = function (editor, forward) {
+    return editor.selection.isCollapsed() ? false : deleteRange(editor);
+  };
+  var $_3kdgsv3ajducwnsk = { backspaceDelete: backspaceDelete$1 };
+
+  var generate = function (cases) {
+    if (!$_c7y6af12jducwnh8.isArray(cases)) {
+      throw new Error('cases must be an array');
     }
-    return nodes;
-  };
-  var isCaretContainerEmpty = function (node) {
-    return getEmptyCaretContainers(node).length > 0;
-  };
-  var findFirstTextNode = function (node) {
-    var walker;
-    if (node) {
-      walker = new TreeWalker(node, node);
-      for (node = walker.current(); node; node = walker.next()) {
-        if (node.nodeType === 3) {
-          return node;
+    if (cases.length === 0) {
+      throw new Error('there must be at least one case');
+    }
+    var constructors = [];
+    var adt = {};
+    $_2dw1bj4jducwn6g.each(cases, function (acase, count) {
+      var keys = $_84vepq13jducwnh9.keys(acase);
+      if (keys.length !== 1) {
+        throw new Error('one and only one name per case');
+      }
+      var key = keys[0];
+      var value = acase[key];
+      if (adt[key] !== undefined) {
+        throw new Error('duplicate key detected:' + key);
+      } else if (key === 'cata') {
+        throw new Error('cannot have a case named cata (sorry)');
+      } else if (!$_c7y6af12jducwnh8.isArray(value)) {
+        throw new Error('case arguments must be an array');
+      }
+      constructors.push(key);
+      adt[key] = function () {
+        var argLength = arguments.length;
+        if (argLength !== value.length) {
+          throw new Error('Wrong number of arguments to case ' + key + '. Expected ' + value.length + ' (' + value + '), got ' + argLength);
         }
-      }
-    }
-    return null;
+        var args = new Array(argLength);
+        for (var i = 0; i < args.length; i++)
+          args[i] = arguments[i];
+        var match = function (branches) {
+          var branchKeys = $_84vepq13jducwnh9.keys(branches);
+          if (constructors.length !== branchKeys.length) {
+            throw new Error('Wrong number of arguments to match. Expected: ' + constructors.join(',') + '\nActual: ' + branchKeys.join(','));
+          }
+          var allReqd = $_2dw1bj4jducwn6g.forall(constructors, function (reqKey) {
+            return $_2dw1bj4jducwn6g.contains(branchKeys, reqKey);
+          });
+          if (!allReqd)
+            throw new Error('Not all branches were specified when using match. Specified: ' + branchKeys.join(', ') + '\nRequired: ' + constructors.join(', '));
+          return branches[key].apply(null, args);
+        };
+        return {
+          fold: function () {
+            if (arguments.length !== cases.length) {
+              throw new Error('Wrong number of arguments to fold. Expected ' + cases.length + ', got ' + arguments.length);
+            }
+            var target = arguments[count];
+            return target.apply(null, args);
+          },
+          match: match,
+          log: function (label) {
+            console.log(label, {
+              constructors: constructors,
+              constructor: key,
+              params: args
+            });
+          }
+        };
+      };
+    });
+    return adt;
   };
+  var $_elh5kq3djducwnt6 = { generate: generate };
+
+  var isCompoundElement = function (node) {
+    return isTableCell($_5s4uzoyjducwngo.fromDom(node)) || isListItem($_5s4uzoyjducwngo.fromDom(node));
+  };
+  var DeleteAction = $_elh5kq3djducwnt6.generate([
+    { remove: ['element'] },
+    { moveToElement: ['element'] },
+    { moveToPosition: ['position'] }
+  ]);
+  var isAtContentEditableBlockCaret = function (forward, from) {
+    var elm = from.getNode(forward === false);
+    var caretLocation = forward ? 'after' : 'before';
+    return $_fj238m1qjducwnjm.isElement(elm) && elm.getAttribute('data-mce-caret') === caretLocation;
+  };
+<<<<<<< HEAD
   var createCaretContainer = function (fill) {
     var caretContainer = $_f4wyrxyjd08m9i5.fromTag('span');
     $_1wgh8c14jd08m9iv.setAll(caretContainer, {
@@ -11793,60 +15307,99 @@
       $_5x9l922fjd08m9qy.append(caretContainer, $_f4wyrxyjd08m9i5.fromText(ZWSP$1));
     }
     return caretContainer;
+=======
+  var isDeleteFromCefDifferentBlocks = function (root, forward, from, to) {
+    var inSameBlock = function (elm) {
+      return isInline($_5s4uzoyjducwngo.fromDom(elm)) && !isInSameBlock(from, to, root);
+    };
+    return getRelativeCefElm(!forward, from).fold(function () {
+      return getRelativeCefElm(forward, to).fold($_60qu7r6jducwn73.constant(false), inSameBlock);
+    }, inSameBlock);
+>>>>>>> installer
   };
-  var getParentCaretContainer = function (body, node) {
-    while (node && node !== body) {
-      if (node.id === CARET_ID) {
-        return node;
+  var deleteEmptyBlockOrMoveToCef = function (root, forward, from, to) {
+    var toCefElm = to.getNode(forward === false);
+    return $_5jcxyf2zjducwnqv.getParentBlock($_5s4uzoyjducwngo.fromDom(root), $_5s4uzoyjducwngo.fromDom(from.getNode())).map(function (blockElm) {
+      return $_baf2ia35jducwnrx.isEmpty(blockElm) ? DeleteAction.remove(blockElm.dom()) : DeleteAction.moveToElement(toCefElm);
+    }).orThunk(function () {
+      return Option.some(DeleteAction.moveToElement(toCefElm));
+    });
+  };
+  var findCefPosition = function (root, forward, from) {
+    return $_dq07eg2bjducwno6.fromPosition(forward, root, from).bind(function (to) {
+      if (isCompoundElement(to.getNode())) {
+        return Option.none();
+      } else if (isDeleteFromCefDifferentBlocks(root, forward, from, to)) {
+        return Option.none();
+      } else if (forward && $_fj238m1qjducwnjm.isContentEditableFalse(to.getNode())) {
+        return deleteEmptyBlockOrMoveToCef(root, forward, from, to);
+      } else if (forward === false && $_fj238m1qjducwnjm.isContentEditableFalse(to.getNode(true))) {
+        return deleteEmptyBlockOrMoveToCef(root, forward, from, to);
+      } else if (forward && isAfterContentEditableFalse(from)) {
+        return Option.some(DeleteAction.moveToPosition(to));
+      } else if (forward === false && isBeforeContentEditableFalse(from)) {
+        return Option.some(DeleteAction.moveToPosition(to));
+      } else {
+        return Option.none();
       }
-      node = node.parentNode;
-    }
-    return null;
+    });
   };
-  var trimZwspFromCaretContainer = function (caretContainerNode) {
-    var textNode = findFirstTextNode(caretContainerNode);
-    if (textNode && textNode.nodeValue.charAt(0) === ZWSP$1) {
-      textNode.deleteData(0, 1);
-    }
-    return textNode;
-  };
-  var removeCaretContainerNode = function (dom, selection, node, moveCaret) {
-    var rng, block, textNode;
-    rng = selection.getRng(true);
-    block = dom.getParent(node, dom.isBlock);
-    if (isCaretContainerEmpty(node)) {
-      if (moveCaret !== false) {
-        rng.setStartBefore(node);
-        rng.setEndBefore(node);
-      }
-      dom.remove(node);
+  var getContentEditableBlockAction = function (forward, elm) {
+    if (forward && $_fj238m1qjducwnjm.isContentEditableFalse(elm.nextSibling)) {
+      return Option.some(DeleteAction.moveToElement(elm.nextSibling));
+    } else if (forward === false && $_fj238m1qjducwnjm.isContentEditableFalse(elm.previousSibling)) {
+      return Option.some(DeleteAction.moveToElement(elm.previousSibling));
     } else {
-      textNode = trimZwspFromCaretContainer(node);
-      if (rng.startContainer === textNode && rng.startOffset > 0) {
-        rng.setStart(textNode, rng.startOffset - 1);
-      }
-      if (rng.endContainer === textNode && rng.endOffset > 0) {
-        rng.setEnd(textNode, rng.endOffset - 1);
-      }
-      dom.remove(node, true);
+      return Option.none();
     }
+  };
+  var skipMoveToActionFromInlineCefToContent = function (root, from, deleteAction) {
+    return deleteAction.fold(function (elm) {
+      return Option.some(DeleteAction.remove(elm));
+    }, function (elm) {
+      return Option.some(DeleteAction.moveToElement(elm));
+    }, function (to) {
+      if (isInSameBlock(from, to, root)) {
+        return Option.none();
+      } else {
+        return Option.some(DeleteAction.moveToPosition(to));
+      }
+    });
+  };
+  var getContentEditableAction = function (root, forward, from) {
+    if (isAtContentEditableBlockCaret(forward, from)) {
+      return getContentEditableBlockAction(forward, from.getNode(forward === false)).fold(function () {
+        return findCefPosition(root, forward, from);
+      }, Option.some);
+    } else {
+      return findCefPosition(root, forward, from).bind(function (deleteAction) {
+        return skipMoveToActionFromInlineCefToContent(root, from, deleteAction);
+      });
+    }
+<<<<<<< HEAD
     if (block && dom.isEmpty(block)) {
       $_a2rsin2ejd08m9qo.fillWithPaddingBr($_f4wyrxyjd08m9i5.fromDom(block));
-    }
-    selection.setRng(rng);
+=======
   };
-  var removeCaretContainer = function (body, dom, selection, node, moveCaret) {
-    if (!node) {
-      node = getParentCaretContainer(body, selection.getStart());
-      if (!node) {
-        while (node = dom.get(CARET_ID)) {
-          removeCaretContainerNode(dom, selection, node, false);
-        }
-      }
+  var read$1 = function (root, forward, rng) {
+    var normalizedRange = normalizeRange(forward ? 1 : -1, root, rng);
+    var from = CaretPosition$1.fromRangeStart(normalizedRange);
+    if (forward === false && isAfterContentEditableFalse(from)) {
+      return Option.some(DeleteAction.remove(from.getNode(true)));
+    } else if (forward && isBeforeContentEditableFalse(from)) {
+      return Option.some(DeleteAction.remove(from.getNode()));
     } else {
-      removeCaretContainerNode(dom, selection, node, moveCaret);
+      return getContentEditableAction(root, forward, from);
+>>>>>>> installer
     }
   };
+
+  var needsReposition = function (pos, elm) {
+    var container = pos.container();
+    var offset = pos.offset();
+    return CaretPosition$1.isTextPosition(pos) === false && container === elm.parentNode && offset > CaretPosition$1.before(elm).offset();
+  };
+<<<<<<< HEAD
   var insertCaretContainerNode = function (editor, caretContainer, formatNode) {
     var dom = editor.dom, block = dom.getParent(formatNode, $_fys1am25jd08m9pb.curry($_f8rk1v3gjd08m9xb.isTextBlock, editor));
     if (block && dom.isEmpty(block)) {
@@ -11859,11 +15412,15 @@
         dom.insertAfter(caretContainer, formatNode);
       }
     }
+=======
+  var reposition = function (elm, pos) {
+    return needsReposition(pos, elm) ? CaretPosition$1(pos.container(), pos.offset() - 1) : pos;
+>>>>>>> installer
   };
-  var appendNode = function (parentNode, node) {
-    parentNode.appendChild(node);
-    return node;
+  var beforeOrStartOf = function (node) {
+    return $_fj238m1qjducwnjm.isText(node) ? CaretPosition$1(node, 0) : CaretPosition$1.before(node);
   };
+<<<<<<< HEAD
   var insertFormatNodesIntoCaretContainer = function (formatNodes, caretContainer) {
     var innerMostFormatNode = $_65yphx4jd08m98n.foldr(formatNodes, function (parentNode, formatNode) {
       return appendNode(parentNode, formatNode.cloneNode(false));
@@ -11889,19 +15446,19 @@
       rng = $_etefta3ijd08m9xk.split(rng);
       editor.formatter.apply(name, vars, rng);
       selection.moveToBookmark(bookmark);
+=======
+  var afterOrEndOf = function (node) {
+    return $_fj238m1qjducwnjm.isText(node) ? CaretPosition$1(node, node.data.length) : CaretPosition$1.after(node);
+  };
+  var getPreviousSiblingCaretPosition = function (elm) {
+    if (isCaretCandidate(elm.previousSibling)) {
+      return Option.some(afterOrEndOf(elm.previousSibling));
+>>>>>>> installer
     } else {
-      if (!caretContainer || textNode.nodeValue !== ZWSP$1) {
-        caretContainer = importNode(editor.getDoc(), createCaretContainer(true).dom());
-        textNode = caretContainer.firstChild;
-        rng.insertNode(caretContainer);
-        offset = 1;
-        editor.formatter.apply(name, vars, caretContainer);
-      } else {
-        editor.formatter.apply(name, vars, caretContainer);
-      }
-      selection.setCursorLocation(textNode, offset);
+      return elm.previousSibling ? $_dq07eg2bjducwno6.lastPositionIn(elm.previousSibling) : Option.none();
     }
   };
+<<<<<<< HEAD
   var removeCaretFormat = function (editor, name, vars, similar) {
     var dom = editor.dom, selection = editor.selection;
     var container, offset, bookmark;
@@ -11938,38 +15495,22 @@
       expandedRng = $_etefta3ijd08m9xk.split(expandedRng);
       editor.formatter.remove(name, vars, expandedRng);
       selection.moveToBookmark(bookmark);
+=======
+  var getNextSiblingCaretPosition = function (elm) {
+    if (isCaretCandidate(elm.nextSibling)) {
+      return Option.some(beforeOrStartOf(elm.nextSibling));
+>>>>>>> installer
     } else {
-      caretContainer = getParentCaretContainer(editor.getBody(), formatNode);
-      var newCaretContainer = createCaretContainer(false).dom();
-      var caretNode = insertFormatNodesIntoCaretContainer(parents, newCaretContainer);
-      if (caretContainer) {
-        insertCaretContainerNode(editor, newCaretContainer, caretContainer);
-      } else {
-        insertCaretContainerNode(editor, newCaretContainer, formatNode);
-      }
-      removeCaretContainerNode(dom, selection, caretContainer, false);
-      selection.setCursorLocation(caretNode, 1);
-      if (dom.isEmpty(formatNode)) {
-        dom.remove(formatNode);
-      }
+      return elm.nextSibling ? $_dq07eg2bjducwno6.firstPositionIn(elm.nextSibling) : Option.none();
     }
   };
-  var disableCaretContainer = function (body, dom, selection, keyCode) {
-    removeCaretContainer(body, dom, selection, null, false);
-    if (keyCode === 8 && selection.isCollapsed() && selection.getStart().innerHTML === ZWSP$1) {
-      removeCaretContainer(body, dom, selection, getParentCaretContainer(body, selection.getStart()));
-    }
-    if (keyCode === 37 || keyCode === 39) {
-      removeCaretContainer(body, dom, selection, getParentCaretContainer(body, selection.getStart()));
-    }
+  var findCaretPositionBackwardsFromElm = function (rootElement, elm) {
+    var startPosition = CaretPosition$1.before(elm.previousSibling ? elm.previousSibling : elm.parentNode);
+    return $_dq07eg2bjducwno6.prevPosition(rootElement, startPosition).fold(function () {
+      return $_dq07eg2bjducwno6.nextPosition(rootElement, CaretPosition$1.after(elm));
+    }, Option.some);
   };
-  var setup = function (editor) {
-    var dom = editor.dom, selection = editor.selection;
-    var body = editor.getBody();
-    editor.on('mouseup keydown', function (e) {
-      disableCaretContainer(body, dom, selection, e.keyCode);
-    });
-  };
+<<<<<<< HEAD
   var replaceWithCaretFormat = function (targetNode, formatNodes) {
     var caretContainer = createCaretContainer(false);
     var innerMost = insertFormatNodesIntoCaretContainer(formatNodes, caretContainer.dom());
@@ -12071,10 +15612,133 @@
   };
   var getName = function (location) {
     return location.fold($_9msgtx6jd08m99c.constant('before'), $_9msgtx6jd08m99c.constant('start'), $_9msgtx6jd08m99c.constant('end'), $_9msgtx6jd08m99c.constant('after'));
+=======
+  var findCaretPositionForwardsFromElm = function (rootElement, elm) {
+    return $_dq07eg2bjducwno6.nextPosition(rootElement, CaretPosition$1.after(elm)).fold(function () {
+      return $_dq07eg2bjducwno6.prevPosition(rootElement, CaretPosition$1.before(elm));
+    }, Option.some);
   };
-  var outside = function (location) {
-    return location.fold(Location.before, Location.before, Location.after, Location.after);
+  var findCaretPositionBackwards = function (rootElement, elm) {
+    return getPreviousSiblingCaretPosition(elm).orThunk(function () {
+      return getNextSiblingCaretPosition(elm);
+    }).orThunk(function () {
+      return findCaretPositionBackwardsFromElm(rootElement, elm);
+    });
   };
+  var findCaretPositionForward = function (rootElement, elm) {
+    return getNextSiblingCaretPosition(elm).orThunk(function () {
+      return getPreviousSiblingCaretPosition(elm);
+    }).orThunk(function () {
+      return findCaretPositionForwardsFromElm(rootElement, elm);
+    });
+  };
+  var findCaretPosition$1 = function (forward, rootElement, elm) {
+    return forward ? findCaretPositionForward(rootElement, elm) : findCaretPositionBackwards(rootElement, elm);
+  };
+  var findCaretPosOutsideElmAfterDelete = function (forward, rootElement, elm) {
+    return findCaretPosition$1(forward, rootElement, elm).map($_60qu7r6jducwn73.curry(reposition, elm));
+  };
+  var setSelection = function (editor, forward, pos) {
+    pos.fold(function () {
+      editor.focus();
+    }, function (pos) {
+      editor.selection.setRng(pos.toRange(), forward);
+    });
+  };
+  var eqRawNode = function (rawNode) {
+    return function (elm) {
+      return elm.dom() === rawNode;
+    };
+  };
+  var isBlock$2 = function (editor, elm) {
+    return elm && editor.schema.getBlockElements().hasOwnProperty($_47qy15zjducwngt.name(elm));
+  };
+  var paddEmptyBlock = function (elm) {
+    if ($_baf2ia35jducwnrx.isEmpty(elm)) {
+      var br = $_5s4uzoyjducwngo.fromHtml('<br data-mce-bogus="1">');
+      $_34vweg2pjducwnq0.empty(elm);
+      $_ejmufn2ojducwnpy.append(elm, br);
+      return Option.some(CaretPosition$1.before(br.dom()));
+    } else {
+      return Option.none();
+    }
+  };
+  var deleteNormalized = function (elm, afterDeletePosOpt) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_f0qt4317jducwnhq.prevSibling(elm),
+      $_f0qt4317jducwnhq.nextSibling(elm),
+      afterDeletePosOpt
+    ], function (prev, next, afterDeletePos) {
+      var offset;
+      var prevNode = prev.dom();
+      var nextNode = next.dom();
+      if ($_fj238m1qjducwnjm.isText(prevNode) && $_fj238m1qjducwnjm.isText(nextNode)) {
+        offset = prevNode.data.length;
+        prevNode.appendData(nextNode.data);
+        $_34vweg2pjducwnq0.remove(next);
+        $_34vweg2pjducwnq0.remove(elm);
+        if (afterDeletePos.container() === nextNode) {
+          return CaretPosition$1(prevNode, offset);
+        } else {
+          return afterDeletePos;
+        }
+      } else {
+        $_34vweg2pjducwnq0.remove(elm);
+        return afterDeletePos;
+      }
+    }).orThunk(function () {
+      $_34vweg2pjducwnq0.remove(elm);
+      return afterDeletePosOpt;
+    });
+  };
+  var deleteElement = function (editor, forward, elm) {
+    var afterDeletePos = findCaretPosOutsideElmAfterDelete(forward, editor.getBody(), elm.dom());
+    var parentBlock = $_3et3di30jducwnr0.ancestor(elm, $_60qu7r6jducwn73.curry(isBlock$2, editor), eqRawNode(editor.getBody()));
+    var normalizedAfterDeletePos = deleteNormalized(elm, afterDeletePos);
+    if (editor.dom.isEmpty(editor.getBody())) {
+      editor.setContent('');
+      editor.selection.setCursorLocation();
+    } else {
+      parentBlock.bind(paddEmptyBlock).fold(function () {
+        setSelection(editor, forward, normalizedAfterDeletePos);
+      }, function (paddPos) {
+        setSelection(editor, forward, Option.some(paddPos));
+      });
+    }
+  };
+  var $_92j5pe3ejducwnta = { deleteElement: deleteElement };
+
+  var deleteElement$1 = function (editor, forward) {
+    return function (element) {
+      editor._selectionOverrides.hideFakeCaret();
+      $_92j5pe3ejducwnta.deleteElement(editor, forward, $_5s4uzoyjducwngo.fromDom(element));
+      return true;
+    };
+  };
+  var moveToElement = function (editor, forward) {
+    return function (element) {
+      var pos = forward ? CaretPosition$1.before(element) : CaretPosition$1.after(element);
+      editor.selection.setRng(pos.toRange());
+      return true;
+    };
+  };
+  var moveToPosition = function (editor) {
+    return function (pos) {
+      editor.selection.setRng(pos.toRange());
+      return true;
+    };
+  };
+  var backspaceDeleteCaret = function (editor, forward) {
+    var result = read$1(editor.getBody(), forward, editor.selection.getRng()).map(function (deleteAction) {
+      return deleteAction.fold(deleteElement$1(editor, forward), moveToElement(editor, forward), moveToPosition(editor));
+    });
+    return result.getOr(false);
+>>>>>>> installer
+  };
+  var deleteOffscreenSelection = function (rootElement) {
+    $_2dw1bj4jducwn6g.each($_47k8tx2gjducwnot.descendants(rootElement, '.mce-offscreen-selection'), $_34vweg2pjducwnq0.remove);
+  };
+<<<<<<< HEAD
   var inside = function (location) {
     return location.fold(Location.start, Location.start, Location.end, Location.end);
   };
@@ -12130,25 +15794,56 @@
     getElement: getElement,
     outside: outside,
     inside: inside
+=======
+  var backspaceDeleteRange = function (editor, forward) {
+    var selectedElement = editor.selection.getNode();
+    if ($_fj238m1qjducwnjm.isContentEditableFalse(selectedElement)) {
+      deleteOffscreenSelection($_5s4uzoyjducwngo.fromDom(editor.getBody()));
+      $_92j5pe3ejducwnta.deleteElement(editor, forward, $_5s4uzoyjducwngo.fromDom(editor.selection.getNode()));
+      $_5jcxyf2zjducwnqv.paddEmptyBody(editor);
+      return true;
+    } else {
+      return false;
+    }
+  };
+  var getContentEditableRoot = function (root, node) {
+    while (node && node !== root) {
+      if ($_fj238m1qjducwnjm.isContentEditableTrue(node) || $_fj238m1qjducwnjm.isContentEditableFalse(node)) {
+        return node;
+      }
+      node = node.parentNode;
+    }
+    return null;
+  };
+  var paddEmptyElement = function (editor) {
+    var br;
+    var ceRoot = getContentEditableRoot(editor.getBody(), editor.selection.getNode());
+    if ($_fj238m1qjducwnjm.isContentEditableTrue(ceRoot) && editor.dom.isBlock(ceRoot) && editor.dom.isEmpty(ceRoot)) {
+      br = editor.dom.create('br', { 'data-mce-bogus': '1' });
+      editor.dom.setHTML(ceRoot, '');
+      ceRoot.appendChild(br);
+      editor.selection.setRng(CaretPosition$1.before(br).toRange());
+    }
+    return true;
+  };
+  var backspaceDelete$2 = function (editor, forward) {
+    if (editor.selection.isCollapsed()) {
+      return backspaceDeleteCaret(editor, forward);
+    } else {
+      return backspaceDeleteRange(editor, forward);
+    }
+  };
+  var $_52c8ph3bjducwnsq = {
+    backspaceDelete: backspaceDelete$2,
+    paddEmptyElement: paddEmptyElement
+>>>>>>> installer
   };
 
-  var Cell = function (initial) {
-    var value = initial;
-    var get = function () {
-      return value;
-    };
-    var set = function (v) {
-      value = v;
-    };
-    var clone = function () {
-      return Cell(get());
-    };
-    return {
-      get: get,
-      set: set,
-      clone: clone
-    };
+  var isText$8 = $_fj238m1qjducwnjm.isText;
+  var startsWithCaretContainer$1 = function (node) {
+    return isText$8(node) && node.data[0] === $_fz0k4u21jducwnmu.ZWSP;
   };
+<<<<<<< HEAD
 
   var hasSelectionModifyApi = function (editor) {
     return $_erj73112jd08m9ip.isFunction(editor.selection.getSel().modify);
@@ -12168,10 +15863,36 @@
       return moveRel(true, editor.selection, pos);
     } else if (!forward && $_euzg3m20jd08m9ow.isAfterInline(pos)) {
       return moveRel(false, editor.selection, pos);
+=======
+  var endsWithCaretContainer$1 = function (node) {
+    return isText$8(node) && node.data[node.data.length - 1] === $_fz0k4u21jducwnmu.ZWSP;
+  };
+  var createZwsp = function (node) {
+    return node.ownerDocument.createTextNode($_fz0k4u21jducwnmu.ZWSP);
+  };
+  var insertBefore$1 = function (node) {
+    if (isText$8(node.previousSibling)) {
+      if (endsWithCaretContainer$1(node.previousSibling)) {
+        return node.previousSibling;
+      } else {
+        node.previousSibling.appendData($_fz0k4u21jducwnmu.ZWSP);
+        return node.previousSibling;
+      }
+    } else if (isText$8(node)) {
+      if (startsWithCaretContainer$1(node)) {
+        return node;
+      } else {
+        node.insertData(0, $_fz0k4u21jducwnmu.ZWSP);
+        return node;
+      }
+>>>>>>> installer
     } else {
-      return false;
+      var newNode = createZwsp(node);
+      node.parentNode.insertBefore(newNode, node);
+      return newNode;
     }
   };
+<<<<<<< HEAD
   var $_9au7c73mjd08m9xu = {
     hasSelectionModifyApi: hasSelectionModifyApi,
     moveByWord: moveByWord
@@ -12185,14 +15906,47 @@
   };
   var isFeatureEnabled = function (editor) {
     return editor.settings.inline_boundaries !== false;
-  };
-  var setSelected = function (state, elm) {
-    if (state) {
-      elm.setAttribute('data-mce-selected', 'inline-boundary');
+=======
+  var insertAfter$1 = function (node) {
+    if (isText$8(node.nextSibling)) {
+      if (startsWithCaretContainer$1(node.nextSibling)) {
+        return node.nextSibling;
+      } else {
+        node.nextSibling.insertData(0, $_fz0k4u21jducwnmu.ZWSP);
+        return node.nextSibling;
+      }
+    } else if (isText$8(node)) {
+      if (endsWithCaretContainer$1(node)) {
+        return node;
+      } else {
+        node.appendData($_fz0k4u21jducwnmu.ZWSP);
+        return node;
+      }
     } else {
-      elm.removeAttribute('data-mce-selected');
+      var newNode = createZwsp(node);
+      if (node.nextSibling) {
+        node.parentNode.insertBefore(newNode, node.nextSibling);
+      } else {
+        node.parentNode.appendChild(newNode);
+      }
+      return newNode;
     }
   };
+  var insertInline$1 = function (before, node) {
+    return before ? insertBefore$1(node) : insertAfter$1(node);
+>>>>>>> installer
+  };
+  var insertInlineBefore = $_60qu7r6jducwn73.curry(insertInline$1, true);
+  var insertInlineAfter = $_60qu7r6jducwn73.curry(insertInline$1, false);
+
+  var insertInlinePos = function (pos, before) {
+    if ($_fj238m1qjducwnjm.isText(pos.container())) {
+      return insertInline$1(before, pos.container());
+    } else {
+      return insertInline$1(before, pos.getNode());
+    }
+  };
+<<<<<<< HEAD
   var renderCaretLocation = function (editor, caret, location) {
     return $_ejhn3k3ajd08m9vz.renderCaret(caret, location).map(function (pos) {
       setCaretPosition(editor, pos);
@@ -12252,10 +16006,83 @@
         toggleInlines(isInlineTarget, editor.dom, e.parents);
         safeRemoveCaretContainer(editor, caret);
         renderInsideInlineCaret(isInlineTarget, editor, caret, e.parents);
-      }
-    });
-    return caret;
+=======
+  var isPosCaretContainer = function (pos, caret) {
+    var caretNode = caret.get();
+    return caretNode && pos.container() === caretNode && isCaretContainerInline(caretNode);
   };
+  var renderCaret = function (caret, location) {
+    return location.fold(function (element) {
+      $_53zrlo29jducwnnv.remove(caret.get());
+      var text = insertInlineBefore(element);
+      caret.set(text);
+      return Option.some(CaretPosition$1(text, text.length - 1));
+    }, function (element) {
+      return $_dq07eg2bjducwno6.firstPositionIn(element).map(function (pos) {
+        if (!isPosCaretContainer(pos, caret)) {
+          $_53zrlo29jducwnnv.remove(caret.get());
+          var text = insertInlinePos(pos, true);
+          caret.set(text);
+          return CaretPosition$1(text, 1);
+        } else {
+          return CaretPosition$1(caret.get(), 1);
+        }
+      });
+    }, function (element) {
+      return $_dq07eg2bjducwno6.lastPositionIn(element).map(function (pos) {
+        if (!isPosCaretContainer(pos, caret)) {
+          $_53zrlo29jducwnnv.remove(caret.get());
+          var text = insertInlinePos(pos, false);
+          caret.set(text);
+          return CaretPosition$1(text, text.length - 1);
+        } else {
+          return CaretPosition$1(caret.get(), caret.get().length - 1);
+        }
+      });
+    }, function (element) {
+      $_53zrlo29jducwnnv.remove(caret.get());
+      var text = insertInlineAfter(element);
+      caret.set(text);
+      return Option.some(CaretPosition$1(text, 1));
+    });
+  };
+  var $_ctvf7p3gjducwntr = { renderCaret: renderCaret };
+
+  var isInlineBlock = function (node) {
+    return node && /^(IMG)$/.test(node.nodeName);
+  };
+  var moveStart = function (dom, selection, rng) {
+    var container = rng.startContainer, offset = rng.startOffset, walker, node, nodes;
+    if (rng.startContainer === rng.endContainer) {
+      if (isInlineBlock(rng.startContainer.childNodes[rng.startOffset])) {
+        return;
+      }
+    }
+    if (container.nodeType === 3 && offset >= container.nodeValue.length) {
+      offset = dom.nodeIndex(container);
+      container = container.parentNode;
+    }
+    if (container.nodeType === 1) {
+      nodes = container.childNodes;
+      if (offset < nodes.length) {
+        container = nodes[offset];
+        walker = new TreeWalker(container, dom.getParent(container, dom.isBlock));
+      } else {
+        container = nodes[nodes.length - 1];
+        walker = new TreeWalker(container, dom.getParent(container, dom.isBlock));
+        walker.next(true);
+>>>>>>> installer
+      }
+      for (node = walker.current(); node; node = walker.next()) {
+        if (node.nodeType === 3 && !isWhiteSpaceNode(node)) {
+          rng.setStart(node, 0);
+          selection.setRng(rng);
+          return;
+        }
+      }
+    }
+  };
+<<<<<<< HEAD
   var $_4z7kgi3kjd08m9xo = {
     move: move,
     moveNextWord: $_9msgtx6jd08m99c.curry(moveWord, true),
@@ -12266,13 +16093,28 @@
 
   var isFeatureEnabled$1 = function (editor) {
     return editor.settings.inline_boundaries !== false;
+=======
+  var getNonWhiteSpaceSibling = function (node, next, inc) {
+    if (node) {
+      next = next ? 'nextSibling' : 'previousSibling';
+      for (node = inc ? node : node[next]; node; node = node[next]) {
+        if (node.nodeType === 1 || !isWhiteSpaceNode(node)) {
+          return node;
+        }
+      }
+    }
   };
-  var rangeFromPositions = function (from, to) {
-    var range = document.createRange();
-    range.setStart(from.container(), from.offset());
-    range.setEnd(to.container(), to.offset());
-    return range;
+  var isTextBlock$1 = function (editor, name) {
+    if (name.nodeType) {
+      name = name.nodeName;
+    }
+    return !!editor.schema.getTextBlockElements()[name.toLowerCase()];
+>>>>>>> installer
   };
+  var isValid = function (ed, parent, child) {
+    return ed.schema.isValidChild(parent, child);
+  };
+<<<<<<< HEAD
   var hasOnlyTwoOrLessPositionsLeft = function (elm) {
     return $_7gtuy32djd08m9ql.liftN([
       $_1h7nwy2pjd08m9rw.firstPositionIn(elm),
@@ -12406,31 +16248,90 @@
     ], function (startIndex, endIndex) {
       return tableSelection.cells().slice(startIndex, endIndex + 1);
     });
+=======
+  var isWhiteSpaceNode = function (node) {
+    return node && node.nodeType === 3 && /^([\t \r\n]+|)$/.test(node.nodeValue);
   };
-  var getAction = function (tableSelection) {
-    return getSelectedCells(tableSelection).bind(function (selected) {
-      var cells = tableSelection.cells();
-      return selected.length === cells.length ? deleteAction.removeTable(tableSelection.table()) : deleteAction.emptyCells(selected);
+  var replaceVars = function (value, vars) {
+    if (typeof value !== 'string') {
+      value = value(vars);
+    } else if (vars) {
+      value = value.replace(/%(\w+)/g, function (str, name) {
+        return vars[name] || str;
+      });
+    }
+    return value;
+  };
+  var isEq = function (str1, str2) {
+    str1 = str1 || '';
+    str2 = str2 || '';
+    str1 = '' + (str1.nodeName || str1);
+    str2 = '' + (str2.nodeName || str2);
+    return str1.toLowerCase() === str2.toLowerCase();
+  };
+  var normalizeStyleValue = function (dom, value, name) {
+    if (name === 'color' || name === 'backgroundColor') {
+      value = dom.toHex(value);
+    }
+    if (name === 'fontWeight' && value === 700) {
+      value = 'bold';
+    }
+    if (name === 'fontFamily') {
+      value = value.replace(/[\'\"]/g, '').replace(/,\s+/g, ',');
+    }
+    return '' + value;
+  };
+  var getStyle = function (dom, node, name) {
+    return normalizeStyleValue(dom, dom.getStyle(node, name), name);
+>>>>>>> installer
+  };
+  var getTextDecoration = function (dom, node) {
+    var decoration;
+    dom.getParent(node, function (n) {
+      decoration = dom.getStyle(n, 'text-decoration');
+      return decoration && decoration !== 'none';
     });
+    return decoration;
   };
-  var getActionFromCells = function (cells) {
-    return deleteAction.emptyCells(cells);
+  var getParents$1 = function (dom, node, selector) {
+    return dom.getParents(node, selector, dom.getRoot());
   };
-  var getActionFromRange = function (rootNode, rng) {
-    return getTableSelectionFromRng(rootNode, rng).map(getAction);
-  };
+<<<<<<< HEAD
   var $_39ux573ojd08m9y9 = {
     getActionFromRange: getActionFromRange,
     getActionFromCells: getActionFromCells
+=======
+  var $_fyc2yy3ljducwnuu = {
+    isInlineBlock: isInlineBlock,
+    moveStart: moveStart,
+    getNonWhiteSpaceSibling: getNonWhiteSpaceSibling,
+    isTextBlock: isTextBlock$1,
+    isValid: isValid,
+    isWhiteSpaceNode: isWhiteSpaceNode,
+    replaceVars: replaceVars,
+    isEq: isEq,
+    normalizeStyleValue: normalizeStyleValue,
+    getStyle: getStyle,
+    getTextDecoration: getTextDecoration,
+    getParents: getParents$1
+>>>>>>> installer
   };
 
-  var getRanges = function (selection) {
-    var ranges = [];
-    if (selection) {
-      for (var i = 0; i < selection.rangeCount; i++) {
-        ranges.push(selection.getRangeAt(i));
+  var isBookmarkNode$2 = $_dcl0u12jjducwnp0.isBookmarkNode;
+  var getParents$2 = $_fyc2yy3ljducwnuu.getParents;
+  var isWhiteSpaceNode$1 = $_fyc2yy3ljducwnuu.isWhiteSpaceNode;
+  var isTextBlock$2 = $_fyc2yy3ljducwnuu.isTextBlock;
+  var findLeaf = function (node, offset) {
+    if (typeof offset === 'undefined') {
+      offset = node.nodeType === 3 ? node.length : node.childNodes.length;
+    }
+    while (node && node.hasChildNodes()) {
+      node = node.childNodes[offset];
+      if (node) {
+        offset = node.nodeType === 3 ? node.length : node.childNodes.length;
       }
     }
+<<<<<<< HEAD
     return ranges;
   };
   var getSelectedNodes = function (ranges) {
@@ -12454,12 +16355,62 @@
   var getCellsFromElement = function (elm) {
     var selectedCells = $_80io952kjd08m9rf.descendants(elm, 'td[data-mce-selected],th[data-mce-selected]');
     return selectedCells;
+=======
+    return {
+      node: node,
+      offset: offset
+    };
   };
-  var getCellsFromElementOrRanges = function (ranges, element) {
-    var selectedCells = getCellsFromElement(element);
-    var rangeCells = getCellsFromRanges(ranges);
-    return selectedCells.length > 0 ? selectedCells : rangeCells;
+  var excludeTrailingWhitespace = function (endContainer, endOffset) {
+    var leaf = findLeaf(endContainer, endOffset);
+    if (leaf.node) {
+      while (leaf.node && leaf.offset === 0 && leaf.node.previousSibling) {
+        leaf = findLeaf(leaf.node.previousSibling);
+      }
+      if (leaf.node && leaf.offset > 0 && leaf.node.nodeType === 3 && leaf.node.nodeValue.charAt(leaf.offset - 1) === ' ') {
+        if (leaf.offset > 1) {
+          endContainer = leaf.node;
+          endContainer.splitText(leaf.offset - 1);
+        }
+      }
+    }
+    return endContainer;
   };
+  var isBogusBr = function (node) {
+    return node.nodeName === 'BR' && node.getAttribute('data-mce-bogus') && !node.nextSibling;
+  };
+  var findParentContentEditable = function (dom, node) {
+    var parent = node;
+    while (parent) {
+      if (parent.nodeType === 1 && dom.getContentEditable(parent)) {
+        return dom.getContentEditable(parent) === 'false' ? parent : node;
+      }
+      parent = parent.parentNode;
+    }
+    return node;
+>>>>>>> installer
+  };
+  var findSpace = function (start, remove, node, offset) {
+    var pos, pos2;
+    var str = node.nodeValue;
+    if (typeof offset === 'undefined') {
+      offset = start ? str.length : 0;
+    }
+    if (start) {
+      pos = str.lastIndexOf(' ', offset);
+      pos2 = str.lastIndexOf('\xA0', offset);
+      pos = pos > pos2 ? pos : pos2;
+      if (pos !== -1 && !remove) {
+        pos++;
+      }
+    } else {
+      pos = str.indexOf(' ', offset);
+      pos2 = str.indexOf('\xA0', offset);
+      pos = pos !== -1 && (pos2 === -1 || pos < pos2) ? pos : pos2;
+    }
+    return pos;
+  };
+<<<<<<< HEAD
   var getCellsFromEditor = function (editor) {
     return getCellsFromElementOrRanges($_wywyz3qjd08m9yn.getRanges(editor.selection.getSel()), $_f4wyrxyjd08m9i5.fromDom(editor.getBody()));
   };
@@ -12613,9 +16564,65 @@
     while (node && node !== rootNode) {
       if (predicate(node)) {
         return node;
+=======
+  var findWordEndPoint = function (dom, body, container, offset, start, remove) {
+    var walker, node, pos, lastTextNode;
+    if (container.nodeType === 3) {
+      pos = findSpace(start, remove, container, offset);
+      if (pos !== -1) {
+        return {
+          container: container,
+          offset: pos
+        };
       }
-      node = node.parentNode;
+      lastTextNode = container;
     }
+    walker = new TreeWalker(container, dom.getParent(container, dom.isBlock) || body);
+    while (node = walker[start ? 'prev' : 'next']()) {
+      if (node.nodeType === 3) {
+        lastTextNode = node;
+        pos = findSpace(start, remove, node);
+        if (pos !== -1) {
+          return {
+            container: node,
+            offset: pos
+          };
+        }
+      } else if (dom.isBlock(node)) {
+        break;
+      }
+    }
+    if (lastTextNode) {
+      if (start) {
+        offset = 0;
+      } else {
+        offset = lastTextNode.length;
+      }
+      return {
+        container: lastTextNode,
+        offset: offset
+      };
+    }
+  };
+  var findSelectorEndPoint = function (dom, format, rng, container, siblingName) {
+    var parents, i, y, curFormat;
+    if (container.nodeType === 3 && container.nodeValue.length === 0 && container[siblingName]) {
+      container = container[siblingName];
+    }
+    parents = getParents$2(dom, container);
+    for (i = 0; i < parents.length; i++) {
+      for (y = 0; y < format.length; y++) {
+        curFormat = format[y];
+        if ('collapsed' in curFormat && curFormat.collapsed !== rng.collapsed) {
+          continue;
+        }
+        if (dom.is(parents[i], curFormat.selector)) {
+          return parents[i];
+        }
+>>>>>>> installer
+      }
+    }
+<<<<<<< HEAD
     return null;
   };
   var hasParent = function (node, rootNode, predicate) {
@@ -12650,11 +16657,38 @@
     while (node && node !== body) {
       if ($_2qai0u1qjd08m9l9.isContentEditableFalse(node)) {
         return true;
-      }
-      node = node.parentNode;
-    }
-    return false;
+=======
+    return container;
   };
+  var findBlockEndPoint = function (editor, format, container, siblingName) {
+    var node;
+    var dom = editor.dom;
+    var root = dom.getRoot();
+    if (!format[0].wrapper) {
+      node = dom.getParent(container, format[0].block, root);
+    }
+    if (!node) {
+      var scopeRoot = dom.getParent(container, 'LI,TD,TH');
+      node = dom.getParent(container.nodeType === 3 ? container.parentNode : container, function (node) {
+        return node !== root && isTextBlock$2(editor, node);
+      }, scopeRoot);
+    }
+    if (node && format[0].wrapper) {
+      node = getParents$2(dom, node, 'ul,ol').reverse()[0] || node;
+    }
+    if (!node) {
+      node = container;
+      while (node[siblingName] && !dom.isBlock(node[siblingName])) {
+        node = node[siblingName];
+        if ($_fyc2yy3ljducwnuu.isEq(node, 'br')) {
+          break;
+        }
+>>>>>>> installer
+      }
+    }
+    return node || container;
+  };
+<<<<<<< HEAD
   var findTextNodeRelative = function (dom, isAfterNode, collapsed, left, startNode) {
     var walker, lastInlineElement, parentBlockContainer;
     var body = dom.getRoot();
@@ -12751,9 +16785,82 @@
               break;
             }
           } while (node = directionLeft ? walker.next() : walker.prev());
-        }
+=======
+  var findParentContainer = function (dom, format, startContainer, startOffset, endContainer, endOffset, start) {
+    var container, parent, sibling, siblingName, root;
+    container = parent = start ? startContainer : endContainer;
+    siblingName = start ? 'previousSibling' : 'nextSibling';
+    root = dom.getRoot();
+    if (container.nodeType === 3 && !isWhiteSpaceNode$1(container)) {
+      if (start ? startOffset > 0 : endOffset < container.nodeValue.length) {
+        return container;
       }
     }
+    while (true) {
+      if (!format[0].block_expand && dom.isBlock(parent)) {
+        return parent;
+      }
+      for (sibling = parent[siblingName]; sibling; sibling = sibling[siblingName]) {
+        if (!isBookmarkNode$2(sibling) && !isWhiteSpaceNode$1(sibling) && !isBogusBr(sibling)) {
+          return parent;
+        }
+      }
+      if (parent === root || parent.parentNode === root) {
+        container = parent;
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return container;
+  };
+  var expandRng = function (editor, rng, format, remove) {
+    var endPoint, startContainer = rng.startContainer, startOffset = rng.startOffset, endContainer = rng.endContainer, endOffset = rng.endOffset;
+    var dom = editor.dom;
+    if (startContainer.nodeType === 1 && startContainer.hasChildNodes()) {
+      startContainer = getNode(startContainer, startOffset);
+      if (startContainer.nodeType === 3) {
+        startOffset = 0;
+      }
+    }
+    if (endContainer.nodeType === 1 && endContainer.hasChildNodes()) {
+      endContainer = getNode(endContainer, rng.collapsed ? endOffset : endOffset - 1);
+      if (endContainer.nodeType === 3) {
+        endOffset = endContainer.nodeValue.length;
+      }
+    }
+    startContainer = findParentContentEditable(dom, startContainer);
+    endContainer = findParentContentEditable(dom, endContainer);
+    if (isBookmarkNode$2(startContainer.parentNode) || isBookmarkNode$2(startContainer)) {
+      startContainer = isBookmarkNode$2(startContainer) ? startContainer : startContainer.parentNode;
+      startContainer = startContainer.nextSibling || startContainer;
+      if (startContainer.nodeType === 3) {
+        startOffset = 0;
+      }
+    }
+    if (isBookmarkNode$2(endContainer.parentNode) || isBookmarkNode$2(endContainer)) {
+      endContainer = isBookmarkNode$2(endContainer) ? endContainer : endContainer.parentNode;
+      endContainer = endContainer.previousSibling || endContainer;
+      if (endContainer.nodeType === 3) {
+        endOffset = endContainer.length;
+      }
+    }
+    if (format[0].inline) {
+      if (rng.collapsed) {
+        endPoint = findWordEndPoint(dom, editor.getBody(), startContainer, startOffset, true, remove);
+        if (endPoint) {
+          startContainer = endPoint.container;
+          startOffset = endPoint.offset;
+        }
+        endPoint = findWordEndPoint(dom, editor.getBody(), endContainer, endOffset, false, remove);
+        if (endPoint) {
+          endContainer = endPoint.container;
+          endOffset = endPoint.offset;
+>>>>>>> installer
+        }
+      }
+      endContainer = remove ? endContainer : excludeTrailingWhitespace(endContainer, endOffset);
+    }
+<<<<<<< HEAD
     if (collapsed) {
       if ($_2qai0u1qjd08m9l9.isText(container) && offset === 0) {
         findTextNodeRelative(dom, isAfterNode, collapsed, true, container).each(function (pos) {
@@ -12794,41 +16901,92 @@
       normalizeEndPoint(dom, collapsed, false, normRng).each(function (pos) {
         normRng.setEnd(pos.container(), pos.offset());
       });
+=======
+    if (format[0].inline || format[0].block_expand) {
+      if (!format[0].inline || (startContainer.nodeType !== 3 || startOffset === 0)) {
+        startContainer = findParentContainer(dom, format, startContainer, startOffset, endContainer, endOffset, true);
+      }
+      if (!format[0].inline || (endContainer.nodeType !== 3 || endOffset === endContainer.nodeValue.length)) {
+        endContainer = findParentContainer(dom, format, startContainer, startOffset, endContainer, endOffset, false);
+      }
     }
-    if (collapsed) {
-      normRng.collapse(true);
+    if (format[0].selector && format[0].expand !== false && !format[0].inline) {
+      startContainer = findSelectorEndPoint(dom, format, rng, startContainer, 'previousSibling');
+      endContainer = findSelectorEndPoint(dom, format, rng, endContainer, 'nextSibling');
     }
+    if (format[0].block || format[0].selector) {
+      startContainer = findBlockEndPoint(editor, format, startContainer, 'previousSibling');
+      endContainer = findBlockEndPoint(editor, format, endContainer, 'nextSibling');
+      if (format[0].block) {
+        if (!dom.isBlock(startContainer)) {
+          startContainer = findParentContainer(dom, format, startContainer, startOffset, endContainer, endOffset, true);
+        }
+        if (!dom.isBlock(endContainer)) {
+          endContainer = findParentContainer(dom, format, startContainer, startOffset, endContainer, endOffset, false);
+        }
+      }
+    }
+    if (startContainer.nodeType === 1) {
+      startOffset = dom.nodeIndex(startContainer);
+      startContainer = startContainer.parentNode;
+>>>>>>> installer
+    }
+    if (endContainer.nodeType === 1) {
+      endOffset = dom.nodeIndex(endContainer) + 1;
+      endContainer = endContainer.parentNode;
+    }
+<<<<<<< HEAD
     return $_gfrjn03tjd08m9z7.isEq(rng, normRng) ? $_zhkqu5jd08m996.none() : $_zhkqu5jd08m996.some(normRng);
   };
   var $_6dxv9l3sjd08m9yz = { normalize: normalize$1 };
+=======
+    return {
+      startContainer: startContainer,
+      startOffset: startOffset,
+      endContainer: endContainer,
+      endOffset: endOffset
+    };
+  };
+  var $_ceajqh3kjducwnui = { expandRng: expandRng };
+>>>>>>> installer
 
-  var hasRightSideContent = function (schema, container, parentBlock) {
-    var walker = new TreeWalker(container, parentBlock);
-    var node;
-    var nonEmptyElementsMap = schema.getNonEmptyElements();
-    while (node = walker.next()) {
-      if (nonEmptyElementsMap[node.nodeName.toLowerCase()] || node.length > 0) {
-        return true;
+  var isEq$1 = $_fyc2yy3ljducwnuu.isEq;
+  var matchesUnInheritedFormatSelector = function (ed, node, name) {
+    var formatList = ed.formatter.get(name);
+    if (formatList) {
+      for (var i = 0; i < formatList.length; i++) {
+        if (formatList[i].inherit === false && ed.dom.is(node, formatList[i].selector)) {
+          return true;
+        }
       }
     }
+    return false;
   };
-  var scrollToBr = function (dom, selection, brElm) {
-    var marker = dom.create('span', {}, '&nbsp;');
-    brElm.parentNode.insertBefore(marker, brElm);
-    selection.scrollIntoView(marker);
-    dom.remove(marker);
-  };
-  var moveSelectionToBr = function (dom, selection, brElm, extraBr) {
-    var rng = dom.createRng();
-    if (!extraBr) {
-      rng.setStartAfter(brElm);
-      rng.setEndAfter(brElm);
-    } else {
-      rng.setStartBefore(brElm);
-      rng.setEndBefore(brElm);
+  var matchParents = function (editor, node, name, vars) {
+    var root = editor.dom.getRoot();
+    if (node === root) {
+      return false;
     }
-    selection.setRng(rng);
+    node = editor.dom.getParent(node, function (node) {
+      if (matchesUnInheritedFormatSelector(editor, node, name)) {
+        return true;
+      }
+      return node.parentNode === root || !!matchNode(editor, node, name, vars, true);
+    });
+    return matchNode(editor, node, name, vars);
   };
+  var matchName = function (dom, node, format) {
+    if (isEq$1(node, format.inline)) {
+      return true;
+    }
+    if (isEq$1(node, format.block)) {
+      return true;
+    }
+    if (format.selector) {
+      return node.nodeType === 1 && dom.is(node, format.selector);
+    }
+  };
+<<<<<<< HEAD
   var insertBrAtCaret = function (editor, evt) {
     var selection = editor.selection, dom = editor.dom;
     var brElm, extraBr;
@@ -12844,26 +17002,62 @@
       container = container.childNodes[Math.min(offset, container.childNodes.length - 1)] || container;
       if (isAfterLastNodeInContainer && container.nodeType === 3) {
         offset = container.nodeValue.length;
+=======
+  var matchItems = function (dom, node, format, itemName, similar, vars) {
+    var key, value;
+    var items = format[itemName];
+    var i;
+    if (format.onmatch) {
+      return format.onmatch(node, format, itemName);
+    }
+    if (items) {
+      if (typeof items.length === 'undefined') {
+        for (key in items) {
+          if (items.hasOwnProperty(key)) {
+            if (itemName === 'attributes') {
+              value = dom.getAttrib(node, key);
+            } else {
+              value = $_fyc2yy3ljducwnuu.getStyle(dom, node, key);
+            }
+            if (similar && !value && !format.exact) {
+              return;
+            }
+            if ((!similar || format.exact) && !isEq$1(value, $_fyc2yy3ljducwnuu.normalizeStyleValue(dom, $_fyc2yy3ljducwnuu.replaceVars(items[key], vars), key))) {
+              return;
+            }
+          }
+        }
+>>>>>>> installer
       } else {
-        offset = 0;
+        for (i = 0; i < items.length; i++) {
+          if (itemName === 'attributes' ? dom.getAttrib(node, items[i]) : $_fyc2yy3ljducwnuu.getStyle(dom, node, items[i])) {
+            return format;
+          }
+        }
       }
     }
-    var parentBlock = dom.getParent(container, dom.isBlock);
-    var containerBlock = parentBlock ? dom.getParent(parentBlock.parentNode, dom.isBlock) : null;
-    var containerBlockName = containerBlock ? containerBlock.nodeName.toUpperCase() : '';
-    var isControlKey = evt && evt.ctrlKey;
-    if (containerBlockName === 'LI' && !isControlKey) {
-      parentBlock = containerBlock;
-    }
-    if (container && container.nodeType === 3 && offset >= container.nodeValue.length) {
-      if (!hasRightSideContent(editor.schema, container, parentBlock)) {
-        brElm = dom.create('br');
-        rng.insertNode(brElm);
-        rng.setStartAfter(brElm);
-        rng.setEndAfter(brElm);
-        extraBr = true;
+    return format;
+  };
+  var matchNode = function (ed, node, name, vars, similar) {
+    var formatList = ed.formatter.get(name);
+    var format, i, x, classes;
+    var dom = ed.dom;
+    if (formatList && node) {
+      for (i = 0; i < formatList.length; i++) {
+        format = formatList[i];
+        if (matchName(ed.dom, node, format) && matchItems(dom, node, format, 'attributes', similar, vars) && matchItems(dom, node, format, 'styles', similar, vars)) {
+          if (classes = format.classes) {
+            for (x = 0; x < classes.length; x++) {
+              if (!ed.dom.hasClass(node, classes[x])) {
+                return;
+              }
+            }
+          }
+          return format;
+        }
       }
     }
+<<<<<<< HEAD
     brElm = dom.create('br');
     rng.insertNode(brElm);
     scrollToBr(dom, selection, brElm);
@@ -12917,8 +17111,27 @@
       anchorLocation.each($_9msgtx6jd08m99c.curry(insertBrOutsideAnchor, editor));
     } else {
       insertBrAtCaret(editor, evt);
-    }
+=======
   };
+  var match = function (editor, name, vars, node) {
+    var startNode;
+    if (node) {
+      return matchParents(editor, node, name, vars);
+    }
+    node = editor.selection.getNode();
+    if (matchParents(editor, node, name, vars)) {
+      return true;
+    }
+    startNode = editor.selection.getStart();
+    if (startNode !== node) {
+      if (matchParents(editor, startNode, name, vars)) {
+        return true;
+      }
+>>>>>>> installer
+    }
+    return false;
+  };
+<<<<<<< HEAD
   var $_8kltr13rjd08m9yr = { insert: insert };
 
   var adt = $_ac27t37jd08m9vf.generate([
@@ -12990,8 +17203,93 @@
     exactFromRange: exactFromRange,
     range: range$1,
     getWin: getWin
+=======
+  var matchAll = function (editor, names, vars) {
+    var startElement;
+    var matchedFormatNames = [];
+    var checkedMap = {};
+    startElement = editor.selection.getStart();
+    editor.dom.getParent(startElement, function (node) {
+      var i, name;
+      for (i = 0; i < names.length; i++) {
+        name = names[i];
+        if (!checkedMap[name] && matchNode(editor, node, name, vars)) {
+          checkedMap[name] = true;
+          matchedFormatNames.push(name);
+        }
+      }
+    }, editor.dom.getRoot());
+    return matchedFormatNames;
+  };
+  var canApply = function (editor, name) {
+    var formatList = editor.formatter.get(name);
+    var startNode, parents, i, x, selector;
+    var dom = editor.dom;
+    if (formatList) {
+      startNode = editor.selection.getStart();
+      parents = $_fyc2yy3ljducwnuu.getParents(dom, startNode);
+      for (x = formatList.length - 1; x >= 0; x--) {
+        selector = formatList[x].selector;
+        if (!selector || formatList[x].defaultBlock) {
+          return true;
+        }
+        for (i = parents.length - 1; i >= 0; i--) {
+          if (dom.is(parents[i], selector)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+  var $_4os6t23mjducwnv0 = {
+    matchNode: matchNode,
+    matchName: matchName,
+    match: match,
+    matchAll: matchAll,
+    canApply: canApply,
+    matchesUnInheritedFormatSelector: matchesUnInheritedFormatSelector
   };
 
+  var splitText = function (node, offset) {
+    return node.splitText(offset);
+  };
+  var split$1 = function (rng) {
+    var startContainer = rng.startContainer, startOffset = rng.startOffset, endContainer = rng.endContainer, endOffset = rng.endOffset;
+    if (startContainer === endContainer && $_fj238m1qjducwnjm.isText(startContainer)) {
+      if (startOffset > 0 && startOffset < startContainer.nodeValue.length) {
+        endContainer = splitText(startContainer, startOffset);
+        startContainer = endContainer.previousSibling;
+        if (endOffset > startOffset) {
+          endOffset = endOffset - startOffset;
+          startContainer = endContainer = splitText(endContainer, endOffset).previousSibling;
+          endOffset = endContainer.nodeValue.length;
+          startOffset = 0;
+        } else {
+          endOffset = 0;
+        }
+      }
+    } else {
+      if ($_fj238m1qjducwnjm.isText(startContainer) && startOffset > 0 && startOffset < startContainer.nodeValue.length) {
+        startContainer = splitText(startContainer, startOffset);
+        startOffset = 0;
+      }
+      if ($_fj238m1qjducwnjm.isText(endContainer) && endOffset > 0 && endOffset < endContainer.nodeValue.length) {
+        endContainer = splitText(endContainer, endOffset).previousSibling;
+        endOffset = endContainer.nodeValue.length;
+      }
+    }
+    return {
+      startContainer: startContainer,
+      startOffset: startOffset,
+      endContainer: endContainer,
+      endOffset: endOffset
+    };
+>>>>>>> installer
+  };
+  var $_9e24g13njducwnv4 = { split: split$1 };
+
+<<<<<<< HEAD
   var browser$2 = $_min5rmjd08m9gu.detect().browser;
   var clamp = function (offset, element) {
     var max = $_d4s1fbzjd08m9ia.isText(element) ? $_bk9b42ijd08m9r6.get(element).length : $_8xk2kp17jd08m9j8.children(element).length + 1;
@@ -13007,15 +17305,45 @@
   };
   var isOrContains = function (root, elm) {
     return $_9gmgw51djd08m9k0.contains(root, elm) || $_9gmgw51djd08m9k0.eq(root, elm);
+=======
+  var ZWSP$1 = $_fz0k4u21jducwnmu.ZWSP;
+  var CARET_ID = '_mce_caret';
+  var importNode = function (ownerDocument, node) {
+    return ownerDocument.importNode(node, true);
   };
-  var isRngInRoot = function (root) {
-    return function (rng) {
-      return isOrContains(root, rng.start()) && isOrContains(root, rng.finish());
-    };
+  var isCaretNode = function (node) {
+    return node.nodeType === 1 && node.id === CARET_ID;
   };
-  var shouldStore = function (editor) {
-    return editor.inline === true || browser$2.isIE();
+  var getEmptyCaretContainers = function (node) {
+    var nodes = [];
+    while (node) {
+      if (node.nodeType === 3 && node.nodeValue !== ZWSP$1 || node.childNodes.length > 1) {
+        return [];
+      }
+      if (node.nodeType === 1) {
+        nodes.push(node);
+      }
+      node = node.firstChild;
+    }
+    return nodes;
+>>>>>>> installer
   };
+  var isCaretContainerEmpty = function (node) {
+    return getEmptyCaretContainers(node).length > 0;
+  };
+  var findFirstTextNode = function (node) {
+    var walker;
+    if (node) {
+      walker = new TreeWalker(node, node);
+      for (node = walker.current(); node; node = walker.next()) {
+        if (node.nodeType === 3) {
+          return node;
+        }
+      }
+    }
+    return null;
+  };
+<<<<<<< HEAD
   var nativeRangeToSelectionRange = function (r) {
     return $_28gvbd3vjd08m9zk.range($_f4wyrxyjd08m9i5.fromDom(r.startContainer), r.startOffset, $_f4wyrxyjd08m9i5.fromDom(r.endContainer), r.endOffset);
   };
@@ -13148,79 +17476,370 @@
           value: value
         });
         return true;
+=======
+  var createCaretContainer = function (fill) {
+    var caretContainer = $_5s4uzoyjducwngo.fromTag('span');
+    $_60196814jducwnhd.setAll(caretContainer, {
+      'id': CARET_ID,
+      'data-mce-bogus': '1',
+      'data-mce-type': 'format-caret'
+    });
+    if (fill) {
+      $_ejmufn2ojducwnpy.append(caretContainer, $_5s4uzoyjducwngo.fromText(ZWSP$1));
+    }
+    return caretContainer;
+  };
+  var getParentCaretContainer = function (body, node) {
+    while (node && node !== body) {
+      if (node.id === CARET_ID) {
+        return node;
       }
-      return false;
-    };
-    var queryCommandState = function (command) {
-      var func;
-      if (editor.quirks.isHidden() || editor.removed) {
-        return;
+      node = node.parentNode;
+    }
+    return null;
+  };
+  var trimZwspFromCaretContainer = function (caretContainerNode) {
+    var textNode = findFirstTextNode(caretContainerNode);
+    if (textNode && textNode.nodeValue.charAt(0) === ZWSP$1) {
+      textNode.deleteData(0, 1);
+    }
+    return textNode;
+  };
+  var removeCaretContainerNode = function (dom, selection, node, moveCaret) {
+    var rng, block, textNode;
+    rng = selection.getRng(true);
+    block = dom.getParent(node, dom.isBlock);
+    if (isCaretContainerEmpty(node)) {
+      if (moveCaret !== false) {
+        rng.setStartBefore(node);
+        rng.setEndBefore(node);
       }
-      command = command.toLowerCase();
-      if (func = commands.state[command]) {
-        return func(command);
+      dom.remove(node);
+    } else {
+      textNode = trimZwspFromCaretContainer(node);
+      if (rng.startContainer === textNode && rng.startOffset > 0) {
+        rng.setStart(textNode, rng.startOffset - 1);
       }
-      try {
-        return editor.getDoc().queryCommandState(command);
-      } catch (ex) {
+      if (rng.endContainer === textNode && rng.endOffset > 0) {
+        rng.setEnd(textNode, rng.endOffset - 1);
       }
-      return false;
-    };
-    var queryCommandValue = function (command) {
-      var func;
-      if (editor.quirks.isHidden() || editor.removed) {
-        return;
+      dom.remove(node, true);
+    }
+    if (block && dom.isEmpty(block)) {
+      $_7sfvvk2njducwnpo.fillWithPaddingBr($_5s4uzoyjducwngo.fromDom(block));
+    }
+    selection.setRng(rng);
+  };
+  var removeCaretContainer = function (body, dom, selection, node, moveCaret) {
+    if (!node) {
+      node = getParentCaretContainer(body, selection.getStart());
+      if (!node) {
+        while (node = dom.get(CARET_ID)) {
+          removeCaretContainerNode(dom, selection, node, false);
+        }
       }
-      command = command.toLowerCase();
-      if (func = commands.value[command]) {
-        return func(command);
+    } else {
+      removeCaretContainerNode(dom, selection, node, moveCaret);
+    }
+  };
+  var insertCaretContainerNode = function (editor, caretContainer, formatNode) {
+    var dom = editor.dom, block = dom.getParent(formatNode, $_6183wb25jducwnn2.curry($_fyc2yy3ljducwnuu.isTextBlock, editor));
+    if (block && dom.isEmpty(block)) {
+      formatNode.parentNode.replaceChild(caretContainer, formatNode);
+    } else {
+      $_7sfvvk2njducwnpo.removeTrailingBr($_5s4uzoyjducwngo.fromDom(formatNode));
+      if (dom.isEmpty(formatNode)) {
+        formatNode.parentNode.replaceChild(caretContainer, formatNode);
+      } else {
+        dom.insertAfter(caretContainer, formatNode);
       }
-      try {
-        return editor.getDoc().queryCommandValue(command);
-      } catch (ex) {
+    }
+  };
+  var appendNode = function (parentNode, node) {
+    parentNode.appendChild(node);
+    return node;
+  };
+  var insertFormatNodesIntoCaretContainer = function (formatNodes, caretContainer) {
+    var innerMostFormatNode = $_2dw1bj4jducwn6g.foldr(formatNodes, function (parentNode, formatNode) {
+      return appendNode(parentNode, formatNode.cloneNode(false));
+    }, caretContainer);
+    return appendNode(innerMostFormatNode, innerMostFormatNode.ownerDocument.createTextNode(ZWSP$1));
+  };
+  var applyCaretFormat = function (editor, name, vars) {
+    var rng, caretContainer, textNode, offset, bookmark, container, text;
+    var selection = editor.selection;
+    rng = selection.getRng(true);
+    offset = rng.startOffset;
+    container = rng.startContainer;
+    text = container.nodeValue;
+    caretContainer = getParentCaretContainer(editor.getBody(), selection.getStart());
+    if (caretContainer) {
+      textNode = findFirstTextNode(caretContainer);
+    }
+    var wordcharRegex = /[^\s\u00a0\u00ad\u200b\ufeff]/;
+    if (text && offset > 0 && offset < text.length && wordcharRegex.test(text.charAt(offset)) && wordcharRegex.test(text.charAt(offset - 1))) {
+      bookmark = selection.getBookmark();
+      rng.collapse(true);
+      rng = $_ceajqh3kjducwnui.expandRng(editor, rng, editor.formatter.get(name));
+      rng = $_9e24g13njducwnv4.split(rng);
+      editor.formatter.apply(name, vars, rng);
+      selection.moveToBookmark(bookmark);
+    } else {
+      if (!caretContainer || textNode.nodeValue !== ZWSP$1) {
+        caretContainer = importNode(editor.getDoc(), createCaretContainer(true).dom());
+        textNode = caretContainer.firstChild;
+        rng.insertNode(caretContainer);
+        offset = 1;
+        editor.formatter.apply(name, vars, caretContainer);
+      } else {
+        editor.formatter.apply(name, vars, caretContainer);
+>>>>>>> installer
       }
-    };
-    var addCommands = function (commandList, type) {
-      type = type || 'exec';
-      each$9(commandList, function (callback, command) {
-        each$9(command.toLowerCase().split(','), function (command) {
-          commands[type][command] = callback;
-        });
+      selection.setCursorLocation(textNode, offset);
+    }
+  };
+  var removeCaretFormat = function (editor, name, vars, similar) {
+    var dom = editor.dom, selection = editor.selection;
+    var container, offset, bookmark;
+    var hasContentAfter, node, formatNode;
+    var parents = [], rng = selection.getRng();
+    var caretContainer;
+    container = rng.startContainer;
+    offset = rng.startOffset;
+    node = container;
+    if (container.nodeType === 3) {
+      if (offset !== container.nodeValue.length) {
+        hasContentAfter = true;
+      }
+      node = node.parentNode;
+    }
+    while (node) {
+      if ($_4os6t23mjducwnv0.matchNode(editor, node, name, vars, similar)) {
+        formatNode = node;
+        break;
+      }
+      if (node.nextSibling) {
+        hasContentAfter = true;
+      }
+      parents.push(node);
+      node = node.parentNode;
+    }
+    if (!formatNode) {
+      return;
+    }
+    if (hasContentAfter) {
+      bookmark = selection.getBookmark();
+      rng.collapse(true);
+      var expandedRng = $_ceajqh3kjducwnui.expandRng(editor, rng, editor.formatter.get(name), true);
+      expandedRng = $_9e24g13njducwnv4.split(expandedRng);
+      editor.formatter.remove(name, vars, expandedRng);
+      selection.moveToBookmark(bookmark);
+    } else {
+      caretContainer = getParentCaretContainer(editor.getBody(), formatNode);
+      var newCaretContainer = createCaretContainer(false).dom();
+      var caretNode = insertFormatNodesIntoCaretContainer(parents, newCaretContainer);
+      if (caretContainer) {
+        insertCaretContainerNode(editor, newCaretContainer, caretContainer);
+      } else {
+        insertCaretContainerNode(editor, newCaretContainer, formatNode);
+      }
+      removeCaretContainerNode(dom, selection, caretContainer, false);
+      selection.setCursorLocation(caretNode, 1);
+      if (dom.isEmpty(formatNode)) {
+        dom.remove(formatNode);
+      }
+    }
+  };
+  var disableCaretContainer = function (body, dom, selection, keyCode) {
+    removeCaretContainer(body, dom, selection, null, false);
+    if (keyCode === 8 && selection.isCollapsed() && selection.getStart().innerHTML === ZWSP$1) {
+      removeCaretContainer(body, dom, selection, getParentCaretContainer(body, selection.getStart()));
+    }
+    if (keyCode === 37 || keyCode === 39) {
+      removeCaretContainer(body, dom, selection, getParentCaretContainer(body, selection.getStart()));
+    }
+  };
+  var setup = function (editor) {
+    var dom = editor.dom, selection = editor.selection;
+    var body = editor.getBody();
+    editor.on('mouseup keydown', function (e) {
+      disableCaretContainer(body, dom, selection, e.keyCode);
+    });
+  };
+  var replaceWithCaretFormat = function (targetNode, formatNodes) {
+    var caretContainer = createCaretContainer(false);
+    var innerMost = insertFormatNodesIntoCaretContainer(formatNodes, caretContainer.dom());
+    $_ejmufn2ojducwnpy.before($_5s4uzoyjducwngo.fromDom(targetNode), caretContainer);
+    $_34vweg2pjducwnq0.remove($_5s4uzoyjducwngo.fromDom(targetNode));
+    return CaretPosition$1(innerMost, 0);
+  };
+  var isFormatElement = function (editor, element) {
+    var inlineElements = editor.schema.getTextInlineElements();
+    return inlineElements.hasOwnProperty($_47qy15zjducwngt.name(element)) && !isCaretNode(element.dom()) && !$_fj238m1qjducwnjm.isBogus(element.dom());
+  };
+  var $_gizh813jjducwnu6 = {
+    setup: setup,
+    applyCaretFormat: applyCaretFormat,
+    removeCaretFormat: removeCaretFormat,
+    isCaretNode: isCaretNode,
+    getParentCaretContainer: getParentCaretContainer,
+    replaceWithCaretFormat: replaceWithCaretFormat,
+    isFormatElement: isFormatElement
+  };
+
+  var evaluateUntil = function (fns, args) {
+    for (var i = 0; i < fns.length; i++) {
+      var result = fns[i].apply(null, args);
+      if (result.isSome()) {
+        return result;
+      }
+    }
+    return Option.none();
+  };
+  var $_fx53xj3ojducwnv6 = { evaluateUntil: evaluateUntil };
+
+  var Location = $_elh5kq3djducwnt6.generate([
+    { before: ['element'] },
+    { start: ['element'] },
+    { end: ['element'] },
+    { after: ['element'] }
+  ]);
+  var rescope = function (rootNode, node) {
+    var parentBlock = getParentBlock(node, rootNode);
+    return parentBlock ? parentBlock : rootNode;
+  };
+  var before$3 = function (isInlineTarget, rootNode, pos) {
+    var nPos = $_4m240x32jducwnrf.normalizeForwards(pos);
+    var scope = rescope(rootNode, nPos.container());
+    return $_4m240x32jducwnrf.findRootInline(isInlineTarget, scope, nPos).fold(function () {
+      return $_dq07eg2bjducwno6.nextPosition(scope, nPos).bind($_60qu7r6jducwn73.curry($_4m240x32jducwnrf.findRootInline, isInlineTarget, scope)).map(function (inline) {
+        return Location.before(inline);
       });
-    };
-    var addCommand = function (command, callback, scope) {
-      command = command.toLowerCase();
-      commands.exec[command] = function (command, ui, value, args) {
-        return callback.call(scope || editor, ui, value, args);
-      };
-    };
-    var queryCommandSupported = function (command) {
-      command = command.toLowerCase();
-      if (commands.exec[command]) {
-        return true;
+    }, Option.none);
+  };
+  var isNotInsideFormatCaretContainer = function (rootNode, elm) {
+    return $_gizh813jjducwnu6.getParentCaretContainer(rootNode, elm) === null;
+  };
+  var findInsideRootInline = function (isInlineTarget, rootNode, pos) {
+    return $_4m240x32jducwnrf.findRootInline(isInlineTarget, rootNode, pos).filter($_60qu7r6jducwn73.curry(isNotInsideFormatCaretContainer, rootNode));
+  };
+  var start = function (isInlineTarget, rootNode, pos) {
+    var nPos = $_4m240x32jducwnrf.normalizeBackwards(pos);
+    return findInsideRootInline(isInlineTarget, rootNode, nPos).bind(function (inline) {
+      var prevPos = $_dq07eg2bjducwno6.prevPosition(inline, nPos);
+      return prevPos.isNone() ? Option.some(Location.start(inline)) : Option.none();
+    });
+  };
+  var end = function (isInlineTarget, rootNode, pos) {
+    var nPos = $_4m240x32jducwnrf.normalizeForwards(pos);
+    return findInsideRootInline(isInlineTarget, rootNode, nPos).bind(function (inline) {
+      var nextPos = $_dq07eg2bjducwno6.nextPosition(inline, nPos);
+      return nextPos.isNone() ? Option.some(Location.end(inline)) : Option.none();
+    });
+  };
+  var after$3 = function (isInlineTarget, rootNode, pos) {
+    var nPos = $_4m240x32jducwnrf.normalizeBackwards(pos);
+    var scope = rescope(rootNode, nPos.container());
+    return $_4m240x32jducwnrf.findRootInline(isInlineTarget, scope, nPos).fold(function () {
+      return $_dq07eg2bjducwno6.prevPosition(scope, nPos).bind($_60qu7r6jducwn73.curry($_4m240x32jducwnrf.findRootInline, isInlineTarget, scope)).map(function (inline) {
+        return Location.after(inline);
+      });
+    }, Option.none);
+  };
+  var isValidLocation = function (location) {
+    return $_4m240x32jducwnrf.isRtl(getElement(location)) === false;
+  };
+  var readLocation = function (isInlineTarget, rootNode, pos) {
+    var location = $_fx53xj3ojducwnv6.evaluateUntil([
+      before$3,
+      start,
+      end,
+      after$3
+    ], [
+      isInlineTarget,
+      rootNode,
+      pos
+    ]);
+    return location.filter(isValidLocation);
+  };
+  var getElement = function (location) {
+    return location.fold($_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity);
+  };
+  var getName = function (location) {
+    return location.fold($_60qu7r6jducwn73.constant('before'), $_60qu7r6jducwn73.constant('start'), $_60qu7r6jducwn73.constant('end'), $_60qu7r6jducwn73.constant('after'));
+  };
+  var outside = function (location) {
+    return location.fold(Location.before, Location.before, Location.after, Location.after);
+  };
+  var inside = function (location) {
+    return location.fold(Location.start, Location.start, Location.end, Location.end);
+  };
+  var isEq$2 = function (location1, location2) {
+    return getName(location1) === getName(location2) && getElement(location1) === getElement(location2);
+  };
+  var betweenInlines = function (forward, isInlineTarget, rootNode, from, to, location) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_4m240x32jducwnrf.findRootInline(isInlineTarget, rootNode, from),
+      $_4m240x32jducwnrf.findRootInline(isInlineTarget, rootNode, to)
+    ], function (fromInline, toInline) {
+      if (fromInline !== toInline && $_4m240x32jducwnrf.hasSameParentBlock(rootNode, fromInline, toInline)) {
+        return Location.after(forward ? fromInline : toInline);
+      } else {
+        return location;
       }
-      try {
-        return editor.getDoc().queryCommandSupported(command);
-      } catch (ex) {
-      }
-      return false;
+    }).getOr(location);
+  };
+  var skipNoMovement = function (fromLocation, toLocation) {
+    return fromLocation.fold($_60qu7r6jducwn73.constant(true), function (fromLocation) {
+      return !isEq$2(fromLocation, toLocation);
+    });
+  };
+  var findLocationTraverse = function (forward, isInlineTarget, rootNode, fromLocation, pos) {
+    var from = $_4m240x32jducwnrf.normalizePosition(forward, pos);
+    var to = $_dq07eg2bjducwno6.fromPosition(forward, rootNode, from).map($_60qu7r6jducwn73.curry($_4m240x32jducwnrf.normalizePosition, forward));
+    var location = to.fold(function () {
+      return fromLocation.map(outside);
+    }, function (to) {
+      return readLocation(isInlineTarget, rootNode, to).map($_60qu7r6jducwn73.curry(betweenInlines, forward, isInlineTarget, rootNode, from, to)).filter($_60qu7r6jducwn73.curry(skipNoMovement, fromLocation));
+    });
+    return location.filter(isValidLocation);
+  };
+  var findLocationSimple = function (forward, location) {
+    if (forward) {
+      return location.fold($_60qu7r6jducwn73.compose(Option.some, Location.start), Option.none, $_60qu7r6jducwn73.compose(Option.some, Location.after), Option.none);
+    } else {
+      return location.fold(Option.none, $_60qu7r6jducwn73.compose(Option.some, Location.before), Option.none, $_60qu7r6jducwn73.compose(Option.some, Location.end));
+    }
+  };
+  var findLocation = function (forward, isInlineTarget, rootNode, pos) {
+    var from = $_4m240x32jducwnrf.normalizePosition(forward, pos);
+    var fromLocation = readLocation(isInlineTarget, rootNode, from);
+    return readLocation(isInlineTarget, rootNode, from).bind($_60qu7r6jducwn73.curry(findLocationSimple, forward)).orThunk(function () {
+      return findLocationTraverse(forward, isInlineTarget, rootNode, fromLocation, pos);
+    });
+  };
+  var $_681q3b3ijducwnty = {
+    readLocation: readLocation,
+    findLocation: findLocation,
+    prevLocation: $_60qu7r6jducwn73.curry(findLocation, false),
+    nextLocation: $_60qu7r6jducwn73.curry(findLocation, true),
+    getElement: getElement,
+    outside: outside,
+    inside: inside
+  };
+
+  var Cell = function (initial) {
+    var value = initial;
+    var get = function () {
+      return value;
     };
-    var addQueryStateHandler = function (command, callback, scope) {
-      command = command.toLowerCase();
-      commands.state[command] = function () {
-        return callback.call(scope || editor);
-      };
+    var set = function (v) {
+      value = v;
     };
-    var addQueryValueHandler = function (command, callback, scope) {
-      command = command.toLowerCase();
-      commands.value[command] = function () {
-        return callback.call(scope || editor);
-      };
+    var clone = function () {
+      return Cell(get());
     };
-    var hasCustomCommand = function (command) {
-      command = command.toLowerCase();
-      return !!commands.exec[command];
-    };
+<<<<<<< HEAD
     extend$2(this, {
       execCommand: execCommand,
       queryCommandState: queryCommandState,
@@ -13231,29 +17850,158 @@
       addQueryStateHandler: addQueryStateHandler,
       addQueryValueHandler: addQueryValueHandler,
       hasCustomCommand: hasCustomCommand
+=======
+    return {
+      get: get,
+      set: set,
+      clone: clone
+    };
+  };
+
+  var hasSelectionModifyApi = function (editor) {
+    return $_c7y6af12jducwnh8.isFunction(editor.selection.getSel().modify);
+  };
+  var moveRel = function (forward, selection, pos) {
+    var delta = forward ? 1 : -1;
+    selection.setRng(CaretPosition$1(pos.container(), pos.offset() + delta).toRange());
+    selection.getSel().modify('move', forward ? 'forward' : 'backward', 'word');
+    return true;
+  };
+  var moveByWord = function (forward, editor) {
+    var rng = editor.selection.getRng();
+    var pos = forward ? CaretPosition$1.fromRangeEnd(rng) : CaretPosition$1.fromRangeStart(rng);
+    if (!hasSelectionModifyApi(editor)) {
+      return false;
+    } else if (forward && isBeforeInline(pos)) {
+      return moveRel(true, editor.selection, pos);
+    } else if (!forward && isAfterInline(pos)) {
+      return moveRel(false, editor.selection, pos);
+    } else {
+      return false;
+    }
+  };
+  var $_cifmuh3rjducwnve = {
+    hasSelectionModifyApi: hasSelectionModifyApi,
+    moveByWord: moveByWord
+  };
+
+  var setCaretPosition = function (editor, pos) {
+    var rng = editor.dom.createRng();
+    rng.setStart(pos.container(), pos.offset());
+    rng.setEnd(pos.container(), pos.offset());
+    editor.selection.setRng(rng);
+  };
+  var isFeatureEnabled = function (editor) {
+    return editor.settings.inline_boundaries !== false;
+  };
+  var setSelected = function (state, elm) {
+    if (state) {
+      elm.setAttribute('data-mce-selected', 'inline-boundary');
+    } else {
+      elm.removeAttribute('data-mce-selected');
+    }
+  };
+  var renderCaretLocation = function (editor, caret, location) {
+    return $_ctvf7p3gjducwntr.renderCaret(caret, location).map(function (pos) {
+      setCaretPosition(editor, pos);
+      return location;
+>>>>>>> installer
     });
-    var execNativeCommand = function (command, ui, value) {
-      if (ui === undefined) {
-        ui = FALSE;
+  };
+  var findLocation$1 = function (editor, caret, forward) {
+    var rootNode = editor.getBody();
+    var from = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    var location = $_681q3b3ijducwnty.findLocation(forward, isInlineTarget, rootNode, from);
+    return location.bind(function (location) {
+      return renderCaretLocation(editor, caret, location);
+    });
+  };
+  var toggleInlines = function (isInlineTarget, dom, elms) {
+    var selectedInlines = $_2dw1bj4jducwn6g.filter(dom.select('*[data-mce-selected="inline-boundary"]'), isInlineTarget);
+    var targetInlines = $_2dw1bj4jducwn6g.filter(elms, isInlineTarget);
+    $_2dw1bj4jducwn6g.each($_2dw1bj4jducwn6g.difference(selectedInlines, targetInlines), $_60qu7r6jducwn73.curry(setSelected, false));
+    $_2dw1bj4jducwn6g.each($_2dw1bj4jducwn6g.difference(targetInlines, selectedInlines), $_60qu7r6jducwn73.curry(setSelected, true));
+  };
+  var safeRemoveCaretContainer = function (editor, caret) {
+    if (editor.selection.isCollapsed() && editor.composing !== true && caret.get()) {
+      var pos = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+      if (CaretPosition$1.isTextPosition(pos) && $_4m240x32jducwnrf.isAtZwsp(pos) === false) {
+        setCaretPosition(editor, $_53zrlo29jducwnnv.removeAndReposition(caret.get(), pos));
+        caret.set(null);
       }
-      if (value === undefined) {
-        value = null;
+    }
+  };
+  var renderInsideInlineCaret = function (isInlineTarget, editor, caret, elms) {
+    if (editor.selection.isCollapsed()) {
+      var inlines = $_2dw1bj4jducwn6g.filter(elms, isInlineTarget);
+      $_2dw1bj4jducwn6g.each(inlines, function (inline) {
+        var pos = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+        $_681q3b3ijducwnty.readLocation(isInlineTarget, editor.getBody(), pos).bind(function (location) {
+          return renderCaretLocation(editor, caret, location);
+        });
+      });
+    }
+  };
+  var move = function (editor, caret, forward) {
+    return function () {
+      return isFeatureEnabled(editor) ? findLocation$1(editor, caret, forward).isSome() : false;
+    };
+  };
+  var moveWord = function (forward, editor, caret) {
+    return function () {
+      return isFeatureEnabled(editor) ? $_cifmuh3rjducwnve.moveByWord(forward, editor) : false;
+    };
+  };
+  var setupSelectedState = function (editor) {
+    var caret = new Cell(null);
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    editor.on('NodeChange', function (e) {
+      if (isFeatureEnabled(editor)) {
+        toggleInlines(isInlineTarget, editor.dom, e.parents);
+        safeRemoveCaretContainer(editor, caret);
+        renderInsideInlineCaret(isInlineTarget, editor, caret, e.parents);
       }
-      return editor.getDoc().execCommand(command, ui, value);
+    });
+    return caret;
+  };
+  var $_41ufni3pjducwnv8 = {
+    move: move,
+    moveNextWord: $_60qu7r6jducwn73.curry(moveWord, true),
+    movePrevWord: $_60qu7r6jducwn73.curry(moveWord, false),
+    setupSelectedState: setupSelectedState,
+    setCaretPosition: setCaretPosition
+  };
+
+  var isFeatureEnabled$1 = function (editor) {
+    return editor.settings.inline_boundaries !== false;
+  };
+  var rangeFromPositions = function (from, to) {
+    var range = document.createRange();
+    range.setStart(from.container(), from.offset());
+    range.setEnd(to.container(), to.offset());
+    return range;
+  };
+  var hasOnlyTwoOrLessPositionsLeft = function (elm) {
+    return $_87ppqy2ejducwnol.liftN([
+      $_dq07eg2bjducwno6.firstPositionIn(elm),
+      $_dq07eg2bjducwno6.lastPositionIn(elm)
+    ], function (firstPos, lastPos) {
+      var normalizedFirstPos = $_4m240x32jducwnrf.normalizePosition(true, firstPos);
+      var normalizedLastPos = $_4m240x32jducwnrf.normalizePosition(false, lastPos);
+      return $_dq07eg2bjducwno6.nextPosition(elm, normalizedFirstPos).map(function (pos) {
+        return pos.isEqual(normalizedLastPos);
+      }).getOr(true);
+    }).getOr(true);
+  };
+  var setCaretLocation = function (editor, caret) {
+    return function (location) {
+      return $_ctvf7p3gjducwntr.renderCaret(caret, location).map(function (pos) {
+        $_41ufni3pjducwnv8.setCaretPosition(editor, pos);
+        return true;
+      }).getOr(false);
     };
-    var isFormatMatch = function (name) {
-      return formatter.match(name);
-    };
-    var toggleFormat = function (name, value) {
-      formatter.toggle(name, value ? { value: value } : undefined);
-      editor.nodeChanged();
-    };
-    var storeSelection = function (type) {
-      bookmark = selection.getBookmark(type);
-    };
-    var restoreSelection = function () {
-      selection.moveToBookmark(bookmark);
-    };
+<<<<<<< HEAD
     addCommands({
       'mceResetDesignMode,mceBeginUndoLevel': function () {
       },
@@ -13332,41 +18080,47 @@
           fontClasses = explode$2(settings.font_size_classes);
           if (fontClasses) {
             value = fontClasses[value - 1] || value;
+=======
+  };
+  var deleteFromTo = function (editor, caret, from, to) {
+    var rootNode = editor.getBody();
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    editor.undoManager.ignore(function () {
+      editor.selection.setRng(rangeFromPositions(from, to));
+      editor.execCommand('Delete');
+      $_681q3b3ijducwnty.readLocation(isInlineTarget, rootNode, CaretPosition$1.fromRangeStart(editor.selection.getRng())).map($_681q3b3ijducwnty.inside).map(setCaretLocation(editor, caret));
+    });
+    editor.nodeChanged();
+  };
+  var rescope$1 = function (rootNode, node) {
+    var parentBlock = getParentBlock(node, rootNode);
+    return parentBlock ? parentBlock : rootNode;
+  };
+  var backspaceDeleteCollapsed = function (editor, caret, forward, from) {
+    var rootNode = rescope$1(editor.getBody(), from.container());
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    var fromLocation = $_681q3b3ijducwnty.readLocation(isInlineTarget, rootNode, from);
+    return fromLocation.bind(function (location) {
+      if (forward) {
+        return location.fold($_60qu7r6jducwn73.constant(Option.some($_681q3b3ijducwnty.inside(location))), Option.none, $_60qu7r6jducwn73.constant(Option.some($_681q3b3ijducwnty.outside(location))), Option.none);
+      } else {
+        return location.fold(Option.none, $_60qu7r6jducwn73.constant(Option.some($_681q3b3ijducwnty.outside(location))), Option.none, $_60qu7r6jducwn73.constant(Option.some($_681q3b3ijducwnty.inside(location))));
+      }
+    }).map(setCaretLocation(editor, caret)).getOrThunk(function () {
+      var toPosition = $_dq07eg2bjducwno6.navigate(forward, rootNode, from);
+      var toLocation = toPosition.bind(function (pos) {
+        return $_681q3b3ijducwnty.readLocation(isInlineTarget, rootNode, pos);
+      });
+      if (fromLocation.isSome() && toLocation.isSome()) {
+        return $_4m240x32jducwnrf.findRootInline(isInlineTarget, rootNode, from).map(function (elm) {
+          if (hasOnlyTwoOrLessPositionsLeft(elm)) {
+            $_92j5pe3ejducwnta.deleteElement(editor, forward, $_5s4uzoyjducwngo.fromDom(elm));
+            return true;
+>>>>>>> installer
           } else {
-            value = fontSizes[value - 1] || value;
+            return false;
           }
-        }
-        toggleFormat(command, value);
-      },
-      'RemoveFormat': function (command) {
-        formatter.remove(command);
-      },
-      'mceBlockQuote': function () {
-        toggleFormat('blockquote');
-      },
-      'FormatBlock': function (command, ui, value) {
-        return toggleFormat(value || 'p');
-      },
-      'mceCleanup': function () {
-        var bookmark = selection.getBookmark();
-        editor.setContent(editor.getContent({ cleanup: TRUE }), { cleanup: TRUE });
-        selection.moveToBookmark(bookmark);
-      },
-      'mceRemoveNode': function (command, ui, value) {
-        var node = value || selection.getNode();
-        if (node !== editor.getBody()) {
-          storeSelection();
-          editor.dom.remove(node, TRUE);
-          restoreSelection();
-        }
-      },
-      'mceSelectNodeDepth': function (command, ui, value) {
-        var counter = 0;
-        dom.getParent(selection.getNode(), function (node) {
-          if (node.nodeType === 1 && counter++ === value) {
-            selection.select(node);
-            return FALSE;
-          }
+<<<<<<< HEAD
         }, editor.getBody());
       },
       'mceSelectNode': function (command, ui, value) {
@@ -13411,8 +18165,20 @@
                 value = parseInt(element.style[indentStyleName] || 0, 10) + intentValue + indentUnit;
                 dom.setStyle(element, indentStyleName, value);
               }
+=======
+        }).getOr(false);
+      } else {
+        return toLocation.bind(function (_) {
+          return toPosition.map(function (to) {
+            if (forward) {
+              deleteFromTo(editor, caret, from, to);
+            } else {
+              deleteFromTo(editor, caret, to, from);
+>>>>>>> installer
             }
+            return true;
           });
+<<<<<<< HEAD
         } else {
           execNativeCommand(command);
         }
@@ -13463,60 +18229,849 @@
       'InsertLineBreak': function (command, ui, value) {
         $_8kltr13rjd08m9yr.insert(editor, value);
         return true;
+=======
+        }).getOr(false);
+>>>>>>> installer
       }
     });
-    addCommands({
-      'JustifyLeft,JustifyCenter,JustifyRight,JustifyFull': function (command) {
-        var name = 'align' + command.substring(7);
-        var nodes = selection.isCollapsed() ? [dom.getParent(selection.getNode(), dom.isBlock)] : selection.getSelectedBlocks();
-        var matches = map$2(nodes, function (node) {
-          return !!formatter.matchNode(node, name);
+  };
+  var backspaceDelete$3 = function (editor, caret, forward) {
+    if (editor.selection.isCollapsed() && isFeatureEnabled$1(editor)) {
+      var from = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+      return backspaceDeleteCollapsed(editor, caret, forward, from);
+    }
+    return false;
+  };
+  var $_a4ivlq3fjducwntl = { backspaceDelete: backspaceDelete$3 };
+
+  var tableCellRng = $_295afp18jducwni4.immutable('start', 'end');
+  var tableSelection = $_295afp18jducwni4.immutable('rng', 'table', 'cells');
+  var deleteAction = $_elh5kq3djducwnt6.generate([
+    { removeTable: ['element'] },
+    { emptyCells: ['cells'] }
+  ]);
+  var getClosestCell$1 = function (container, isRoot) {
+    return $_eh73s937jducwns3.closest($_5s4uzoyjducwngo.fromDom(container), 'td,th', isRoot);
+  };
+  var getClosestTable = function (cell, isRoot) {
+    return $_eh73s937jducwns3.ancestor(cell, 'table', isRoot);
+  };
+  var isExpandedCellRng = function (cellRng) {
+    return $_4qdq5m1djducwnie.eq(cellRng.start(), cellRng.end()) === false;
+  };
+  var getTableFromCellRng = function (cellRng, isRoot) {
+    return getClosestTable(cellRng.start(), isRoot).bind(function (startParentTable) {
+      return getClosestTable(cellRng.end(), isRoot).bind(function (endParentTable) {
+        return $_4qdq5m1djducwnie.eq(startParentTable, endParentTable) ? Option.some(startParentTable) : Option.none();
+      });
+    });
+  };
+  var getCellRng = function (rng, isRoot) {
+    return $_87ppqy2ejducwnol.liftN([
+      getClosestCell$1(rng.startContainer, isRoot),
+      getClosestCell$1(rng.endContainer, isRoot)
+    ], tableCellRng).filter(isExpandedCellRng);
+  };
+  var getTableSelectionFromCellRng = function (cellRng, isRoot) {
+    return getTableFromCellRng(cellRng, isRoot).bind(function (table) {
+      var cells = $_47k8tx2gjducwnot.descendants(table, 'td,th');
+      return tableSelection(cellRng, table, cells);
+    });
+  };
+  var getTableSelectionFromRng = function (rootNode, rng) {
+    var isRoot = $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, rootNode);
+    return getCellRng(rng, isRoot).map(function (cellRng) {
+      return getTableSelectionFromCellRng(cellRng, isRoot);
+    });
+  };
+  var getCellIndex = function (cellArray, cell) {
+    return $_2dw1bj4jducwn6g.findIndex(cellArray, function (x) {
+      return $_4qdq5m1djducwnie.eq(x, cell);
+    });
+  };
+  var getSelectedCells = function (tableSelection) {
+    return $_87ppqy2ejducwnol.liftN([
+      getCellIndex(tableSelection.cells(), tableSelection.rng().start()),
+      getCellIndex(tableSelection.cells(), tableSelection.rng().end())
+    ], function (startIndex, endIndex) {
+      return tableSelection.cells().slice(startIndex, endIndex + 1);
+    });
+  };
+  var getAction = function (tableSelection) {
+    return getSelectedCells(tableSelection).bind(function (selected) {
+      var cells = tableSelection.cells();
+      return selected.length === cells.length ? deleteAction.removeTable(tableSelection.table()) : deleteAction.emptyCells(selected);
+    });
+  };
+  var getActionFromCells = function (cells) {
+    return deleteAction.emptyCells(cells);
+  };
+  var getActionFromRange = function (rootNode, rng) {
+    return getTableSelectionFromRng(rootNode, rng).map(getAction);
+  };
+  var $_cwch063tjducwnvp = {
+    getActionFromRange: getActionFromRange,
+    getActionFromCells: getActionFromCells
+  };
+
+  var getRanges = function (selection) {
+    var ranges = [];
+    if (selection) {
+      for (var i = 0; i < selection.rangeCount; i++) {
+        ranges.push(selection.getRangeAt(i));
+      }
+    }
+    return ranges;
+  };
+  var getSelectedNodes = function (ranges) {
+    return $_2dw1bj4jducwn6g.bind(ranges, function (range) {
+      var node = getSelectedNode(range);
+      return node ? [$_5s4uzoyjducwngo.fromDom(node)] : [];
+    });
+  };
+  var hasMultipleRanges = function (selection) {
+    return getRanges(selection).length > 1;
+  };
+  var $_bqfspz3vjducwnw3 = {
+    getRanges: getRanges,
+    getSelectedNodes: getSelectedNodes,
+    hasMultipleRanges: hasMultipleRanges
+  };
+
+  var getCellsFromRanges = function (ranges) {
+    return $_2dw1bj4jducwn6g.filter($_bqfspz3vjducwnw3.getSelectedNodes(ranges), isTableCell);
+  };
+  var getCellsFromElement = function (elm) {
+    var selectedCells = $_47k8tx2gjducwnot.descendants(elm, 'td[data-mce-selected],th[data-mce-selected]');
+    return selectedCells;
+  };
+  var getCellsFromElementOrRanges = function (ranges, element) {
+    var selectedCells = getCellsFromElement(element);
+    var rangeCells = getCellsFromRanges(ranges);
+    return selectedCells.length > 0 ? selectedCells : rangeCells;
+  };
+  var getCellsFromEditor = function (editor) {
+    return getCellsFromElementOrRanges($_bqfspz3vjducwnw3.getRanges(editor.selection.getSel()), $_5s4uzoyjducwngo.fromDom(editor.getBody()));
+  };
+  var $_7ksohe3ujducwnvz = {
+    getCellsFromRanges: getCellsFromRanges,
+    getCellsFromElement: getCellsFromElement,
+    getCellsFromElementOrRanges: getCellsFromElementOrRanges,
+    getCellsFromEditor: getCellsFromEditor
+  };
+
+  var emptyCells = function (editor, cells) {
+    $_2dw1bj4jducwn6g.each(cells, $_7sfvvk2njducwnpo.fillWithPaddingBr);
+    editor.selection.setCursorLocation(cells[0].dom(), 0);
+    return true;
+  };
+  var deleteTableElement = function (editor, table) {
+    $_92j5pe3ejducwnta.deleteElement(editor, false, table);
+    return true;
+  };
+  var deleteCellRange = function (editor, rootElm, rng) {
+    return $_cwch063tjducwnvp.getActionFromRange(rootElm, rng).map(function (action) {
+      return action.fold($_60qu7r6jducwn73.curry(deleteTableElement, editor), $_60qu7r6jducwn73.curry(emptyCells, editor));
+    });
+  };
+  var deleteCaptionRange = function (editor, caption) {
+    return emptyElement(editor, caption);
+  };
+  var deleteTableRange = function (editor, rootElm, rng, startElm) {
+    return getParentCaption(rootElm, startElm).fold(function () {
+      return deleteCellRange(editor, rootElm, rng);
+    }, function (caption) {
+      return deleteCaptionRange(editor, caption);
+    }).getOr(false);
+  };
+  var deleteRange$1 = function (editor, startElm) {
+    var rootNode = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    var rng = editor.selection.getRng();
+    var selectedCells = $_7ksohe3ujducwnvz.getCellsFromEditor(editor);
+    return selectedCells.length !== 0 ? emptyCells(editor, selectedCells) : deleteTableRange(editor, rootNode, rng, startElm);
+  };
+  var getParentCell = function (rootElm, elm) {
+    return $_2dw1bj4jducwn6g.find($_b22jto39jducwnsg.parentsAndSelf(elm, rootElm), isTableCell);
+  };
+  var getParentCaption = function (rootElm, elm) {
+    return $_2dw1bj4jducwn6g.find($_b22jto39jducwnsg.parentsAndSelf(elm, rootElm), function (elm) {
+      return $_47qy15zjducwngt.name(elm) === 'caption';
+    });
+  };
+  var deleteBetweenCells = function (editor, rootElm, forward, fromCell, from) {
+    return $_dq07eg2bjducwno6.navigate(forward, editor.getBody(), from).bind(function (to) {
+      return getParentCell(rootElm, $_5s4uzoyjducwngo.fromDom(to.getNode())).map(function (toCell) {
+        return $_4qdq5m1djducwnie.eq(toCell, fromCell) === false;
+      });
+    });
+  };
+  var emptyElement = function (editor, elm) {
+    $_7sfvvk2njducwnpo.fillWithPaddingBr(elm);
+    editor.selection.setCursorLocation(elm.dom(), 0);
+    return Option.some(true);
+  };
+  var isDeleteOfLastCharPos = function (fromCaption, forward, from, to) {
+    return $_dq07eg2bjducwno6.firstPositionIn(fromCaption.dom()).bind(function (first) {
+      return $_dq07eg2bjducwno6.lastPositionIn(fromCaption.dom()).map(function (last) {
+        return forward ? from.isEqual(first) && to.isEqual(last) : from.isEqual(last) && to.isEqual(first);
+      });
+    }).getOr(true);
+  };
+  var emptyCaretCaption = function (editor, elm) {
+    return emptyElement(editor, elm);
+  };
+  var validateCaretCaption = function (rootElm, fromCaption, to) {
+    return getParentCaption(rootElm, $_5s4uzoyjducwngo.fromDom(to.getNode())).map(function (toCaption) {
+      return $_4qdq5m1djducwnie.eq(toCaption, fromCaption) === false;
+    });
+  };
+  var deleteCaretInsideCaption = function (editor, rootElm, forward, fromCaption, from) {
+    return $_dq07eg2bjducwno6.navigate(forward, editor.getBody(), from).bind(function (to) {
+      return isDeleteOfLastCharPos(fromCaption, forward, from, to) ? emptyCaretCaption(editor, fromCaption) : validateCaretCaption(rootElm, fromCaption, to);
+    }).or(Option.some(true));
+  };
+  var deleteCaretCells = function (editor, forward, rootElm, startElm) {
+    var from = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+    return getParentCell(rootElm, startElm).bind(function (fromCell) {
+      return $_baf2ia35jducwnrx.isEmpty(fromCell) ? emptyElement(editor, fromCell) : deleteBetweenCells(editor, rootElm, forward, fromCell, from);
+    });
+  };
+  var deleteCaretCaption = function (editor, forward, rootElm, fromCaption) {
+    var from = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+    return $_baf2ia35jducwnrx.isEmpty(fromCaption) ? emptyElement(editor, fromCaption) : deleteCaretInsideCaption(editor, rootElm, forward, fromCaption, from);
+  };
+  var deleteCaret = function (editor, forward, startElm) {
+    var rootElm = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    return getParentCaption(rootElm, startElm).fold(function () {
+      return deleteCaretCells(editor, forward, rootElm, startElm);
+    }, function (fromCaption) {
+      return deleteCaretCaption(editor, forward, rootElm, fromCaption);
+    }).getOr(false);
+  };
+  var backspaceDelete$4 = function (editor, forward) {
+    var startElm = $_5s4uzoyjducwngo.fromDom(editor.selection.getStart(true));
+    return editor.selection.isCollapsed() ? deleteCaret(editor, forward, startElm) : deleteRange$1(editor, startElm);
+  };
+  var $_fo6mx3sjducwnvh = { backspaceDelete: backspaceDelete$4 };
+
+  var nativeCommand = function (editor, command) {
+    editor.getDoc().execCommand(command, false, null);
+  };
+  var deleteCommand = function (editor) {
+    if ($_52c8ph3bjducwnsq.backspaceDelete(editor, false)) {
+      return;
+    } else if ($_a4ivlq3fjducwntl.backspaceDelete(editor, false)) {
+      return;
+    } else if ($_d0w5iz2xjducwnqm.backspaceDelete(editor, false)) {
+      return;
+    } else if ($_fo6mx3sjducwnvh.backspaceDelete(editor)) {
+      return;
+    } else if ($_3kdgsv3ajducwnsk.backspaceDelete(editor, false)) {
+      return;
+    } else {
+      nativeCommand(editor, 'Delete');
+      $_5jcxyf2zjducwnqv.paddEmptyBody(editor);
+    }
+  };
+  var forwardDeleteCommand = function (editor) {
+    if ($_52c8ph3bjducwnsq.backspaceDelete(editor, true)) {
+      return;
+    } else if ($_a4ivlq3fjducwntl.backspaceDelete(editor, true)) {
+      return;
+    } else if ($_d0w5iz2xjducwnqm.backspaceDelete(editor, true)) {
+      return;
+    } else if ($_fo6mx3sjducwnvh.backspaceDelete(editor)) {
+      return;
+    } else if ($_3kdgsv3ajducwnsk.backspaceDelete(editor, true)) {
+      return;
+    } else {
+      nativeCommand(editor, 'ForwardDelete');
+    }
+  };
+  var $_3jaaze2wjducwnqk = {
+    deleteCommand: deleteCommand,
+    forwardDeleteCommand: forwardDeleteCommand
+  };
+
+  var isEq$3 = function (rng1, rng2) {
+    return rng1 && rng2 && (rng1.startContainer === rng2.startContainer && rng1.startOffset === rng2.startOffset) && (rng1.endContainer === rng2.endContainer && rng1.endOffset === rng2.endOffset);
+  };
+  var $_18bpcb3yjducwnzh = { isEq: isEq$3 };
+
+  var position = $_295afp18jducwni4.immutable('container', 'offset');
+  var findParent = function (node, rootNode, predicate) {
+    while (node && node !== rootNode) {
+      if (predicate(node)) {
+        return node;
+      }
+      node = node.parentNode;
+    }
+    return null;
+  };
+  var hasParent = function (node, rootNode, predicate) {
+    return findParent(node, rootNode, predicate) !== null;
+  };
+  var hasParentWithName = function (node, rootNode, name) {
+    return hasParent(node, rootNode, function (node) {
+      return node.nodeName === name;
+    });
+  };
+  var isTable$2 = function (node) {
+    return node && node.nodeName === 'TABLE';
+  };
+  var isTableCell$3 = function (node) {
+    return node && /^(TD|TH|CAPTION)$/.test(node.nodeName);
+  };
+  var isCeFalseCaretContainer = function (node, rootNode) {
+    return isCaretContainer(node) && hasParent(node, rootNode, $_gizh813jjducwnu6.isCaretNode) === false;
+  };
+  var hasBrBeforeAfter = function (dom, node, left) {
+    var walker = new TreeWalker(node, dom.getParent(node.parentNode, dom.isBlock) || dom.getRoot());
+    while (node = walker[left ? 'prev' : 'next']()) {
+      if ($_fj238m1qjducwnjm.isBr(node)) {
+        return true;
+      }
+    }
+  };
+  var isPrevNode = function (node, name) {
+    return node.previousSibling && node.previousSibling.nodeName === name;
+  };
+  var hasContentEditableFalseParent = function (body, node) {
+    while (node && node !== body) {
+      if ($_fj238m1qjducwnjm.isContentEditableFalse(node)) {
+        return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  };
+  var findTextNodeRelative = function (dom, isAfterNode, collapsed, left, startNode) {
+    var walker, lastInlineElement, parentBlockContainer;
+    var body = dom.getRoot();
+    var node;
+    var nonEmptyElementsMap = dom.schema.getNonEmptyElements();
+    parentBlockContainer = dom.getParent(startNode.parentNode, dom.isBlock) || body;
+    if (left && $_fj238m1qjducwnjm.isBr(startNode) && isAfterNode && dom.isEmpty(parentBlockContainer)) {
+      return Option.some(position(startNode.parentNode, dom.nodeIndex(startNode)));
+    }
+    walker = new TreeWalker(startNode, parentBlockContainer);
+    while (node = walker[left ? 'prev' : 'next']()) {
+      if (dom.getContentEditableParent(node) === 'false' || isCeFalseCaretContainer(node, body)) {
+        return Option.none();
+      }
+      if ($_fj238m1qjducwnjm.isText(node) && node.nodeValue.length > 0) {
+        if (hasParentWithName(node, body, 'A') === false) {
+          return Option.some(position(node, left ? node.nodeValue.length : 0));
+        }
+        return Option.none();
+      }
+      if (dom.isBlock(node) || nonEmptyElementsMap[node.nodeName.toLowerCase()]) {
+        return Option.none();
+      }
+      lastInlineElement = node;
+    }
+    if (collapsed && lastInlineElement) {
+      return Option.some(position(lastInlineElement, 0));
+    }
+    return Option.none();
+  };
+  var normalizeEndPoint = function (dom, collapsed, start, rng) {
+    var container, offset, walker;
+    var body = dom.getRoot();
+    var node, nonEmptyElementsMap;
+    var directionLeft, isAfterNode, normalized = false;
+    container = rng[(start ? 'start' : 'end') + 'Container'];
+    offset = rng[(start ? 'start' : 'end') + 'Offset'];
+    isAfterNode = $_fj238m1qjducwnjm.isElement(container) && offset === container.childNodes.length;
+    nonEmptyElementsMap = dom.schema.getNonEmptyElements();
+    directionLeft = start;
+    if (isCaretContainer(container)) {
+      return Option.none();
+    }
+    if ($_fj238m1qjducwnjm.isElement(container) && offset > container.childNodes.length - 1) {
+      directionLeft = false;
+    }
+    if ($_fj238m1qjducwnjm.isDocument(container)) {
+      container = body;
+      offset = 0;
+    }
+    if (container === body) {
+      if (directionLeft) {
+        node = container.childNodes[offset > 0 ? offset - 1 : 0];
+        if (node) {
+          if (isCaretContainer(node)) {
+            return Option.none();
+          }
+          if (nonEmptyElementsMap[node.nodeName] || isTable$2(node)) {
+            return Option.none();
+          }
+        }
+      }
+      if (container.hasChildNodes()) {
+        offset = Math.min(!directionLeft && offset > 0 ? offset - 1 : offset, container.childNodes.length - 1);
+        container = container.childNodes[offset];
+        offset = $_fj238m1qjducwnjm.isText(container) && isAfterNode ? container.data.length : 0;
+        if (!collapsed && container === body.lastChild && isTable$2(container)) {
+          return Option.none();
+        }
+        if (hasContentEditableFalseParent(body, container) || isCaretContainer(container)) {
+          return Option.none();
+        }
+        if (container.hasChildNodes() && isTable$2(container) === false) {
+          node = container;
+          walker = new TreeWalker(container, body);
+          do {
+            if ($_fj238m1qjducwnjm.isContentEditableFalse(node) || isCaretContainer(node)) {
+              normalized = false;
+              break;
+            }
+            if ($_fj238m1qjducwnjm.isText(node) && node.nodeValue.length > 0) {
+              offset = directionLeft ? 0 : node.nodeValue.length;
+              container = node;
+              normalized = true;
+              break;
+            }
+            if (nonEmptyElementsMap[node.nodeName.toLowerCase()] && !isTableCell$3(node)) {
+              offset = dom.nodeIndex(node);
+              container = node.parentNode;
+              if ((node.nodeName === 'IMG' || node.nodeName === 'PRE') && !directionLeft) {
+                offset++;
+              }
+              normalized = true;
+              break;
+            }
+          } while (node = directionLeft ? walker.next() : walker.prev());
+        }
+      }
+    }
+    if (collapsed) {
+      if ($_fj238m1qjducwnjm.isText(container) && offset === 0) {
+        findTextNodeRelative(dom, isAfterNode, collapsed, true, container).each(function (pos) {
+          container = pos.container();
+          offset = pos.offset();
+          normalized = true;
         });
-        return inArray$2(matches, TRUE) !== -1;
-      },
-      'Bold,Italic,Underline,Strikethrough,Superscript,Subscript': function (command) {
-        return isFormatMatch(command);
-      },
-      'mceBlockQuote': function () {
-        return isFormatMatch('blockquote');
-      },
-      'Outdent': function () {
-        var node;
-        if (settings.inline_styles) {
-          if ((node = dom.getParent(selection.getStart(), dom.isBlock)) && parseInt(node.style.paddingLeft, 10) > 0) {
-            return TRUE;
-          }
-          if ((node = dom.getParent(selection.getEnd(), dom.isBlock)) && parseInt(node.style.paddingLeft, 10) > 0) {
-            return TRUE;
-          }
+      }
+      if ($_fj238m1qjducwnjm.isElement(container)) {
+        node = container.childNodes[offset];
+        if (!node) {
+          node = container.childNodes[offset - 1];
         }
-        return queryCommandState('InsertUnorderedList') || queryCommandState('InsertOrderedList') || !settings.inline_styles && !!dom.getParent(selection.getNode(), 'BLOCKQUOTE');
-      },
-      'InsertUnorderedList,InsertOrderedList': function (command) {
-        var list = dom.getParent(selection.getNode(), 'ul,ol');
-        return list && (command === 'insertunorderedlist' && list.tagName === 'UL' || command === 'insertorderedlist' && list.tagName === 'OL');
-      }
-    }, 'state');
-    addCommands({
-      'FontSize,FontName': function (command) {
-        var value = 0, parent;
-        if (parent = dom.getParent(selection.getNode(), 'span')) {
-          if (command === 'fontsize') {
-            value = parent.style.fontSize;
-          } else {
-            value = parent.style.fontFamily.replace(/, /g, ',').replace(/[\'\"]/g, '').toLowerCase();
-          }
+        if (node && $_fj238m1qjducwnjm.isBr(node) && !isPrevNode(node, 'A') && !hasBrBeforeAfter(dom, node, false) && !hasBrBeforeAfter(dom, node, true)) {
+          findTextNodeRelative(dom, isAfterNode, collapsed, true, node).each(function (pos) {
+            container = pos.container();
+            offset = pos.offset();
+            normalized = true;
+          });
         }
-        return value;
       }
-    }, 'value');
-    addCommands({
-      Undo: function () {
-        editor.undoManager.undo();
+    }
+    if (directionLeft && !collapsed && $_fj238m1qjducwnjm.isText(container) && offset === container.nodeValue.length) {
+      findTextNodeRelative(dom, isAfterNode, collapsed, false, container).each(function (pos) {
+        container = pos.container();
+        offset = pos.offset();
+        normalized = true;
+      });
+    }
+    return normalized ? Option.some(position(container, offset)) : Option.none();
+  };
+  var normalize$1 = function (dom, rng) {
+    var collapsed = rng.collapsed, normRng = rng.cloneRange();
+    normalizeEndPoint(dom, collapsed, true, normRng).each(function (pos) {
+      normRng.setStart(pos.container(), pos.offset());
+    });
+    if (!collapsed) {
+      normalizeEndPoint(dom, collapsed, false, normRng).each(function (pos) {
+        normRng.setEnd(pos.container(), pos.offset());
+      });
+    }
+    if (collapsed) {
+      normRng.collapse(true);
+    }
+    return $_18bpcb3yjducwnzh.isEq(rng, normRng) ? Option.none() : Option.some(normRng);
+  };
+  var $_altsby3xjducwnz5 = { normalize: normalize$1 };
+
+  var hasRightSideContent = function (schema, container, parentBlock) {
+    var walker = new TreeWalker(container, parentBlock);
+    var node;
+    var nonEmptyElementsMap = schema.getNonEmptyElements();
+    while (node = walker.next()) {
+      if (nonEmptyElementsMap[node.nodeName.toLowerCase()] || node.length > 0) {
+        return true;
+      }
+    }
+  };
+  var scrollToBr = function (dom, selection, brElm) {
+    var marker = dom.create('span', {}, '&nbsp;');
+    brElm.parentNode.insertBefore(marker, brElm);
+    selection.scrollIntoView(marker);
+    dom.remove(marker);
+  };
+  var moveSelectionToBr = function (dom, selection, brElm, extraBr) {
+    var rng = dom.createRng();
+    if (!extraBr) {
+      rng.setStartAfter(brElm);
+      rng.setEndAfter(brElm);
+    } else {
+      rng.setStartBefore(brElm);
+      rng.setEndBefore(brElm);
+    }
+    selection.setRng(rng);
+  };
+  var insertBrAtCaret = function (editor, evt) {
+    var selection = editor.selection, dom = editor.dom;
+    var brElm, extraBr;
+    var rng = selection.getRng();
+    $_altsby3xjducwnz5.normalize(dom, rng).each(function (normRng) {
+      rng.setStart(normRng.startContainer, normRng.startOffset);
+      rng.setEnd(normRng.endContainer, normRng.endOffset);
+    });
+    var offset = rng.startOffset;
+    var container = rng.startContainer;
+    if (container.nodeType === 1 && container.hasChildNodes()) {
+      var isAfterLastNodeInContainer = offset > container.childNodes.length - 1;
+      container = container.childNodes[Math.min(offset, container.childNodes.length - 1)] || container;
+      if (isAfterLastNodeInContainer && container.nodeType === 3) {
+        offset = container.nodeValue.length;
+      } else {
+        offset = 0;
+      }
+    }
+    var parentBlock = dom.getParent(container, dom.isBlock);
+    var containerBlock = parentBlock ? dom.getParent(parentBlock.parentNode, dom.isBlock) : null;
+    var containerBlockName = containerBlock ? containerBlock.nodeName.toUpperCase() : '';
+    var isControlKey = evt && evt.ctrlKey;
+    if (containerBlockName === 'LI' && !isControlKey) {
+      parentBlock = containerBlock;
+    }
+    if (container && container.nodeType === 3 && offset >= container.nodeValue.length) {
+      if (!hasRightSideContent(editor.schema, container, parentBlock)) {
+        brElm = dom.create('br');
+        rng.insertNode(brElm);
+        rng.setStartAfter(brElm);
+        rng.setEndAfter(brElm);
+        extraBr = true;
+      }
+    }
+    brElm = dom.create('br');
+    rng.insertNode(brElm);
+    scrollToBr(dom, selection, brElm);
+    moveSelectionToBr(dom, selection, brElm, extraBr);
+    editor.undoManager.add();
+  };
+  var insertBrBefore = function (editor, inline) {
+    var br = $_5s4uzoyjducwngo.fromTag('br');
+    $_ejmufn2ojducwnpy.before($_5s4uzoyjducwngo.fromDom(inline), br);
+    editor.undoManager.add();
+  };
+  var insertBrAfter = function (editor, inline) {
+    if (!hasBrAfter(editor.getBody(), inline)) {
+      $_ejmufn2ojducwnpy.after($_5s4uzoyjducwngo.fromDom(inline), $_5s4uzoyjducwngo.fromTag('br'));
+    }
+    var br = $_5s4uzoyjducwngo.fromTag('br');
+    $_ejmufn2ojducwnpy.after($_5s4uzoyjducwngo.fromDom(inline), br);
+    scrollToBr(editor.dom, editor.selection, br.dom());
+    moveSelectionToBr(editor.dom, editor.selection, br.dom(), false);
+    editor.undoManager.add();
+  };
+  var isBeforeBr = function (pos) {
+    return $_fj238m1qjducwnjm.isBr(pos.getNode());
+  };
+  var hasBrAfter = function (rootNode, startNode) {
+    if (isBeforeBr(CaretPosition$1.after(startNode))) {
+      return true;
+    } else {
+      return $_dq07eg2bjducwno6.nextPosition(rootNode, CaretPosition$1.after(startNode)).map(function (pos) {
+        return $_fj238m1qjducwnjm.isBr(pos.getNode());
+      }).getOr(false);
+    }
+  };
+  var isAnchorLink = function (elm) {
+    return elm && elm.nodeName === 'A' && 'href' in elm;
+  };
+  var isInsideAnchor = function (location) {
+    return location.fold($_60qu7r6jducwn73.constant(false), isAnchorLink, isAnchorLink, $_60qu7r6jducwn73.constant(false));
+  };
+  var readInlineAnchorLocation = function (editor) {
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    var position = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+    return $_681q3b3ijducwnty.readLocation(isInlineTarget, editor.getBody(), position).filter(isInsideAnchor);
+  };
+  var insertBrOutsideAnchor = function (editor, location) {
+    location.fold($_60qu7r6jducwn73.noop, $_60qu7r6jducwn73.curry(insertBrBefore, editor), $_60qu7r6jducwn73.curry(insertBrAfter, editor), $_60qu7r6jducwn73.noop);
+  };
+  var insert = function (editor, evt) {
+    var anchorLocation = readInlineAnchorLocation(editor);
+    if (anchorLocation.isSome()) {
+      anchorLocation.each($_60qu7r6jducwn73.curry(insertBrOutsideAnchor, editor));
+    } else {
+      insertBrAtCaret(editor, evt);
+    }
+  };
+  var $_6wifbs3wjducwnw6 = { insert: insert };
+
+  var adt = $_elh5kq3djducwnt6.generate([
+    { 'before': ['element'] },
+    {
+      'on': [
+        'element',
+        'offset'
+      ]
+    },
+    { after: ['element'] }
+  ]);
+  var cata = function (subject, onBefore, onOn, onAfter) {
+    return subject.fold(onBefore, onOn, onAfter);
+  };
+  var getStart = function (situ) {
+    return situ.fold($_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity, $_60qu7r6jducwn73.identity);
+  };
+  var $_acm40u41jducwnzz = {
+    before: adt.before,
+    on: adt.on,
+    after: adt.after,
+    cata: cata,
+    getStart: getStart
+  };
+
+  var type$1 = $_elh5kq3djducwnt6.generate([
+    { domRange: ['rng'] },
+    {
+      relative: [
+        'startSitu',
+        'finishSitu'
+      ]
+    },
+    {
+      exact: [
+        'start',
+        'soffset',
+        'finish',
+        'foffset'
+      ]
+    }
+  ]);
+  var range$1 = $_295afp18jducwni4.immutable('start', 'soffset', 'finish', 'foffset');
+  var exactFromRange = function (simRange) {
+    return type$1.exact(simRange.start(), simRange.soffset(), simRange.finish(), simRange.foffset());
+  };
+  var getStart$1 = function (selection) {
+    return selection.match({
+      domRange: function (rng) {
+        return $_5s4uzoyjducwngo.fromDom(rng.startContainer);
       },
-      Redo: function () {
-        editor.undoManager.redo();
+      relative: function (startSitu, finishSitu) {
+        return $_acm40u41jducwnzz.getStart(startSitu);
+      },
+      exact: function (start, soffset, finish, foffset) {
+        return start;
       }
+    });
+  };
+  var getWin = function (selection) {
+    var start = getStart$1(selection);
+    return $_f0qt4317jducwnhq.defaultView(start);
+  };
+  var $_ckicvm40jducwnzr = {
+    domRange: type$1.domRange,
+    relative: type$1.relative,
+    exact: type$1.exact,
+    exactFromRange: exactFromRange,
+    range: range$1,
+    getWin: getWin
+  };
+
+  var browser$3 = $_5hshlmmjducwnfr.detect().browser;
+  var clamp = function (offset, element) {
+    var max = $_47qy15zjducwngt.isText(element) ? $_8l99zr2rjducwnq7.get(element).length : $_f0qt4317jducwnhq.children(element).length + 1;
+    if (offset > max) {
+      return max;
+    } else if (offset < 0) {
+      return 0;
+    }
+    return offset;
+  };
+  var normalizeRng = function (rng) {
+    return $_ckicvm40jducwnzr.range(rng.start(), clamp(rng.soffset(), rng.start()), rng.finish(), clamp(rng.foffset(), rng.finish()));
+  };
+  var isOrContains = function (root, elm) {
+    return $_4qdq5m1djducwnie.contains(root, elm) || $_4qdq5m1djducwnie.eq(root, elm);
+  };
+  var isRngInRoot = function (root) {
+    return function (rng) {
+      return isOrContains(root, rng.start()) && isOrContains(root, rng.finish());
+    };
+  };
+  var shouldStore = function (editor) {
+    return editor.inline === true || browser$3.isIE();
+  };
+  var nativeRangeToSelectionRange = function (r) {
+    return $_ckicvm40jducwnzr.range($_5s4uzoyjducwngo.fromDom(r.startContainer), r.startOffset, $_5s4uzoyjducwngo.fromDom(r.endContainer), r.endOffset);
+  };
+  var readRange = function (win) {
+    var selection = win.getSelection();
+    var rng = !selection || selection.rangeCount === 0 ? Option.none() : Option.from(selection.getRangeAt(0));
+    return rng.map(nativeRangeToSelectionRange);
+  };
+  var getBookmark$2 = function (root) {
+    var win = $_f0qt4317jducwnhq.defaultView(root);
+    return readRange(win.dom()).filter(isRngInRoot(root));
+  };
+  var validate = function (root, bookmark) {
+    return Option.from(bookmark).filter(isRngInRoot(root)).map(normalizeRng);
+  };
+  var bookmarkToNativeRng = function (bookmark) {
+    var rng = document.createRange();
+    rng.setStart(bookmark.start().dom(), bookmark.soffset());
+    rng.setEnd(bookmark.finish().dom(), bookmark.foffset());
+    return Option.some(rng);
+  };
+  var store = function (editor) {
+    var newBookmark = shouldStore(editor) ? getBookmark$2($_5s4uzoyjducwngo.fromDom(editor.getBody())) : Option.none();
+    editor.bookmark = newBookmark.isSome() ? newBookmark : editor.bookmark;
+  };
+  var storeNative = function (editor, rng) {
+    var root = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    var range = shouldStore(editor) ? Option.from(rng) : Option.none();
+    var newBookmark = range.map(nativeRangeToSelectionRange).filter(isRngInRoot(root));
+    editor.bookmark = newBookmark.isSome() ? newBookmark : editor.bookmark;
+  };
+  var getRng = function (editor) {
+    var bookmark = editor.bookmark ? editor.bookmark : Option.none();
+    return bookmark.bind($_60qu7r6jducwn73.curry(validate, $_5s4uzoyjducwngo.fromDom(editor.getBody()))).bind(bookmarkToNativeRng);
+  };
+  var restore = function (editor) {
+    getRng(editor).each(function (rng) {
+      editor.selection.setRng(rng);
+    });
+  };
+  var $_exyelv3zjducwnzi = {
+    store: store,
+    storeNative: storeNative,
+    readRange: readRange,
+    restore: restore,
+    getRng: getRng,
+    getBookmark: getBookmark$2,
+    validate: validate
+  };
+
+  var indentElement = function (dom, command, useMargin, value, unit, element) {
+    if (dom.getContentEditable(element) === 'false') {
+      return;
+    }
+    if (element.nodeName !== 'LI') {
+      var indentStyleName = useMargin ? 'margin' : 'padding';
+      indentStyleName = element.nodeName === 'TABLE' ? 'margin' : indentStyleName;
+      indentStyleName += dom.getStyle(element, 'direction', true) === 'rtl' ? 'Right' : 'Left';
+      if (command === 'outdent') {
+        var styleValue = Math.max(0, parseInt(element.style[indentStyleName] || 0, 10) - value);
+        dom.setStyle(element, indentStyleName, styleValue ? styleValue + unit : '');
+      } else {
+        var styleValue = parseInt(element.style[indentStyleName] || 0, 10) + value + unit;
+        dom.setStyle(element, indentStyleName, styleValue);
+      }
+    }
+  };
+  var handle = function (editor, command) {
+    var settings = editor.settings, dom = editor.dom, selection = editor.selection, formatter = editor.formatter;
+    var indentUnit = /[a-z%]+$/i.exec(settings.indentation)[0];
+    var indentValue = parseInt(settings.indentation, 10);
+    var useMargin = editor.getParam('indent_use_margin', false);
+    if (!editor.queryCommandState('InsertUnorderedList') && !editor.queryCommandState('InsertOrderedList')) {
+      if (!settings.forced_root_block && !dom.getParent(selection.getNode(), dom.isBlock)) {
+        formatter.apply('div');
+      }
+      $_2dw1bj4jducwn6g.each(selection.getSelectedBlocks(), function (element) {
+        return indentElement(dom, command, useMargin, indentValue, indentUnit, element);
+      });
+    }
+  };
+
+  var each$9 = $_8i2houjjducwnd2.each;
+  var extend$2 = $_8i2houjjducwnd2.extend;
+  var map$2 = $_8i2houjjducwnd2.map;
+  var inArray$2 = $_8i2houjjducwnd2.inArray;
+  var explode$2 = $_8i2houjjducwnd2.explode;
+  var TRUE = true;
+  var FALSE = false;
+  function EditorCommands (editor) {
+    var dom, selection, formatter;
+    var commands = {
+      state: {},
+      exec: {},
+      value: {}
+    };
+    var settings = editor.settings, bookmark;
+    editor.on('PreInit', function () {
+      dom = editor.dom;
+      selection = editor.selection;
+      settings = editor.settings;
+      formatter = editor.formatter;
+    });
+    var execCommand = function (command, ui, value, args) {
+      var func, customCommand, state = false;
+      if (editor.removed) {
+        return;
+      }
+      if (!/^(mceAddUndoLevel|mceEndUndoLevel|mceBeginUndoLevel|mceRepaint)$/.test(command) && (!args || !args.skip_focus)) {
+        editor.focus();
+      } else {
+        $_exyelv3zjducwnzi.restore(editor);
+      }
+      args = editor.fire('BeforeExecCommand', {
+        command: command,
+        ui: ui,
+        value: value
+      });
+      if (args.isDefaultPrevented()) {
+        return false;
+      }
+      customCommand = command.toLowerCase();
+      if (func = commands.exec[customCommand]) {
+        func(customCommand, ui, value);
+        editor.fire('ExecCommand', {
+          command: command,
+          ui: ui,
+          value: value
+        });
+        return true;
+      }
+      each$9(editor.plugins, function (p) {
+        if (p.execCommand && p.execCommand(command, ui, value)) {
+          editor.fire('ExecCommand', {
+            command: command,
+            ui: ui,
+            value: value
+          });
+          state = true;
+          return false;
+        }
+      });
+      if (state) {
+        return state;
+      }
+      if (editor.theme && editor.theme.execCommand && editor.theme.execCommand(command, ui, value)) {
+        editor.fire('ExecCommand', {
+          command: command,
+          ui: ui,
+          value: value
+        });
+        return true;
+      }
+      try {
+        state = editor.getDoc().execCommand(command, ui, value);
+      } catch (ex) {
+      }
+      if (state) {
+        editor.fire('ExecCommand', {
+          command: command,
+          ui: ui,
+          value: value
+        });
+        return true;
+      }
+<<<<<<< HEAD
     });
   }
 
@@ -13525,63 +19080,59 @@
     var self = this;
     var scope, bindings = {}, toggleEvent;
     var returnFalse = function () {
+=======
+>>>>>>> installer
       return false;
     };
-    var returnTrue = function () {
-      return true;
+    var queryCommandState = function (command) {
+      var func;
+      if (editor.quirks.isHidden() || editor.removed) {
+        return;
+      }
+      command = command.toLowerCase();
+      if (func = commands.state[command]) {
+        return func(command);
+      }
+      try {
+        return editor.getDoc().queryCommandState(command);
+      } catch (ex) {
+      }
+      return false;
     };
-    settings = settings || {};
-    scope = settings.scope || self;
-    toggleEvent = settings.toggleEvent || returnFalse;
-    var fire = function (name, args) {
-      var handlers, i, l, callback;
-      name = name.toLowerCase();
-      args = args || {};
-      args.type = name;
-      if (!args.target) {
-        args.target = scope;
+    var queryCommandValue = function (command) {
+      var func;
+      if (editor.quirks.isHidden() || editor.removed) {
+        return;
       }
-      if (!args.preventDefault) {
-        args.preventDefault = function () {
-          args.isDefaultPrevented = returnTrue;
-        };
-        args.stopPropagation = function () {
-          args.isPropagationStopped = returnTrue;
-        };
-        args.stopImmediatePropagation = function () {
-          args.isImmediatePropagationStopped = returnTrue;
-        };
-        args.isDefaultPrevented = returnFalse;
-        args.isPropagationStopped = returnFalse;
-        args.isImmediatePropagationStopped = returnFalse;
+      command = command.toLowerCase();
+      if (func = commands.value[command]) {
+        return func(command);
       }
-      if (settings.beforeFire) {
-        settings.beforeFire(args);
+      try {
+        return editor.getDoc().queryCommandValue(command);
+      } catch (ex) {
       }
-      handlers = bindings[name];
-      if (handlers) {
-        for (i = 0, l = handlers.length; i < l; i++) {
-          callback = handlers[i];
-          if (callback.once) {
-            off(name, callback.func);
-          }
-          if (args.isImmediatePropagationStopped()) {
-            args.stopPropagation();
-            return args;
-          }
-          if (callback.func.call(scope, args) === false) {
-            args.preventDefault();
-            return args;
-          }
-        }
-      }
-      return args;
     };
-    var on = function (name, callback, prepend, extra) {
-      var handlers, names, i;
-      if (callback === false) {
-        callback = returnFalse;
+    var addCommands = function (commandList, type) {
+      type = type || 'exec';
+      each$9(commandList, function (callback, command) {
+        each$9(command.toLowerCase().split(','), function (command) {
+          commands[type][command] = callback;
+        });
+      });
+    };
+    var addCommand = function (command, callback, scope) {
+      command = command.toLowerCase();
+      commands.exec[command] = function (command, ui, value, args) {
+        return callback.call(scope || editor, ui, value, args);
+      };
+    };
+    var queryCommandSupported = function (command) {
+      command = command.toLowerCase();
+      if (commands.exec[command]) {
+        return true;
       }
+<<<<<<< HEAD
       if (callback) {
         callback = { func: callback };
         if (extra) {
@@ -13602,76 +19153,91 @@
             handlers.push(callback);
           }
         }
+=======
+      try {
+        return editor.getDoc().queryCommandSupported(command);
+      } catch (ex) {
       }
-      return self;
+      return false;
     };
-    var off = function (name, callback) {
-      var i, handlers, bindingName, names, hi;
-      if (name) {
-        names = name.toLowerCase().split(' ');
-        i = names.length;
-        while (i--) {
-          name = names[i];
-          handlers = bindings[name];
-          if (!name) {
-            for (bindingName in bindings) {
-              toggleEvent(bindingName, false);
-              delete bindings[bindingName];
-            }
-            return self;
-          }
-          if (handlers) {
-            if (!callback) {
-              handlers.length = 0;
-            } else {
-              hi = handlers.length;
-              while (hi--) {
-                if (handlers[hi].func === callback) {
-                  handlers = handlers.slice(0, hi).concat(handlers.slice(hi + 1));
-                  bindings[name] = handlers;
-                }
-              }
-            }
-            if (!handlers.length) {
-              toggleEvent(name, false);
-              delete bindings[name];
-            }
-          }
-        }
-      } else {
-        for (name in bindings) {
-          toggleEvent(name, false);
-        }
-        bindings = {};
+    var addQueryStateHandler = function (command, callback, scope) {
+      command = command.toLowerCase();
+      commands.state[command] = function () {
+        return callback.call(scope || editor);
+      };
+    };
+    var addQueryValueHandler = function (command, callback, scope) {
+      command = command.toLowerCase();
+      commands.value[command] = function () {
+        return callback.call(scope || editor);
+      };
+    };
+    var hasCustomCommand = function (command) {
+      command = command.toLowerCase();
+      return !!commands.exec[command];
+    };
+    extend$2(this, {
+      execCommand: execCommand,
+      queryCommandState: queryCommandState,
+      queryCommandValue: queryCommandValue,
+      queryCommandSupported: queryCommandSupported,
+      addCommands: addCommands,
+      addCommand: addCommand,
+      addQueryStateHandler: addQueryStateHandler,
+      addQueryValueHandler: addQueryValueHandler,
+      hasCustomCommand: hasCustomCommand
+    });
+    var execNativeCommand = function (command, ui, value) {
+      if (ui === undefined) {
+        ui = FALSE;
+>>>>>>> installer
       }
-      return self;
+      if (value === undefined) {
+        value = null;
+      }
+      return editor.getDoc().execCommand(command, ui, value);
     };
-    var once = function (name, callback, prepend) {
-      return on(name, callback, prepend, { once: true });
+    var isFormatMatch = function (name) {
+      return formatter.match(name);
     };
-    var has = function (name) {
-      name = name.toLowerCase();
-      return !(!bindings[name] || bindings[name].length === 0);
+    var toggleFormat = function (name, value) {
+      formatter.toggle(name, value ? { value: value } : undefined);
+      editor.nodeChanged();
     };
-    self.fire = fire;
-    self.on = on;
-    self.off = off;
-    self.once = once;
-    self.has = has;
-  };
-  Dispatcher.isNative = function (name) {
-    return !!nativeEvents[name.toLowerCase()];
-  };
-
-  var getEventDispatcher = function (obj) {
-    if (!obj._eventDispatcher) {
-      obj._eventDispatcher = new Dispatcher({
-        scope: obj,
-        toggleEvent: function (name, state) {
-          if (Dispatcher.isNative(name) && obj.toggleNativeEvent) {
-            obj.toggleNativeEvent(name, state);
-          }
+    var storeSelection = function (type) {
+      bookmark = selection.getBookmark(type);
+    };
+    var restoreSelection = function () {
+      selection.moveToBookmark(bookmark);
+    };
+    addCommands({
+      'mceResetDesignMode,mceBeginUndoLevel': function () {
+      },
+      'mceEndUndoLevel,mceAddUndoLevel': function () {
+        editor.undoManager.add();
+      },
+      'Cut,Copy,Paste': function (command) {
+        var doc = editor.getDoc();
+        var failed;
+        try {
+          execNativeCommand(command);
+        } catch (ex) {
+          failed = TRUE;
         }
+        if (command === 'paste' && !doc.queryCommandEnabled(command)) {
+          failed = true;
+        }
+        if (failed || !doc.queryCommandSupported(command)) {
+          var msg = editor.translate('Your browser doesn\'t support direct access to the clipboard. ' + 'Please use the Ctrl+X/C/V keyboard shortcuts instead.');
+          if ($_cum1kc9jducwn99.mac) {
+            msg = msg.replace(/Ctrl\+/g, '\u2318+');
+          }
+          editor.notificationManager.open({
+            text: msg,
+            type: 'error'
+          });
+        }
+<<<<<<< HEAD
       });
     }
     return obj._eventDispatcher;
@@ -13796,22 +19362,87 @@
         } else {
           if (!self._pendingNativeEvents) {
             self._pendingNativeEvents = [name];
-          } else {
-            self._pendingNativeEvents.push(name);
+=======
+      },
+      'unlink': function () {
+        if (selection.isCollapsed()) {
+          var elm = editor.dom.getParent(editor.selection.getStart(), 'a');
+          if (elm) {
+            editor.dom.remove(elm, true);
+          }
+          return;
+        }
+        formatter.remove('link');
+      },
+      'JustifyLeft,JustifyCenter,JustifyRight,JustifyFull,JustifyNone': function (command) {
+        var align = command.substring(7);
+        if (align === 'full') {
+          align = 'justify';
+        }
+        each$9('left,center,right,justify'.split(','), function (name) {
+          if (align !== name) {
+            formatter.remove('align' + name);
+          }
+        });
+        if (align !== 'none') {
+          toggleFormat('align' + align);
+        }
+      },
+      'InsertUnorderedList,InsertOrderedList': function (command) {
+        var listElm, listParent;
+        execNativeCommand(command);
+        listElm = dom.getParent(selection.getNode(), 'ol,ul');
+        if (listElm) {
+          listParent = listElm.parentNode;
+          if (/^(H[1-6]|P|ADDRESS|PRE)$/.test(listParent.nodeName)) {
+            storeSelection();
+            dom.split(listParent, listElm);
+            restoreSelection();
           }
         }
-      } else if (self.initialized) {
-        self.dom.unbind(getEventTarget(self, name), name, self.delegates[name]);
-        delete self.delegates[name];
-      }
-    },
-    unbindAllNativeEvents: function () {
-      var self = this;
-      var name;
-      if (self.delegates) {
-        for (name in self.delegates) {
-          self.dom.unbind(getEventTarget(self, name), name, self.delegates[name]);
+      },
+      'Bold,Italic,Underline,Strikethrough,Superscript,Subscript': function (command) {
+        toggleFormat(command);
+      },
+      'ForeColor,HiliteColor,FontName': function (command, ui, value) {
+        toggleFormat(command, value);
+      },
+      'FontSize': function (command, ui, value) {
+        var fontClasses, fontSizes;
+        if (value >= 1 && value <= 7) {
+          fontSizes = explode$2(settings.font_size_style_values);
+          fontClasses = explode$2(settings.font_size_classes);
+          if (fontClasses) {
+            value = fontClasses[value - 1] || value;
+>>>>>>> installer
+          } else {
+            value = fontSizes[value - 1] || value;
+          }
         }
+        toggleFormat(command, value);
+      },
+      'RemoveFormat': function (command) {
+        formatter.remove(command);
+      },
+      'mceBlockQuote': function () {
+        toggleFormat('blockquote');
+      },
+      'FormatBlock': function (command, ui, value) {
+        return toggleFormat(value || 'p');
+      },
+      'mceCleanup': function () {
+        var bookmark = selection.getBookmark();
+        editor.setContent(editor.getContent({ cleanup: TRUE }), { cleanup: TRUE });
+        selection.moveToBookmark(bookmark);
+      },
+      'mceRemoveNode': function (command, ui, value) {
+        var node = value || selection.getNode();
+        if (node !== editor.getBody()) {
+          storeSelection();
+          editor.dom.remove(node, TRUE);
+          restoreSelection();
+        }
+<<<<<<< HEAD
         delete self.delegates;
       }
       if (!self.inline) {
@@ -13907,16 +19538,62 @@
           } else {
             shortcut.charCode = value.charCodeAt(0);
             shortcut.keyCode = keyCodeLookup[value] || value.toUpperCase().charCodeAt(0);
+=======
+      },
+      'mceSelectNodeDepth': function (command, ui, value) {
+        var counter = 0;
+        dom.getParent(selection.getNode(), function (node) {
+          if (node.nodeType === 1 && counter++ === value) {
+            selection.select(node);
+            return FALSE;
+>>>>>>> installer
           }
+        }, editor.getBody());
+      },
+      'mceSelectNode': function (command, ui, value) {
+        selection.select(value);
+      },
+      'mceInsertContent': function (command, ui, value) {
+        $_42g77d1wjducwnlx.insertAtCaret(editor, value);
+      },
+      'mceInsertRawHTML': function (command, ui, value) {
+        selection.setContent('tiny_mce_marker');
+        editor.setContent(editor.getContent().replace(/tiny_mce_marker/g, function () {
+          return value;
+        }));
+      },
+      'mceToggleFormat': function (command, ui, value) {
+        toggleFormat(value);
+      },
+      'mceSetContent': function (command, ui, value) {
+        editor.setContent(value);
+      },
+      'Indent,Outdent': function (command) {
+        handle(editor, command);
+      },
+      'mceRepaint': function () {
+      },
+      'InsertHorizontalRule': function () {
+        editor.execCommand('mceInsertContent', false, '<hr />');
+      },
+      'mceToggleVisualAid': function () {
+        editor.hasVisual = !editor.hasVisual;
+        editor.addVisual();
+      },
+      'mceReplaceContent': function (command, ui, value) {
+        editor.execCommand('mceInsertContent', false, value.replace(/\{\$selection\}/g, selection.getContent({ format: 'text' })));
+      },
+      'mceInsertLink': function (command, ui, value) {
+        var anchor;
+        if (typeof value === 'string') {
+          value = { href: value };
         }
-      });
-      id = [shortcut.keyCode];
-      for (key in modifierNames) {
-        if (shortcut[key]) {
-          id.push(key);
-        } else {
-          shortcut[key] = false;
+        anchor = dom.getParent(selection.getNode(), 'a');
+        value.href = value.href.replace(' ', '%20');
+        if (!anchor || !value.href) {
+          formatter.remove('link');
         }
+<<<<<<< HEAD
       }
       shortcut.id = id.join(',');
       if (shortcut.access) {
@@ -13984,16 +19661,66 @@
             }
             return true;
           }
-        });
-        if (matchShortcut(e, pendingPatterns[0])) {
-          if (pendingPatterns.length === 1) {
-            if (e.type === 'keydown') {
-              executeShortcutAction(pendingPatterns[0]);
-            }
-          }
-          pendingPatterns.shift();
+=======
+        if (value.href) {
+          formatter.apply('link', value, anchor);
         }
+      },
+      'selectAll': function () {
+        var editingHost = dom.getParent(selection.getStart(), $_fj238m1qjducwnjm.isContentEditableTrue);
+        if (editingHost) {
+          var rng = dom.createRng();
+          rng.selectNodeContents(editingHost);
+          selection.setRng(rng);
+        }
+      },
+      'delete': function () {
+        $_3jaaze2wjducwnqk.deleteCommand(editor);
+      },
+      'forwardDelete': function () {
+        $_3jaaze2wjducwnqk.forwardDeleteCommand(editor);
+      },
+      'mceNewDocument': function () {
+        editor.setContent('');
+      },
+      'InsertLineBreak': function (command, ui, value) {
+        $_6wifbs3wjducwnw6.insert(editor, value);
+        return true;
       }
+    });
+    addCommands({
+      'JustifyLeft,JustifyCenter,JustifyRight,JustifyFull': function (command) {
+        var name = 'align' + command.substring(7);
+        var nodes = selection.isCollapsed() ? [dom.getParent(selection.getNode(), dom.isBlock)] : selection.getSelectedBlocks();
+        var matches = map$2(nodes, function (node) {
+          return !!formatter.matchNode(node, name);
+>>>>>>> installer
+        });
+        return inArray$2(matches, TRUE) !== -1;
+      },
+      'Bold,Italic,Underline,Strikethrough,Superscript,Subscript': function (command) {
+        return isFormatMatch(command);
+      },
+      'mceBlockQuote': function () {
+        return isFormatMatch('blockquote');
+      },
+      'Outdent': function () {
+        var node;
+        if (settings.inline_styles) {
+          if ((node = dom.getParent(selection.getStart(), dom.isBlock)) && parseInt(node.style.paddingLeft, 10) > 0) {
+            return TRUE;
+          }
+          if ((node = dom.getParent(selection.getEnd(), dom.isBlock)) && parseInt(node.style.paddingLeft, 10) > 0) {
+            return TRUE;
+          }
+        }
+        return queryCommandState('InsertUnorderedList') || queryCommandState('InsertOrderedList') || !settings.inline_styles && !!dom.getParent(selection.getNode(), 'BLOCKQUOTE');
+      },
+      'InsertUnorderedList,InsertOrderedList': function (command) {
+        var list = dom.getParent(selection.getNode(), 'ul,ol');
+        return list && (command === 'insertunorderedlist' && list.tagName === 'UL' || command === 'insertorderedlist' && list.tagName === 'OL');
+      }
+<<<<<<< HEAD
     });
     self.add = function (pattern, desc, cmdFunc, scope) {
       var cmd;
@@ -14042,12 +19769,30 @@
       } else if (!matches[1]) {
         if (matches[2] in shortEndedElements) {
           continue;
+=======
+    }, 'state');
+    addCommands({
+      'FontSize,FontName': function (command) {
+        var value = 0, parent;
+        if (parent = dom.getParent(selection.getNode(), 'span')) {
+          if (command === 'fontsize') {
+            value = parent.style.fontSize;
+          } else {
+            value = parent.style.fontFamily.replace(/, /g, ',').replace(/[\'\"]/g, '').toLowerCase();
+          }
+>>>>>>> installer
         }
-        count++;
+        return value;
       }
-      if (count === 0) {
-        break;
+    }, 'value');
+    addCommands({
+      Undo: function () {
+        editor.undoManager.undo();
+      },
+      Redo: function () {
+        editor.undoManager.redo();
       }
+<<<<<<< HEAD
     }
     return index;
   };
@@ -14135,6 +19880,3804 @@
             uri = decodeURIComponent(uri);
           } catch (ex) {
             uri = unescape(uri);
+=======
+    });
+  }
+
+  var nativeEvents = $_8i2houjjducwnd2.makeMap('focus blur focusin focusout click dblclick mousedown mouseup mousemove mouseover beforepaste paste cut copy selectionchange ' + 'mouseout mouseenter mouseleave wheel keydown keypress keyup input contextmenu dragstart dragend dragover ' + 'draggesture dragdrop drop drag submit ' + 'compositionstart compositionend compositionupdate touchstart touchmove touchend', ' ');
+  var Dispatcher = function (settings) {
+    var self = this;
+    var scope, bindings = {}, toggleEvent;
+    var returnFalse = function () {
+      return false;
+    };
+    var returnTrue = function () {
+      return true;
+    };
+    settings = settings || {};
+    scope = settings.scope || self;
+    toggleEvent = settings.toggleEvent || returnFalse;
+    var fire = function (name, args) {
+      var handlers, i, l, callback;
+      name = name.toLowerCase();
+      args = args || {};
+      args.type = name;
+      if (!args.target) {
+        args.target = scope;
+      }
+      if (!args.preventDefault) {
+        args.preventDefault = function () {
+          args.isDefaultPrevented = returnTrue;
+        };
+        args.stopPropagation = function () {
+          args.isPropagationStopped = returnTrue;
+        };
+        args.stopImmediatePropagation = function () {
+          args.isImmediatePropagationStopped = returnTrue;
+        };
+        args.isDefaultPrevented = returnFalse;
+        args.isPropagationStopped = returnFalse;
+        args.isImmediatePropagationStopped = returnFalse;
+      }
+      if (settings.beforeFire) {
+        settings.beforeFire(args);
+      }
+      handlers = bindings[name];
+      if (handlers) {
+        for (i = 0, l = handlers.length; i < l; i++) {
+          callback = handlers[i];
+          if (callback.once) {
+            off(name, callback.func);
+>>>>>>> installer
+          }
+          if (args.isImmediatePropagationStopped()) {
+            args.stopPropagation();
+            return args;
+          }
+          if (callback.func.call(scope, args) === false) {
+            args.preventDefault();
+            return args;
+          }
+        }
+<<<<<<< HEAD
+        if (isInternalElement && (name in filteredUrlAttrs || name.indexOf('on') === 0)) {
+          return;
+        }
+        attrList.map[name] = value;
+        attrList.push({
+          name: name,
+          value: value
+        });
+      };
+      tokenRegExp = new RegExp('<(?:' + '(?:!--([\\w\\W]*?)-->)|' + '(?:!\\[CDATA\\[([\\w\\W]*?)\\]\\]>)|' + '(?:!DOCTYPE([\\w\\W]*?)>)|' + '(?:\\?([^\\s\\/<>]+) ?([\\w\\W]*?)[?/]>)|' + '(?:\\/([A-Za-z][A-Za-z0-9\\-_\\:\\.]*)>)|' + '(?:([A-Za-z][A-Za-z0-9\\-_\\:\\.]*)((?:\\s+[^"\'>]+(?:(?:"[^"]*")|(?:\'[^\']*\')|[^>]*))*|\\/|\\s+)>)' + ')', 'g');
+      attrRegExp = /([\w:\-]+)(?:\s*=\s*(?:(?:\"((?:[^\"])*)\")|(?:\'((?:[^\'])*)\')|([^>\s]+)))?/g;
+      shortEndedElements = schema.getShortEndedElements();
+      selfClosing = settings.self_closing_elements || schema.getSelfClosingElements();
+      fillAttrsMap = schema.getBoolAttrs();
+      validate = settings.validate;
+      removeInternalElements = settings.remove_internals;
+      fixSelfClosing = settings.fix_self_closing;
+      specialElements = schema.getSpecialElements();
+      processHtml = html + '>';
+      while (matches = tokenRegExp.exec(processHtml)) {
+        if (index < matches.index) {
+          text(decode(html.substr(index, matches.index - index)));
+        }
+        if (value = matches[6]) {
+          value = value.toLowerCase();
+          if (value.charAt(0) === ':') {
+            value = value.substr(1);
+          }
+          processEndTag(value);
+        } else if (value = matches[7]) {
+          if (matches.index + matches[0].length > html.length) {
+            text(decode(html.substr(matches.index)));
+            index = matches.index + matches[0].length;
+            continue;
+          }
+          value = value.toLowerCase();
+          if (value.charAt(0) === ':') {
+            value = value.substr(1);
+=======
+      }
+      return args;
+    };
+    var on = function (name, callback, prepend, extra) {
+      var handlers, names, i;
+      if (callback === false) {
+        callback = returnFalse;
+      }
+      if (callback) {
+        callback = { func: callback };
+        if (extra) {
+          $_8i2houjjducwnd2.extend(callback, extra);
+        }
+        names = name.toLowerCase().split(' ');
+        i = names.length;
+        while (i--) {
+          name = names[i];
+          handlers = bindings[name];
+          if (!handlers) {
+            handlers = bindings[name] = [];
+            toggleEvent(name, true);
+>>>>>>> installer
+          }
+          if (prepend) {
+            handlers.unshift(callback);
+          } else {
+            handlers.push(callback);
+          }
+        }
+      }
+      return self;
+    };
+    var off = function (name, callback) {
+      var i, handlers, bindingName, names, hi;
+      if (name) {
+        names = name.toLowerCase().split(' ');
+        i = names.length;
+        while (i--) {
+          name = names[i];
+          handlers = bindings[name];
+          if (!name) {
+            for (bindingName in bindings) {
+              toggleEvent(bindingName, false);
+              delete bindings[bindingName];
+            }
+            return self;
+          }
+          if (handlers) {
+            if (!callback) {
+              handlers.length = 0;
+            } else {
+<<<<<<< HEAD
+              attrList = [];
+              attrList.map = {};
+            }
+            if (validate && !isInternalElement) {
+              attributesRequired = elementRule.attributesRequired;
+              attributesDefault = elementRule.attributesDefault;
+              attributesForced = elementRule.attributesForced;
+              anyAttributesRequired = elementRule.removeEmptyAttrs;
+              if (anyAttributesRequired && !attrList.length) {
+                isValidElement = false;
+              }
+              if (attributesForced) {
+                i = attributesForced.length;
+                while (i--) {
+                  attr = attributesForced[i];
+                  name = attr.name;
+                  attrValue = attr.value;
+                  if (attrValue === '{$uid}') {
+                    attrValue = 'mce_' + idCount++;
+                  }
+                  attrList.map[name] = attrValue;
+                  attrList.push({
+                    name: name,
+                    value: attrValue
+                  });
+                }
+              }
+              if (attributesDefault) {
+                i = attributesDefault.length;
+                while (i--) {
+                  attr = attributesDefault[i];
+                  name = attr.name;
+                  if (!(name in attrList.map)) {
+                    attrValue = attr.value;
+                    if (attrValue === '{$uid}') {
+                      attrValue = 'mce_' + idCount++;
+                    }
+                    attrList.map[name] = attrValue;
+                    attrList.push({
+                      name: name,
+                      value: attrValue
+                    });
+                  }
+                }
+              }
+              if (attributesRequired) {
+                i = attributesRequired.length;
+                while (i--) {
+                  if (attributesRequired[i] in attrList.map) {
+                    break;
+                  }
+                }
+                if (i === -1) {
+                  isValidElement = false;
+                }
+              }
+              if (attr = attrList.map['data-mce-bogus']) {
+                if (attr === 'all') {
+                  index = findEndTagIndex(schema, html, tokenRegExp.lastIndex);
+                  tokenRegExp.lastIndex = index;
+                  continue;
+                }
+                isValidElement = false;
+              }
+            }
+            if (isValidElement) {
+              start(value, attrList, isShortEnded);
+            }
+          } else {
+            isValidElement = false;
+          }
+          if (endRegExp = specialElements[value]) {
+            endRegExp.lastIndex = index = matches.index + matches[0].length;
+            if (matches = endRegExp.exec(html)) {
+              if (isValidElement) {
+                textData = html.substr(index, matches.index - index);
+              }
+              index = matches.index + matches[0].length;
+            } else {
+              textData = html.substr(index);
+              index = html.length;
+            }
+            if (isValidElement) {
+              if (textData.length > 0) {
+                text(textData, true);
+              }
+              end(value);
+=======
+              hi = handlers.length;
+              while (hi--) {
+                if (handlers[hi].func === callback) {
+                  handlers = handlers.slice(0, hi).concat(handlers.slice(hi + 1));
+                  bindings[name] = handlers;
+                }
+              }
+            }
+            if (!handlers.length) {
+              toggleEvent(name, false);
+              delete bindings[name];
+>>>>>>> installer
+            }
+          }
+<<<<<<< HEAD
+          if (!isShortEnded) {
+            if (!attribsValue || attribsValue.indexOf('/') !== attribsValue.length - 1) {
+              stack.push({
+                name: value,
+                valid: isValidElement
+              });
+            } else if (isValidElement) {
+              end(value);
+            }
+=======
+        }
+      } else {
+        for (name in bindings) {
+          toggleEvent(name, false);
+        }
+        bindings = {};
+      }
+      return self;
+    };
+    var once = function (name, callback, prepend) {
+      return on(name, callback, prepend, { once: true });
+    };
+    var has = function (name) {
+      name = name.toLowerCase();
+      return !(!bindings[name] || bindings[name].length === 0);
+    };
+    self.fire = fire;
+    self.on = on;
+    self.off = off;
+    self.once = once;
+    self.has = has;
+  };
+  Dispatcher.isNative = function (name) {
+    return !!nativeEvents[name.toLowerCase()];
+  };
+
+  var getEventDispatcher = function (obj) {
+    if (!obj._eventDispatcher) {
+      obj._eventDispatcher = new Dispatcher({
+        scope: obj,
+        toggleEvent: function (name, state) {
+          if (Dispatcher.isNative(name) && obj.toggleNativeEvent) {
+            obj.toggleNativeEvent(name, state);
+>>>>>>> installer
+          }
+        }
+      });
+    }
+    return obj._eventDispatcher;
+  };
+  var $_5ie1x944jducwo0j = {
+    fire: function (name, args, bubble) {
+      var self = this;
+      if (self.removed && name !== 'remove') {
+        return args;
+      }
+      args = getEventDispatcher(self).fire(name, args, bubble);
+      if (bubble !== false && self.parent) {
+        var parent_1 = self.parent();
+        while (parent_1 && !args.isPropagationStopped()) {
+          parent_1.fire(name, args, false);
+          parent_1 = parent_1.parent();
+        }
+      }
+      return args;
+    },
+    on: function (name, callback, prepend) {
+      return getEventDispatcher(this).on(name, callback, prepend);
+    },
+    off: function (name, callback) {
+      return getEventDispatcher(this).off(name, callback);
+    },
+    once: function (name, callback) {
+      return getEventDispatcher(this).once(name, callback);
+    },
+    hasEventListeners: function (name) {
+      return getEventDispatcher(this).has(name);
+    }
+  };
+
+  var DOM$1 = DOMUtils.DOM;
+  var customEventRootDelegates;
+  var getEventTarget = function (editor, eventName) {
+    if (eventName === 'selectionchange') {
+      return editor.getDoc();
+    }
+    if (!editor.inline && /^mouse|touch|click|contextmenu|drop|dragover|dragend/.test(eventName)) {
+      return editor.getDoc().documentElement;
+    }
+    if (editor.settings.event_root) {
+      if (!editor.eventRoot) {
+        editor.eventRoot = DOM$1.select(editor.settings.event_root)[0];
+      }
+      return editor.eventRoot;
+    }
+    return editor.getBody();
+  };
+  var bindEventDelegate = function (editor, eventName) {
+    var eventRootElm, delegate;
+    var isListening = function (editor) {
+      return !editor.hidden && !editor.readonly;
+    };
+    if (!editor.delegates) {
+      editor.delegates = {};
+    }
+    if (editor.delegates[eventName] || editor.removed) {
+      return;
+    }
+    eventRootElm = getEventTarget(editor, eventName);
+    if (editor.settings.event_root) {
+      if (!customEventRootDelegates) {
+        customEventRootDelegates = {};
+        editor.editorManager.on('removeEditor', function () {
+          var name;
+          if (!editor.editorManager.activeEditor) {
+            if (customEventRootDelegates) {
+              for (name in customEventRootDelegates) {
+                editor.dom.unbind(getEventTarget(editor, name));
+              }
+              customEventRootDelegates = null;
+            }
+          }
+        });
+      }
+      if (customEventRootDelegates[eventName]) {
+        return;
+      }
+      delegate = function (e) {
+        var target = e.target;
+        var editors = editor.editorManager.get();
+        var i = editors.length;
+        while (i--) {
+          var body = editors[i].getBody();
+          if (body === target || DOM$1.isChildOf(target, body)) {
+            if (isListening(editors[i])) {
+              editors[i].fire(eventName, e);
+            }
+          }
+<<<<<<< HEAD
+          comment(value);
+        } else if (value = matches[2]) {
+          cdata(trimComments(value));
+        } else if (value = matches[3]) {
+          doctype(value);
+        } else if (value = matches[4]) {
+          pi(value, matches[5]);
+=======
+>>>>>>> installer
+        }
+      };
+      customEventRootDelegates[eventName] = delegate;
+      DOM$1.bind(eventRootElm, eventName, delegate);
+    } else {
+      delegate = function (e) {
+        if (isListening(editor)) {
+          editor.fire(eventName, e);
+        }
+      };
+      DOM$1.bind(eventRootElm, eventName, delegate);
+      editor.delegates[eventName] = delegate;
+    }
+  };
+  var EditorObservable = {
+    bindPendingEventDelegates: function () {
+      var self = this;
+      $_8i2houjjducwnd2.each(self._pendingNativeEvents, function (name) {
+        bindEventDelegate(self, name);
+      });
+    },
+    toggleNativeEvent: function (name, state) {
+      var self = this;
+      if (name === 'focus' || name === 'blur') {
+        return;
+      }
+<<<<<<< HEAD
+      if (index < html.length) {
+        text(decode(html.substr(index)));
+      }
+      for (i = stack.length - 1; i >= 0; i--) {
+        value = stack[i];
+        if (value.valid) {
+          end(value.name);
+=======
+      if (state) {
+        if (self.initialized) {
+          bindEventDelegate(self, name);
+        } else {
+          if (!self._pendingNativeEvents) {
+            self._pendingNativeEvents = [name];
+          } else {
+            self._pendingNativeEvents.push(name);
+          }
+        }
+      } else if (self.initialized) {
+        self.dom.unbind(getEventTarget(self, name), name, self.delegates[name]);
+        delete self.delegates[name];
+      }
+    },
+    unbindAllNativeEvents: function () {
+      var self = this;
+      var body = self.getBody();
+      var dom = self.dom;
+      var name;
+      if (self.delegates) {
+        for (name in self.delegates) {
+          self.dom.unbind(getEventTarget(self, name), name, self.delegates[name]);
+>>>>>>> installer
+        }
+        delete self.delegates;
+      }
+      if (!self.inline && body && dom) {
+        body.onload = null;
+        dom.unbind(self.getWin());
+        dom.unbind(self.getDoc());
+      }
+      if (dom) {
+        dom.unbind(body);
+        dom.unbind(self.getContainer());
+      }
+    }
+  };
+  EditorObservable = $_8i2houjjducwnd2.extend({}, $_5ie1x944jducwo0j, EditorObservable);
+  var EditorObservable$1 = EditorObservable;
+
+  var setEditorCommandState = function (editor, cmd, state) {
+    try {
+      editor.getDoc().execCommand(cmd, false, state);
+    } catch (ex) {
+    }
+  };
+  var clickBlocker = function (editor) {
+    var target, handler;
+    target = editor.getBody();
+    handler = function (e) {
+      if (editor.dom.getParents(e.target, 'a').length > 0) {
+        e.preventDefault();
+      }
+    };
+    editor.dom.bind(target, 'click', handler);
+    return {
+      unbind: function () {
+        editor.dom.unbind(target, 'click', handler);
+      }
+    };
+<<<<<<< HEAD
+    return { parse: parse };
+  }
+  (function (SaxParser) {
+    SaxParser.findEndTag = findEndTagIndex;
+  }(SaxParser || (SaxParser = {})));
+  var SaxParser$1 = SaxParser;
+=======
+  };
+  var toggleReadOnly = function (editor, state) {
+    if (editor._clickBlocker) {
+      editor._clickBlocker.unbind();
+      editor._clickBlocker = null;
+    }
+    if (state) {
+      editor._clickBlocker = clickBlocker(editor);
+      editor.selection.controlSelection.hideResizeRect();
+      editor.readonly = true;
+      editor.getBody().contentEditable = false;
+    } else {
+      editor.readonly = false;
+      editor.getBody().contentEditable = true;
+      setEditorCommandState(editor, 'StyleWithCSS', false);
+      setEditorCommandState(editor, 'enableInlineTableEditing', false);
+      setEditorCommandState(editor, 'enableObjectResizing', false);
+      editor.focus();
+      editor.nodeChanged();
+    }
+  };
+  var setMode = function (editor, mode) {
+    var currentMode = editor.readonly ? 'readonly' : 'design';
+    if (mode === currentMode) {
+      return;
+    }
+    if (editor.initialized) {
+      toggleReadOnly(editor, mode === 'readonly');
+    } else {
+      editor.on('init', function () {
+        toggleReadOnly(editor, mode === 'readonly');
+      });
+    }
+    editor.fire('SwitchMode', { mode: mode });
+  };
+  var $_awagyr46jducwo0r = { setMode: setMode };
+>>>>>>> installer
+
+  var each$10 = $_8i2houjjducwnd2.each;
+  var explode$3 = $_8i2houjjducwnd2.explode;
+  var keyCodeLookup = {
+    f9: 120,
+    f10: 121,
+    f11: 122
+  };
+<<<<<<< HEAD
+  var trimInternal = function (serializer, html) {
+    var content = html;
+    var bogusAllRegExp = /<(\w+) [^>]*data-mce-bogus="all"[^>]*>/g;
+    var endTagIndex, index, matchLength, matches, shortEndedElements;
+    var schema = serializer.schema;
+    content = trimHtml(serializer.getTempAttrs(), content);
+    shortEndedElements = schema.getShortEndedElements();
+    while (matches = bogusAllRegExp.exec(content)) {
+      index = bogusAllRegExp.lastIndex;
+      matchLength = matches[0].length;
+      if (shortEndedElements[matches[1]]) {
+        endTagIndex = index;
+      } else {
+        endTagIndex = SaxParser$1.findEndTag(schema, content, index);
+      }
+      content = content.substring(0, index - matchLength) + content.substring(endTagIndex);
+      bogusAllRegExp.lastIndex = index - matchLength;
+    }
+    return content;
+  };
+  var trimExternal = function (serializer, html) {
+    return $_1xlbjk21jd08m9p1.trim(trimInternal(serializer, html));
+  };
+  var $_4hg5uo42jd08ma0n = {
+    trimExternal: trimExternal,
+    trimInternal: trimInternal
+  };
+
+  var any$1 = function (predicate) {
+    return $_3j750t2ujd08m9sy.first(predicate).isSome();
+  };
+  var ancestor$3 = function (scope, predicate, isRoot) {
+    return $_3j750t2ujd08m9sy.ancestor(scope, predicate, isRoot).isSome();
+  };
+  var closest$3 = function (scope, predicate, isRoot) {
+    return $_3j750t2ujd08m9sy.closest(scope, predicate, isRoot).isSome();
+  };
+  var sibling$4 = function (scope, predicate) {
+    return $_3j750t2ujd08m9sy.sibling(scope, predicate).isSome();
+  };
+  var child$4 = function (scope, predicate) {
+    return $_3j750t2ujd08m9sy.child(scope, predicate).isSome();
+  };
+  var descendant$3 = function (scope, predicate) {
+    return $_3j750t2ujd08m9sy.descendant(scope, predicate).isSome();
+  };
+  var $_7uhjey46jd08ma18 = {
+=======
+  var modifierNames = $_8i2houjjducwnd2.makeMap('alt,ctrl,shift,meta,access');
+  function Shortcuts (editor) {
+    var self = this;
+    var shortcuts = {};
+    var pendingPatterns = [];
+    var parseShortcut = function (pattern) {
+      var id, key;
+      var shortcut = {};
+      each$10(explode$3(pattern, '+'), function (value) {
+        if (value in modifierNames) {
+          shortcut[value] = true;
+        } else {
+          if (/^[0-9]{2,}$/.test(value)) {
+            shortcut.keyCode = parseInt(value, 10);
+          } else {
+            shortcut.charCode = value.charCodeAt(0);
+            shortcut.keyCode = keyCodeLookup[value] || value.toUpperCase().charCodeAt(0);
+          }
+        }
+      });
+      id = [shortcut.keyCode];
+      for (key in modifierNames) {
+        if (shortcut[key]) {
+          id.push(key);
+        } else {
+          shortcut[key] = false;
+        }
+      }
+      shortcut.id = id.join(',');
+      if (shortcut.access) {
+        shortcut.alt = true;
+        if ($_cum1kc9jducwn99.mac) {
+          shortcut.ctrl = true;
+        } else {
+          shortcut.shift = true;
+        }
+      }
+      if (shortcut.meta) {
+        if ($_cum1kc9jducwn99.mac) {
+          shortcut.meta = true;
+        } else {
+          shortcut.ctrl = true;
+          shortcut.meta = false;
+        }
+      }
+      return shortcut;
+    };
+    var createShortcut = function (pattern, desc, cmdFunc, scope) {
+      var shortcuts;
+      shortcuts = $_8i2houjjducwnd2.map(explode$3(pattern, '>'), parseShortcut);
+      shortcuts[shortcuts.length - 1] = $_8i2houjjducwnd2.extend(shortcuts[shortcuts.length - 1], {
+        func: cmdFunc,
+        scope: scope || editor
+      });
+      return $_8i2houjjducwnd2.extend(shortcuts[0], {
+        desc: editor.translate(desc),
+        subpatterns: shortcuts.slice(1)
+      });
+    };
+    var hasModifier = function (e) {
+      return e.altKey || e.ctrlKey || e.metaKey;
+    };
+    var isFunctionKey = function (e) {
+      return e.type === 'keydown' && e.keyCode >= 112 && e.keyCode <= 123;
+    };
+    var matchShortcut = function (e, shortcut) {
+      if (!shortcut) {
+        return false;
+      }
+      if (shortcut.ctrl !== e.ctrlKey || shortcut.meta !== e.metaKey) {
+        return false;
+      }
+      if (shortcut.alt !== e.altKey || shortcut.shift !== e.shiftKey) {
+        return false;
+      }
+      if (e.keyCode === shortcut.keyCode || e.charCode && e.charCode === shortcut.charCode) {
+        e.preventDefault();
+        return true;
+      }
+      return false;
+    };
+    var executeShortcutAction = function (shortcut) {
+      return shortcut.func ? shortcut.func.call(shortcut.scope) : null;
+    };
+    editor.on('keyup keypress keydown', function (e) {
+      if ((hasModifier(e) || isFunctionKey(e)) && !e.isDefaultPrevented()) {
+        each$10(shortcuts, function (shortcut) {
+          if (matchShortcut(e, shortcut)) {
+            pendingPatterns = shortcut.subpatterns.slice(0);
+            if (e.type === 'keydown') {
+              executeShortcutAction(shortcut);
+            }
+            return true;
+          }
+        });
+        if (matchShortcut(e, pendingPatterns[0])) {
+          if (pendingPatterns.length === 1) {
+            if (e.type === 'keydown') {
+              executeShortcutAction(pendingPatterns[0]);
+            }
+          }
+          pendingPatterns.shift();
+        }
+      }
+    });
+    self.add = function (pattern, desc, cmdFunc, scope) {
+      var cmd;
+      cmd = cmdFunc;
+      if (typeof cmdFunc === 'string') {
+        cmdFunc = function () {
+          editor.execCommand(cmd, false, null);
+        };
+      } else if ($_8i2houjjducwnd2.isArray(cmd)) {
+        cmdFunc = function () {
+          editor.execCommand(cmd[0], cmd[1], cmd[2]);
+        };
+      }
+      each$10(explode$3($_8i2houjjducwnd2.trim(pattern.toLowerCase())), function (pattern) {
+        var shortcut = createShortcut(pattern, desc, cmdFunc, scope);
+        shortcuts[shortcut.id] = shortcut;
+      });
+      return true;
+    };
+    self.remove = function (pattern) {
+      var shortcut = createShortcut(pattern);
+      if (shortcuts[shortcut.id]) {
+        delete shortcuts[shortcut.id];
+        return true;
+      }
+      return false;
+    };
+  }
+
+  var any$1 = function (predicate) {
+    return $_3et3di30jducwnr0.first(predicate).isSome();
+  };
+  var ancestor$3 = function (scope, predicate, isRoot) {
+    return $_3et3di30jducwnr0.ancestor(scope, predicate, isRoot).isSome();
+  };
+  var closest$3 = function (scope, predicate, isRoot) {
+    return $_3et3di30jducwnr0.closest(scope, predicate, isRoot).isSome();
+  };
+  var sibling$4 = function (scope, predicate) {
+    return $_3et3di30jducwnr0.sibling(scope, predicate).isSome();
+  };
+  var child$4 = function (scope, predicate) {
+    return $_3et3di30jducwnr0.child(scope, predicate).isSome();
+  };
+  var descendant$3 = function (scope, predicate) {
+    return $_3et3di30jducwnr0.descendant(scope, predicate).isSome();
+  };
+  var $_g5pgou4ajducwo19 = {
+>>>>>>> installer
+    any: any$1,
+    ancestor: ancestor$3,
+    closest: closest$3,
+    sibling: sibling$4,
+    child: child$4,
+    descendant: descendant$3
+  };
+
+  var focus = function (element) {
+    element.dom().focus();
+  };
+  var blur = function (element) {
+    element.dom().blur();
+  };
+<<<<<<< HEAD
+  var hasFocus = function (element) {
+    var doc = $_8xk2kp17jd08m9j8.owner(element).dom();
+=======
+  var hasFocus$1 = function (element) {
+    var doc = $_f0qt4317jducwnhq.owner(element).dom();
+>>>>>>> installer
+    return element.dom() === doc.activeElement;
+  };
+  var active = function (_doc) {
+    var doc = _doc !== undefined ? _doc.dom() : document;
+<<<<<<< HEAD
+    return $_zhkqu5jd08m996.from(doc.activeElement).map($_f4wyrxyjd08m9i5.fromDom);
+  };
+  var focusInside = function (element) {
+    var doc = $_8xk2kp17jd08m9j8.owner(element);
+    var inside = active(doc).filter(function (a) {
+      return $_7uhjey46jd08ma18.closest(a, $_9msgtx6jd08m99c.curry($_9gmgw51djd08m9k0.eq, element));
+    });
+    inside.fold(function () {
+      focus(element);
+    }, $_9msgtx6jd08m99c.noop);
+  };
+  var search = function (element) {
+    return active($_8xk2kp17jd08m9j8.owner(element)).filter(function (e) {
+      return element.dom().contains(e.dom());
+    });
+  };
+  var $_94uqs245jd08ma14 = {
+    hasFocus: hasFocus,
+=======
+    return Option.from(doc.activeElement).map($_5s4uzoyjducwngo.fromDom);
+  };
+  var focusInside = function (element) {
+    var doc = $_f0qt4317jducwnhq.owner(element);
+    var inside = active(doc).filter(function (a) {
+      return $_g5pgou4ajducwo19.closest(a, $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, element));
+    });
+    inside.fold(function () {
+      focus(element);
+    }, $_60qu7r6jducwn73.noop);
+  };
+  var search = function (element) {
+    return active($_f0qt4317jducwnhq.owner(element)).filter(function (e) {
+      return element.dom().contains(e.dom());
+    });
+  };
+  var $_br1qde49jducwo13 = {
+    hasFocus: hasFocus$1,
+>>>>>>> installer
+    focus: focus,
+    blur: blur,
+    active: active,
+    search: search,
+    focusInside: focusInside
+  };
+
+  var getContentEditableHost = function (editor, node) {
+    return editor.dom.getParent(node, function (node) {
+      return editor.dom.getContentEditable(node) === 'true';
+    });
+  };
+  var getCollapsedNode = function (rng) {
+<<<<<<< HEAD
+    return rng.collapsed ? $_zhkqu5jd08m996.from($_1pqk4723jd08m9p6.getNode(rng.startContainer, rng.startOffset)).map($_f4wyrxyjd08m9i5.fromDom) : $_zhkqu5jd08m996.none();
+=======
+    return rng.collapsed ? Option.from(getNode(rng.startContainer, rng.startOffset)).map($_5s4uzoyjducwngo.fromDom) : Option.none();
+>>>>>>> installer
+  };
+  var getFocusInElement = function (root, rng) {
+    return getCollapsedNode(rng).bind(function (node) {
+      if (isTableSection(node)) {
+<<<<<<< HEAD
+        return $_zhkqu5jd08m996.some(node);
+      } else if ($_9gmgw51djd08m9k0.contains(root, node) === false) {
+        return $_zhkqu5jd08m996.some(root);
+      } else {
+        return $_zhkqu5jd08m996.none();
+=======
+        return Option.some(node);
+      } else if ($_4qdq5m1djducwnie.contains(root, node) === false) {
+        return Option.some(root);
+      } else {
+        return Option.none();
+>>>>>>> installer
+      }
+    });
+  };
+  var normalizeSelection = function (editor, rng) {
+<<<<<<< HEAD
+    getFocusInElement($_f4wyrxyjd08m9i5.fromDom(editor.getBody()), rng).bind(function (elm) {
+      return $_1h7nwy2pjd08m9rw.firstPositionIn(elm.dom());
+=======
+    getFocusInElement($_5s4uzoyjducwngo.fromDom(editor.getBody()), rng).bind(function (elm) {
+      return $_dq07eg2bjducwno6.firstPositionIn(elm.dom());
+>>>>>>> installer
+    }).fold(function () {
+      return editor.selection.normalize();
+    }, function (caretPos) {
+      return editor.selection.setRng(caretPos.toRange());
+    });
+  };
+  var focusBody = function (body) {
+    if (body.setActive) {
+      try {
+        body.setActive();
+      } catch (ex) {
+        body.focus();
+      }
+    } else {
+      body.focus();
+    }
+  };
+  var hasElementFocus = function (elm) {
+<<<<<<< HEAD
+    return $_94uqs245jd08ma14.hasFocus(elm) || $_94uqs245jd08ma14.search(elm).isSome();
+  };
+  var hasIframeFocus = function (editor) {
+    return editor.iframeElement && $_94uqs245jd08ma14.hasFocus($_f4wyrxyjd08m9i5.fromDom(editor.iframeElement));
+  };
+  var hasInlineFocus = function (editor) {
+    var rawBody = editor.getBody();
+    return rawBody && hasElementFocus($_f4wyrxyjd08m9i5.fromDom(rawBody));
+  };
+  var hasFocus$1 = function (editor) {
+=======
+    return $_br1qde49jducwo13.hasFocus(elm) || $_br1qde49jducwo13.search(elm).isSome();
+  };
+  var hasIframeFocus = function (editor) {
+    return editor.iframeElement && $_br1qde49jducwo13.hasFocus($_5s4uzoyjducwngo.fromDom(editor.iframeElement));
+  };
+  var hasInlineFocus = function (editor) {
+    var rawBody = editor.getBody();
+    return rawBody && hasElementFocus($_5s4uzoyjducwngo.fromDom(rawBody));
+  };
+  var hasFocus$2 = function (editor) {
+>>>>>>> installer
+    return editor.inline ? hasInlineFocus(editor) : hasIframeFocus(editor);
+  };
+  var focusEditor = function (editor) {
+    var selection = editor.selection, contentEditable = editor.settings.content_editable;
+    var body = editor.getBody();
+    var contentEditableHost, rng = selection.getRng();
+    editor.quirks.refreshContentEditable();
+    contentEditableHost = getContentEditableHost(editor, selection.getNode());
+    if (editor.$.contains(body, contentEditableHost)) {
+      focusBody(contentEditableHost);
+      normalizeSelection(editor, rng);
+      activateEditor(editor);
+      return;
+    }
+<<<<<<< HEAD
+    if (editor.bookmark !== undefined && hasFocus$1(editor) === false) {
+      $_6fdwex3ujd08m9z9.getRng(editor).each(function (bookmarkRng) {
+=======
+    if (editor.bookmark !== undefined && hasFocus$2(editor) === false) {
+      $_exyelv3zjducwnzi.getRng(editor).each(function (bookmarkRng) {
+>>>>>>> installer
+        editor.selection.setRng(bookmarkRng);
+        rng = bookmarkRng;
+      });
+    }
+    if (!contentEditable) {
+<<<<<<< HEAD
+      if (!$_6pkc2e9jd08m9bi.opera) {
+=======
+      if (!$_cum1kc9jducwn99.opera) {
+>>>>>>> installer
+        focusBody(body);
+      }
+      editor.getWin().focus();
+    }
+<<<<<<< HEAD
+    if ($_6pkc2e9jd08m9bi.gecko || contentEditable) {
+=======
+    if ($_cum1kc9jducwn99.gecko || contentEditable) {
+>>>>>>> installer
+      focusBody(body);
+      normalizeSelection(editor, rng);
+    }
+    activateEditor(editor);
+  };
+  var activateEditor = function (editor) {
+    editor.editorManager.setActive(editor);
+  };
+  var focus$1 = function (editor, skipFocus) {
+    if (editor.removed) {
+      return;
+    }
+    skipFocus ? activateEditor(editor) : focusEditor(editor);
+  };
+<<<<<<< HEAD
+  var $_2dqalv44jd08ma0x = {
+    focus: focus$1,
+    hasFocus: hasFocus$1
+=======
+  var $_egbtag48jducwo0y = {
+    focus: focus$1,
+    hasFocus: hasFocus$2
+>>>>>>> installer
+  };
+
+  var getProp = function (propName, elm) {
+    var rawElm = elm.dom();
+    return rawElm[propName];
+  };
+  var getComputedSizeProp = function (propName, elm) {
+<<<<<<< HEAD
+    return parseInt($_frbcp511jd08m9id.get(elm, propName), 10);
+  };
+  var getClientWidth = $_9msgtx6jd08m99c.curry(getProp, 'clientWidth');
+  var getClientHeight = $_9msgtx6jd08m99c.curry(getProp, 'clientHeight');
+  var getMarginTop = $_9msgtx6jd08m99c.curry(getComputedSizeProp, 'margin-top');
+  var getMarginLeft = $_9msgtx6jd08m99c.curry(getComputedSizeProp, 'margin-left');
+  var getBoundingClientRect = function (elm) {
+=======
+    return parseInt($_6dooji11jducwngx.get(elm, propName), 10);
+  };
+  var getClientWidth = $_60qu7r6jducwn73.curry(getProp, 'clientWidth');
+  var getClientHeight = $_60qu7r6jducwn73.curry(getProp, 'clientHeight');
+  var getMarginTop = $_60qu7r6jducwn73.curry(getComputedSizeProp, 'margin-top');
+  var getMarginLeft = $_60qu7r6jducwn73.curry(getComputedSizeProp, 'margin-left');
+  var getBoundingClientRect$1 = function (elm) {
+>>>>>>> installer
+    return elm.dom().getBoundingClientRect();
+  };
+  var isInsideElementContentArea = function (bodyElm, clientX, clientY) {
+    var clientWidth = getClientWidth(bodyElm);
+    var clientHeight = getClientHeight(bodyElm);
+    return clientX >= 0 && clientY >= 0 && clientX <= clientWidth && clientY <= clientHeight;
+  };
+  var transpose = function (inline, elm, clientX, clientY) {
+    var clientRect = getBoundingClientRect$1(elm);
+    var deltaX = inline ? clientRect.left + elm.dom().clientLeft + getMarginLeft(elm) : 0;
+    var deltaY = inline ? clientRect.top + elm.dom().clientTop + getMarginTop(elm) : 0;
+    var x = clientX - deltaX;
+    var y = clientY - deltaY;
+    return {
+      x: x,
+      y: y
+    };
+  };
+  var isXYInContentArea = function (editor, clientX, clientY) {
+<<<<<<< HEAD
+    var bodyElm = $_f4wyrxyjd08m9i5.fromDom(editor.getBody());
+    var targetElm = editor.inline ? bodyElm : $_8xk2kp17jd08m9j8.documentElement(bodyElm);
+=======
+    var bodyElm = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    var targetElm = editor.inline ? bodyElm : $_f0qt4317jducwnhq.documentElement(bodyElm);
+>>>>>>> installer
+    var transposedPoint = transpose(editor.inline, targetElm, clientX, clientY);
+    return isInsideElementContentArea(targetElm, transposedPoint.x, transposedPoint.y);
+  };
+  var fromDomSafe = function (node) {
+<<<<<<< HEAD
+    return $_zhkqu5jd08m996.from(node).map($_f4wyrxyjd08m9i5.fromDom);
+=======
+    return Option.from(node).map($_5s4uzoyjducwngo.fromDom);
+>>>>>>> installer
+  };
+  var isEditorAttachedToDom = function (editor) {
+    var rawContainer = editor.inline ? editor.getBody() : editor.getContentAreaContainer();
+    return fromDomSafe(rawContainer).map(function (container) {
+<<<<<<< HEAD
+      return $_9gmgw51djd08m9k0.contains($_8xk2kp17jd08m9j8.owner(container), container);
+    }).getOr(false);
+  };
+  var $_8cty3m49jd08ma1l = {
+=======
+      return $_4qdq5m1djducwnie.contains($_f0qt4317jducwnhq.owner(container), container);
+    }).getOr(false);
+  };
+  var $_ahd3ne4djducwo1z = {
+>>>>>>> installer
+    isXYInContentArea: isXYInContentArea,
+    isEditorAttachedToDom: isEditorAttachedToDom
+  };
+
+  function NotificationManagerImpl () {
+    var unimplemented = function () {
+      throw new Error('Theme did not provide a NotificationManager implementation.');
+    };
+    return {
+      open: unimplemented,
+      close: unimplemented,
+      reposition: unimplemented,
+      getArgs: unimplemented
+    };
+  }
+
+  function NotificationManager (editor) {
+    var notifications = [];
+    var getImplementation = function () {
+      var theme = editor.theme;
+      return theme && theme.getNotificationManagerImpl ? theme.getNotificationManagerImpl() : NotificationManagerImpl();
+    };
+    var getTopNotification = function () {
+<<<<<<< HEAD
+      return $_zhkqu5jd08m996.from(notifications[0]);
+=======
+      return Option.from(notifications[0]);
+>>>>>>> installer
+    };
+    var isEqual = function (a, b) {
+      return a.type === b.type && a.text === b.text && !a.progressBar && !a.timeout && !b.progressBar && !b.timeout;
+    };
+    var reposition = function () {
+      if (notifications.length > 0) {
+        getImplementation().reposition(notifications);
+      }
+    };
+    var addNotification = function (notification) {
+      notifications.push(notification);
+    };
+    var closeNotification = function (notification) {
+<<<<<<< HEAD
+      $_65yphx4jd08m98n.findIndex(notifications, function (otherNotification) {
+=======
+      $_2dw1bj4jducwn6g.findIndex(notifications, function (otherNotification) {
+>>>>>>> installer
+        return otherNotification === notification;
+      }).each(function (index) {
+        notifications.splice(index, 1);
+      });
+    };
+    var open = function (args) {
+<<<<<<< HEAD
+      if (editor.removed || !$_8cty3m49jd08ma1l.isEditorAttachedToDom(editor)) {
+        return;
+      }
+      return $_65yphx4jd08m98n.find(notifications, function (notification) {
+=======
+      if (editor.removed || !$_ahd3ne4djducwo1z.isEditorAttachedToDom(editor)) {
+        return;
+      }
+      return $_2dw1bj4jducwn6g.find(notifications, function (notification) {
+>>>>>>> installer
+        return isEqual(getImplementation().getArgs(notification), args);
+      }).getOrThunk(function () {
+        editor.editorManager.setActive(editor);
+        var notification = getImplementation().open(args, function () {
+          closeNotification(notification);
+          reposition();
+        });
+        addNotification(notification);
+        reposition();
+        return notification;
+      });
+    };
+    var close = function () {
+      getTopNotification().each(function (notification) {
+        getImplementation().close(notification);
+        closeNotification(notification);
+        reposition();
+      });
+    };
+    var getNotifications = function () {
+      return notifications;
+    };
+    var registerEvents = function (editor) {
+      editor.on('SkinLoaded', function () {
+        var serviceMessage = editor.settings.service_message;
+        if (serviceMessage) {
+          open({
+            text: serviceMessage,
+            type: 'warning',
+            timeout: 0,
+            icon: ''
+          });
+        }
+      });
+      editor.on('ResizeEditor ResizeWindow', function () {
+<<<<<<< HEAD
+        $_tkwl7gjd08m9ds.requestAnimationFrame(reposition);
+      });
+      editor.on('remove', function () {
+        $_65yphx4jd08m98n.each(notifications, function (notification) {
+=======
+        $_83mf8ygjducwnbc.requestAnimationFrame(reposition);
+      });
+      editor.on('remove', function () {
+        $_2dw1bj4jducwn6g.each(notifications, function (notification) {
+>>>>>>> installer
+          getImplementation().close(notification);
+        });
+      });
+    };
+    registerEvents(editor);
+    return {
+      open: open,
+      close: close,
+      getNotifications: getNotifications
+    };
+  }
+
+  function WindowManagerImpl () {
+    var unimplemented = function () {
+      throw new Error('Theme did not provide a WindowManager implementation.');
+    };
+    return {
+      open: unimplemented,
+      alert: unimplemented,
+      confirm: unimplemented,
+      close: unimplemented,
+      getParams: unimplemented,
+      setParams: unimplemented
+    };
+  }
+
+  function WindowManager (editor) {
+    var windows = [];
+    var getImplementation = function () {
+      var theme = editor.theme;
+      return theme && theme.getWindowManagerImpl ? theme.getWindowManagerImpl() : WindowManagerImpl();
+    };
+    var funcBind = function (scope, f) {
+      return function () {
+        return f ? f.apply(scope, arguments) : undefined;
+      };
+    };
+    var fireOpenEvent = function (win) {
+      editor.fire('OpenWindow', { win: win });
+    };
+    var fireCloseEvent = function (win) {
+      editor.fire('CloseWindow', { win: win });
+    };
+    var addWindow = function (win) {
+      windows.push(win);
+      fireOpenEvent(win);
+    };
+    var closeWindow = function (win) {
+<<<<<<< HEAD
+      $_65yphx4jd08m98n.findIndex(windows, function (otherWindow) {
+=======
+      $_2dw1bj4jducwn6g.findIndex(windows, function (otherWindow) {
+>>>>>>> installer
+        return otherWindow === win;
+      }).each(function (index) {
+        windows.splice(index, 1);
+        fireCloseEvent(win);
+        if (windows.length === 0) {
+          editor.focus();
+        }
+      });
+    };
+    var getTopWindow = function () {
+<<<<<<< HEAD
+      return $_zhkqu5jd08m996.from(windows[windows.length - 1]);
+    };
+    var open = function (args, params) {
+      editor.editorManager.setActive(editor);
+      $_6fdwex3ujd08m9z9.store(editor);
+=======
+      return Option.from(windows[windows.length - 1]);
+    };
+    var open = function (args, params) {
+      editor.editorManager.setActive(editor);
+      $_exyelv3zjducwnzi.store(editor);
+>>>>>>> installer
+      var win = getImplementation().open(args, params, closeWindow);
+      addWindow(win);
+      return win;
+    };
+    var alert = function (message, callback, scope) {
+      var win = getImplementation().alert(message, funcBind(scope ? scope : this, callback), closeWindow);
+      addWindow(win);
+    };
+    var confirm = function (message, callback, scope) {
+      var win = getImplementation().confirm(message, funcBind(scope ? scope : this, callback), closeWindow);
+      addWindow(win);
+    };
+    var close = function () {
+      getTopWindow().each(function (win) {
+        getImplementation().close(win);
+        closeWindow(win);
+      });
+    };
+    var getParams = function () {
+      return getTopWindow().map(getImplementation().getParams).getOr(null);
+    };
+    var setParams = function (params) {
+      getTopWindow().each(function (win) {
+        getImplementation().setParams(win, params);
+      });
+    };
+    var getWindows = function () {
+      return windows;
+    };
+    editor.on('remove', function () {
+<<<<<<< HEAD
+      $_65yphx4jd08m98n.each(windows.slice(0), function (win) {
+=======
+      $_2dw1bj4jducwn6g.each(windows.slice(0), function (win) {
+>>>>>>> installer
+        getImplementation().close(win);
+      });
+    });
+    return {
+      windows: windows,
+      open: open,
+      alert: alert,
+      confirm: confirm,
+      close: close,
+      getParams: getParams,
+      setParams: setParams,
+      getWindows: getWindows
+    };
+  }
+
+  var PluginManager = AddOnManager.PluginManager;
+  var resolvePluginName = function (targetUrl, suffix) {
+    for (var name_1 in PluginManager.urls) {
+      var matchUrl = PluginManager.urls[name_1] + '/plugin' + suffix + '.js';
+      if (matchUrl === targetUrl) {
+        return name_1;
+      }
+    }
+    return null;
+  };
+  var pluginUrlToMessage = function (editor, url) {
+    var plugin = resolvePluginName(url, editor.suffix);
+    return plugin ? 'Failed to load plugin: ' + plugin + ' from url ' + url : 'Failed to load plugin url: ' + url;
+  };
+  var displayNotification = function (editor, message) {
+    editor.notificationManager.open({
+      type: 'error',
+      text: message
+    });
+  };
+  var displayError = function (editor, message) {
+    if (editor._skinLoaded) {
+      displayNotification(editor, message);
+    } else {
+      editor.on('SkinLoaded', function () {
+        displayNotification(editor, message);
+      });
+    }
+  };
+  var uploadError = function (editor, message) {
+    displayError(editor, 'Failed to upload image: ' + message);
+  };
+  var pluginLoadError = function (editor, url) {
+    displayError(editor, pluginUrlToMessage(editor, url));
+  };
+  var initError = function (message) {
+    var x = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+      x[_i - 1] = arguments[_i];
+    }
+    var console = window.console;
+    if (console) {
+      if (console.error) {
+        console.error.apply(console, arguments);
+      } else {
+        console.log.apply(console, arguments);
+      }
+    }
+  };
+<<<<<<< HEAD
+  var $_4h0nzd4djd08ma26 = {
+=======
+  var $_9erk7k4hjducwo2e = {
+>>>>>>> installer
+    pluginLoadError: pluginLoadError,
+    uploadError: uploadError,
+    displayError: displayError,
+    initError: initError
+  };
+
+  var PluginManager$1 = AddOnManager.PluginManager;
+
+  var ThemeManager = AddOnManager.ThemeManager;
+
+  function XMLHttpRequest () {
+<<<<<<< HEAD
+    var f = $_7jpcjvbjd08m9bq.getOrDie('XMLHttpRequest');
+=======
+    var f = $_850zr7bjducwn9g.getOrDie('XMLHttpRequest');
+>>>>>>> installer
+    return new f();
+  }
+
+  function Uploader (uploadStatus, settings) {
+    var pendingPromises = {};
+    var pathJoin = function (path1, path2) {
+      if (path1) {
+        return path1.replace(/\/$/, '') + '/' + path2.replace(/^\//, '');
+      }
+      return path2;
+    };
+    var defaultHandler = function (blobInfo, success, failure, progress) {
+      var xhr, formData;
+      xhr = new XMLHttpRequest();
+      xhr.open('POST', settings.url);
+      xhr.withCredentials = settings.credentials;
+      xhr.upload.onprogress = function (e) {
+        progress(e.loaded / e.total * 100);
+      };
+      xhr.onerror = function () {
+        failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+      };
+      xhr.onload = function () {
+        var json;
+        if (xhr.status < 200 || xhr.status >= 300) {
+          failure('HTTP Error: ' + xhr.status);
+          return;
+        }
+        json = JSON.parse(xhr.responseText);
+        if (!json || typeof json.location !== 'string') {
+          failure('Invalid JSON: ' + xhr.responseText);
+          return;
+        }
+        success(pathJoin(settings.basePath, json.location));
+      };
+      formData = new FormData();
+      formData.append('file', blobInfo.blob(), blobInfo.filename());
+      xhr.send(formData);
+    };
+    var noUpload = function () {
+      return new promiseObj(function (resolve) {
+        resolve([]);
+      });
+    };
+    var handlerSuccess = function (blobInfo, url) {
+      return {
+        url: url,
+        blobInfo: blobInfo,
+        status: true
+      };
+    };
+    var handlerFailure = function (blobInfo, error) {
+      return {
+        url: '',
+        blobInfo: blobInfo,
+        status: false,
+        error: error
+      };
+    };
+    var resolvePending = function (blobUri, result) {
+<<<<<<< HEAD
+      $_gfka90jjd08m9g9.each(pendingPromises[blobUri], function (resolve) {
+=======
+      $_8i2houjjducwnd2.each(pendingPromises[blobUri], function (resolve) {
+>>>>>>> installer
+        resolve(result);
+      });
+      delete pendingPromises[blobUri];
+    };
+    var uploadBlobInfo = function (blobInfo, handler, openNotification) {
+      uploadStatus.markPending(blobInfo.blobUri());
+      return new promiseObj(function (resolve) {
+        var notification, progress;
+        var noop = function () {
+        };
+        try {
+          var closeNotification_1 = function () {
+            if (notification) {
+              notification.close();
+              progress = noop;
+            }
+          };
+          var success = function (url) {
+            closeNotification_1();
+            uploadStatus.markUploaded(blobInfo.blobUri(), url);
+            resolvePending(blobInfo.blobUri(), handlerSuccess(blobInfo, url));
+            resolve(handlerSuccess(blobInfo, url));
+          };
+          var failure = function (error) {
+            closeNotification_1();
+            uploadStatus.removeFailed(blobInfo.blobUri());
+            resolvePending(blobInfo.blobUri(), handlerFailure(blobInfo, error));
+            resolve(handlerFailure(blobInfo, error));
+          };
+          progress = function (percent) {
+            if (percent < 0 || percent > 100) {
+              return;
+            }
+            if (!notification) {
+              notification = openNotification();
+            }
+            notification.progressBar.value(percent);
+          };
+          handler(blobInfo, success, failure, progress);
+        } catch (ex) {
+          resolve(handlerFailure(blobInfo, ex.message));
+        }
+      });
+    };
+    var isDefaultHandler = function (handler) {
+      return handler === defaultHandler;
+    };
+    var pendingUploadBlobInfo = function (blobInfo) {
+      var blobUri = blobInfo.blobUri();
+      return new promiseObj(function (resolve) {
+        pendingPromises[blobUri] = pendingPromises[blobUri] || [];
+        pendingPromises[blobUri].push(resolve);
+      });
+    };
+    var uploadBlobs = function (blobInfos, openNotification) {
+<<<<<<< HEAD
+      blobInfos = $_gfka90jjd08m9g9.grep(blobInfos, function (blobInfo) {
+        return !uploadStatus.isUploaded(blobInfo.blobUri());
+      });
+      return promiseObj.all($_gfka90jjd08m9g9.map(blobInfos, function (blobInfo) {
+=======
+      blobInfos = $_8i2houjjducwnd2.grep(blobInfos, function (blobInfo) {
+        return !uploadStatus.isUploaded(blobInfo.blobUri());
+      });
+      return promiseObj.all($_8i2houjjducwnd2.map(blobInfos, function (blobInfo) {
+>>>>>>> installer
+        return uploadStatus.isPending(blobInfo.blobUri()) ? pendingUploadBlobInfo(blobInfo) : uploadBlobInfo(blobInfo, settings.handler, openNotification);
+      }));
+    };
+    var upload = function (blobInfos, openNotification) {
+      return !settings.url && isDefaultHandler(settings.handler) ? noUpload() : uploadBlobs(blobInfos, openNotification);
+    };
+<<<<<<< HEAD
+    settings = $_gfka90jjd08m9g9.extend({
+=======
+    settings = $_8i2houjjducwnd2.extend({
+>>>>>>> installer
+      credentials: false,
+      handler: defaultHandler
+    }, settings);
+    return { upload: upload };
+  }
+
+  function Blob (parts, properties) {
+<<<<<<< HEAD
+    var f = $_7jpcjvbjd08m9bq.getOrDie('Blob');
+=======
+    var f = $_850zr7bjducwn9g.getOrDie('Blob');
+>>>>>>> installer
+    return new f(parts, properties);
+  }
+
+  function FileReader () {
+<<<<<<< HEAD
+    var f = $_7jpcjvbjd08m9bq.getOrDie('FileReader');
+=======
+    var f = $_850zr7bjducwn9g.getOrDie('FileReader');
+>>>>>>> installer
+    return new f();
+  }
+
+  function Uint8Array (arr) {
+<<<<<<< HEAD
+    var f = $_7jpcjvbjd08m9bq.getOrDie('Uint8Array');
+=======
+    var f = $_850zr7bjducwn9g.getOrDie('Uint8Array');
+>>>>>>> installer
+    return new f(arr);
+  }
+
+  var requestAnimationFrame$1 = function (callback) {
+<<<<<<< HEAD
+    var f = $_7jpcjvbjd08m9bq.getOrDie('requestAnimationFrame');
+    f(callback);
+  };
+  var atob = function (base64) {
+    var f = $_7jpcjvbjd08m9bq.getOrDie('atob');
+    return f(base64);
+  };
+  var $_878frx4qjd08ma3e = {
+=======
+    var f = $_850zr7bjducwn9g.getOrDie('requestAnimationFrame');
+    f(callback);
+  };
+  var atob = function (base64) {
+    var f = $_850zr7bjducwn9g.getOrDie('atob');
+    return f(base64);
+  };
+  var $_ap55c04ujducwo3z = {
+>>>>>>> installer
+    atob: atob,
+    requestAnimationFrame: requestAnimationFrame$1
+  };
+
+  var blobUriToBlob = function (url) {
+    return new promiseObj(function (resolve, reject) {
+      var rejectWithError = function () {
+        reject('Cannot convert ' + url + ' to Blob. Resource might not exist or is inaccessible.');
+      };
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function () {
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            rejectWithError();
+          }
+        };
+        xhr.onerror = rejectWithError;
+        xhr.send();
+      } catch (ex) {
+        rejectWithError();
+      }
+    });
+  };
+  var parseDataUri = function (uri) {
+    var type, matches;
+    uri = decodeURIComponent(uri).split(',');
+    matches = /data:([^;]+)/.exec(uri[0]);
+    if (matches) {
+      type = matches[1];
+    }
+    return {
+      type: type,
+      data: uri[1]
+    };
+  };
+  var dataUriToBlob = function (uri) {
+    return new promiseObj(function (resolve) {
+      var str, arr, i;
+      uri = parseDataUri(uri);
+      try {
+<<<<<<< HEAD
+        str = $_878frx4qjd08ma3e.atob(uri.data);
+=======
+        str = $_ap55c04ujducwo3z.atob(uri.data);
+>>>>>>> installer
+      } catch (e) {
+        resolve(new Blob([]));
+        return;
+      }
+      arr = new Uint8Array(str.length);
+      for (i = 0; i < arr.length; i++) {
+        arr[i] = str.charCodeAt(i);
+      }
+      resolve(new Blob([arr], { type: uri.type }));
+    });
+  };
+  var uriToBlob = function (url) {
+    if (url.indexOf('blob:') === 0) {
+      return blobUriToBlob(url);
+    }
+    if (url.indexOf('data:') === 0) {
+      return dataUriToBlob(url);
+    }
+    return null;
+  };
+  var blobToDataUri = function (blob) {
+    return new promiseObj(function (resolve) {
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
+  };
+<<<<<<< HEAD
+  var $_6j1u244mjd08ma34 = {
+=======
+  var $_1ywx9h4qjducwo3p = {
+>>>>>>> installer
+    uriToBlob: uriToBlob,
+    blobToDataUri: blobToDataUri,
+    parseDataUri: parseDataUri
+  };
+
+  var count = 0;
+  var uniqueId = function (prefix) {
+    return (prefix || 'blobid') + count++;
+  };
+  var imageToBlobInfo = function (blobCache, img, resolve, reject) {
+    var base64, blobInfo;
+    if (img.src.indexOf('blob:') === 0) {
+      blobInfo = blobCache.getByUri(img.src);
+      if (blobInfo) {
+        resolve({
+          image: img,
+          blobInfo: blobInfo
+        });
+      } else {
+<<<<<<< HEAD
+        $_6j1u244mjd08ma34.uriToBlob(img.src).then(function (blob) {
+          $_6j1u244mjd08ma34.blobToDataUri(blob).then(function (dataUri) {
+            base64 = $_6j1u244mjd08ma34.parseDataUri(dataUri).data;
+=======
+        $_1ywx9h4qjducwo3p.uriToBlob(img.src).then(function (blob) {
+          $_1ywx9h4qjducwo3p.blobToDataUri(blob).then(function (dataUri) {
+            base64 = $_1ywx9h4qjducwo3p.parseDataUri(dataUri).data;
+>>>>>>> installer
+            blobInfo = blobCache.create(uniqueId(), blob, base64);
+            blobCache.add(blobInfo);
+            resolve({
+              image: img,
+              blobInfo: blobInfo
+            });
+          });
+        }, function (err) {
+          reject(err);
+        });
+      }
+      return;
+    }
+<<<<<<< HEAD
+    base64 = $_6j1u244mjd08ma34.parseDataUri(img.src).data;
+=======
+    base64 = $_1ywx9h4qjducwo3p.parseDataUri(img.src).data;
+>>>>>>> installer
+    blobInfo = blobCache.findFirst(function (cachedBlobInfo) {
+      return cachedBlobInfo.base64() === base64;
+    });
+    if (blobInfo) {
+      resolve({
+        image: img,
+        blobInfo: blobInfo
+      });
+    } else {
+<<<<<<< HEAD
+      $_6j1u244mjd08ma34.uriToBlob(img.src).then(function (blob) {
+=======
+      $_1ywx9h4qjducwo3p.uriToBlob(img.src).then(function (blob) {
+>>>>>>> installer
+        blobInfo = blobCache.create(uniqueId(), blob, base64);
+        blobCache.add(blobInfo);
+        resolve({
+          image: img,
+          blobInfo: blobInfo
+        });
+      }, function (err) {
+        reject(err);
+      });
+    }
+  };
+  var getAllImages = function (elm) {
+    return elm ? elm.getElementsByTagName('img') : [];
+  };
+  function ImageScanner (uploadStatus, blobCache) {
+    var cachedPromises = {};
+    var findAll = function (elm, predicate) {
+      var images, promises;
+      if (!predicate) {
+<<<<<<< HEAD
+        predicate = $_fys1am25jd08m9pb.constant(true);
+      }
+      images = $_c05hv0kjd08m9gg.filter(getAllImages(elm), function (img) {
+        var src = img.src;
+        if (!$_6pkc2e9jd08m9bi.fileApi) {
+=======
+        predicate = $_6183wb25jducwnn2.constant(true);
+      }
+      images = $_e6e6g1kjducwnfd.filter(getAllImages(elm), function (img) {
+        var src = img.src;
+        if (!$_cum1kc9jducwn99.fileApi) {
+>>>>>>> installer
+          return false;
+        }
+        if (img.hasAttribute('data-mce-bogus')) {
+          return false;
+        }
+        if (img.hasAttribute('data-mce-placeholder')) {
+          return false;
+        }
+<<<<<<< HEAD
+        if (!src || src === $_6pkc2e9jd08m9bi.transparentSrc) {
+=======
+        if (!src || src === $_cum1kc9jducwn99.transparentSrc) {
+>>>>>>> installer
+          return false;
+        }
+        if (src.indexOf('blob:') === 0) {
+          return !uploadStatus.isUploaded(src);
+        }
+        if (src.indexOf('data:') === 0) {
+          return predicate(img);
+        }
+        return false;
+      });
+<<<<<<< HEAD
+      promises = $_c05hv0kjd08m9gg.map(images, function (img) {
+=======
+      promises = $_e6e6g1kjducwnfd.map(images, function (img) {
+>>>>>>> installer
+        var newPromise;
+        if (cachedPromises[img.src]) {
+          return new promiseObj(function (resolve) {
+            cachedPromises[img.src].then(function (imageInfo) {
+              if (typeof imageInfo === 'string') {
+                return imageInfo;
+              }
+              resolve({
+                image: img,
+                blobInfo: imageInfo.blobInfo
+              });
+            });
+          });
+        }
+        newPromise = new promiseObj(function (resolve, reject) {
+          imageToBlobInfo(blobCache, img, resolve, reject);
+        }).then(function (result) {
+          delete cachedPromises[result.image.src];
+          return result;
+        }).catch(function (error) {
+          delete cachedPromises[img.src];
+          return error;
+        });
+        cachedPromises[img.src] = newPromise;
+        return newPromise;
+      });
+      return promiseObj.all(promises);
+    };
+    return { findAll: findAll };
+  }
+
+  var count$1 = 0;
+  var seed = function () {
+    var rnd = function () {
+      return Math.round(Math.random() * 4294967295).toString(36);
+    };
+    var now = new Date().getTime();
+    return 's' + now.toString(36) + rnd() + rnd() + rnd();
+  };
+  var uuid = function (prefix) {
+    return prefix + count$1++ + seed();
+  };
+<<<<<<< HEAD
+  var $_es4isv4sjd08ma3k = { uuid: uuid };
+
+  function BlobCache () {
+    var cache = [];
+    var constant = $_fys1am25jd08m9pb.constant;
+=======
+  var $_48t1mg4wjducwo4b = { uuid: uuid };
+
+  function BlobCache () {
+    var cache = [];
+    var constant = $_6183wb25jducwnn2.constant;
+>>>>>>> installer
+    var mimeToExt = function (mime) {
+      var mimes = {
+        'image/jpeg': 'jpg',
+        'image/jpg': 'jpg',
+        'image/gif': 'gif',
+        'image/png': 'png'
+      };
+      return mimes[mime.toLowerCase()] || 'dat';
+    };
+    var create = function (o, blob, base64, filename) {
+      return typeof o === 'object' ? toBlobInfo(o) : toBlobInfo({
+        id: o,
+        name: filename,
+        blob: blob,
+        base64: base64
+      });
+    };
+    var toBlobInfo = function (o) {
+      var id, name;
+      if (!o.blob || !o.base64) {
+        throw new Error('blob and base64 representations of the image are required for BlobInfo to be created');
+      }
+<<<<<<< HEAD
+      id = o.id || $_es4isv4sjd08ma3k.uuid('blobid');
+=======
+      id = o.id || $_48t1mg4wjducwo4b.uuid('blobid');
+>>>>>>> installer
+      name = o.name || id;
+      return {
+        id: constant(id),
+        name: constant(name),
+        filename: constant(name + '.' + mimeToExt(o.blob.type)),
+        blob: constant(o.blob),
+        base64: constant(o.base64),
+<<<<<<< HEAD
+        blobUri: constant(o.blobUri || $_6s3x45ajd08m9bo.createObjectURL(o.blob)),
+=======
+        blobUri: constant(o.blobUri || $_bqa5nlajducwn9f.createObjectURL(o.blob)),
+>>>>>>> installer
+        uri: constant(o.uri)
+      };
+    };
+    var add = function (blobInfo) {
+      if (!get(blobInfo.id())) {
+        cache.push(blobInfo);
+      }
+    };
+    var get = function (id) {
+      return findFirst(function (cachedBlobInfo) {
+        return cachedBlobInfo.id() === id;
+      });
+    };
+    var findFirst = function (predicate) {
+<<<<<<< HEAD
+      return $_c05hv0kjd08m9gg.filter(cache, predicate)[0];
+=======
+      return $_e6e6g1kjducwnfd.filter(cache, predicate)[0];
+>>>>>>> installer
+    };
+    var getByUri = function (blobUri) {
+      return findFirst(function (blobInfo) {
+        return blobInfo.blobUri() === blobUri;
+      });
+    };
+    var removeByUri = function (blobUri) {
+<<<<<<< HEAD
+      cache = $_c05hv0kjd08m9gg.filter(cache, function (blobInfo) {
+        if (blobInfo.blobUri() === blobUri) {
+          $_6s3x45ajd08m9bo.revokeObjectURL(blobInfo.blobUri());
+=======
+      cache = $_e6e6g1kjducwnfd.filter(cache, function (blobInfo) {
+        if (blobInfo.blobUri() === blobUri) {
+          $_bqa5nlajducwn9f.revokeObjectURL(blobInfo.blobUri());
+>>>>>>> installer
+          return false;
+        }
+        return true;
+      });
+    };
+    var destroy = function () {
+<<<<<<< HEAD
+      $_c05hv0kjd08m9gg.each(cache, function (cachedBlobInfo) {
+        $_6s3x45ajd08m9bo.revokeObjectURL(cachedBlobInfo.blobUri());
+=======
+      $_e6e6g1kjducwnfd.each(cache, function (cachedBlobInfo) {
+        $_bqa5nlajducwn9f.revokeObjectURL(cachedBlobInfo.blobUri());
+>>>>>>> installer
+      });
+      cache = [];
+    };
+    return {
+      create: create,
+      add: add,
+      get: get,
+      getByUri: getByUri,
+      findFirst: findFirst,
+      removeByUri: removeByUri,
+      destroy: destroy
+    };
+  }
+
+  function UploadStatus () {
+    var PENDING = 1, UPLOADED = 2;
+    var blobUriStatuses = {};
+    var createStatus = function (status, resultUri) {
+      return {
+        status: status,
+        resultUri: resultUri
+      };
+    };
+    var hasBlobUri = function (blobUri) {
+      return blobUri in blobUriStatuses;
+    };
+    var getResultUri = function (blobUri) {
+      var result = blobUriStatuses[blobUri];
+      return result ? result.resultUri : null;
+    };
+    var isPending = function (blobUri) {
+      return hasBlobUri(blobUri) ? blobUriStatuses[blobUri].status === PENDING : false;
+    };
+    var isUploaded = function (blobUri) {
+      return hasBlobUri(blobUri) ? blobUriStatuses[blobUri].status === UPLOADED : false;
+    };
+    var markPending = function (blobUri) {
+      blobUriStatuses[blobUri] = createStatus(PENDING, null);
+    };
+    var markUploaded = function (blobUri, resultUri) {
+      blobUriStatuses[blobUri] = createStatus(UPLOADED, resultUri);
+    };
+    var removeFailed = function (blobUri) {
+      delete blobUriStatuses[blobUri];
+    };
+    var destroy = function () {
+      blobUriStatuses = {};
+    };
+    return {
+      hasBlobUri: hasBlobUri,
+      getResultUri: getResultUri,
+      isPending: isPending,
+      isUploaded: isUploaded,
+      markPending: markPending,
+      markUploaded: markUploaded,
+      removeFailed: removeFailed,
+      destroy: destroy
+    };
+  }
+
+  function EditorUpload (editor) {
+    var blobCache = BlobCache();
+    var uploader, imageScanner;
+    var settings = editor.settings;
+    var uploadStatus = UploadStatus();
+    var aliveGuard = function (callback) {
+      return function (result) {
+        if (editor.selection) {
+          return callback(result);
+        }
+        return [];
+      };
+    };
+    var cacheInvalidator = function () {
+      return '?' + new Date().getTime();
+    };
+    var replaceString = function (content, search, replace) {
+      var index = 0;
+      do {
+        index = content.indexOf(search, index);
+        if (index !== -1) {
+          content = content.substring(0, index) + replace + content.substr(index + search.length);
+          index += replace.length - search.length + 1;
+        }
+      } while (index !== -1);
+      return content;
+    };
+    var replaceImageUrl = function (content, targetUrl, replacementUrl) {
+      content = replaceString(content, 'src="' + targetUrl + '"', 'src="' + replacementUrl + '"');
+      content = replaceString(content, 'data-mce-src="' + targetUrl + '"', 'data-mce-src="' + replacementUrl + '"');
+      return content;
+    };
+    var replaceUrlInUndoStack = function (targetUrl, replacementUrl) {
+<<<<<<< HEAD
+      $_c05hv0kjd08m9gg.each(editor.undoManager.data, function (level) {
+        if (level.type === 'fragmented') {
+          level.fragments = $_c05hv0kjd08m9gg.map(level.fragments, function (fragment) {
+=======
+      $_e6e6g1kjducwnfd.each(editor.undoManager.data, function (level) {
+        if (level.type === 'fragmented') {
+          level.fragments = $_e6e6g1kjducwnfd.map(level.fragments, function (fragment) {
+>>>>>>> installer
+            return replaceImageUrl(fragment, targetUrl, replacementUrl);
+          });
+        } else {
+          level.content = replaceImageUrl(level.content, targetUrl, replacementUrl);
+        }
+      });
+    };
+    var openNotification = function () {
+      return editor.notificationManager.open({
+        text: editor.translate('Image uploading...'),
+        type: 'info',
+        timeout: -1,
+        progressBar: true
+      });
+    };
+    var replaceImageUri = function (image, resultUri) {
+      blobCache.removeByUri(image.src);
+      replaceUrlInUndoStack(image.src, resultUri);
+      editor.$(image).attr({
+        'src': settings.images_reuse_filename ? resultUri + cacheInvalidator() : resultUri,
+        'data-mce-src': editor.convertURL(resultUri, 'src')
+      });
+    };
+    var uploadImages = function (callback) {
+      if (!uploader) {
+        uploader = Uploader(uploadStatus, {
+          url: settings.images_upload_url,
+          basePath: settings.images_upload_base_path,
+          credentials: settings.images_upload_credentials,
+          handler: settings.images_upload_handler
+        });
+      }
+      return scanForImages().then(aliveGuard(function (imageInfos) {
+        var blobInfos;
+<<<<<<< HEAD
+        blobInfos = $_c05hv0kjd08m9gg.map(imageInfos, function (imageInfo) {
+          return imageInfo.blobInfo;
+        });
+        return uploader.upload(blobInfos, openNotification).then(aliveGuard(function (result) {
+          var filteredResult = $_c05hv0kjd08m9gg.map(result, function (uploadInfo, index) {
+=======
+        blobInfos = $_e6e6g1kjducwnfd.map(imageInfos, function (imageInfo) {
+          return imageInfo.blobInfo;
+        });
+        return uploader.upload(blobInfos, openNotification).then(aliveGuard(function (result) {
+          var filteredResult = $_e6e6g1kjducwnfd.map(result, function (uploadInfo, index) {
+>>>>>>> installer
+            var image = imageInfos[index].image;
+            if (uploadInfo.status && editor.settings.images_replace_blob_uris !== false) {
+              replaceImageUri(image, uploadInfo.url);
+            } else if (uploadInfo.error) {
+<<<<<<< HEAD
+              $_4h0nzd4djd08ma26.uploadError(editor, uploadInfo.error);
+=======
+              $_9erk7k4hjducwo2e.uploadError(editor, uploadInfo.error);
+>>>>>>> installer
+            }
+            return {
+              element: image,
+              status: uploadInfo.status
+            };
+          });
+          if (callback) {
+            callback(filteredResult);
+          }
+          return filteredResult;
+        }));
+      }));
+    };
+    var uploadImagesAuto = function (callback) {
+      if (settings.automatic_uploads !== false) {
+        return uploadImages(callback);
+      }
+    };
+    var isValidDataUriImage = function (imgElm) {
+      return settings.images_dataimg_filter ? settings.images_dataimg_filter(imgElm) : true;
+    };
+    var scanForImages = function () {
+      if (!imageScanner) {
+        imageScanner = ImageScanner(uploadStatus, blobCache);
+      }
+      return imageScanner.findAll(editor.getBody(), isValidDataUriImage).then(aliveGuard(function (result) {
+<<<<<<< HEAD
+        result = $_c05hv0kjd08m9gg.filter(result, function (resultItem) {
+          if (typeof resultItem === 'string') {
+            $_4h0nzd4djd08ma26.displayError(editor, resultItem);
+=======
+        result = $_e6e6g1kjducwnfd.filter(result, function (resultItem) {
+          if (typeof resultItem === 'string') {
+            $_9erk7k4hjducwo2e.displayError(editor, resultItem);
+>>>>>>> installer
+            return false;
+          }
+          return true;
+        });
+<<<<<<< HEAD
+        $_c05hv0kjd08m9gg.each(result, function (resultItem) {
+=======
+        $_e6e6g1kjducwnfd.each(result, function (resultItem) {
+>>>>>>> installer
+          replaceUrlInUndoStack(resultItem.image.src, resultItem.blobInfo.blobUri());
+          resultItem.image.src = resultItem.blobInfo.blobUri();
+          resultItem.image.removeAttribute('data-mce-src');
+        });
+        return result;
+      }));
+    };
+    var destroy = function () {
+      blobCache.destroy();
+      uploadStatus.destroy();
+      imageScanner = uploader = null;
+    };
+    var replaceBlobUris = function (content) {
+      return content.replace(/src="(blob:[^"]+)"/g, function (match, blobUri) {
+        var resultUri = uploadStatus.getResultUri(blobUri);
+        if (resultUri) {
+          return 'src="' + resultUri + '"';
+        }
+        var blobInfo = blobCache.getByUri(blobUri);
+        if (!blobInfo) {
+<<<<<<< HEAD
+          blobInfo = $_c05hv0kjd08m9gg.reduce(editor.editorManager.get(), function (result, editor) {
+=======
+          blobInfo = $_e6e6g1kjducwnfd.reduce(editor.editorManager.get(), function (result, editor) {
+>>>>>>> installer
+            return result || editor.editorUpload && editor.editorUpload.blobCache.getByUri(blobUri);
+          }, null);
+        }
+        if (blobInfo) {
+          return 'src="data:' + blobInfo.blob().type + ';base64,' + blobInfo.base64() + '"';
+        }
+        return match;
+      });
+    };
+    editor.on('setContent', function () {
+      if (editor.settings.automatic_uploads !== false) {
+        uploadImagesAuto();
+      } else {
+        scanForImages();
+      }
+    });
+    editor.on('RawSaveContent', function (e) {
+      e.content = replaceBlobUris(e.content);
+    });
+    editor.on('getContent', function (e) {
+      if (e.source_view || e.format === 'raw') {
+        return;
+      }
+      e.content = replaceBlobUris(e.content);
+    });
+    editor.on('PostRender', function () {
+      editor.parser.addNodeFilter('img', function (images) {
+<<<<<<< HEAD
+        $_c05hv0kjd08m9gg.each(images, function (img) {
+=======
+        $_e6e6g1kjducwnfd.each(images, function (img) {
+>>>>>>> installer
+          var src = img.attr('src');
+          if (blobCache.getByUri(src)) {
+            return;
+          }
+          var resultUri = uploadStatus.getResultUri(src);
+          if (resultUri) {
+            img.attr('src', resultUri);
+          }
+        });
+      });
+    });
+    return {
+      blobCache: blobCache,
+      uploadImages: uploadImages,
+      uploadImagesAuto: uploadImagesAuto,
+      scanForImages: scanForImages,
+      destroy: destroy
+    };
+  }
+
+  var isBlockElement = function (blockElements, node) {
+    return blockElements.hasOwnProperty(node.nodeName);
+  };
+  var isValidTarget = function (blockElements, node) {
+<<<<<<< HEAD
+    if ($_2qai0u1qjd08m9l9.isText(node)) {
+      return true;
+    } else if ($_2qai0u1qjd08m9l9.isElement(node)) {
+      return !isBlockElement(blockElements, node) && !$_5k9pi229jd08m9q0.isBookmarkNode(node);
+=======
+    if ($_fj238m1qjducwnjm.isText(node)) {
+      return true;
+    } else if ($_fj238m1qjducwnjm.isElement(node)) {
+      return !isBlockElement(blockElements, node) && !$_dcl0u12jjducwnp0.isBookmarkNode(node);
+>>>>>>> installer
+    } else {
+      return false;
+    }
+  };
+  var hasBlockParent = function (blockElements, root, node) {
+<<<<<<< HEAD
+    return $_65yphx4jd08m98n.exists($_aus1dm33jd08m9ur.parents($_f4wyrxyjd08m9i5.fromDom(node), $_f4wyrxyjd08m9i5.fromDom(root)), function (elm) {
+=======
+    return $_2dw1bj4jducwn6g.exists($_b22jto39jducwnsg.parents($_5s4uzoyjducwngo.fromDom(node), $_5s4uzoyjducwngo.fromDom(root)), function (elm) {
+>>>>>>> installer
+      return isBlockElement(blockElements, elm.dom());
+    });
+  };
+  var shouldRemoveTextNode = function (blockElements, node) {
+    if ($_fj238m1qjducwnjm.isText(node)) {
+      if (node.nodeValue.length === 0) {
+        return true;
+      } else if (/^\s+$/.test(node.nodeValue) && (!node.nextSibling || isBlockElement(blockElements, node.nextSibling))) {
+        return true;
+      }
+    }
+    return false;
+  };
+  var addRootBlocks = function (editor) {
+    var settings = editor.settings, dom = editor.dom, selection = editor.selection;
+    var schema = editor.schema, blockElements = schema.getBlockElements();
+    var node = selection.getStart();
+    var rootNode = editor.getBody();
+    var rng;
+    var startContainer, startOffset, endContainer, endOffset, rootBlockNode;
+    var tempNode, wrapped, restoreSelection;
+    var rootNodeName, forcedRootBlock;
+    forcedRootBlock = settings.forced_root_block;
+<<<<<<< HEAD
+    if (!node || !$_2qai0u1qjd08m9l9.isElement(node) || !forcedRootBlock) {
+=======
+    if (!node || !$_fj238m1qjducwnjm.isElement(node) || !forcedRootBlock) {
+>>>>>>> installer
+      return;
+    }
+    rootNodeName = rootNode.nodeName.toLowerCase();
+    if (!schema.isValidChild(rootNodeName, forcedRootBlock.toLowerCase()) || hasBlockParent(blockElements, rootNode, node)) {
+      return;
+    }
+    rng = selection.getRng();
+    startContainer = rng.startContainer;
+    startOffset = rng.startOffset;
+    endContainer = rng.endContainer;
+    endOffset = rng.endOffset;
+<<<<<<< HEAD
+    restoreSelection = $_2dqalv44jd08ma0x.hasFocus(editor);
+    node = rootNode.firstChild;
+    while (node) {
+      if (isValidTarget(blockElements, node)) {
+        if ($_2qai0u1qjd08m9l9.isText(node) && node.nodeValue.length === 0) {
+=======
+    restoreSelection = $_egbtag48jducwo0y.hasFocus(editor);
+    node = rootNode.firstChild;
+    while (node) {
+      if (isValidTarget(blockElements, node)) {
+        if (shouldRemoveTextNode(blockElements, node)) {
+>>>>>>> installer
+          tempNode = node;
+          node = node.nextSibling;
+          dom.remove(tempNode);
+          continue;
+        }
+        if (!rootBlockNode) {
+          rootBlockNode = dom.create(forcedRootBlock, editor.settings.forced_root_block_attrs);
+          node.parentNode.insertBefore(rootBlockNode, node);
+          wrapped = true;
+        }
+        tempNode = node;
+        node = node.nextSibling;
+        rootBlockNode.appendChild(tempNode);
+      } else {
+        rootBlockNode = null;
+        node = node.nextSibling;
+      }
+    }
+    if (wrapped && restoreSelection) {
+      rng.setStart(startContainer, startOffset);
+      rng.setEnd(endContainer, endOffset);
+      selection.setRng(rng);
+      editor.nodeChanged();
+    }
+  };
+  var setup$1 = function (editor) {
+    if (editor.settings.forced_root_block) {
+<<<<<<< HEAD
+      editor.on('NodeChange', $_9msgtx6jd08m99c.curry(addRootBlocks, editor));
+    }
+  };
+  var $_3zqn544ujd08ma3n = { setup: setup$1 };
+=======
+      editor.on('NodeChange', $_60qu7r6jducwn73.curry(addRootBlocks, editor));
+    }
+  };
+  var $_eu4mtv4yjducwo4f = { setup: setup$1 };
+>>>>>>> installer
+
+  function NodeChange (editor) {
+    var lastRng, lastPath = [];
+    var isSameElementPath = function (startElm) {
+      var i, currentPath;
+      currentPath = editor.$(startElm).parentsUntil(editor.getBody()).add(startElm);
+      if (currentPath.length === lastPath.length) {
+        for (i = currentPath.length; i >= 0; i--) {
+          if (currentPath[i] !== lastPath[i]) {
+            break;
+          }
+        }
+        if (i === -1) {
+          lastPath = currentPath;
+          return true;
+        }
+      }
+      lastPath = currentPath;
+      return false;
+    };
+    if (!('onselectionchange' in editor.getDoc())) {
+      editor.on('NodeChange Click MouseUp KeyUp Focus', function (e) {
+        var nativeRng, fakeRng;
+        nativeRng = editor.selection.getRng();
+        fakeRng = {
+          startContainer: nativeRng.startContainer,
+          startOffset: nativeRng.startOffset,
+          endContainer: nativeRng.endContainer,
+          endOffset: nativeRng.endOffset
+        };
+<<<<<<< HEAD
+        if (e.type === 'nodechange' || !$_gfrjn03tjd08m9z7.isEq(fakeRng, lastRng)) {
+=======
+        if (e.type === 'nodechange' || !$_18bpcb3yjducwnzh.isEq(fakeRng, lastRng)) {
+>>>>>>> installer
+          editor.fire('SelectionChange');
+        }
+        lastRng = fakeRng;
+      });
+    }
+    editor.on('contextmenu', function () {
+      editor.fire('SelectionChange');
+    });
+    editor.on('SelectionChange', function () {
+      var startElm = editor.selection.getStart(true);
+<<<<<<< HEAD
+      if (!startElm || !$_6pkc2e9jd08m9bi.range && editor.selection.isCollapsed()) {
+=======
+      if (!startElm || !$_cum1kc9jducwn99.range && editor.selection.isCollapsed()) {
+>>>>>>> installer
+        return;
+      }
+      if (!isSameElementPath(startElm) && editor.dom.isChildOf(startElm, editor.getBody())) {
+        editor.nodeChanged({ selectionChange: true });
+      }
+    });
+    editor.on('MouseUp', function (e) {
+      if (!e.isDefaultPrevented()) {
+        if (editor.selection.getNode().nodeName === 'IMG') {
+<<<<<<< HEAD
+          $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
+=======
+          $_83mf8ygjducwnbc.setEditorTimeout(editor, function () {
+>>>>>>> installer
+            editor.nodeChanged();
+          });
+        } else {
+          editor.nodeChanged();
+        }
+      }
+    });
+    this.nodeChanged = function (args) {
+      var selection = editor.selection;
+      var node, parents, root;
+      if (editor.initialized && selection && !editor.settings.disable_nodechange && !editor.readonly) {
+        root = editor.getBody();
+        node = selection.getStart(true) || root;
+        if (node.ownerDocument !== editor.getDoc() || !editor.dom.isChildOf(node, root)) {
+          node = root;
+        }
+        parents = [];
+        editor.dom.getParent(node, function (node) {
+          if (node === root) {
+            return true;
+          }
+          parents.push(node);
+        });
+        args = args || {};
+        args.element = node;
+        args.parents = parents;
+        editor.fire('NodeChange', args);
+      }
+    };
+  }
+
+  var getAbsolutePosition = function (elm) {
+    var doc, docElem, win, clientRect;
+    clientRect = elm.getBoundingClientRect();
+    doc = elm.ownerDocument;
+    docElem = doc.documentElement;
+    win = doc.defaultView;
+    return {
+      top: clientRect.top + win.pageYOffset - docElem.clientTop,
+      left: clientRect.left + win.pageXOffset - docElem.clientLeft
+    };
+  };
+  var getBodyPosition = function (editor) {
+    return editor.inline ? getAbsolutePosition(editor.getBody()) : {
+      left: 0,
+      top: 0
+    };
+  };
+  var getScrollPosition = function (editor) {
+    var body = editor.getBody();
+    return editor.inline ? {
+      left: body.scrollLeft,
+      top: body.scrollTop
+    } : {
+      left: 0,
+      top: 0
+    };
+  };
+  var getBodyScroll = function (editor) {
+    var body = editor.getBody(), docElm = editor.getDoc().documentElement;
+    var inlineScroll = {
+      left: body.scrollLeft,
+      top: body.scrollTop
+    };
+    var iframeScroll = {
+      left: body.scrollLeft || docElm.scrollLeft,
+      top: body.scrollTop || docElm.scrollTop
+    };
+    return editor.inline ? inlineScroll : iframeScroll;
+  };
+  var getMousePosition = function (editor, event) {
+    if (event.target.ownerDocument !== editor.getDoc()) {
+      var iframePosition = getAbsolutePosition(editor.getContentAreaContainer());
+      var scrollPosition = getBodyScroll(editor);
+      return {
+        left: event.pageX - iframePosition.left + scrollPosition.left,
+        top: event.pageY - iframePosition.top + scrollPosition.top
+      };
+    }
+    return {
+      left: event.pageX,
+      top: event.pageY
+    };
+  };
+  var calculatePosition = function (bodyPosition, scrollPosition, mousePosition) {
+    return {
+      pageX: mousePosition.left - bodyPosition.left + scrollPosition.left,
+      pageY: mousePosition.top - bodyPosition.top + scrollPosition.top
+    };
+  };
+  var calc = function (editor, event) {
+    return calculatePosition(getBodyPosition(editor), getScrollPosition(editor), getMousePosition(editor, event));
+  };
+<<<<<<< HEAD
+  var $_7j2e634yjd08ma4t = { calc: calc };
+
+  var isContentEditableFalse$5 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
+  var isContentEditableTrue$3 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
+  var isDraggable = function (rootElm, elm) {
+    return isContentEditableFalse$5(elm) && elm !== rootElm;
+=======
+  var $_bi2rbv52jducwo5n = { calc: calc };
+
+  var isContentEditableFalse$7 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isContentEditableTrue$4 = $_fj238m1qjducwnjm.isContentEditableTrue;
+  var isDraggable = function (rootElm, elm) {
+    return isContentEditableFalse$7(elm) && elm !== rootElm;
+>>>>>>> installer
+  };
+  var isValidDropTarget = function (editor, targetElement, dragElement) {
+    if (targetElement === dragElement || editor.dom.isChildOf(targetElement, dragElement)) {
+      return false;
+    }
+<<<<<<< HEAD
+    if (isContentEditableFalse$5(targetElement)) {
+=======
+    if (isContentEditableFalse$7(targetElement)) {
+>>>>>>> installer
+      return false;
+    }
+    return true;
+  };
+  var cloneElement = function (elm) {
+    var cloneElm = elm.cloneNode(true);
+    cloneElm.removeAttribute('data-mce-selected');
+    return cloneElm;
+  };
+  var createGhost = function (editor, elm, width, height) {
+    var clonedElm = elm.cloneNode(true);
+    editor.dom.setStyles(clonedElm, {
+      width: width,
+      height: height
+    });
+    editor.dom.setAttrib(clonedElm, 'data-mce-selected', null);
+    var ghostElm = editor.dom.create('div', {
+      'class': 'mce-drag-container',
+      'data-mce-bogus': 'all',
+      'unselectable': 'on',
+      'contenteditable': 'false'
+    });
+    editor.dom.setStyles(ghostElm, {
+      position: 'absolute',
+      opacity: 0.5,
+      overflow: 'hidden',
+      border: 0,
+      padding: 0,
+      margin: 0,
+      width: width,
+      height: height
+    });
+    editor.dom.setStyles(clonedElm, {
+      margin: 0,
+      boxSizing: 'border-box'
+    });
+    ghostElm.appendChild(clonedElm);
+    return ghostElm;
+  };
+  var appendGhostToBody = function (ghostElm, bodyElm) {
+    if (ghostElm.parentNode !== bodyElm) {
+      bodyElm.appendChild(ghostElm);
+    }
+  };
+  var moveGhost = function (ghostElm, position, width, height, maxX, maxY) {
+    var overflowX = 0, overflowY = 0;
+    ghostElm.style.left = position.pageX + 'px';
+    ghostElm.style.top = position.pageY + 'px';
+    if (position.pageX + width > maxX) {
+      overflowX = position.pageX + width - maxX;
+    }
+    if (position.pageY + height > maxY) {
+      overflowY = position.pageY + height - maxY;
+    }
+    ghostElm.style.width = width - overflowX + 'px';
+    ghostElm.style.height = height - overflowY + 'px';
+  };
+  var removeElement = function (elm) {
+    if (elm && elm.parentNode) {
+      elm.parentNode.removeChild(elm);
+    }
+  };
+  var isLeftMouseButtonPressed = function (e) {
+    return e.button === 0;
+  };
+  var hasDraggableElement = function (state) {
+    return state.element;
+  };
+  var applyRelPos = function (state, position) {
+    return {
+      pageX: position.pageX - state.relX,
+      pageY: position.pageY + 5
+    };
+  };
+  var start$1 = function (state, editor) {
+    return function (e) {
+      if (isLeftMouseButtonPressed(e)) {
+<<<<<<< HEAD
+        var ceElm = $_c05hv0kjd08m9gg.find(editor.dom.getParents(e.target), $_fys1am25jd08m9pb.or(isContentEditableFalse$5, isContentEditableTrue$3));
+=======
+        var ceElm = $_e6e6g1kjducwnfd.find(editor.dom.getParents(e.target), $_6183wb25jducwnn2.or(isContentEditableFalse$7, isContentEditableTrue$4));
+>>>>>>> installer
+        if (isDraggable(editor.getBody(), ceElm)) {
+          var elmPos = editor.dom.getPos(ceElm);
+          var bodyElm = editor.getBody();
+          var docElm = editor.getDoc().documentElement;
+          state.element = ceElm;
+          state.screenX = e.screenX;
+          state.screenY = e.screenY;
+          state.maxX = (editor.inline ? bodyElm.scrollWidth : docElm.offsetWidth) - 2;
+          state.maxY = (editor.inline ? bodyElm.scrollHeight : docElm.offsetHeight) - 2;
+          state.relX = e.pageX - elmPos.x;
+          state.relY = e.pageY - elmPos.y;
+          state.width = ceElm.offsetWidth;
+          state.height = ceElm.offsetHeight;
+          state.ghost = createGhost(editor, ceElm, state.width, state.height);
+        }
+      }
+    };
+  };
+  var move$1 = function (state, editor) {
+<<<<<<< HEAD
+    var throttledPlaceCaretAt = $_tkwl7gjd08m9ds.throttle(function (clientX, clientY) {
+=======
+    var throttledPlaceCaretAt = $_83mf8ygjducwnbc.throttle(function (clientX, clientY) {
+>>>>>>> installer
+      editor._selectionOverrides.hideFakeCaret();
+      editor.selection.placeCaretAt(clientX, clientY);
+    }, 0);
+    return function (e) {
+      var movement = Math.max(Math.abs(e.screenX - state.screenX), Math.abs(e.screenY - state.screenY));
+      if (hasDraggableElement(state) && !state.dragging && movement > 10) {
+        var args = editor.fire('dragstart', { target: state.element });
+        if (args.isDefaultPrevented()) {
+          return;
+        }
+        state.dragging = true;
+        editor.focus();
+      }
+      if (state.dragging) {
+<<<<<<< HEAD
+        var targetPos = applyRelPos(state, $_7j2e634yjd08ma4t.calc(editor, e));
+=======
+        var targetPos = applyRelPos(state, $_bi2rbv52jducwo5n.calc(editor, e));
+>>>>>>> installer
+        appendGhostToBody(state.ghost, editor.getBody());
+        moveGhost(state.ghost, targetPos, state.width, state.height, state.maxX, state.maxY);
+        throttledPlaceCaretAt(e.clientX, e.clientY);
+      }
+    };
+  };
+  var getRawTarget = function (selection) {
+    var rng = selection.getSel().getRangeAt(0);
+    var startContainer = rng.startContainer;
+    return startContainer.nodeType === 3 ? startContainer.parentNode : startContainer;
+  };
+  var drop = function (state, editor) {
+    return function (e) {
+      if (state.dragging) {
+        if (isValidDropTarget(editor, getRawTarget(editor.selection), state.element)) {
+          var targetClone_1 = cloneElement(state.element);
+          var args = editor.fire('drop', {
+            targetClone: targetClone_1,
+            clientX: e.clientX,
+            clientY: e.clientY
+          });
+          if (!args.isDefaultPrevented()) {
+            targetClone_1 = args.targetClone;
+            editor.undoManager.transact(function () {
+              removeElement(state.element);
+              editor.insertContent(editor.dom.getOuterHTML(targetClone_1));
+              editor._selectionOverrides.hideFakeCaret();
+            });
+          }
+        }
+      }
+      removeDragState(state);
+    };
+  };
+  var stop = function (state, editor) {
+    return function () {
+      removeDragState(state);
+      if (state.dragging) {
+        editor.fire('dragend');
+      }
+    };
+  };
+  var removeDragState = function (state) {
+    state.dragging = false;
+    state.element = null;
+    removeElement(state.ghost);
+  };
+  var bindFakeDragEvents = function (editor) {
+    var state = {};
+    var pageDom, dragStartHandler, dragHandler, dropHandler, dragEndHandler, rootDocument;
+    pageDom = DOMUtils.DOM;
+    rootDocument = document;
+    dragStartHandler = start$1(state, editor);
+    dragHandler = move$1(state, editor);
+    dropHandler = drop(state, editor);
+    dragEndHandler = stop(state, editor);
+    editor.on('mousedown', dragStartHandler);
+    editor.on('mousemove', dragHandler);
+    editor.on('mouseup', dropHandler);
+    pageDom.bind(rootDocument, 'mousemove', dragHandler);
+    pageDom.bind(rootDocument, 'mouseup', dragEndHandler);
+    editor.on('remove', function () {
+      pageDom.unbind(rootDocument, 'mousemove', dragHandler);
+      pageDom.unbind(rootDocument, 'mouseup', dragEndHandler);
+    });
+  };
+  var blockIeDrop = function (editor) {
+    editor.on('drop', function (e) {
+      var realTarget = typeof e.clientX !== 'undefined' ? editor.getDoc().elementFromPoint(e.clientX, e.clientY) : null;
+<<<<<<< HEAD
+      if (isContentEditableFalse$5(realTarget) || isContentEditableFalse$5(editor.dom.getContentEditableParent(realTarget))) {
+=======
+      if (isContentEditableFalse$7(realTarget) || isContentEditableFalse$7(editor.dom.getContentEditableParent(realTarget))) {
+>>>>>>> installer
+        e.preventDefault();
+      }
+    });
+  };
+  var init = function (editor) {
+    bindFakeDragEvents(editor);
+    blockIeDrop(editor);
+  };
+<<<<<<< HEAD
+  var $_cu3cfx4xjd08ma4m = { init: init };
+
+  var isContentEditableFalse$6 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
+  var isTableCell$3 = function (node) {
+    return node && /^(TD|TH)$/i.test(node.nodeName);
+  };
+  function FakeCaret (rootNode, isBlock) {
+    var cursorInterval, $lastVisualCaret = null, caretContainerNode;
+    var getAbsoluteClientRect = function (node, before) {
+      var clientRect = $_a2gimq22jd08m9p3.collapse(node.getBoundingClientRect(), before);
+      var docElm, scrollX, scrollY, margin, rootRect;
+      if (rootNode.tagName === 'BODY') {
+        docElm = rootNode.ownerDocument.documentElement;
+        scrollX = rootNode.scrollLeft || docElm.scrollLeft;
+        scrollY = rootNode.scrollTop || docElm.scrollTop;
+      } else {
+        rootRect = rootNode.getBoundingClientRect();
+        scrollX = rootNode.scrollLeft - rootRect.left;
+        scrollY = rootNode.scrollTop - rootRect.top;
+      }
+      clientRect.left += scrollX;
+      clientRect.right += scrollX;
+      clientRect.top += scrollY;
+      clientRect.bottom += scrollY;
+      clientRect.width = 1;
+      margin = node.offsetWidth - node.clientWidth;
+      if (margin > 0) {
+        if (before) {
+          margin *= -1;
+        }
+        clientRect.left += margin;
+        clientRect.right += margin;
+      }
+      return clientRect;
+    };
+    var trimInlineCaretContainers = function () {
+      var contentEditableFalseNodes, node, sibling, i, data;
+      contentEditableFalseNodes = DomQuery('*[contentEditable=false]', rootNode);
+      for (i = 0; i < contentEditableFalseNodes.length; i++) {
+        node = contentEditableFalseNodes[i];
+        sibling = node.previousSibling;
+        if ($_euzg3m20jd08m9ow.endsWithCaretContainer(sibling)) {
+          data = sibling.data;
+          if (data.length === 1) {
+            sibling.parentNode.removeChild(sibling);
+          } else {
+            sibling.deleteData(data.length - 1, 1);
+          }
+        }
+        sibling = node.nextSibling;
+        if ($_euzg3m20jd08m9ow.startsWithCaretContainer(sibling)) {
+          data = sibling.data;
+          if (data.length === 1) {
+            sibling.parentNode.removeChild(sibling);
+          } else {
+            sibling.deleteData(0, 1);
+          }
+        }
+      }
+      return null;
+    };
+    var show = function (before, node) {
+      var clientRect, rng;
+      hide();
+      if (isTableCell$3(node)) {
+        return null;
+      }
+      if (isBlock(node)) {
+        caretContainerNode = $_euzg3m20jd08m9ow.insertBlock('p', node, before);
+        clientRect = getAbsoluteClientRect(node, before);
+        DomQuery(caretContainerNode).css('top', clientRect.top);
+        $lastVisualCaret = DomQuery('<div class="mce-visual-caret" data-mce-bogus="all"></div>').css(clientRect).appendTo(rootNode);
+        if (before) {
+          $lastVisualCaret.addClass('mce-visual-caret-before');
+        }
+        startBlink();
+        rng = node.ownerDocument.createRange();
+        rng.setStart(caretContainerNode, 0);
+        rng.setEnd(caretContainerNode, 0);
+      } else {
+        caretContainerNode = $_euzg3m20jd08m9ow.insertInline(node, before);
+        rng = node.ownerDocument.createRange();
+        if (isContentEditableFalse$6(caretContainerNode.nextSibling)) {
+          rng.setStart(caretContainerNode, 0);
+          rng.setEnd(caretContainerNode, 0);
+        } else {
+          rng.setStart(caretContainerNode, 1);
+          rng.setEnd(caretContainerNode, 1);
+        }
+        return rng;
+      }
+      return rng;
+    };
+    var hide = function () {
+      trimInlineCaretContainers();
+      if (caretContainerNode) {
+        $_2oxzv63cjd08m9w5.remove(caretContainerNode);
+        caretContainerNode = null;
+      }
+      if ($lastVisualCaret) {
+        $lastVisualCaret.remove();
+        $lastVisualCaret = null;
+      }
+      clearInterval(cursorInterval);
+    };
+    var hasFocus = function () {
+      return rootNode.ownerDocument.activeElement === rootNode;
+    };
+    var startBlink = function () {
+      cursorInterval = $_tkwl7gjd08m9ds.setInterval(function () {
+        if (hasFocus()) {
+          DomQuery('div.mce-visual-caret', rootNode).toggleClass('mce-visual-caret-hidden');
+        } else {
+          DomQuery('div.mce-visual-caret', rootNode).addClass('mce-visual-caret-hidden');
+        }
+      }, 500);
+    };
+    var destroy = function () {
+      $_tkwl7gjd08m9ds.clearInterval(cursorInterval);
+    };
+    var getCss = function () {
+      return '.mce-visual-caret {' + 'position: absolute;' + 'background-color: black;' + 'background-color: currentcolor;' + '}' + '.mce-visual-caret-hidden {' + 'display: none;' + '}' + '*[data-mce-caret] {' + 'position: absolute;' + 'left: -1000px;' + 'right: auto;' + 'top: 0;' + 'margin: 0;' + 'padding: 0;' + '}';
+    };
+    return {
+      show: show,
+      hide: hide,
+      getCss: getCss,
+      destroy: destroy
+    };
+  }
+=======
+  var $_56sftn51jducwo5f = { init: init };
+>>>>>>> installer
+
+  var getNodeClientRects = function (node) {
+    var toArrayWithNode = function (clientRects) {
+<<<<<<< HEAD
+      return $_c05hv0kjd08m9gg.map(clientRects, function (clientRect) {
+        clientRect = $_a2gimq22jd08m9p3.clone(clientRect);
+=======
+      return $_e6e6g1kjducwnfd.map(clientRects, function (clientRect) {
+        clientRect = clone$1(clientRect);
+>>>>>>> installer
+        clientRect.node = node;
+        return clientRect;
+      });
+    };
+<<<<<<< HEAD
+    if ($_c05hv0kjd08m9gg.isArray(node)) {
+      return $_c05hv0kjd08m9gg.reduce(node, function (result, node) {
+        return result.concat(getClientRects(node));
+      }, []);
+    }
+    if ($_2qai0u1qjd08m9l9.isElement(node)) {
+      return toArrayWithNode(node.getClientRects());
+    }
+    if ($_2qai0u1qjd08m9l9.isText(node)) {
+=======
+    if ($_fj238m1qjducwnjm.isElement(node)) {
+      return toArrayWithNode(node.getClientRects());
+    }
+    if ($_fj238m1qjducwnjm.isText(node)) {
+>>>>>>> installer
+      var rng = node.ownerDocument.createRange();
+      rng.setStart(node, 0);
+      rng.setEnd(node, node.data.length);
+      return toArrayWithNode(rng.getClientRects());
+    }
+  };
+<<<<<<< HEAD
+  var $_al3xgg51jd08ma52 = { getClientRects: getClientRects };
+
+  var isContentEditableFalse$7 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
+  var findNode$1 = $_42t6k327jd08m9pl.findNode;
+  var curry$3 = $_fys1am25jd08m9pb.curry;
+=======
+  var getClientRects = function (node) {
+    return $_e6e6g1kjducwnfd.reduce(node, function (result, node) {
+      return result.concat(getNodeClientRects(node));
+    }, []);
+  };
+
+  var VDirection;
+  (function (VDirection) {
+    VDirection[VDirection['Up'] = -1] = 'Up';
+    VDirection[VDirection['Down'] = 1] = 'Down';
+  }(VDirection || (VDirection = {})));
+  var findUntil = function (direction, root, predicateFn, node) {
+    while (node = findNode(node, direction, isEditableCaretCandidate, root)) {
+      if (predicateFn(node)) {
+        return;
+      }
+    }
+  };
+  var walkUntil = function (direction, isAboveFn, isBeflowFn, root, predicateFn, caretPosition) {
+    var line = 0, node;
+    var result = [];
+    var targetClientRect;
+    var add = function (node) {
+      var i, clientRect, clientRects;
+      clientRects = getClientRects([node]);
+      if (direction === -1) {
+        clientRects = clientRects.reverse();
+      }
+      for (i = 0; i < clientRects.length; i++) {
+        clientRect = clientRects[i];
+        if (isBeflowFn(clientRect, targetClientRect)) {
+          continue;
+        }
+        if (result.length > 0 && isAboveFn(clientRect, $_e6e6g1kjducwnfd.last(result))) {
+          line++;
+        }
+        clientRect.line = line;
+        if (predicateFn(clientRect)) {
+          return true;
+        }
+        result.push(clientRect);
+      }
+    };
+    targetClientRect = $_e6e6g1kjducwnfd.last(caretPosition.getClientRects());
+    if (!targetClientRect) {
+      return result;
+    }
+    node = caretPosition.getNode();
+    add(node);
+    findUntil(direction, root, add, node);
+    return result;
+  };
+  var aboveLineNumber = function (lineNumber, clientRect) {
+    return clientRect.line > lineNumber;
+  };
+  var isLineNumber = function (lineNumber, clientRect) {
+    return clientRect.line === lineNumber;
+  };
+  var upUntil = $_60qu7r6jducwn73.curry(walkUntil, VDirection.Up, isAbove, isBelow);
+  var downUntil = $_60qu7r6jducwn73.curry(walkUntil, VDirection.Down, isBelow, isAbove);
+  var positionsUntil = function (direction, root, predicateFn, node) {
+    var caretWalker = CaretWalker(root);
+    var walkFn, isBelowFn, isAboveFn, caretPosition;
+    var result = [];
+    var line = 0, clientRect, targetClientRect;
+    var getClientRect = function (caretPosition) {
+      if (direction === 1) {
+        return $_e6e6g1kjducwnfd.last(caretPosition.getClientRects());
+      }
+      return $_e6e6g1kjducwnfd.last(caretPosition.getClientRects());
+    };
+    if (direction === 1) {
+      walkFn = caretWalker.next;
+      isBelowFn = isBelow;
+      isAboveFn = isAbove;
+      caretPosition = CaretPosition$1.after(node);
+    } else {
+      walkFn = caretWalker.prev;
+      isBelowFn = isAbove;
+      isAboveFn = isBelow;
+      caretPosition = CaretPosition$1.before(node);
+    }
+    targetClientRect = getClientRect(caretPosition);
+    do {
+      if (!caretPosition.isVisible()) {
+        continue;
+      }
+      clientRect = getClientRect(caretPosition);
+      if (isAboveFn(clientRect, targetClientRect)) {
+        continue;
+      }
+      if (result.length > 0 && isBelowFn(clientRect, $_e6e6g1kjducwnfd.last(result))) {
+        line++;
+      }
+      clientRect = clone$1(clientRect);
+      clientRect.position = caretPosition;
+      clientRect.line = line;
+      if (predicateFn(clientRect)) {
+        return result;
+      }
+      result.push(clientRect);
+    } while (caretPosition = walkFn(caretPosition));
+    return result;
+  };
+  var isAboveLine = function (lineNumber) {
+    return function (clientRect) {
+      return aboveLineNumber(lineNumber, clientRect);
+    };
+  };
+  var isLine = function (lineNumber) {
+    return function (clientRect) {
+      return isLineNumber(lineNumber, clientRect);
+    };
+  };
+
+  var isContentEditableFalse$8 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var findNode$1 = findNode;
+>>>>>>> installer
+  var distanceToRectLeft = function (clientRect, clientX) {
+    return Math.abs(clientRect.left - clientX);
+  };
+  var distanceToRectRight = function (clientRect, clientX) {
+    return Math.abs(clientRect.right - clientX);
+  };
+  var isInside = function (clientX, clientRect) {
+    return clientX >= clientRect.left && clientX <= clientRect.right;
+  };
+  var findClosestClientRect = function (clientRects, clientX) {
+<<<<<<< HEAD
+    var isInside = function (clientX, clientRect) {
+      return clientX >= clientRect.left && clientX <= clientRect.right;
+    };
+    return $_c05hv0kjd08m9gg.reduce(clientRects, function (oldClientRect, clientRect) {
+=======
+    return $_e6e6g1kjducwnfd.reduce(clientRects, function (oldClientRect, clientRect) {
+>>>>>>> installer
+      var oldDistance, newDistance;
+      oldDistance = Math.min(distanceToRectLeft(oldClientRect, clientX), distanceToRectRight(oldClientRect, clientX));
+      newDistance = Math.min(distanceToRectLeft(clientRect, clientX), distanceToRectRight(clientRect, clientX));
+      if (isInside(clientX, clientRect)) {
+        return clientRect;
+      }
+      if (isInside(clientX, oldClientRect)) {
+        return oldClientRect;
+      }
+      if (newDistance === oldDistance && isContentEditableFalse$7(clientRect.node)) {
+        return clientRect;
+      }
+      if (newDistance < oldDistance) {
+        return clientRect;
+      }
+      return oldClientRect;
+    });
+  };
+<<<<<<< HEAD
+  var walkUntil = function (direction, rootNode, predicateFn, node) {
+    while (node = findNode$1(node, direction, $_es00wu1zjd08m9ou.isEditableCaretCandidate, rootNode)) {
+=======
+  var walkUntil$1 = function (direction, root, predicateFn, node) {
+    while (node = findNode$1(node, direction, isEditableCaretCandidate, root)) {
+>>>>>>> installer
+      if (predicateFn(node)) {
+        return;
+      }
+    }
+  };
+  var findLineNodeRects = function (root, targetNodeRect) {
+    var clientRects = [];
+    var collect = function (checkPosFn, node) {
+      var lineRects;
+<<<<<<< HEAD
+      lineRects = $_c05hv0kjd08m9gg.filter($_al3xgg51jd08ma52.getClientRects(node), function (clientRect) {
+=======
+      lineRects = $_e6e6g1kjducwnfd.filter(getClientRects([node]), function (clientRect) {
+>>>>>>> installer
+        return !checkPosFn(clientRect, targetNodeRect);
+      });
+      clientRects = clientRects.concat(lineRects);
+      return lineRects.length === 0;
+    };
+    clientRects.push(targetNodeRect);
+<<<<<<< HEAD
+    walkUntil(-1, rootNode, curry$3(collect, $_a2gimq22jd08m9p3.isAbove), targetNodeRect.node);
+    walkUntil(1, rootNode, curry$3(collect, $_a2gimq22jd08m9p3.isBelow), targetNodeRect.node);
+    return clientRects;
+  };
+  var getContentEditableFalseChildren = function (rootNode) {
+    return $_c05hv0kjd08m9gg.filter($_c05hv0kjd08m9gg.toArray(rootNode.getElementsByTagName('*')), isContentEditableFalse$7);
+=======
+    walkUntil$1(VDirection.Up, root, $_60qu7r6jducwn73.curry(collect, isAbove), targetNodeRect.node);
+    walkUntil$1(VDirection.Down, root, $_60qu7r6jducwn73.curry(collect, isBelow), targetNodeRect.node);
+    return clientRects;
+  };
+  var getFakeCaretTargets = function (root) {
+    return $_e6e6g1kjducwnfd.filter($_e6e6g1kjducwnfd.toArray(root.getElementsByTagName('*')), isFakeCaretTarget);
+>>>>>>> installer
+  };
+  var caretInfo = function (clientRect, clientX) {
+    return {
+      node: clientRect.node,
+      before: distanceToRectLeft(clientRect, clientX) < distanceToRectRight(clientRect, clientX)
+    };
+  };
+<<<<<<< HEAD
+  var closestCaret = function (rootNode, clientX, clientY) {
+    var contentEditableFalseNodeRects, closestNodeRect;
+    contentEditableFalseNodeRects = $_al3xgg51jd08ma52.getClientRects(getContentEditableFalseChildren(rootNode));
+    contentEditableFalseNodeRects = $_c05hv0kjd08m9gg.filter(contentEditableFalseNodeRects, function (clientRect) {
+      return clientY >= clientRect.top && clientY <= clientRect.bottom;
+=======
+  var closestCaret = function (root, clientX, clientY) {
+    var closestNodeRect;
+    var contentEditableFalseNodeRects = getClientRects(getFakeCaretTargets(root));
+    var targetNodeRects = $_e6e6g1kjducwnfd.filter(contentEditableFalseNodeRects, function (rect) {
+      return clientY >= rect.top && clientY <= rect.bottom;
+>>>>>>> installer
+    });
+    closestNodeRect = findClosestClientRect(targetNodeRects, clientX);
+    if (closestNodeRect) {
+<<<<<<< HEAD
+      closestNodeRect = findClosestClientRect(findLineNodeRects(rootNode, closestNodeRect), clientX);
+      if (closestNodeRect && isContentEditableFalse$7(closestNodeRect.node)) {
+=======
+      closestNodeRect = findClosestClientRect(findLineNodeRects(root, closestNodeRect), clientX);
+      if (closestNodeRect && isFakeCaretTarget(closestNodeRect.node)) {
+>>>>>>> installer
+        return caretInfo(closestNodeRect, clientX);
+      }
+    }
+    return null;
+  };
+<<<<<<< HEAD
+  var $_63rw2t50jd08ma4z = {
+    findClosestClientRect: findClosestClientRect,
+    findLineNodeRects: findLineNodeRects,
+    closestCaret: closestCaret
+  };
+=======
+>>>>>>> installer
+
+  var isXYWithinRange = function (clientX, clientY, range) {
+    if (range.collapsed) {
+      return false;
+    }
+<<<<<<< HEAD
+    return $_65yphx4jd08m98n.foldl(range.getClientRects(), function (state, rect) {
+      return state || $_a2gimq22jd08m9p3.containsXY(rect, clientX, clientY);
+    }, false);
+  };
+  var $_li5qy52jd08ma54 = { isXYWithinRange: isXYWithinRange };
+=======
+    return $_2dw1bj4jducwn6g.foldl(range.getClientRects(), function (state, rect) {
+      return state || containsXY(rect, clientX, clientY);
+    }, false);
+  };
+  var $_cy7fd256jducwo68 = { isXYWithinRange: isXYWithinRange };
+>>>>>>> installer
+
+  var adaptable = function (fn, rate) {
+    var timer = null;
+    var args = null;
+    var cancel = function () {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
+        args = null;
+      }
+    };
+    var throttle = function () {
+      args = arguments;
+      if (timer === null) {
+        timer = setTimeout(function () {
+          fn.apply(null, args);
+          timer = null;
+          args = null;
+        }, rate);
+      }
+    };
+    return {
+      cancel: cancel,
+      throttle: throttle
+    };
+  };
+  var first$3 = function (fn, rate) {
+    var timer = null;
+    var cancel = function () {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    };
+    var throttle = function () {
+      var args = arguments;
+      if (timer === null) {
+        timer = setTimeout(function () {
+          fn.apply(null, args);
+          timer = null;
+          args = null;
+        }, rate);
+      }
+    };
+    return {
+      cancel: cancel,
+      throttle: throttle
+    };
+  };
+  var last$3 = function (fn, rate) {
+    var timer = null;
+    var cancel = function () {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    };
+    var throttle = function () {
+      var args = arguments;
+      if (timer !== null)
+        clearTimeout(timer);
+      timer = setTimeout(function () {
+        fn.apply(null, args);
+        timer = null;
+        args = null;
+      }, rate);
+    };
+    return {
+      cancel: cancel,
+      throttle: throttle
+    };
+<<<<<<< HEAD
+  };
+  var $_8yp5nr54jd08ma59 = {
+    adaptable: adaptable,
+    first: first$3,
+    last: last$3
+  };
+
+  var isContentEditableTrue$4 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
+  var isContentEditableFalse$8 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
+  var showCaret = function (direction, editor, node, before) {
+    return editor._selectionOverrides.showCaret(direction, node, before);
+  };
+  var getNodeRange = function (node) {
+    var rng = node.ownerDocument.createRange();
+    rng.selectNode(node);
+    return rng;
+  };
+  var selectNode = function (editor, node) {
+    var e;
+    e = editor.fire('BeforeObjectSelected', { target: node });
+    if (e.isDefaultPrevented()) {
+      return null;
+    }
+    return getNodeRange(node);
+  };
+  var renderCaretAtRange = function (editor, range) {
+    var caretPosition, ceRoot;
+    range = $_42t6k327jd08m9pl.normalizeRange(1, editor.getBody(), range);
+    caretPosition = CaretPosition$1.fromRangeStart(range);
+    if (isContentEditableFalse$8(caretPosition.getNode())) {
+      return showCaret(1, editor, caretPosition.getNode(), !caretPosition.isAtEnd());
+    }
+    if (isContentEditableFalse$8(caretPosition.getNode(true))) {
+      return showCaret(1, editor, caretPosition.getNode(true), false);
+    }
+    ceRoot = editor.dom.getParent(caretPosition.getNode(), $_fys1am25jd08m9pb.or(isContentEditableFalse$8, isContentEditableTrue$4));
+    if (isContentEditableFalse$8(ceRoot)) {
+      return showCaret(1, editor, ceRoot, false);
+    }
+    return null;
+  };
+  var renderRangeCaret = function (editor, range) {
+    var caretRange;
+    if (!range || !range.collapsed) {
+      return range;
+    }
+    caretRange = renderCaretAtRange(editor, range);
+    if (caretRange) {
+      return caretRange;
+    }
+    return range;
+  };
+  var $_fpzmty55jd08ma5b = {
+    showCaret: showCaret,
+    selectNode: selectNode,
+    renderCaretAtRange: renderCaretAtRange,
+    renderRangeCaret: renderRangeCaret
+  };
+
+  var setup$2 = function (editor) {
+    var renderFocusCaret = $_8yp5nr54jd08ma59.first(function () {
+      if (!editor.removed) {
+        var rng = editor.selection.getRng();
+        if (rng.collapsed) {
+          var caretRange = $_fpzmty55jd08ma5b.renderRangeCaret(editor, editor.selection.getRng());
+=======
+  };
+  var $_15mtnw58jducwo6f = {
+    adaptable: adaptable,
+    first: first$3,
+    last: last$3
+  };
+
+  var setup$2 = function (editor) {
+    var renderFocusCaret = $_15mtnw58jducwo6f.first(function () {
+      if (!editor.removed) {
+        var rng = editor.selection.getRng();
+        if (rng.collapsed) {
+          var caretRange = renderRangeCaret(editor, editor.selection.getRng());
+>>>>>>> installer
+          editor.selection.setRng(caretRange);
+        }
+      }
+    }, 0);
+    editor.on('focus', function () {
+      renderFocusCaret.throttle();
+    });
+    editor.on('blur', function () {
+      renderFocusCaret.cancel();
+    });
+  };
+<<<<<<< HEAD
+  var $_6yt52053jd08ma56 = { setup: setup$2 };
+
+  var $_3izr6156jd08ma5d = {
+=======
+  var $_vc72057jducwo6c = { setup: setup$2 };
+
+  var $_1xm2zi59jducwo6l = {
+>>>>>>> installer
+    BACKSPACE: 8,
+    DELETE: 46,
+    DOWN: 40,
+    ENTER: 13,
+    LEFT: 37,
+    RIGHT: 39,
+    SPACEBAR: 32,
+    TAB: 9,
+    UP: 38,
+    modifierPressed: function (e) {
+      return e.shiftKey || e.ctrlKey || e.altKey || this.metaKeyPressed(e);
+    },
+    metaKeyPressed: function (e) {
+<<<<<<< HEAD
+      return $_6pkc2e9jd08m9bi.mac ? e.metaKey : e.ctrlKey && !e.altKey;
+    }
+  };
+
+  var isContentEditableTrue$5 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
+  var isContentEditableFalse$9 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
+  var isAfterContentEditableFalse = $_42t6k327jd08m9pl.isAfterContentEditableFalse;
+  var isBeforeContentEditableFalse = $_42t6k327jd08m9pl.isBeforeContentEditableFalse;
+=======
+      return $_cum1kc9jducwn99.mac ? e.metaKey : e.ctrlKey && !e.altKey;
+    }
+  };
+
+  var isContentEditableTrue$5 = $_fj238m1qjducwnjm.isContentEditableTrue;
+  var isContentEditableFalse$9 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isAfterContentEditableFalse$1 = isAfterContentEditableFalse;
+  var isBeforeContentEditableFalse$1 = isBeforeContentEditableFalse;
+>>>>>>> installer
+  var SelectionOverrides = function (editor) {
+    var isBlock = function (node) {
+      return editor.dom.isBlock(node);
+    };
+    var rootNode = editor.getBody();
+    var fakeCaret = FakeCaret(editor.getBody(), isBlock);
+    var realSelectionId = 'sel-' + editor.dom.uniqueId();
+    var selectedContentEditableNode;
+    var isFakeSelectionElement = function (elm) {
+      return editor.dom.hasClass(elm, 'mce-offscreen-selection');
+    };
+    var getRealSelectionElement = function () {
+      var container = editor.dom.get(realSelectionId);
+      return container ? container.getElementsByTagName('*')[0] : container;
+    };
+    var setRange = function (range) {
+      if (range) {
+        editor.selection.setRng(range);
+      }
+    };
+    var getRange = function () {
+      return editor.selection.getRng();
+    };
+    var scrollIntoView = function (node, alignToTop) {
+      editor.selection.scrollIntoView(node, alignToTop);
+    };
+    var showCaret$$1 = function (direction, node, before) {
+      var e;
+      e = editor.fire('ShowCaret', {
+        target: node,
+        direction: direction,
+        before: before
+      });
+      if (e.isDefaultPrevented()) {
+        return null;
+      }
+      scrollIntoView(node, direction === -1);
+      return fakeCaret.show(before, node);
+    };
+<<<<<<< HEAD
+    var getNormalizedRangeEndPoint = function (direction, range) {
+      range = $_42t6k327jd08m9pl.normalizeRange(direction, rootNode, range);
+=======
+    var getNormalizedRangeEndPoint$$1 = function (direction, range) {
+      range = normalizeRange(direction, rootNode, range);
+>>>>>>> installer
+      if (direction === -1) {
+        return CaretPosition$1.fromRangeStart(range);
+      }
+      return CaretPosition$1.fromRangeEnd(range);
+    };
+    var showBlockCaretContainer = function (blockCaretContainer) {
+      if (blockCaretContainer.hasAttribute('data-mce-caret')) {
+<<<<<<< HEAD
+        $_euzg3m20jd08m9ow.showCaretContainerBlock(blockCaretContainer);
+=======
+        showCaretContainerBlock(blockCaretContainer);
+>>>>>>> installer
+        setRange(getRange());
+        scrollIntoView(blockCaretContainer[0]);
+      }
+    };
+    var registerEvents = function () {
+      var getContentEditableRoot = function (node) {
+        var root = editor.getBody();
+        while (node && node !== root) {
+          if (isContentEditableTrue$5(node) || isContentEditableFalse$9(node)) {
+            return node;
+          }
+          node = node.parentNode;
+        }
+        return null;
+      };
+      editor.on('mouseup', function (e) {
+        var range = getRange();
+<<<<<<< HEAD
+        if (range.collapsed && $_8cty3m49jd08ma1l.isXYInContentArea(editor, e.clientX, e.clientY)) {
+          setRange($_fpzmty55jd08ma5b.renderCaretAtRange(editor, range));
+=======
+        if (range.collapsed && $_ahd3ne4djducwo1z.isXYInContentArea(editor, e.clientX, e.clientY)) {
+          setRange(renderCaretAtRange(editor, range));
+>>>>>>> installer
+        }
+      });
+      editor.on('click', function (e) {
+        var contentEditableRoot;
+        contentEditableRoot = getContentEditableRoot(e.target);
+        if (contentEditableRoot) {
+          if (isContentEditableFalse$9(contentEditableRoot)) {
+            e.preventDefault();
+            editor.focus();
+          }
+          if (isContentEditableTrue$5(contentEditableRoot)) {
+            if (editor.dom.isChildOf(contentEditableRoot, editor.selection.getNode())) {
+              removeContentEditableSelection();
+            }
+          }
+        }
+      });
+      editor.on('blur NewBlock', function () {
+        removeContentEditableSelection();
+      });
+      var handleTouchSelect = function (editor) {
+        var moved = false;
+        editor.on('touchstart', function () {
+          moved = false;
+        });
+        editor.on('touchmove', function () {
+          moved = true;
+        });
+        editor.on('touchend', function (e) {
+          var contentEditableRoot = getContentEditableRoot(e.target);
+          if (isContentEditableFalse$9(contentEditableRoot)) {
+            if (!moved) {
+              e.preventDefault();
+<<<<<<< HEAD
+              setContentEditableSelection($_fpzmty55jd08ma5b.selectNode(editor, contentEditableRoot));
+=======
+              setContentEditableSelection(selectNode(editor, contentEditableRoot));
+>>>>>>> installer
+            }
+          }
+        });
+      };
+      var hasNormalCaretPosition = function (elm) {
+        var caretWalker = CaretWalker(elm);
+        if (!elm.firstChild) {
+          return false;
+        }
+        var startPos = CaretPosition$1.before(elm.firstChild);
+        var newPos = caretWalker.next(startPos);
+        return newPos && !isBeforeContentEditableFalse$1(newPos) && !isAfterContentEditableFalse$1(newPos);
+      };
+      var isInSameBlock$$1 = function (node1, node2) {
+        var block1 = editor.dom.getParent(node1, editor.dom.isBlock);
+        var block2 = editor.dom.getParent(node2, editor.dom.isBlock);
+        return block1 === block2;
+      };
+      var hasBetterMouseTarget = function (targetNode, caretNode) {
+        var targetBlock = editor.dom.getParent(targetNode, editor.dom.isBlock);
+        var caretBlock = editor.dom.getParent(caretNode, editor.dom.isBlock);
+        return targetBlock && !isInSameBlock$$1(targetBlock, caretBlock) && hasNormalCaretPosition(targetBlock);
+      };
+      handleTouchSelect(editor);
+      editor.on('mousedown', function (e) {
+        var contentEditableRoot;
+<<<<<<< HEAD
+        if ($_8cty3m49jd08ma1l.isXYInContentArea(editor, e.clientX, e.clientY) === false) {
+=======
+        var targetElm = e.target;
+        if (targetElm !== rootNode && targetElm.nodeName !== 'HTML' && !editor.dom.isChildOf(targetElm, rootNode)) {
+>>>>>>> installer
+          return;
+        }
+        if ($_ahd3ne4djducwo1z.isXYInContentArea(editor, e.clientX, e.clientY) === false) {
+          return;
+        }
+        contentEditableRoot = getContentEditableRoot(targetElm);
+        if (contentEditableRoot) {
+          if (isContentEditableFalse$9(contentEditableRoot)) {
+            e.preventDefault();
+<<<<<<< HEAD
+            setContentEditableSelection($_fpzmty55jd08ma5b.selectNode(editor, contentEditableRoot));
+          } else {
+            removeContentEditableSelection();
+            if (!(isContentEditableTrue$5(contentEditableRoot) && e.shiftKey) && !$_li5qy52jd08ma54.isXYWithinRange(e.clientX, e.clientY, editor.selection.getRng())) {
+=======
+            setContentEditableSelection(selectNode(editor, contentEditableRoot));
+          } else {
+            removeContentEditableSelection();
+            if (!(isContentEditableTrue$5(contentEditableRoot) && e.shiftKey) && !$_cy7fd256jducwo68.isXYWithinRange(e.clientX, e.clientY, editor.selection.getRng())) {
+>>>>>>> installer
+              editor.selection.placeCaretAt(e.clientX, e.clientY);
+            }
+          }
+        } else if (isFakeCaretTarget(targetElm) === false) {
+          removeContentEditableSelection();
+          hideFakeCaret();
+<<<<<<< HEAD
+          var caretInfo = $_63rw2t50jd08ma4z.closestCaret(rootNode, e.clientX, e.clientY);
+=======
+          var caretInfo = closestCaret(rootNode, e.clientX, e.clientY);
+>>>>>>> installer
+          if (caretInfo) {
+            if (!hasBetterMouseTarget(e.target, caretInfo.node)) {
+              e.preventDefault();
+              editor.getBody().focus();
+              setRange(showCaret$$1(1, caretInfo.node, caretInfo.before));
+            }
+          }
+        }
+      });
+      editor.on('keypress', function (e) {
+<<<<<<< HEAD
+        if ($_3izr6156jd08ma5d.modifierPressed(e)) {
+=======
+        if ($_1xm2zi59jducwo6l.modifierPressed(e)) {
+>>>>>>> installer
+          return;
+        }
+        switch (e.keyCode) {
+        default:
+          if (isContentEditableFalse$9(editor.selection.getNode())) {
+<<<<<<< HEAD
+=======
+            e.preventDefault();
+          }
+          break;
+        }
+      });
+      editor.on('getSelectionRange', function (e) {
+        var rng = e.range;
+        if (selectedContentEditableNode) {
+          if (!selectedContentEditableNode.parentNode) {
+            selectedContentEditableNode = null;
+            return;
+          }
+          rng = rng.cloneRange();
+          rng.selectNode(selectedContentEditableNode);
+          e.range = rng;
+        }
+      });
+      editor.on('setSelectionRange', function (e) {
+        var rng;
+        rng = setContentEditableSelection(e.range, e.forward);
+        if (rng) {
+          e.range = rng;
+        }
+      });
+      editor.on('AfterSetSelectionRange', function (e) {
+        var rng = e.range;
+        if (!isRangeInCaretContainer(rng)) {
+          hideFakeCaret();
+        }
+        if (!isFakeSelectionElement(rng.startContainer.parentNode)) {
+          removeContentEditableSelection();
+        }
+      });
+      editor.on('copy', function (e) {
+        var clipboardData = e.clipboardData;
+        if (!e.isDefaultPrevented() && e.clipboardData && !$_cum1kc9jducwn99.ie) {
+          var realSelectionElement = getRealSelectionElement();
+          if (realSelectionElement) {
+>>>>>>> installer
+            e.preventDefault();
+            clipboardData.clearData();
+            clipboardData.setData('text/html', realSelectionElement.outerHTML);
+            clipboardData.setData('text/plain', realSelectionElement.outerText);
+          }
+        }
+      });
+      $_56sftn51jducwo5f.init(editor);
+      $_vc72057jducwo6c.setup(editor);
+    };
+    var addCss = function () {
+      var styles = editor.contentStyles, rootClass = '.mce-content-body';
+      styles.push(fakeCaret.getCss());
+      styles.push(rootClass + ' .mce-offscreen-selection {' + 'position: absolute;' + 'left: -9999999999px;' + 'max-width: 1000000px;' + '}' + rootClass + ' *[contentEditable=false] {' + 'cursor: default;' + '}' + rootClass + ' *[contentEditable=true] {' + 'cursor: text;' + '}');
+    };
+    var isWithinCaretContainer = function (node) {
+      return isCaretContainer(node) || startsWithCaretContainer(node) || endsWithCaretContainer(node);
+    };
+    var isRangeInCaretContainer = function (rng) {
+      return isWithinCaretContainer(rng.startContainer) || isWithinCaretContainer(rng.endContainer);
+    };
+    var setContentEditableSelection = function (range, forward) {
+      var node;
+      var $ = editor.$;
+      var dom = editor.dom;
+      var $realSelectionContainer, sel, startContainer, startOffset, endOffset, e, caretPosition, targetClone, origTargetClone;
+      if (!range) {
+        return null;
+      }
+      if (range.collapsed) {
+        if (!isRangeInCaretContainer(range)) {
+          if (forward === false) {
+            caretPosition = getNormalizedRangeEndPoint$$1(-1, range);
+            if (isFakeCaretTarget(caretPosition.getNode(true))) {
+              return showCaret$$1(-1, caretPosition.getNode(true), false);
+            }
+            if (isFakeCaretTarget(caretPosition.getNode())) {
+              return showCaret$$1(-1, caretPosition.getNode(), !caretPosition.isAtEnd());
+            }
+          } else {
+            caretPosition = getNormalizedRangeEndPoint$$1(1, range);
+            if (isFakeCaretTarget(caretPosition.getNode())) {
+              return showCaret$$1(1, caretPosition.getNode(), !caretPosition.isAtEnd());
+            }
+            if (isFakeCaretTarget(caretPosition.getNode(true))) {
+              return showCaret$$1(1, caretPosition.getNode(true), false);
+            }
+          }
+        }
+        return null;
+      }
+      startContainer = range.startContainer;
+      startOffset = range.startOffset;
+      endOffset = range.endOffset;
+      if (startContainer.nodeType === 3 && startOffset === 0 && isContentEditableFalse$9(startContainer.parentNode)) {
+        startContainer = startContainer.parentNode;
+        startOffset = dom.nodeIndex(startContainer);
+        startContainer = startContainer.parentNode;
+      }
+      if (startContainer.nodeType !== 1) {
+        return null;
+      }
+      if (endOffset === startOffset + 1) {
+        node = startContainer.childNodes[startOffset];
+      }
+      if (!isContentEditableFalse$9(node)) {
+        return null;
+      }
+      targetClone = origTargetClone = node.cloneNode(true);
+      e = editor.fire('ObjectSelected', {
+        target: node,
+        targetClone: targetClone
+      });
+      if (e.isDefaultPrevented()) {
+        return null;
+      }
+      $realSelectionContainer = $_eh73s937jducwns3.descendant($_5s4uzoyjducwngo.fromDom(editor.getBody()), '#' + realSelectionId).fold(function () {
+        return $([]);
+      }, function (elm) {
+        return $([elm.dom()]);
+      });
+      targetClone = e.targetClone;
+      if ($realSelectionContainer.length === 0) {
+        $realSelectionContainer = $('<div data-mce-bogus="all" class="mce-offscreen-selection"></div>').attr('id', realSelectionId);
+        $realSelectionContainer.appendTo(editor.getBody());
+      }
+      range = editor.dom.createRng();
+      if (targetClone === origTargetClone && $_cum1kc9jducwn99.ie) {
+        $realSelectionContainer.empty().append('<p style="font-size: 0" data-mce-bogus="all">\xA0</p>').append(targetClone);
+        range.setStartAfter($realSelectionContainer[0].firstChild.firstChild);
+        range.setEndAfter(targetClone);
+      } else {
+        $realSelectionContainer.empty().append('\xA0').append(targetClone).append('\xA0');
+        range.setStart($realSelectionContainer[0].firstChild, 1);
+        range.setEnd($realSelectionContainer[0].lastChild, 0);
+      }
+      $realSelectionContainer.css({ top: dom.getPos(node, editor.getBody()).y });
+      $realSelectionContainer[0].focus();
+      sel = editor.selection.getSel();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      $_2dw1bj4jducwn6g.each($_47k8tx2gjducwnot.descendants($_5s4uzoyjducwngo.fromDom(editor.getBody()), '*[data-mce-selected]'), function (elm) {
+        $_60196814jducwnhd.remove(elm, 'data-mce-selected');
+      });
+      node.setAttribute('data-mce-selected', '1');
+      selectedContentEditableNode = node;
+      hideFakeCaret();
+      return range;
+    };
+    var removeContentEditableSelection = function () {
+      if (selectedContentEditableNode) {
+        selectedContentEditableNode.removeAttribute('data-mce-selected');
+        $_eh73s937jducwns3.descendant($_5s4uzoyjducwngo.fromDom(editor.getBody()), '#' + realSelectionId).each($_34vweg2pjducwnq0.remove);
+        selectedContentEditableNode = null;
+      }
+    };
+    var destroy = function () {
+      fakeCaret.destroy();
+      selectedContentEditableNode = null;
+    };
+    var hideFakeCaret = function () {
+      fakeCaret.hide();
+    };
+    if ($_cum1kc9jducwn99.ceFalse) {
+      registerEvents();
+      addCss();
+    }
+    return {
+      showCaret: showCaret$$1,
+      showBlockCaretContainer: showBlockCaretContainer,
+      hideFakeCaret: hideFakeCaret,
+      destroy: destroy
+    };
+  };
+
+  var each$11 = $_8i2houjjducwnd2.each;
+  var isValidPrefixAttrName = function (name) {
+    return name.indexOf('data-') === 0 || name.indexOf('aria-') === 0;
+  };
+  var trimComments = function (text) {
+    return text.replace(/<!--|-->/g, '');
+  };
+  var findEndTagIndex = function (schema, html, startIndex) {
+    var count = 1, index, matches, tokenRegExp, shortEndedElements;
+    shortEndedElements = schema.getShortEndedElements();
+    tokenRegExp = /<([!?\/])?([A-Za-z0-9\-_\:\.]+)((?:\s+[^"\'>]+(?:(?:"[^"]*")|(?:\'[^\']*\')|[^>]*))*|\/|\s+)>/g;
+    tokenRegExp.lastIndex = index = startIndex;
+    while (matches = tokenRegExp.exec(html)) {
+      index = tokenRegExp.lastIndex;
+      if (matches[1] === '/') {
+        count--;
+      } else if (!matches[1]) {
+        if (matches[2] in shortEndedElements) {
+          continue;
+        }
+        count++;
+      }
+      if (count === 0) {
+        break;
+      }
+    }
+    return index;
+  };
+  function SaxParser(settings, schema) {
+    if (schema === void 0) {
+      schema = Schema();
+    }
+    var noop = function () {
+    };
+    settings = settings || {};
+    if (settings.fix_self_closing !== false) {
+      settings.fix_self_closing = true;
+    }
+    each$11('comment cdata text start end pi doctype'.split(' '), function (name) {
+      if (name) {
+        self[name] = settings[name] || noop;
+      }
+    });
+    var comment = settings.comment ? settings.comment : noop;
+    var cdata = settings.cdata ? settings.cdata : noop;
+    var text = settings.text ? settings.text : noop;
+    var start = settings.start ? settings.start : noop;
+    var end = settings.end ? settings.end : noop;
+    var pi = settings.pi ? settings.pi : noop;
+    var doctype = settings.doctype ? settings.doctype : noop;
+    var parse = function (html) {
+      var matches, index = 0, value, endRegExp;
+      var stack = [];
+      var attrList, i, textData, name;
+      var isInternalElement, removeInternalElements, shortEndedElements, fillAttrsMap, isShortEnded;
+      var validate, elementRule, isValidElement, attr, attribsValue, validAttributesMap, validAttributePatterns;
+      var attributesRequired, attributesDefault, attributesForced, processHtml;
+      var anyAttributesRequired, selfClosing, tokenRegExp, attrRegExp, specialElements, attrValue, idCount = 0;
+      var decode = $_g4jbz61rjducwnjq.decode;
+      var fixSelfClosing;
+      var filteredUrlAttrs = $_8i2houjjducwnd2.makeMap('src,href,data,background,formaction,poster');
+      var scriptUriRegExp = /((java|vb)script|mhtml):/i, dataUriRegExp = /^data:/i;
+      var processEndTag = function (name) {
+        var pos, i;
+        pos = stack.length;
+        while (pos--) {
+          if (stack[pos].name === name) {
+            break;
+          }
+        }
+        if (pos >= 0) {
+          for (i = stack.length - 1; i >= pos; i--) {
+            name = stack[i];
+            if (name.valid) {
+              end(name.name);
+            }
+          }
+          stack.length = pos;
+        }
+      };
+      var parseAttribute = function (match, name, value, val2, val3) {
+        var attrRule, i;
+        var trimRegExp = /[\s\u0000-\u001F]+/g;
+        name = name.toLowerCase();
+        value = name in fillAttrsMap ? name : decode(value || val2 || val3 || '');
+        if (validate && !isInternalElement && isValidPrefixAttrName(name) === false) {
+          attrRule = validAttributesMap[name];
+          if (!attrRule && validAttributePatterns) {
+            i = validAttributePatterns.length;
+            while (i--) {
+              attrRule = validAttributePatterns[i];
+              if (attrRule.pattern.test(name)) {
+                break;
+              }
+            }
+            if (i === -1) {
+              attrRule = null;
+            }
+          }
+          if (!attrRule) {
+            return;
+          }
+          if (attrRule.validValues && !(value in attrRule.validValues)) {
+            return;
+          }
+        }
+        if (filteredUrlAttrs[name] && !settings.allow_script_urls) {
+          var uri = value.replace(trimRegExp, '');
+          try {
+            uri = decodeURIComponent(uri);
+          } catch (ex) {
+            uri = unescape(uri);
           }
           if (scriptUriRegExp.test(uri)) {
             return;
@@ -14166,6 +23709,60 @@
         if (index < matches.index) {
           text(decode(html.substr(index, matches.index - index)));
         }
+<<<<<<< HEAD
+      });
+      editor.on('copy', function (e) {
+        var clipboardData = e.clipboardData;
+        if (!e.isDefaultPrevented() && e.clipboardData && !$_6pkc2e9jd08m9bi.ie) {
+          var realSelectionElement = getRealSelectionElement();
+          if (realSelectionElement) {
+            e.preventDefault();
+            clipboardData.clearData();
+            clipboardData.setData('text/html', realSelectionElement.outerHTML);
+            clipboardData.setData('text/plain', realSelectionElement.outerText);
+          }
+        }
+      });
+      $_cu3cfx4xjd08ma4m.init(editor);
+      $_6yt52053jd08ma56.setup(editor);
+    };
+    var addCss = function () {
+      var styles = editor.contentStyles, rootClass = '.mce-content-body';
+      styles.push(fakeCaret.getCss());
+      styles.push(rootClass + ' .mce-offscreen-selection {' + 'position: absolute;' + 'left: -9999999999px;' + 'max-width: 1000000px;' + '}' + rootClass + ' *[contentEditable=false] {' + 'cursor: default;' + '}' + rootClass + ' *[contentEditable=true] {' + 'cursor: text;' + '}');
+    };
+    var isWithinCaretContainer = function (node) {
+      return $_euzg3m20jd08m9ow.isCaretContainer(node) || $_euzg3m20jd08m9ow.startsWithCaretContainer(node) || $_euzg3m20jd08m9ow.endsWithCaretContainer(node);
+    };
+    var isRangeInCaretContainer = function (rng) {
+      return isWithinCaretContainer(rng.startContainer) || isWithinCaretContainer(rng.endContainer);
+    };
+    var setContentEditableSelection = function (range, forward) {
+      var node;
+      var $ = editor.$;
+      var dom = editor.dom;
+      var $realSelectionContainer, sel, startContainer, startOffset, endOffset, e, caretPosition, targetClone, origTargetClone;
+      if (!range) {
+        return null;
+      }
+      if (range.collapsed) {
+        if (!isRangeInCaretContainer(range)) {
+          if (forward === false) {
+            caretPosition = getNormalizedRangeEndPoint(-1, range);
+            if (isContentEditableFalse$9(caretPosition.getNode(true))) {
+              return showCaret(-1, caretPosition.getNode(true), false);
+            }
+            if (isContentEditableFalse$9(caretPosition.getNode())) {
+              return showCaret(-1, caretPosition.getNode(), !caretPosition.isAtEnd());
+            }
+          } else {
+            caretPosition = getNormalizedRangeEndPoint(1, range);
+            if (isContentEditableFalse$9(caretPosition.getNode())) {
+              return showCaret(1, caretPosition.getNode(), !caretPosition.isAtEnd());
+            }
+            if (isContentEditableFalse$9(caretPosition.getNode(true))) {
+              return showCaret(1, caretPosition.getNode(true), false);
+=======
         if (value = matches[6]) {
           value = value.toLowerCase();
           if (value.charAt(0) === ':') {
@@ -14300,6 +23897,7 @@
               });
             } else if (isValidElement) {
               end(value);
+>>>>>>> installer
             }
           }
         } else if (value = matches[1]) {
@@ -14317,2290 +23915,7 @@
         } else if (value = matches[4]) {
           pi(value, matches[5]);
         }
-        index = matches.index + matches[0].length;
-      }
-      if (index < html.length) {
-        text(decode(html.substr(index)));
-      }
-      for (i = stack.length - 1; i >= 0; i--) {
-        value = stack[i];
-        if (value.valid) {
-          end(value.name);
-        }
-      }
-    };
-    return { parse: parse };
-  }
-  (function (SaxParser) {
-    SaxParser.findEndTag = findEndTagIndex;
-  }(SaxParser || (SaxParser = {})));
-  var SaxParser$1 = SaxParser;
-
-  var trimHtml = function (tempAttrs, html) {
-    var trimContentRegExp = new RegExp(['\\s?(' + tempAttrs.join('|') + ')="[^"]+"'].join('|'), 'gi');
-    return html.replace(trimContentRegExp, '');
-  };
-  var trimInternal = function (serializer, html) {
-    var content = html;
-    var bogusAllRegExp = /<(\w+) [^>]*data-mce-bogus="all"[^>]*>/g;
-    var endTagIndex, index, matchLength, matches, shortEndedElements;
-    var schema = serializer.schema;
-    content = trimHtml(serializer.getTempAttrs(), content);
-    shortEndedElements = schema.getShortEndedElements();
-    while (matches = bogusAllRegExp.exec(content)) {
-      index = bogusAllRegExp.lastIndex;
-      matchLength = matches[0].length;
-      if (shortEndedElements[matches[1]]) {
-        endTagIndex = index;
-      } else {
-        endTagIndex = SaxParser$1.findEndTag(schema, content, index);
-      }
-      content = content.substring(0, index - matchLength) + content.substring(endTagIndex);
-      bogusAllRegExp.lastIndex = index - matchLength;
-    }
-    return content;
-  };
-  var trimExternal = function (serializer, html) {
-    return $_1xlbjk21jd08m9p1.trim(trimInternal(serializer, html));
-  };
-  var $_4hg5uo42jd08ma0n = {
-    trimExternal: trimExternal,
-    trimInternal: trimInternal
-  };
-
-  var any$1 = function (predicate) {
-    return $_3j750t2ujd08m9sy.first(predicate).isSome();
-  };
-  var ancestor$3 = function (scope, predicate, isRoot) {
-    return $_3j750t2ujd08m9sy.ancestor(scope, predicate, isRoot).isSome();
-  };
-  var closest$3 = function (scope, predicate, isRoot) {
-    return $_3j750t2ujd08m9sy.closest(scope, predicate, isRoot).isSome();
-  };
-  var sibling$4 = function (scope, predicate) {
-    return $_3j750t2ujd08m9sy.sibling(scope, predicate).isSome();
-  };
-  var child$4 = function (scope, predicate) {
-    return $_3j750t2ujd08m9sy.child(scope, predicate).isSome();
-  };
-  var descendant$3 = function (scope, predicate) {
-    return $_3j750t2ujd08m9sy.descendant(scope, predicate).isSome();
-  };
-  var $_7uhjey46jd08ma18 = {
-    any: any$1,
-    ancestor: ancestor$3,
-    closest: closest$3,
-    sibling: sibling$4,
-    child: child$4,
-    descendant: descendant$3
-  };
-
-  var focus = function (element) {
-    element.dom().focus();
-  };
-  var blur = function (element) {
-    element.dom().blur();
-  };
-  var hasFocus = function (element) {
-    var doc = $_8xk2kp17jd08m9j8.owner(element).dom();
-    return element.dom() === doc.activeElement;
-  };
-  var active = function (_doc) {
-    var doc = _doc !== undefined ? _doc.dom() : document;
-    return $_zhkqu5jd08m996.from(doc.activeElement).map($_f4wyrxyjd08m9i5.fromDom);
-  };
-  var focusInside = function (element) {
-    var doc = $_8xk2kp17jd08m9j8.owner(element);
-    var inside = active(doc).filter(function (a) {
-      return $_7uhjey46jd08ma18.closest(a, $_9msgtx6jd08m99c.curry($_9gmgw51djd08m9k0.eq, element));
-    });
-    inside.fold(function () {
-      focus(element);
-    }, $_9msgtx6jd08m99c.noop);
-  };
-  var search = function (element) {
-    return active($_8xk2kp17jd08m9j8.owner(element)).filter(function (e) {
-      return element.dom().contains(e.dom());
-    });
-  };
-  var $_94uqs245jd08ma14 = {
-    hasFocus: hasFocus,
-    focus: focus,
-    blur: blur,
-    active: active,
-    search: search,
-    focusInside: focusInside
-  };
-
-  var getContentEditableHost = function (editor, node) {
-    return editor.dom.getParent(node, function (node) {
-      return editor.dom.getContentEditable(node) === 'true';
-    });
-  };
-  var getCollapsedNode = function (rng) {
-    return rng.collapsed ? $_zhkqu5jd08m996.from($_1pqk4723jd08m9p6.getNode(rng.startContainer, rng.startOffset)).map($_f4wyrxyjd08m9i5.fromDom) : $_zhkqu5jd08m996.none();
-  };
-  var getFocusInElement = function (root, rng) {
-    return getCollapsedNode(rng).bind(function (node) {
-      if (isTableSection(node)) {
-        return $_zhkqu5jd08m996.some(node);
-      } else if ($_9gmgw51djd08m9k0.contains(root, node) === false) {
-        return $_zhkqu5jd08m996.some(root);
-      } else {
-        return $_zhkqu5jd08m996.none();
-      }
-    });
-  };
-  var normalizeSelection = function (editor, rng) {
-    getFocusInElement($_f4wyrxyjd08m9i5.fromDom(editor.getBody()), rng).bind(function (elm) {
-      return $_1h7nwy2pjd08m9rw.firstPositionIn(elm.dom());
-    }).fold(function () {
-      editor.selection.normalize();
-    }, function (caretPos) {
-      editor.selection.setRng(caretPos.toRange());
-    });
-  };
-  var focusBody = function (body) {
-    if (body.setActive) {
-      try {
-        body.setActive();
-      } catch (ex) {
-        body.focus();
-      }
-    } else {
-      body.focus();
-    }
-  };
-  var hasElementFocus = function (elm) {
-    return $_94uqs245jd08ma14.hasFocus(elm) || $_94uqs245jd08ma14.search(elm).isSome();
-  };
-  var hasIframeFocus = function (editor) {
-    return editor.iframeElement && $_94uqs245jd08ma14.hasFocus($_f4wyrxyjd08m9i5.fromDom(editor.iframeElement));
-  };
-  var hasInlineFocus = function (editor) {
-    var rawBody = editor.getBody();
-    return rawBody && hasElementFocus($_f4wyrxyjd08m9i5.fromDom(rawBody));
-  };
-  var hasFocus$1 = function (editor) {
-    return editor.inline ? hasInlineFocus(editor) : hasIframeFocus(editor);
-  };
-  var focusEditor = function (editor) {
-    var selection = editor.selection, contentEditable = editor.settings.content_editable;
-    var body = editor.getBody();
-    var contentEditableHost, rng = selection.getRng();
-    editor.quirks.refreshContentEditable();
-    contentEditableHost = getContentEditableHost(editor, selection.getNode());
-    if (editor.$.contains(body, contentEditableHost)) {
-      focusBody(contentEditableHost);
-      normalizeSelection(editor, rng);
-      activateEditor(editor);
-      return;
-    }
-    if (editor.bookmark !== undefined && hasFocus$1(editor) === false) {
-      $_6fdwex3ujd08m9z9.getRng(editor).each(function (bookmarkRng) {
-        editor.selection.setRng(bookmarkRng);
-        rng = bookmarkRng;
-      });
-    }
-    if (!contentEditable) {
-      if (!$_6pkc2e9jd08m9bi.opera) {
-        focusBody(body);
-      }
-      editor.getWin().focus();
-    }
-    if ($_6pkc2e9jd08m9bi.gecko || contentEditable) {
-      focusBody(body);
-      normalizeSelection(editor, rng);
-    }
-    activateEditor(editor);
-  };
-  var activateEditor = function (editor) {
-    editor.editorManager.setActive(editor);
-  };
-  var focus$1 = function (editor, skipFocus) {
-    if (editor.removed) {
-      return;
-    }
-    skipFocus ? activateEditor(editor) : focusEditor(editor);
-  };
-  var $_2dqalv44jd08ma0x = {
-    focus: focus$1,
-    hasFocus: hasFocus$1
-  };
-
-  var getProp = function (propName, elm) {
-    var rawElm = elm.dom();
-    return rawElm[propName];
-  };
-  var getComputedSizeProp = function (propName, elm) {
-    return parseInt($_frbcp511jd08m9id.get(elm, propName), 10);
-  };
-  var getClientWidth = $_9msgtx6jd08m99c.curry(getProp, 'clientWidth');
-  var getClientHeight = $_9msgtx6jd08m99c.curry(getProp, 'clientHeight');
-  var getMarginTop = $_9msgtx6jd08m99c.curry(getComputedSizeProp, 'margin-top');
-  var getMarginLeft = $_9msgtx6jd08m99c.curry(getComputedSizeProp, 'margin-left');
-  var getBoundingClientRect = function (elm) {
-    return elm.dom().getBoundingClientRect();
-  };
-  var isInsideElementContentArea = function (bodyElm, clientX, clientY) {
-    var clientWidth = getClientWidth(bodyElm);
-    var clientHeight = getClientHeight(bodyElm);
-    return clientX >= 0 && clientY >= 0 && clientX <= clientWidth && clientY <= clientHeight;
-  };
-  var transpose = function (inline, elm, clientX, clientY) {
-    var clientRect = getBoundingClientRect(elm);
-    var deltaX = inline ? clientRect.left + elm.dom().clientLeft + getMarginLeft(elm) : 0;
-    var deltaY = inline ? clientRect.top + elm.dom().clientTop + getMarginTop(elm) : 0;
-    var x = clientX - deltaX;
-    var y = clientY - deltaY;
-    return {
-      x: x,
-      y: y
-    };
-  };
-  var isXYInContentArea = function (editor, clientX, clientY) {
-    var bodyElm = $_f4wyrxyjd08m9i5.fromDom(editor.getBody());
-    var targetElm = editor.inline ? bodyElm : $_8xk2kp17jd08m9j8.documentElement(bodyElm);
-    var transposedPoint = transpose(editor.inline, targetElm, clientX, clientY);
-    return isInsideElementContentArea(targetElm, transposedPoint.x, transposedPoint.y);
-  };
-  var fromDomSafe = function (node) {
-    return $_zhkqu5jd08m996.from(node).map($_f4wyrxyjd08m9i5.fromDom);
-  };
-  var isEditorAttachedToDom = function (editor) {
-    var rawContainer = editor.inline ? editor.getBody() : editor.getContentAreaContainer();
-    return fromDomSafe(rawContainer).map(function (container) {
-      return $_9gmgw51djd08m9k0.contains($_8xk2kp17jd08m9j8.owner(container), container);
-    }).getOr(false);
-  };
-  var $_8cty3m49jd08ma1l = {
-    isXYInContentArea: isXYInContentArea,
-    isEditorAttachedToDom: isEditorAttachedToDom
-  };
-
-  function NotificationManagerImpl () {
-    var unimplemented = function () {
-      throw new Error('Theme did not provide a NotificationManager implementation.');
-    };
-    return {
-      open: unimplemented,
-      close: unimplemented,
-      reposition: unimplemented,
-      getArgs: unimplemented
-    };
-  }
-
-  function NotificationManager (editor) {
-    var notifications = [];
-    var getImplementation = function () {
-      var theme = editor.theme;
-      return theme && theme.getNotificationManagerImpl ? theme.getNotificationManagerImpl() : NotificationManagerImpl();
-    };
-    var getTopNotification = function () {
-      return $_zhkqu5jd08m996.from(notifications[0]);
-    };
-    var isEqual = function (a, b) {
-      return a.type === b.type && a.text === b.text && !a.progressBar && !a.timeout && !b.progressBar && !b.timeout;
-    };
-    var reposition = function () {
-      if (notifications.length > 0) {
-        getImplementation().reposition(notifications);
-      }
-    };
-    var addNotification = function (notification) {
-      notifications.push(notification);
-    };
-    var closeNotification = function (notification) {
-      $_65yphx4jd08m98n.findIndex(notifications, function (otherNotification) {
-        return otherNotification === notification;
-      }).each(function (index) {
-        notifications.splice(index, 1);
-      });
-    };
-    var open = function (args) {
-      if (editor.removed || !$_8cty3m49jd08ma1l.isEditorAttachedToDom(editor)) {
-        return;
-      }
-      return $_65yphx4jd08m98n.find(notifications, function (notification) {
-        return isEqual(getImplementation().getArgs(notification), args);
-      }).getOrThunk(function () {
-        editor.editorManager.setActive(editor);
-        var notification = getImplementation().open(args, function () {
-          closeNotification(notification);
-          reposition();
-        });
-        addNotification(notification);
-        reposition();
-        return notification;
-      });
-    };
-    var close = function () {
-      getTopNotification().each(function (notification) {
-        getImplementation().close(notification);
-        closeNotification(notification);
-        reposition();
-      });
-    };
-    var getNotifications = function () {
-      return notifications;
-    };
-    var registerEvents = function (editor) {
-      editor.on('SkinLoaded', function () {
-        var serviceMessage = editor.settings.service_message;
-        if (serviceMessage) {
-          open({
-            text: serviceMessage,
-            type: 'warning',
-            timeout: 0,
-            icon: ''
-          });
-        }
-      });
-      editor.on('ResizeEditor ResizeWindow', function () {
-        $_tkwl7gjd08m9ds.requestAnimationFrame(reposition);
-      });
-      editor.on('remove', function () {
-        $_65yphx4jd08m98n.each(notifications, function (notification) {
-          getImplementation().close(notification);
-        });
-      });
-    };
-    registerEvents(editor);
-    return {
-      open: open,
-      close: close,
-      getNotifications: getNotifications
-    };
-  }
-
-  function WindowManagerImpl () {
-    var unimplemented = function () {
-      throw new Error('Theme did not provide a WindowManager implementation.');
-    };
-    return {
-      open: unimplemented,
-      alert: unimplemented,
-      confirm: unimplemented,
-      close: unimplemented,
-      getParams: unimplemented,
-      setParams: unimplemented
-    };
-  }
-
-  function WindowManager (editor) {
-    var windows = [];
-    var getImplementation = function () {
-      var theme = editor.theme;
-      return theme && theme.getWindowManagerImpl ? theme.getWindowManagerImpl() : WindowManagerImpl();
-    };
-    var funcBind = function (scope, f) {
-      return function () {
-        return f ? f.apply(scope, arguments) : undefined;
-      };
-    };
-    var fireOpenEvent = function (win) {
-      editor.fire('OpenWindow', { win: win });
-    };
-    var fireCloseEvent = function (win) {
-      editor.fire('CloseWindow', { win: win });
-    };
-    var addWindow = function (win) {
-      windows.push(win);
-      fireOpenEvent(win);
-    };
-    var closeWindow = function (win) {
-      $_65yphx4jd08m98n.findIndex(windows, function (otherWindow) {
-        return otherWindow === win;
-      }).each(function (index) {
-        windows.splice(index, 1);
-        fireCloseEvent(win);
-        if (windows.length === 0) {
-          editor.focus();
-        }
-      });
-    };
-    var getTopWindow = function () {
-      return $_zhkqu5jd08m996.from(windows[windows.length - 1]);
-    };
-    var open = function (args, params) {
-      editor.editorManager.setActive(editor);
-      $_6fdwex3ujd08m9z9.store(editor);
-      var win = getImplementation().open(args, params, closeWindow);
-      addWindow(win);
-      return win;
-    };
-    var alert = function (message, callback, scope) {
-      var win = getImplementation().alert(message, funcBind(scope ? scope : this, callback), closeWindow);
-      addWindow(win);
-    };
-    var confirm = function (message, callback, scope) {
-      var win = getImplementation().confirm(message, funcBind(scope ? scope : this, callback), closeWindow);
-      addWindow(win);
-    };
-    var close = function () {
-      getTopWindow().each(function (win) {
-        getImplementation().close(win);
-        closeWindow(win);
-      });
-    };
-    var getParams = function () {
-      return getTopWindow().map(getImplementation().getParams).getOr(null);
-    };
-    var setParams = function (params) {
-      getTopWindow().each(function (win) {
-        getImplementation().setParams(win, params);
-      });
-    };
-    var getWindows = function () {
-      return windows;
-    };
-    editor.on('remove', function () {
-      $_65yphx4jd08m98n.each(windows.slice(0), function (win) {
-        getImplementation().close(win);
-      });
-    });
-    return {
-      windows: windows,
-      open: open,
-      alert: alert,
-      confirm: confirm,
-      close: close,
-      getParams: getParams,
-      setParams: setParams,
-      getWindows: getWindows
-    };
-  }
-
-  var PluginManager = AddOnManager.PluginManager;
-  var resolvePluginName = function (targetUrl, suffix) {
-    for (var name_1 in PluginManager.urls) {
-      var matchUrl = PluginManager.urls[name_1] + '/plugin' + suffix + '.js';
-      if (matchUrl === targetUrl) {
-        return name_1;
-      }
-    }
-    return null;
-  };
-  var pluginUrlToMessage = function (editor, url) {
-    var plugin = resolvePluginName(url, editor.suffix);
-    return plugin ? 'Failed to load plugin: ' + plugin + ' from url ' + url : 'Failed to load plugin url: ' + url;
-  };
-  var displayNotification = function (editor, message) {
-    editor.notificationManager.open({
-      type: 'error',
-      text: message
-    });
-  };
-  var displayError = function (editor, message) {
-    if (editor._skinLoaded) {
-      displayNotification(editor, message);
-    } else {
-      editor.on('SkinLoaded', function () {
-        displayNotification(editor, message);
-      });
-    }
-  };
-  var uploadError = function (editor, message) {
-    displayError(editor, 'Failed to upload image: ' + message);
-  };
-  var pluginLoadError = function (editor, url) {
-    displayError(editor, pluginUrlToMessage(editor, url));
-  };
-  var initError = function (message) {
-    var x = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-      x[_i - 1] = arguments[_i];
-    }
-    var console = window.console;
-    if (console) {
-      if (console.error) {
-        console.error.apply(console, arguments);
-      } else {
-        console.log.apply(console, arguments);
-      }
-    }
-  };
-  var $_4h0nzd4djd08ma26 = {
-    pluginLoadError: pluginLoadError,
-    uploadError: uploadError,
-    displayError: displayError,
-    initError: initError
-  };
-
-  var PluginManager$1 = AddOnManager.PluginManager;
-
-  var ThemeManager = AddOnManager.ThemeManager;
-
-  function XMLHttpRequest () {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('XMLHttpRequest');
-    return new f();
-  }
-
-  function Uploader (uploadStatus, settings) {
-    var pendingPromises = {};
-    var pathJoin = function (path1, path2) {
-      if (path1) {
-        return path1.replace(/\/$/, '') + '/' + path2.replace(/^\//, '');
-      }
-      return path2;
-    };
-    var defaultHandler = function (blobInfo, success, failure, progress) {
-      var xhr, formData;
-      xhr = new XMLHttpRequest();
-      xhr.open('POST', settings.url);
-      xhr.withCredentials = settings.credentials;
-      xhr.upload.onprogress = function (e) {
-        progress(e.loaded / e.total * 100);
-      };
-      xhr.onerror = function () {
-        failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
-      };
-      xhr.onload = function () {
-        var json;
-        if (xhr.status < 200 || xhr.status >= 300) {
-          failure('HTTP Error: ' + xhr.status);
-          return;
-        }
-        json = JSON.parse(xhr.responseText);
-        if (!json || typeof json.location !== 'string') {
-          failure('Invalid JSON: ' + xhr.responseText);
-          return;
-        }
-        success(pathJoin(settings.basePath, json.location));
-      };
-      formData = new FormData();
-      formData.append('file', blobInfo.blob(), blobInfo.filename());
-      xhr.send(formData);
-    };
-    var noUpload = function () {
-      return new promiseObj(function (resolve) {
-        resolve([]);
-      });
-    };
-    var handlerSuccess = function (blobInfo, url) {
-      return {
-        url: url,
-        blobInfo: blobInfo,
-        status: true
-      };
-    };
-    var handlerFailure = function (blobInfo, error) {
-      return {
-        url: '',
-        blobInfo: blobInfo,
-        status: false,
-        error: error
-      };
-    };
-    var resolvePending = function (blobUri, result) {
-      $_gfka90jjd08m9g9.each(pendingPromises[blobUri], function (resolve) {
-        resolve(result);
-      });
-      delete pendingPromises[blobUri];
-    };
-    var uploadBlobInfo = function (blobInfo, handler, openNotification) {
-      uploadStatus.markPending(blobInfo.blobUri());
-      return new promiseObj(function (resolve) {
-        var notification, progress;
-        var noop = function () {
-        };
-        try {
-          var closeNotification_1 = function () {
-            if (notification) {
-              notification.close();
-              progress = noop;
-            }
-          };
-          var success = function (url) {
-            closeNotification_1();
-            uploadStatus.markUploaded(blobInfo.blobUri(), url);
-            resolvePending(blobInfo.blobUri(), handlerSuccess(blobInfo, url));
-            resolve(handlerSuccess(blobInfo, url));
-          };
-          var failure = function (error) {
-            closeNotification_1();
-            uploadStatus.removeFailed(blobInfo.blobUri());
-            resolvePending(blobInfo.blobUri(), handlerFailure(blobInfo, error));
-            resolve(handlerFailure(blobInfo, error));
-          };
-          progress = function (percent) {
-            if (percent < 0 || percent > 100) {
-              return;
-            }
-            if (!notification) {
-              notification = openNotification();
-            }
-            notification.progressBar.value(percent);
-          };
-          handler(blobInfo, success, failure, progress);
-        } catch (ex) {
-          resolve(handlerFailure(blobInfo, ex.message));
-        }
-      });
-    };
-    var isDefaultHandler = function (handler) {
-      return handler === defaultHandler;
-    };
-    var pendingUploadBlobInfo = function (blobInfo) {
-      var blobUri = blobInfo.blobUri();
-      return new promiseObj(function (resolve) {
-        pendingPromises[blobUri] = pendingPromises[blobUri] || [];
-        pendingPromises[blobUri].push(resolve);
-      });
-    };
-    var uploadBlobs = function (blobInfos, openNotification) {
-      blobInfos = $_gfka90jjd08m9g9.grep(blobInfos, function (blobInfo) {
-        return !uploadStatus.isUploaded(blobInfo.blobUri());
-      });
-      return promiseObj.all($_gfka90jjd08m9g9.map(blobInfos, function (blobInfo) {
-        return uploadStatus.isPending(blobInfo.blobUri()) ? pendingUploadBlobInfo(blobInfo) : uploadBlobInfo(blobInfo, settings.handler, openNotification);
-      }));
-    };
-    var upload = function (blobInfos, openNotification) {
-      return !settings.url && isDefaultHandler(settings.handler) ? noUpload() : uploadBlobs(blobInfos, openNotification);
-    };
-    settings = $_gfka90jjd08m9g9.extend({
-      credentials: false,
-      handler: defaultHandler
-    }, settings);
-    return { upload: upload };
-  }
-
-  function Blob (parts, properties) {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('Blob');
-    return new f(parts, properties);
-  }
-
-  function FileReader () {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('FileReader');
-    return new f();
-  }
-
-  function Uint8Array (arr) {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('Uint8Array');
-    return new f(arr);
-  }
-
-  var requestAnimationFrame$1 = function (callback) {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('requestAnimationFrame');
-    f(callback);
-  };
-  var atob = function (base64) {
-    var f = $_7jpcjvbjd08m9bq.getOrDie('atob');
-    return f(base64);
-  };
-  var $_878frx4qjd08ma3e = {
-    atob: atob,
-    requestAnimationFrame: requestAnimationFrame$1
-  };
-
-  var blobUriToBlob = function (url) {
-    return new promiseObj(function (resolve, reject) {
-      var rejectWithError = function () {
-        reject('Cannot convert ' + url + ' to Blob. Resource might not exist or is inaccessible.');
-      };
-      try {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.responseType = 'blob';
-        xhr.onload = function () {
-          if (this.status === 200) {
-            resolve(this.response);
-          } else {
-            rejectWithError();
-          }
-        };
-        xhr.onerror = rejectWithError;
-        xhr.send();
-      } catch (ex) {
-        rejectWithError();
-      }
-    });
-  };
-  var parseDataUri = function (uri) {
-    var type, matches;
-    uri = decodeURIComponent(uri).split(',');
-    matches = /data:([^;]+)/.exec(uri[0]);
-    if (matches) {
-      type = matches[1];
-    }
-    return {
-      type: type,
-      data: uri[1]
-    };
-  };
-  var dataUriToBlob = function (uri) {
-    return new promiseObj(function (resolve) {
-      var str, arr, i;
-      uri = parseDataUri(uri);
-      try {
-        str = $_878frx4qjd08ma3e.atob(uri.data);
-      } catch (e) {
-        resolve(new Blob([]));
-        return;
-      }
-      arr = new Uint8Array(str.length);
-      for (i = 0; i < arr.length; i++) {
-        arr[i] = str.charCodeAt(i);
-      }
-      resolve(new Blob([arr], { type: uri.type }));
-    });
-  };
-  var uriToBlob = function (url) {
-    if (url.indexOf('blob:') === 0) {
-      return blobUriToBlob(url);
-    }
-    if (url.indexOf('data:') === 0) {
-      return dataUriToBlob(url);
-    }
-    return null;
-  };
-  var blobToDataUri = function (blob) {
-    return new promiseObj(function (resolve) {
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        resolve(reader.result);
-      };
-      reader.readAsDataURL(blob);
-    });
-  };
-  var $_6j1u244mjd08ma34 = {
-    uriToBlob: uriToBlob,
-    blobToDataUri: blobToDataUri,
-    parseDataUri: parseDataUri
-  };
-
-  var count = 0;
-  var uniqueId = function (prefix) {
-    return (prefix || 'blobid') + count++;
-  };
-  var imageToBlobInfo = function (blobCache, img, resolve, reject) {
-    var base64, blobInfo;
-    if (img.src.indexOf('blob:') === 0) {
-      blobInfo = blobCache.getByUri(img.src);
-      if (blobInfo) {
-        resolve({
-          image: img,
-          blobInfo: blobInfo
-        });
-      } else {
-        $_6j1u244mjd08ma34.uriToBlob(img.src).then(function (blob) {
-          $_6j1u244mjd08ma34.blobToDataUri(blob).then(function (dataUri) {
-            base64 = $_6j1u244mjd08ma34.parseDataUri(dataUri).data;
-            blobInfo = blobCache.create(uniqueId(), blob, base64);
-            blobCache.add(blobInfo);
-            resolve({
-              image: img,
-              blobInfo: blobInfo
-            });
-          });
-        }, function (err) {
-          reject(err);
-        });
-      }
-      return;
-    }
-    base64 = $_6j1u244mjd08ma34.parseDataUri(img.src).data;
-    blobInfo = blobCache.findFirst(function (cachedBlobInfo) {
-      return cachedBlobInfo.base64() === base64;
-    });
-    if (blobInfo) {
-      resolve({
-        image: img,
-        blobInfo: blobInfo
-      });
-    } else {
-      $_6j1u244mjd08ma34.uriToBlob(img.src).then(function (blob) {
-        blobInfo = blobCache.create(uniqueId(), blob, base64);
-        blobCache.add(blobInfo);
-        resolve({
-          image: img,
-          blobInfo: blobInfo
-        });
-      }, function (err) {
-        reject(err);
-      });
-    }
-  };
-  var getAllImages = function (elm) {
-    return elm ? elm.getElementsByTagName('img') : [];
-  };
-  function ImageScanner (uploadStatus, blobCache) {
-    var cachedPromises = {};
-    var findAll = function (elm, predicate) {
-      var images, promises;
-      if (!predicate) {
-        predicate = $_fys1am25jd08m9pb.constant(true);
-      }
-      images = $_c05hv0kjd08m9gg.filter(getAllImages(elm), function (img) {
-        var src = img.src;
-        if (!$_6pkc2e9jd08m9bi.fileApi) {
-          return false;
-        }
-        if (img.hasAttribute('data-mce-bogus')) {
-          return false;
-        }
-        if (img.hasAttribute('data-mce-placeholder')) {
-          return false;
-        }
-        if (!src || src === $_6pkc2e9jd08m9bi.transparentSrc) {
-          return false;
-        }
-        if (src.indexOf('blob:') === 0) {
-          return !uploadStatus.isUploaded(src);
-        }
-        if (src.indexOf('data:') === 0) {
-          return predicate(img);
-        }
-        return false;
-      });
-      promises = $_c05hv0kjd08m9gg.map(images, function (img) {
-        var newPromise;
-        if (cachedPromises[img.src]) {
-          return new promiseObj(function (resolve) {
-            cachedPromises[img.src].then(function (imageInfo) {
-              if (typeof imageInfo === 'string') {
-                return imageInfo;
-              }
-              resolve({
-                image: img,
-                blobInfo: imageInfo.blobInfo
-              });
-            });
-          });
-        }
-        newPromise = new promiseObj(function (resolve, reject) {
-          imageToBlobInfo(blobCache, img, resolve, reject);
-        }).then(function (result) {
-          delete cachedPromises[result.image.src];
-          return result;
-        }).catch(function (error) {
-          delete cachedPromises[img.src];
-          return error;
-        });
-        cachedPromises[img.src] = newPromise;
-        return newPromise;
-      });
-      return promiseObj.all(promises);
-    };
-    return { findAll: findAll };
-  }
-
-  var count$1 = 0;
-  var seed = function () {
-    var rnd = function () {
-      return Math.round(Math.random() * 4294967295).toString(36);
-    };
-    var now = new Date().getTime();
-    return 's' + now.toString(36) + rnd() + rnd() + rnd();
-  };
-  var uuid = function (prefix) {
-    return prefix + count$1++ + seed();
-  };
-  var $_es4isv4sjd08ma3k = { uuid: uuid };
-
-  function BlobCache () {
-    var cache = [];
-    var constant = $_fys1am25jd08m9pb.constant;
-    var mimeToExt = function (mime) {
-      var mimes = {
-        'image/jpeg': 'jpg',
-        'image/jpg': 'jpg',
-        'image/gif': 'gif',
-        'image/png': 'png'
-      };
-      return mimes[mime.toLowerCase()] || 'dat';
-    };
-    var create = function (o, blob, base64, filename) {
-      return typeof o === 'object' ? toBlobInfo(o) : toBlobInfo({
-        id: o,
-        name: filename,
-        blob: blob,
-        base64: base64
-      });
-    };
-    var toBlobInfo = function (o) {
-      var id, name;
-      if (!o.blob || !o.base64) {
-        throw new Error('blob and base64 representations of the image are required for BlobInfo to be created');
-      }
-      id = o.id || $_es4isv4sjd08ma3k.uuid('blobid');
-      name = o.name || id;
-      return {
-        id: constant(id),
-        name: constant(name),
-        filename: constant(name + '.' + mimeToExt(o.blob.type)),
-        blob: constant(o.blob),
-        base64: constant(o.base64),
-        blobUri: constant(o.blobUri || $_6s3x45ajd08m9bo.createObjectURL(o.blob)),
-        uri: constant(o.uri)
-      };
-    };
-    var add = function (blobInfo) {
-      if (!get(blobInfo.id())) {
-        cache.push(blobInfo);
-      }
-    };
-    var get = function (id) {
-      return findFirst(function (cachedBlobInfo) {
-        return cachedBlobInfo.id() === id;
-      });
-    };
-    var findFirst = function (predicate) {
-      return $_c05hv0kjd08m9gg.filter(cache, predicate)[0];
-    };
-    var getByUri = function (blobUri) {
-      return findFirst(function (blobInfo) {
-        return blobInfo.blobUri() === blobUri;
-      });
-    };
-    var removeByUri = function (blobUri) {
-      cache = $_c05hv0kjd08m9gg.filter(cache, function (blobInfo) {
-        if (blobInfo.blobUri() === blobUri) {
-          $_6s3x45ajd08m9bo.revokeObjectURL(blobInfo.blobUri());
-          return false;
-        }
-        return true;
-      });
-    };
-    var destroy = function () {
-      $_c05hv0kjd08m9gg.each(cache, function (cachedBlobInfo) {
-        $_6s3x45ajd08m9bo.revokeObjectURL(cachedBlobInfo.blobUri());
-      });
-      cache = [];
-    };
-    return {
-      create: create,
-      add: add,
-      get: get,
-      getByUri: getByUri,
-      findFirst: findFirst,
-      removeByUri: removeByUri,
-      destroy: destroy
-    };
-  }
-
-  function UploadStatus () {
-    var PENDING = 1, UPLOADED = 2;
-    var blobUriStatuses = {};
-    var createStatus = function (status, resultUri) {
-      return {
-        status: status,
-        resultUri: resultUri
-      };
-    };
-    var hasBlobUri = function (blobUri) {
-      return blobUri in blobUriStatuses;
-    };
-    var getResultUri = function (blobUri) {
-      var result = blobUriStatuses[blobUri];
-      return result ? result.resultUri : null;
-    };
-    var isPending = function (blobUri) {
-      return hasBlobUri(blobUri) ? blobUriStatuses[blobUri].status === PENDING : false;
-    };
-    var isUploaded = function (blobUri) {
-      return hasBlobUri(blobUri) ? blobUriStatuses[blobUri].status === UPLOADED : false;
-    };
-    var markPending = function (blobUri) {
-      blobUriStatuses[blobUri] = createStatus(PENDING, null);
-    };
-    var markUploaded = function (blobUri, resultUri) {
-      blobUriStatuses[blobUri] = createStatus(UPLOADED, resultUri);
-    };
-    var removeFailed = function (blobUri) {
-      delete blobUriStatuses[blobUri];
-    };
-    var destroy = function () {
-      blobUriStatuses = {};
-    };
-    return {
-      hasBlobUri: hasBlobUri,
-      getResultUri: getResultUri,
-      isPending: isPending,
-      isUploaded: isUploaded,
-      markPending: markPending,
-      markUploaded: markUploaded,
-      removeFailed: removeFailed,
-      destroy: destroy
-    };
-  }
-
-  function EditorUpload (editor) {
-    var blobCache = BlobCache();
-    var uploader, imageScanner;
-    var settings = editor.settings;
-    var uploadStatus = UploadStatus();
-    var aliveGuard = function (callback) {
-      return function (result) {
-        if (editor.selection) {
-          return callback(result);
-        }
-        return [];
-      };
-    };
-    var cacheInvalidator = function () {
-      return '?' + new Date().getTime();
-    };
-    var replaceString = function (content, search, replace) {
-      var index = 0;
-      do {
-        index = content.indexOf(search, index);
-        if (index !== -1) {
-          content = content.substring(0, index) + replace + content.substr(index + search.length);
-          index += replace.length - search.length + 1;
-        }
-      } while (index !== -1);
-      return content;
-    };
-    var replaceImageUrl = function (content, targetUrl, replacementUrl) {
-      content = replaceString(content, 'src="' + targetUrl + '"', 'src="' + replacementUrl + '"');
-      content = replaceString(content, 'data-mce-src="' + targetUrl + '"', 'data-mce-src="' + replacementUrl + '"');
-      return content;
-    };
-    var replaceUrlInUndoStack = function (targetUrl, replacementUrl) {
-      $_c05hv0kjd08m9gg.each(editor.undoManager.data, function (level) {
-        if (level.type === 'fragmented') {
-          level.fragments = $_c05hv0kjd08m9gg.map(level.fragments, function (fragment) {
-            return replaceImageUrl(fragment, targetUrl, replacementUrl);
-          });
-        } else {
-          level.content = replaceImageUrl(level.content, targetUrl, replacementUrl);
-        }
-      });
-    };
-    var openNotification = function () {
-      return editor.notificationManager.open({
-        text: editor.translate('Image uploading...'),
-        type: 'info',
-        timeout: -1,
-        progressBar: true
-      });
-    };
-    var replaceImageUri = function (image, resultUri) {
-      blobCache.removeByUri(image.src);
-      replaceUrlInUndoStack(image.src, resultUri);
-      editor.$(image).attr({
-        'src': settings.images_reuse_filename ? resultUri + cacheInvalidator() : resultUri,
-        'data-mce-src': editor.convertURL(resultUri, 'src')
-      });
-    };
-    var uploadImages = function (callback) {
-      if (!uploader) {
-        uploader = Uploader(uploadStatus, {
-          url: settings.images_upload_url,
-          basePath: settings.images_upload_base_path,
-          credentials: settings.images_upload_credentials,
-          handler: settings.images_upload_handler
-        });
-      }
-      return scanForImages().then(aliveGuard(function (imageInfos) {
-        var blobInfos;
-        blobInfos = $_c05hv0kjd08m9gg.map(imageInfos, function (imageInfo) {
-          return imageInfo.blobInfo;
-        });
-        return uploader.upload(blobInfos, openNotification).then(aliveGuard(function (result) {
-          var filteredResult = $_c05hv0kjd08m9gg.map(result, function (uploadInfo, index) {
-            var image = imageInfos[index].image;
-            if (uploadInfo.status && editor.settings.images_replace_blob_uris !== false) {
-              replaceImageUri(image, uploadInfo.url);
-            } else if (uploadInfo.error) {
-              $_4h0nzd4djd08ma26.uploadError(editor, uploadInfo.error);
-            }
-            return {
-              element: image,
-              status: uploadInfo.status
-            };
-          });
-          if (callback) {
-            callback(filteredResult);
-          }
-          return filteredResult;
-        }));
-      }));
-    };
-    var uploadImagesAuto = function (callback) {
-      if (settings.automatic_uploads !== false) {
-        return uploadImages(callback);
-      }
-    };
-    var isValidDataUriImage = function (imgElm) {
-      return settings.images_dataimg_filter ? settings.images_dataimg_filter(imgElm) : true;
-    };
-    var scanForImages = function () {
-      if (!imageScanner) {
-        imageScanner = ImageScanner(uploadStatus, blobCache);
-      }
-      return imageScanner.findAll(editor.getBody(), isValidDataUriImage).then(aliveGuard(function (result) {
-        result = $_c05hv0kjd08m9gg.filter(result, function (resultItem) {
-          if (typeof resultItem === 'string') {
-            $_4h0nzd4djd08ma26.displayError(editor, resultItem);
-            return false;
-          }
-          return true;
-        });
-        $_c05hv0kjd08m9gg.each(result, function (resultItem) {
-          replaceUrlInUndoStack(resultItem.image.src, resultItem.blobInfo.blobUri());
-          resultItem.image.src = resultItem.blobInfo.blobUri();
-          resultItem.image.removeAttribute('data-mce-src');
-        });
-        return result;
-      }));
-    };
-    var destroy = function () {
-      blobCache.destroy();
-      uploadStatus.destroy();
-      imageScanner = uploader = null;
-    };
-    var replaceBlobUris = function (content) {
-      return content.replace(/src="(blob:[^"]+)"/g, function (match, blobUri) {
-        var resultUri = uploadStatus.getResultUri(blobUri);
-        if (resultUri) {
-          return 'src="' + resultUri + '"';
-        }
-        var blobInfo = blobCache.getByUri(blobUri);
-        if (!blobInfo) {
-          blobInfo = $_c05hv0kjd08m9gg.reduce(editor.editorManager.get(), function (result, editor) {
-            return result || editor.editorUpload && editor.editorUpload.blobCache.getByUri(blobUri);
-          }, null);
-        }
-        if (blobInfo) {
-          return 'src="data:' + blobInfo.blob().type + ';base64,' + blobInfo.base64() + '"';
-        }
-        return match;
-      });
-    };
-    editor.on('setContent', function () {
-      if (editor.settings.automatic_uploads !== false) {
-        uploadImagesAuto();
-      } else {
-        scanForImages();
-      }
-    });
-    editor.on('RawSaveContent', function (e) {
-      e.content = replaceBlobUris(e.content);
-    });
-    editor.on('getContent', function (e) {
-      if (e.source_view || e.format === 'raw') {
-        return;
-      }
-      e.content = replaceBlobUris(e.content);
-    });
-    editor.on('PostRender', function () {
-      editor.parser.addNodeFilter('img', function (images) {
-        $_c05hv0kjd08m9gg.each(images, function (img) {
-          var src = img.attr('src');
-          if (blobCache.getByUri(src)) {
-            return;
-          }
-          var resultUri = uploadStatus.getResultUri(src);
-          if (resultUri) {
-            img.attr('src', resultUri);
-          }
-        });
-      });
-    });
-    return {
-      blobCache: blobCache,
-      uploadImages: uploadImages,
-      uploadImagesAuto: uploadImagesAuto,
-      scanForImages: scanForImages,
-      destroy: destroy
-    };
-  }
-
-  var isBlockElement = function (blockElements, node) {
-    return blockElements.hasOwnProperty(node.nodeName);
-  };
-  var isValidTarget = function (blockElements, node) {
-    if ($_2qai0u1qjd08m9l9.isText(node)) {
-      return true;
-    } else if ($_2qai0u1qjd08m9l9.isElement(node)) {
-      return !isBlockElement(blockElements, node) && !$_5k9pi229jd08m9q0.isBookmarkNode(node);
-    } else {
-      return false;
-    }
-  };
-  var hasBlockParent = function (blockElements, root, node) {
-    return $_65yphx4jd08m98n.exists($_aus1dm33jd08m9ur.parents($_f4wyrxyjd08m9i5.fromDom(node), $_f4wyrxyjd08m9i5.fromDom(root)), function (elm) {
-      return isBlockElement(blockElements, elm.dom());
-    });
-  };
-  var addRootBlocks = function (editor) {
-    var settings = editor.settings, dom = editor.dom, selection = editor.selection;
-    var schema = editor.schema, blockElements = schema.getBlockElements();
-    var node = selection.getStart();
-    var rootNode = editor.getBody();
-    var rng;
-    var startContainer, startOffset, endContainer, endOffset, rootBlockNode;
-    var tempNode, wrapped, restoreSelection;
-    var rootNodeName, forcedRootBlock;
-    forcedRootBlock = settings.forced_root_block;
-    if (!node || !$_2qai0u1qjd08m9l9.isElement(node) || !forcedRootBlock) {
-      return;
-    }
-    rootNodeName = rootNode.nodeName.toLowerCase();
-    if (!schema.isValidChild(rootNodeName, forcedRootBlock.toLowerCase()) || hasBlockParent(blockElements, rootNode, node)) {
-      return;
-    }
-    rng = selection.getRng();
-    startContainer = rng.startContainer;
-    startOffset = rng.startOffset;
-    endContainer = rng.endContainer;
-    endOffset = rng.endOffset;
-    restoreSelection = $_2dqalv44jd08ma0x.hasFocus(editor);
-    node = rootNode.firstChild;
-    while (node) {
-      if (isValidTarget(blockElements, node)) {
-        if ($_2qai0u1qjd08m9l9.isText(node) && node.nodeValue.length === 0) {
-          tempNode = node;
-          node = node.nextSibling;
-          dom.remove(tempNode);
-          continue;
-        }
-        if (!rootBlockNode) {
-          rootBlockNode = dom.create(forcedRootBlock, editor.settings.forced_root_block_attrs);
-          node.parentNode.insertBefore(rootBlockNode, node);
-          wrapped = true;
-        }
-        tempNode = node;
-        node = node.nextSibling;
-        rootBlockNode.appendChild(tempNode);
-      } else {
-        rootBlockNode = null;
-        node = node.nextSibling;
-      }
-    }
-    if (wrapped && restoreSelection) {
-      rng.setStart(startContainer, startOffset);
-      rng.setEnd(endContainer, endOffset);
-      selection.setRng(rng);
-      editor.nodeChanged();
-    }
-  };
-  var setup$1 = function (editor) {
-    if (editor.settings.forced_root_block) {
-      editor.on('NodeChange', $_9msgtx6jd08m99c.curry(addRootBlocks, editor));
-    }
-  };
-  var $_3zqn544ujd08ma3n = { setup: setup$1 };
-
-  function NodeChange (editor) {
-    var lastRng, lastPath = [];
-    var isSameElementPath = function (startElm) {
-      var i, currentPath;
-      currentPath = editor.$(startElm).parentsUntil(editor.getBody()).add(startElm);
-      if (currentPath.length === lastPath.length) {
-        for (i = currentPath.length; i >= 0; i--) {
-          if (currentPath[i] !== lastPath[i]) {
-            break;
-          }
-        }
-        if (i === -1) {
-          lastPath = currentPath;
-          return true;
-        }
-      }
-      lastPath = currentPath;
-      return false;
-    };
-    if (!('onselectionchange' in editor.getDoc())) {
-      editor.on('NodeChange Click MouseUp KeyUp Focus', function (e) {
-        var nativeRng, fakeRng;
-        nativeRng = editor.selection.getRng();
-        fakeRng = {
-          startContainer: nativeRng.startContainer,
-          startOffset: nativeRng.startOffset,
-          endContainer: nativeRng.endContainer,
-          endOffset: nativeRng.endOffset
-        };
-        if (e.type === 'nodechange' || !$_gfrjn03tjd08m9z7.isEq(fakeRng, lastRng)) {
-          editor.fire('SelectionChange');
-        }
-        lastRng = fakeRng;
-      });
-    }
-    editor.on('contextmenu', function () {
-      editor.fire('SelectionChange');
-    });
-    editor.on('SelectionChange', function () {
-      var startElm = editor.selection.getStart(true);
-      if (!startElm || !$_6pkc2e9jd08m9bi.range && editor.selection.isCollapsed()) {
-        return;
-      }
-      if (!isSameElementPath(startElm) && editor.dom.isChildOf(startElm, editor.getBody())) {
-        editor.nodeChanged({ selectionChange: true });
-      }
-    });
-    editor.on('MouseUp', function (e) {
-      if (!e.isDefaultPrevented()) {
-        if (editor.selection.getNode().nodeName === 'IMG') {
-          $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
-            editor.nodeChanged();
-          });
-        } else {
-          editor.nodeChanged();
-        }
-      }
-    });
-    this.nodeChanged = function (args) {
-      var selection = editor.selection;
-      var node, parents, root;
-      if (editor.initialized && selection && !editor.settings.disable_nodechange && !editor.readonly) {
-        root = editor.getBody();
-        node = selection.getStart(true) || root;
-        if (node.ownerDocument !== editor.getDoc() || !editor.dom.isChildOf(node, root)) {
-          node = root;
-        }
-        parents = [];
-        editor.dom.getParent(node, function (node) {
-          if (node === root) {
-            return true;
-          }
-          parents.push(node);
-        });
-        args = args || {};
-        args.element = node;
-        args.parents = parents;
-        editor.fire('NodeChange', args);
-      }
-    };
-  }
-
-  var getAbsolutePosition = function (elm) {
-    var doc, docElem, win, clientRect;
-    clientRect = elm.getBoundingClientRect();
-    doc = elm.ownerDocument;
-    docElem = doc.documentElement;
-    win = doc.defaultView;
-    return {
-      top: clientRect.top + win.pageYOffset - docElem.clientTop,
-      left: clientRect.left + win.pageXOffset - docElem.clientLeft
-    };
-  };
-  var getBodyPosition = function (editor) {
-    return editor.inline ? getAbsolutePosition(editor.getBody()) : {
-      left: 0,
-      top: 0
-    };
-  };
-  var getScrollPosition = function (editor) {
-    var body = editor.getBody();
-    return editor.inline ? {
-      left: body.scrollLeft,
-      top: body.scrollTop
-    } : {
-      left: 0,
-      top: 0
-    };
-  };
-  var getBodyScroll = function (editor) {
-    var body = editor.getBody(), docElm = editor.getDoc().documentElement;
-    var inlineScroll = {
-      left: body.scrollLeft,
-      top: body.scrollTop
-    };
-    var iframeScroll = {
-      left: body.scrollLeft || docElm.scrollLeft,
-      top: body.scrollTop || docElm.scrollTop
-    };
-    return editor.inline ? inlineScroll : iframeScroll;
-  };
-  var getMousePosition = function (editor, event) {
-    if (event.target.ownerDocument !== editor.getDoc()) {
-      var iframePosition = getAbsolutePosition(editor.getContentAreaContainer());
-      var scrollPosition = getBodyScroll(editor);
-      return {
-        left: event.pageX - iframePosition.left + scrollPosition.left,
-        top: event.pageY - iframePosition.top + scrollPosition.top
-      };
-    }
-    return {
-      left: event.pageX,
-      top: event.pageY
-    };
-  };
-  var calculatePosition = function (bodyPosition, scrollPosition, mousePosition) {
-    return {
-      pageX: mousePosition.left - bodyPosition.left + scrollPosition.left,
-      pageY: mousePosition.top - bodyPosition.top + scrollPosition.top
-    };
-  };
-  var calc = function (editor, event) {
-    return calculatePosition(getBodyPosition(editor), getScrollPosition(editor), getMousePosition(editor, event));
-  };
-  var $_7j2e634yjd08ma4t = { calc: calc };
-
-  var isContentEditableFalse$5 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
-  var isContentEditableTrue$3 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
-  var isDraggable = function (rootElm, elm) {
-    return isContentEditableFalse$5(elm) && elm !== rootElm;
-  };
-  var isValidDropTarget = function (editor, targetElement, dragElement) {
-    if (targetElement === dragElement || editor.dom.isChildOf(targetElement, dragElement)) {
-      return false;
-    }
-    if (isContentEditableFalse$5(targetElement)) {
-      return false;
-    }
-    return true;
-  };
-  var cloneElement = function (elm) {
-    var cloneElm = elm.cloneNode(true);
-    cloneElm.removeAttribute('data-mce-selected');
-    return cloneElm;
-  };
-  var createGhost = function (editor, elm, width, height) {
-    var clonedElm = elm.cloneNode(true);
-    editor.dom.setStyles(clonedElm, {
-      width: width,
-      height: height
-    });
-    editor.dom.setAttrib(clonedElm, 'data-mce-selected', null);
-    var ghostElm = editor.dom.create('div', {
-      'class': 'mce-drag-container',
-      'data-mce-bogus': 'all',
-      'unselectable': 'on',
-      'contenteditable': 'false'
-    });
-    editor.dom.setStyles(ghostElm, {
-      position: 'absolute',
-      opacity: 0.5,
-      overflow: 'hidden',
-      border: 0,
-      padding: 0,
-      margin: 0,
-      width: width,
-      height: height
-    });
-    editor.dom.setStyles(clonedElm, {
-      margin: 0,
-      boxSizing: 'border-box'
-    });
-    ghostElm.appendChild(clonedElm);
-    return ghostElm;
-  };
-  var appendGhostToBody = function (ghostElm, bodyElm) {
-    if (ghostElm.parentNode !== bodyElm) {
-      bodyElm.appendChild(ghostElm);
-    }
-  };
-  var moveGhost = function (ghostElm, position, width, height, maxX, maxY) {
-    var overflowX = 0, overflowY = 0;
-    ghostElm.style.left = position.pageX + 'px';
-    ghostElm.style.top = position.pageY + 'px';
-    if (position.pageX + width > maxX) {
-      overflowX = position.pageX + width - maxX;
-    }
-    if (position.pageY + height > maxY) {
-      overflowY = position.pageY + height - maxY;
-    }
-    ghostElm.style.width = width - overflowX + 'px';
-    ghostElm.style.height = height - overflowY + 'px';
-  };
-  var removeElement = function (elm) {
-    if (elm && elm.parentNode) {
-      elm.parentNode.removeChild(elm);
-    }
-  };
-  var isLeftMouseButtonPressed = function (e) {
-    return e.button === 0;
-  };
-  var hasDraggableElement = function (state) {
-    return state.element;
-  };
-  var applyRelPos = function (state, position) {
-    return {
-      pageX: position.pageX - state.relX,
-      pageY: position.pageY + 5
-    };
-  };
-  var start$1 = function (state, editor) {
-    return function (e) {
-      if (isLeftMouseButtonPressed(e)) {
-        var ceElm = $_c05hv0kjd08m9gg.find(editor.dom.getParents(e.target), $_fys1am25jd08m9pb.or(isContentEditableFalse$5, isContentEditableTrue$3));
-        if (isDraggable(editor.getBody(), ceElm)) {
-          var elmPos = editor.dom.getPos(ceElm);
-          var bodyElm = editor.getBody();
-          var docElm = editor.getDoc().documentElement;
-          state.element = ceElm;
-          state.screenX = e.screenX;
-          state.screenY = e.screenY;
-          state.maxX = (editor.inline ? bodyElm.scrollWidth : docElm.offsetWidth) - 2;
-          state.maxY = (editor.inline ? bodyElm.scrollHeight : docElm.offsetHeight) - 2;
-          state.relX = e.pageX - elmPos.x;
-          state.relY = e.pageY - elmPos.y;
-          state.width = ceElm.offsetWidth;
-          state.height = ceElm.offsetHeight;
-          state.ghost = createGhost(editor, ceElm, state.width, state.height);
-        }
-      }
-    };
-  };
-  var move$1 = function (state, editor) {
-    var throttledPlaceCaretAt = $_tkwl7gjd08m9ds.throttle(function (clientX, clientY) {
-      editor._selectionOverrides.hideFakeCaret();
-      editor.selection.placeCaretAt(clientX, clientY);
-    }, 0);
-    return function (e) {
-      var movement = Math.max(Math.abs(e.screenX - state.screenX), Math.abs(e.screenY - state.screenY));
-      if (hasDraggableElement(state) && !state.dragging && movement > 10) {
-        var args = editor.fire('dragstart', { target: state.element });
-        if (args.isDefaultPrevented()) {
-          return;
-        }
-        state.dragging = true;
-        editor.focus();
-      }
-      if (state.dragging) {
-        var targetPos = applyRelPos(state, $_7j2e634yjd08ma4t.calc(editor, e));
-        appendGhostToBody(state.ghost, editor.getBody());
-        moveGhost(state.ghost, targetPos, state.width, state.height, state.maxX, state.maxY);
-        throttledPlaceCaretAt(e.clientX, e.clientY);
-      }
-    };
-  };
-  var getRawTarget = function (selection) {
-    var rng = selection.getSel().getRangeAt(0);
-    var startContainer = rng.startContainer;
-    return startContainer.nodeType === 3 ? startContainer.parentNode : startContainer;
-  };
-  var drop = function (state, editor) {
-    return function (e) {
-      if (state.dragging) {
-        if (isValidDropTarget(editor, getRawTarget(editor.selection), state.element)) {
-          var targetClone_1 = cloneElement(state.element);
-          var args = editor.fire('drop', {
-            targetClone: targetClone_1,
-            clientX: e.clientX,
-            clientY: e.clientY
-          });
-          if (!args.isDefaultPrevented()) {
-            targetClone_1 = args.targetClone;
-            editor.undoManager.transact(function () {
-              removeElement(state.element);
-              editor.insertContent(editor.dom.getOuterHTML(targetClone_1));
-              editor._selectionOverrides.hideFakeCaret();
-            });
-          }
-        }
-      }
-      removeDragState(state);
-    };
-  };
-  var stop = function (state, editor) {
-    return function () {
-      removeDragState(state);
-      if (state.dragging) {
-        editor.fire('dragend');
-      }
-    };
-  };
-  var removeDragState = function (state) {
-    state.dragging = false;
-    state.element = null;
-    removeElement(state.ghost);
-  };
-  var bindFakeDragEvents = function (editor) {
-    var state = {};
-    var pageDom, dragStartHandler, dragHandler, dropHandler, dragEndHandler, rootDocument;
-    pageDom = DOMUtils.DOM;
-    rootDocument = document;
-    dragStartHandler = start$1(state, editor);
-    dragHandler = move$1(state, editor);
-    dropHandler = drop(state, editor);
-    dragEndHandler = stop(state, editor);
-    editor.on('mousedown', dragStartHandler);
-    editor.on('mousemove', dragHandler);
-    editor.on('mouseup', dropHandler);
-    pageDom.bind(rootDocument, 'mousemove', dragHandler);
-    pageDom.bind(rootDocument, 'mouseup', dragEndHandler);
-    editor.on('remove', function () {
-      pageDom.unbind(rootDocument, 'mousemove', dragHandler);
-      pageDom.unbind(rootDocument, 'mouseup', dragEndHandler);
-    });
-  };
-  var blockIeDrop = function (editor) {
-    editor.on('drop', function (e) {
-      var realTarget = typeof e.clientX !== 'undefined' ? editor.getDoc().elementFromPoint(e.clientX, e.clientY) : null;
-      if (isContentEditableFalse$5(realTarget) || isContentEditableFalse$5(editor.dom.getContentEditableParent(realTarget))) {
-        e.preventDefault();
-      }
-    });
-  };
-  var init = function (editor) {
-    bindFakeDragEvents(editor);
-    blockIeDrop(editor);
-  };
-  var $_cu3cfx4xjd08ma4m = { init: init };
-
-  var isContentEditableFalse$6 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
-  var isTableCell$3 = function (node) {
-    return node && /^(TD|TH)$/i.test(node.nodeName);
-  };
-  function FakeCaret (rootNode, isBlock) {
-    var cursorInterval, $lastVisualCaret = null, caretContainerNode;
-    var getAbsoluteClientRect = function (node, before) {
-      var clientRect = $_a2gimq22jd08m9p3.collapse(node.getBoundingClientRect(), before);
-      var docElm, scrollX, scrollY, margin, rootRect;
-      if (rootNode.tagName === 'BODY') {
-        docElm = rootNode.ownerDocument.documentElement;
-        scrollX = rootNode.scrollLeft || docElm.scrollLeft;
-        scrollY = rootNode.scrollTop || docElm.scrollTop;
-      } else {
-        rootRect = rootNode.getBoundingClientRect();
-        scrollX = rootNode.scrollLeft - rootRect.left;
-        scrollY = rootNode.scrollTop - rootRect.top;
-      }
-      clientRect.left += scrollX;
-      clientRect.right += scrollX;
-      clientRect.top += scrollY;
-      clientRect.bottom += scrollY;
-      clientRect.width = 1;
-      margin = node.offsetWidth - node.clientWidth;
-      if (margin > 0) {
-        if (before) {
-          margin *= -1;
-        }
-        clientRect.left += margin;
-        clientRect.right += margin;
-      }
-      return clientRect;
-    };
-    var trimInlineCaretContainers = function () {
-      var contentEditableFalseNodes, node, sibling, i, data;
-      contentEditableFalseNodes = DomQuery('*[contentEditable=false]', rootNode);
-      for (i = 0; i < contentEditableFalseNodes.length; i++) {
-        node = contentEditableFalseNodes[i];
-        sibling = node.previousSibling;
-        if ($_euzg3m20jd08m9ow.endsWithCaretContainer(sibling)) {
-          data = sibling.data;
-          if (data.length === 1) {
-            sibling.parentNode.removeChild(sibling);
-          } else {
-            sibling.deleteData(data.length - 1, 1);
-          }
-        }
-        sibling = node.nextSibling;
-        if ($_euzg3m20jd08m9ow.startsWithCaretContainer(sibling)) {
-          data = sibling.data;
-          if (data.length === 1) {
-            sibling.parentNode.removeChild(sibling);
-          } else {
-            sibling.deleteData(0, 1);
-          }
-        }
-      }
-      return null;
-    };
-    var show = function (before, node) {
-      var clientRect, rng;
-      hide();
-      if (isTableCell$3(node)) {
-        return null;
-      }
-      if (isBlock(node)) {
-        caretContainerNode = $_euzg3m20jd08m9ow.insertBlock('p', node, before);
-        clientRect = getAbsoluteClientRect(node, before);
-        DomQuery(caretContainerNode).css('top', clientRect.top);
-        $lastVisualCaret = DomQuery('<div class="mce-visual-caret" data-mce-bogus="all"></div>').css(clientRect).appendTo(rootNode);
-        if (before) {
-          $lastVisualCaret.addClass('mce-visual-caret-before');
-        }
-        startBlink();
-        rng = node.ownerDocument.createRange();
-        rng.setStart(caretContainerNode, 0);
-        rng.setEnd(caretContainerNode, 0);
-      } else {
-        caretContainerNode = $_euzg3m20jd08m9ow.insertInline(node, before);
-        rng = node.ownerDocument.createRange();
-        if (isContentEditableFalse$6(caretContainerNode.nextSibling)) {
-          rng.setStart(caretContainerNode, 0);
-          rng.setEnd(caretContainerNode, 0);
-        } else {
-          rng.setStart(caretContainerNode, 1);
-          rng.setEnd(caretContainerNode, 1);
-        }
-        return rng;
-      }
-      return rng;
-    };
-    var hide = function () {
-      trimInlineCaretContainers();
-      if (caretContainerNode) {
-        $_2oxzv63cjd08m9w5.remove(caretContainerNode);
-        caretContainerNode = null;
-      }
-      if ($lastVisualCaret) {
-        $lastVisualCaret.remove();
-        $lastVisualCaret = null;
-      }
-      clearInterval(cursorInterval);
-    };
-    var hasFocus = function () {
-      return rootNode.ownerDocument.activeElement === rootNode;
-    };
-    var startBlink = function () {
-      cursorInterval = $_tkwl7gjd08m9ds.setInterval(function () {
-        if (hasFocus()) {
-          DomQuery('div.mce-visual-caret', rootNode).toggleClass('mce-visual-caret-hidden');
-        } else {
-          DomQuery('div.mce-visual-caret', rootNode).addClass('mce-visual-caret-hidden');
-        }
-      }, 500);
-    };
-    var destroy = function () {
-      $_tkwl7gjd08m9ds.clearInterval(cursorInterval);
-    };
-    var getCss = function () {
-      return '.mce-visual-caret {' + 'position: absolute;' + 'background-color: black;' + 'background-color: currentcolor;' + '}' + '.mce-visual-caret-hidden {' + 'display: none;' + '}' + '*[data-mce-caret] {' + 'position: absolute;' + 'left: -1000px;' + 'right: auto;' + 'top: 0;' + 'margin: 0;' + 'padding: 0;' + '}';
-    };
-    return {
-      show: show,
-      hide: hide,
-      getCss: getCss,
-      destroy: destroy
-    };
-  }
-
-  var getClientRects = function (node) {
-    var toArrayWithNode = function (clientRects) {
-      return $_c05hv0kjd08m9gg.map(clientRects, function (clientRect) {
-        clientRect = $_a2gimq22jd08m9p3.clone(clientRect);
-        clientRect.node = node;
-        return clientRect;
-      });
-    };
-    if ($_c05hv0kjd08m9gg.isArray(node)) {
-      return $_c05hv0kjd08m9gg.reduce(node, function (result, node) {
-        return result.concat(getClientRects(node));
-      }, []);
-    }
-    if ($_2qai0u1qjd08m9l9.isElement(node)) {
-      return toArrayWithNode(node.getClientRects());
-    }
-    if ($_2qai0u1qjd08m9l9.isText(node)) {
-      var rng = node.ownerDocument.createRange();
-      rng.setStart(node, 0);
-      rng.setEnd(node, node.data.length);
-      return toArrayWithNode(rng.getClientRects());
-    }
-  };
-  var $_al3xgg51jd08ma52 = { getClientRects: getClientRects };
-
-  var isContentEditableFalse$7 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
-  var findNode$1 = $_42t6k327jd08m9pl.findNode;
-  var curry$3 = $_fys1am25jd08m9pb.curry;
-  var distanceToRectLeft = function (clientRect, clientX) {
-    return Math.abs(clientRect.left - clientX);
-  };
-  var distanceToRectRight = function (clientRect, clientX) {
-    return Math.abs(clientRect.right - clientX);
-  };
-  var findClosestClientRect = function (clientRects, clientX) {
-    var isInside = function (clientX, clientRect) {
-      return clientX >= clientRect.left && clientX <= clientRect.right;
-    };
-    return $_c05hv0kjd08m9gg.reduce(clientRects, function (oldClientRect, clientRect) {
-      var oldDistance, newDistance;
-      oldDistance = Math.min(distanceToRectLeft(oldClientRect, clientX), distanceToRectRight(oldClientRect, clientX));
-      newDistance = Math.min(distanceToRectLeft(clientRect, clientX), distanceToRectRight(clientRect, clientX));
-      if (isInside(clientX, clientRect)) {
-        return clientRect;
-      }
-      if (isInside(clientX, oldClientRect)) {
-        return oldClientRect;
-      }
-      if (newDistance === oldDistance && isContentEditableFalse$7(clientRect.node)) {
-        return clientRect;
-      }
-      if (newDistance < oldDistance) {
-        return clientRect;
-      }
-      return oldClientRect;
-    });
-  };
-  var walkUntil = function (direction, rootNode, predicateFn, node) {
-    while (node = findNode$1(node, direction, $_es00wu1zjd08m9ou.isEditableCaretCandidate, rootNode)) {
-      if (predicateFn(node)) {
-        return;
-      }
-    }
-  };
-  var findLineNodeRects = function (rootNode, targetNodeRect) {
-    var clientRects = [];
-    var collect = function (checkPosFn, node) {
-      var lineRects;
-      lineRects = $_c05hv0kjd08m9gg.filter($_al3xgg51jd08ma52.getClientRects(node), function (clientRect) {
-        return !checkPosFn(clientRect, targetNodeRect);
-      });
-      clientRects = clientRects.concat(lineRects);
-      return lineRects.length === 0;
-    };
-    clientRects.push(targetNodeRect);
-    walkUntil(-1, rootNode, curry$3(collect, $_a2gimq22jd08m9p3.isAbove), targetNodeRect.node);
-    walkUntil(1, rootNode, curry$3(collect, $_a2gimq22jd08m9p3.isBelow), targetNodeRect.node);
-    return clientRects;
-  };
-  var getContentEditableFalseChildren = function (rootNode) {
-    return $_c05hv0kjd08m9gg.filter($_c05hv0kjd08m9gg.toArray(rootNode.getElementsByTagName('*')), isContentEditableFalse$7);
-  };
-  var caretInfo = function (clientRect, clientX) {
-    return {
-      node: clientRect.node,
-      before: distanceToRectLeft(clientRect, clientX) < distanceToRectRight(clientRect, clientX)
-    };
-  };
-  var closestCaret = function (rootNode, clientX, clientY) {
-    var contentEditableFalseNodeRects, closestNodeRect;
-    contentEditableFalseNodeRects = $_al3xgg51jd08ma52.getClientRects(getContentEditableFalseChildren(rootNode));
-    contentEditableFalseNodeRects = $_c05hv0kjd08m9gg.filter(contentEditableFalseNodeRects, function (clientRect) {
-      return clientY >= clientRect.top && clientY <= clientRect.bottom;
-    });
-    closestNodeRect = findClosestClientRect(contentEditableFalseNodeRects, clientX);
-    if (closestNodeRect) {
-      closestNodeRect = findClosestClientRect(findLineNodeRects(rootNode, closestNodeRect), clientX);
-      if (closestNodeRect && isContentEditableFalse$7(closestNodeRect.node)) {
-        return caretInfo(closestNodeRect, clientX);
-      }
-    }
-    return null;
-  };
-  var $_63rw2t50jd08ma4z = {
-    findClosestClientRect: findClosestClientRect,
-    findLineNodeRects: findLineNodeRects,
-    closestCaret: closestCaret
-  };
-
-  var isXYWithinRange = function (clientX, clientY, range) {
-    if (range.collapsed) {
-      return false;
-    }
-    return $_65yphx4jd08m98n.foldl(range.getClientRects(), function (state, rect) {
-      return state || $_a2gimq22jd08m9p3.containsXY(rect, clientX, clientY);
-    }, false);
-  };
-  var $_li5qy52jd08ma54 = { isXYWithinRange: isXYWithinRange };
-
-  var adaptable = function (fn, rate) {
-    var timer = null;
-    var args = null;
-    var cancel = function () {
-      if (timer !== null) {
-        clearTimeout(timer);
-        timer = null;
-        args = null;
-      }
-    };
-    var throttle = function () {
-      args = arguments;
-      if (timer === null) {
-        timer = setTimeout(function () {
-          fn.apply(null, args);
-          timer = null;
-          args = null;
-        }, rate);
-      }
-    };
-    return {
-      cancel: cancel,
-      throttle: throttle
-    };
-  };
-  var first$3 = function (fn, rate) {
-    var timer = null;
-    var cancel = function () {
-      if (timer !== null) {
-        clearTimeout(timer);
-        timer = null;
-      }
-    };
-    var throttle = function () {
-      var args = arguments;
-      if (timer === null) {
-        timer = setTimeout(function () {
-          fn.apply(null, args);
-          timer = null;
-          args = null;
-        }, rate);
-      }
-    };
-    return {
-      cancel: cancel,
-      throttle: throttle
-    };
-  };
-  var last$3 = function (fn, rate) {
-    var timer = null;
-    var cancel = function () {
-      if (timer !== null) {
-        clearTimeout(timer);
-        timer = null;
-      }
-    };
-    var throttle = function () {
-      var args = arguments;
-      if (timer !== null)
-        clearTimeout(timer);
-      timer = setTimeout(function () {
-        fn.apply(null, args);
-        timer = null;
-        args = null;
-      }, rate);
-    };
-    return {
-      cancel: cancel,
-      throttle: throttle
-    };
-  };
-  var $_8yp5nr54jd08ma59 = {
-    adaptable: adaptable,
-    first: first$3,
-    last: last$3
-  };
-
-  var isContentEditableTrue$4 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
-  var isContentEditableFalse$8 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
-  var showCaret = function (direction, editor, node, before) {
-    return editor._selectionOverrides.showCaret(direction, node, before);
-  };
-  var getNodeRange = function (node) {
-    var rng = node.ownerDocument.createRange();
-    rng.selectNode(node);
-    return rng;
-  };
-  var selectNode = function (editor, node) {
-    var e;
-    e = editor.fire('BeforeObjectSelected', { target: node });
-    if (e.isDefaultPrevented()) {
-      return null;
-    }
-    return getNodeRange(node);
-  };
-  var renderCaretAtRange = function (editor, range) {
-    var caretPosition, ceRoot;
-    range = $_42t6k327jd08m9pl.normalizeRange(1, editor.getBody(), range);
-    caretPosition = CaretPosition$1.fromRangeStart(range);
-    if (isContentEditableFalse$8(caretPosition.getNode())) {
-      return showCaret(1, editor, caretPosition.getNode(), !caretPosition.isAtEnd());
-    }
-    if (isContentEditableFalse$8(caretPosition.getNode(true))) {
-      return showCaret(1, editor, caretPosition.getNode(true), false);
-    }
-    ceRoot = editor.dom.getParent(caretPosition.getNode(), $_fys1am25jd08m9pb.or(isContentEditableFalse$8, isContentEditableTrue$4));
-    if (isContentEditableFalse$8(ceRoot)) {
-      return showCaret(1, editor, ceRoot, false);
-    }
-    return null;
-  };
-  var renderRangeCaret = function (editor, range) {
-    var caretRange;
-    if (!range || !range.collapsed) {
-      return range;
-    }
-    caretRange = renderCaretAtRange(editor, range);
-    if (caretRange) {
-      return caretRange;
-    }
-    return range;
-  };
-  var $_fpzmty55jd08ma5b = {
-    showCaret: showCaret,
-    selectNode: selectNode,
-    renderCaretAtRange: renderCaretAtRange,
-    renderRangeCaret: renderRangeCaret
-  };
-
-  var setup$2 = function (editor) {
-    var renderFocusCaret = $_8yp5nr54jd08ma59.first(function () {
-      if (!editor.removed) {
-        var rng = editor.selection.getRng();
-        if (rng.collapsed) {
-          var caretRange = $_fpzmty55jd08ma5b.renderRangeCaret(editor, editor.selection.getRng());
-          editor.selection.setRng(caretRange);
-        }
-      }
-    }, 0);
-    editor.on('focus', function () {
-      renderFocusCaret.throttle();
-    });
-    editor.on('blur', function () {
-      renderFocusCaret.cancel();
-    });
-  };
-  var $_6yt52053jd08ma56 = { setup: setup$2 };
-
-  var $_3izr6156jd08ma5d = {
-    BACKSPACE: 8,
-    DELETE: 46,
-    DOWN: 40,
-    ENTER: 13,
-    LEFT: 37,
-    RIGHT: 39,
-    SPACEBAR: 32,
-    TAB: 9,
-    UP: 38,
-    modifierPressed: function (e) {
-      return e.shiftKey || e.ctrlKey || e.altKey || this.metaKeyPressed(e);
-    },
-    metaKeyPressed: function (e) {
-      return $_6pkc2e9jd08m9bi.mac ? e.metaKey : e.ctrlKey && !e.altKey;
-    }
-  };
-
-  var isContentEditableTrue$5 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
-  var isContentEditableFalse$9 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
-  var isAfterContentEditableFalse = $_42t6k327jd08m9pl.isAfterContentEditableFalse;
-  var isBeforeContentEditableFalse = $_42t6k327jd08m9pl.isBeforeContentEditableFalse;
-  var SelectionOverrides = function (editor) {
-    var isBlock = function (node) {
-      return editor.dom.isBlock(node);
-    };
-    var rootNode = editor.getBody();
-    var fakeCaret = FakeCaret(editor.getBody(), isBlock);
-    var realSelectionId = 'sel-' + editor.dom.uniqueId();
-    var selectedContentEditableNode;
-    var isFakeSelectionElement = function (elm) {
-      return editor.dom.hasClass(elm, 'mce-offscreen-selection');
-    };
-    var getRealSelectionElement = function () {
-      var container = editor.dom.get(realSelectionId);
-      return container ? container.getElementsByTagName('*')[0] : container;
-    };
-    var setRange = function (range) {
-      if (range) {
-        editor.selection.setRng(range);
-      }
-    };
-    var getRange = function () {
-      return editor.selection.getRng();
-    };
-    var scrollIntoView = function (node, alignToTop) {
-      editor.selection.scrollIntoView(node, alignToTop);
-    };
-    var showCaret = function (direction, node, before) {
-      var e;
-      e = editor.fire('ShowCaret', {
-        target: node,
-        direction: direction,
-        before: before
-      });
-      if (e.isDefaultPrevented()) {
-        return null;
-      }
-      scrollIntoView(node, direction === -1);
-      return fakeCaret.show(before, node);
-    };
-    var getNormalizedRangeEndPoint = function (direction, range) {
-      range = $_42t6k327jd08m9pl.normalizeRange(direction, rootNode, range);
-      if (direction === -1) {
-        return CaretPosition$1.fromRangeStart(range);
-      }
-      return CaretPosition$1.fromRangeEnd(range);
-    };
-    var showBlockCaretContainer = function (blockCaretContainer) {
-      if (blockCaretContainer.hasAttribute('data-mce-caret')) {
-        $_euzg3m20jd08m9ow.showCaretContainerBlock(blockCaretContainer);
-        setRange(getRange());
-        scrollIntoView(blockCaretContainer[0]);
-      }
-    };
-    var registerEvents = function () {
-      var getContentEditableRoot = function (node) {
-        var root = editor.getBody();
-        while (node && node !== root) {
-          if (isContentEditableTrue$5(node) || isContentEditableFalse$9(node)) {
-            return node;
-          }
-          node = node.parentNode;
-        }
-        return null;
-      };
-      editor.on('mouseup', function (e) {
-        var range = getRange();
-        if (range.collapsed && $_8cty3m49jd08ma1l.isXYInContentArea(editor, e.clientX, e.clientY)) {
-          setRange($_fpzmty55jd08ma5b.renderCaretAtRange(editor, range));
-        }
-      });
-      editor.on('click', function (e) {
-        var contentEditableRoot;
-        contentEditableRoot = getContentEditableRoot(e.target);
-        if (contentEditableRoot) {
-          if (isContentEditableFalse$9(contentEditableRoot)) {
-            e.preventDefault();
-            editor.focus();
-          }
-          if (isContentEditableTrue$5(contentEditableRoot)) {
-            if (editor.dom.isChildOf(contentEditableRoot, editor.selection.getNode())) {
-              removeContentEditableSelection();
-            }
-          }
-        }
-      });
-      editor.on('blur NewBlock', function () {
-        removeContentEditableSelection();
-      });
-      var handleTouchSelect = function (editor) {
-        var moved = false;
-        editor.on('touchstart', function () {
-          moved = false;
-        });
-        editor.on('touchmove', function () {
-          moved = true;
-        });
-        editor.on('touchend', function (e) {
-          var contentEditableRoot = getContentEditableRoot(e.target);
-          if (isContentEditableFalse$9(contentEditableRoot)) {
-            if (!moved) {
-              e.preventDefault();
-              setContentEditableSelection($_fpzmty55jd08ma5b.selectNode(editor, contentEditableRoot));
-            }
-          }
-        });
-      };
-      var hasNormalCaretPosition = function (elm) {
-        var caretWalker = CaretWalker(elm);
-        if (!elm.firstChild) {
-          return false;
-        }
-        var startPos = CaretPosition$1.before(elm.firstChild);
-        var newPos = caretWalker.next(startPos);
-        return newPos && !isBeforeContentEditableFalse(newPos) && !isAfterContentEditableFalse(newPos);
-      };
-      var isInSameBlock = function (node1, node2) {
-        var block1 = editor.dom.getParent(node1, editor.dom.isBlock);
-        var block2 = editor.dom.getParent(node2, editor.dom.isBlock);
-        return block1 === block2;
-      };
-      var hasBetterMouseTarget = function (targetNode, caretNode) {
-        var targetBlock = editor.dom.getParent(targetNode, editor.dom.isBlock);
-        var caretBlock = editor.dom.getParent(caretNode, editor.dom.isBlock);
-        return targetBlock && !isInSameBlock(targetBlock, caretBlock) && hasNormalCaretPosition(targetBlock);
-      };
-      handleTouchSelect(editor);
-      editor.on('mousedown', function (e) {
-        var contentEditableRoot;
-        if ($_8cty3m49jd08ma1l.isXYInContentArea(editor, e.clientX, e.clientY) === false) {
-          return;
-        }
-        contentEditableRoot = getContentEditableRoot(e.target);
-        if (contentEditableRoot) {
-          if (isContentEditableFalse$9(contentEditableRoot)) {
-            e.preventDefault();
-            setContentEditableSelection($_fpzmty55jd08ma5b.selectNode(editor, contentEditableRoot));
-          } else {
-            removeContentEditableSelection();
-            if (!(isContentEditableTrue$5(contentEditableRoot) && e.shiftKey) && !$_li5qy52jd08ma54.isXYWithinRange(e.clientX, e.clientY, editor.selection.getRng())) {
-              editor.selection.placeCaretAt(e.clientX, e.clientY);
-            }
-          }
-        } else {
-          removeContentEditableSelection();
-          hideFakeCaret();
-          var caretInfo = $_63rw2t50jd08ma4z.closestCaret(rootNode, e.clientX, e.clientY);
-          if (caretInfo) {
-            if (!hasBetterMouseTarget(e.target, caretInfo.node)) {
-              e.preventDefault();
-              editor.getBody().focus();
-              setRange(showCaret(1, caretInfo.node, caretInfo.before));
-            }
-          }
-        }
-      });
-      editor.on('keypress', function (e) {
-        if ($_3izr6156jd08ma5d.modifierPressed(e)) {
-          return;
-        }
-        switch (e.keyCode) {
-        default:
-          if (isContentEditableFalse$9(editor.selection.getNode())) {
-            e.preventDefault();
-          }
-          break;
-        }
-      });
-      editor.on('getSelectionRange', function (e) {
-        var rng = e.range;
-        if (selectedContentEditableNode) {
-          if (!selectedContentEditableNode.parentNode) {
-            selectedContentEditableNode = null;
-            return;
-          }
-          rng = rng.cloneRange();
-          rng.selectNode(selectedContentEditableNode);
-          e.range = rng;
-        }
-      });
-      editor.on('setSelectionRange', function (e) {
-        var rng;
-        rng = setContentEditableSelection(e.range, e.forward);
-        if (rng) {
-          e.range = rng;
-        }
-      });
-      editor.on('AfterSetSelectionRange', function (e) {
-        var rng = e.range;
-        if (!isRangeInCaretContainer(rng)) {
-          hideFakeCaret();
-        }
-        if (!isFakeSelectionElement(rng.startContainer.parentNode)) {
-          removeContentEditableSelection();
-        }
-      });
-      editor.on('copy', function (e) {
-        var clipboardData = e.clipboardData;
-        if (!e.isDefaultPrevented() && e.clipboardData && !$_6pkc2e9jd08m9bi.ie) {
-          var realSelectionElement = getRealSelectionElement();
-          if (realSelectionElement) {
-            e.preventDefault();
-            clipboardData.clearData();
-            clipboardData.setData('text/html', realSelectionElement.outerHTML);
-            clipboardData.setData('text/plain', realSelectionElement.outerText);
-          }
-        }
-      });
-      $_cu3cfx4xjd08ma4m.init(editor);
-      $_6yt52053jd08ma56.setup(editor);
-    };
-    var addCss = function () {
-      var styles = editor.contentStyles, rootClass = '.mce-content-body';
-      styles.push(fakeCaret.getCss());
-      styles.push(rootClass + ' .mce-offscreen-selection {' + 'position: absolute;' + 'left: -9999999999px;' + 'max-width: 1000000px;' + '}' + rootClass + ' *[contentEditable=false] {' + 'cursor: default;' + '}' + rootClass + ' *[contentEditable=true] {' + 'cursor: text;' + '}');
-    };
-    var isWithinCaretContainer = function (node) {
-      return $_euzg3m20jd08m9ow.isCaretContainer(node) || $_euzg3m20jd08m9ow.startsWithCaretContainer(node) || $_euzg3m20jd08m9ow.endsWithCaretContainer(node);
-    };
-    var isRangeInCaretContainer = function (rng) {
-      return isWithinCaretContainer(rng.startContainer) || isWithinCaretContainer(rng.endContainer);
-    };
-    var setContentEditableSelection = function (range, forward) {
-      var node;
-      var $ = editor.$;
-      var dom = editor.dom;
-      var $realSelectionContainer, sel, startContainer, startOffset, endOffset, e, caretPosition, targetClone, origTargetClone;
-      if (!range) {
-        return null;
-      }
-      if (range.collapsed) {
-        if (!isRangeInCaretContainer(range)) {
-          if (forward === false) {
-            caretPosition = getNormalizedRangeEndPoint(-1, range);
-            if (isContentEditableFalse$9(caretPosition.getNode(true))) {
-              return showCaret(-1, caretPosition.getNode(true), false);
-            }
-            if (isContentEditableFalse$9(caretPosition.getNode())) {
-              return showCaret(-1, caretPosition.getNode(), !caretPosition.isAtEnd());
-            }
-          } else {
-            caretPosition = getNormalizedRangeEndPoint(1, range);
-            if (isContentEditableFalse$9(caretPosition.getNode())) {
-              return showCaret(1, caretPosition.getNode(), !caretPosition.isAtEnd());
-            }
-            if (isContentEditableFalse$9(caretPosition.getNode(true))) {
-              return showCaret(1, caretPosition.getNode(true), false);
-            }
-          }
-        }
+<<<<<<< HEAD
         return null;
       }
       startContainer = range.startContainer;
@@ -16678,13 +23993,57 @@
     if ($_6pkc2e9jd08m9bi.ceFalse) {
       registerEvents();
       addCss();
-    }
-    return {
-      showCaret: showCaret,
-      showBlockCaretContainer: showBlockCaretContainer,
-      hideFakeCaret: hideFakeCaret,
-      destroy: destroy
+=======
+        index = matches.index + matches[0].length;
+      }
+      if (index < html.length) {
+        text(decode(html.substr(index)));
+      }
+      for (i = stack.length - 1; i >= 0; i--) {
+        value = stack[i];
+        if (value.valid) {
+          end(value.name);
+        }
+      }
     };
+    return { parse: parse };
+  }
+  (function (SaxParser) {
+    SaxParser.findEndTag = findEndTagIndex;
+  }(SaxParser || (SaxParser = {})));
+  var SaxParser$1 = SaxParser;
+
+  var trimHtml = function (tempAttrs, html) {
+    var trimContentRegExp = new RegExp(['\\s?(' + tempAttrs.join('|') + ')="[^"]+"'].join('|'), 'gi');
+    return html.replace(trimContentRegExp, '');
+  };
+  var trimInternal = function (serializer, html) {
+    var content = html;
+    var bogusAllRegExp = /<(\w+) [^>]*data-mce-bogus="all"[^>]*>/g;
+    var endTagIndex, index, matchLength, matches, shortEndedElements;
+    var schema = serializer.schema;
+    content = trimHtml(serializer.getTempAttrs(), content);
+    shortEndedElements = schema.getShortEndedElements();
+    while (matches = bogusAllRegExp.exec(content)) {
+      index = bogusAllRegExp.lastIndex;
+      matchLength = matches[0].length;
+      if (shortEndedElements[matches[1]]) {
+        endTagIndex = index;
+      } else {
+        endTagIndex = SaxParser$1.findEndTag(schema, content, index);
+      }
+      content = content.substring(0, index - matchLength) + content.substring(endTagIndex);
+      bogusAllRegExp.lastIndex = index - matchLength;
+>>>>>>> installer
+    }
+    return content;
+  };
+  var trimExternal = function (serializer, html) {
+    return $_fz0k4u21jducwnmu.trim(trimInternal(serializer, html));
+  };
+  var $_9wn54m5cjducwo73 = {
+    trimExternal: trimExternal,
+    trimInternal: trimInternal
   };
 
   var KEEP = 0;
@@ -16805,7 +24164,11 @@
     buildScript(0, left.length, 0, right.length, script);
     return script;
   };
+<<<<<<< HEAD
   var $_dcietj5ajd08ma95 = {
+=======
+  var $_3rz1t15fjducwo7r = {
+>>>>>>> installer
     KEEP: KEEP,
     DELETE: DELETE,
     INSERT: INSERT,
@@ -16816,7 +24179,11 @@
     if (elm.nodeType === 1) {
       return elm.outerHTML;
     } else if (elm.nodeType === 3) {
+<<<<<<< HEAD
       return $_6p0pbx1rjd08m9lf.encodeRaw(elm.data, false);
+=======
+      return $_g4jbz61rjducwnjq.encodeRaw(elm.data, false);
+>>>>>>> installer
     } else if (elm.nodeType === 8) {
       return '<!--' + elm.data + '-->';
     }
@@ -16851,6 +24218,7 @@
   };
   var applyDiff = function (diff, elm) {
     var index = 0;
+<<<<<<< HEAD
     $_c05hv0kjd08m9gg.each(diff, function (action) {
       if (action[0] === $_dcietj5ajd08ma95.KEEP) {
         index++;
@@ -16858,21 +24226,42 @@
         insertAt(elm, action[1], index);
         index++;
       } else if (action[0] === $_dcietj5ajd08ma95.DELETE) {
+=======
+    $_e6e6g1kjducwnfd.each(diff, function (action) {
+      if (action[0] === $_3rz1t15fjducwo7r.KEEP) {
+        index++;
+      } else if (action[0] === $_3rz1t15fjducwo7r.INSERT) {
+        insertAt(elm, action[1], index);
+        index++;
+      } else if (action[0] === $_3rz1t15fjducwo7r.DELETE) {
+>>>>>>> installer
         removeAt(elm, index);
       }
     });
   };
   var read$2 = function (elm) {
+<<<<<<< HEAD
     return $_c05hv0kjd08m9gg.filter($_c05hv0kjd08m9gg.map(elm.childNodes, getOuterHtml), function (item) {
+=======
+    return $_e6e6g1kjducwnfd.filter($_e6e6g1kjducwnfd.map(elm.childNodes, getOuterHtml), function (item) {
+>>>>>>> installer
       return item.length > 0;
     });
   };
   var write = function (fragments, elm) {
+<<<<<<< HEAD
     var currentFragments = $_c05hv0kjd08m9gg.map(elm.childNodes, getOuterHtml);
     applyDiff($_dcietj5ajd08ma95.diff(currentFragments, fragments), elm);
     return elm;
   };
   var $_92die159jd08ma8z = {
+=======
+    var currentFragments = $_e6e6g1kjducwnfd.map(elm.childNodes, getOuterHtml);
+    applyDiff($_3rz1t15fjducwo7r.diff(currentFragments, fragments), elm);
+    return elm;
+  };
+  var $_51p2my5ejducwo7o = {
+>>>>>>> installer
     read: read$2,
     write: write
   };
@@ -16900,9 +24289,15 @@
   };
   var createFromEditor = function (editor) {
     var fragments, content, trimmedFragments;
+<<<<<<< HEAD
     fragments = $_92die159jd08ma8z.read(editor.getBody());
     trimmedFragments = $_65yphx4jd08m98n.bind(fragments, function (html) {
       var trimmed = $_4hg5uo42jd08ma0n.trimInternal(editor.serializer, html);
+=======
+    fragments = $_51p2my5ejducwo7o.read(editor.getBody());
+    trimmedFragments = $_2dw1bj4jducwn6g.bind(fragments, function (html) {
+      var trimmed = $_9wn54m5cjducwo73.trimInternal(editor.serializer, html);
+>>>>>>> installer
       return trimmed.length > 0 ? [trimmed] : [];
     });
     content = trimmedFragments.join('');
@@ -16910,7 +24305,11 @@
   };
   var applyToEditor = function (editor, level, before) {
     if (level.type === 'fragmented') {
+<<<<<<< HEAD
       $_92die159jd08ma8z.write(level.fragments, editor.getBody());
+=======
+      $_51p2my5ejducwo7o.write(level.fragments, editor.getBody());
+>>>>>>> installer
     } else {
       editor.setContent(level.content, { format: 'raw' });
     }
@@ -16922,7 +24321,11 @@
   var isEq$4 = function (level1, level2) {
     return !!level1 && !!level2 && getLevelContent(level1) === getLevelContent(level2);
   };
+<<<<<<< HEAD
   var $_7wccjb58jd08ma5k = {
+=======
+  var $_9n3h945bjducwo6y = {
+>>>>>>> installer
     createFragmentedLevel: createFragmentedLevel,
     createCompleteLevel: createCompleteLevel,
     createFromEditor: createFromEditor,
@@ -16986,7 +24389,11 @@
       if (keyCode === 46 || keyCode === 8) {
         editor.nodeChanged();
       }
+<<<<<<< HEAD
       if (isFirstTypedCharacter && self.typing && $_7wccjb58jd08ma5k.isEq($_7wccjb58jd08ma5k.createFromEditor(editor), data[0]) === false) {
+=======
+      if (isFirstTypedCharacter && self.typing && $_9n3h945bjducwo6y.isEq($_9n3h945bjducwo6y.createFromEditor(editor), data[0]) === false) {
+>>>>>>> installer
         if (editor.isDirty() === false) {
           setDirty(true);
           editor.fire('change', {
@@ -17035,16 +24442,26 @@
       typing: false,
       beforeChange: function () {
         if (isUnlocked()) {
+<<<<<<< HEAD
           beforeBookmark = $_9z2j312ajd08m9q3.getUndoBookmark(editor.selection);
+=======
+          beforeBookmark = $_epzga02kjducwnp2.getUndoBookmark(editor.selection);
+>>>>>>> installer
         }
       },
       add: function (level, event) {
         var i;
         var settings = editor.settings;
         var lastLevel, currentLevel;
+<<<<<<< HEAD
         currentLevel = $_7wccjb58jd08ma5k.createFromEditor(editor);
         level = level || {};
         level = $_gfka90jjd08m9g9.extend(level, currentLevel);
+=======
+        currentLevel = $_9n3h945bjducwo6y.createFromEditor(editor);
+        level = level || {};
+        level = $_8i2houjjducwnd2.extend(level, currentLevel);
+>>>>>>> installer
         if (isUnlocked() === false || editor.removed) {
           return null;
         }
@@ -17056,7 +24473,11 @@
           }).isDefaultPrevented()) {
           return null;
         }
+<<<<<<< HEAD
         if (lastLevel && $_7wccjb58jd08ma5k.isEq(lastLevel, level)) {
+=======
+        if (lastLevel && $_9n3h945bjducwo6y.isEq(lastLevel, level)) {
+>>>>>>> installer
           return null;
         }
         if (data[index]) {
@@ -17071,7 +24492,11 @@
             index = data.length;
           }
         }
+<<<<<<< HEAD
         level.bookmark = $_9z2j312ajd08m9q3.getUndoBookmark(editor.selection);
+=======
+        level.bookmark = $_epzga02kjducwnp2.getUndoBookmark(editor.selection);
+>>>>>>> installer
         if (index < data.length - 1) {
           data.length = index + 1;
         }
@@ -17098,7 +24523,11 @@
         }
         if (index > 0) {
           level = data[--index];
+<<<<<<< HEAD
           $_7wccjb58jd08ma5k.applyToEditor(editor, level, true);
+=======
+          $_9n3h945bjducwo6y.applyToEditor(editor, level, true);
+>>>>>>> installer
           setDirty(true);
           editor.fire('undo', { level: level });
         }
@@ -17108,7 +24537,11 @@
         var level;
         if (index < data.length - 1) {
           level = data[++index];
+<<<<<<< HEAD
           $_7wccjb58jd08ma5k.applyToEditor(editor, level, false);
+=======
+          $_9n3h945bjducwo6y.applyToEditor(editor, level, false);
+>>>>>>> installer
           setDirty(true);
           editor.fire('redo', { level: level });
         }
@@ -17122,7 +24555,11 @@
         editor.fire('ClearUndos');
       },
       hasUndo: function () {
+<<<<<<< HEAD
         return index > 0 || self.typing && data[0] && !$_7wccjb58jd08ma5k.isEq($_7wccjb58jd08ma5k.createFromEditor(editor), data[0]);
+=======
+        return index > 0 || self.typing && data[0] && !$_9n3h945bjducwo6y.isEq($_9n3h945bjducwo6y.createFromEditor(editor), data[0]);
+>>>>>>> installer
       },
       hasRedo: function () {
         return index < data.length - 1 && !self.typing;
@@ -17146,7 +24583,11 @@
         if (self.transact(callback1)) {
           bookmark = data[index].bookmark;
           lastLevel = data[index - 1];
+<<<<<<< HEAD
           $_7wccjb58jd08ma5k.applyToEditor(editor, lastLevel, true);
+=======
+          $_9n3h945bjducwo6y.applyToEditor(editor, lastLevel, true);
+>>>>>>> installer
           if (self.transact(callback2)) {
             data[index - 1].beforeBookmark = bookmark;
           }
@@ -17157,8 +24598,13 @@
   }
 
   var postProcessHooks = {};
+<<<<<<< HEAD
   var filter$2 = $_c05hv0kjd08m9gg.filter;
   var each$12 = $_c05hv0kjd08m9gg.each;
+=======
+  var filter$2 = $_e6e6g1kjducwnfd.filter;
+  var each$12 = $_e6e6g1kjducwnfd.each;
+>>>>>>> installer
   var addPostProcessHook = function (name, hook) {
     var hooks = postProcessHooks[name];
     if (!hooks) {
@@ -17175,13 +24621,21 @@
     var rng = editor.selection.getRng();
     var isPre, blocks;
     var hasPreSibling = function (pre) {
+<<<<<<< HEAD
       return isPre(pre.previousSibling) && $_c05hv0kjd08m9gg.indexOf(blocks, pre.previousSibling) !== -1;
+=======
+      return isPre(pre.previousSibling) && $_e6e6g1kjducwnfd.indexOf(blocks, pre.previousSibling) !== -1;
+>>>>>>> installer
     };
     var joinPre = function (pre1, pre2) {
       DomQuery(pre2).remove();
       DomQuery(pre1).append('<br><br>').append(pre2.childNodes);
     };
+<<<<<<< HEAD
     isPre = $_2qai0u1qjd08m9l9.matchNodeNames('pre');
+=======
+    isPre = $_fj238m1qjducwnjm.matchNodeNames('pre');
+>>>>>>> installer
     if (!rng.collapsed) {
       blocks = editor.selection.getSelectedBlocks();
       each$12(filter$2(filter$2(blocks, isPre), hasPreSibling), function (pre) {
@@ -17189,9 +24643,15 @@
       });
     }
   });
+<<<<<<< HEAD
   var $_33aqo5djd08ma9m = { postProcess: postProcess };
 
   var each$13 = $_gfka90jjd08m9g9.each;
+=======
+  var $_ez60zk5ijducwo86 = { postProcess: postProcess };
+
+  var each$13 = $_8i2houjjducwnd2.each;
+>>>>>>> installer
   var getEndChild = function (container, index) {
     var childNodes = container.childNodes;
     index--;
@@ -17202,7 +24662,7 @@
     }
     return childNodes[index] || container;
   };
-  var walk$1 = function (dom, rng, callback) {
+  var walk$2 = function (dom, rng, callback) {
     var startContainer = rng.startContainer;
     var startOffset = rng.startOffset;
     var endContainer = rng.endContainer;
@@ -17296,11 +24756,19 @@
     }
     walkBoundary(endContainer, endPoint);
   };
+<<<<<<< HEAD
   var $_f1rcs75gjd08maa6 = { walk: walk$1 };
 
   var MCE_ATTR_RE = /^(src|href|style)$/;
   var each$14 = $_gfka90jjd08m9g9.each;
   var isEq$5 = $_f8rk1v3gjd08m9xb.isEq;
+=======
+  var $_ee8wld5ljducwo96 = { walk: walk$2 };
+
+  var MCE_ATTR_RE = /^(src|href|style)$/;
+  var each$14 = $_8i2houjjducwnd2.each;
+  var isEq$5 = $_fyc2yy3ljducwnuu.isEq;
+>>>>>>> installer
   var isTableCell$4 = function (node) {
     return /^(TH|TD)$/.test(node.nodeName);
   };
@@ -17308,17 +24776,28 @@
     var container, offset, lastIdx;
     container = rng[start ? 'startContainer' : 'endContainer'];
     offset = rng[start ? 'startOffset' : 'endOffset'];
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isElement(container)) {
+=======
+    if ($_fj238m1qjducwnjm.isElement(container)) {
+>>>>>>> installer
       lastIdx = container.childNodes.length - 1;
       if (!start && offset) {
         offset--;
       }
       container = container.childNodes[offset > lastIdx ? lastIdx : offset];
     }
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isText(container) && start && offset >= container.nodeValue.length) {
       container = new TreeWalker(container, ed.getBody()).next() || container;
     }
     if ($_2qai0u1qjd08m9l9.isText(container) && !start && offset === 0) {
+=======
+    if ($_fj238m1qjducwnjm.isText(container) && start && offset >= container.nodeValue.length) {
+      container = new TreeWalker(container, ed.getBody()).next() || container;
+    }
+    if ($_fj238m1qjducwnjm.isText(container) && !start && offset === 0) {
+>>>>>>> installer
       container = new TreeWalker(container, ed.getBody()).prev() || container;
     }
     return container;
@@ -17337,14 +24816,22 @@
       return true;
     }
     if (format.selector) {
+<<<<<<< HEAD
       return $_2qai0u1qjd08m9l9.isElement(node) && dom.is(node, format.selector);
+=======
+      return $_fj238m1qjducwnjm.isElement(node) && dom.is(node, format.selector);
+>>>>>>> installer
     }
   };
   var isColorFormatAndAnchor = function (node, format) {
     return format.links && node.tagName === 'A';
   };
   var find$4 = function (dom, node, next, inc) {
+<<<<<<< HEAD
     node = $_f8rk1v3gjd08m9xb.getNonWhiteSpaceSibling(node, next, inc);
+=======
+    node = $_fyc2yy3ljducwnuu.getNonWhiteSpaceSibling(node, next, inc);
+>>>>>>> installer
     return !node || (node.nodeName === 'BR' || dom.isBlock(node));
   };
   var removeNode$1 = function (ed, node, format) {
@@ -17364,8 +24851,13 @@
       } else {
         if (parentNode === dom.getRoot()) {
           if (!format.list_block || !isEq$5(node, format.list_block)) {
+<<<<<<< HEAD
             each$14($_gfka90jjd08m9g9.grep(node.childNodes), function (node) {
               if ($_f8rk1v3gjd08m9xb.isValid(ed, forcedRootBlock, node.nodeName.toLowerCase())) {
+=======
+            each$14($_8i2houjjducwnd2.grep(node.childNodes), function (node) {
+              if ($_fyc2yy3ljducwnuu.isValid(ed, forcedRootBlock, node.nodeName.toLowerCase())) {
+>>>>>>> installer
                 if (!rootBlockElm) {
                   rootBlockElm = wrap$2(dom, node, forcedRootBlock);
                   dom.setAttribs(rootBlockElm, ed.settings.forced_root_block_attrs);
@@ -17393,12 +24885,20 @@
     }
     if (format.remove !== 'all') {
       each$14(format.styles, function (value, name) {
+<<<<<<< HEAD
         value = $_f8rk1v3gjd08m9xb.normalizeStyleValue(dom, $_f8rk1v3gjd08m9xb.replaceVars(value, vars), name);
+=======
+        value = $_fyc2yy3ljducwnuu.normalizeStyleValue(dom, $_fyc2yy3ljducwnuu.replaceVars(value, vars), name);
+>>>>>>> installer
         if (typeof name === 'number') {
           name = value;
           compareNode = 0;
         }
+<<<<<<< HEAD
         if (format.remove_similar || (!compareNode || isEq$5($_f8rk1v3gjd08m9xb.getStyle(dom, compareNode, name), value))) {
+=======
+        if (format.remove_similar || (!compareNode || isEq$5($_fyc2yy3ljducwnuu.getStyle(dom, compareNode, name), value))) {
+>>>>>>> installer
           dom.setStyle(node, name, '');
         }
         stylesModified = 1;
@@ -17409,7 +24909,11 @@
       }
       each$14(format.attributes, function (value, name) {
         var valueOut;
+<<<<<<< HEAD
         value = $_f8rk1v3gjd08m9xb.replaceVars(value, vars);
+=======
+        value = $_fyc2yy3ljducwnuu.replaceVars(value, vars);
+>>>>>>> installer
         if (typeof name === 'number') {
           name = value;
           compareNode = 0;
@@ -17440,7 +24944,11 @@
         }
       });
       each$14(format.classes, function (value) {
+<<<<<<< HEAD
         value = $_f8rk1v3gjd08m9xb.replaceVars(value, vars);
+=======
+        value = $_fyc2yy3ljducwnuu.replaceVars(value, vars);
+>>>>>>> installer
         if (!compareNode || dom.hasClass(compareNode, value)) {
           dom.removeClass(node, value);
         }
@@ -17460,10 +24968,17 @@
   };
   var findFormatRoot = function (editor, container, name, vars, similar) {
     var formatRoot;
+<<<<<<< HEAD
     each$14($_f8rk1v3gjd08m9xb.getParents(editor.dom, container.parentNode).reverse(), function (parent) {
       var format;
       if (!formatRoot && parent.id !== '_start' && parent.id !== '_end') {
         format = $_5zk6t13hjd08m9xg.matchNode(editor, parent, name, vars, similar);
+=======
+    each$14($_fyc2yy3ljducwnuu.getParents(editor.dom, container.parentNode).reverse(), function (parent) {
+      var format;
+      if (!formatRoot && parent.id !== '_start' && parent.id !== '_end') {
+        format = $_4os6t23mjducwnv0.matchNode(editor, parent, name, vars, similar);
+>>>>>>> installer
         if (format && format.split !== false) {
           formatRoot = parent;
         }
@@ -17515,12 +25030,20 @@
     };
     var process = function (node) {
       var children, i, l, lastContentEditable, hasContentEditableState;
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isElement(node) && dom.getContentEditable(node)) {
+=======
+      if ($_fj238m1qjducwnjm.isElement(node) && dom.getContentEditable(node)) {
+>>>>>>> installer
         lastContentEditable = contentEditable;
         contentEditable = dom.getContentEditable(node) === 'true';
         hasContentEditableState = true;
       }
+<<<<<<< HEAD
       children = $_gfka90jjd08m9g9.grep(node.childNodes);
+=======
+      children = $_8i2houjjducwnd2.grep(node.childNodes);
+>>>>>>> installer
       if (contentEditable && !hasContentEditableState) {
         for (i = 0, l = formatList.length; i < l; i++) {
           if (removeFormat(ed, formatList[i], vars, node, node)) {
@@ -17542,10 +25065,17 @@
     var unwrap = function (start) {
       var node = dom.get(start ? '_start' : '_end');
       var out = node[start ? 'firstChild' : 'lastChild'];
+<<<<<<< HEAD
       if ($_5k9pi229jd08m9q0.isBookmarkNode(out)) {
         out = out[start ? 'firstChild' : 'lastChild'];
       }
       if ($_2qai0u1qjd08m9l9.isText(out) && out.data.length === 0) {
+=======
+      if ($_dcl0u12jjducwnp0.isBookmarkNode(out)) {
+        out = out[start ? 'firstChild' : 'lastChild'];
+      }
+      if ($_fj238m1qjducwnjm.isText(out) && out.data.length === 0) {
+>>>>>>> installer
         out = start ? node.previousSibling || node.nextSibling : node.nextSibling || node.previousSibling;
       }
       dom.remove(node, true);
@@ -17554,7 +25084,11 @@
     var removeRngStyle = function (rng) {
       var startContainer, endContainer;
       var commonAncestorContainer = rng.commonAncestorContainer;
+<<<<<<< HEAD
       rng = $_4n6u0o3fjd08m9x3.expandRng(ed, rng, formatList, true);
+=======
+      rng = $_ceajqh3kjducwnui.expandRng(ed, rng, formatList, true);
+>>>>>>> installer
       if (format.split) {
         startContainer = getContainer(ed, rng, true);
         endContainer = getContainer(ed, rng);
@@ -17598,10 +25132,17 @@
         rng.endContainer = endContainer.parentNode ? endContainer.parentNode : endContainer;
         rng.endOffset = dom.nodeIndex(endContainer) + 1;
       }
+<<<<<<< HEAD
       $_f1rcs75gjd08maa6.walk(dom, rng, function (nodes) {
         each$14(nodes, function (node) {
           process(node);
           if ($_2qai0u1qjd08m9l9.isElement(node) && ed.dom.getStyle(node, 'text-decoration') === 'underline' && node.parentNode && $_f8rk1v3gjd08m9xb.getTextDecoration(dom, node.parentNode) === 'underline') {
+=======
+      $_ee8wld5ljducwo96.walk(dom, rng, function (nodes) {
+        each$14(nodes, function (node) {
+          process(node);
+          if ($_fj238m1qjducwnjm.isElement(node) && ed.dom.getStyle(node, 'text-decoration') === 'underline' && node.parentNode && $_fyc2yy3ljducwnuu.getTextDecoration(dom, node.parentNode) === 'underline') {
+>>>>>>> installer
             removeFormat(ed, {
               deep: false,
               exact: true,
@@ -17638,6 +25179,7 @@
       bookmark = selection.getBookmark();
       removeRngStyle(selection.getRng());
       selection.moveToBookmark(bookmark);
+<<<<<<< HEAD
       if (format.inline && $_5zk6t13hjd08m9xg.match(ed, name, vars, selection.getStart())) {
         $_f8rk1v3gjd08m9xb.moveStart(dom, selection, selection.getRng());
       }
@@ -17647,13 +25189,30 @@
     }
   };
   var $_4z2s745fjd08ma9w = {
+=======
+      if (format.inline && $_4os6t23mjducwnv0.match(ed, name, vars, selection.getStart())) {
+        $_fyc2yy3ljducwnuu.moveStart(dom, selection, selection.getRng());
+      }
+      ed.nodeChanged();
+    } else {
+      $_gizh813jjducwnu6.removeCaretFormat(ed, name, vars, similar);
+    }
+  };
+  var $_2kyh3s5kjducwo8m = {
+>>>>>>> installer
     removeFormat: removeFormat,
     remove: remove$4
   };
 
+<<<<<<< HEAD
   var each$15 = $_gfka90jjd08m9g9.each;
   var isElementNode = function (node) {
     return node && node.nodeType === 1 && !$_5k9pi229jd08m9q0.isBookmarkNode(node) && !$_74zm1q3ejd08m9wm.isCaretNode(node) && !$_2qai0u1qjd08m9l9.isBogus(node);
+=======
+  var each$15 = $_8i2houjjducwnd2.each;
+  var isElementNode = function (node) {
+    return node && node.nodeType === 1 && !$_dcl0u12jjducwnp0.isBookmarkNode(node) && !$_gizh813jjducwnu6.isCaretNode(node) && !$_fj238m1qjducwnjm.isBogus(node);
+>>>>>>> installer
   };
   var findElementSibling = function (node, siblingName) {
     var sibling;
@@ -17661,7 +25220,11 @@
       if (sibling.nodeType === 3 && sibling.nodeValue.length !== 0) {
         return node;
       }
+<<<<<<< HEAD
       if (sibling.nodeType === 1 && !$_5k9pi229jd08m9q0.isBookmarkNode(sibling)) {
+=======
+      if (sibling.nodeType === 1 && !$_dcl0u12jjducwnp0.isBookmarkNode(sibling)) {
+>>>>>>> installer
         return sibling;
       }
     }
@@ -17680,7 +25243,11 @@
           prev.appendChild(tmpSibling);
         }
         dom.remove(next);
+<<<<<<< HEAD
         $_gfka90jjd08m9g9.each($_gfka90jjd08m9g9.grep(next.childNodes), function (node) {
+=======
+        $_8i2houjjducwnd2.each($_8i2houjjducwnd2.grep(next.childNodes), function (node) {
+>>>>>>> installer
           prev.appendChild(node);
         });
         return prev;
@@ -17701,12 +25268,21 @@
     });
   };
   var hasStyle = function (dom, name) {
+<<<<<<< HEAD
     return $_9msgtx6jd08m99c.curry(function (name, node) {
       return !!(node && $_f8rk1v3gjd08m9xb.getStyle(dom, node, name));
     }, name);
   };
   var applyStyle = function (dom, name, value) {
     return $_9msgtx6jd08m99c.curry(function (name, value, node) {
+=======
+    return $_60qu7r6jducwn73.curry(function (name, node) {
+      return !!(node && $_fyc2yy3ljducwnuu.getStyle(dom, node, name));
+    }, name);
+  };
+  var applyStyle = function (dom, name, value) {
+    return $_60qu7r6jducwn73.curry(function (name, value, node) {
+>>>>>>> installer
       dom.setStyle(node, name, value);
       if (node.getAttribute('style') === '') {
         node.removeAttribute('style');
@@ -17722,7 +25298,11 @@
   var processUnderlineAndColor = function (dom, node) {
     var textDecoration;
     if (node.nodeType === 1 && node.parentNode && node.parentNode.nodeType === 1) {
+<<<<<<< HEAD
       textDecoration = $_f8rk1v3gjd08m9xb.getTextDecoration(dom, node.parentNode);
+=======
+      textDecoration = $_fyc2yy3ljducwnuu.getTextDecoration(dom, node.parentNode);
+>>>>>>> installer
       if (dom.getStyle(node, 'color') && textDecoration) {
         dom.setStyle(node, 'text-decoration', textDecoration);
       } else if (dom.getStyle(node, 'text-decoration') === textDecoration) {
@@ -17732,13 +25312,21 @@
   };
   var mergeUnderlineAndColor = function (dom, format, vars, node) {
     if (format.styles.color || format.styles.textDecoration) {
+<<<<<<< HEAD
       $_gfka90jjd08m9g9.walk(node, $_9msgtx6jd08m99c.curry(processUnderlineAndColor, dom), 'childNodes');
+=======
+      $_8i2houjjducwnd2.walk(node, $_60qu7r6jducwn73.curry(processUnderlineAndColor, dom), 'childNodes');
+>>>>>>> installer
       processUnderlineAndColor(dom, node);
     }
   };
   var mergeBackgroundColorAndFontSize = function (dom, format, vars, node) {
     if (format.styles && format.styles.backgroundColor) {
+<<<<<<< HEAD
       processChildElements(node, hasStyle(dom, 'fontSize'), applyStyle(dom, 'backgroundColor', $_f8rk1v3gjd08m9xb.replaceVars(format.styles.backgroundColor, vars)));
+=======
+      processChildElements(node, hasStyle(dom, 'fontSize'), applyStyle(dom, 'backgroundColor', $_fyc2yy3ljducwnuu.replaceVars(format.styles.backgroundColor, vars)));
+>>>>>>> installer
     }
   };
   var mergeSubSup = function (dom, format, vars, node) {
@@ -17749,8 +25337,13 @@
   };
   var mergeSiblings = function (dom, format, vars, node) {
     if (node && format.merge_siblings !== false) {
+<<<<<<< HEAD
       node = mergeSiblingsNodes(dom, $_f8rk1v3gjd08m9xb.getNonWhiteSpaceSibling(node), node);
       node = mergeSiblingsNodes(dom, node, $_f8rk1v3gjd08m9xb.getNonWhiteSpaceSibling(node, true));
+=======
+      node = mergeSiblingsNodes(dom, $_fyc2yy3ljducwnuu.getNonWhiteSpaceSibling(node), node);
+      node = mergeSiblingsNodes(dom, node, $_fyc2yy3ljducwnuu.getNonWhiteSpaceSibling(node, true));
+>>>>>>> installer
     }
   };
   var clearChildStyles = function (dom, format, node) {
@@ -17771,27 +25364,45 @@
         if (!isElementNode(child)) {
           return;
         }
+<<<<<<< HEAD
         $_4z2s745fjd08ma9w.removeFormat(editor, format, vars, child, format.exact ? child : null);
+=======
+        $_2kyh3s5kjducwo8m.removeFormat(editor, format, vars, child, format.exact ? child : null);
+>>>>>>> installer
       });
       clearChildStyles(editor.dom, format, node);
     });
   };
   var mergeWithParents = function (editor, format, name, vars, node) {
+<<<<<<< HEAD
     if ($_5zk6t13hjd08m9xg.matchNode(editor, node.parentNode, name, vars)) {
       if ($_4z2s745fjd08ma9w.removeFormat(editor, format, vars, node)) {
+=======
+    if ($_4os6t23mjducwnv0.matchNode(editor, node.parentNode, name, vars)) {
+      if ($_2kyh3s5kjducwo8m.removeFormat(editor, format, vars, node)) {
+>>>>>>> installer
         return;
       }
     }
     if (format.merge_with_parents) {
       editor.dom.getParent(node.parentNode, function (parent) {
+<<<<<<< HEAD
         if ($_5zk6t13hjd08m9xg.matchNode(editor, parent, name, vars)) {
           $_4z2s745fjd08ma9w.removeFormat(editor, format, vars, node);
+=======
+        if ($_4os6t23mjducwnv0.matchNode(editor, parent, name, vars)) {
+          $_2kyh3s5kjducwo8m.removeFormat(editor, format, vars, node);
+>>>>>>> installer
           return true;
         }
       });
     }
   };
+<<<<<<< HEAD
   var $_fl3sj95ejd08ma9o = {
+=======
+  var $_4ut1b55jjducwo8a = {
+>>>>>>> installer
     mergeWithChildren: mergeWithChildren,
     mergeUnderlineAndColor: mergeUnderlineAndColor,
     mergeBackgroundColorAndFontSize: mergeBackgroundColorAndFontSize,
@@ -17800,9 +25411,15 @@
     mergeWithParents: mergeWithParents
   };
 
+<<<<<<< HEAD
   var each$16 = $_gfka90jjd08m9g9.each;
   var isElementNode$1 = function (node) {
     return node && node.nodeType === 1 && !$_5k9pi229jd08m9q0.isBookmarkNode(node) && !$_74zm1q3ejd08m9wm.isCaretNode(node) && !$_2qai0u1qjd08m9l9.isBogus(node);
+=======
+  var each$16 = $_8i2houjjducwnd2.each;
+  var isElementNode$1 = function (node) {
+    return node && node.nodeType === 1 && !$_dcl0u12jjducwnp0.isBookmarkNode(node) && !$_gizh813jjducwnu6.isCaretNode(node) && !$_fj238m1qjducwnjm.isBogus(node);
+>>>>>>> installer
   };
   var applyFormat = function (ed, name, vars, node) {
     var formatList = ed.formatter.get(name);
@@ -17817,7 +25434,11 @@
           fmt.onformat(elm, fmt, vars, node);
         }
         each$16(fmt.styles, function (value, name) {
+<<<<<<< HEAD
           dom.setStyle(elm, name, $_f8rk1v3gjd08m9xb.replaceVars(value, vars));
+=======
+          dom.setStyle(elm, name, $_fyc2yy3ljducwnuu.replaceVars(value, vars));
+>>>>>>> installer
         });
         if (fmt.styles) {
           var styleVal = dom.getAttrib(elm, 'style');
@@ -17826,10 +25447,17 @@
           }
         }
         each$16(fmt.attributes, function (value, name) {
+<<<<<<< HEAD
           dom.setAttrib(elm, name, $_f8rk1v3gjd08m9xb.replaceVars(value, vars));
         });
         each$16(fmt.classes, function (value) {
           value = $_f8rk1v3gjd08m9xb.replaceVars(value, vars);
+=======
+          dom.setAttrib(elm, name, $_fyc2yy3ljducwnuu.replaceVars(value, vars));
+        });
+        each$16(fmt.classes, function (value) {
+          value = $_fyc2yy3ljducwnuu.replaceVars(value, vars);
+>>>>>>> installer
           if (!dom.hasClass(elm, value)) {
             dom.addClass(elm, value);
           }
@@ -17845,7 +25473,11 @@
         if ('collapsed' in format && format.collapsed !== isCollapsed) {
           return;
         }
+<<<<<<< HEAD
         if (dom.is(node, format.selector) && !$_74zm1q3ejd08m9wm.isCaretNode(node)) {
+=======
+        if (dom.is(node, format.selector) && !$_gizh813jjducwnu6.isCaretNode(node)) {
+>>>>>>> installer
           setElementFormat(node, format);
           found = true;
           return false;
@@ -17859,7 +25491,11 @@
       wrapName = format.inline || format.block;
       wrapElm = dom.create(wrapName);
       setElementFormat(wrapElm);
+<<<<<<< HEAD
       $_f1rcs75gjd08maa6.walk(dom, rng, function (nodes) {
+=======
+      $_ee8wld5ljducwo96.walk(dom, rng, function (nodes) {
+>>>>>>> installer
         var currentWrapElm;
         var process = function (node) {
           var nodeName, parentName, hasContentEditableState, lastContentEditable;
@@ -17871,18 +25507,30 @@
             contentEditable = dom.getContentEditable(node) === 'true';
             hasContentEditableState = true;
           }
+<<<<<<< HEAD
           if ($_f8rk1v3gjd08m9xb.isEq(nodeName, 'br')) {
+=======
+          if ($_fyc2yy3ljducwnuu.isEq(nodeName, 'br')) {
+>>>>>>> installer
             currentWrapElm = 0;
             if (format.block) {
               dom.remove(node);
             }
             return;
           }
+<<<<<<< HEAD
           if (format.wrapper && $_5zk6t13hjd08m9xg.matchNode(ed, node, name, vars)) {
             currentWrapElm = 0;
             return;
           }
           if (contentEditable && !hasContentEditableState && format.block && !format.wrapper && $_f8rk1v3gjd08m9xb.isTextBlock(ed, nodeName) && $_f8rk1v3gjd08m9xb.isValid(ed, parentName, wrapName)) {
+=======
+          if (format.wrapper && $_4os6t23mjducwnv0.matchNode(ed, node, name, vars)) {
+            currentWrapElm = 0;
+            return;
+          }
+          if (contentEditable && !hasContentEditableState && format.block && !format.wrapper && $_fyc2yy3ljducwnuu.isTextBlock(ed, nodeName) && $_fyc2yy3ljducwnuu.isValid(ed, parentName, wrapName)) {
+>>>>>>> installer
             node = dom.rename(node, wrapName);
             setElementFormat(node);
             newWrappers.push(node);
@@ -17896,7 +25544,11 @@
               return;
             }
           }
+<<<<<<< HEAD
           if (contentEditable && !hasContentEditableState && $_f8rk1v3gjd08m9xb.isValid(ed, wrapName, nodeName) && $_f8rk1v3gjd08m9xb.isValid(ed, parentName, wrapName) && !(!nodeSpecific && node.nodeType === 3 && node.nodeValue.length === 1 && node.nodeValue.charCodeAt(0) === 65279) && !$_74zm1q3ejd08m9wm.isCaretNode(node) && (!format.inline || !dom.isBlock(node))) {
+=======
+          if (contentEditable && !hasContentEditableState && $_fyc2yy3ljducwnuu.isValid(ed, wrapName, nodeName) && $_fyc2yy3ljducwnuu.isValid(ed, parentName, wrapName) && !(!nodeSpecific && node.nodeType === 3 && node.nodeValue.length === 1 && node.nodeValue.charCodeAt(0) === 65279) && !$_gizh813jjducwnu6.isCaretNode(node) && (!format.inline || !dom.isBlock(node))) {
+>>>>>>> installer
             if (!currentWrapElm) {
               currentWrapElm = dom.clone(wrapElm, false);
               node.parentNode.insertBefore(currentWrapElm, node);
@@ -17905,7 +25557,11 @@
             currentWrapElm.appendChild(node);
           } else {
             currentWrapElm = 0;
+<<<<<<< HEAD
             each$16($_gfka90jjd08m9g9.grep(node.childNodes), process);
+=======
+            each$16($_8i2houjjducwnd2.grep(node.childNodes), process);
+>>>>>>> installer
             if (hasContentEditableState) {
               contentEditable = lastContentEditable;
             }
@@ -17920,7 +25576,11 @@
             if (node.nodeName === 'A') {
               setElementFormat(node, format);
             }
+<<<<<<< HEAD
             each$16($_gfka90jjd08m9g9.grep(node.childNodes), process);
+=======
+            each$16($_8i2houjjducwnd2.grep(node.childNodes), process);
+>>>>>>> installer
           };
           process(node);
         });
@@ -17930,7 +25590,11 @@
         var getChildCount = function (node) {
           var count = 0;
           each$16(node.childNodes, function (node) {
+<<<<<<< HEAD
             if (!$_f8rk1v3gjd08m9xb.isWhiteSpaceNode(node) && !$_5k9pi229jd08m9q0.isBookmarkNode(node)) {
+=======
+            if (!$_fyc2yy3ljducwnuu.isWhiteSpaceNode(node) && !$_dcl0u12jjducwnp0.isBookmarkNode(node)) {
+>>>>>>> installer
               count++;
             }
           });
@@ -17949,7 +25613,11 @@
         var mergeStyles = function (node) {
           var child, clone;
           child = getChildElementNode(node);
+<<<<<<< HEAD
           if (child && !$_5k9pi229jd08m9q0.isBookmarkNode(child) && $_5zk6t13hjd08m9xg.matchName(dom, child, format)) {
+=======
+          if (child && !$_dcl0u12jjducwnp0.isBookmarkNode(child) && $_4os6t23mjducwnv0.matchName(dom, child, format)) {
+>>>>>>> installer
             clone = dom.clone(child, false);
             setElementFormat(clone);
             dom.replace(clone, node, true);
@@ -17966,11 +25634,19 @@
           if (!format.exact && childCount === 1) {
             node = mergeStyles(node);
           }
+<<<<<<< HEAD
           $_fl3sj95ejd08ma9o.mergeWithChildren(ed, formatList, vars, node);
           $_fl3sj95ejd08ma9o.mergeWithParents(ed, format, name, vars, node);
           $_fl3sj95ejd08ma9o.mergeBackgroundColorAndFontSize(dom, format, vars, node);
           $_fl3sj95ejd08ma9o.mergeSubSup(dom, format, vars, node);
           $_fl3sj95ejd08ma9o.mergeSiblings(dom, format, vars, node);
+=======
+          $_4ut1b55jjducwo8a.mergeWithChildren(ed, formatList, vars, node);
+          $_4ut1b55jjducwo8a.mergeWithParents(ed, format, name, vars, node);
+          $_4ut1b55jjducwo8a.mergeBackgroundColorAndFontSize(dom, format, vars, node);
+          $_4ut1b55jjducwo8a.mergeSubSup(dom, format, vars, node);
+          $_4ut1b55jjducwo8a.mergeSiblings(dom, format, vars, node);
+>>>>>>> installer
         }
       });
     };
@@ -17991,7 +25667,11 @@
             rng = dom.createRng();
             rng.setStartBefore(node);
             rng.setEndAfter(node);
+<<<<<<< HEAD
             applyRngStyle(dom, $_4n6u0o3fjd08m9x3.expandRng(ed, rng, formatList), null, true);
+=======
+            applyRngStyle(dom, $_ceajqh3kjducwnui.expandRng(ed, rng, formatList), null, true);
+>>>>>>> installer
           }
         } else {
           applyRngStyle(dom, node, null, true);
@@ -18002,6 +25682,7 @@
           if (!ed.settings.forced_root_block && formatList[0].defaultBlock && !dom.getParent(curSelNode, dom.isBlock)) {
             applyFormat(ed, formatList[0].defaultBlock);
           }
+<<<<<<< HEAD
           ed.selection.setRng($_3ao8u62ojd08m9ru.normalize(ed.selection.getRng()));
           bookmark = selection.getBookmark();
           applyRngStyle(dom, $_4n6u0o3fjd08m9x3.expandRng(ed, selection.getRng(), formatList), bookmark);
@@ -18021,13 +25702,40 @@
   var $_8xmhzx5cjd08ma9g = { applyFormat: applyFormat };
 
   var each$17 = $_gfka90jjd08m9g9.each;
+=======
+          ed.selection.setRng($_5b11cd2vjducwnqi.normalize(ed.selection.getRng()));
+          bookmark = selection.getBookmark();
+          applyRngStyle(dom, $_ceajqh3kjducwnui.expandRng(ed, selection.getRng(), formatList), bookmark);
+          if (format.styles) {
+            $_4ut1b55jjducwo8a.mergeUnderlineAndColor(dom, format, vars, curSelNode);
+          }
+          selection.moveToBookmark(bookmark);
+          $_fyc2yy3ljducwnuu.moveStart(dom, selection, selection.getRng());
+          ed.nodeChanged();
+        } else {
+          $_gizh813jjducwnu6.applyCaretFormat(ed, name, vars);
+        }
+      }
+      $_ez60zk5ijducwo86.postProcess(name, ed);
+    }
+  };
+  var $_3sj7pb5hjducwo7z = { applyFormat: applyFormat };
+
+  var each$17 = $_8i2houjjducwnd2.each;
+>>>>>>> installer
   var setup$3 = function (formatChangeData, editor) {
     var currentFormats = {};
     formatChangeData.set({});
     editor.on('NodeChange', function (e) {
+<<<<<<< HEAD
       var parents = $_f8rk1v3gjd08m9xb.getParents(editor.dom, e.element);
       var matchedFormats = {};
       parents = $_gfka90jjd08m9g9.grep(parents, function (node) {
+=======
+      var parents = $_fyc2yy3ljducwnuu.getParents(editor.dom, e.element);
+      var matchedFormats = {};
+      parents = $_8i2houjjducwnd2.grep(parents, function (node) {
+>>>>>>> installer
         return node.nodeType === 1 && !node.getAttribute('data-mce-bogus');
       });
       each$17(formatChangeData.get(), function (callbacks, format) {
@@ -18046,7 +25754,11 @@
             matchedFormats[format] = callbacks;
             return false;
           }
+<<<<<<< HEAD
           if ($_5zk6t13hjd08m9xg.matchesUnInheritedFormatSelector(editor, node, format)) {
+=======
+          if ($_4os6t23mjducwnv0.matchesUnInheritedFormatSelector(editor, node, format)) {
+>>>>>>> installer
             return false;
           }
         });
@@ -18082,7 +25794,11 @@
     }
     addListeners(formatChangeState, formats, callback, similar);
   };
+<<<<<<< HEAD
   var $_bf8sr5hjd08maaa = { formatChanged: formatChanged };
+=======
+  var $_gdfg785mjducwo99 = { formatChanged: formatChanged };
+>>>>>>> installer
 
   var get$4 = function (dom) {
     var formats = {
@@ -18280,7 +25996,11 @@
           return true;
         },
         onformat: function (elm, fmt, vars) {
+<<<<<<< HEAD
           $_gfka90jjd08m9g9.each(vars, function (value, key) {
+=======
+          $_8i2houjjducwnd2.each(vars, function (value, key) {
+>>>>>>> installer
             dom.setAttrib(elm, key, value);
           });
         }
@@ -18317,7 +26037,11 @@
         }
       ]
     };
+<<<<<<< HEAD
     $_gfka90jjd08m9g9.each('p h1 h2 h3 h4 h5 h6 div address pre div dt dd samp'.split(/\s/), function (name) {
+=======
+    $_8i2houjjducwnd2.each('p h1 h2 h3 h4 h5 h6 div address pre div dt dd samp'.split(/\s/), function (name) {
+>>>>>>> installer
       formats[name] = {
         block: name,
         remove: 'all'
@@ -18325,7 +26049,11 @@
     });
     return formats;
   };
+<<<<<<< HEAD
   var $_alkwxi5jjd08maag = { get: get$4 };
+=======
+  var $_892yun5ojducwo9d = { get: get$4 };
+>>>>>>> installer
 
   function FormatRegistry (editor) {
     var formats = {};
@@ -18335,12 +26063,20 @@
     var register = function (name, format) {
       if (name) {
         if (typeof name !== 'string') {
+<<<<<<< HEAD
           $_gfka90jjd08m9g9.each(name, function (format, name) {
+=======
+          $_8i2houjjducwnd2.each(name, function (format, name) {
+>>>>>>> installer
             register(name, format);
           });
         } else {
           format = format.length ? format : [format];
+<<<<<<< HEAD
           $_gfka90jjd08m9g9.each(format, function (format) {
+=======
+          $_8i2houjjducwnd2.each(format, function (format) {
+>>>>>>> installer
             if (typeof format.deep === 'undefined') {
               format.deep = !format.selector;
             }
@@ -18368,7 +26104,11 @@
       }
       return formats;
     };
+<<<<<<< HEAD
     register($_alkwxi5jjd08maag.get(editor.dom));
+=======
+    register($_892yun5ojducwo9d.get(editor.dom));
+>>>>>>> installer
     register(editor.settings.formats);
     return {
       get: get,
@@ -18377,7 +26117,11 @@
     };
   }
 
+<<<<<<< HEAD
   var each$18 = $_gfka90jjd08m9g9.each;
+=======
+  var each$18 = $_8i2houjjducwnd2.each;
+>>>>>>> installer
   var dom = DOMUtils.DOM;
   var parsedSelectorToHtml = function (ancestry, editor) {
     var elm, item, fragment;
@@ -18404,7 +26148,11 @@
       var elmRule = schema.getElementRule(name);
       var parentsRequired = elmRule && elmRule.parentsRequired;
       if (parentsRequired && parentsRequired.length) {
+<<<<<<< HEAD
         return candidate && $_gfka90jjd08m9g9.inArray(parentsRequired, candidate) !== -1 ? candidate : parentsRequired[0];
+=======
+        return candidate && $_8i2houjjducwnd2.inArray(parentsRequired, candidate) !== -1 ? candidate : parentsRequired[0];
+>>>>>>> installer
       } else {
         return false;
       }
@@ -18436,7 +26184,11 @@
           parent = dom.create('div');
           parent.appendChild(elm);
         }
+<<<<<<< HEAD
         $_gfka90jjd08m9g9.each(siblings, function (sibling) {
+=======
+        $_8i2houjjducwnd2.each(siblings, function (sibling) {
+>>>>>>> installer
           var siblingElm = createElement(sibling);
           parent.insertBefore(siblingElm, elm);
         });
@@ -18462,7 +26214,11 @@
       classes: [],
       attrs: {}
     };
+<<<<<<< HEAD
     item = obj.selector = $_gfka90jjd08m9g9.trim(item);
+=======
+    item = obj.selector = $_8i2houjjducwnd2.trim(item);
+>>>>>>> installer
     if (item !== '*') {
       tagName = item.replace(/(?:([#\.]|::?)([\w\-]+)|(\[)([^\]]+)\]?)/g, function ($0, $1, $2, $3, $4) {
         switch ($1) {
@@ -18473,7 +26229,11 @@
           obj.classes.push($2);
           break;
         case ':':
+<<<<<<< HEAD
           if ($_gfka90jjd08m9g9.inArray('checked disabled enabled read-only required'.split(' '), $2) !== -1) {
+=======
+          if ($_8i2houjjducwnd2.inArray('checked disabled enabled read-only required'.split(' '), $2) !== -1) {
+>>>>>>> installer
             obj.attrs[$2] = $2;
           }
           break;
@@ -18496,8 +26256,13 @@
     }
     selector = selector.split(/\s*,\s*/)[0];
     selector = selector.replace(/\s*(~\+|~|\+|>)\s*/g, '$1');
+<<<<<<< HEAD
     return $_gfka90jjd08m9g9.map(selector.split(/(?:>|\s+(?![^\[\]]+\]))/), function (item) {
       var siblings = $_gfka90jjd08m9g9.map(item.split(/(?:~\+|~|\+)/), parseSelectorItem);
+=======
+    return $_8i2houjjducwnd2.map(selector.split(/(?:>|\s+(?![^\[\]]+\]))/), function (item) {
+      var siblings = $_8i2houjjducwnd2.map(item.split(/(?:~\+|~|\+)/), parseSelectorItem);
+>>>>>>> installer
       var obj = siblings.pop();
       if (siblings.length) {
         obj.siblings = siblings;
@@ -18600,7 +26365,11 @@
     dom.remove(previewFrag);
     return previewCss;
   };
+<<<<<<< HEAD
   var $_4a8gxh5kjd08maal = {
+=======
+  var $_2e4qhs5pjducwo9j = {
+>>>>>>> installer
     getCssText: getCssText,
     parseSelector: parseSelector,
     selectorToHtml: selectorToHtml
@@ -18608,6 +26377,7 @@
 
   var toggle = function (editor, formats, name, vars, node) {
     var fmt = formats.get(name);
+<<<<<<< HEAD
     if ($_5zk6t13hjd08m9xg.match(editor, name, vars, node) && (!('toggle' in fmt[0]) || fmt[0].toggle)) {
       $_4z2s745fjd08ma9w.remove(editor, name, vars, node);
     } else {
@@ -18615,6 +26385,15 @@
     }
   };
   var $_8rvrh75ljd08maat = { toggle: toggle };
+=======
+    if ($_4os6t23mjducwnv0.match(editor, name, vars, node) && (!('toggle' in fmt[0]) || fmt[0].toggle)) {
+      $_2kyh3s5kjducwo8m.remove(editor, name, vars, node);
+    } else {
+      $_3sj7pb5hjducwo7z.applyFormat(editor, name, vars, node);
+    }
+  };
+  var $_arphd45qjducwo9s = { toggle: toggle };
+>>>>>>> installer
 
   var setup$4 = function (editor) {
     editor.addShortcut('meta+b', '', 'Bold');
@@ -18643,17 +26422,27 @@
       'address'
     ]);
   };
+<<<<<<< HEAD
   var $_foa3fx5mjd08maau = { setup: setup$4 };
+=======
+  var $_283uwp5rjducwo9v = { setup: setup$4 };
+>>>>>>> installer
 
   function Formatter (editor) {
     var formats = FormatRegistry(editor);
     var formatChangeState = Cell(null);
+<<<<<<< HEAD
     $_foa3fx5mjd08maau.setup(editor);
     $_74zm1q3ejd08m9wm.setup(editor);
+=======
+    $_283uwp5rjducwo9v.setup(editor);
+    $_gizh813jjducwnu6.setup(editor);
+>>>>>>> installer
     return {
       get: formats.get,
       register: formats.register,
       unregister: formats.unregister,
+<<<<<<< HEAD
       apply: $_9msgtx6jd08m99c.curry($_8xmhzx5cjd08ma9g.applyFormat, editor),
       remove: $_9msgtx6jd08m99c.curry($_4z2s745fjd08ma9w.remove, editor),
       toggle: $_9msgtx6jd08m99c.curry($_8rvrh75ljd08maat.toggle, editor, formats),
@@ -18663,6 +26452,17 @@
       canApply: $_9msgtx6jd08m99c.curry($_5zk6t13hjd08m9xg.canApply, editor),
       formatChanged: $_9msgtx6jd08m99c.curry($_bf8sr5hjd08maaa.formatChanged, editor, formatChangeState),
       getCssText: $_9msgtx6jd08m99c.curry($_4a8gxh5kjd08maal.getCssText, editor)
+=======
+      apply: $_60qu7r6jducwn73.curry($_3sj7pb5hjducwo7z.applyFormat, editor),
+      remove: $_60qu7r6jducwn73.curry($_2kyh3s5kjducwo8m.remove, editor),
+      toggle: $_60qu7r6jducwn73.curry($_arphd45qjducwo9s.toggle, editor, formats),
+      match: $_60qu7r6jducwn73.curry($_4os6t23mjducwnv0.match, editor),
+      matchAll: $_60qu7r6jducwn73.curry($_4os6t23mjducwnv0.matchAll, editor),
+      matchNode: $_60qu7r6jducwn73.curry($_4os6t23mjducwnv0.matchNode, editor),
+      canApply: $_60qu7r6jducwn73.curry($_4os6t23mjducwnv0.canApply, editor),
+      formatChanged: $_60qu7r6jducwn73.curry($_gdfg785mjducwo99.formatChanged, editor, formatChangeState),
+      getCssText: $_60qu7r6jducwn73.curry($_2e4qhs5pjducwo9j.getCssText, editor)
+>>>>>>> installer
     };
   }
 
@@ -18670,7 +26470,11 @@
     return nu;
   };
   var deep = function (old, nu) {
+<<<<<<< HEAD
     var bothObjects = $_erj73112jd08m9ip.isObject(old) && $_erj73112jd08m9ip.isObject(nu);
+=======
+    var bothObjects = $_c7y6af12jducwnh8.isObject(old) && $_c7y6af12jducwnh8.isObject(nu);
+>>>>>>> installer
     return bothObjects ? deepMerge(old, nu) : nu;
   };
   var baseMerge = function (merger) {
@@ -18693,7 +26497,11 @@
   };
   var deepMerge = baseMerge(deep);
   var merge = baseMerge(shallow);
+<<<<<<< HEAD
   var $_8ec3sn5pjd08mab5 = {
+=======
+  var $_7sum4s5ujducwoab = {
+>>>>>>> installer
     deepMerge: deepMerge,
     merge: merge
   };
@@ -18704,9 +26512,17 @@
   var firePostProcess = function (editor, args) {
     return editor.fire('PostProcess', args);
   };
+<<<<<<< HEAD
   var $_c4jytg5qjd08mab7 = {
+=======
+  var fireRemove = function (editor) {
+    return editor.fire('remove');
+  };
+  var $_zfmxp5vjducwoaf = {
+>>>>>>> installer
     firePreProcess: firePreProcess,
-    firePostProcess: firePostProcess
+    firePostProcess: firePostProcess,
+    fireRemove: fireRemove
   };
 
   var register = function (htmlParser, settings, dom) {
@@ -18765,7 +26581,11 @@
       while (i--) {
         node = nodes[i].firstChild;
         if (node) {
+<<<<<<< HEAD
           node.value = $_6p0pbx1rjd08m9lf.decode(node.value);
+=======
+          node.value = $_g4jbz61rjducwnjq.decode(node.value);
+>>>>>>> installer
         }
       }
     });
@@ -18822,7 +26642,11 @@
       }
     });
     htmlParser.addAttributeFilter('data-mce-type', function (nodes) {
+<<<<<<< HEAD
       $_65yphx4jd08m98n.each(nodes, function (node) {
+=======
+      $_2dw1bj4jducwn6g.each(nodes, function (node) {
+>>>>>>> installer
         if (node.attr('data-mce-type') === 'format-caret') {
           if (node.isEmpty(htmlParser.schema.getNonEmptyElements())) {
             node.remove();
@@ -18853,7 +26677,11 @@
       }
     }
   };
+<<<<<<< HEAD
   var $_7n9qds5rjd08maba = {
+=======
+  var $_7ho7i95wjducwoaj = {
+>>>>>>> installer
     register: register,
     trimTrailingBr: trimTrailingBr
   };
@@ -18865,7 +26693,11 @@
     impl = document.implementation;
     if (impl.createHTMLDocument) {
       doc = impl.createHTMLDocument('');
+<<<<<<< HEAD
       $_gfka90jjd08m9g9.each(node.nodeName === 'BODY' ? node.childNodes : [node], function (node) {
+=======
+      $_8i2houjjducwnd2.each(node.nodeName === 'BODY' ? node.childNodes : [node], function (node) {
+>>>>>>> installer
         doc.body.appendChild(doc.importNode(node, true));
       });
       if (node.nodeName !== 'BODY') {
@@ -18876,7 +26708,11 @@
       oldDoc = dom.doc;
       dom.doc = doc;
     }
+<<<<<<< HEAD
     $_c4jytg5qjd08mab7.firePreProcess(editor, $_8ec3sn5pjd08mab5.merge(args, { node: node }));
+=======
+    $_zfmxp5vjducwoaf.firePreProcess(editor, $_7sum4s5ujducwoab.merge(args, { node: node }));
+>>>>>>> installer
     if (oldDoc) {
       dom.doc = oldDoc;
     }
@@ -18888,16 +26724,27 @@
   var process = function (editor, node, args) {
     return shouldFireEvent(editor, args) ? preProcess(editor, node, args) : node;
   };
+<<<<<<< HEAD
   var $_c7ik8y5sjd08mabg = { process: process };
 
   var removeAttrs = function (node, names) {
     $_65yphx4jd08m98n.each(names, function (name) {
+=======
+  var $_j6l1k5xjducwoao = { process: process };
+
+  var removeAttrs = function (node, names) {
+    $_2dw1bj4jducwn6g.each(names, function (name) {
+>>>>>>> installer
       node.attr(name, null);
     });
   };
   var addFontToSpansFilter = function (domParser, styles, fontSizes) {
     domParser.addNodeFilter('font', function (nodes) {
+<<<<<<< HEAD
       $_65yphx4jd08m98n.each(nodes, function (node) {
+=======
+      $_2dw1bj4jducwn6g.each(nodes, function (node) {
+>>>>>>> installer
         var props = styles.parse(node.attr('style'));
         var color = node.attr('color');
         var face = node.attr('face');
@@ -18923,7 +26770,11 @@
   };
   var addStrikeToSpanFilter = function (domParser, styles) {
     domParser.addNodeFilter('strike', function (nodes) {
+<<<<<<< HEAD
       $_65yphx4jd08m98n.each(nodes, function (node) {
+=======
+      $_2dw1bj4jducwn6g.each(nodes, function (node) {
+>>>>>>> installer
         var props = styles.parse(node.attr('style'));
         props['text-decoration'] = 'line-through';
         node.name = 'span';
@@ -18934,7 +26785,11 @@
   var addFilters = function (domParser, settings) {
     var styles = Styles();
     if (settings.convert_fonts_to_spans) {
+<<<<<<< HEAD
       addFontToSpansFilter(domParser, styles, $_gfka90jjd08m9g9.explode(settings.font_size_legacy_values));
+=======
+      addFontToSpansFilter(domParser, styles, $_8i2houjjducwnd2.explode(settings.font_size_legacy_values));
+>>>>>>> installer
     }
     addStrikeToSpanFilter(domParser, styles);
   };
@@ -18943,7 +26798,11 @@
       addFilters(domParser, settings);
     }
   };
+<<<<<<< HEAD
   var $_d8hdlp5ujd08mabx = { register: register$1 };
+=======
+  var $_bpec6l5zjducwobh = { register: register$1 };
+>>>>>>> installer
 
   var whiteSpaceRegExp$3 = /^[ \t\r\n]*$/;
   var typeLookup = {
@@ -18954,7 +26813,11 @@
     '#doctype': 10,
     '#document-fragment': 11
   };
+<<<<<<< HEAD
   var walk$2 = function (node, root, prev) {
+=======
+  var walk$3 = function (node, root, prev) {
+>>>>>>> installer
     var sibling;
     var parent;
     var startName = prev ? 'lastChild' : 'firstChild';
@@ -19158,7 +27021,7 @@
       var self = this;
       var node;
       var collection = [];
-      for (node = self.firstChild; node; node = walk$2(node, self)) {
+      for (node = self.firstChild; node; node = walk$3(node, self)) {
         if (node.name === name) {
           collection.push(node);
         }
@@ -19170,7 +27033,7 @@
       var nodes, i, node;
       if (self.firstChild) {
         nodes = [];
-        for (node = self.firstChild; node; node = walk$2(node, self)) {
+        for (node = self.firstChild; node; node = walk$3(node, self)) {
           nodes.push(node);
         }
         i = nodes.length;
@@ -19215,6 +27078,240 @@
           if (predicate && predicate(node)) {
             return false;
           }
+        } while (node = walk$3(node, self));
+      }
+      return true;
+    };
+    Node.prototype.walk = function (prev) {
+      return walk$3(this, null, prev);
+    };
+    return Node;
+  }();
+
+  var paddEmptyNode = function (settings, args, blockElements, node) {
+    var brPreferred = settings.padd_empty_with_br || args.insert;
+    if (brPreferred && blockElements[node.name]) {
+      node.empty().append(new Node$2('br', 1)).shortEnded = true;
+    } else {
+      node.empty().append(new Node$2('#text', 3)).value = '\xA0';
+    }
+  };
+  var isPaddedWithNbsp = function (node) {
+    return hasOnlyChild(node, '#text') && node.firstChild.value === '\xA0';
+  };
+  var hasOnlyChild = function (node, name) {
+    return node && node.firstChild && node.firstChild === node.lastChild && node.firstChild.name === name;
+  };
+  var isPadded = function (schema, node) {
+    var rule = schema.getElementRule(node.name);
+    return rule && rule.paddEmpty;
+  };
+  var isEmpty$1 = function (schema, nonEmptyElements, whitespaceElements, node) {
+    return node.isEmpty(nonEmptyElements, whitespaceElements, function (node) {
+      return isPadded(schema, node);
+    });
+  };
+  var isLineBreakNode = function (node, blockElements) {
+    return node && (blockElements[node.name] || node.name === 'br');
+  };
+
+  var register$2 = function (parser, settings) {
+    var schema = parser.schema;
+    if (settings.remove_trailing_brs) {
+      parser.addNodeFilter('br', function (nodes, _, args) {
+        var i;
+        var l = nodes.length;
+        var node;
+        var blockElements = $_8i2houjjducwnd2.extend({}, schema.getBlockElements());
+        var nonEmptyElements = schema.getNonEmptyElements();
+        var parent, lastParent, prev, prevName;
+        var whiteSpaceElements = schema.getNonEmptyElements();
+        var elementRule, textNode;
+        blockElements.body = 1;
+        for (i = 0; i < l; i++) {
+          node = nodes[i];
+          parent = node.parent;
+          if (blockElements[node.parent.name] && node === parent.lastChild) {
+            prev = node.prev;
+            while (prev) {
+              prevName = prev.name;
+              if (prevName !== 'span' || prev.attr('data-mce-type') !== 'bookmark') {
+                if (prevName !== 'br') {
+                  break;
+                }
+                if (prevName === 'br') {
+                  node = null;
+                  break;
+                }
+              }
+              prev = prev.prev;
+            }
+            if (node) {
+              node.remove();
+              if (isEmpty$1(schema, nonEmptyElements, whiteSpaceElements, parent)) {
+                elementRule = schema.getElementRule(parent.name);
+                if (elementRule) {
+                  if (elementRule.removeEmpty) {
+                    parent.remove();
+                  } else if (elementRule.paddEmpty) {
+                    paddEmptyNode(settings, args, blockElements, parent);
+                  }
+                }
+              }
+            }
+          } else {
+            lastParent = node;
+            while (parent && parent.firstChild === lastParent && parent.lastChild === lastParent) {
+              lastParent = parent;
+              if (blockElements[parent.name]) {
+                break;
+              }
+              parent = parent.parent;
+            }
+            if (lastParent === parent && settings.padd_empty_with_br !== true) {
+              textNode = new Node$2('#text', 3);
+              textNode.value = '\xA0';
+              node.replace(textNode);
+            }
+          }
+        }
+      });
+    }
+    parser.addAttributeFilter('href', function (nodes) {
+      var i = nodes.length, node;
+      var appendRel = function (rel) {
+        var parts = rel.split(' ').filter(function (p) {
+          return p.length > 0;
+        });
+        return parts.concat(['noopener']).sort().join(' ');
+      };
+      var addNoOpener = function (rel) {
+        var newRel = rel ? $_8i2houjjducwnd2.trim(rel) : '';
+        if (!/\b(noopener)\b/g.test(newRel)) {
+          return appendRel(newRel);
+        } else {
+          return newRel;
+        }
+<<<<<<< HEAD
+        node.next = refNode.next;
+        node.prev = refNode;
+        refNode.next = node;
+      }
+      node.parent = parent;
+      return node;
+    };
+    Node.prototype.getAll = function (name) {
+      var self = this;
+      var node;
+      var collection = [];
+      for (node = self.firstChild; node; node = walk$2(node, self)) {
+        if (node.name === name) {
+          collection.push(node);
+        }
+      }
+      return collection;
+    };
+    Node.prototype.empty = function () {
+      var self = this;
+      var nodes, i, node;
+      if (self.firstChild) {
+        nodes = [];
+        for (node = self.firstChild; node; node = walk$2(node, self)) {
+          nodes.push(node);
+=======
+      };
+      if (!settings.allow_unsafe_link_target) {
+        while (i--) {
+          node = nodes[i];
+          if (node.name === 'a' && node.attr('target') === '_blank') {
+            node.attr('rel', addNoOpener(node.attr('rel')));
+          }
+        }
+      }
+    });
+    if (!settings.allow_html_in_named_anchor) {
+      parser.addAttributeFilter('id,name', function (nodes) {
+        var i = nodes.length, sibling, prevSibling, parent, node;
+        while (i--) {
+          node = nodes[i];
+          if (node.name === 'a' && node.firstChild && !node.attr('href')) {
+            parent = node.parent;
+            sibling = node.lastChild;
+            do {
+              prevSibling = sibling.prev;
+              parent.insert(sibling, node);
+              sibling = prevSibling;
+            } while (sibling);
+          }
+>>>>>>> installer
+        }
+      });
+    }
+    if (settings.fix_list_elements) {
+      parser.addNodeFilter('ul,ol', function (nodes) {
+        var i = nodes.length, node, parentNode;
+        while (i--) {
+          node = nodes[i];
+          parentNode = node.parent;
+          if (parentNode.name === 'ul' || parentNode.name === 'ol') {
+            if (node.prev && node.prev.name === 'li') {
+              node.prev.append(node);
+            } else {
+              var li = new Node$2('li', 1);
+              li.attr('style', 'list-style-type: none');
+              node.wrap(li);
+            }
+          }
+        }
+<<<<<<< HEAD
+      }
+      self.firstChild = self.lastChild = null;
+      return self;
+    };
+    Node.prototype.isEmpty = function (elements, whitespace, predicate) {
+      var self = this;
+      var node = self.firstChild, i, name;
+      whitespace = whitespace || {};
+      if (node) {
+        do {
+          if (node.type === 1) {
+            if (node.attributes.map['data-mce-bogus']) {
+              continue;
+=======
+      });
+    }
+    if (settings.validate && schema.getValidClasses()) {
+      parser.addAttributeFilter('class', function (nodes) {
+        var i = nodes.length, node, classList, ci, className, classValue;
+        var validClasses = schema.getValidClasses();
+        var validClassesMap, valid;
+        while (i--) {
+          node = nodes[i];
+          classList = node.attr('class').split(' ');
+          classValue = '';
+          for (ci = 0; ci < classList.length; ci++) {
+            className = classList[ci];
+            valid = false;
+            validClassesMap = validClasses['*'];
+            if (validClassesMap && validClassesMap[className]) {
+              valid = true;
+>>>>>>> installer
+            }
+            validClassesMap = validClasses[node.name];
+            if (!valid && validClassesMap && validClassesMap[className]) {
+              valid = true;
+            }
+            if (valid) {
+              if (classValue) {
+                classValue += ' ';
+              }
+              classValue += className;
+            }
+          }
+          if (!classValue.length) {
+            classValue = null;
+          }
+<<<<<<< HEAD
         } while (node = walk$2(node, self));
       }
       return true;
@@ -19256,6 +27353,22 @@
     if (schema === void 0) {
       schema = Schema();
     }
+=======
+          node.attr('class', classValue);
+        }
+      });
+    }
+  };
+
+  var makeMap$4 = $_8i2houjjducwnd2.makeMap;
+  var each$19 = $_8i2houjjducwnd2.each;
+  var explode$4 = $_8i2houjjducwnd2.explode;
+  var extend$3 = $_8i2houjjducwnd2.extend;
+  function DomParser (settings, schema) {
+    if (schema === void 0) {
+      schema = Schema();
+    }
+>>>>>>> installer
     var nodeFilters = {};
     var attributeFilters = [];
     var matchedNodes = {};
@@ -19382,6 +27495,21 @@
         list.push(callback);
       });
     };
+<<<<<<< HEAD
+=======
+    var getNodeFilters = function () {
+      var out = [];
+      for (var name_1 in nodeFilters) {
+        if (nodeFilters.hasOwnProperty(name_1)) {
+          out.push({
+            name: name_1,
+            callbacks: nodeFilters[name_1]
+          });
+        }
+      }
+      return out;
+    };
+>>>>>>> installer
     var addAttributeFilter = function (name, callback) {
       each$19(explode$4(name), function (name) {
         var i;
@@ -19397,6 +27525,12 @@
         });
       });
     };
+<<<<<<< HEAD
+=======
+    var getAttributeFilters = function () {
+      return [].concat(attributeFilters);
+    };
+>>>>>>> installer
     var parse = function (html, args) {
       var parser, nodes, i, l, fi, fl, list, name;
       var blockElements;
@@ -19512,7 +27646,7 @@
           var textNode;
           if (!isInWhiteSpacePreservedElement) {
             text = text.replace(allWhiteSpaceRegExp, ' ');
-            if (node.lastChild && blockElements[node.lastChild.name]) {
+            if (isLineBreakNode(node.lastChild, blockElements)) {
               text = text.replace(startWhiteSpaceRegExp, '');
             }
           }
@@ -19637,6 +27771,7 @@
             }
             if (elementRule.paddEmpty && (isPaddedWithNbsp(node) || isEmpty$1(schema, nonEmptyElements, whiteSpaceElements, node))) {
               paddEmptyNode(settings, args, blockElements, node);
+<<<<<<< HEAD
             }
             node = node.parent;
           }
@@ -19741,9 +27876,13 @@
               textNode = new Node$2('#text', 3);
               textNode.value = '\xA0';
               node.replace(textNode);
+=======
+>>>>>>> installer
             }
+            node = node.parent;
           }
         }
+<<<<<<< HEAD
       });
     }
     addAttributeFilter('href', function (nodes) {
@@ -19758,18 +27897,19 @@
         var newRel = rel ? $_gfka90jjd08m9g9.trim(rel) : '';
         if (!/\b(noopener)\b/g.test(newRel)) {
           return appendRel(newRel);
+=======
+      }, schema);
+      var rootNode = node = new Node$2(args.context || settings.root_name, 11);
+      parser.parse(html);
+      if (validate && invalidChildren.length) {
+        if (!args.context) {
+          fixInvalidChildren(invalidChildren);
+>>>>>>> installer
         } else {
-          return newRel;
-        }
-      };
-      if (!settings.allow_unsafe_link_target) {
-        while (i--) {
-          node = nodes[i];
-          if (node.name === 'a' && node.attr('target') === '_blank') {
-            node.attr('rel', addNoOpener(node.attr('rel')));
-          }
+          args.invalid = true;
         }
       }
+<<<<<<< HEAD
     });
     if (!settings.allow_html_in_named_anchor) {
       addAttributeFilter('id,name', function (nodes) {
@@ -19801,9 +27941,26 @@
               var li = new Node$2('li', 1);
               li.attr('style', 'list-style-type: none');
               node.wrap(li);
+=======
+      if (rootBlockName && (rootNode.name === 'body' || args.isRootContent)) {
+        addRootBlocks();
+      }
+      if (!args.invalid) {
+        for (name in matchedNodes) {
+          list = nodeFilters[name];
+          nodes = matchedNodes[name];
+          fi = nodes.length;
+          while (fi--) {
+            if (!nodes[fi].parent) {
+              nodes.splice(fi, 1);
+>>>>>>> installer
             }
           }
+          for (i = 0, l = list.length; i < l; i++) {
+            list[i](nodes, name, args);
+          }
         }
+<<<<<<< HEAD
       });
     }
     if (settings.validate && schema.getValidClasses()) {
@@ -19829,15 +27986,24 @@
             if (valid) {
               if (classValue) {
                 classValue += ' ';
+=======
+        for (i = 0, l = attributeFilters.length; i < l; i++) {
+          list = attributeFilters[i];
+          if (list.name in matchedAttributes) {
+            nodes = matchedAttributes[list.name];
+            fi = nodes.length;
+            while (fi--) {
+              if (!nodes[fi].parent) {
+                nodes.splice(fi, 1);
+>>>>>>> installer
               }
-              classValue += className;
+            }
+            for (fi = 0, fl = list.callbacks.length; fi < fl; fi++) {
+              list.callbacks[fi](nodes, list.name, args);
             }
           }
-          if (!classValue.length) {
-            classValue = null;
-          }
-          node.attr('class', classValue);
         }
+<<<<<<< HEAD
       });
     }
     var exports = {
@@ -19848,11 +28014,31 @@
       parse: parse
     };
     $_d8hdlp5ujd08mabx.register(exports, settings);
+=======
+      }
+      return rootNode;
+    };
+    var exports = {
+      schema: schema,
+      addAttributeFilter: addAttributeFilter,
+      getAttributeFilters: getAttributeFilters,
+      addNodeFilter: addNodeFilter,
+      getNodeFilters: getNodeFilters,
+      filterNode: filterNode,
+      parse: parse
+    };
+    register$2(exports, settings);
+    $_bpec6l5zjducwobh.register(exports, settings);
+>>>>>>> installer
     return exports;
   }
 
   var addTempAttr = function (htmlParser, tempAttrs, name) {
+<<<<<<< HEAD
     if ($_gfka90jjd08m9g9.inArray(tempAttrs, name) === -1) {
+=======
+    if ($_8i2houjjducwnd2.inArray(tempAttrs, name) === -1) {
+>>>>>>> installer
       htmlParser.addAttributeFilter(name, function (nodes, name) {
         var i = nodes.length;
         while (i--) {
@@ -19864,13 +28050,18 @@
   };
   var postProcess$1 = function (editor, args, content) {
     if (!args.no_events && editor) {
+<<<<<<< HEAD
       var outArgs = $_c4jytg5qjd08mab7.firePostProcess(editor, $_8ec3sn5pjd08mab5.merge(args, { content: content }));
+=======
+      var outArgs = $_zfmxp5vjducwoaf.firePostProcess(editor, $_7sum4s5ujducwoab.merge(args, { content: content }));
+>>>>>>> installer
       return outArgs.content;
     } else {
       return content;
     }
   };
   var getHtmlFromNode = function (dom, node, args) {
+<<<<<<< HEAD
     var html = $_1xlbjk21jd08m9p1.trim(args.getInner ? node.innerHTML : dom.getOuterHTML(node));
     return args.selection ? html : $_gfka90jjd08m9g9.trim(html);
   };
@@ -19878,6 +28069,15 @@
     var parserArgs = args.selection ? $_8ec3sn5pjd08mab5.merge({ forced_root_block: false }, args) : args;
     var rootNode = htmlParser.parse(html, parserArgs);
     $_7n9qds5rjd08maba.trimTrailingBr(rootNode);
+=======
+    var html = $_fz0k4u21jducwnmu.trim(args.getInner ? node.innerHTML : dom.getOuterHTML(node));
+    return args.selection ? html : $_8i2houjjducwnd2.trim(html);
+  };
+  var parseHtml = function (htmlParser, dom, html, args) {
+    var parserArgs = args.selection ? $_7sum4s5ujducwoab.merge({ forced_root_block: false }, args) : args;
+    var rootNode = htmlParser.parse(html, parserArgs);
+    $_7ho7i95wjducwoaj.trimTrailingBr(rootNode);
+>>>>>>> installer
     return rootNode;
   };
   var serializeNode = function (settings, schema, node) {
@@ -19896,10 +28096,17 @@
     settings.entity_encoding = settings.entity_encoding || 'named';
     settings.remove_trailing_brs = 'remove_trailing_brs' in settings ? settings.remove_trailing_brs : true;
     htmlParser = DomParser(settings, schema);
+<<<<<<< HEAD
     $_7n9qds5rjd08maba.register(htmlParser, settings, dom);
     var serialize = function (node, parserArgs) {
       var args = $_8ec3sn5pjd08mab5.merge({ format: 'html' }, parserArgs ? parserArgs : {});
       var targetNode = $_c7ik8y5sjd08mabg.process(editor, node, args);
+=======
+    $_7ho7i95wjducwoaj.register(htmlParser, settings, dom);
+    var serialize = function (node, parserArgs) {
+      var args = $_7sum4s5ujducwoab.merge({ format: 'html' }, parserArgs ? parserArgs : {});
+      var targetNode = $_j6l1k5xjducwoao.process(editor, node, args);
+>>>>>>> installer
       var html = getHtmlFromNode(dom, targetNode, args);
       var rootNode = parseHtml(htmlParser, dom, html, args);
       return args.format === 'tree' ? rootNode : toHtml(editor, settings, schema, rootNode, args);
@@ -19915,7 +28122,11 @@
       setRules: function (rules) {
         schema.setValidElements(rules);
       },
+<<<<<<< HEAD
       addTempAttr: $_9msgtx6jd08m99c.curry(addTempAttr, htmlParser, tempAttrs),
+=======
+      addTempAttr: $_60qu7r6jducwn73.curry(addTempAttr, htmlParser, tempAttrs),
+>>>>>>> installer
       getTempAttrs: function () {
         return tempAttrs;
       }
@@ -19937,7 +28148,11 @@
   }
 
   var findBlockCaretContainer = function (editor) {
+<<<<<<< HEAD
     return $_f0bm4c31jd08m9ub.descendant($_f4wyrxyjd08m9i5.fromDom(editor.getBody()), '*[data-mce-caret]').fold($_9msgtx6jd08m99c.constant(null), function (elm) {
+=======
+    return $_eh73s937jducwns3.descendant($_5s4uzoyjducwngo.fromDom(editor.getBody()), '*[data-mce-caret]').fold($_60qu7r6jducwn73.constant(null), function (elm) {
+>>>>>>> installer
       return elm.dom();
     });
   };
@@ -19946,7 +28161,11 @@
   };
   var showBlockCaretContainer = function (editor, blockCaretContainer) {
     if (blockCaretContainer.hasAttribute('data-mce-caret')) {
+<<<<<<< HEAD
       $_euzg3m20jd08m9ow.showCaretContainerBlock(blockCaretContainer);
+=======
+      showCaretContainerBlock(blockCaretContainer);
+>>>>>>> installer
       removeIeControlRect(editor);
       editor.selection.scrollIntoView(blockCaretContainer);
     }
@@ -19962,11 +28181,16 @@
       showBlockCaretContainer(editor, blockCaretContainer);
       return;
     }
+<<<<<<< HEAD
     if ($_euzg3m20jd08m9ow.hasContent(blockCaretContainer)) {
+=======
+    if (hasContent(blockCaretContainer)) {
+>>>>>>> installer
       showBlockCaretContainer(editor, blockCaretContainer);
     }
   };
   var setup$5 = function (editor) {
+<<<<<<< HEAD
     editor.on('keyup compositionstart', $_9msgtx6jd08m99c.curry(handleBlockContainer, editor));
   };
   var $_agql5p5wjd08mac7 = { setup: setup$5 };
@@ -19984,6 +28208,25 @@
 
   var isContentEditableFalse$10 = $_2qai0u1qjd08m9l9.isContentEditableFalse;
   var isContentEditableTrue$6 = $_2qai0u1qjd08m9l9.isContentEditableTrue;
+=======
+    editor.on('keyup compositionstart', $_60qu7r6jducwn73.curry(handleBlockContainer, editor));
+  };
+  var $_cmllon63jducwoc2 = { setup: setup$5 };
+
+  function BookmarkManager(selection) {
+    return {
+      getBookmark: $_60qu7r6jducwn73.curry($_dcl0u12jjducwnp0.getBookmark, selection),
+      moveToBookmark: $_60qu7r6jducwn73.curry($_dcl0u12jjducwnp0.moveToBookmark, selection)
+    };
+  }
+  (function (BookmarkManager) {
+    BookmarkManager.isBookmarkNode = $_dcl0u12jjducwnp0.isBookmarkNode;
+  }(BookmarkManager || (BookmarkManager = {})));
+  var BookmarkManager$1 = BookmarkManager;
+
+  var isContentEditableFalse$10 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var isContentEditableTrue$6 = $_fj238m1qjducwnjm.isContentEditableTrue;
+>>>>>>> installer
   var getContentEditableRoot$1 = function (root, node) {
     while (node && node !== root) {
       if (isContentEditableTrue$6(node) || isContentEditableFalse$10(node)) {
@@ -19994,7 +28237,11 @@
     return null;
   };
   var ControlSelection = function (selection, editor) {
+<<<<<<< HEAD
     var dom = editor.dom, each = $_gfka90jjd08m9g9.each;
+=======
+    var dom = editor.dom, each = $_8i2houjjducwnd2.each;
+>>>>>>> installer
     var selectedElm, selectedElmGhost, resizeHelper, resizeHandles, selectedHandle;
     var startX, startY, selectedElmX, selectedElmY, startW, startH, ratio, resizeStarted;
     var width, height;
@@ -20028,12 +28275,20 @@
       ]
     };
     var rootClass = '.mce-content-body';
+<<<<<<< HEAD
     editor.contentStyles.push(rootClass + ' div.mce-resizehandle {' + 'position: absolute;' + 'border: 1px solid black;' + 'box-sizing: content-box;' + 'background: #FFF;' + 'width: 7px;' + 'height: 7px;' + 'z-index: 10000' + '}' + rootClass + ' .mce-resizehandle:hover {' + 'background: #000' + '}' + rootClass + ' img[data-mce-selected],' + rootClass + ' hr[data-mce-selected] {' + 'outline: 1px solid black;' + 'resize: none' + '}' + rootClass + ' .mce-clonedresizable {' + 'position: absolute;' + ($_6pkc2e9jd08m9bi.gecko ? '' : 'outline: 1px dashed black;') + 'opacity: .5;' + 'filter: alpha(opacity=50);' + 'z-index: 10000' + '}' + rootClass + ' .mce-resize-helper {' + 'background: #555;' + 'background: rgba(0,0,0,0.75);' + 'border-radius: 3px;' + 'border: 1px;' + 'color: white;' + 'display: none;' + 'font-family: sans-serif;' + 'font-size: 12px;' + 'white-space: nowrap;' + 'line-height: 14px;' + 'margin: 5px 10px;' + 'padding: 5px;' + 'position: absolute;' + 'z-index: 10001' + '}');
+=======
+    editor.contentStyles.push(rootClass + ' div.mce-resizehandle {' + 'position: absolute;' + 'border: 1px solid black;' + 'box-sizing: content-box;' + 'background: #FFF;' + 'width: 7px;' + 'height: 7px;' + 'z-index: 10000' + '}' + rootClass + ' .mce-resizehandle:hover {' + 'background: #000' + '}' + rootClass + ' img[data-mce-selected],' + rootClass + ' hr[data-mce-selected] {' + 'outline: 1px solid black;' + 'resize: none' + '}' + rootClass + ' .mce-clonedresizable {' + 'position: absolute;' + ($_cum1kc9jducwn99.gecko ? '' : 'outline: 1px dashed black;') + 'opacity: .5;' + 'filter: alpha(opacity=50);' + 'z-index: 10000' + '}' + rootClass + ' .mce-resize-helper {' + 'background: #555;' + 'background: rgba(0,0,0,0.75);' + 'border-radius: 3px;' + 'border: 1px;' + 'color: white;' + 'display: none;' + 'font-family: sans-serif;' + 'font-size: 12px;' + 'white-space: nowrap;' + 'line-height: 14px;' + 'margin: 5px 10px;' + 'padding: 5px;' + 'position: absolute;' + 'z-index: 10001' + '}');
+>>>>>>> installer
     var isImage = function (elm) {
       return elm && (elm.nodeName === 'IMG' || editor.dom.is(elm, 'figure.image'));
     };
     var isEventOnImageOutsideRange = function (evt, range) {
+<<<<<<< HEAD
       return isImage(evt.target) && !$_li5qy52jd08ma54.isXYWithinRange(evt.clientX, evt.clientY, range);
+=======
+      return isImage(evt.target) && !$_cy7fd256jducwo68.isXYWithinRange(evt.clientX, evt.clientY, range);
+>>>>>>> installer
     };
     var contextMenuSelectImage = function (evt) {
       var target = evt.target;
@@ -20047,7 +28302,11 @@
     };
     var isResizable = function (elm) {
       var selector = editor.settings.object_resizing;
+<<<<<<< HEAD
       if (selector === false || $_6pkc2e9jd08m9bi.iOS) {
+=======
+      if (selector === false || $_cum1kc9jducwn99.iOS) {
+>>>>>>> installer
         return false;
       }
       if (typeof selector !== 'string') {
@@ -20059,7 +28318,11 @@
       if (elm === editor.getBody()) {
         return false;
       }
+<<<<<<< HEAD
       return $_g3mfaw1fjd08m9k7.is($_f4wyrxyjd08m9i5.fromDom(elm), selector);
+=======
+      return $_3yrc4b1fjducwnim.is($_5s4uzoyjducwngo.fromDom(elm), selector);
+>>>>>>> installer
     };
     var resizeGhostElement = function (e) {
       var deltaX, deltaY, proportional;
@@ -20071,9 +28334,15 @@
       width = width < 5 ? 5 : width;
       height = height < 5 ? 5 : height;
       if (isImage(selectedElm) && editor.settings.resize_img_proportional !== false) {
+<<<<<<< HEAD
         proportional = !$_3izr6156jd08ma5d.modifierPressed(e);
       } else {
         proportional = $_3izr6156jd08ma5d.modifierPressed(e) || isImage(selectedElm) && selectedHandle[2] * selectedHandle[3] !== 0;
+=======
+        proportional = !$_1xm2zi59jducwo6l.modifierPressed(e);
+      } else {
+        proportional = $_1xm2zi59jducwo6l.modifierPressed(e) || isImage(selectedElm) && selectedHandle[2] * selectedHandle[3] !== 0;
+>>>>>>> installer
       }
       if (proportional) {
         if (abs(deltaX) > abs(deltaY)) {
@@ -20216,7 +28485,11 @@
             'unselectable': true,
             'style': 'cursor:' + name + '-resize; margin:0; padding:0'
           });
+<<<<<<< HEAD
           if ($_6pkc2e9jd08m9bi.ie) {
+=======
+          if ($_cum1kc9jducwn99.ie) {
+>>>>>>> installer
             handleElm.contentEditable = false;
           }
           dom.bind(handleElm, 'mousedown', function (e) {
@@ -20298,7 +28571,11 @@
     };
     editor.on('init', function () {
       disableGeckoResize();
+<<<<<<< HEAD
       if ($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie >= 11) {
+=======
+      if ($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie >= 11) {
+>>>>>>> installer
         editor.on('mousedown click', function (e) {
           var target = e.target, nodeName = target.nodeName;
           if (!resizeStarted && /^(TABLE|IMG|HR)$/.test(nodeName) && !isWithinContentEditableFalse(target)) {
@@ -20312,7 +28589,11 @@
         });
         editor.dom.bind(rootElement, 'mscontrolselect', function (e) {
           var delayedSelect = function (node) {
+<<<<<<< HEAD
             $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
+=======
+            $_83mf8ygjducwnbc.setEditorTimeout(editor, function () {
+>>>>>>> installer
               editor.selection.select(node);
             });
           };
@@ -20329,7 +28610,11 @@
           }
         });
       }
+<<<<<<< HEAD
       var throttledUpdateResizeRect = $_tkwl7gjd08m9ds.throttle(function (e) {
+=======
+      var throttledUpdateResizeRect = $_83mf8ygjducwnbc.throttle(function (e) {
+>>>>>>> installer
         if (!editor.composing) {
           updateResizeRect(e);
         }
@@ -20385,7 +28670,11 @@
     if (fireScrollIntoViewEvent(editor, elm, alignToTop)) {
       return;
     }
+<<<<<<< HEAD
     if (!$_2qai0u1qjd08m9l9.isElement(elm)) {
+=======
+    if (!$_fj238m1qjducwnjm.isElement(elm)) {
+>>>>>>> installer
       return;
     }
     if (alignToTop === false) {
@@ -20411,10 +28700,17 @@
       editor.getWin().scrollTo(0, y < viewPortY ? y : y - viewPortH + 25);
     }
   };
+<<<<<<< HEAD
   var $_8mb82w60jd08mada = { scrollIntoView: scrollIntoView };
 
   var hasCeProperty = function (node) {
     return $_2qai0u1qjd08m9l9.isContentEditableTrue(node) || $_2qai0u1qjd08m9l9.isContentEditableFalse(node);
+=======
+  var $_7yly5s67jducwode = { scrollIntoView: scrollIntoView };
+
+  var hasCeProperty = function (node) {
+    return $_fj238m1qjducwnjm.isContentEditableTrue(node) || $_fj238m1qjducwnjm.isContentEditableFalse(node);
+>>>>>>> installer
   };
   var findParent$1 = function (node, rootNode, predicate) {
     while (node && node !== rootNode) {
@@ -20433,7 +28729,11 @@
       element = doc.body;
     }
     rng.moveToElementText(element);
+<<<<<<< HEAD
     rects = $_gfka90jjd08m9g9.toArray(rng.getClientRects());
+=======
+    rects = $_8i2houjjducwnd2.toArray(rng.getClientRects());
+>>>>>>> installer
     rects = rects.sort(function (a, b) {
       a = Math.abs(Math.max(a.top - clientY, a.bottom - clientY));
       b = Math.abs(Math.max(b.top - clientY, b.bottom - clientY));
@@ -20452,7 +28752,11 @@
   };
   var moveOutOfContentEditableFalse = function (rng, rootNode) {
     var parentElement = rng && rng.parentElement ? rng.parentElement() : null;
+<<<<<<< HEAD
     return $_2qai0u1qjd08m9l9.isContentEditableFalse(findParent$1(parentElement, rootNode, hasCeProperty)) ? null : rng;
+=======
+    return $_fj238m1qjducwnjm.isContentEditableFalse(findParent$1(parentElement, rootNode, hasCeProperty)) ? null : rng;
+>>>>>>> installer
   };
   var fromPoint$1 = function (clientX, clientY, doc) {
     var rng, point;
@@ -20478,18 +28782,32 @@
     }
     return rng;
   };
+<<<<<<< HEAD
   var $_dxcpuw61jd08madd = { fromPoint: fromPoint$1 };
 
   var processRanges = function (editor, ranges) {
     return $_65yphx4jd08m98n.map(ranges, function (range) {
+=======
+  var $_ghraby68jducwodg = { fromPoint: fromPoint$1 };
+
+  var processRanges = function (editor, ranges) {
+    return $_2dw1bj4jducwn6g.map(ranges, function (range) {
+>>>>>>> installer
       var evt = editor.fire('GetSelectionRange', { range: range });
       return evt.range !== range ? evt.range : range;
     });
   };
+<<<<<<< HEAD
   var $_6z3mk662jd08madf = { processRanges: processRanges };
 
   var clone$2 = function (original, deep) {
     return $_f4wyrxyjd08m9i5.fromDom(original.dom().cloneNode(deep));
+=======
+  var $_at5d1y69jducwodi = { processRanges: processRanges };
+
+  var clone$2 = function (original, deep) {
+    return $_5s4uzoyjducwngo.fromDom(original.dom().cloneNode(deep));
+>>>>>>> installer
   };
   var shallow$1 = function (original) {
     return clone$2(original, false);
@@ -20498,19 +28816,31 @@
     return clone$2(original, true);
   };
   var shallowAs = function (original, tag) {
+<<<<<<< HEAD
     var nu = $_f4wyrxyjd08m9i5.fromTag(tag);
     var attributes = $_1wgh8c14jd08m9iv.clone(original);
     $_1wgh8c14jd08m9iv.setAll(nu, attributes);
+=======
+    var nu = $_5s4uzoyjducwngo.fromTag(tag);
+    var attributes = $_60196814jducwnhd.clone(original);
+    $_60196814jducwnhd.setAll(nu, attributes);
+>>>>>>> installer
     return nu;
   };
   var copy$1 = function (original, tag) {
     var nu = shallowAs(original, tag);
+<<<<<<< HEAD
     var cloneChildren = $_8xk2kp17jd08m9j8.children(deep$1(original));
     $_5hq1od2hjd08m9r3.append(nu, cloneChildren);
+=======
+    var cloneChildren = $_f0qt4317jducwnhq.children(deep$1(original));
+    $_ehpp912qjducwnq3.append(nu, cloneChildren);
+>>>>>>> installer
     return nu;
   };
   var mutate = function (original, tag) {
     var nu = shallowAs(original, tag);
+<<<<<<< HEAD
     $_5x9l922fjd08m9qy.before(original, nu);
     var children = $_8xk2kp17jd08m9j8.children(original);
     $_5hq1od2hjd08m9r3.append(nu, children);
@@ -20518,6 +28848,15 @@
     return nu;
   };
   var $_10r5aj65jd08madu = {
+=======
+    $_ejmufn2ojducwnpy.before(original, nu);
+    var children = $_f0qt4317jducwnhq.children(original);
+    $_ehpp912qjducwnq3.append(nu, children);
+    $_34vweg2pjducwnq0.remove(original);
+    return nu;
+  };
+  var $_pck3w6cjducwoe4 = {
+>>>>>>> installer
     shallow: shallow$1,
     shallowAs: shallowAs,
     deep: deep$1,
@@ -20528,6 +28867,7 @@
   var fromElements = function (elements, scope) {
     var doc = scope || document;
     var fragment = doc.createDocumentFragment();
+<<<<<<< HEAD
     $_65yphx4jd08m98n.each(elements, function (element) {
       fragment.appendChild(element.dom());
     });
@@ -20541,10 +28881,26 @@
       return so === 0 ? $_zhkqu5jd08m996.some($_f4wyrxyjd08m9i5.fromDom(sc)) : $_zhkqu5jd08m996.none();
     } else {
       return $_zhkqu5jd08m996.from(sc.childNodes[so]).map($_f4wyrxyjd08m9i5.fromDom);
+=======
+    $_2dw1bj4jducwn6g.each(elements, function (element) {
+      fragment.appendChild(element.dom());
+    });
+    return $_5s4uzoyjducwngo.fromDom(fragment);
+  };
+  var $_4i1qfz6djducwoe7 = { fromElements: fromElements };
+
+  var getStartNode = function (rng) {
+    var sc = rng.startContainer, so = rng.startOffset;
+    if ($_fj238m1qjducwnjm.isText(sc)) {
+      return so === 0 ? Option.some($_5s4uzoyjducwngo.fromDom(sc)) : Option.none();
+    } else {
+      return Option.from(sc.childNodes[so]).map($_5s4uzoyjducwngo.fromDom);
+>>>>>>> installer
     }
   };
   var getEndNode = function (rng) {
     var ec = rng.endContainer, eo = rng.endOffset;
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isText(ec)) {
       return eo === ec.data.length ? $_zhkqu5jd08m996.some($_f4wyrxyjd08m9i5.fromDom(ec)) : $_zhkqu5jd08m996.none();
     } else {
@@ -20553,13 +28909,29 @@
   };
   var getFirstChildren = function (node) {
     return $_8xk2kp17jd08m9j8.firstChild(node).fold($_9msgtx6jd08m99c.constant([node]), function (child) {
+=======
+    if ($_fj238m1qjducwnjm.isText(ec)) {
+      return eo === ec.data.length ? Option.some($_5s4uzoyjducwngo.fromDom(ec)) : Option.none();
+    } else {
+      return Option.from(ec.childNodes[eo - 1]).map($_5s4uzoyjducwngo.fromDom);
+    }
+  };
+  var getFirstChildren = function (node) {
+    return $_f0qt4317jducwnhq.firstChild(node).fold($_60qu7r6jducwn73.constant([node]), function (child) {
+>>>>>>> installer
       return [node].concat(getFirstChildren(child));
     });
   };
   var getLastChildren$1 = function (node) {
+<<<<<<< HEAD
     return $_8xk2kp17jd08m9j8.lastChild(node).fold($_9msgtx6jd08m99c.constant([node]), function (child) {
       if ($_d4s1fbzjd08m9ia.name(child) === 'br') {
         return $_8xk2kp17jd08m9j8.prevSibling(child).map(function (sibling) {
+=======
+    return $_f0qt4317jducwnhq.lastChild(node).fold($_60qu7r6jducwn73.constant([node]), function (child) {
+      if ($_47qy15zjducwngt.name(child) === 'br') {
+        return $_f0qt4317jducwnhq.prevSibling(child).map(function (sibling) {
+>>>>>>> installer
           return [node].concat(getLastChildren$1(sibling));
         }).getOr([]);
       } else {
@@ -20568,12 +28940,21 @@
     });
   };
   var hasAllContentsSelected = function (elm, rng) {
+<<<<<<< HEAD
     return $_7gtuy32djd08m9ql.liftN([
       getStartNode(rng),
       getEndNode(rng)
     ], function (startNode, endNode) {
       var start = $_65yphx4jd08m98n.find(getFirstChildren(elm), $_9msgtx6jd08m99c.curry($_9gmgw51djd08m9k0.eq, startNode));
       var end = $_65yphx4jd08m98n.find(getLastChildren$1(elm), $_9msgtx6jd08m99c.curry($_9gmgw51djd08m9k0.eq, endNode));
+=======
+    return $_87ppqy2ejducwnol.liftN([
+      getStartNode(rng),
+      getEndNode(rng)
+    ], function (startNode, endNode) {
+      var start = $_2dw1bj4jducwn6g.find(getFirstChildren(elm), $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, startNode));
+      var end = $_2dw1bj4jducwn6g.find(getLastChildren$1(elm), $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, endNode));
+>>>>>>> installer
       return start.isSome() && end.isSome();
     }).getOr(false);
   };
@@ -20581,7 +28962,11 @@
     var root = node, walker = new TreeWalker(node, root);
     var nonEmptyElementsMap = dom.schema.getNonEmptyElements();
     do {
+<<<<<<< HEAD
       if (node.nodeType === 3 && $_gfka90jjd08m9g9.trim(node.nodeValue).length !== 0) {
+=======
+      if (node.nodeType === 3 && $_8i2houjjducwnd2.trim(node.nodeValue).length !== 0) {
+>>>>>>> installer
         if (start) {
           rng.setStart(node, 0);
         } else {
@@ -20601,7 +28986,11 @@
         }
         return;
       }
+<<<<<<< HEAD
       if ($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 11 && dom.isBlock(node) && dom.isEmpty(node)) {
+=======
+      if ($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 11 && dom.isBlock(node) && dom.isEmpty(node)) {
+>>>>>>> installer
         if (start) {
           rng.setStart(node, 0);
         } else {
@@ -20619,11 +29008,19 @@
     }
   };
 
+<<<<<<< HEAD
   var tableModel = $_egy9xb18jd08m9jo.immutable('element', 'width', 'rows');
   var tableRow = $_egy9xb18jd08m9jo.immutable('element', 'cells');
   var cellPosition = $_egy9xb18jd08m9jo.immutable('x', 'y');
   var getSpan = function (td, key) {
     var value = parseInt($_1wgh8c14jd08m9iv.get(td, key), 10);
+=======
+  var tableModel = $_295afp18jducwni4.immutable('element', 'width', 'rows');
+  var tableRow = $_295afp18jducwni4.immutable('element', 'cells');
+  var cellPosition = $_295afp18jducwni4.immutable('x', 'y');
+  var getSpan = function (td, key) {
+    var value = parseInt($_60196814jducwnhd.get(td, key), 10);
+>>>>>>> installer
     return isNaN(value) ? 1 : value;
   };
   var fillout = function (table, x, y, tr, td) {
@@ -20632,11 +29029,19 @@
     var rows = table.rows();
     for (var y2 = y; y2 < y + rowspan; y2++) {
       if (!rows[y2]) {
+<<<<<<< HEAD
         rows[y2] = tableRow($_10r5aj65jd08madu.deep(tr), []);
       }
       for (var x2 = x; x2 < x + colspan; x2++) {
         var cells = rows[y2].cells();
         cells[x2] = y2 === y && x2 === x ? td : $_10r5aj65jd08madu.shallow(td);
+=======
+        rows[y2] = tableRow($_pck3w6cjducwoe4.deep(tr), []);
+      }
+      for (var x2 = x; x2 < x + colspan; x2++) {
+        var cells = rows[y2].cells();
+        cells[x2] = y2 === y && x2 === x ? td : $_pck3w6cjducwoe4.shallow(td);
+>>>>>>> installer
       }
     }
   };
@@ -20652,7 +29057,11 @@
     return x;
   };
   var getWidth = function (rows) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.foldl(rows, function (acc, row) {
+=======
+    return $_2dw1bj4jducwn6g.foldl(rows, function (acc, row) {
+>>>>>>> installer
       return row.cells().length > acc ? row.cells().length : acc;
     }, 0);
   };
@@ -20661,12 +29070,21 @@
     for (var y = 0; y < rows.length; y++) {
       var cells = rows[y].cells();
       for (var x = 0; x < cells.length; x++) {
+<<<<<<< HEAD
         if ($_9gmgw51djd08m9k0.eq(cells[x], element)) {
           return $_zhkqu5jd08m996.some(cellPosition(x, y));
         }
       }
     }
     return $_zhkqu5jd08m996.none();
+=======
+        if ($_4qdq5m1djducwnie.eq(cells[x], element)) {
+          return Option.some(cellPosition(x, y));
+        }
+      }
+    }
+    return Option.none();
+>>>>>>> installer
   };
   var extractRows = function (table, sx, sy, ex, ey) {
     var newRows = [];
@@ -20685,6 +29103,7 @@
     return tableModel(table.element(), getWidth(newRows), newRows);
   };
   var createDomTable = function (table, rows) {
+<<<<<<< HEAD
     var tableElement = $_10r5aj65jd08madu.shallow(table.element());
     var tableBody = $_f4wyrxyjd08m9i5.fromTag('tbody');
     $_5hq1od2hjd08m9r3.append(tableBody, rows);
@@ -20701,13 +29120,37 @@
       });
       var tr = $_10r5aj65jd08madu.shallow(row.element());
       $_5hq1od2hjd08m9r3.append(tr, cells);
+=======
+    var tableElement = $_pck3w6cjducwoe4.shallow(table.element());
+    var tableBody = $_5s4uzoyjducwngo.fromTag('tbody');
+    $_ehpp912qjducwnq3.append(tableBody, rows);
+    $_ejmufn2ojducwnpy.append(tableElement, tableBody);
+    return tableElement;
+  };
+  var modelRowsToDomRows = function (table) {
+    return $_2dw1bj4jducwn6g.map(table.rows(), function (row) {
+      var cells = $_2dw1bj4jducwn6g.map(row.cells(), function (cell) {
+        var td = $_pck3w6cjducwoe4.deep(cell);
+        $_60196814jducwnhd.remove(td, 'colspan');
+        $_60196814jducwnhd.remove(td, 'rowspan');
+        return td;
+      });
+      var tr = $_pck3w6cjducwoe4.shallow(row.element());
+      $_ehpp912qjducwnq3.append(tr, cells);
+>>>>>>> installer
       return tr;
     });
   };
   var fromDom$1 = function (tableElm) {
+<<<<<<< HEAD
     var table = tableModel($_10r5aj65jd08madu.shallow(tableElm), 0, []);
     $_65yphx4jd08m98n.each($_80io952kjd08m9rf.descendants(tableElm, 'tr'), function (tr, y) {
       $_65yphx4jd08m98n.each($_80io952kjd08m9rf.descendants(tr, 'td,th'), function (td, x) {
+=======
+    var table = tableModel($_pck3w6cjducwoe4.shallow(tableElm), 0, []);
+    $_2dw1bj4jducwn6g.each($_47k8tx2gjducwnot.descendants(tableElm, 'tr'), function (tr, y) {
+      $_2dw1bj4jducwn6g.each($_47k8tx2gjducwnot.descendants(tr, 'td,th'), function (td, x) {
+>>>>>>> installer
         fillout(table, skipCellsX(table, x, y), y, tr, td);
       });
     });
@@ -20723,13 +29166,18 @@
       });
     });
   };
+<<<<<<< HEAD
   var $_8iapom68jd08maeg = {
+=======
+  var $_7f9nl26fjducwoeq = {
+>>>>>>> installer
     fromDom: fromDom$1,
     toDom: toDom,
     subsection: subsection
   };
 
   var findParentListContainer = function (parents) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.find(parents, function (elm) {
       return $_d4s1fbzjd08m9ia.name(elm) === 'ul' || $_d4s1fbzjd08m9ia.name(elm) === 'ol';
     });
@@ -20742,11 +29190,26 @@
         return [
           $_f4wyrxyjd08m9i5.fromTag('li'),
           $_f4wyrxyjd08m9i5.fromTag($_d4s1fbzjd08m9ia.name(listCont))
+=======
+    return $_2dw1bj4jducwn6g.find(parents, function (elm) {
+      return $_47qy15zjducwngt.name(elm) === 'ul' || $_47qy15zjducwngt.name(elm) === 'ol';
+    });
+  };
+  var getFullySelectedListWrappers = function (parents, rng) {
+    return $_2dw1bj4jducwn6g.find(parents, function (elm) {
+      return $_47qy15zjducwngt.name(elm) === 'li' && hasAllContentsSelected(elm, rng);
+    }).fold($_60qu7r6jducwn73.constant([]), function (li) {
+      return findParentListContainer(parents).map(function (listCont) {
+        return [
+          $_5s4uzoyjducwngo.fromTag('li'),
+          $_5s4uzoyjducwngo.fromTag($_47qy15zjducwngt.name(listCont))
+>>>>>>> installer
         ];
       }).getOr([]);
     });
   };
   var wrap$3 = function (innerElm, elms) {
+<<<<<<< HEAD
     var wrapped = $_65yphx4jd08m98n.foldl(elms, function (acc, elm) {
       $_5x9l922fjd08m9qy.append(elm, acc);
       return elm;
@@ -20756,6 +29219,17 @@
   var directListWrappers = function (commonAnchorContainer) {
     if (isListItem(commonAnchorContainer)) {
       return $_8xk2kp17jd08m9j8.parent(commonAnchorContainer).filter(isList).fold($_9msgtx6jd08m99c.constant([]), function (listElm) {
+=======
+    var wrapped = $_2dw1bj4jducwn6g.foldl(elms, function (acc, elm) {
+      $_ejmufn2ojducwnpy.append(elm, acc);
+      return elm;
+    }, innerElm);
+    return elms.length > 0 ? $_4i1qfz6djducwoe7.fromElements([wrapped]) : wrapped;
+  };
+  var directListWrappers = function (commonAnchorContainer) {
+    if (isListItem(commonAnchorContainer)) {
+      return $_f0qt4317jducwnhq.parent(commonAnchorContainer).filter(isList).fold($_60qu7r6jducwn73.constant([]), function (listElm) {
+>>>>>>> installer
         return [
           commonAnchorContainer,
           listElm
@@ -20766,13 +29240,20 @@
     }
   };
   var getWrapElements = function (rootNode, rng) {
+<<<<<<< HEAD
     var commonAnchorContainer = $_f4wyrxyjd08m9i5.fromDom(rng.commonAncestorContainer);
     var parents = $_aus1dm33jd08m9ur.parentsAndSelf(commonAnchorContainer, rootNode);
     var wrapElements = $_65yphx4jd08m98n.filter(parents, function (elm) {
+=======
+    var commonAnchorContainer = $_5s4uzoyjducwngo.fromDom(rng.commonAncestorContainer);
+    var parents = $_b22jto39jducwnsg.parentsAndSelf(commonAnchorContainer, rootNode);
+    var wrapElements = $_2dw1bj4jducwn6g.filter(parents, function (elm) {
+>>>>>>> installer
       return isInline(elm) || isHeading(elm);
     });
     var listWrappers = getFullySelectedListWrappers(parents, rng);
     var allWrappers = wrapElements.concat(listWrappers.length ? listWrappers : directListWrappers(commonAnchorContainer));
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.map(allWrappers, $_10r5aj65jd08madu.shallow);
   };
   var emptyFragment = function () {
@@ -20783,14 +29264,32 @@
   };
   var getParentTable = function (rootElm, cell) {
     return $_f0bm4c31jd08m9ub.ancestor(cell, 'table', $_9msgtx6jd08m99c.curry($_9gmgw51djd08m9k0.eq, rootElm));
+=======
+    return $_2dw1bj4jducwn6g.map(allWrappers, $_pck3w6cjducwoe4.shallow);
+  };
+  var emptyFragment = function () {
+    return $_4i1qfz6djducwoe7.fromElements([]);
+  };
+  var getFragmentFromRange = function (rootNode, rng) {
+    return wrap$3($_5s4uzoyjducwngo.fromDom(rng.cloneContents()), getWrapElements(rootNode, rng));
+  };
+  var getParentTable = function (rootElm, cell) {
+    return $_eh73s937jducwns3.ancestor(cell, 'table', $_60qu7r6jducwn73.curry($_4qdq5m1djducwnie.eq, rootElm));
+>>>>>>> installer
   };
   var getTableFragment = function (rootNode, selectedTableCells) {
     return getParentTable(rootNode, selectedTableCells[0]).bind(function (tableElm) {
       var firstCell = selectedTableCells[0];
       var lastCell = selectedTableCells[selectedTableCells.length - 1];
+<<<<<<< HEAD
       var fullTableModel = $_8iapom68jd08maeg.fromDom(tableElm);
       return $_8iapom68jd08maeg.subsection(fullTableModel, firstCell, lastCell).map(function (sectionedTableModel) {
         return $_f2hxvi66jd08madw.fromElements([$_8iapom68jd08maeg.toDom(sectionedTableModel)]);
+=======
+      var fullTableModel = $_7f9nl26fjducwoeq.fromDom(tableElm);
+      return $_7f9nl26fjducwoeq.subsection(fullTableModel, firstCell, lastCell).map(function (sectionedTableModel) {
+        return $_4i1qfz6djducwoe7.fromElements([$_7f9nl26fjducwoeq.toDom(sectionedTableModel)]);
+>>>>>>> installer
       });
     }).getOrThunk(emptyFragment);
   };
@@ -20798,16 +29297,27 @@
     return ranges.length > 0 && ranges[0].collapsed ? emptyFragment() : getFragmentFromRange(rootNode, ranges[0]);
   };
   var read$3 = function (rootNode, ranges) {
+<<<<<<< HEAD
     var selectedCells = $_fk0e0t3pjd08m9yj.getCellsFromElementOrRanges(ranges, rootNode);
     return selectedCells.length > 0 ? getTableFragment(rootNode, selectedCells) : getSelectionFragment(rootNode, ranges);
   };
   var $_9pfbil64jd08madk = { read: read$3 };
+=======
+    var selectedCells = $_7ksohe3ujducwnvz.getCellsFromElementOrRanges(ranges, rootNode);
+    return selectedCells.length > 0 ? getTableFragment(rootNode, selectedCells) : getSelectionFragment(rootNode, ranges);
+  };
+  var $_32ri926bjducwodq = { read: read$3 };
+>>>>>>> installer
 
   var getContent = function (editor, args) {
     var rng = editor.selection.getRng(), tmpElm = editor.dom.create('body');
     var sel = editor.selection.getSel();
     var fragment;
+<<<<<<< HEAD
     var ranges = $_6z3mk662jd08madf.processRanges(editor, $_wywyz3qjd08m9yn.getRanges(sel));
+=======
+    var ranges = $_at5d1y69jducwodi.processRanges(editor, $_bqfspz3vjducwnw3.getRanges(sel));
+>>>>>>> installer
     args = args || {};
     args.get = true;
     args.format = args.format || 'html';
@@ -20818,10 +29328,17 @@
       return args.content;
     }
     if (args.format === 'text') {
+<<<<<<< HEAD
       return editor.selection.isCollapsed() ? '' : $_1xlbjk21jd08m9p1.trim(rng.text || (sel.toString ? sel.toString() : ''));
     }
     if (rng.cloneContents) {
       fragment = args.contextual ? $_9pfbil64jd08madk.read($_f4wyrxyjd08m9i5.fromDom(editor.getBody()), ranges).dom() : rng.cloneContents();
+=======
+      return editor.selection.isCollapsed() ? '' : $_fz0k4u21jducwnmu.trim(rng.text || (sel.toString ? sel.toString() : ''));
+    }
+    if (rng.cloneContents) {
+      fragment = args.contextual ? $_32ri926bjducwodq.read($_5s4uzoyjducwngo.fromDom(editor.getBody()), ranges).dom() : rng.cloneContents();
+>>>>>>> installer
       if (fragment) {
         tmpElm.appendChild(fragment);
       }
@@ -20840,7 +29357,11 @@
     editor.fire('GetContent', args);
     return args.content;
   };
+<<<<<<< HEAD
   var $_donu2x63jd08madg = { getContent: getContent };
+=======
+  var $_dtdsc16ajducwodl = { getContent: getContent };
+>>>>>>> installer
 
   var setContent = function (editor, content, args) {
     var rng = editor.selection.getRng(), caretNode;
@@ -20904,22 +29425,37 @@
       editor.fire('SetContent', args);
     }
   };
+<<<<<<< HEAD
   var $_ayqudy69jd08maes = { setContent: setContent };
+=======
+  var $_83khmf6gjducwof2 = { setContent: setContent };
+>>>>>>> installer
 
   var getEndpointElement = function (root, rng, start, real, resolve) {
     var container = start ? rng.startContainer : rng.endContainer;
     var offset = start ? rng.startOffset : rng.endOffset;
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.from(container).map($_f4wyrxyjd08m9i5.fromDom).map(function (elm) {
       return !real || !rng.collapsed ? $_8xk2kp17jd08m9j8.child(elm, resolve(elm, offset)).getOr(elm) : elm;
     }).bind(function (elm) {
       return $_d4s1fbzjd08m9ia.isElement(elm) ? $_zhkqu5jd08m996.some(elm) : $_8xk2kp17jd08m9j8.parent(elm);
+=======
+    return Option.from(container).map($_5s4uzoyjducwngo.fromDom).map(function (elm) {
+      return !real || !rng.collapsed ? $_f0qt4317jducwnhq.child(elm, resolve(elm, offset)).getOr(elm) : elm;
+    }).bind(function (elm) {
+      return $_47qy15zjducwngt.isElement(elm) ? Option.some(elm) : $_f0qt4317jducwnhq.parent(elm);
+>>>>>>> installer
     }).map(function (elm) {
       return elm.dom();
     }).getOr(root);
   };
   var getStart$2 = function (root, rng, real) {
     return getEndpointElement(root, rng, true, real, function (elm, offset) {
+<<<<<<< HEAD
       return Math.min($_8xk2kp17jd08m9j8.childNodesCount(elm), offset);
+=======
+      return Math.min($_f0qt4317jducwnhq.childNodesCount(elm), offset);
+>>>>>>> installer
     });
   };
   var getEnd = function (root, rng, real) {
@@ -20929,7 +29465,11 @@
   };
   var skipEmptyTextNodes = function (node, forwards) {
     var orig = node;
+<<<<<<< HEAD
     while (node && $_2qai0u1qjd08m9l9.isText(node) && node.length === 0) {
+=======
+    while (node && $_fj238m1qjducwnjm.isText(node) && node.length === 0) {
+>>>>>>> installer
       node = forwards ? node.nextSibling : node.previousSibling;
     }
     return node || orig;
@@ -20997,7 +29537,11 @@
     return selectedBlocks;
   };
   var select$1 = function (dom, node, content) {
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.from(node).map(function (node) {
+=======
+    return Option.from(node).map(function (node) {
+>>>>>>> installer
       var idx = dom.nodeIndex(node);
       var rng = dom.createRng();
       rng.setStart(node.parentNode, idx);
@@ -21010,12 +29554,20 @@
     });
   };
 
+<<<<<<< HEAD
   var each$20 = $_gfka90jjd08m9g9.each;
+=======
+  var each$20 = $_8i2houjjducwnd2.each;
+>>>>>>> installer
   var isNativeIeSelection = function (rng) {
     return !!rng.select;
   };
   var isAttachedToDom = function (node) {
+<<<<<<< HEAD
     return !!(node && node.ownerDocument) && $_9gmgw51djd08m9k0.contains($_f4wyrxyjd08m9i5.fromDom(node.ownerDocument), $_f4wyrxyjd08m9i5.fromDom(node));
+=======
+    return !!(node && node.ownerDocument) && $_4qdq5m1djducwnie.contains($_5s4uzoyjducwngo.fromDom(node.ownerDocument), $_5s4uzoyjducwngo.fromDom(node));
+>>>>>>> installer
   };
   var isValidRange = function (rng) {
     if (!rng) {
@@ -21042,10 +29594,17 @@
       }
     };
     var getContent = function (args) {
+<<<<<<< HEAD
       return $_donu2x63jd08madg.getContent(editor, args);
     };
     var setContent = function (content, args) {
       return $_ayqudy69jd08maes.setContent(editor, content, args);
+=======
+      return $_dtdsc16ajducwodl.getContent(editor, args);
+    };
+    var setContent = function (content, args) {
+      return $_83khmf6gjducwof2.setContent(editor, content, args);
+>>>>>>> installer
     };
     var getStart = function (real) {
       return getStart$2(editor.getBody(), getRng(), real);
@@ -21097,11 +29656,19 @@
       if (typeof doc === 'undefined' || doc === null) {
         return null;
       }
+<<<<<<< HEAD
       if (editor.bookmark !== undefined && $_2dqalv44jd08ma0x.hasFocus(editor) === false) {
         var bookmark = $_6fdwex3ujd08m9z9.getRng(editor);
         if (bookmark.isSome()) {
           return bookmark.map(function (r) {
             return $_6z3mk662jd08madf.processRanges(editor, [r])[0];
+=======
+      if (editor.bookmark !== undefined && $_egbtag48jducwo0y.hasFocus(editor) === false) {
+        var bookmark = $_exyelv3zjducwnzi.getRng(editor);
+        if (bookmark.isSome()) {
+          return bookmark.map(function (r) {
+            return $_at5d1y69jducwodi.processRanges(editor, [r])[0];
+>>>>>>> installer
           }).getOr(doc.createRange());
         }
       }
@@ -21115,7 +29682,11 @@
         }
       } catch (ex) {
       }
+<<<<<<< HEAD
       rng = $_6z3mk662jd08madf.processRanges(editor, [rng])[0];
+=======
+      rng = $_at5d1y69jducwodi.processRanges(editor, [rng])[0];
+>>>>>>> installer
       if (!rng) {
         rng = doc.createRange ? doc.createRange() : doc.body.createTextRange();
       }
@@ -21167,7 +29738,11 @@
         }
         selectedRange = sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
       }
+<<<<<<< HEAD
       if (!rng.collapsed && rng.startContainer === rng.endContainer && sel.setBaseAndExtent && !$_6pkc2e9jd08m9bi.ie) {
+=======
+      if (!rng.collapsed && rng.startContainer === rng.endContainer && sel.setBaseAndExtent && !$_cum1kc9jducwn99.ie) {
+>>>>>>> installer
         if (rng.endOffset - rng.startOffset < 2) {
           if (rng.startContainer.hasChildNodes()) {
             node = rng.startContainer.childNodes[rng.startOffset];
@@ -21211,8 +29786,13 @@
     };
     var normalize = function () {
       var rng = getRng();
+<<<<<<< HEAD
       if (!$_wywyz3qjd08m9yn.hasMultipleRanges(getSel())) {
         var normRng = $_6dxv9l3sjd08m9yz.normalize(dom, rng);
+=======
+      if (!$_bqfspz3vjducwnw3.hasMultipleRanges(getSel())) {
+        var normRng = $_altsby3xjducwnz5.normalize(dom, rng);
+>>>>>>> installer
         normRng.each(function (normRng) {
           setRng(normRng, isForward());
         });
@@ -21261,6 +29841,7 @@
       }
       if (!selectorChangedData[selector]) {
         selectorChangedData[selector] = [];
+<<<<<<< HEAD
       }
       selectorChangedData[selector].push(callback);
       return exports;
@@ -21435,6 +30016,80 @@
   var getSelectedNode$1 = $_1pqk4723jd08m9p6.getSelectedNode;
   var isAfterContentEditableFalse$1 = $_42t6k327jd08m9pl.isAfterContentEditableFalse;
   var isBeforeContentEditableFalse$1 = $_42t6k327jd08m9pl.isBeforeContentEditableFalse;
+=======
+      }
+      selectorChangedData[selector].push(callback);
+      return exports;
+    };
+    var getScrollContainer = function () {
+      var scrollContainer, node = dom.getRoot();
+      while (node && node.nodeName !== 'BODY') {
+        if (node.scrollHeight > node.clientHeight) {
+          scrollContainer = node;
+          break;
+        }
+        node = node.parentNode;
+      }
+      return scrollContainer;
+    };
+    var scrollIntoView = function (elm, alignToTop) {
+      return $_7yly5s67jducwode.scrollIntoView(editor, elm, alignToTop);
+    };
+    var placeCaretAt = function (clientX, clientY) {
+      return setRng($_ghraby68jducwodg.fromPoint(clientX, clientY, editor.getDoc()));
+    };
+    var getBoundingClientRect = function () {
+      var rng = getRng();
+      return rng.collapsed ? CaretPosition$1.fromRangeStart(rng).getClientRects()[0] : rng.getBoundingClientRect();
+    };
+    var destroy = function () {
+      win = null;
+      controlSelection.destroy();
+    };
+    var exports = {
+      bookmarkManager: null,
+      controlSelection: null,
+      dom: dom,
+      win: win,
+      serializer: serializer,
+      editor: editor,
+      collapse: collapse,
+      setCursorLocation: setCursorLocation,
+      getContent: getContent,
+      setContent: setContent,
+      getBookmark: getBookmark,
+      moveToBookmark: moveToBookmark,
+      select: select,
+      isCollapsed: isCollapsed,
+      isForward: isForward,
+      setNode: setNode,
+      getNode: getNode,
+      getSel: getSel,
+      setRng: setRng,
+      getRng: getRng,
+      getStart: getStart,
+      getEnd: getEnd$$1,
+      getSelectedBlocks: getSelectedBlocks$$1,
+      normalize: normalize,
+      selectorChanged: selectorChanged,
+      getScrollContainer: getScrollContainer,
+      scrollIntoView: scrollIntoView,
+      placeCaretAt: placeCaretAt,
+      getBoundingClientRect: getBoundingClientRect,
+      destroy: destroy
+    };
+    bookmarkManager = BookmarkManager$1(exports);
+    controlSelection = ControlSelection(exports, editor);
+    exports.bookmarkManager = bookmarkManager;
+    exports.controlSelection = controlSelection;
+    return exports;
+  };
+
+  var isContentEditableFalse$11 = $_fj238m1qjducwnjm.isContentEditableFalse;
+  var getSelectedNode$1 = getSelectedNode;
+  var isAfterContentEditableFalse$2 = isAfterContentEditableFalse;
+  var isBeforeContentEditableFalse$2 = isBeforeContentEditableFalse;
+>>>>>>> installer
   var getVisualCaretPosition = function (walkFn, caretPosition) {
     while (caretPosition = walkFn(caretPosition)) {
       if (caretPosition.isVisible()) {
@@ -21443,13 +30098,20 @@
     }
     return caretPosition;
   };
+<<<<<<< HEAD
   var isMoveInsideSameBlock = function (fromCaretPosition, toCaretPosition) {
     var inSameBlock = $_42t6k327jd08m9pl.isInSameBlock(fromCaretPosition, toCaretPosition);
     if (!inSameBlock && $_2qai0u1qjd08m9l9.isBr(fromCaretPosition.getNode())) {
+=======
+  var isMoveInsideSameBlock = function (from, to) {
+    var inSameBlock = isInSameBlock(from, to);
+    if (!inSameBlock && $_fj238m1qjducwnjm.isBr(from.getNode())) {
+>>>>>>> installer
       return true;
     }
     return inSameBlock;
   };
+<<<<<<< HEAD
   var isRangeInCaretContainerBlock = function (range) {
     return $_euzg3m20jd08m9ow.isCaretContainerBlock(range.startContainer);
   };
@@ -21461,17 +30123,30 @@
     return CaretPosition$1.fromRangeEnd(range);
   };
   var moveToCeFalseHorizontally = function (direction, editor, getNextPosFn, isBeforeContentEditableFalseFn, range) {
+=======
+  var moveToCeFalseHorizontally = function (direction, editor, getNextPosFn, range) {
+>>>>>>> installer
     var node, caretPosition, peekCaretPosition, rangeIsInContainerBlock;
+    var forwards = direction === HDirection.Forwards;
+    var isBeforeContentEditableFalseFn = forwards ? isBeforeContentEditableFalse$2 : isAfterContentEditableFalse$2;
     if (!range.collapsed) {
       node = getSelectedNode$1(range);
       if (isContentEditableFalse$11(node)) {
+<<<<<<< HEAD
         return $_fpzmty55jd08ma5b.showCaret(direction, editor, node, direction === -1);
+=======
+        return showCaret(direction, editor, node, direction === HDirection.Backwards);
+>>>>>>> installer
       }
     }
     rangeIsInContainerBlock = isRangeInCaretContainerBlock(range);
     caretPosition = getNormalizedRangeEndPoint(direction, editor.getBody(), range);
     if (isBeforeContentEditableFalseFn(caretPosition)) {
+<<<<<<< HEAD
       return $_fpzmty55jd08ma5b.selectNode(editor, caretPosition.getNode(direction === -1));
+=======
+      return selectNode(editor, caretPosition.getNode(!forwards));
+>>>>>>> installer
     }
     caretPosition = getNextPosFn(caretPosition);
     if (!caretPosition) {
@@ -21481,41 +30156,67 @@
       return null;
     }
     if (isBeforeContentEditableFalseFn(caretPosition)) {
+<<<<<<< HEAD
       return $_fpzmty55jd08ma5b.showCaret(direction, editor, caretPosition.getNode(direction === -1), direction === 1);
+=======
+      return showCaret(direction, editor, caretPosition.getNode(!forwards), forwards);
+>>>>>>> installer
     }
     peekCaretPosition = getNextPosFn(caretPosition);
     if (isBeforeContentEditableFalseFn(peekCaretPosition)) {
       if (isMoveInsideSameBlock(caretPosition, peekCaretPosition)) {
+<<<<<<< HEAD
         return $_fpzmty55jd08ma5b.showCaret(direction, editor, peekCaretPosition.getNode(direction === -1), direction === 1);
       }
     }
     if (rangeIsInContainerBlock) {
       return $_fpzmty55jd08ma5b.renderRangeCaret(editor, caretPosition.toRange());
+=======
+        return showCaret(direction, editor, peekCaretPosition.getNode(!forwards), forwards);
+      }
+    }
+    if (rangeIsInContainerBlock) {
+      return renderRangeCaret(editor, caretPosition.toRange());
+>>>>>>> installer
     }
     return null;
   };
   var moveToCeFalseVertically = function (direction, editor, walkerFn, range) {
-    var caretPosition, linePositions, nextLinePositions, closestNextLineRect, caretClientRect, clientX, dist1, dist2, contentEditableFalseNode;
+    var caretPosition, linePositions, nextLinePositions;
+    var closestNextLineRect, caretClientRect, clientX;
+    var dist1, dist2, contentEditableFalseNode;
     contentEditableFalseNode = getSelectedNode$1(range);
     caretPosition = getNormalizedRangeEndPoint(direction, editor.getBody(), range);
+<<<<<<< HEAD
     linePositions = walkerFn(editor.getBody(), $_f1jeak6ejd08mafb.isAboveLine(1), caretPosition);
     nextLinePositions = $_c05hv0kjd08m9gg.filter(linePositions, $_f1jeak6ejd08mafb.isLine(1));
     caretClientRect = $_c05hv0kjd08m9gg.last(caretPosition.getClientRects());
     if (isBeforeContentEditableFalse$1(caretPosition)) {
+=======
+    linePositions = walkerFn(editor.getBody(), isAboveLine(1), caretPosition);
+    nextLinePositions = $_e6e6g1kjducwnfd.filter(linePositions, isLine(1));
+    caretClientRect = $_e6e6g1kjducwnfd.last(caretPosition.getClientRects());
+    if (isBeforeContentEditableFalse$2(caretPosition) || isBeforeTable(caretPosition)) {
+>>>>>>> installer
       contentEditableFalseNode = caretPosition.getNode();
     }
-    if (isAfterContentEditableFalse$1(caretPosition)) {
+    if (isAfterContentEditableFalse$2(caretPosition) || isAfterTable(caretPosition)) {
       contentEditableFalseNode = caretPosition.getNode(true);
     }
     if (!caretClientRect) {
       return null;
     }
     clientX = caretClientRect.left;
+<<<<<<< HEAD
     closestNextLineRect = $_63rw2t50jd08ma4z.findClosestClientRect(nextLinePositions, clientX);
+=======
+    closestNextLineRect = findClosestClientRect(nextLinePositions, clientX);
+>>>>>>> installer
     if (closestNextLineRect) {
       if (isContentEditableFalse$11(closestNextLineRect.node)) {
         dist1 = Math.abs(clientX - closestNextLineRect.left);
         dist2 = Math.abs(clientX - closestNextLineRect.right);
+<<<<<<< HEAD
         return $_fpzmty55jd08ma5b.showCaret(direction, editor, closestNextLineRect.node, dist1 < dist2);
       }
     }
@@ -21528,12 +30229,30 @@
       closestNextLineRect = $_c05hv0kjd08m9gg.last($_c05hv0kjd08m9gg.filter(caretPositions, $_f1jeak6ejd08mafb.isLine(0)));
       if (closestNextLineRect) {
         return $_fpzmty55jd08ma5b.renderRangeCaret(editor, closestNextLineRect.position.toRange());
+=======
+        return showCaret(direction, editor, closestNextLineRect.node, dist1 < dist2);
+      }
+    }
+    if (contentEditableFalseNode) {
+      var caretPositions = positionsUntil(direction, editor.getBody(), isAboveLine(1), contentEditableFalseNode);
+      closestNextLineRect = findClosestClientRect($_e6e6g1kjducwnfd.filter(caretPositions, isLine(1)), clientX);
+      if (closestNextLineRect) {
+        return renderRangeCaret(editor, closestNextLineRect.position.toRange());
+      }
+      closestNextLineRect = $_e6e6g1kjducwnfd.last($_e6e6g1kjducwnfd.filter(caretPositions, isLine(0)));
+      if (closestNextLineRect) {
+        return renderRangeCaret(editor, closestNextLineRect.position.toRange());
+>>>>>>> installer
       }
     }
   };
   var createTextBlock = function (editor) {
     var textBlock = editor.dom.create(editor.settings.forced_root_block);
+<<<<<<< HEAD
     if (!$_6pkc2e9jd08m9bi.ie || $_6pkc2e9jd08m9bi.ie >= 11) {
+=======
+    if (!$_cum1kc9jducwn99.ie || $_cum1kc9jducwn99.ie >= 11) {
+>>>>>>> installer
       textBlock.innerHTML = '<br data-mce-bogus="1">';
     }
     return textBlock;
@@ -21541,8 +30260,13 @@
   var exitPreBlock = function (editor, direction, range) {
     var pre, caretPos, newBlock;
     var caretWalker = CaretWalker(editor.getBody());
+<<<<<<< HEAD
     var getNextVisualCaretPosition = $_fys1am25jd08m9pb.curry(getVisualCaretPosition, caretWalker.next);
     var getPrevVisualCaretPosition = $_fys1am25jd08m9pb.curry(getVisualCaretPosition, caretWalker.prev);
+=======
+    var getNextVisualCaretPosition = $_6183wb25jducwnn2.curry(getVisualCaretPosition, caretWalker.next);
+    var getPrevVisualCaretPosition = $_6183wb25jducwnn2.curry(getVisualCaretPosition, caretWalker.prev);
+>>>>>>> installer
     if (range.collapsed && editor.settings.forced_root_block) {
       pre = editor.dom.getParent(range.startContainer, 'PRE');
       if (!pre) {
@@ -21567,14 +30291,18 @@
   };
   var getHorizontalRange = function (editor, forward) {
     var caretWalker = CaretWalker(editor.getBody());
+<<<<<<< HEAD
     var getNextVisualCaretPosition = $_fys1am25jd08m9pb.curry(getVisualCaretPosition, caretWalker.next);
     var getPrevVisualCaretPosition = $_fys1am25jd08m9pb.curry(getVisualCaretPosition, caretWalker.prev);
+=======
+    var getNextVisualCaretPosition = $_6183wb25jducwnn2.curry(getVisualCaretPosition, caretWalker.next);
+    var getPrevVisualCaretPosition = $_6183wb25jducwnn2.curry(getVisualCaretPosition, caretWalker.prev);
+>>>>>>> installer
     var newRange;
-    var direction = forward ? 1 : -1;
+    var direction = forward ? HDirection.Forwards : HDirection.Backwards;
     var getNextPosFn = forward ? getNextVisualCaretPosition : getPrevVisualCaretPosition;
-    var isBeforeContentEditableFalseFn = forward ? isBeforeContentEditableFalse$1 : isAfterContentEditableFalse$1;
     var range = editor.selection.getRng();
-    newRange = moveToCeFalseHorizontally(direction, editor, getNextPosFn, isBeforeContentEditableFalseFn, range);
+    newRange = moveToCeFalseHorizontally(direction, editor, getNextPosFn, range);
     if (newRange) {
       return newRange;
     }
@@ -21587,7 +30315,11 @@
   var getVerticalRange = function (editor, down) {
     var newRange;
     var direction = down ? 1 : -1;
+<<<<<<< HEAD
     var walkerFn = down ? $_f1jeak6ejd08mafb.downUntil : $_f1jeak6ejd08mafb.upUntil;
+=======
+    var walkerFn = down ? downUntil : upUntil;
+>>>>>>> installer
     var range = editor.selection.getRng();
     newRange = moveToCeFalseVertically(direction, editor, walkerFn, range);
     if (newRange) {
@@ -21599,7 +30331,7 @@
     }
     return null;
   };
-  var moveH = function (editor, forward) {
+  var moveH$1 = function (editor, forward) {
     return function () {
       var newRng = getHorizontalRange(editor, forward);
       if (newRng) {
@@ -21610,7 +30342,7 @@
       }
     };
   };
-  var moveV = function (editor, down) {
+  var moveV$1 = function (editor, down) {
     return function () {
       var newRng = getVerticalRange(editor, down);
       if (newRng) {
@@ -21621,6 +30353,7 @@
       }
     };
   };
+<<<<<<< HEAD
   var $_3t4qw46djd08maf6 = {
     moveH: moveH,
     moveV: moveV
@@ -21629,12 +30362,22 @@
   var defaultPatterns = function (patterns) {
     return $_65yphx4jd08m98n.map(patterns, function (pattern) {
       return $_8ec3sn5pjd08mab5.merge({
+=======
+
+  var defaultPatterns = function (patterns) {
+    return $_2dw1bj4jducwn6g.map(patterns, function (pattern) {
+      return $_7sum4s5ujducwoab.merge({
+>>>>>>> installer
         shiftKey: false,
         altKey: false,
         ctrlKey: false,
         metaKey: false,
         keyCode: 0,
+<<<<<<< HEAD
         action: $_9msgtx6jd08m99c.noop
+=======
+        action: $_60qu7r6jducwn73.noop
+>>>>>>> installer
       }, pattern);
     });
   };
@@ -21642,7 +30385,11 @@
     return evt.keyCode === pattern.keyCode && evt.shiftKey === pattern.shiftKey && evt.altKey === pattern.altKey && evt.ctrlKey === pattern.ctrlKey && evt.metaKey === pattern.metaKey;
   };
   var match$1 = function (patterns, evt) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.bind(defaultPatterns(patterns), function (pattern) {
+=======
+    return $_2dw1bj4jducwn6g.bind(defaultPatterns(patterns), function (pattern) {
+>>>>>>> installer
       return matchesEvent(pattern, evt) ? [pattern] : [];
     });
   };
@@ -21657,17 +30404,26 @@
     };
   };
   var execute = function (patterns, evt) {
+<<<<<<< HEAD
     return $_65yphx4jd08m98n.find(match$1(patterns, evt), function (pattern) {
       return pattern.action();
     });
   };
   var $_g7va3m6fjd08mafi = {
+=======
+    return $_2dw1bj4jducwn6g.find(match$1(patterns, evt), function (pattern) {
+      return pattern.action();
+    });
+  };
+  var $_acfmrn6ljducwog1 = {
+>>>>>>> installer
     match: match$1,
     action: action,
     execute: execute
   };
 
   var executeKeydownOverride = function (editor, caret, evt) {
+<<<<<<< HEAD
     var os = $_min5rmjd08m9gu.detect().os;
     $_g7va3m6fjd08mafi.execute([
       {
@@ -21705,6 +30461,61 @@
         ctrlKey: !os.isOSX(),
         altKey: os.isOSX(),
         action: $_4z7kgi3kjd08m9xo.movePrevWord(editor, caret)
+=======
+    var os = $_5hshlmmjducwnfr.detect().os;
+    $_acfmrn6ljducwog1.execute([
+      {
+        keyCode: $_1xm2zi59jducwo6l.RIGHT,
+        action: moveH$1(editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.LEFT,
+        action: moveH$1(editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.UP,
+        action: moveV$1(editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DOWN,
+        action: moveV$1(editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.RIGHT,
+        action: moveH(editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.LEFT,
+        action: moveH(editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.UP,
+        action: moveV(editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DOWN,
+        action: moveV(editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.RIGHT,
+        action: $_41ufni3pjducwnv8.move(editor, caret, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.LEFT,
+        action: $_41ufni3pjducwnv8.move(editor, caret, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.RIGHT,
+        ctrlKey: !os.isOSX(),
+        altKey: os.isOSX(),
+        action: $_41ufni3pjducwnv8.moveNextWord(editor, caret)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.LEFT,
+        ctrlKey: !os.isOSX(),
+        altKey: os.isOSX(),
+        action: $_41ufni3pjducwnv8.movePrevWord(editor, caret)
+>>>>>>> installer
       }
     ], evt).each(function (_) {
       evt.preventDefault();
@@ -21717,15 +30528,24 @@
       }
     });
   };
+<<<<<<< HEAD
   var $_67623z6cjd08maf3 = { setup: setup$6 };
 
   var getParentInlines = function (rootElm, startElm) {
     var parents = $_aus1dm33jd08m9ur.parentsAndSelf(startElm, rootElm);
     return $_65yphx4jd08m98n.findIndex(parents, isBlock).fold($_9msgtx6jd08m99c.constant(parents), function (index) {
+=======
+  var $_fdi5rz6jjducwofn = { setup: setup$6 };
+
+  var getParentInlines = function (rootElm, startElm) {
+    var parents = $_b22jto39jducwnsg.parentsAndSelf(startElm, rootElm);
+    return $_2dw1bj4jducwn6g.findIndex(parents, isBlock).fold($_60qu7r6jducwn73.constant(parents), function (index) {
+>>>>>>> installer
       return parents.slice(0, index);
     });
   };
   var hasOnlyOneChild$1 = function (elm) {
+<<<<<<< HEAD
     return $_8xk2kp17jd08m9j8.children(elm).length === 1;
   };
   var deleteLastPosition = function (forward, editor, target, parentInlines) {
@@ -21737,16 +30557,38 @@
       $_fjc9az38jd08m9vj.deleteElement(editor, forward, target);
     } else {
       var pos = $_74zm1q3ejd08m9wm.replaceWithCaretFormat(target.dom(), formatNodes);
+=======
+    return $_f0qt4317jducwnhq.children(elm).length === 1;
+  };
+  var deleteLastPosition = function (forward, editor, target, parentInlines) {
+    var isFormatElement = $_60qu7r6jducwn73.curry($_gizh813jjducwnu6.isFormatElement, editor);
+    var formatNodes = $_2dw1bj4jducwn6g.map($_2dw1bj4jducwn6g.filter(parentInlines, isFormatElement), function (elm) {
+      return elm.dom();
+    });
+    if (formatNodes.length === 0) {
+      $_92j5pe3ejducwnta.deleteElement(editor, forward, target);
+    } else {
+      var pos = $_gizh813jjducwnu6.replaceWithCaretFormat(target.dom(), formatNodes);
+>>>>>>> installer
       editor.selection.setRng(pos.toRange());
     }
   };
   var deleteCaret$1 = function (editor, forward) {
+<<<<<<< HEAD
     var rootElm = $_f4wyrxyjd08m9i5.fromDom(editor.getBody());
     var startElm = $_f4wyrxyjd08m9i5.fromDom(editor.selection.getStart());
     var parentInlines = $_65yphx4jd08m98n.filter(getParentInlines(rootElm, startElm), hasOnlyOneChild$1);
     return $_65yphx4jd08m98n.last(parentInlines).map(function (target) {
       var fromPos = CaretPosition$1.fromRangeStart(editor.selection.getRng());
       if ($_850zbd2tjd08m9sj.willDeleteLastPositionInElement(forward, fromPos, target.dom())) {
+=======
+    var rootElm = $_5s4uzoyjducwngo.fromDom(editor.getBody());
+    var startElm = $_5s4uzoyjducwngo.fromDom(editor.selection.getStart());
+    var parentInlines = $_2dw1bj4jducwn6g.filter(getParentInlines(rootElm, startElm), hasOnlyOneChild$1);
+    return $_2dw1bj4jducwn6g.last(parentInlines).map(function (target) {
+      var fromPos = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+      if ($_5jcxyf2zjducwnqv.willDeleteLastPositionInElement(forward, fromPos, target.dom())) {
+>>>>>>> installer
         deleteLastPosition(forward, editor, target, parentInlines);
         return true;
       } else {
@@ -21757,6 +30599,7 @@
   var backspaceDelete$5 = function (editor, forward) {
     return editor.selection.isCollapsed() ? deleteCaret$1(editor, forward) : false;
   };
+<<<<<<< HEAD
   var $_58ccvn6hjd08mafp = { backspaceDelete: backspaceDelete$5 };
 
   var executeKeydownOverride$1 = function (editor, caret, evt) {
@@ -21808,12 +30651,66 @@
       {
         keyCode: $_3izr6156jd08ma5d.DELETE,
         action: $_g7va3m6fjd08mafi.action($_58ccvn6hjd08mafp.backspaceDelete, editor, true)
+=======
+  var $_dtw1xc6njducwog7 = { backspaceDelete: backspaceDelete$5 };
+
+  var executeKeydownOverride$1 = function (editor, caret, evt) {
+    $_acfmrn6ljducwog1.execute([
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_52c8ph3bjducwnsq.backspaceDelete, editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_52c8ph3bjducwnsq.backspaceDelete, editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_a4ivlq3fjducwntl.backspaceDelete, editor, caret, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_a4ivlq3fjducwntl.backspaceDelete, editor, caret, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_3kdgsv3ajducwnsk.backspaceDelete, editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_3kdgsv3ajducwnsk.backspaceDelete, editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_d0w5iz2xjducwnqm.backspaceDelete, editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_d0w5iz2xjducwnqm.backspaceDelete, editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_fo6mx3sjducwnvh.backspaceDelete, editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_fo6mx3sjducwnvh.backspaceDelete, editor, true)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_dtw1xc6njducwog7.backspaceDelete, editor, false)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_dtw1xc6njducwog7.backspaceDelete, editor, true)
+>>>>>>> installer
       }
     ], evt).each(function (_) {
       evt.preventDefault();
     });
   };
   var executeKeyupOverride = function (editor, evt) {
+<<<<<<< HEAD
     $_g7va3m6fjd08mafi.execute([
       {
         keyCode: $_3izr6156jd08ma5d.BACKSPACE,
@@ -21822,6 +30719,16 @@
       {
         keyCode: $_3izr6156jd08ma5d.DELETE,
         action: $_g7va3m6fjd08mafi.action($_98we8d35jd08m9v1.paddEmptyElement, editor)
+=======
+    $_acfmrn6ljducwog1.execute([
+      {
+        keyCode: $_1xm2zi59jducwo6l.BACKSPACE,
+        action: $_acfmrn6ljducwog1.action($_52c8ph3bjducwnsq.paddEmptyElement, editor)
+      },
+      {
+        keyCode: $_1xm2zi59jducwo6l.DELETE,
+        action: $_acfmrn6ljducwog1.action($_52c8ph3bjducwnsq.paddEmptyElement, editor)
+>>>>>>> installer
       }
     ], evt);
   };
@@ -21837,7 +30744,11 @@
       }
     });
   };
+<<<<<<< HEAD
   var $_3z47ff6gjd08mafm = { setup: setup$7 };
+=======
+  var $_2cbs3w6mjducwog5 = { setup: setup$7 };
+>>>>>>> installer
 
   var getBodySetting = function (editor, name, defaultValue) {
     var value = editor.getParam(name, defaultValue);
@@ -21891,7 +30802,11 @@
   var shouldEndContainerOnEmtpyBlock = function (editor) {
     return editor.getParam('end_container_on_empty_block', false);
   };
+<<<<<<< HEAD
   var $_7ps6i86ljd08magc = {
+=======
+  var $_d8dkl56rjducwogt = {
+>>>>>>> installer
     getIframeAttrs: getIframeAttrs,
     getDocType: getDocType,
     getDocumentBaseUrl: getDocumentBaseUrl,
@@ -21933,7 +30848,11 @@
     if (root.hasChildNodes()) {
       walker = new TreeWalker(root, root);
       while (node = walker.current()) {
+<<<<<<< HEAD
         if ($_2qai0u1qjd08m9l9.isText(node)) {
+=======
+        if ($_fj238m1qjducwnjm.isText(node)) {
+>>>>>>> installer
           rng.setStart(node, 0);
           rng.setEnd(node, 0);
           break;
@@ -21951,7 +30870,11 @@
         rng.setEnd(lastNode, 0);
       }
     } else {
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isBr(root)) {
+=======
+      if ($_fj238m1qjducwnjm.isBr(root)) {
+>>>>>>> installer
         if (root.nextSibling && dom.isBlock(root.nextSibling)) {
           rng.setStartBefore(root);
           rng.setEndBefore(root);
@@ -21981,19 +30904,33 @@
     return parent !== root ? editableRoot : root;
   };
   var getParentBlock$2 = function (editor) {
+<<<<<<< HEAD
     return $_zhkqu5jd08m996.from(editor.dom.getParent(editor.selection.getStart(true), editor.dom.isBlock));
   };
   var getParentBlockName = function (editor) {
     return getParentBlock$2(editor).fold($_9msgtx6jd08m99c.constant(''), function (parentBlock) {
+=======
+    return Option.from(editor.dom.getParent(editor.selection.getStart(true), editor.dom.isBlock));
+  };
+  var getParentBlockName = function (editor) {
+    return getParentBlock$2(editor).fold($_60qu7r6jducwn73.constant(''), function (parentBlock) {
+>>>>>>> installer
       return parentBlock.nodeName.toUpperCase();
     });
   };
   var isListItemParentBlock = function (editor) {
     return getParentBlock$2(editor).filter(function (elm) {
+<<<<<<< HEAD
       return isListItem($_f4wyrxyjd08m9i5.fromDom(elm));
     }).isSome();
   };
   var $_7tz9sz6njd08magh = {
+=======
+      return isListItem($_5s4uzoyjducwngo.fromDom(elm));
+    }).isSome();
+  };
+  var $_8sw2ec6tjducwoh3 = {
+>>>>>>> installer
     moveToCaretPosition: moveToCaretPosition,
     getEditableRoot: getEditableRoot,
     getParentBlock: getParentBlock$2,
@@ -22023,7 +30960,11 @@
   var isFirstOrLastLi = function (containerBlock, parentBlock, first) {
     var node = containerBlock[first ? 'firstChild' : 'lastChild'];
     while (node) {
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isElement(node)) {
+=======
+      if ($_fj238m1qjducwnjm.isElement(node)) {
+>>>>>>> installer
         break;
       }
       node = node[first ? 'nextSibling' : 'previousSibling'];
@@ -22071,12 +31012,21 @@
       }
     }
     dom.remove(parentBlock);
+<<<<<<< HEAD
     $_7tz9sz6njd08magh.moveToCaretPosition(editor, newBlock);
   };
   var $_6rrhis6mjd08magf = { insert: insert$1 };
 
   var isEmptyAnchor = function (elm) {
     return elm && elm.nodeName === 'A' && $_gfka90jjd08m9g9.trim($_1xlbjk21jd08m9p1.trim(elm.innerText || elm.textContent)).length === 0;
+=======
+    $_8sw2ec6tjducwoh3.moveToCaretPosition(editor, newBlock);
+  };
+  var $_dpgp6x6sjducwogx = { insert: insert$1 };
+
+  var isEmptyAnchor = function (elm) {
+    return elm && elm.nodeName === 'A' && $_8i2houjjducwnd2.trim($_fz0k4u21jducwnmu.trim(elm.innerText || elm.textContent)).length === 0;
+>>>>>>> installer
   };
   var isTableCell$5 = function (node) {
     return node && /^(TD|TH|CAPTION)$/.test(node.nodeName);
@@ -22101,7 +31051,11 @@
       if (dom.isBlock(node)) {
         return;
       }
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isElement(node) && !nonEmptyElementsMap[node.nodeName.toLowerCase()]) {
+=======
+      if ($_fj238m1qjducwnjm.isElement(node) && !nonEmptyElementsMap[node.nodeName.toLowerCase()]) {
+>>>>>>> installer
         firstChilds.push(node);
       }
     }
@@ -22118,12 +31072,21 @@
     }
   };
   var normalizeZwspOffset = function (start, container, offset) {
+<<<<<<< HEAD
     if ($_2qai0u1qjd08m9l9.isText(container) === false) {
       return offset;
     } else if (start) {
       return offset === 1 && container.data.charAt(offset - 1) === $_1xlbjk21jd08m9p1.ZWSP ? 0 : offset;
     } else {
       return offset === container.data.length - 1 && container.data.charAt(offset) === $_1xlbjk21jd08m9p1.ZWSP ? container.data.length : offset;
+=======
+    if ($_fj238m1qjducwnjm.isText(container) === false) {
+      return offset;
+    } else if (start) {
+      return offset === 1 && container.data.charAt(offset - 1) === $_fz0k4u21jducwnmu.ZWSP ? 0 : offset;
+    } else {
+      return offset === container.data.length - 1 && container.data.charAt(offset) === $_fz0k4u21jducwnmu.ZWSP ? container.data.length : offset;
+>>>>>>> installer
     }
   };
   var includeZwspInRange = function (rng) {
@@ -22134,7 +31097,11 @@
   };
   var trimLeadingLineBreaks = function (node) {
     do {
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isText(node)) {
+=======
+      if ($_fj238m1qjducwnjm.isText(node)) {
+>>>>>>> installer
         node.nodeValue = node.nodeValue.replace(/^[\r\n]+/, '');
       }
       node = node.firstChild;
@@ -22153,9 +31120,15 @@
     return parent !== root ? editableRoot : root;
   };
   var setForcedBlockAttrs = function (editor, node) {
+<<<<<<< HEAD
     var forcedRootBlockName = $_7ps6i86ljd08magc.getForcedRootBlock(editor);
     if (forcedRootBlockName && forcedRootBlockName.toLowerCase() === node.tagName.toLowerCase()) {
       editor.dom.setAttribs(node, $_7ps6i86ljd08magc.getForcedRootBlockAttrs(editor));
+=======
+    var forcedRootBlockName = $_d8dkl56rjducwogt.getForcedRootBlock(editor);
+    if (forcedRootBlockName && forcedRootBlockName.toLowerCase() === node.tagName.toLowerCase()) {
+      editor.dom.setAttribs(node, $_d8dkl56rjducwogt.getForcedRootBlockAttrs(editor));
+>>>>>>> installer
     }
   };
   var wrapSelfAndSiblingsInDefaultBlock = function (editor, newBlockName, rng, container, offset) {
@@ -22226,13 +31199,21 @@
         block = parentBlock.cloneNode(false);
       }
       caretNode = block;
+<<<<<<< HEAD
       if ($_7ps6i86ljd08magc.shouldKeepStyles(editor) === false) {
+=======
+      if ($_d8dkl56rjducwogt.shouldKeepStyles(editor) === false) {
+>>>>>>> installer
         dom.setAttrib(block, 'style', null);
         dom.setAttrib(block, 'class', null);
       } else {
         do {
           if (textInlineElements[node.nodeName]) {
+<<<<<<< HEAD
             if ($_74zm1q3ejd08m9wm.isCaretNode(node)) {
+=======
+            if ($_gizh813jjducwnu6.isCaretNode(node)) {
+>>>>>>> installer
               continue;
             }
             clonedNode = node.cloneNode(false);
@@ -22253,20 +31234,32 @@
     var isCaretAtStartOrEndOfBlock = function (start) {
       var walker, node, name, normalizedOffset;
       normalizedOffset = normalizeZwspOffset(start, container, offset);
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isText(container) && (start ? normalizedOffset > 0 : normalizedOffset < container.nodeValue.length)) {
+=======
+      if ($_fj238m1qjducwnjm.isText(container) && (start ? normalizedOffset > 0 : normalizedOffset < container.nodeValue.length)) {
+>>>>>>> installer
         return false;
       }
       if (container.parentNode === parentBlock && isAfterLastNodeInContainer && !start) {
         return true;
       }
+<<<<<<< HEAD
       if (start && $_2qai0u1qjd08m9l9.isElement(container) && container === parentBlock.firstChild) {
+=======
+      if (start && $_fj238m1qjducwnjm.isElement(container) && container === parentBlock.firstChild) {
+>>>>>>> installer
         return true;
       }
       if (containerAndSiblingName(container, 'TABLE') || containerAndSiblingName(container, 'HR')) {
         return isAfterLastNodeInContainer && !start || !isAfterLastNodeInContainer && start;
       }
       walker = new TreeWalker(container, parentBlock);
+<<<<<<< HEAD
       if ($_2qai0u1qjd08m9l9.isText(container)) {
+=======
+      if ($_fj238m1qjducwnjm.isText(container)) {
+>>>>>>> installer
         if (start && normalizedOffset === 0) {
           walker.prev();
         } else if (!start && normalizedOffset === container.nodeValue.length) {
@@ -22274,14 +31267,22 @@
         }
       }
       while (node = walker.current()) {
+<<<<<<< HEAD
         if ($_2qai0u1qjd08m9l9.isElement(node)) {
+=======
+        if ($_fj238m1qjducwnjm.isElement(node)) {
+>>>>>>> installer
           if (!node.getAttribute('data-mce-bogus')) {
             name = node.nodeName.toLowerCase();
             if (nonEmptyElementsMap[name] && name !== 'br') {
               return false;
             }
           }
+<<<<<<< HEAD
         } else if ($_2qai0u1qjd08m9l9.isText(node) && !/^[ \t\r\n]*$/.test(node.nodeValue)) {
+=======
+        } else if ($_fj238m1qjducwnjm.isText(node) && !/^[ \t\r\n]*$/.test(node.nodeValue)) {
+>>>>>>> installer
           return false;
         }
         if (start) {
@@ -22298,25 +31299,44 @@
       } else {
         newBlock = createNewBlock();
       }
+<<<<<<< HEAD
       if ($_7ps6i86ljd08magc.shouldEndContainerOnEmtpyBlock(editor) && canSplitBlock(dom, containerBlock) && dom.isEmpty(parentBlock)) {
+=======
+      if ($_d8dkl56rjducwogt.shouldEndContainerOnEmtpyBlock(editor) && canSplitBlock(dom, containerBlock) && dom.isEmpty(parentBlock)) {
+>>>>>>> installer
         newBlock = dom.split(containerBlock, parentBlock);
       } else {
         dom.insertAfter(newBlock, parentBlock);
       }
+<<<<<<< HEAD
       $_7tz9sz6njd08magh.moveToCaretPosition(editor, newBlock);
     };
     $_6dxv9l3sjd08m9yz.normalize(dom, rng).each(function (normRng) {
+=======
+      $_8sw2ec6tjducwoh3.moveToCaretPosition(editor, newBlock);
+    };
+    $_altsby3xjducwnz5.normalize(dom, rng).each(function (normRng) {
+>>>>>>> installer
       rng.setStart(normRng.startContainer, normRng.startOffset);
       rng.setEnd(normRng.endContainer, normRng.endOffset);
     });
     container = rng.startContainer;
     offset = rng.startOffset;
+<<<<<<< HEAD
     newBlockName = $_7ps6i86ljd08magc.getForcedRootBlock(editor);
     shiftKey = evt.shiftKey;
     if ($_2qai0u1qjd08m9l9.isElement(container) && container.hasChildNodes()) {
       isAfterLastNodeInContainer = offset > container.childNodes.length - 1;
       container = container.childNodes[Math.min(offset, container.childNodes.length - 1)] || container;
       if (isAfterLastNodeInContainer && $_2qai0u1qjd08m9l9.isText(container)) {
+=======
+    newBlockName = $_d8dkl56rjducwogt.getForcedRootBlock(editor);
+    shiftKey = evt.shiftKey;
+    if ($_fj238m1qjducwnjm.isElement(container) && container.hasChildNodes()) {
+      isAfterLastNodeInContainer = offset > container.childNodes.length - 1;
+      container = container.childNodes[Math.min(offset, container.childNodes.length - 1)] || container;
+      if (isAfterLastNodeInContainer && $_fj238m1qjducwnjm.isText(container)) {
+>>>>>>> installer
         offset = container.nodeValue.length;
       } else {
         offset = 0;
@@ -22340,7 +31360,11 @@
     }
     if (/^(LI|DT|DD)$/.test(parentBlockName)) {
       if (dom.isEmpty(parentBlock)) {
+<<<<<<< HEAD
         $_6rrhis6mjd08magf.insert(editor, createNewBlock, containerBlock, parentBlock, newBlockName);
+=======
+        $_dpgp6x6sjducwogx.insert(editor, createNewBlock, containerBlock, parentBlock, newBlockName);
+>>>>>>> installer
         return;
       }
     }
@@ -22348,17 +31372,30 @@
       return;
     }
     newBlockName = newBlockName || 'P';
+<<<<<<< HEAD
     if ($_euzg3m20jd08m9ow.isCaretContainerBlock(parentBlock)) {
       newBlock = $_euzg3m20jd08m9ow.showCaretContainerBlock(parentBlock);
       if (dom.isEmpty(parentBlock)) {
         emptyBlock(parentBlock);
       }
       $_7tz9sz6njd08magh.moveToCaretPosition(editor, newBlock);
+=======
+    if (isCaretContainerBlock(parentBlock)) {
+      newBlock = showCaretContainerBlock(parentBlock);
+      if (dom.isEmpty(parentBlock)) {
+        emptyBlock(parentBlock);
+      }
+      $_8sw2ec6tjducwoh3.moveToCaretPosition(editor, newBlock);
+>>>>>>> installer
     } else if (isCaretAtStartOrEndOfBlock()) {
       insertNewBlockAfter();
     } else if (isCaretAtStartOrEndOfBlock(true)) {
       newBlock = parentBlock.parentNode.insertBefore(createNewBlock(), parentBlock);
+<<<<<<< HEAD
       $_7tz9sz6njd08magh.moveToCaretPosition(editor, containerAndSiblingName(parentBlock, 'HR') ? newBlock : parentBlock);
+=======
+      $_8sw2ec6tjducwoh3.moveToCaretPosition(editor, containerAndSiblingName(parentBlock, 'HR') ? newBlock : parentBlock);
+>>>>>>> installer
     } else {
       tmpRng = includeZwspInRange(rng).cloneRange();
       tmpRng.setEndAfter(parentBlock);
@@ -22376,12 +31413,17 @@
         dom.remove(newBlock);
         insertNewBlockAfter();
       } else {
+<<<<<<< HEAD
         $_7tz9sz6njd08magh.moveToCaretPosition(editor, newBlock);
+=======
+        $_8sw2ec6tjducwoh3.moveToCaretPosition(editor, newBlock);
+>>>>>>> installer
       }
     }
     dom.setAttrib(newBlock, 'id', '');
     editor.fire('NewBlock', { newBlock: newBlock });
   };
+<<<<<<< HEAD
   var $_bvcgtf6kjd08mag1 = { insert: insert$2 };
 
   var matchesSelector = function (editor, selector) {
@@ -22396,53 +31438,103 @@
     return matchesSelector(editor, $_7ps6i86ljd08magc.getNoNewLineSelector(editor));
   };
   var $_ffbmad6pjd08mags = {
+=======
+  var $_8i6vic6qjducwogh = { insert: insert$2 };
+
+  var matchesSelector = function (editor, selector) {
+    return $_8sw2ec6tjducwoh3.getParentBlock(editor).filter(function (parentBlock) {
+      return selector.length > 0 && $_3yrc4b1fjducwnim.is($_5s4uzoyjducwngo.fromDom(parentBlock), selector);
+    }).isSome();
+  };
+  var shouldInsertBr = function (editor) {
+    return matchesSelector(editor, $_d8dkl56rjducwogt.getBrNewLineSelector(editor));
+  };
+  var shouldBlockNewLine = function (editor) {
+    return matchesSelector(editor, $_d8dkl56rjducwogt.getNoNewLineSelector(editor));
+  };
+  var $_8a308n6vjducwohj = {
+>>>>>>> installer
     shouldInsertBr: shouldInsertBr,
     shouldBlockNewLine: shouldBlockNewLine
   };
 
+<<<<<<< HEAD
   var newLineAction = $_ac27t37jd08m9vf.generate([
+=======
+  var newLineAction = $_elh5kq3djducwnt6.generate([
+>>>>>>> installer
     { br: [] },
     { block: [] },
     { none: [] }
   ]);
   var shouldBlockNewLine$1 = function (editor, shiftKey) {
+<<<<<<< HEAD
     return $_ffbmad6pjd08mags.shouldBlockNewLine(editor);
   };
   var isBrMode = function (requiredState) {
     return function (editor, shiftKey) {
       var brMode = $_7ps6i86ljd08magc.getForcedRootBlock(editor) === '';
+=======
+    return $_8a308n6vjducwohj.shouldBlockNewLine(editor);
+  };
+  var isBrMode = function (requiredState) {
+    return function (editor, shiftKey) {
+      var brMode = $_d8dkl56rjducwogt.getForcedRootBlock(editor) === '';
+>>>>>>> installer
       return brMode === requiredState;
     };
   };
   var inListBlock = function (requiredState) {
     return function (editor, shiftKey) {
+<<<<<<< HEAD
       return $_7tz9sz6njd08magh.isListItemParentBlock(editor) === requiredState;
+=======
+      return $_8sw2ec6tjducwoh3.isListItemParentBlock(editor) === requiredState;
+>>>>>>> installer
     };
   };
   var inPreBlock = function (requiredState) {
     return function (editor, shiftKey) {
+<<<<<<< HEAD
       var inPre = $_7tz9sz6njd08magh.getParentBlockName(editor) === 'PRE';
+=======
+      var inPre = $_8sw2ec6tjducwoh3.getParentBlockName(editor) === 'PRE';
+>>>>>>> installer
       return inPre === requiredState;
     };
   };
   var shouldPutBrInPre$1 = function (requiredState) {
     return function (editor, shiftKey) {
+<<<<<<< HEAD
       return $_7ps6i86ljd08magc.shouldPutBrInPre(editor) === requiredState;
     };
   };
   var inBrContext = function (editor, shiftKey) {
     return $_ffbmad6pjd08mags.shouldInsertBr(editor);
+=======
+      return $_d8dkl56rjducwogt.shouldPutBrInPre(editor) === requiredState;
+    };
+  };
+  var inBrContext = function (editor, shiftKey) {
+    return $_8a308n6vjducwohj.shouldInsertBr(editor);
+>>>>>>> installer
   };
   var hasShiftKey = function (editor, shiftKey) {
     return shiftKey;
   };
   var canInsertIntoEditableRoot = function (editor) {
+<<<<<<< HEAD
     var forcedRootBlock = $_7ps6i86ljd08magc.getForcedRootBlock(editor);
     var rootEditable = $_7tz9sz6njd08magh.getEditableRoot(editor.dom, editor.selection.getStart());
+=======
+    var forcedRootBlock = $_d8dkl56rjducwogt.getForcedRootBlock(editor);
+    var rootEditable = $_8sw2ec6tjducwoh3.getEditableRoot(editor.dom, editor.selection.getStart());
+>>>>>>> installer
     return rootEditable && editor.schema.isValidChild(rootEditable.nodeName, forcedRootBlock ? forcedRootBlock : 'P');
   };
   var match$2 = function (predicates, action) {
     return function (editor, shiftKey) {
+<<<<<<< HEAD
       var isMatch = $_65yphx4jd08m98n.foldl(predicates, function (res, p) {
         return res && p(editor, shiftKey);
       }, true);
@@ -22451,6 +31543,16 @@
   };
   var getAction$1 = function (editor, evt) {
     return $_a5endb3jjd08m9xl.evaluateUntil([
+=======
+      var isMatch = $_2dw1bj4jducwn6g.foldl(predicates, function (res, p) {
+        return res && p(editor, shiftKey);
+      }, true);
+      return isMatch ? Option.some(action) : Option.none();
+    };
+  };
+  var getAction$1 = function (editor, evt) {
+    return $_fx53xj3ojducwnv6.evaluateUntil([
+>>>>>>> installer
       match$2([shouldBlockNewLine$1], newLineAction.none()),
       match$2([
         inPreBlock(true),
@@ -22492,6 +31594,7 @@
       evt.shiftKey
     ]).getOr(newLineAction.none());
   };
+<<<<<<< HEAD
   var $_cdu6zz6ojd08magm = { getAction: getAction$1 };
 
   var insert$3 = function (editor, evt) {
@@ -22502,6 +31605,18 @@
     }, $_9msgtx6jd08m99c.noop);
   };
   var $_xdzpi6jjd08mafx = { insert: insert$3 };
+=======
+  var $_9sdqnq6ujducwohe = { getAction: getAction$1 };
+
+  var insert$3 = function (editor, evt) {
+    $_9sdqnq6ujducwohe.getAction(editor, evt).fold(function () {
+      $_6wifbs3wjducwnw6.insert(editor, evt);
+    }, function () {
+      $_8i6vic6qjducwogh.insert(editor, evt);
+    }, $_60qu7r6jducwn73.noop);
+  };
+  var $_3bay526pjducwogd = { insert: insert$3 };
+>>>>>>> installer
 
   var endTypingLevel = function (undoManager) {
     if (undoManager.typing) {
@@ -22519,20 +31634,35 @@
       if (editor.selection.isCollapsed() === false) {
         editor.execCommand('Delete');
       }
+<<<<<<< HEAD
       $_xdzpi6jjd08mafx.insert(editor, event);
+=======
+      $_3bay526pjducwogd.insert(editor, event);
+>>>>>>> installer
     });
   };
   var setup$8 = function (editor) {
     editor.on('keydown', function (event) {
+<<<<<<< HEAD
       if (event.keyCode === $_3izr6156jd08ma5d.ENTER) {
+=======
+      if (event.keyCode === $_1xm2zi59jducwo6l.ENTER) {
+>>>>>>> installer
         handleEnterKeyEvent(editor, event);
       }
     });
   };
+<<<<<<< HEAD
   var $_a19esv6ijd08mafv = { setup: setup$8 };
 
   var isValidInsertPoint = function (location, caretPosition) {
     return isAtStartOrEnd(location) && $_2qai0u1qjd08m9l9.isText(caretPosition.container());
+=======
+  var $_fe17ce6ojducwogc = { setup: setup$8 };
+
+  var isValidInsertPoint = function (location, caretPosition) {
+    return isAtStartOrEnd(location) && $_fj238m1qjducwnjm.isText(caretPosition.container());
+>>>>>>> installer
   };
   var insertNbspAtPosition = function (editor, caretPosition) {
     var container = caretPosition.container();
@@ -22549,6 +31679,7 @@
     }
   };
   var insertAtCaret$2 = function (editor) {
+<<<<<<< HEAD
     var isInlineTarget = $_9msgtx6jd08m99c.curry($_5mzqjz2wjd08m9th.isInlineTarget, editor);
     var caretPosition = CaretPosition$1.fromRangeStart(editor.selection.getRng());
     var boundaryLocation = $_7tmnrf3djd08m9wc.readLocation(isInlineTarget, editor.getBody(), caretPosition);
@@ -22556,16 +31687,34 @@
   };
   var isAtStartOrEnd = function (location) {
     return location.fold($_9msgtx6jd08m99c.constant(false), $_9msgtx6jd08m99c.constant(true), $_9msgtx6jd08m99c.constant(true), $_9msgtx6jd08m99c.constant(false));
+=======
+    var isInlineTarget = $_60qu7r6jducwn73.curry($_4m240x32jducwnrf.isInlineTarget, editor);
+    var caretPosition = CaretPosition$1.fromRangeStart(editor.selection.getRng());
+    var boundaryLocation = $_681q3b3ijducwnty.readLocation(isInlineTarget, editor.getBody(), caretPosition);
+    return boundaryLocation.map($_60qu7r6jducwn73.curry(insertAtLocation, editor, caretPosition)).getOr(false);
+  };
+  var isAtStartOrEnd = function (location) {
+    return location.fold($_60qu7r6jducwn73.constant(false), $_60qu7r6jducwn73.constant(true), $_60qu7r6jducwn73.constant(true), $_60qu7r6jducwn73.constant(false));
+>>>>>>> installer
   };
   var insertAtSelection = function (editor) {
     return editor.selection.isCollapsed() ? insertAtCaret$2(editor) : false;
   };
+<<<<<<< HEAD
   var $_abzdaj6rjd08magw = { insertAtSelection: insertAtSelection };
 
   var executeKeydownOverride$2 = function (editor, evt) {
     $_g7va3m6fjd08mafi.execute([{
         keyCode: $_3izr6156jd08ma5d.SPACEBAR,
         action: $_g7va3m6fjd08mafi.action($_abzdaj6rjd08magw.insertAtSelection, editor)
+=======
+  var $_4tz7xy6xjducwohn = { insertAtSelection: insertAtSelection };
+
+  var executeKeydownOverride$2 = function (editor, evt) {
+    $_acfmrn6ljducwog1.execute([{
+        keyCode: $_1xm2zi59jducwo6l.SPACEBAR,
+        action: $_acfmrn6ljducwog1.action($_4tz7xy6xjducwohn.insertAtSelection, editor)
+>>>>>>> installer
       }], evt).each(function (_) {
       evt.preventDefault();
     });
@@ -22577,6 +31726,7 @@
       }
     });
   };
+<<<<<<< HEAD
   var $_4mva1e6qjd08magv = { setup: setup$9 };
 
   var setup$10 = function (editor) {
@@ -22592,6 +31742,23 @@
     var each = $_gfka90jjd08m9g9.each;
     var BACKSPACE = $_3izr6156jd08ma5d.BACKSPACE, DELETE = $_3izr6156jd08ma5d.DELETE, dom = editor.dom, selection = editor.selection, settings = editor.settings, parser = editor.parser;
     var isGecko = $_6pkc2e9jd08m9bi.gecko, isIE = $_6pkc2e9jd08m9bi.ie, isWebKit = $_6pkc2e9jd08m9bi.webkit;
+=======
+  var $_ayhero6wjducwohl = { setup: setup$9 };
+
+  var setup$10 = function (editor) {
+    var caret = $_41ufni3pjducwnv8.setupSelectedState(editor);
+    $_fdi5rz6jjducwofn.setup(editor, caret);
+    $_2cbs3w6mjducwog5.setup(editor, caret);
+    $_fe17ce6ojducwogc.setup(editor);
+    $_ayhero6wjducwohl.setup(editor);
+  };
+  var $_6wywm26ijducwofm = { setup: setup$10 };
+
+  function Quirks (editor) {
+    var each = $_8i2houjjducwnd2.each;
+    var BACKSPACE = $_1xm2zi59jducwo6l.BACKSPACE, DELETE = $_1xm2zi59jducwo6l.DELETE, dom = editor.dom, selection = editor.selection, settings = editor.settings, parser = editor.parser;
+    var isGecko = $_cum1kc9jducwn99.gecko, isIE = $_cum1kc9jducwn99.ie, isWebKit = $_cum1kc9jducwn99.webkit;
+>>>>>>> installer
     var mceInternalUrlPrefix = 'data:text/mce-internal,';
     var mceInternalDataType = isIE ? 'Text' : 'URL';
     var setEditorCommandState = function (cmd, state) {
@@ -22688,7 +31855,11 @@
             rng = selection.getRng();
             editor.getBody().focus();
             if (e.type === 'mousedown') {
+<<<<<<< HEAD
               if ($_euzg3m20jd08m9ow.isCaretContainer(rng.startContainer)) {
+=======
+              if (isCaretContainer(rng.startContainer)) {
+>>>>>>> installer
                 return;
               }
               selection.placeCaretAt(e.clientX, e.clientY);
@@ -22727,7 +31898,11 @@
           if (!isDefaultPrevented(e) && e.target.nodeName === 'HTML') {
             var body_1 = editor.getBody();
             body_1.blur();
+<<<<<<< HEAD
             $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
+=======
+            $_83mf8ygjducwnbc.setEditorTimeout(editor, function () {
+>>>>>>> installer
               body_1.focus();
             });
           }
@@ -22778,7 +31953,11 @@
         var applyAttributes;
         if (!isDefaultPrevented(e) && isSelectionAcrossElements()) {
           applyAttributes = getAttributeApplyFunction();
+<<<<<<< HEAD
           $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
+=======
+          $_83mf8ygjducwnbc.setEditorTimeout(editor, function () {
+>>>>>>> installer
             applyAttributes();
           });
         }
@@ -22800,7 +31979,11 @@
     var removeBlockQuoteOnBackSpace = function () {
       editor.on('keydown', function (e) {
         var rng, container, offset, root, parent;
+<<<<<<< HEAD
         if (isDefaultPrevented(e) || e.keyCode !== $_3izr6156jd08ma5d.BACKSPACE) {
+=======
+        if (isDefaultPrevented(e) || e.keyCode !== $_1xm2zi59jducwo6l.BACKSPACE) {
+>>>>>>> installer
           return;
         }
         rng = selection.getRng();
@@ -22866,7 +32049,11 @@
     };
     var normalizeSelection = function () {
       editor.on('keyup focusin mouseup', function (e) {
+<<<<<<< HEAD
         if (!$_3izr6156jd08ma5d.modifierPressed(e)) {
+=======
+        if (!$_1xm2zi59jducwo6l.modifierPressed(e)) {
+>>>>>>> installer
           selection.normalize();
         }
       }, true);
@@ -22889,7 +32076,11 @@
         editor.on('click', function (e) {
           var rng;
           if (e.target.nodeName === 'HTML') {
+<<<<<<< HEAD
             if ($_6pkc2e9jd08m9bi.ie > 11) {
+=======
+            if ($_cum1kc9jducwn99.ie > 11) {
+>>>>>>> installer
               editor.getBody().focus();
               return;
             }
@@ -22903,9 +32094,15 @@
       }
     };
     var blockCmdArrowNavigation = function () {
+<<<<<<< HEAD
       if ($_6pkc2e9jd08m9bi.mac) {
         editor.on('keydown', function (e) {
           if ($_3izr6156jd08ma5d.metaKeyPressed(e) && !e.shiftKey && (e.keyCode === 37 || e.keyCode === 39)) {
+=======
+      if ($_cum1kc9jducwn99.mac) {
+        editor.on('keydown', function (e) {
+          if ($_1xm2zi59jducwo6l.metaKeyPressed(e) && !e.shiftKey && (e.keyCode === 37 || e.keyCode === 39)) {
+>>>>>>> installer
             e.preventDefault();
             editor.selection.getSel().modify('move', e.keyCode === 37 ? 'backward' : 'forward', 'lineboundary');
           }
@@ -22953,7 +32150,11 @@
           var internalContent = getMceInternalContent(e);
           if (internalContent && internalContent.id !== editor.id) {
             e.preventDefault();
+<<<<<<< HEAD
             var rng = $_dxcpuw61jd08madd.fromPoint(e.x, e.y, editor.getDoc());
+=======
+            var rng = $_ghraby68jducwodg.fromPoint(e.x, e.y, editor.getDoc());
+>>>>>>> installer
             selection.setRng(rng);
             insertClipboardContents(internalContent.html, true);
           }
@@ -22972,7 +32173,11 @@
     };
     removeBlockQuoteOnBackSpace();
     emptyEditorWhenDeleting();
+<<<<<<< HEAD
     if (!$_6pkc2e9jd08m9bi.windowsPhone) {
+=======
+    if (!$_cum1kc9jducwn99.windowsPhone) {
+>>>>>>> installer
       normalizeSelection();
     }
     if (isWebKit) {
@@ -22982,7 +32187,11 @@
       blockFormSubmitInsideEditor();
       disableBackspaceIntoATable();
       removeAppleInterchangeBrs();
+<<<<<<< HEAD
       if ($_6pkc2e9jd08m9bi.iOS) {
+=======
+      if ($_cum1kc9jducwn99.iOS) {
+>>>>>>> installer
         restoreFocusOnKeyDown();
         bodyHeight();
         tapLinksAndImages();
@@ -22990,11 +32199,19 @@
         selectAll();
       }
     }
+<<<<<<< HEAD
     if ($_6pkc2e9jd08m9bi.ie >= 11) {
       bodyHeight();
       disableBackspaceIntoATable();
     }
     if ($_6pkc2e9jd08m9bi.ie) {
+=======
+    if ($_cum1kc9jducwn99.ie >= 11) {
+      bodyHeight();
+      disableBackspaceIntoATable();
+    }
+    if ($_cum1kc9jducwn99.ie) {
+>>>>>>> installer
       selectAll();
       disableAutoUrlDetect();
       ieInternalDragAndDrop();
@@ -23017,11 +32234,19 @@
 
   var DOM$2 = DOMUtils.DOM;
   var appendStyle = function (editor, text) {
+<<<<<<< HEAD
     var head = $_f4wyrxyjd08m9i5.fromDom(editor.getDoc().head);
     var tag = $_f4wyrxyjd08m9i5.fromTag('style');
     $_1wgh8c14jd08m9iv.set(tag, 'type', 'text/css');
     $_5x9l922fjd08m9qy.append(tag, $_f4wyrxyjd08m9i5.fromText(text));
     $_5x9l922fjd08m9qy.append(head, tag);
+=======
+    var head = $_5s4uzoyjducwngo.fromDom(editor.getDoc().head);
+    var tag = $_5s4uzoyjducwngo.fromTag('style');
+    $_60196814jducwnhd.set(tag, 'type', 'text/css');
+    $_ejmufn2ojducwnpy.append(tag, $_5s4uzoyjducwngo.fromText(text));
+    $_ejmufn2ojducwnpy.append(head, tag);
+>>>>>>> installer
   };
   var createParser = function (editor) {
     var parser = DomParser(editor.settings, editor.schema);
@@ -23086,7 +32311,11 @@
   };
   var autoFocus = function (editor) {
     if (editor.settings.auto_focus) {
+<<<<<<< HEAD
       $_tkwl7gjd08m9ds.setEditorTimeout(editor, function () {
+=======
+      $_83mf8ygjducwnbc.setEditorTimeout(editor, function () {
+>>>>>>> installer
         var focusEditor;
         if (editor.settings.auto_focus === true) {
           focusEditor = editor;
@@ -23170,9 +32399,15 @@
     editor.undoManager = UndoManager(editor);
     editor._nodeChangeDispatcher = new NodeChange(editor);
     editor._selectionOverrides = SelectionOverrides(editor);
+<<<<<<< HEAD
     $_agql5p5wjd08mac7.setup(editor);
     $_e4u2sw6bjd08maf1.setup(editor);
     $_3zqn544ujd08ma3n.setup(editor);
+=======
+    $_cmllon63jducwoc2.setup(editor);
+    $_6wywm26ijducwofm.setup(editor);
+    $_eu4mtv4yjducwo4f.setup(editor);
+>>>>>>> installer
     editor.fire('PreInit');
     if (!settings.browser_spellcheck && !settings.gecko_spellcheck) {
       doc.body.spellcheck = false;
@@ -23188,7 +32423,11 @@
     }
     if (settings.protect) {
       editor.on('BeforeSetContent', function (e) {
+<<<<<<< HEAD
         $_gfka90jjd08m9g9.each(settings.protect, function (pattern) {
+=======
+        $_8i2houjjducwnd2.each(settings.protect, function (pattern) {
+>>>>>>> installer
           e.content = e.content.replace(pattern, function (str) {
             return '<!--mce:protected ' + escape(str) + '-->';
           });
@@ -23213,7 +32452,11 @@
     });
     if (editor.contentStyles.length > 0) {
       contentCssText = '';
+<<<<<<< HEAD
       $_gfka90jjd08m9g9.each(editor.contentStyles, function (style) {
+=======
+      $_8i2houjjducwnd2.each(editor.contentStyles, function (style) {
+>>>>>>> installer
         contentCssText += style + '\r\n';
       });
       editor.dom.addStyle(contentCssText);
@@ -23227,6 +32470,7 @@
       appendStyle(editor, settings.content_style);
     }
   };
+<<<<<<< HEAD
   var $_5098uj4hjd08ma2i = { initContentBody: initContentBody };
 
   var DOM$3 = DOMUtils.DOM;
@@ -23235,6 +32479,16 @@
       var bodyUuid = $_es4isv4sjd08ma3k.uuid('mce');
       editor[bodyUuid] = function () {
         $_5098uj4hjd08ma2i.initContentBody(editor);
+=======
+  var $_ecyfcj4ljducwo2r = { initContentBody: initContentBody };
+
+  var DOM$3 = DOMUtils.DOM;
+  var relaxDomain = function (editor, ifr) {
+    if (document.domain !== window.location.hostname && $_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 12) {
+      var bodyUuid = $_48t1mg4wjducwo4b.uuid('mce');
+      editor[bodyUuid] = function () {
+        $_ecyfcj4ljducwo2r.initContentBody(editor);
+>>>>>>> installer
       };
       var domainRelaxUrl = 'javascript:(function(){' + 'document.open();document.domain="' + document.domain + '";' + 'var ed = window.parent.tinymce.get("' + editor.id + '");document.write(ed.iframeHTML);' + 'document.close();ed.' + bodyUuid + '(true);})()';
       DOM$3.setAttrib(ifr, 'src', domainRelaxUrl);
@@ -23247,15 +32501,25 @@
     return normalizedHeight ? normalizedHeight : '';
   };
   var createIframeElement = function (id, title, height, customAttrs) {
+<<<<<<< HEAD
     var iframe = $_f4wyrxyjd08m9i5.fromTag('iframe');
     $_1wgh8c14jd08m9iv.setAll(iframe, customAttrs);
     $_1wgh8c14jd08m9iv.setAll(iframe, {
+=======
+    var iframe = $_5s4uzoyjducwngo.fromTag('iframe');
+    $_60196814jducwnhd.setAll(iframe, customAttrs);
+    $_60196814jducwnhd.setAll(iframe, {
+>>>>>>> installer
       id: id + '_ifr',
       frameBorder: '0',
       allowTransparency: 'true',
       title: title
     });
+<<<<<<< HEAD
     $_frbcp511jd08m9id.setAll(iframe, {
+=======
+    $_6dooji11jducwngx.setAll(iframe, {
+>>>>>>> installer
       width: '100%',
       height: normalizeHeight(height),
       display: 'block'
@@ -23264,6 +32528,7 @@
   };
   var getIframeHtml = function (editor) {
     var bodyId, bodyClass, iframeHTML;
+<<<<<<< HEAD
     iframeHTML = $_7ps6i86ljd08magc.getDocType(editor) + '<html><head>';
     if ($_7ps6i86ljd08magc.getDocumentBaseUrl(editor) !== editor.documentBaseUrl) {
       iframeHTML += '<base href="' + editor.documentBaseURI.getURI() + '" />';
@@ -23273,13 +32538,28 @@
     bodyClass = $_7ps6i86ljd08magc.getBodyClass(editor);
     if ($_7ps6i86ljd08magc.getContentSecurityPolicy(editor)) {
       iframeHTML += '<meta http-equiv="Content-Security-Policy" content="' + $_7ps6i86ljd08magc.getContentSecurityPolicy(editor) + '" />';
+=======
+    iframeHTML = $_d8dkl56rjducwogt.getDocType(editor) + '<html><head>';
+    if ($_d8dkl56rjducwogt.getDocumentBaseUrl(editor) !== editor.documentBaseUrl) {
+      iframeHTML += '<base href="' + editor.documentBaseURI.getURI() + '" />';
+    }
+    iframeHTML += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+    bodyId = $_d8dkl56rjducwogt.getBodyId(editor);
+    bodyClass = $_d8dkl56rjducwogt.getBodyClass(editor);
+    if ($_d8dkl56rjducwogt.getContentSecurityPolicy(editor)) {
+      iframeHTML += '<meta http-equiv="Content-Security-Policy" content="' + $_d8dkl56rjducwogt.getContentSecurityPolicy(editor) + '" />';
+>>>>>>> installer
     }
     iframeHTML += '</head><body id="' + bodyId + '" class="mce-content-body ' + bodyClass + '" data-id="' + editor.id + '"><br></body></html>';
     return iframeHTML;
   };
   var createIframe = function (editor, o) {
     var title = editor.editorManager.translate('Rich Text Area. Press ALT-F9 for menu. ' + 'Press ALT-F10 for toolbar. Press ALT-0 for help');
+<<<<<<< HEAD
     var ifr = createIframeElement(editor.id, title, o.height, $_7ps6i86ljd08magc.getIframeAttrs(editor)).dom();
+=======
+    var ifr = createIframeElement(editor.id, title, o.height, $_d8dkl56rjducwogt.getIframeAttrs(editor)).dom();
+>>>>>>> installer
     ifr.onload = function () {
       ifr.onload = null;
       editor.fire('load');
@@ -23300,19 +32580,32 @@
     editor.getElement().style.display = 'none';
     DOM$3.setAttrib(editor.id, 'aria-hidden', true);
     if (!isDomainRelaxed) {
+<<<<<<< HEAD
       $_5098uj4hjd08ma2i.initContentBody(editor);
     }
   };
   var $_5mvczp6tjd08maha = { init: init$1 };
+=======
+      $_ecyfcj4ljducwo2r.initContentBody(editor);
+    }
+  };
+  var $_gd1a706zjducwoi3 = { init: init$1 };
+>>>>>>> installer
 
   var DOM$4 = DOMUtils.DOM;
   var initPlugin = function (editor, initializedPlugins, plugin) {
     var Plugin = PluginManager$1.get(plugin);
     var pluginUrl, pluginInstance;
     pluginUrl = PluginManager$1.urls[plugin] || editor.documentBaseUrl.replace(/\/$/, '');
+<<<<<<< HEAD
     plugin = $_gfka90jjd08m9g9.trim(plugin);
     if (Plugin && $_gfka90jjd08m9g9.inArray(initializedPlugins, plugin) === -1) {
       $_gfka90jjd08m9g9.each(PluginManager$1.dependencies(plugin), function (dep) {
+=======
+    plugin = $_8i2houjjducwnd2.trim(plugin);
+    if (Plugin && $_8i2houjjducwnd2.inArray(initializedPlugins, plugin) === -1) {
+      $_8i2houjjducwnd2.each(PluginManager$1.dependencies(plugin), function (dep) {
+>>>>>>> installer
         initPlugin(editor, initializedPlugins, dep);
       });
       if (editor.plugins[plugin]) {
@@ -23331,14 +32624,22 @@
   };
   var initPlugins = function (editor) {
     var initializedPlugins = [];
+<<<<<<< HEAD
     $_gfka90jjd08m9g9.each(editor.settings.plugins.split(/[ ,]/), function (name) {
+=======
+    $_8i2houjjducwnd2.each(editor.settings.plugins.split(/[ ,]/), function (name) {
+>>>>>>> installer
       initPlugin(editor, initializedPlugins, trimLegacyPrefix(name));
     });
   };
   var initTheme = function (editor) {
     var Theme;
     var theme = editor.settings.theme;
+<<<<<<< HEAD
     if ($_erj73112jd08m9ip.isString(theme)) {
+=======
+    if ($_c7y6af12jducwnh8.isString(theme)) {
+>>>>>>> installer
       editor.settings.theme = trimLegacyPrefix(theme);
       Theme = ThemeManager.get(theme);
       editor.theme = new Theme(editor, ThemeManager.urls[theme]);
@@ -23410,9 +32711,15 @@
   var renderThemeUi = function (editor) {
     var settings = editor.settings, elm = editor.getElement();
     editor.orgDisplay = elm.style.display;
+<<<<<<< HEAD
     if ($_erj73112jd08m9ip.isString(settings.theme)) {
       return renderFromLoadedTheme(editor);
     } else if ($_erj73112jd08m9ip.isFunction(settings.theme)) {
+=======
+    if ($_c7y6af12jducwnh8.isString(settings.theme)) {
+      return renderFromLoadedTheme(editor);
+    } else if ($_c7y6af12jducwnh8.isFunction(settings.theme)) {
+>>>>>>> installer
       return renderFromThemeFunc(editor);
     } else {
       return renderThemeFalse(editor);
@@ -23431,17 +32738,30 @@
     boxInfo = renderThemeUi(editor);
     editor.editorContainer = boxInfo.editorContainer ? boxInfo.editorContainer : null;
     if (settings.content_css) {
+<<<<<<< HEAD
       $_gfka90jjd08m9g9.each($_gfka90jjd08m9g9.explode(settings.content_css), function (u) {
+=======
+      $_8i2houjjducwnd2.each($_8i2houjjducwnd2.explode(settings.content_css), function (u) {
+>>>>>>> installer
         editor.contentCSS.push(editor.documentBaseURI.toAbsolute(u));
       });
     }
     if (settings.content_editable) {
+<<<<<<< HEAD
       return $_5098uj4hjd08ma2i.initContentBody(editor);
     } else {
       return $_5mvczp6tjd08maha.init(editor, boxInfo);
     }
   };
   var $_55za034ejd08ma29 = { init: init$2 };
+=======
+      return $_ecyfcj4ljducwo2r.initContentBody(editor);
+    } else {
+      return $_gd1a706zjducwoi3.init(editor, boxInfo);
+    }
+  };
+  var $_e8f9kd4ijducwo2h = { init: init$2 };
+>>>>>>> installer
 
   var DOM$5 = DOMUtils.DOM;
   var hasSkipLoadPrefix = function (name) {
@@ -23458,7 +32778,11 @@
   };
   var loadTheme = function (scriptLoader, editor, suffix, callback) {
     var settings = editor.settings, theme = settings.theme;
+<<<<<<< HEAD
     if ($_erj73112jd08m9ip.isString(theme)) {
+=======
+    if ($_c7y6af12jducwnh8.isString(theme)) {
+>>>>>>> installer
       if (!hasSkipLoadPrefix(theme) && !ThemeManager.urls.hasOwnProperty(theme)) {
         var themeUrl = settings.theme_url;
         if (themeUrl) {
@@ -23475,6 +32799,7 @@
     }
   };
   var loadPlugins = function (settings, suffix) {
+<<<<<<< HEAD
     if ($_gfka90jjd08m9g9.isArray(settings.plugins)) {
       settings.plugins = settings.plugins.join(' ');
     }
@@ -23484,11 +32809,26 @@
     });
     $_gfka90jjd08m9g9.each(settings.plugins.split(/[ ,]/), function (plugin) {
       plugin = $_gfka90jjd08m9g9.trim(plugin);
+=======
+    if ($_8i2houjjducwnd2.isArray(settings.plugins)) {
+      settings.plugins = settings.plugins.join(' ');
+    }
+    $_8i2houjjducwnd2.each(settings.external_plugins, function (url, name) {
+      PluginManager$1.load(name, url);
+      settings.plugins += ' ' + name;
+    });
+    $_8i2houjjducwnd2.each(settings.plugins.split(/[ ,]/), function (plugin) {
+      plugin = $_8i2houjjducwnd2.trim(plugin);
+>>>>>>> installer
       if (plugin && !PluginManager$1.urls[plugin]) {
         if (hasSkipLoadPrefix(plugin)) {
           plugin = plugin.substr(1, plugin.length);
           var dependencies = PluginManager$1.dependencies(plugin);
+<<<<<<< HEAD
           $_gfka90jjd08m9g9.each(dependencies, function (dep) {
+=======
+          $_8i2houjjducwnd2.each(dependencies, function (dep) {
+>>>>>>> installer
             var defaultSettings = {
               prefix: 'plugins/',
               resource: dep,
@@ -23514,12 +32854,21 @@
       loadPlugins(editor.settings, suffix);
       scriptLoader.loadQueue(function () {
         if (!editor.removed) {
+<<<<<<< HEAD
           $_55za034ejd08ma29.init(editor);
         }
       }, editor, function (urls) {
         $_4h0nzd4djd08ma26.pluginLoadError(editor, urls[0]);
         if (!editor.removed) {
           $_55za034ejd08ma29.init(editor);
+=======
+          $_e8f9kd4ijducwo2h.init(editor);
+        }
+      }, editor, function (urls) {
+        $_9erk7k4hjducwo2e.pluginLoadError(editor, urls[0]);
+        if (!editor.removed) {
+          $_e8f9kd4ijducwo2h.init(editor);
+>>>>>>> installer
         }
       });
     });
@@ -23537,7 +32886,11 @@
     if (!editor.getElement()) {
       return;
     }
+<<<<<<< HEAD
     if (!$_6pkc2e9jd08m9bi.contentEditable) {
+=======
+    if (!$_cum1kc9jducwn99.contentEditable) {
+>>>>>>> installer
       return;
     }
     if (!settings.inline) {
@@ -23603,7 +32956,11 @@
     editor.editorManager.add(editor);
     loadScripts(editor, editor.suffix);
   };
+<<<<<<< HEAD
   var $_9gsemw47jd08ma1b = { render: render };
+=======
+  var $_fcx95i4bjducwo1f = { render: render };
+>>>>>>> installer
 
   var add = function (editor, name, settings) {
     var sidebars = editor.sidebars ? editor.sidebars : [];
@@ -23613,10 +32970,17 @@
     });
     editor.sidebars = sidebars;
   };
+<<<<<<< HEAD
   var $_cwcoxp6ujd08mahf = { add: add };
 
   var each$21 = $_gfka90jjd08m9g9.each;
   var trim$4 = $_gfka90jjd08m9g9.trim;
+=======
+  var $_fdgakl70jducwoi8 = { add: add };
+
+  var each$21 = $_8i2houjjducwnd2.each;
+  var trim$4 = $_8i2houjjducwnd2.trim;
+>>>>>>> installer
   var queryParts = 'source protocol authority userInfo user password host port relative path directory file query anchor'.split(' ');
   var DEFAULT_PORTS = {
     ftp: 21,
@@ -23862,12 +33226,253 @@
     return baseUrl;
   };
 
+<<<<<<< HEAD
   var DOM$6 = DOMUtils.DOM;
   var extend$4 = $_gfka90jjd08m9g9.extend;
   var each$22 = $_gfka90jjd08m9g9.each;
   var trim$5 = $_gfka90jjd08m9g9.trim;
   var resolve$4 = $_gfka90jjd08m9g9.resolve;
   var ie$2 = $_6pkc2e9jd08m9bi.ie;
+=======
+  var traverse = function (node, fn) {
+    fn(node);
+    if (node.firstChild) {
+      traverse(node.firstChild, fn);
+    }
+    if (node.next) {
+      traverse(node.next, fn);
+    }
+  };
+  var findMatchingNodes = function (nodeFilters, attributeFilters, node) {
+    var nodeMatches = {};
+    var attrMatches = {};
+    var matches = [];
+    if (node.firstChild) {
+      traverse(node.firstChild, function (node) {
+        $_2dw1bj4jducwn6g.each(nodeFilters, function (filter) {
+          if (filter.name === node.name) {
+            if (nodeMatches[filter.name]) {
+              nodeMatches[filter.name].nodes.push(node);
+            } else {
+              nodeMatches[filter.name] = {
+                filter: filter,
+                nodes: [node]
+              };
+            }
+          }
+        });
+        $_2dw1bj4jducwn6g.each(attributeFilters, function (filter) {
+          if (typeof node.attr(filter.name) === 'string') {
+            if (attrMatches[filter.name]) {
+              attrMatches[filter.name].nodes.push(node);
+            } else {
+              attrMatches[filter.name] = {
+                filter: filter,
+                nodes: [node]
+              };
+            }
+          }
+        });
+      });
+    }
+    for (var name_1 in nodeMatches) {
+      if (nodeMatches.hasOwnProperty(name_1)) {
+        matches.push(nodeMatches[name_1]);
+      }
+    }
+    for (var name_2 in attrMatches) {
+      if (attrMatches.hasOwnProperty(name_2)) {
+        matches.push(attrMatches[name_2]);
+      }
+    }
+    return matches;
+  };
+  var filter$3 = function (nodeFilters, attributeFilters, node) {
+    var matches = findMatchingNodes(nodeFilters, attributeFilters, node);
+    $_2dw1bj4jducwn6g.each(matches, function (match) {
+      $_2dw1bj4jducwn6g.each(match.filter.callbacks, function (callback) {
+        callback(match.nodes, match.filter.name, {});
+      });
+    });
+  };
+
+  var defaultFormat = 'html';
+  var isTreeNode = function (content) {
+    return content instanceof Node$2;
+  };
+  var setContentString = function (editor, content, args) {
+    var body = editor.getBody();
+    var forcedRootBlockName, padd;
+    if (content.length === 0 || /^\s+$/.test(content)) {
+      padd = '<br data-mce-bogus="1">';
+      if (body.nodeName === 'TABLE') {
+        content = '<tr><td>' + padd + '</td></tr>';
+      } else if (/^(UL|OL)$/.test(body.nodeName)) {
+        content = '<li>' + padd + '</li>';
+      }
+      forcedRootBlockName = editor.settings.forced_root_block;
+      if (forcedRootBlockName && editor.schema.isValidChild(body.nodeName.toLowerCase(), forcedRootBlockName.toLowerCase())) {
+        content = padd;
+        content = editor.dom.createHTML(forcedRootBlockName, editor.settings.forced_root_block_attrs, content);
+      } else if (!content) {
+        content = '<br data-mce-bogus="1">';
+      }
+      editor.dom.setHTML(body, content);
+      editor.fire('SetContent', args);
+    } else {
+      if (args.format !== 'raw') {
+        content = HtmlSerializer({ validate: editor.validate }, editor.schema).serialize(editor.parser.parse(content, {
+          isRootContent: true,
+          insert: true
+        }));
+      }
+      args.content = $_8i2houjjducwnd2.trim(content);
+      editor.dom.setHTML(body, args.content);
+      if (!args.no_events) {
+        editor.fire('SetContent', args);
+      }
+    }
+    return args.content;
+  };
+  var setContentTree = function (editor, content, args) {
+    filter$3(editor.parser.getNodeFilters(), editor.parser.getAttributeFilters(), content);
+    var html = HtmlSerializer({ validate: editor.validate }, editor.schema).serialize(content);
+    args.content = $_8i2houjjducwnd2.trim(html);
+    editor.dom.setHTML(editor.getBody(), args.content);
+    if (!args.no_events) {
+      editor.fire('SetContent', args);
+    }
+    return content;
+  };
+  var setContent$1 = function (editor, content, args) {
+    if (args === void 0) {
+      args = {};
+    }
+    args.format = args.format ? args.format : defaultFormat;
+    args.set = true;
+    args.content = isTreeNode(content) ? '' : content;
+    if (!isTreeNode(content) && !args.no_events) {
+      editor.fire('BeforeSetContent', args);
+      content = args.content;
+    }
+    return isTreeNode(content) ? setContentTree(editor, content, args) : setContentString(editor, content, args);
+  };
+  var getContent$1 = function (editor, args) {
+    if (args === void 0) {
+      args = {};
+    }
+    var content;
+    var body = editor.getBody();
+    if (editor.removed) {
+      return '';
+    }
+    args.format = args.format ? args.format : defaultFormat;
+    args.get = true;
+    args.getInner = true;
+    if (!args.no_events) {
+      editor.fire('BeforeGetContent', args);
+    }
+    if (args.format === 'raw') {
+      content = $_8i2houjjducwnd2.trim($_9wn54m5cjducwo73.trimExternal(editor.serializer, body.innerHTML));
+    } else if (args.format === 'text') {
+      content = body.innerText || body.textContent;
+    } else if (args.format === 'tree') {
+      return editor.serializer.serialize(body, args);
+    } else {
+      content = editor.serializer.serialize(body, args);
+    }
+    if (args.format !== 'text') {
+      args.content = $_8i2houjjducwnd2.trim(content);
+    } else {
+      args.content = content;
+    }
+    if (!args.no_events) {
+      editor.fire('GetContent', args);
+    }
+    return args.content;
+  };
+
+  var DOM$6 = DOMUtils.DOM;
+  var restoreOriginalStyles = function (editor) {
+    if (editor.orgDisplay) {
+      DOM$6.setStyle(editor.id, 'display', editor.orgDisplay);
+    }
+  };
+  var safeDestroy = function (x) {
+    return Option.from(x).each(function (x) {
+      return x.destroy();
+    });
+  };
+  var clearDomReferences = function (editor) {
+    editor.contentAreaContainer = editor.formElement = editor.container = editor.editorContainer = null;
+    editor.bodyElement = editor.contentDocument = editor.contentWindow = null;
+    editor.iframeElement = editor.targetElm = null;
+    if (editor.selection) {
+      editor.selection = editor.selection.win = editor.selection.dom = editor.selection.dom.doc = null;
+    }
+  };
+  var restoreForm = function (editor) {
+    var form = editor.formElement;
+    if (form) {
+      if (form._mceOldSubmit) {
+        form.submit = form._mceOldSubmit;
+        form._mceOldSubmit = null;
+      }
+      DOM$6.unbind(form, 'submit reset', editor.formEventDelegate);
+    }
+  };
+  var remove$5 = function (editor) {
+    if (!editor.removed) {
+      var _selectionOverrides = editor._selectionOverrides, editorUpload = editor.editorUpload;
+      var body = editor.getBody();
+      var element = editor.getElement();
+      if (body) {
+        editor.save();
+      }
+      editor.removed = 1;
+      editor.unbindAllNativeEvents();
+      if (editor.hasHiddenInput && element) {
+        DOM$6.remove(element.nextSibling);
+      }
+      if (!editor.inline && body) {
+        restoreOriginalStyles(editor);
+      }
+      $_zfmxp5vjducwoaf.fireRemove(editor);
+      editor.editorManager.remove(editor);
+      DOM$6.remove(editor.getContainer());
+      safeDestroy(_selectionOverrides);
+      safeDestroy(editorUpload);
+      editor.destroy();
+    }
+  };
+  var destroy = function (editor, automatic) {
+    var selection = editor.selection, dom = editor.dom;
+    if (editor.destroyed) {
+      return;
+    }
+    if (!automatic && !editor.removed) {
+      editor.remove();
+      return;
+    }
+    if (!automatic) {
+      editor.editorManager.off('beforeunload', editor._beforeUnload);
+      if (editor.theme && editor.theme.destroy) {
+        editor.theme.destroy();
+      }
+      safeDestroy(selection);
+      safeDestroy(dom);
+    }
+    restoreForm(editor);
+    clearDomReferences(editor);
+    editor.destroyed = 1;
+  };
+
+  var DOM$7 = DOMUtils.DOM;
+  var extend$4 = $_8i2houjjducwnd2.extend;
+  var each$22 = $_8i2houjjducwnd2.each;
+  var resolve$4 = $_8i2houjjducwnd2.resolve;
+  var ie$2 = $_cum1kc9jducwn99.ie;
+>>>>>>> installer
   var Editor = function (id, settings, editorManager) {
     var self = this;
     var documentBaseUrl, baseUri;
@@ -23894,12 +33499,19 @@
     self.buttons = {};
     self.menuItems = {};
     if (settings.cache_suffix) {
+<<<<<<< HEAD
       $_6pkc2e9jd08m9bi.cacheSuffix = settings.cache_suffix.replace(/^[\?\&]+/, '');
     }
     if (settings.override_viewport === false) {
       $_6pkc2e9jd08m9bi.overrideViewPort = false;
+=======
+      $_cum1kc9jducwn99.cacheSuffix = settings.cache_suffix.replace(/^[\?\&]+/, '');
     }
-    editorManager.fire('SetupEditor', self);
+    if (settings.override_viewport === false) {
+      $_cum1kc9jducwn99.overrideViewPort = false;
+>>>>>>> installer
+    }
+    editorManager.fire('SetupEditor', { editor: self });
     self.execCallback('setup', self);
     self.$ = DomQuery.overrideDefaults(function () {
       return {
@@ -23910,10 +33522,17 @@
   };
   Editor.prototype = {
     render: function () {
+<<<<<<< HEAD
       $_9gsemw47jd08ma1b.render(this);
     },
     focus: function (skipFocus) {
       $_2dqalv44jd08ma0x.focus(this, skipFocus);
+=======
+      $_fcx95i4bjducwo1f.render(this);
+    },
+    focus: function (skipFocus) {
+      $_egbtag48jducwo0y.focus(this, skipFocus);
+>>>>>>> installer
     },
     execCallback: function (name) {
       var self = this;
@@ -23938,7 +33557,11 @@
       return callback.apply(scope || self, Array.prototype.slice.call(arguments, 1));
     },
     translate: function (text) {
+<<<<<<< HEAD
       if (text && $_gfka90jjd08m9g9.is(text, 'string')) {
+=======
+      if (text && $_8i2houjjducwnd2.is(text, 'string')) {
+>>>>>>> installer
         var lang_1 = this.settings.language || 'en', i18n_1 = this.editorManager.i18n;
         text = i18n_1.data[lang_1 + '.' + text] || text.replace(/\{\#([^\}]+)\}/g, function (a, b) {
           return i18n_1.data[lang_1 + '.' + b] || '{#' + b + '}';
@@ -23973,7 +33596,11 @@
       self.buttons[name] = settings;
     },
     addSidebar: function (name, settings) {
+<<<<<<< HEAD
       return $_cwcoxp6ujd08mahf.add(this, name, settings);
+=======
+      return $_fdgakl70jducwoi8.add(this, name, settings);
+>>>>>>> installer
     },
     addMenuItem: function (name, settings) {
       var self = this;
@@ -23996,7 +33623,11 @@
         };
       }
       self.contextToolbars.push({
+<<<<<<< HEAD
         id: $_es4isv4sjd08ma3k.uuid('mcet'),
+=======
+        id: $_48t1mg4wjducwo4b.uuid('mcet'),
+>>>>>>> installer
         predicate: predicate,
         items: items
       });
@@ -24032,8 +33663,13 @@
         if (self.inline) {
           self.getBody().contentEditable = true;
         } else {
+<<<<<<< HEAD
           DOM$6.show(self.getContainer());
           DOM$6.hide(self.id);
+=======
+          DOM$7.show(self.getContainer());
+          DOM$7.hide(self.id);
+>>>>>>> installer
         }
         self.load();
         self.fire('show');
@@ -24052,8 +33688,13 @@
             self.editorManager.focusedEditor = null;
           }
         } else {
+<<<<<<< HEAD
           DOM$6.hide(self.getContainer());
           DOM$6.setStyle(self.id, 'display', self.orgDisplay);
+=======
+          DOM$7.hide(self.getContainer());
+          DOM$7.setStyle(self.id, 'display', self.orgDisplay);
+>>>>>>> installer
         }
         self.hidden = true;
         self.fire('hide');
@@ -24107,7 +33748,11 @@
         if (!self.inline) {
           elm.innerHTML = html;
         }
+<<<<<<< HEAD
         if (form = DOM$6.getParent(self.id, 'form')) {
+=======
+        if (form = DOM$7.getParent(self.id, 'form')) {
+>>>>>>> installer
           each$22(form.elements, function (elm) {
             if (elm.name === self.id) {
               elm.value = html;
@@ -24125,6 +33770,7 @@
       return html;
     },
     setContent: function (content, args) {
+<<<<<<< HEAD
       var self = this;
       var body = self.getBody();
       var forcedRootBlockName, padd;
@@ -24199,6 +33845,12 @@
         self.fire('GetContent', args);
       }
       return args.content;
+=======
+      return setContent$1(this, content, args);
+    },
+    getContent: function (args) {
+      return getContent$1(this, args);
+>>>>>>> installer
     },
     insertContent: function (content, args) {
       if (args) {
@@ -24217,12 +33869,20 @@
       }
     },
     setMode: function (mode) {
+<<<<<<< HEAD
       $_3yzw6b40jd08ma0f.setMode(this, mode);
+=======
+      $_awagyr46jducwo0r.setMode(this, mode);
+>>>>>>> installer
     },
     getContainer: function () {
       var self = this;
       if (!self.container) {
+<<<<<<< HEAD
         self.container = DOM$6.get(self.editorContainer || self.id + '_parent');
+=======
+        self.container = DOM$7.get(self.editorContainer || self.id + '_parent');
+>>>>>>> installer
       }
       return self.container;
     },
@@ -24231,7 +33891,11 @@
     },
     getElement: function () {
       if (!this.targetElm) {
+<<<<<<< HEAD
         this.targetElm = DOM$6.get(this.id);
+=======
+        this.targetElm = DOM$7.get(this.id);
+>>>>>>> installer
       }
       return this.targetElm;
     },
@@ -24315,6 +33979,7 @@
       });
     },
     remove: function () {
+<<<<<<< HEAD
       var self = this;
       if (!self.removed) {
         self.save();
@@ -24371,6 +34036,12 @@
         self.selection = self.selection.win = self.selection.dom = self.selection.dom.doc = null;
       }
       self.destroyed = 1;
+=======
+      remove$5(this);
+    },
+    destroy: function (automatic) {
+      destroy(this, automatic);
+>>>>>>> installer
     },
     uploadImages: function (callback) {
       return this.editorUpload.uploadImages(callback);
@@ -24384,7 +34055,11 @@
   var isEditorUIElement = function (elm) {
     return elm.className.toString().indexOf('mce-') !== -1;
   };
+<<<<<<< HEAD
   var $_9pz23o6yjd08maia = { isEditorUIElement: isEditorUIElement };
+=======
+  var $_duu6az77jducwoji = { isEditorUIElement: isEditorUIElement };
+>>>>>>> installer
 
   var isManualNodeChange = function (e) {
     return e.type === 'nodechange' && e.selectionChange;
@@ -24400,7 +34075,11 @@
   };
   var registerFocusOut = function (editor) {
     editor.on('focusout', function () {
+<<<<<<< HEAD
       $_6fdwex3ujd08m9z9.store(editor);
+=======
+      $_exyelv3zjducwnzi.store(editor);
+>>>>>>> installer
     });
   };
   var registerMouseUp = function (editor, throttledStore) {
@@ -24409,7 +34088,11 @@
     });
   };
   var registerEditorEvents = function (editor, throttledStore) {
+<<<<<<< HEAD
     var browser = $_min5rmjd08m9gu.detect().browser;
+=======
+    var browser = $_5hshlmmjducwnfr.detect().browser;
+>>>>>>> installer
     if (browser.isIE() || browser.isEdge()) {
       registerFocusOut(editor);
     } else {
@@ -24417,6 +34100,7 @@
     }
     editor.on('keyup nodechange', function (e) {
       if (!isManualNodeChange(e)) {
+<<<<<<< HEAD
         $_6fdwex3ujd08m9z9.store(editor);
       }
     });
@@ -24424,6 +34108,15 @@
   var register$2 = function (editor) {
     var throttledStore = $_8yp5nr54jd08ma59.first(function () {
       $_6fdwex3ujd08m9z9.store(editor);
+=======
+        $_exyelv3zjducwnzi.store(editor);
+      }
+    });
+  };
+  var register$3 = function (editor) {
+    var throttledStore = $_15mtnw58jducwo6f.first(function () {
+      $_exyelv3zjducwnzi.store(editor);
+>>>>>>> installer
     }, 0);
     if (editor.inline) {
       registerPageMouseUp(editor, throttledStore);
@@ -24435,6 +34128,7 @@
       throttledStore.cancel();
     });
   };
+<<<<<<< HEAD
   var $_dv5lr06zjd08maib = { register: register$2 };
 
   var documentFocusInHandler;
@@ -24445,6 +34139,18 @@
   var isUIElement = function (editor, elm) {
     var customSelector = editor ? editor.settings.custom_ui_selector : '';
     var parent = DOM$7.getParent(elm, function (elm) {
+=======
+  var $_aj05kn78jducwojl = { register: register$3 };
+
+  var documentFocusInHandler;
+  var DOM$8 = DOMUtils.DOM;
+  var isEditorUIElement$1 = function (elm) {
+    return $_duu6az77jducwoji.isEditorUIElement(elm);
+  };
+  var isUIElement = function (editor, elm) {
+    var customSelector = editor ? editor.settings.custom_ui_selector : '';
+    var parent = DOM$8.getParent(elm, function (elm) {
+>>>>>>> installer
       return isEditorUIElement$1(elm) || (customSelector ? editor.dom.is(elm, customSelector) : false);
     });
     return parent !== null;
@@ -24458,7 +34164,11 @@
   };
   var registerEvents = function (editorManager, e) {
     var editor = e.editor;
+<<<<<<< HEAD
     $_dv5lr06zjd08maib.register(editor);
+=======
+    $_aj05kn78jducwojl.register(editor);
+>>>>>>> installer
     editor.on('focusin', function () {
       var self = this;
       var focusedEditor = editorManager.focusedEditor;
@@ -24474,7 +34184,11 @@
     });
     editor.on('focusout', function () {
       var self = this;
+<<<<<<< HEAD
       $_tkwl7gjd08m9ds.setEditorTimeout(self, function () {
+=======
+      $_83mf8ygjducwnbc.setEditorTimeout(self, function () {
+>>>>>>> installer
         var focusedEditor = editorManager.focusedEditor;
         if (!isUIElement(self, getActiveElement()) && focusedEditor === self) {
           self.fire('blur', { focusedEditor: null });
@@ -24507,10 +34221,17 @@
     }
   };
   var setup$11 = function (editorManager) {
+<<<<<<< HEAD
     editorManager.on('AddEditor', $_9msgtx6jd08m99c.curry(registerEvents, editorManager));
     editorManager.on('RemoveEditor', $_9msgtx6jd08m99c.curry(unregisterDocumentEvents, editorManager));
   };
   var $_1nt19r6xjd08mai4 = {
+=======
+    editorManager.on('AddEditor', $_60qu7r6jducwn73.curry(registerEvents, editorManager));
+    editorManager.on('RemoveEditor', $_60qu7r6jducwn73.curry(unregisterDocumentEvents, editorManager));
+  };
+  var $_7bvj4v76jducwoje = {
+>>>>>>> installer
     setup: setup$11,
     isEditorUIElement: isEditorUIElement$1,
     isUIElement: isUIElement
@@ -24518,7 +34239,11 @@
 
   var data = {};
   var code = 'en';
+<<<<<<< HEAD
   var $_95gofi70jd08maif = {
+=======
+  var $_236kh79jducwojr = {
+>>>>>>> installer
     setCode: function (newCode) {
       if (newCode) {
         code = newCode;
@@ -24542,21 +34267,34 @@
     translate: function (text) {
       var langData = data[code] || {};
       var toString = function (obj) {
+<<<<<<< HEAD
         if ($_gfka90jjd08m9g9.is(obj, 'function')) {
+=======
+        if ($_8i2houjjducwnd2.is(obj, 'function')) {
+>>>>>>> installer
           return Object.prototype.toString.call(obj);
         }
         return !isEmpty(obj) ? '' + obj : '';
       };
       var isEmpty = function (text) {
+<<<<<<< HEAD
         return text === '' || text === null || $_gfka90jjd08m9g9.is(text, 'undefined');
       };
       var getLangData = function (text) {
         text = toString(text);
         return $_gfka90jjd08m9g9.hasOwn(langData, text) ? toString(langData[text]) : text;
+=======
+        return text === '' || text === null || $_8i2houjjducwnd2.is(text, 'undefined');
+      };
+      var getLangData = function (text) {
+        text = toString(text);
+        return $_8i2houjjducwnd2.hasOwn(langData, text) ? toString(langData[text]) : text;
+>>>>>>> installer
       };
       if (isEmpty(text)) {
         return '';
       }
+<<<<<<< HEAD
       if ($_gfka90jjd08m9g9.is(text, 'object') && $_gfka90jjd08m9g9.hasOwn(text, 'raw')) {
         return toString(text.raw);
       }
@@ -24564,6 +34302,15 @@
         var values_1 = text.slice(1);
         text = getLangData(text[0]).replace(/\{([0-9]+)\}/g, function ($1, $2) {
           return $_gfka90jjd08m9g9.hasOwn(values_1, $2) ? toString(values_1[$2]) : $1;
+=======
+      if ($_8i2houjjducwnd2.is(text, 'object') && $_8i2houjjducwnd2.hasOwn(text, 'raw')) {
+        return toString(text.raw);
+      }
+      if ($_8i2houjjducwnd2.is(text, 'array')) {
+        var values_1 = text.slice(1);
+        text = getLangData(text[0]).replace(/\{([0-9]+)\}/g, function ($1, $2) {
+          return $_8i2houjjducwnd2.hasOwn(values_1, $2) ? toString(values_1[$2]) : $1;
+>>>>>>> installer
         });
       }
       return getLangData(text).replace(/{context:\w+}$/, '');
@@ -24571,10 +34318,17 @@
     data: data
   };
 
+<<<<<<< HEAD
   var DOM$8 = DOMUtils.DOM;
   var explode$5 = $_gfka90jjd08m9g9.explode;
   var each$23 = $_gfka90jjd08m9g9.each;
   var extend$5 = $_gfka90jjd08m9g9.extend;
+=======
+  var DOM$9 = DOMUtils.DOM;
+  var explode$5 = $_8i2houjjducwnd2.explode;
+  var each$23 = $_8i2houjjducwnd2.each;
+  var extend$5 = $_8i2houjjducwnd2.extend;
+>>>>>>> installer
   var instanceCounter = 0;
   var beforeUnloadDelegate;
   var EditorManager;
@@ -24612,7 +34366,11 @@
         break;
       }
     }
+<<<<<<< HEAD
     editors = $_65yphx4jd08m98n.filter(editors, function (editor) {
+=======
+    editors = $_2dw1bj4jducwn6g.filter(editors, function (editor) {
+>>>>>>> installer
       return targetEditor !== editor;
     });
     if (EditorManager.activeEditor === targetEditor) {
@@ -24637,10 +34395,17 @@
     defaultSettings: {},
     $: DomQuery,
     majorVersion: '4',
+<<<<<<< HEAD
     minorVersion: '7.6',
     releaseDate: '2018-01-29',
     editors: legacyEditors,
     i18n: $_95gofi70jd08maif,
+=======
+    minorVersion: '7.7',
+    releaseDate: '2018-02-19',
+    editors: legacyEditors,
+    i18n: $_236kh79jducwojr,
+>>>>>>> installer
     activeEditor: null,
     settings: {},
     setup: function () {
@@ -24682,7 +34447,11 @@
       self.documentBaseURL = documentBaseURL;
       self.baseURI = new URI(self.baseURL);
       self.suffix = suffix;
+<<<<<<< HEAD
       $_1nt19r6xjd08mai4.setup(self);
+=======
+      $_7bvj4v76jducwoje.setup(self);
+>>>>>>> installer
     },
     overrideDefaults: function (defaultSettings) {
       var baseUrl, suffix;
@@ -24704,7 +34473,11 @@
     init: function (settings) {
       var self = this;
       var result, invalidInlineTargets;
+<<<<<<< HEAD
       invalidInlineTargets = $_gfka90jjd08m9g9.makeMap('area base basefont br col frame hr img input isindex link meta param embed source wbr track ' + 'colgroup option tbody tfoot thead tr script noscript style textarea video audio iframe object menu', ' ');
+=======
+      invalidInlineTargets = $_8i2houjjducwnd2.makeMap('area base basefont br col frame hr img input isindex link meta param embed source wbr track ' + 'colgroup option tbody tfoot thead tr script noscript style textarea video audio iframe object menu', ' ');
+>>>>>>> installer
       var isInvalidInlineTarget = function (settings, elm) {
         return settings.inline && elm.tagName.toLowerCase() in invalidInlineTargets;
       };
@@ -24712,10 +34485,17 @@
         var id = elm.id;
         if (!id) {
           id = elm.name;
+<<<<<<< HEAD
           if (id && !DOM$8.get(id)) {
             id = elm.name;
           } else {
             id = DOM$8.uniqueId();
+=======
+          if (id && !DOM$9.get(id)) {
+            id = elm.name;
+          } else {
+            id = DOM$9.uniqueId();
+>>>>>>> installer
           }
           elm.setAttribute('id', id);
         }
@@ -24729,21 +34509,38 @@
         return callback.apply(self, Array.prototype.slice.call(arguments, 2));
       };
       var hasClass = function (elm, className) {
+<<<<<<< HEAD
         return className.constructor === RegExp ? className.test(elm.className) : DOM$8.hasClass(elm, className);
       };
       var findTargets = function (settings) {
         var l, targets = [];
         if ($_6pkc2e9jd08m9bi.ie && $_6pkc2e9jd08m9bi.ie < 11) {
           $_4h0nzd4djd08ma26.initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tinymce.com/docs/get-started/system-requirements/');
+=======
+        return className.constructor === RegExp ? className.test(elm.className) : DOM$9.hasClass(elm, className);
+      };
+      var findTargets = function (settings) {
+        var l, targets = [];
+        if ($_cum1kc9jducwn99.ie && $_cum1kc9jducwn99.ie < 11) {
+          $_9erk7k4hjducwo2e.initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tinymce.com/docs/get-started/system-requirements/');
+>>>>>>> installer
           return [];
         }
         if (settings.types) {
           each$23(settings.types, function (type) {
+<<<<<<< HEAD
             targets = targets.concat(DOM$8.select(type.selector));
           });
           return targets;
         } else if (settings.selector) {
           return DOM$8.select(settings.selector);
+=======
+            targets = targets.concat(DOM$9.select(type.selector));
+          });
+          return targets;
+        } else if (settings.selector) {
+          return DOM$9.select(settings.selector);
+>>>>>>> installer
         } else if (settings.target) {
           return [settings.target];
         }
@@ -24753,14 +34550,22 @@
           if (l.length > 0) {
             each$23(explode$5(l), function (id) {
               var elm;
+<<<<<<< HEAD
               if (elm = DOM$8.get(id)) {
+=======
+              if (elm = DOM$9.get(id)) {
+>>>>>>> installer
                 targets.push(elm);
               } else {
                 each$23(document.forms, function (f) {
                   each$23(f.elements, function (e) {
                     if (e.name === id) {
                       id = 'mce_editor_' + instanceCounter++;
+<<<<<<< HEAD
                       DOM$8.setAttrib(e, 'id', id);
+=======
+                      DOM$9.setAttrib(e, 'id', id);
+>>>>>>> installer
                       targets.push(e);
                     }
                   });
@@ -24771,7 +34576,11 @@
           break;
         case 'textareas':
         case 'specific_textareas':
+<<<<<<< HEAD
           each$23(DOM$8.select('textarea'), function (elm) {
+=======
+          each$23(DOM$9.select('textarea'), function (elm) {
+>>>>>>> installer
             if (settings.editor_deselector && hasClass(elm, settings.editor_deselector)) {
               return;
             }
@@ -24801,13 +34610,22 @@
           editor.targetElm = editor.targetElm || targetElm;
           editor.render();
         };
+<<<<<<< HEAD
         DOM$8.unbind(window, 'ready', initEditors);
+=======
+        DOM$9.unbind(window, 'ready', initEditors);
+>>>>>>> installer
         execCallback('onpageload');
         targets = DomQuery.unique(findTargets(settings));
         if (settings.types) {
           each$23(settings.types, function (type) {
+<<<<<<< HEAD
             $_gfka90jjd08m9g9.each(targets, function (elm) {
               if (DOM$8.is(elm, type.selector)) {
+=======
+            $_8i2houjjducwnd2.each(targets, function (elm) {
+              if (DOM$9.is(elm, type.selector)) {
+>>>>>>> installer
                 createEditor(createId(elm), extend$5({}, settings, type), elm);
                 return false;
               }
@@ -24816,10 +34634,17 @@
           });
           return;
         }
+<<<<<<< HEAD
         $_gfka90jjd08m9g9.each(targets, function (elm) {
           purgeDestroyedEditor(self.get(elm.id));
         });
         targets = $_gfka90jjd08m9g9.grep(targets, function (elm) {
+=======
+        $_8i2houjjducwnd2.each(targets, function (elm) {
+          purgeDestroyedEditor(self.get(elm.id));
+        });
+        targets = $_8i2houjjducwnd2.grep(targets, function (elm) {
+>>>>>>> installer
           return !self.get(elm.id);
         });
         if (targets.length === 0) {
@@ -24827,7 +34652,11 @@
         } else {
           each$23(targets, function (elm) {
             if (isInvalidInlineTarget(settings, elm)) {
+<<<<<<< HEAD
               $_4h0nzd4djd08ma26.initError('Could not initialize inline editor on invalid inline target element', elm);
+=======
+              $_9erk7k4hjducwo2e.initError('Could not initialize inline editor on invalid inline target element', elm);
+>>>>>>> installer
             } else {
               createEditor(createId(elm), settings, elm);
             }
@@ -24835,7 +34664,11 @@
         }
       };
       self.settings = settings;
+<<<<<<< HEAD
       DOM$8.bind(window, 'ready', initEditors);
+=======
+      DOM$9.bind(window, 'ready', initEditors);
+>>>>>>> installer
       return new promiseObj(function (resolve) {
         if (result) {
           resolve(result);
@@ -24849,11 +34682,19 @@
     get: function (id) {
       if (arguments.length === 0) {
         return editors.slice(0);
+<<<<<<< HEAD
       } else if ($_erj73112jd08m9ip.isString(id)) {
         return $_65yphx4jd08m98n.find(editors, function (editor) {
           return editor.id === id;
         }).getOr(null);
       } else if ($_erj73112jd08m9ip.isNumber(id)) {
+=======
+      } else if ($_c7y6af12jducwnh8.isString(id)) {
+        return $_2dw1bj4jducwn6g.find(editors, function (editor) {
+          return editor.id === id;
+        }).getOr(null);
+      } else if ($_c7y6af12jducwnh8.isNumber(id)) {
+>>>>>>> installer
         return editors[id] ? editors[id] : null;
       } else {
         return null;
@@ -24880,7 +34721,11 @@
         beforeUnloadDelegate = function () {
           self.fire('BeforeUnload');
         };
+<<<<<<< HEAD
         DOM$8.bind(window, 'beforeunload', beforeUnloadDelegate);
+=======
+        DOM$9.bind(window, 'beforeunload', beforeUnloadDelegate);
+>>>>>>> installer
       }
       return editor;
     },
@@ -24896,9 +34741,15 @@
         }
         return;
       }
+<<<<<<< HEAD
       if ($_erj73112jd08m9ip.isString(selector)) {
         selector = selector.selector || selector;
         each$23(DOM$8.select(selector), function (elm) {
+=======
+      if ($_c7y6af12jducwnh8.isString(selector)) {
+        selector = selector.selector || selector;
+        each$23(DOM$9.select(selector), function (elm) {
+>>>>>>> installer
           editor = self.get(elm.id);
           if (editor) {
             self.remove(editor);
@@ -24907,14 +34758,22 @@
         return;
       }
       editor = selector;
+<<<<<<< HEAD
       if ($_erj73112jd08m9ip.isNull(self.get(editor.id))) {
+=======
+      if ($_c7y6af12jducwnh8.isNull(self.get(editor.id))) {
+>>>>>>> installer
         return null;
       }
       if (removeEditorFromList(editor)) {
         self.fire('RemoveEditor', { editor: editor });
       }
       if (editors.length === 0) {
+<<<<<<< HEAD
         DOM$8.unbind(window, 'beforeunload', beforeUnloadDelegate);
+=======
+        DOM$9.unbind(window, 'beforeunload', beforeUnloadDelegate);
+>>>>>>> installer
       }
       editor.remove();
       toggleGlobalEvents(editors.length > 0);
@@ -24956,10 +34815,17 @@
       });
     },
     addI18n: function (code, items) {
+<<<<<<< HEAD
       $_95gofi70jd08maif.add(code, items);
     },
     translate: function (text) {
       return $_95gofi70jd08maif.translate(text);
+=======
+      $_236kh79jducwojr.add(code, items);
+    },
+    translate: function (text) {
+      return $_236kh79jducwojr.translate(text);
+>>>>>>> installer
     },
     setActive: function (editor) {
       var activeEditor = this.activeEditor;
@@ -24972,17 +34838,29 @@
       this.activeEditor = editor;
     }
   };
+<<<<<<< HEAD
   extend$5(EditorManager, $_9g1jyx3yjd08ma09);
+=======
+  extend$5(EditorManager, $_5ie1x944jducwo0j);
+>>>>>>> installer
   EditorManager.setup();
   var EditorManager$1 = EditorManager;
 
   function RangeUtils(dom) {
     var walk = function (rng, callback) {
+<<<<<<< HEAD
       return $_f1rcs75gjd08maa6.walk(dom, rng, callback);
     };
     var split = $_etefta3ijd08m9xk.split;
     var normalize = function (rng) {
       return $_6dxv9l3sjd08m9yz.normalize(dom, rng).fold($_9msgtx6jd08m99c.constant(false), function (normalizedRng) {
+=======
+      return $_ee8wld5ljducwo96.walk(dom, rng, callback);
+    };
+    var split = $_9e24g13njducwnv4.split;
+    var normalize = function (rng) {
+      return $_altsby3xjducwnz5.normalize(dom, rng).fold($_60qu7r6jducwn73.constant(false), function (normalizedRng) {
+>>>>>>> installer
         rng.setStart(normalizedRng.startContainer, normalizedRng.startOffset);
         rng.setEnd(normalizedRng.endContainer, normalizedRng.endOffset);
         return true;
@@ -24995,10 +34873,17 @@
     };
   }
   (function (RangeUtils) {
+<<<<<<< HEAD
     RangeUtils.compareRanges = $_gfrjn03tjd08m9z7.isEq;
     RangeUtils.getCaretRangeFromPoint = $_dxcpuw61jd08madd.fromPoint;
     RangeUtils.getSelectedNode = $_1pqk4723jd08m9p6.getSelectedNode;
     RangeUtils.getNode = $_1pqk4723jd08m9p6.getNode;
+=======
+    RangeUtils.compareRanges = $_18bpcb3yjducwnzh.isEq;
+    RangeUtils.getCaretRangeFromPoint = $_ghraby68jducwodg.fromPoint;
+    RangeUtils.getSelectedNode = getSelectedNode;
+    RangeUtils.getNode = getNode;
+>>>>>>> installer
   }(RangeUtils || (RangeUtils = {})));
   var RangeUtils$1 = RangeUtils;
 
@@ -25099,7 +34984,11 @@
   var fromClientRect = function (clientRect) {
     return create$2(clientRect.left, clientRect.top, clientRect.width, clientRect.height);
   };
+<<<<<<< HEAD
   var $_7m7qgp72jd08mail = {
+=======
+  var $_5udvi37bjducwok2 = {
+>>>>>>> installer
     inflate: inflate,
     relativePosition: relativePosition,
     findBestRelativePosition: findBestRelativePosition,
@@ -25110,7 +34999,11 @@
   };
 
   var types = {};
+<<<<<<< HEAD
   var $_1w90ba73jd08mair = {
+=======
+  var $_eqvctj7cjducwok6 = {
+>>>>>>> installer
     add: function (type, typeClass) {
       types[type.toLowerCase()] = typeClass;
     },
@@ -25145,8 +35038,13 @@
     }
   };
 
+<<<<<<< HEAD
   var each$24 = $_gfka90jjd08m9g9.each;
   var extend$6 = $_gfka90jjd08m9g9.extend;
+=======
+  var each$24 = $_8i2houjjducwnd2.each;
+  var extend$6 = $_8i2houjjducwnd2.extend;
+>>>>>>> installer
   var extendClass;
   var initializing;
   var Class = function () {
@@ -25426,17 +35324,25 @@
     }
     return '' + o;
   };
+<<<<<<< HEAD
   var $_di89ja76jd08maiz = {
+=======
+  var $_3u1nw7fjducwokg = {
+>>>>>>> installer
     serialize: serialize,
     parse: function (text) {
       try {
-        return window[String.fromCharCode(101) + 'val']('(' + text + ')');
+        return JSON.parse(text);
       } catch (ex) {
       }
     }
   };
 
+<<<<<<< HEAD
   var $_6kl4e377jd08maj2 = {
+=======
+  var $_ed3gtj7gjducwoki = {
+>>>>>>> installer
     callbacks: {},
     count: 0,
     send: function (settings) {
@@ -25490,7 +35396,11 @@
           xhr.setRequestHeader('Content-Type', settings.content_type);
         }
         if (settings.requestheaders) {
+<<<<<<< HEAD
           $_gfka90jjd08m9g9.each(settings.requestheaders, function (header) {
+=======
+          $_8i2houjjducwnd2.each(settings.requestheaders, function (header) {
+>>>>>>> installer
             xhr.setRequestHeader(header.key, header.value);
           });
         }
@@ -25507,9 +35417,15 @@
       }
     }
   };
+<<<<<<< HEAD
   $_gfka90jjd08m9g9.extend(XHR, $_9g1jyx3yjd08ma09);
 
   var extend$7 = $_gfka90jjd08m9g9.extend;
+=======
+  $_8i2houjjducwnd2.extend(XHR, $_5ie1x944jducwo0j);
+
+  var extend$7 = $_8i2houjjducwnd2.extend;
+>>>>>>> installer
   var JSONRequest = function (settings) {
     this.settings = extend$7({}, settings);
     this.count = 0;
@@ -25522,7 +35438,11 @@
       var ecb = args.error, scb = args.success;
       args = extend$7(this.settings, args);
       args.success = function (c, x) {
+<<<<<<< HEAD
         c = $_di89ja76jd08maiz.parse(c);
+=======
+        c = $_3u1nw7fjducwokg.parse(c);
+>>>>>>> installer
         if (typeof c === 'undefined') {
           c = { error: 'JSON Parse error.' };
         }
@@ -25537,7 +35457,11 @@
           ecb.call(args.error_scope || args.scope, ty, x);
         }
       };
+<<<<<<< HEAD
       args.data = $_di89ja76jd08maiz.serialize({
+=======
+      args.data = $_3u1nw7fjducwokg.serialize({
+>>>>>>> installer
         id: args.id || 'c' + this.count++,
         method: args.method,
         params: args.params
@@ -25551,6 +35475,7 @@
 
   var tinymce = EditorManager$1;
   var publicApi = {
+<<<<<<< HEAD
     geom: { Rect: $_7m7qgp72jd08mail },
     util: {
       Promise: promiseObj,
@@ -25566,6 +35491,23 @@
       JSON: $_di89ja76jd08maiz,
       JSONRequest: JSONRequest,
       JSONP: $_6kl4e377jd08maj2,
+=======
+    geom: { Rect: $_5udvi37bjducwok2 },
+    util: {
+      Promise: promiseObj,
+      Delay: $_83mf8ygjducwnbc,
+      Tools: $_8i2houjjducwnd2,
+      VK: $_1xm2zi59jducwo6l,
+      URI: URI,
+      Class: Class,
+      EventDispatcher: Dispatcher,
+      Observable: $_5ie1x944jducwo0j,
+      I18n: $_236kh79jducwojr,
+      XHR: XHR,
+      JSON: $_3u1nw7fjducwokg,
+      JSONRequest: JSONRequest,
+      JSONP: $_ed3gtj7gjducwoki,
+>>>>>>> installer
       LocalStorage: localStorage,
       Color: Color
     },
@@ -25585,7 +35527,11 @@
     },
     html: {
       Styles: Styles,
+<<<<<<< HEAD
       Entities: $_6p0pbx1rjd08m9lf,
+=======
+      Entities: $_g4jbz61rjducwnjq,
+>>>>>>> installer
       Node: Node$2,
       Schema: Schema,
       SaxParser: SaxParser$1,
@@ -25593,8 +35539,13 @@
       Writer: Writer,
       Serializer: HtmlSerializer
     },
+<<<<<<< HEAD
     ui: { Factory: $_1w90ba73jd08mair },
     Env: $_6pkc2e9jd08m9bi,
+=======
+    ui: { Factory: $_eqvctj7cjducwok6 },
+    Env: $_cum1kc9jducwn99,
+>>>>>>> installer
     AddOnManager: AddOnManager,
     Formatter: Formatter,
     UndoManager: UndoManager,
@@ -25604,12 +35555,17 @@
     EditorObservable: EditorObservable$1,
     Shortcuts: Shortcuts,
     Editor: Editor,
+<<<<<<< HEAD
     FocusManager: $_9pz23o6yjd08maia,
+=======
+    FocusManager: $_duu6az77jducwoji,
+>>>>>>> installer
     EditorManager: EditorManager$1,
     DOM: DOMUtils.DOM,
     ScriptLoader: ScriptLoader.ScriptLoader,
     PluginManager: AddOnManager.PluginManager,
     ThemeManager: AddOnManager.ThemeManager,
+<<<<<<< HEAD
     trim: $_gfka90jjd08m9g9.trim,
     isArray: $_gfka90jjd08m9g9.isArray,
     is: $_gfka90jjd08m9g9.is,
@@ -25633,6 +35589,31 @@
     isMac: $_6pkc2e9jd08m9bi.mac
   };
   tinymce = $_gfka90jjd08m9g9.extend(tinymce, publicApi);
+=======
+    trim: $_8i2houjjducwnd2.trim,
+    isArray: $_8i2houjjducwnd2.isArray,
+    is: $_8i2houjjducwnd2.is,
+    toArray: $_8i2houjjducwnd2.toArray,
+    makeMap: $_8i2houjjducwnd2.makeMap,
+    each: $_8i2houjjducwnd2.each,
+    map: $_8i2houjjducwnd2.map,
+    grep: $_8i2houjjducwnd2.grep,
+    inArray: $_8i2houjjducwnd2.inArray,
+    extend: $_8i2houjjducwnd2.extend,
+    create: $_8i2houjjducwnd2.create,
+    walk: $_8i2houjjducwnd2.walk,
+    createNS: $_8i2houjjducwnd2.createNS,
+    resolve: $_8i2houjjducwnd2.resolve,
+    explode: $_8i2houjjducwnd2.explode,
+    _addCacheSuffix: $_8i2houjjducwnd2._addCacheSuffix,
+    isOpera: $_cum1kc9jducwn99.opera,
+    isWebKit: $_cum1kc9jducwn99.webkit,
+    isIE: $_cum1kc9jducwn99.ie,
+    isGecko: $_cum1kc9jducwn99.gecko,
+    isMac: $_cum1kc9jducwn99.mac
+  };
+  tinymce = $_8i2houjjducwnd2.extend(tinymce, publicApi);
+>>>>>>> installer
   var Tinymce = tinymce;
 
   var exportToModuleLoaders = function (tinymce) {
@@ -25651,4 +35632,4 @@
   exportToModuleLoaders(Tinymce);
 
 }());
-})()
+})();

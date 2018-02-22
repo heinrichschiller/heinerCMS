@@ -17,7 +17,11 @@ var save = (function () {
   var hasOnCancelCallback = function (editor) {
     return !!editor.getParam('save_oncancelcallback');
   };
+<<<<<<< HEAD
   var $_dowwoaiajd08mdmd = {
+=======
+  var $_awhi0xikjducwrtb = {
+>>>>>>> installer
     enableWhenDirty: enableWhenDirty,
     hasOnSaveCallback: hasOnSaveCallback,
     hasOnCancelCallback: hasOnCancelCallback
@@ -32,11 +36,19 @@ var save = (function () {
   var save = function (editor) {
     var formObj;
     formObj = DOMUtils.DOM.getParent(editor.id, 'form');
+<<<<<<< HEAD
     if ($_dowwoaiajd08mdmd.enableWhenDirty(editor) && !editor.isDirty()) {
       return;
     }
     editor.save();
     if ($_dowwoaiajd08mdmd.hasOnSaveCallback(editor)) {
+=======
+    if ($_awhi0xikjducwrtb.enableWhenDirty(editor) && !editor.isDirty()) {
+      return;
+    }
+    editor.save();
+    if ($_awhi0xikjducwrtb.hasOnSaveCallback(editor)) {
+>>>>>>> installer
       editor.execCallback('save_onsavecallback', editor);
       editor.nodeChanged();
       return;
@@ -57,7 +69,11 @@ var save = (function () {
   };
   var cancel = function (editor) {
     var h = Tools.trim(editor.startContent);
+<<<<<<< HEAD
     if ($_dowwoaiajd08mdmd.hasOnCancelCallback(editor)) {
+=======
+    if ($_awhi0xikjducwrtb.hasOnCancelCallback(editor)) {
+>>>>>>> installer
       editor.execCallback('save_oncancelcallback', editor);
       return;
     }
@@ -65,13 +81,18 @@ var save = (function () {
     editor.undoManager.clear();
     editor.nodeChanged();
   };
+<<<<<<< HEAD
   var $_daeufni7jd08mdm9 = {
+=======
+  var $_5upiaaihjducwrt9 = {
+>>>>>>> installer
     save: save,
     cancel: cancel
   };
 
   var register = function (editor) {
     editor.addCommand('mceSave', function () {
+<<<<<<< HEAD
       $_daeufni7jd08mdm9.save(editor);
     });
     editor.addCommand('mceCancel', function () {
@@ -79,12 +100,25 @@ var save = (function () {
     });
   };
   var $_1hrzn7i6jd08mdm8 = { register: register };
+=======
+      $_5upiaaihjducwrt9.save(editor);
+    });
+    editor.addCommand('mceCancel', function () {
+      $_5upiaaihjducwrt9.cancel(editor);
+    });
+  };
+  var $_dmkmfnigjducwrt8 = { register: register };
+>>>>>>> installer
 
   var stateToggle = function (editor) {
     return function (e) {
       var ctrl = e.control;
       editor.on('nodeChange dirty', function () {
+<<<<<<< HEAD
         ctrl.disabled($_dowwoaiajd08mdmd.enableWhenDirty(editor) && !editor.isDirty());
+=======
+        ctrl.disabled($_awhi0xikjducwrtb.enableWhenDirty(editor) && !editor.isDirty());
+>>>>>>> installer
       });
     };
   };
@@ -105,11 +139,19 @@ var save = (function () {
     });
     editor.addShortcut('Meta+S', '', 'mceSave');
   };
+<<<<<<< HEAD
   var $_bypxc5ibjd08mdme = { register: register$1 };
 
   PluginManager.add('save', function (editor) {
     $_bypxc5ibjd08mdme.register(editor);
     $_1hrzn7i6jd08mdm8.register(editor);
+=======
+  var $_drag6siljducwrtd = { register: register$1 };
+
+  PluginManager.add('save', function (editor) {
+    $_drag6siljducwrtd.register(editor);
+    $_dmkmfnigjducwrt8.register(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -117,4 +159,4 @@ var save = (function () {
   return Plugin;
 
 }());
-})()
+})();

@@ -35,7 +35,11 @@ var media = (function () {
   var hasDimensions = function (editor) {
     return editor.getParam('media_dimensions', true);
   };
+<<<<<<< HEAD
   var $_336b8ufmjd08mdcn = {
+=======
+  var $_e4qawjfvjducwrkd = {
+>>>>>>> installer
     getScripts: getScripts,
     getAudioTemplateCallback: getAudioTemplateCallback,
     getVideoTemplateCallback: getVideoTemplateCallback,
@@ -60,7 +64,11 @@ var media = (function () {
       }
     }
   };
+<<<<<<< HEAD
   var $_5ptha9fqjd08mdcr = { getVideoScriptMatch: getVideoScriptMatch };
+=======
+  var $_60y2ypfzjducwrkj = { getVideoScriptMatch: getVideoScriptMatch };
+>>>>>>> installer
 
   var trimPx = function (value) {
     return value.replace(/px$/, '');
@@ -80,7 +88,11 @@ var media = (function () {
       }
     };
   };
+<<<<<<< HEAD
   var $_evrd3bfrjd08mdcs = {
+=======
+  var $_du3myg0jducwrkk = {
+>>>>>>> installer
     getMaxWidth: getSize('maxWidth'),
     getMaxHeight: getSize('maxHeight'),
     setMaxWidth: setSize('maxWidth'),
@@ -112,7 +124,11 @@ var media = (function () {
           data = Tools.extend(attrs.map, data);
         }
         if (name === 'script') {
+<<<<<<< HEAD
           var videoScript = $_5ptha9fqjd08mdcr.getVideoScriptMatch(prefixes, attrs.map.src);
+=======
+          var videoScript = $_60y2ypfzjducwrkj.getVideoScriptMatch(prefixes, attrs.map.src);
+>>>>>>> installer
           if (!videoScript) {
             return;
           }
@@ -148,14 +164,23 @@ var media = (function () {
       source1: getEphoxEmbedIri(div),
       source2: '',
       poster: '',
+<<<<<<< HEAD
       width: $_evrd3bfrjd08mdcs.getMaxWidth(div),
       height: $_evrd3bfrjd08mdcs.getMaxHeight(div)
+=======
+      width: $_du3myg0jducwrkk.getMaxWidth(div),
+      height: $_du3myg0jducwrkk.getMaxHeight(div)
+>>>>>>> installer
     };
   };
   var htmlToData = function (prefixes, html) {
     return isEphoxEmbed(html) ? ephoxEmbedHtmlToData(html) : htmlToDataSax(prefixes, html);
   };
+<<<<<<< HEAD
   var $_2nsqipfnjd08mdco = { htmlToData: htmlToData };
+=======
+  var $_d650fxfwjducwrkf = { htmlToData: htmlToData };
+>>>>>>> installer
 
   var Promise = tinymce.util.Tools.resolve('tinymce.util.Promise');
 
@@ -172,7 +197,11 @@ var media = (function () {
     var mime = mimes[fileEnd];
     return mime ? mime : '';
   };
+<<<<<<< HEAD
   var $_516pjsfvjd08mdd4 = { guess: guess };
+=======
+  var $_de8twpg4jducwrkr = { guess: guess };
+>>>>>>> installer
 
   var Writer = tinymce.util.Tools.resolve('tinymce.html.Writer');
 
@@ -321,14 +350,23 @@ var media = (function () {
   var updateEphoxEmbed = function (html, data) {
     var fragment = DOM$1.createFragment(html);
     var div = fragment.firstChild;
+<<<<<<< HEAD
     $_evrd3bfrjd08mdcs.setMaxWidth(div, data.width);
     $_evrd3bfrjd08mdcs.setMaxHeight(div, data.height);
+=======
+    $_du3myg0jducwrkk.setMaxWidth(div, data.width);
+    $_du3myg0jducwrkk.setMaxHeight(div, data.height);
+>>>>>>> installer
     return normalizeHtml(div.outerHTML);
   };
   var updateHtml = function (html, data, updateAll) {
     return isEphoxEmbed$1(html) ? updateEphoxEmbed(html, data) : updateHtmlSax(html, data, updateAll);
   };
+<<<<<<< HEAD
   var $_fky9hfwjd08mdd5 = { updateHtml: updateHtml };
+=======
+  var $_9u6kq4g5jducwrkt = { updateHtml: updateHtml };
+>>>>>>> installer
 
   var urlPatterns = [
     {
@@ -396,7 +434,11 @@ var media = (function () {
       allowFullscreen: true
     }
   ];
+<<<<<<< HEAD
   var $_11bcoefzjd08mdda = { urlPatterns: urlPatterns };
+=======
+  var $_69q1btg8jducwrkx = { urlPatterns: urlPatterns };
+>>>>>>> installer
 
   var getIframeHtml = function (data) {
     var allowFullscreen = data.allowFullscreen ? ' allowFullscreen="1"' : '';
@@ -430,7 +472,11 @@ var media = (function () {
   var dataToHtml = function (editor, dataIn) {
     var data = Tools.extend({}, dataIn);
     if (!data.source1) {
+<<<<<<< HEAD
       Tools.extend(data, $_2nsqipfnjd08mdco.htmlToData($_336b8ufmjd08mdcn.getScripts(editor), data.embed));
+=======
+      Tools.extend(data, $_d650fxfwjducwrkf.htmlToData($_e4qawjfvjducwrkd.getScripts(editor), data.embed));
+>>>>>>> installer
       if (!data.source1) {
         return '';
       }
@@ -443,10 +489,17 @@ var media = (function () {
     }
     data.source1 = editor.convertURL(data.source1, 'source');
     data.source2 = editor.convertURL(data.source2, 'source');
+<<<<<<< HEAD
     data.source1mime = $_516pjsfvjd08mdd4.guess(data.source1);
     data.source2mime = $_516pjsfvjd08mdd4.guess(data.source2);
     data.poster = editor.convertURL(data.poster, 'poster');
     Tools.each($_11bcoefzjd08mdda.urlPatterns, function (pattern) {
+=======
+    data.source1mime = $_de8twpg4jducwrkr.guess(data.source1);
+    data.source2mime = $_de8twpg4jducwrkr.guess(data.source2);
+    data.poster = editor.convertURL(data.poster, 'poster');
+    Tools.each($_69q1btg8jducwrkx.urlPatterns, function (pattern) {
+>>>>>>> installer
       var i;
       var url;
       var match = pattern.regex.exec(data.source1);
@@ -465,16 +518,27 @@ var media = (function () {
       }
     });
     if (data.embed) {
+<<<<<<< HEAD
       return $_fky9hfwjd08mdd5.updateHtml(data.embed, data, true);
     } else {
       var videoScript = $_5ptha9fqjd08mdcr.getVideoScriptMatch($_336b8ufmjd08mdcn.getScripts(editor), data.source1);
+=======
+      return $_9u6kq4g5jducwrkt.updateHtml(data.embed, data, true);
+    } else {
+      var videoScript = $_60y2ypfzjducwrkj.getVideoScriptMatch($_e4qawjfvjducwrkd.getScripts(editor), data.source1);
+>>>>>>> installer
       if (videoScript) {
         data.type = 'script';
         data.width = videoScript.width;
         data.height = videoScript.height;
       }
+<<<<<<< HEAD
       var audioTemplateCallback = $_336b8ufmjd08mdcn.getAudioTemplateCallback(editor);
       var videoTemplateCallback = $_336b8ufmjd08mdcn.getVideoTemplateCallback(editor);
+=======
+      var audioTemplateCallback = $_e4qawjfvjducwrkd.getAudioTemplateCallback(editor);
+      var videoTemplateCallback = $_e4qawjfvjducwrkd.getVideoTemplateCallback(editor);
+>>>>>>> installer
       data.width = data.width || 300;
       data.height = data.height || 150;
       Tools.each(data, function (value, key) {
@@ -493,7 +557,11 @@ var media = (function () {
       }
     }
   };
+<<<<<<< HEAD
   var $_fudkelfujd08mdcy = { dataToHtml: dataToHtml };
+=======
+  var $_7x7y2ng3jducwrkn = { dataToHtml: dataToHtml };
+>>>>>>> installer
 
   var cache = {};
   var embedPromise = function (data, dataToHtml, handler) {
@@ -524,17 +592,29 @@ var media = (function () {
   };
   var loadedData = function (editor) {
     return function (data) {
+<<<<<<< HEAD
       return $_fudkelfujd08mdcy.dataToHtml(editor, data);
     };
   };
   var getEmbedHtml = function (editor, data) {
     var embedHandler = $_336b8ufmjd08mdcn.getUrlResolver(editor);
+=======
+      return $_7x7y2ng3jducwrkn.dataToHtml(editor, data);
+    };
+  };
+  var getEmbedHtml = function (editor, data) {
+    var embedHandler = $_e4qawjfvjducwrkd.getUrlResolver(editor);
+>>>>>>> installer
     return embedHandler ? embedPromise(data, loadedData(editor), embedHandler) : defaultPromise(data, loadedData(editor));
   };
   var isCached = function (url) {
     return cache.hasOwnProperty(url);
   };
+<<<<<<< HEAD
   var $_zydtdfsjd08mdct = {
+=======
+  var $_g3sjdg1jducwrkl = {
+>>>>>>> installer
     getEmbedHtml: getEmbedHtml,
     isCached: isCached
   };
@@ -619,7 +699,11 @@ var media = (function () {
       ]
     };
   };
+<<<<<<< HEAD
   var $_kyt8ug0jd08mddc = {
+=======
+  var $_fy85e2g9jducwrky = {
+>>>>>>> installer
     createUi: createUi,
     syncSize: syncSize,
     updateSize: updateSize
@@ -642,11 +726,19 @@ var media = (function () {
       return {
         'source1': dataEmbed,
         'data-ephox-embed-iri': dataEmbed,
+<<<<<<< HEAD
         'width': $_evrd3bfrjd08mdcs.getMaxWidth(element),
         'height': $_evrd3bfrjd08mdcs.getMaxHeight(element)
       };
     }
     return element.getAttribute('data-mce-object') ? $_2nsqipfnjd08mdco.htmlToData($_336b8ufmjd08mdcn.getScripts(editor), editor.serializer.serialize(element, { selection: true })) : {};
+=======
+        'width': $_du3myg0jducwrkk.getMaxWidth(element),
+        'height': $_du3myg0jducwrkk.getMaxHeight(element)
+      };
+    }
+    return element.getAttribute('data-mce-object') ? $_d650fxfwjducwrkf.htmlToData($_e4qawjfvjducwrkd.getScripts(editor), editor.serializer.serialize(element, { selection: true })) : {};
+>>>>>>> installer
   };
   var getSource = function (editor) {
     var elm = editor.selection.getNode();
@@ -658,11 +750,19 @@ var media = (function () {
     return function (response) {
       var html = response.html;
       var embed = win.find('#embed')[0];
+<<<<<<< HEAD
       var data = Tools.extend($_2nsqipfnjd08mdco.htmlToData($_336b8ufmjd08mdcn.getScripts(editor), html), { source1: response.url });
       win.fromJSON(data);
       if (embed) {
         embed.value(html);
         $_kyt8ug0jd08mddc.updateSize(win);
+=======
+      var data = Tools.extend($_d650fxfwjducwrkf.htmlToData($_e4qawjfvjducwrkd.getScripts(editor), html), { source1: response.url });
+      win.fromJSON(data);
+      if (embed) {
+        embed.value(html);
+        $_fy85e2g9jducwrky.updateSize(win);
+>>>>>>> installer
       }
     };
   };
@@ -687,11 +787,19 @@ var media = (function () {
   };
   var submitForm = function (win, editor) {
     var data = win.toJSON();
+<<<<<<< HEAD
     data.embed = $_fky9hfwjd08mdd5.updateHtml(data.embed, data);
     if (data.embed && $_zydtdfsjd08mdct.isCached(data.source1)) {
       handleInsert(editor, data.embed);
     } else {
       $_zydtdfsjd08mdct.getEmbedHtml(editor, data).then(function (response) {
+=======
+    data.embed = $_9u6kq4g5jducwrkt.updateHtml(data.embed, data);
+    if (data.embed && $_g3sjdg1jducwrkl.isCached(data.source1)) {
+      handleInsert(editor, data.embed);
+    } else {
+      $_g3sjdg1jducwrkl.getEmbedHtml(editor, data).then(function (response) {
+>>>>>>> installer
         handleInsert(editor, response.html);
       }).catch(handleError(editor));
     }
@@ -713,11 +821,19 @@ var media = (function () {
         label: 'Source',
         onpaste: function () {
           setTimeout(function () {
+<<<<<<< HEAD
             $_zydtdfsjd08mdct.getEmbedHtml(editor, win.toJSON()).then(addEmbedHtml(win, editor)).catch(handleError(editor));
           }, 1);
         },
         onchange: function (e) {
           $_zydtdfsjd08mdct.getEmbedHtml(editor, win.toJSON()).then(addEmbedHtml(win, editor)).catch(handleError(editor));
+=======
+            $_g3sjdg1jducwrkl.getEmbedHtml(editor, win.toJSON()).then(addEmbedHtml(win, editor)).catch(handleError(editor));
+          }, 1);
+        },
+        onchange: function (e) {
+          $_g3sjdg1jducwrkl.getEmbedHtml(editor, win.toJSON()).then(addEmbedHtml(win, editor)).catch(handleError(editor));
+>>>>>>> installer
           populateMeta(win, e.meta);
         },
         onbeforecall: function (e) {
@@ -728,9 +844,15 @@ var media = (function () {
     var reserialise = function (update) {
       update(win);
       data = win.toJSON();
+<<<<<<< HEAD
       win.find('#embed').value($_fky9hfwjd08mdd5.updateHtml(data.embed, data));
     };
     if ($_336b8ufmjd08mdcn.hasAltSource(editor)) {
+=======
+      win.find('#embed').value($_9u6kq4g5jducwrkt.updateHtml(data.embed, data));
+    };
+    if ($_e4qawjfvjducwrkd.hasAltSource(editor)) {
+>>>>>>> installer
       advancedFormItems.push({
         name: 'source2',
         type: 'filepicker',
@@ -739,7 +861,11 @@ var media = (function () {
         label: 'Alternative source'
       });
     }
+<<<<<<< HEAD
     if ($_336b8ufmjd08mdcn.hasPoster(editor)) {
+=======
+    if ($_e4qawjfvjducwrkd.hasPoster(editor)) {
+>>>>>>> installer
       advancedFormItems.push({
         name: 'poster',
         type: 'filepicker',
@@ -748,8 +874,13 @@ var media = (function () {
         label: 'Poster'
       });
     }
+<<<<<<< HEAD
     if ($_336b8ufmjd08mdcn.hasDimensions(editor)) {
       var control = $_kyt8ug0jd08mddc.createUi(reserialise);
+=======
+    if ($_e4qawjfvjducwrkd.hasDimensions(editor)) {
+      var control = $_fy85e2g9jducwrky.createUi(reserialise);
+>>>>>>> installer
       generalFormItems.push(control);
     }
     data = getData(editor);
@@ -764,44 +895,52 @@ var media = (function () {
       label: 'Source'
     };
     var updateValueOnChange = function () {
+<<<<<<< HEAD
       data = Tools.extend({}, $_2nsqipfnjd08mdco.htmlToData($_336b8ufmjd08mdcn.getScripts(editor), this.value()));
+=======
+      data = Tools.extend({}, $_d650fxfwjducwrkf.htmlToData($_e4qawjfvjducwrkd.getScripts(editor), this.value()));
+>>>>>>> installer
       this.parent().parent().fromJSON(data);
     };
     embedTextBox[embedChange] = updateValueOnChange;
+    var body = [
+      {
+        title: 'General',
+        type: 'form',
+        items: generalFormItems
+      },
+      {
+        title: 'Embed',
+        type: 'container',
+        layout: 'flex',
+        direction: 'column',
+        align: 'stretch',
+        padding: 10,
+        spacing: 10,
+        items: [
+          {
+            type: 'label',
+            text: 'Paste your embed code below:',
+            forId: 'mcemediasource'
+          },
+          embedTextBox
+        ]
+      }
+    ];
+    if (advancedFormItems.length > 0) {
+      body.push({
+        title: 'Advanced',
+        type: 'form',
+        items: advancedFormItems
+      });
+    }
     win = editor.windowManager.open({
       title: 'Insert/edit media',
       data: data,
       bodyType: 'tabpanel',
-      body: [
-        {
-          title: 'General',
-          type: 'form',
-          items: generalFormItems
-        },
-        {
-          title: 'Embed',
-          type: 'container',
-          layout: 'flex',
-          direction: 'column',
-          align: 'stretch',
-          padding: 10,
-          spacing: 10,
-          items: [
-            {
-              type: 'label',
-              text: 'Paste your embed code below:',
-              forId: 'mcemediasource'
-            },
-            embedTextBox
-          ]
-        },
-        {
-          title: 'Advanced',
-          type: 'form',
-          items: advancedFormItems
-        }
-      ],
+      body: body,
       onSubmit: function () {
+<<<<<<< HEAD
         $_kyt8ug0jd08mddc.updateSize(win);
         submitForm(win, editor);
       }
@@ -825,11 +964,40 @@ var media = (function () {
     editor.addCommand('mceMedia', showDialog);
   };
   var $_nro0jg1jd08mddg = { register: register };
+=======
+        $_fy85e2g9jducwrky.updateSize(win);
+        submitForm(win, editor);
+      }
+    });
+    $_fy85e2g9jducwrky.syncSize(win);
+  };
+  var $_24kmhlfsjducwrk4 = { showDialog: showDialog };
+
+  var get = function (editor) {
+    var showDialog = function () {
+      $_24kmhlfsjducwrk4.showDialog(editor);
+    };
+    return { showDialog: showDialog };
+  };
+  var $_bt469cfrjducwrk2 = { get: get };
+
+  var register = function (editor) {
+    var showDialog = function () {
+      $_24kmhlfsjducwrk4.showDialog(editor);
+    };
+    editor.addCommand('mceMedia', showDialog);
+  };
+  var $_2w1qpzgajducwrl0 = { register: register };
+>>>>>>> installer
 
   var Node = tinymce.util.Tools.resolve('tinymce.html.Node');
 
   var sanitize = function (editor, html) {
+<<<<<<< HEAD
     if ($_336b8ufmjd08mdcn.shouldFilterHtml(editor) === false) {
+=======
+    if ($_e4qawjfvjducwrkd.shouldFilterHtml(editor) === false) {
+>>>>>>> installer
       return html;
     }
     var writer = Writer();
@@ -872,7 +1040,11 @@ var media = (function () {
     }, Schema({})).parse(html);
     return writer.getContent();
   };
+<<<<<<< HEAD
   var $_fehntlg5jd08mddp = { sanitize: sanitize };
+=======
+  var $_86bza4gejducwrl7 = { sanitize: sanitize };
+>>>>>>> installer
 
   var createPlaceholderNode = function (editor, node) {
     var placeHolder;
@@ -907,8 +1079,10 @@ var media = (function () {
     previewNode.attr({
       src: node.attr('src'),
       allowfullscreen: node.attr('allowfullscreen'),
-      width: node.attr('width') || '300',
-      height: node.attr('height') || (name === 'audio' ? '30' : '150'),
+      style: node.attr('style'),
+      class: node.attr('class'),
+      width: node.attr('width'),
+      height: node.attr('height'),
       frameborder: '0'
     });
     shimNode = new Node('span', 1);
@@ -937,7 +1111,11 @@ var media = (function () {
     }
     innerHtml = sourceNode.firstChild && sourceNode.firstChild.value;
     if (innerHtml) {
+<<<<<<< HEAD
       targetNode.attr('data-mce-html', escape($_fehntlg5jd08mddp.sanitize(editor, innerHtml)));
+=======
+      targetNode.attr('data-mce-html', escape($_86bza4gejducwrl7.sanitize(editor, innerHtml)));
+>>>>>>> installer
       targetNode.firstChild = null;
     }
   };
@@ -963,7 +1141,11 @@ var media = (function () {
           continue;
         }
         if (node.name === 'script') {
+<<<<<<< HEAD
           videoScript = $_5ptha9fqjd08mdcr.getVideoScriptMatch($_336b8ufmjd08mdcn.getScripts(editor), node.attr('src'));
+=======
+          videoScript = $_60y2ypfzjducwrkj.getVideoScriptMatch($_e4qawjfvjducwrkd.getScripts(editor), node.attr('src'));
+>>>>>>> installer
           if (!videoScript) {
             continue;
           }
@@ -976,7 +1158,11 @@ var media = (function () {
             node.attr('height', videoScript.height.toString());
           }
         }
+<<<<<<< HEAD
         if (node.name === 'iframe' && $_336b8ufmjd08mdcn.hasLiveEmbeds(editor) && Env.ceFalse) {
+=======
+        if (node.name === 'iframe' && $_e4qawjfvjducwrkd.hasLiveEmbeds(editor) && Env.ceFalse) {
+>>>>>>> installer
           if (!isWithinEphoxEmbed(node)) {
             node.replace(createPreviewIframeNode(editor, node));
           }
@@ -988,7 +1174,11 @@ var media = (function () {
       }
     };
   };
+<<<<<<< HEAD
   var $_dzte2bg4jd08mddn = {
+=======
+  var $_b2wn5bgdjducwrl4 = {
+>>>>>>> installer
     createPreviewIframeNode: createPreviewIframeNode,
     createPlaceholderNode: createPlaceholderNode,
     placeHolderConverter: placeHolderConverter
@@ -1004,7 +1194,11 @@ var media = (function () {
       Tools.each('webkitallowfullscreen mozallowfullscreen allowfullscreen'.split(' '), function (name) {
         boolAttrs[name] = {};
       });
+<<<<<<< HEAD
       editor.parser.addNodeFilter('iframe,video,audio,object,embed,script', $_dzte2bg4jd08mddn.placeHolderConverter(editor));
+=======
+      editor.parser.addNodeFilter('iframe,video,audio,object,embed,script', $_b2wn5bgdjducwrl4.placeHolderConverter(editor));
+>>>>>>> installer
       editor.serializer.addAttributeFilter('data-mce-object', function (nodes, name) {
         var i = nodes.length;
         var node;
@@ -1052,7 +1246,11 @@ var media = (function () {
           if (innerHtml) {
             innerNode = new Node('#text', 3);
             innerNode.raw = true;
+<<<<<<< HEAD
             innerNode.value = $_fehntlg5jd08mddp.sanitize(editor, unescape(innerHtml));
+=======
+            innerNode.value = $_86bza4gejducwrl7.sanitize(editor, unescape(innerHtml));
+>>>>>>> installer
             realElm.append(innerNode);
           }
           node.replace(realElm);
@@ -1068,7 +1266,11 @@ var media = (function () {
       });
     });
   };
+<<<<<<< HEAD
   var $_efa8u3g2jd08mddk = { setup: setup };
+=======
+  var $_20v72jgbjducwrl1 = { setup: setup };
+>>>>>>> installer
 
   var setup$1 = function (editor) {
     editor.on('ResolveName', function (e) {
@@ -1078,7 +1280,11 @@ var media = (function () {
       }
     });
   };
+<<<<<<< HEAD
   var $_fp3a8gg6jd08mddr = { setup: setup$1 };
+=======
+  var $_fic4vvgfjducwrl9 = { setup: setup$1 };
+>>>>>>> installer
 
   var setup$2 = function (editor) {
     editor.on('click keyup', function () {
@@ -1102,7 +1308,11 @@ var media = (function () {
         html = target.getAttribute('data-mce-html');
         if (html) {
           html = unescape(html);
+<<<<<<< HEAD
           target.setAttribute('data-mce-html', escape($_fky9hfwjd08mdd5.updateHtml(html, {
+=======
+          target.setAttribute('data-mce-html', escape($_9u6kq4g5jducwrkt.updateHtml(html, {
+>>>>>>> installer
             width: e.width,
             height: e.height
           })));
@@ -1110,7 +1320,11 @@ var media = (function () {
       }
     });
   };
+<<<<<<< HEAD
   var $_94uvwrg7jd08mdds = { setup: setup$2 };
+=======
+  var $_5ld4a1ggjducwrla = { setup: setup$2 };
+>>>>>>> installer
 
   var register$1 = function (editor) {
     editor.addButton('media', {
@@ -1130,6 +1344,7 @@ var media = (function () {
       prependToContext: true
     });
   };
+<<<<<<< HEAD
   var $_35d4rdg8jd08mddu = { register: register$1 };
 
   PluginManager.add('media', function (editor) {
@@ -1139,6 +1354,17 @@ var media = (function () {
     $_efa8u3g2jd08mddk.setup(editor);
     $_94uvwrg7jd08mdds.setup(editor);
     return $_8erm4rfijd08mdcd.get(editor);
+=======
+  var $_3tcd7rghjducwrlc = { register: register$1 };
+
+  PluginManager.add('media', function (editor) {
+    $_2w1qpzgajducwrl0.register(editor);
+    $_3tcd7rghjducwrlc.register(editor);
+    $_fic4vvgfjducwrl9.setup(editor);
+    $_20v72jgbjducwrl1.setup(editor);
+    $_5ld4a1ggjducwrla.setup(editor);
+    return $_bt469cfrjducwrk2.get(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -1146,4 +1372,4 @@ var media = (function () {
   return Plugin;
 
 }());
-})()
+})();

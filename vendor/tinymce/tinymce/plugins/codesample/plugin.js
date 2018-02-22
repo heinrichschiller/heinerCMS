@@ -36,7 +36,11 @@ var codesample = (function () {
   var getDialogMinHeight = function (editor) {
     return Math.min(DOMUtils.DOM.getViewPort().w, editor.getParam('codesample_dialog_height', 650));
   };
+<<<<<<< HEAD
   var $_gcjhjq9ajd08mcdp = {
+=======
+  var $_en7t7l9jjducwqmo = {
+>>>>>>> installer
     getContentCss: getContentCss,
     getLanguages: getLanguages,
     getDialogMinWidth: getDialogMinWidth,
@@ -720,14 +724,22 @@ var codesample = (function () {
       return predicateFn(arg2);
     };
   }
+<<<<<<< HEAD
   var $_9ay9839ejd08mceg = {
+=======
+  var $_f54hx99njducwqnj = {
+>>>>>>> installer
     isCodeSample: isCodeSample,
     trimArg: trimArg
   };
 
   var getSelectedCodeSample = function (editor) {
     var node = editor.selection.getNode();
+<<<<<<< HEAD
     if ($_9ay9839ejd08mceg.isCodeSample(node)) {
+=======
+    if ($_f54hx99njducwqnj.isCodeSample(node)) {
+>>>>>>> installer
       return node;
     }
     return null;
@@ -754,7 +766,11 @@ var codesample = (function () {
     }
     return '';
   };
+<<<<<<< HEAD
   var $_6fc0nk9cjd08mcdt = {
+=======
+  var $_3b2clx9ljducwqmr = {
+>>>>>>> installer
     getSelectedCodeSample: getSelectedCodeSample,
     insertCodeSample: insertCodeSample,
     getCurrentCode: getCurrentCode
@@ -803,23 +819,36 @@ var codesample = (function () {
         value: 'cpp'
       }
     ];
+<<<<<<< HEAD
     var customLanguages = $_gcjhjq9ajd08mcdp.getLanguages(editor);
+=======
+    var customLanguages = $_en7t7l9jjducwqmo.getLanguages(editor);
+>>>>>>> installer
     return customLanguages ? customLanguages : defaultLanguages;
   };
   var getCurrentLanguage = function (editor) {
     var matches;
+<<<<<<< HEAD
     var node = $_6fc0nk9cjd08mcdt.getSelectedCodeSample(editor);
+=======
+    var node = $_3b2clx9ljducwqmr.getSelectedCodeSample(editor);
+>>>>>>> installer
     if (node) {
       matches = node.className.match(/language-(\w+)/);
       return matches ? matches[1] : '';
     }
     return '';
   };
+<<<<<<< HEAD
   var $_d2gowd9fjd08mcei = {
+=======
+  var $_3uaspl9ojducwqnl = {
+>>>>>>> installer
     getLanguages: getLanguages$1,
     getCurrentLanguage: getCurrentLanguage
   };
 
+<<<<<<< HEAD
   var $_ang58999jd08mcdo = {
     open: function (editor) {
       var minWidth = $_gcjhjq9ajd08mcdp.getDialogMinWidth(editor);
@@ -827,6 +856,15 @@ var codesample = (function () {
       var currentLanguage = $_d2gowd9fjd08mcei.getCurrentLanguage(editor);
       var currentLanguages = $_d2gowd9fjd08mcei.getLanguages(editor);
       var currentCode = $_6fc0nk9cjd08mcdt.getCurrentCode(editor);
+=======
+  var $_f5gf739ijducwqmm = {
+    open: function (editor) {
+      var minWidth = $_en7t7l9jjducwqmo.getDialogMinWidth(editor);
+      var minHeight = $_en7t7l9jjducwqmo.getDialogMinHeight(editor);
+      var currentLanguage = $_3uaspl9ojducwqnl.getCurrentLanguage(editor);
+      var currentLanguages = $_3uaspl9ojducwqnl.getLanguages(editor);
+      var currentCode = $_3b2clx9ljducwqmr.getCurrentCode(editor);
+>>>>>>> installer
       editor.windowManager.open({
         title: 'Insert/Edit code sample',
         minWidth: minWidth,
@@ -857,7 +895,11 @@ var codesample = (function () {
           }
         ],
         onSubmit: function (e) {
+<<<<<<< HEAD
           $_6fc0nk9cjd08mcdt.insertCodeSample(editor, e.data.language, e.data.code);
+=======
+          $_3b2clx9ljducwqmr.insertCodeSample(editor, e.data.language, e.data.code);
+>>>>>>> installer
         }
       });
     }
@@ -866,19 +908,32 @@ var codesample = (function () {
   var register = function (editor) {
     editor.addCommand('codesample', function () {
       var node = editor.selection.getNode();
+<<<<<<< HEAD
       if (editor.selection.isCollapsed() || $_9ay9839ejd08mceg.isCodeSample(node)) {
         $_ang58999jd08mcdo.open(editor);
+=======
+      if (editor.selection.isCollapsed() || $_f54hx99njducwqnj.isCodeSample(node)) {
+        $_f5gf739ijducwqmm.open(editor);
+>>>>>>> installer
       } else {
         editor.formatter.toggle('code');
       }
     });
   };
+<<<<<<< HEAD
   var $_dgoq3498jd08mcdn = { register: register };
+=======
+  var $_awaalk9hjducwqmk = { register: register };
+>>>>>>> installer
 
   var setup = function (editor) {
     var $ = editor.$;
     editor.on('PreProcess', function (e) {
+<<<<<<< HEAD
       $('pre[contenteditable=false]', e.node).filter($_9ay9839ejd08mceg.trimArg($_9ay9839ejd08mceg.isCodeSample)).each(function (idx, elm) {
+=======
+      $('pre[contenteditable=false]', e.node).filter($_f54hx99njducwqnj.trimArg($_f54hx99njducwqnj.isCodeSample)).each(function (idx, elm) {
+>>>>>>> installer
         var $elm = $(elm), code = elm.textContent;
         $elm.attr('class', $.trim($elm.attr('class')));
         $elm.removeAttr('contentEditable');
@@ -888,7 +943,11 @@ var codesample = (function () {
       });
     });
     editor.on('SetContent', function () {
+<<<<<<< HEAD
       var unprocessedCodeSamples = $('pre').filter($_9ay9839ejd08mceg.trimArg($_9ay9839ejd08mceg.isCodeSample)).filter(function (idx, elm) {
+=======
+      var unprocessedCodeSamples = $('pre').filter($_f54hx99njducwqnj.trimArg($_f54hx99njducwqnj.isCodeSample)).filter(function (idx, elm) {
+>>>>>>> installer
         return elm.contentEditable !== 'false';
       });
       if (unprocessedCodeSamples.length) {
@@ -906,11 +965,19 @@ var codesample = (function () {
       }
     });
   };
+<<<<<<< HEAD
   var $_3q5rt59gjd08mcej = { setup: setup };
 
   var loadCss = function (editor, pluginUrl, addedInlineCss, addedCss) {
     var linkElm;
     var contentCss = $_gcjhjq9ajd08mcdp.getContentCss(editor);
+=======
+  var $_jscve9pjducwqno = { setup: setup };
+
+  var loadCss = function (editor, pluginUrl, addedInlineCss, addedCss) {
+    var linkElm;
+    var contentCss = $_en7t7l9jjducwqmo.getContentCss(editor);
+>>>>>>> installer
     if (editor.inline && addedInlineCss.get()) {
       return;
     }
@@ -930,7 +997,11 @@ var codesample = (function () {
       editor.getDoc().getElementsByTagName('head')[0].appendChild(linkElm);
     }
   };
+<<<<<<< HEAD
   var $_1x9b7k9hjd08mcel = { loadCss: loadCss };
+=======
+  var $_bnvjux9qjducwqnr = { loadCss: loadCss };
+>>>>>>> installer
 
   var register$1 = function (editor) {
     editor.addButton('codesample', {
@@ -943,11 +1014,16 @@ var codesample = (function () {
       icon: 'codesample'
     });
   };
+<<<<<<< HEAD
   var $_f553yx9ijd08mcen = { register: register$1 };
+=======
+  var $_7ropxj9rjducwqnt = { register: register$1 };
+>>>>>>> installer
 
   var addedInlineCss = Cell(false);
   PluginManager.add('codesample', function (editor, pluginUrl) {
     var addedCss = Cell(false);
+<<<<<<< HEAD
     $_3q5rt59gjd08mcej.setup(editor);
     $_f553yx9ijd08mcen.register(editor);
     $_dgoq3498jd08mcdn.register(editor);
@@ -957,6 +1033,17 @@ var codesample = (function () {
     editor.on('dblclick', function (ev) {
       if ($_9ay9839ejd08mceg.isCodeSample(ev.target)) {
         $_ang58999jd08mcdo.open(editor);
+=======
+    $_jscve9pjducwqno.setup(editor);
+    $_7ropxj9rjducwqnt.register(editor);
+    $_awaalk9hjducwqmk.register(editor);
+    editor.on('init', function () {
+      $_bnvjux9qjducwqnr.loadCss(editor, pluginUrl, addedInlineCss, addedCss);
+    });
+    editor.on('dblclick', function (ev) {
+      if ($_f54hx99njducwqnj.isCodeSample(ev.target)) {
+        $_f5gf739ijducwqmm.open(editor);
+>>>>>>> installer
       }
     });
   });
@@ -966,4 +1053,4 @@ var codesample = (function () {
   return Plugin;
 
 }());
-})()
+})();

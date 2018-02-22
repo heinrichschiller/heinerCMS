@@ -33,7 +33,11 @@ var importcss = (function () {
   var getFileFilter = function (editor) {
     return editor.getParam('importcss_file_filter');
   };
+<<<<<<< HEAD
   var $_63rxg4dwjd08md5m = {
+=======
+  var $_6sqjtje5jducwrdr = {
+>>>>>>> installer
     shouldMergeClasses: shouldMergeClasses,
     shouldImportExclusive: shouldImportExclusive,
     getSelectorConverter: getSelectorConverter,
@@ -136,7 +140,11 @@ var importcss = (function () {
         classes: classes
       };
     }
+<<<<<<< HEAD
     if ($_63rxg4dwjd08md5m.shouldMergeClasses(editor) !== false) {
+=======
+    if ($_6sqjtje5jducwrdr.shouldMergeClasses(editor) !== false) {
+>>>>>>> installer
       format.classes = classes;
     } else {
       format.attributes = { class: classes };
@@ -162,7 +170,11 @@ var importcss = (function () {
     });
   };
   var isExclusiveMode = function (editor, group) {
+<<<<<<< HEAD
     return group === null || $_63rxg4dwjd08md5m.shouldImportExclusive(editor) !== false;
+=======
+    return group === null || $_6sqjtje5jducwrdr.shouldImportExclusive(editor) !== false;
+>>>>>>> installer
   };
   var isUniqueSelector = function (editor, selector, group, globallyUniqueSelectors) {
     return !(isExclusiveMode(editor, group) ? selector in globallyUniqueSelectors : selector in group.selectors);
@@ -178,8 +190,13 @@ var importcss = (function () {
     var selectorConverter;
     if (group && group.selector_converter) {
       selectorConverter = group.selector_converter;
+<<<<<<< HEAD
     } else if ($_63rxg4dwjd08md5m.getSelectorConverter(editor)) {
       selectorConverter = $_63rxg4dwjd08md5m.getSelectorConverter(editor);
+=======
+    } else if ($_6sqjtje5jducwrdr.getSelectorConverter(editor)) {
+      selectorConverter = $_6sqjtje5jducwrdr.getSelectorConverter(editor);
+>>>>>>> installer
     } else {
       selectorConverter = function () {
         return defaultConvertSelectorToFormat(editor, selector);
@@ -190,8 +207,13 @@ var importcss = (function () {
   var setup = function (editor) {
     editor.on('renderFormatsMenu', function (e) {
       var globallyUniqueSelectors = {};
+<<<<<<< HEAD
       var selectorFilter = compileFilter($_63rxg4dwjd08md5m.getSelectorFilter(editor)), ctrl = e.control;
       var groups = compileUserDefinedGroups($_63rxg4dwjd08md5m.getCssGroups(editor));
+=======
+      var selectorFilter = compileFilter($_6sqjtje5jducwrdr.getSelectorFilter(editor)), ctrl = e.control;
+      var groups = compileUserDefinedGroups($_6sqjtje5jducwrdr.getCssGroups(editor));
+>>>>>>> installer
       var processSelector = function (selector, group) {
         if (isUniqueSelector(editor, selector, group, globallyUniqueSelectors)) {
           markUniqueSelector(editor, selector, group, globallyUniqueSelectors);
@@ -207,10 +229,17 @@ var importcss = (function () {
         }
         return null;
       };
+<<<<<<< HEAD
       if (!$_63rxg4dwjd08md5m.shouldAppend(editor)) {
         ctrl.items().remove();
       }
       Tools.each(getSelectors(editor, e.doc || editor.getDoc(), compileFilter($_63rxg4dwjd08md5m.getFileFilter(editor))), function (selector) {
+=======
+      if (!$_6sqjtje5jducwrdr.shouldAppend(editor)) {
+        ctrl.items().remove();
+      }
+      Tools.each(getSelectors(editor, e.doc || editor.getDoc(), compileFilter($_6sqjtje5jducwrdr.getFileFilter(editor))), function (selector) {
+>>>>>>> installer
         if (selector.indexOf('.mce-') === -1) {
           if (!selectorFilter || selectorFilter(selector)) {
             var selectorGroups = getGroupsBySelector(groups, selector);
@@ -238,13 +267,18 @@ var importcss = (function () {
       e.control.renderNew();
     });
   };
+<<<<<<< HEAD
   var $_1hjx4qdrjd08md5e = {
+=======
+  var $_38p4ioe0jducwrdm = {
+>>>>>>> installer
     defaultConvertSelectorToFormat: defaultConvertSelectorToFormat,
     setup: setup
   };
 
   var get = function (editor) {
     var convertSelectorToFormat = function (selectorText) {
+<<<<<<< HEAD
       return $_1hjx4qdrjd08md5e.defaultConvertSelectorToFormat(editor, selectorText);
     };
     return { convertSelectorToFormat: convertSelectorToFormat };
@@ -254,6 +288,17 @@ var importcss = (function () {
   PluginManager.add('importcss', function (editor) {
     $_1hjx4qdrjd08md5e.setup(editor);
     return $_cwvb3pdqjd08md5c.get(editor);
+=======
+      return $_38p4ioe0jducwrdm.defaultConvertSelectorToFormat(editor, selectorText);
+    };
+    return { convertSelectorToFormat: convertSelectorToFormat };
+  };
+  var $_7j5e1zdzjducwrdk = { get: get };
+
+  PluginManager.add('importcss', function (editor) {
+    $_38p4ioe0jducwrdm.setup(editor);
+    return $_7j5e1zdzjducwrdk.get(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -261,4 +306,4 @@ var importcss = (function () {
   return Plugin;
 
 }());
-})()
+})();

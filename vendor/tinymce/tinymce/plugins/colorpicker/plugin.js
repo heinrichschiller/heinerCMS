@@ -108,12 +108,20 @@ var colorpicker = (function () {
     });
     setColor(win, value);
   };
+<<<<<<< HEAD
   var $_28s37c9ljd08mcft = { open: open };
+=======
+  var $_8ffjt99ujducwqpb = { open: open };
+>>>>>>> installer
 
   PluginManager.add('colorpicker', function (editor) {
     if (!editor.settings.color_picker_callback) {
       editor.settings.color_picker_callback = function (callback, value) {
+<<<<<<< HEAD
         $_28s37c9ljd08mcft.open(editor, callback, value);
+=======
+        $_8ffjt99ujducwqpb.open(editor, callback, value);
+>>>>>>> installer
       };
     }
   });
@@ -123,4 +131,4 @@ var colorpicker = (function () {
   return Plugin;
 
 }());
-})()
+})();

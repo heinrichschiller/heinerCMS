@@ -54,7 +54,11 @@ var fullpage = (function () {
   var getDefaultDocType = function (editor) {
     return editor.getParam('fullpage_default_doctype', '<!DOCTYPE html>');
   };
+<<<<<<< HEAD
   var $_1l4vvub4jd08mclf = {
+=======
+  var $_5cugxcbdjducwqvu = {
+>>>>>>> installer
     shouldHideInSourceView: shouldHideInSourceView,
     getDefaultXmlPi: getDefaultXmlPi,
     getDefaultEncoding: getDefaultEncoding,
@@ -79,8 +83,13 @@ var fullpage = (function () {
       var value = elm.attr(name);
       return value || '';
     }
+<<<<<<< HEAD
     data.fontface = $_1l4vvub4jd08mclf.getDefaultFontFamily(editor);
     data.fontsize = $_1l4vvub4jd08mclf.getDefaultFontSize(editor);
+=======
+    data.fontface = $_5cugxcbdjducwqvu.getDefaultFontFamily(editor);
+    data.fontsize = $_5cugxcbdjducwqvu.getDefaultFontSize(editor);
+>>>>>>> installer
     elm = headerFragment.firstChild;
     if (elm.type === 7) {
       data.xml_pi = true;
@@ -288,14 +297,22 @@ var fullpage = (function () {
     }).serialize(headerFragment);
     return html.substring(0, html.indexOf('</body>'));
   };
+<<<<<<< HEAD
   var $_ceivg7b0jd08mcl5 = {
+=======
+  var $_3mndlfb9jducwqvl = {
+>>>>>>> installer
     parseHeader: parseHeader,
     htmlToData: htmlToData,
     dataToHtml: dataToHtml
   };
 
   var open = function (editor, headState) {
+<<<<<<< HEAD
     var data = $_ceivg7b0jd08mcl5.htmlToData(editor, headState.get());
+=======
+    var data = $_3mndlfb9jducwqvl.htmlToData(editor, headState.get());
+>>>>>>> installer
     editor.windowManager.open({
       title: 'Document properties',
       data: data,
@@ -330,11 +347,16 @@ var fullpage = (function () {
         }
       ],
       onSubmit: function (e) {
+<<<<<<< HEAD
         var headHtml = $_ceivg7b0jd08mcl5.dataToHtml(editor, Tools.extend(data, e.data), headState.get());
+=======
+        var headHtml = $_3mndlfb9jducwqvl.dataToHtml(editor, Tools.extend(data, e.data), headState.get());
+>>>>>>> installer
         headState.set(headHtml);
       }
     });
   };
+<<<<<<< HEAD
   var $_4238k9ayjd08mcl1 = { open: open };
 
   var register = function (editor, headState) {
@@ -343,6 +365,16 @@ var fullpage = (function () {
     });
   };
   var $_as2halaxjd08mcl0 = { register: register };
+=======
+  var $_8txdf2b7jducwqvi = { open: open };
+
+  var register = function (editor, headState) {
+    editor.addCommand('mceFullPageProperties', function () {
+      $_8txdf2b7jducwqvi.open(editor, headState);
+    });
+  };
+  var $_2lse88b6jducwqvh = { register: register };
+>>>>>>> installer
 
   var protectHtml = function (protect, html) {
     Tools.each(protect, function (pattern) {
@@ -357,7 +389,11 @@ var fullpage = (function () {
       return unescape(m);
     });
   };
+<<<<<<< HEAD
   var $_39pyijb6jd08mcls = {
+=======
+  var $_2bph3nbfjducwqw4 = {
+>>>>>>> installer
     protectHtml: protectHtml,
     unprotectHtml: unprotectHtml
   };
@@ -375,11 +411,19 @@ var fullpage = (function () {
     if (evt.selection) {
       return;
     }
+<<<<<<< HEAD
     content = $_39pyijb6jd08mcls.protectHtml(editor.settings.protect, evt.content);
     if (evt.format === 'raw' && headState.get()) {
       return;
     }
     if (evt.source_view && $_1l4vvub4jd08mclf.shouldHideInSourceView(editor)) {
+=======
+    content = $_2bph3nbfjducwqw4.protectHtml(editor.settings.protect, evt.content);
+    if (evt.format === 'raw' && headState.get()) {
+      return;
+    }
+    if (evt.source_view && $_5cugxcbdjducwqvu.shouldHideInSourceView(editor)) {
+>>>>>>> installer
       return;
     }
     if (content.length === 0 && !evt.source_view) {
@@ -400,7 +444,11 @@ var fullpage = (function () {
       headState.set(getDefaultHeader(editor));
       footState.set('\n</body>\n</html>');
     }
+<<<<<<< HEAD
     headerFragment = $_ceivg7b0jd08mcl5.parseHeader(headState.get());
+=======
+    headerFragment = $_3mndlfb9jducwqvl.parseHeader(headState.get());
+>>>>>>> installer
     each(headerFragment.getAll('style'), function (node) {
       if (node.firstChild) {
         styles += node.firstChild.value;
@@ -452,6 +500,7 @@ var fullpage = (function () {
   };
   var getDefaultHeader = function (editor) {
     var header = '', value, styles = '';
+<<<<<<< HEAD
     if ($_1l4vvub4jd08mclf.getDefaultXmlPi(editor)) {
       var piEncoding = $_1l4vvub4jd08mclf.getDefaultEncoding(editor);
       header += '<?xml version="1.0" encoding="' + (piEncoding ? piEncoding : 'ISO-8859-1') + '" ?>\n';
@@ -471,14 +520,40 @@ var fullpage = (function () {
       styles += 'font-size: ' + value + ';';
     }
     if (value = $_1l4vvub4jd08mclf.getDefaultTextColor(editor)) {
+=======
+    if ($_5cugxcbdjducwqvu.getDefaultXmlPi(editor)) {
+      var piEncoding = $_5cugxcbdjducwqvu.getDefaultEncoding(editor);
+      header += '<?xml version="1.0" encoding="' + (piEncoding ? piEncoding : 'ISO-8859-1') + '" ?>\n';
+    }
+    header += $_5cugxcbdjducwqvu.getDefaultDocType(editor);
+    header += '\n<html>\n<head>\n';
+    if (value = $_5cugxcbdjducwqvu.getDefaultTitle(editor)) {
+      header += '<title>' + value + '</title>\n';
+    }
+    if (value = $_5cugxcbdjducwqvu.getDefaultEncoding(editor)) {
+      header += '<meta http-equiv="Content-Type" content="text/html; charset=' + value + '" />\n';
+    }
+    if (value = $_5cugxcbdjducwqvu.getDefaultFontFamily(editor)) {
+      styles += 'font-family: ' + value + ';';
+    }
+    if (value = $_5cugxcbdjducwqvu.getDefaultFontSize(editor)) {
+      styles += 'font-size: ' + value + ';';
+    }
+    if (value = $_5cugxcbdjducwqvu.getDefaultTextColor(editor)) {
+>>>>>>> installer
       styles += 'color: ' + value + ';';
     }
     header += '</head>\n<body' + (styles ? ' style="' + styles + '"' : '') + '>\n';
     return header;
   };
   var handleGetContent = function (editor, head, foot, evt) {
+<<<<<<< HEAD
     if (!evt.selection && (!evt.source_view || !$_1l4vvub4jd08mclf.shouldHideInSourceView(editor))) {
       evt.content = $_39pyijb6jd08mcls.unprotectHtml(Tools.trim(head) + '\n' + Tools.trim(evt.content) + '\n' + Tools.trim(foot));
+=======
+    if (!evt.selection && (!evt.source_view || !$_5cugxcbdjducwqvu.shouldHideInSourceView(editor))) {
+      evt.content = $_2bph3nbfjducwqw4.unprotectHtml(Tools.trim(head) + '\n' + Tools.trim(evt.content) + '\n' + Tools.trim(foot));
+>>>>>>> installer
     }
   };
   var setup = function (editor, headState, footState) {
@@ -489,7 +564,11 @@ var fullpage = (function () {
       handleGetContent(editor, headState.get(), footState.get(), evt);
     });
   };
+<<<<<<< HEAD
   var $_eiu6jcb5jd08mclk = { setup: setup };
+=======
+  var $_gg6d25bejducwqvx = { setup: setup };
+>>>>>>> installer
 
   var register$1 = function (editor) {
     editor.addButton('fullpage', {
@@ -502,6 +581,7 @@ var fullpage = (function () {
       context: 'file'
     });
   };
+<<<<<<< HEAD
   var $_7afkvjb7jd08mclt = { register: register$1 };
 
   PluginManager.add('fullpage', function (editor) {
@@ -509,6 +589,15 @@ var fullpage = (function () {
     $_as2halaxjd08mcl0.register(editor, headState);
     $_7afkvjb7jd08mclt.register(editor);
     $_eiu6jcb5jd08mclk.setup(editor, headState, footState);
+=======
+  var $_fcakvpbgjducwqw5 = { register: register$1 };
+
+  PluginManager.add('fullpage', function (editor) {
+    var headState = Cell(''), footState = Cell('');
+    $_2lse88b6jducwqvh.register(editor, headState);
+    $_fcakvpbgjducwqw5.register(editor);
+    $_gg6d25bejducwqvx.setup(editor, headState, footState);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -516,4 +605,4 @@ var fullpage = (function () {
   return Plugin;
 
 }());
-})()
+})();

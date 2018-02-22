@@ -22,7 +22,11 @@ var tabfocus = (function () {
   var getTabFocus = function (editor) {
     return editor.getParam('tab_focus', getTabFocusElements(editor));
   };
+<<<<<<< HEAD
   var $_7xu6zfjcjd08mdr4 = { getTabFocus: getTabFocus };
+=======
+  var $_e7upf5jmjducwrx7 = { getTabFocus: getTabFocus };
+>>>>>>> installer
 
   var DOM = DOMUtils.DOM;
   var tabCancel = function (e) {
@@ -65,7 +69,11 @@ var tabfocus = (function () {
         }
         return null;
       }
+<<<<<<< HEAD
       v = Tools.explode($_7xu6zfjcjd08mdr4.getTabFocus(editor));
+=======
+      v = Tools.explode($_e7upf5jmjducwrx7.getTabFocus(editor));
+>>>>>>> installer
       if (v.length === 1) {
         v[1] = v[0];
         v[0] = ':prev';
@@ -110,10 +118,17 @@ var tabfocus = (function () {
       }
     });
   };
+<<<<<<< HEAD
   var $_giono5j5jd08mdr0 = { setup: setup };
 
   PluginManager.add('tabfocus', function (editor) {
     $_giono5j5jd08mdr0.setup(editor);
+=======
+  var $_6ynlnjfjducwrx3 = { setup: setup };
+
+  PluginManager.add('tabfocus', function (editor) {
+    $_6ynlnjfjducwrx3.setup(editor);
+>>>>>>> installer
   });
   function Plugin () {
   }
@@ -121,4 +136,4 @@ var tabfocus = (function () {
   return Plugin;
 
 }());
-})()
+})();
