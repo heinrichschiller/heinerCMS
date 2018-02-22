@@ -4,16 +4,25 @@
  */
 function load_session()
 {
-    $config = __DIR__ . '/../source/configs/config.ini';
+    $pdo = getPdoDB();
     
-    if (file_exists($config)) {
-        $ini_array = parse_ini_file($config);
-        
-        $_SESSION['title']    = $ini_array['title'];
-        $_SESSION['theme']    = $ini_array['theme'];
-        $_SESSION['tagline']  = $ini_array['tagline'];
-        $_SESSION['blog-url'] = $ini_array['blog_url'];
+    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url` FROM `settings` WHERE 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
     }
+    
+    while($settings = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $_SESSION['title']    = $settings->title;
+        $_SESSION['tagline']  = $settings->tagline;
+        $_SESSION['theme']    = $settings->theme;
+        $_SESSION['blog-url'] = $settings->blog_url;
+    }
+    
 }
 
 /**
@@ -22,27 +31,10 @@ function load_session()
  * @return PDO
  */
 function getPdoDB()
-{
-    $config = __DIR__ . '/../source/configs/config.ini';
-    
-    if (file_exists($config)) {
-        $ini_array = parse_ini_file($config);
-        
-        $type = $ini_array['type'];
-        $host = $ini_array['host'];
-        $user = $ini_array['user'];
-        $password = $ini_array['password'];
-        $database = $ini_array['database'];
-    }
-    
+{   
     try {
         
-        if ($type == 'mysql') {
-            $pdo = new PDO("$type:host=$host;dbname=$database", $user, $password);
-        } else if($type == 'sqlite') {
-            die('ist nocht nicht implementiert!');
-        }
-        
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
         
         return $pdo;
         

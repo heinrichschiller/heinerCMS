@@ -22,16 +22,7 @@
  */
 function getBlogURL() : string
 {
-    $config = __DIR__ . '/../source/configs/config.ini';
-    
-    if (file_exists($config)) {
-        $ini_array = parse_ini_file($config);
-        
-        return $ini_array['blog_url'];
-    } else {
-        echo 'url not found.';
-        exit();
-    }
+    return $_SESSION['blog-url'];
 }
 
 function load_public_navigation() : string
