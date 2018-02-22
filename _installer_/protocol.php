@@ -262,7 +262,7 @@ footer p {
 						</thead>
 						<tbody>
 							<tr <?= $isConfTrAttr; ?>>
-								<td>Benutzer angelegt?</td>
+								<td>Standardkonfiguration geschrieben?</td>
 								<td><?= $isConfRes ?></td>
 							</tr>
 						</tbody>

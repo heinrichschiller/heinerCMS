@@ -2,6 +2,10 @@
 
 session_start();
 
+if (!file_exists('cms-config.php')) {
+    header("Location: _installer_/index.php?uri=language");
+}
+
 include __DIR__ . '/cms-config.php';
 
 include __DIR__ . '/include/general_functions.inc.php';
@@ -14,10 +18,6 @@ $id  = filter_input(INPUT_GET, 'id');
 $content = '';
 
 $template_path = 'templates/default/pub_template.tpl.php';
-
-if (!file_exists('cms-config.php')) {
-    header("Location: _installer_/index.php?uri=language"); 
-}
 
 load_session();
 
