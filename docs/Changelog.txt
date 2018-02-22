@@ -1,8 +1,10 @@
-Version 0.1.2 ()
+Version 0.1.2 (2018-02-22)
+	added, brandnew installer
 	added, settings for mainpage
 	added, mainpage
 	added, contact enqiery
 	bugfix, fixed many many other minor bugs
+	update, Updating tinymce/tinymce (4.7.6 => 4.7.7)
 Version 0.1.1 (2018-02-15)
 	update, tinymce editor (4.7.5 => 4.7.6)
 Version 0.1.0 (2018-01-30)
