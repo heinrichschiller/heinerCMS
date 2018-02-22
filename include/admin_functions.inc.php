@@ -63,6 +63,7 @@ function load_admin_news(): string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
+        exit();
     }
     
     while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -199,6 +200,7 @@ function load_admin_downloads(): string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
+        exit();
     }
        
     while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -330,7 +332,7 @@ function load_admin_links(): string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
-        exit;
+        exit();
     }
 
     while($link = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -458,6 +460,7 @@ function load_admin_articles(): string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
+        exit();
     }
     
     while ($article = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -693,6 +696,7 @@ function load_user_list(): string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
+        exit();
     }
     
     while ($user = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -828,6 +832,7 @@ function load_admin_sites() : string
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
+        exit();
     }
     
     while ($site = $stmt->fetch(PDO::FETCH_OBJ)) {
