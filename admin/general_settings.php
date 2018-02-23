@@ -14,8 +14,7 @@ if (is_logged_in()) {
     
     $pdo = getPdoDB();
     
-    $sql = 'INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`)'
-        . ' VALUES (:title, :tagline, :theme, :blog_url)';
+    $sql = 'UPDATE `settings` SET `title`=:title,`tagline`=:tagline,`theme`=:theme,`blog_url`=:blog_url WHERE 1';
         
     $input_parameters = [
         ':title'   => $title,

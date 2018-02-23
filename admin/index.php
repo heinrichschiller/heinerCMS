@@ -17,8 +17,6 @@ if (is_logged_in ()) {
     
     $uri = filter_input ( INPUT_GET, 'uri' );
     $id = filter_input ( INPUT_GET, 'id' );
-    
-    $_SESSION['theme'] = 'default';
 
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);
