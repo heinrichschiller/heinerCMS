@@ -9,6 +9,7 @@ include __DIR__ . '/../include/login.inc.php';
 if (is_logged_in ()) {
     
 	$title   = filter_input(INPUT_POST, 'title');
+	$tagline = filter_input(INPUT_POST, 'tagline');
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// @todo prüfen!!! uri überschneidet sich mit router=>uri
@@ -20,10 +21,11 @@ if (is_logged_in ()) {
 	
     $pdo = getPdoDB();
     
-    $sql = "INSERT INTO links (title,comment,uri,visible) VALUES (:title, :comment, :uri, :visible)";
+    $sql = "INSERT INTO links (title, tagline, comment, uri, visible) VALUES (:title, :tagline, :comment, :uri, :visible)";
     
     $input_parameters = [
         ':title' => $title,
+        ':tagline' => $tagline,
         ':comment' => $comment,
         ':uri' => $uri,
         ':visible' => $visible

@@ -30,6 +30,7 @@ CREATE TABLE `downloads` (
 CREATE TABLE `links` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(64) NOT NULL DEFAULT '',
+  `tagline` VARCHAR(100) NOT NULL DEFAULT '',
   `uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
   `comment` TEXT NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -1,5 +1,11 @@
 @CHARSET "UTF-8";
 
+.list-group-item.active {
+	background-color: #e9ecef;
+	border-color: rgba(0,0,0,0.125);
+	color: grey;
+}
+
 /* footer */
 footer {
 	height: 10em;

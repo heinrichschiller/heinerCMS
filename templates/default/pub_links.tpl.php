@@ -1,7 +1,12 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Links</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <p class="lead">##placeholder-links-page-tagline##</p>
   </div>
 </div>
-... links ...
+<div class="container">
+	##placeholder-links-page-comment##
+</div>
+<div class="container">
+	##placeholder-links##
+</div>

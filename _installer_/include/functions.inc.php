@@ -216,12 +216,13 @@ function createTableLinks(PDO $pdo) : bool
         $sql = "CREATE TABLE `links` (
         		`id` INT NOT NULL AUTO_INCREMENT,
         		`title` VARCHAR(64) NOT NULL DEFAULT '',
+                `tagline` VARCHAR(100) NOT NULL DEFAULT '',
         		`uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
         		`comment` TEXT NOT NULL,
         		`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         		`update_at` timestamp NULL DEFAULT NULL,
         		`visible` TINYINT(4) NOT NULL DEFAULT '0',
-            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
+                `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
         		PRIMARY KEY (`id`)
         		) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
                 
@@ -237,6 +238,35 @@ function createTableLinks(PDO $pdo) : bool
     return false;
 }
 
+/**
+ * Create table links_settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function createTableLinksSettings(PDO $pdo) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "CREATE TABLE `links_settings` (
+               `id` INT NOT NULL AUTO_INCREMENT,
+               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+               `comment` TEXT NOT NULL,
+               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+               `update_at` timestamp NULL DEFAULT NULL,  
+               PRIMARY KEY (`id`)
+               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
 /**
  * Create table news
  * 
@@ -379,6 +409,29 @@ function writeDefaultConfiguration(PDO $pdo) : bool
         $sql = 'INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`)'
             . "VALUES ('heinerCMS','','default','')";
             
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Write links configuration into database
+ * 
+ * @param PDO $pdo
+ * @return bool
+ */
+function writeLinksSettingsConfiguration(PDO $pdo) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`) VALUES ('','','','');";
+        
         try {
             $pdo->exec($sql);
             return true;

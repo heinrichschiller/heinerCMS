@@ -1,7 +1,6 @@
 <?php 
 
 session_start();
-//var_dump($_SESSION);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Found cms-config.php ?
@@ -63,6 +62,18 @@ if($_SESSION['isTabLinksCreated']) {
 } else {
     $linksTrAttr = 'class="table-danger"';
     $linksRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Created Links Settings table ?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isTabLinkSettingsCreated']) {
+    $linksSettingsTrAttr = 'class="table-success"';
+    $linksSettingsRes = 'ja';
+} else {
+    $linksSettingsTrAttr = 'class="table-danger"';
+    $linksSettingsRes = 'nein';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,6 +146,18 @@ if($_SESSION['isDefaultConfWritten']) {
 } else {
     $isConfTrAttr = 'class="table-danger"';
     $isConfRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Is links configuration written?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isLinksConfWritten']) {
+    $isLinksTrAttr = 'class="table-success"';
+    $isLinksRes = 'ja';
+} else {
+    $isLinksConfTrAttr = 'class="table-danger"';
+    $isLinksRes = 'nein';
 }
 
 ?>
@@ -219,6 +242,10 @@ footer p {
 								<td>Tabelle links erstellt?</td>
 								<td><?= $linksRes; ?></td>
 							</tr>
+							<tr <?= $linksSettingsTrAttr; ?>>
+								<td>Tabelle links erstellt?</td>
+								<td><?= $linksSettingsRes; ?></td>
+							</tr>
 							<tr <?= $artiklesTrAttr; ?>>
 								<td>Tabelle articles erstellt?</td>
 								<td><?= $artiklesRes; ?></td>
@@ -250,6 +277,10 @@ footer p {
 								<td>Benutzer angelegt?</td>
 								<td><?= $isUsersRes ?></td>
 							</tr>
+							<tr <?= $isUsersTrAttr; ?>>
+								<td>Benutzer angelegt?</td>
+								<td><?= $isUsersRes ?></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -261,9 +292,9 @@ footer p {
 						<thead>
 						</thead>
 						<tbody>
-							<tr <?= $isConfTrAttr; ?>>
+							<tr <?= $isLinksConfTrAttr; ?>>
 								<td>Standardkonfiguration geschrieben?</td>
-								<td><?= $isConfRes ?></td>
+								<td><?= $isLinksRes ?></td>
 							</tr>
 						</tbody>
 					</table>

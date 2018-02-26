@@ -12,12 +12,12 @@ function load_admin_navigation(): string
     $entries = countEntries();
     
     $placeholderList = [
-        '<@placeholder_news@>' => $entries[0],
-        '<@placeholder_downloads@>' => $entries[1],
-        '<@placeholder_links@>' => $entries[2],
-        '<@placeholder_articles@>' => $entries[3],
-        '<@placeholder_sites@>' => $entries[4],
-        '<@placeholder_trash@>' => $entries[5]
+        '##placeholder-news##' => $entries[0],
+        '##placeholder-downloads##' => $entries[1],
+        '##placeholder-links##' => $entries[2],
+        '##placeholder-articles##' => $entries[3],
+        '##placeholder-sites##' => $entries[4],
+        '##placeholder-trash##' => $entries[5]
     ];
     
     $template = loadTemplate('adm_navigation');
@@ -317,12 +317,9 @@ function load_admin_downloads_del(int $id): string
  */
 function load_admin_links(): string
 {
-    $template = '';
     $table_content = '';
     
     $pdo = getPdoDB();
-
-    $template = loadTemplate('adm_links');
 
     $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible`'
         . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
@@ -340,7 +337,7 @@ function load_admin_links(): string
         $table_content .= '<td>' . $link->id . '</td>';
         $table_content .= '<td>' . strftime('%d.%m.%Y',$link->datetime) . '</td>';
         $table_content .= '<td>' . $link->title . '</td>';
-        $table_content .= $link->visible > -1 ? '<td> ja</td>' : '<td> nein</td>';
+        $table_content .= $link->visible > -1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=". $link->id . ">"
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -353,7 +350,8 @@ function load_admin_links(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('<@links-content@>', $table_content, $template);
+    $template = loadTemplate('adm_links');
+    $template = str_replace('##placeholder-links-content##', $table_content, $template);
     
     return $template;
 }
@@ -366,7 +364,6 @@ function load_admin_links(): string
  */
 function load_admin_link_edit(int $id): string
 {
-    $template = '';
     $chkYes = '';
     $chkNo = '';
     
@@ -374,7 +371,7 @@ function load_admin_link_edit(int $id): string
         $id
     ];
     
-    $sql = "SELECT `id`, `title`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
+    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
     
     $result = pdo_select($sql, $params);
     
@@ -385,12 +382,13 @@ function load_admin_link_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>'       => $result['id'],
-        '<@title@>'    => $result['title'],
-        '<@uri@>'      => $result['uri'],
-        '<@comment@>'  => $result['comment'],
-        '@chk_yes@'    => $chkYes,
-        '@chk_no@'     => $chkNo
+        '##placeholder-id##'      => $result['id'],
+        '##placeholder-title##'   => $result['title'],
+        '##placeholder-tagline##' => $result['tagline'],
+        '##placeholder-uri##'     => $result['uri'],
+        '##placeholder-comment##' => $result['comment'],
+        '##placeholder-chk_yes##' => $chkYes,
+        '##placeholder-chk_no##'  => $chkNo
     ];
     
     $template = loadTemplate('adm_link_edit');
@@ -407,13 +405,14 @@ function load_admin_link_edit(int $id): string
  */
 function load_admin_link_add(): string
 {
-    $template = '';
+    $placeholdeList = [
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
+    ];
     
     $template = loadTemplate('adm_link_add');
     
-    return $template;
+    return strtr($template, $placeholdeList);
 }
-
 
 /**
  * Link löschen
@@ -423,19 +422,47 @@ function load_admin_link_add(): string
  */
 function load_admin_link_del(int $id): string
 {
-    $template = '';
-    
     $title = getTitleFromTableById('links', $id);
     
     $placeholderList = [
-        '<@id@>' => $id,
-        '<@title@>' => $title
+        '##placeholder-id##' => $id,
+        '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_link_del');
     $template = strtr($template, $placeholderList);
     
     return $template;
+}
+
+/**
+ * 
+ */
+function load_admin_link_settings()
+{
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `tagline`, `comment`'
+        . " FROM `links_settings` WHERE `id` = 1";
+        
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    while($link = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $placeholderList = [
+            '##placeholder-link-tagline##' => $link->tagline,
+            '##placeholder-link-comment##' => $link->comment
+        ];
+    }
+    
+    $template = loadTemplate('adm_links_settings');
+    
+    return strtr($template, $placeholderList);
 }
 
 /**

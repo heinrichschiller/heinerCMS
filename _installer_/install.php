@@ -34,6 +34,7 @@ try {
     $_SESSION['isTabArticlesCreated'] = createTableArticles($pdo);
     $_SESSION['isTabDownloadsCreated'] = createTableDownloads($pdo);
     $_SESSION['isTabLinksCreated'] = createTableLinks($pdo);
+    $_SESSION['isTabLinkSettingsCreated'] = createTabLinksSettings($pdo);
     $_SESSION['isTabNewsCreated'] = createTableNews($pdo);
     $_SESSION['isTabSitesCreated'] = createTableSites($pdo);
     $_SESSION['isTabUsersCreated'] = createTableUsers($pdo);
@@ -41,6 +42,7 @@ try {
     
     // 4. Write default configuration
     $_SESSION['isDefaultConfWritten'] = writeDefaultConfiguration($pdo);
+    $_SESSION['isLinksConfWritten'] = writeLinksSettingsConfiguration($pdo);
     
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();

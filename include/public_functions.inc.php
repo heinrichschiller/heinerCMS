@@ -151,7 +151,43 @@ function load_public_downloads() : string
 
 function load_public_links() : string
 {
-    return  loadTemplate('pub_links');
+    $content = '';
+    
+    $template = loadTemplate('pub_links');
+    $templateLinksContent = loadTemplate('pub_links_content');
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT links.title, links.tagline,links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,'
+        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
+        . ' FROM `links`, `links_settings`'
+        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+        
+        
+        while($links = $stmt->fetch(PDO::FETCH_OBJ)) {
+
+            $placeholderList = [
+                '##placeholder-links-page-tagline##' => $links->settings_tagline,
+                '##placeholder-links-page-comment##' => $links->settings_comment,
+                '##placeholder-links-title##'        => $links->title,
+                '##placeholder-links-tagline##'      => $links->tagline,
+                '##placeholder-links-comment##'      => $links->comment
+            ];
+
+            $content .= $templateLinksContent;
+        }
+        
+        $template = str_replace('##placeholder-links##', $content, $template);
+        $template = strtr($template, $placeholderList);
+
+        return $template;
 }
 
 function load_public_sites(int $id) : string

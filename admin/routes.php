@@ -110,6 +110,10 @@ $route['mainpage'] = function() {
     return load_admin_mainpage();  
 };
 
+$route['linksettings'] = function() {
+    return load_admin_link_settings();
+};
+
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

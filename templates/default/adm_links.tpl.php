@@ -18,7 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<@links-content@>
+				##placeholder-links-content##
 			</tbody>
 		</table>
 	</div>

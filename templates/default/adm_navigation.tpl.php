@@ -1,3 +1,4 @@
+<!-- Dashboard -->
 <div class="list-group spacing">
 	<li class="list-group-item">
         <a href="$PHP_SELF?uri=dashboard">
@@ -5,6 +6,8 @@
         </a>
     </li>
 </div>
+
+<!-- Content -->
 <div class="list-group spacing">
     <li class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {content}
@@ -12,40 +15,42 @@
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=news">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {news}
-            <span class="badge badge-light"><@placeholder_news@></span>
+            <span class="badge badge-light">##placeholder-news##</span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=downloads">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-file-download.svg"> {downloads}
-            <span class="badge badge-light"><@placeholder_downloads@></span>
+            <span class="badge badge-light">##placeholder-downloads##</span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=links">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}
-            <span class="badge badge-light"><@placeholder_links@></span>
+            <span class="badge badge-light">##placeholder-links##</span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=articles">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {articles}
-            <span class="badge badge-light"><@placeholder_articles@></span>
+            <span class="badge badge-light">##placeholder-articles##</span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=sites">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document.svg"> {sites}
-            <span class="badge badge-light"><@placeholder_sites@></span>
+            <span class="badge badge-light">##placeholder-sites##</span>
         </a>
     </li>
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=trash">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-trash.svg"> {trash}
-            <span class="badge badge-light"><@placeholder_trash@></span>
+            <span class="badge badge-light">##placeholder-trash##</span>
         </a>
     </li>
 </div>
+
+<!-- Communication -->
 <div class="list-group spacing">
     <li class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {communication}
@@ -53,10 +58,12 @@
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=news">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-contact-book.svg"> {contact_inquiry}
-            <span class="badge badge-light">0<!-- <@placeholder_inqiery@>  --></span>
+            <span class="badge badge-light">0<!-- ##placeholder-inqiery##  --></span>
         </a>
     </li>
 </div>
+
+<!-- Settings -->
 <div class="list-group spacing">
     <li class="list-group-item active">
         <img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-gear-1.svg"> {settings}
@@ -69,6 +76,11 @@
     <li class="list-group-item">
         <a href="$PHP_SELF?uri=mainpage">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-home-page.svg"> {mainpage}
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a href="$PHP_SELF?uri=linksettings">
+            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}
         </a>
     </li>
     <li class="list-group-item">
