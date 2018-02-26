@@ -158,7 +158,7 @@ function load_public_links() : string
     
     $pdo = getPdoDB();
     
-    $sql = 'SELECT links.title, links.tagline,links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,'
+    $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,'
         . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
         . ' FROM `links`, `links_settings`'
         . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
@@ -178,6 +178,7 @@ function load_public_links() : string
                 '##placeholder-links-page-comment##' => $links->settings_comment,
                 '##placeholder-links-title##'        => $links->title,
                 '##placeholder-links-tagline##'      => $links->tagline,
+                '##placeholder-links-uri##'          => $links->uri,
                 '##placeholder-links-comment##'      => $links->comment
             ];
 

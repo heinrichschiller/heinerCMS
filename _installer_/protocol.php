@@ -153,7 +153,7 @@ if($_SESSION['isDefaultConfWritten']) {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 if($_SESSION['isLinksConfWritten']) {
-    $isLinksTrAttr = 'class="table-success"';
+    $isLinksConfTrAttr = 'class="table-success"';
     $isLinksRes = 'ja';
 } else {
     $isLinksConfTrAttr = 'class="table-danger"';
@@ -277,10 +277,6 @@ footer p {
 								<td>Benutzer angelegt?</td>
 								<td><?= $isUsersRes ?></td>
 							</tr>
-							<tr <?= $isUsersTrAttr; ?>>
-								<td>Benutzer angelegt?</td>
-								<td><?= $isUsersRes ?></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -292,8 +288,12 @@ footer p {
 						<thead>
 						</thead>
 						<tbody>
-							<tr <?= $isLinksConfTrAttr; ?>>
+							<tr <?= $isConfTrAttr; ?>>
 								<td>Standardkonfiguration geschrieben?</td>
+								<td><?= $isConfRes ?></td>
+							</tr>
+							<tr <?= $isLinksConfTrAttr; ?>>
+								<td>Standardkonfiguration für Links geschrieben?</td>
 								<td><?= $isLinksRes ?></td>
 							</tr>
 						</tbody>
@@ -320,8 +320,6 @@ footer p {
 </html>
 
 <?php
-
-session_start ();
 
 /* Wert setzen */
 session_unset();

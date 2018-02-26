@@ -34,7 +34,7 @@ try {
     $_SESSION['isTabArticlesCreated'] = createTableArticles($pdo);
     $_SESSION['isTabDownloadsCreated'] = createTableDownloads($pdo);
     $_SESSION['isTabLinksCreated'] = createTableLinks($pdo);
-    $_SESSION['isTabLinkSettingsCreated'] = createTabLinksSettings($pdo);
+    $_SESSION['isTabLinkSettingsCreated'] = createTableLinksSettings($pdo);
     $_SESSION['isTabNewsCreated'] = createTableNews($pdo);
     $_SESSION['isTabSitesCreated'] = createTableSites($pdo);
     $_SESSION['isTabUsersCreated'] = createTableUsers($pdo);
