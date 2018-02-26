@@ -1,5 +1,6 @@
 Version 0.1.4 (2018-02-26)
 	remove, classic theme
+	update, improve admin navigation 
 	added, Links-Settings and public links section
 Version 0.1.3 (2018-02-23)
 	bugfix, fixed many many other minor bugs
