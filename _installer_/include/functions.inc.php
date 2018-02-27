@@ -57,7 +57,7 @@ function load_conditions()
 {
     $serverSoftware = $_SERVER['SERVER_SOFTWARE'];
     $infoList = explode(' ', $serverSoftware);
-    
+
     $placeholderList = [
         '##placeholder_webserver##' => $infoList[0],
         '##placeholder_php_version##' => $infoList[3],

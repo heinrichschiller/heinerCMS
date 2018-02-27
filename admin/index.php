@@ -1,5 +1,6 @@
 <?php
 
+ini_set('display_errors', true);
 include __DIR__ . '/../cms-config.php';
 
 include __DIR__ . '/../include/general_functions.inc.php';

@@ -8,11 +8,12 @@
     			<p>Die hier gewählte Sprache entscheidet über die Sprache des Installers und
     			der Sprache der Anwendung.</p>
     			<p>Die Sprache können sie später über die <strong>Einstellungen</strong> von heinerCMS wieder umstellen.</p>
-    			<p>Ihre gewählte Sprache: <select>
+    			<p>Ihre gewählte Sprache: </p>
+				<select class="custom-select">
     				<option>Deutsch</option>
     				<option>Englisch</option>
     				<option>Russisch</option>
-    			</select></p>
+    			</select>
     		</div>
     	</div>
     	<div class="row button_bottom">

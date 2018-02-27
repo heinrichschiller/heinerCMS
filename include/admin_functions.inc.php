@@ -440,6 +440,8 @@ function load_admin_link_del(int $id): string
  */
 function load_admin_link_settings()
 {
+	$placeholderList = [];
+
     $pdo = getPdoDB();
     
     $sql = 'SELECT `tagline`, `comment`'
@@ -452,7 +454,7 @@ function load_admin_link_settings()
         echo $ex->getMessage();
         exit();
     }
-    
+
     while($link = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
             '##placeholder-link-tagline##' => $link->tagline,

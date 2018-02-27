@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+/* select */
+.custom-select {
+	width: 16em;
+}
 /* button */
 .button_bottom {
 	position: fixed;
