@@ -267,6 +267,7 @@ function createTableLinksSettings(PDO $pdo) : bool
     
     return false;
 }
+
 /**
  * Create table news
  * 
@@ -292,6 +293,36 @@ function createTableNews(PDO $pdo) : bool
             return true;
         } catch(PDOException $ex) {
             return false;
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Create table news_settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function createTableNewsSettings(PDO $pdo) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "CREATE TABLE `news_settings` (
+               `id` INT NOT NULL AUTO_INCREMENT,
+               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+               `comment` TEXT NOT NULL,
+               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+               `update_at` timestamp NULL DEFAULT NULL,
+               PRIMARY KEY (`id`)
+               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
         }
     }
     
@@ -431,6 +462,29 @@ function writeLinksSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`) VALUES ('','','','');";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Write news configuration into database
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function writeNewsSettingsConfiguration(PDO $pdo) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "INSERT INTO `news_settings`(`tagline`, `comment`, `created_at`, `update_at`) VALUES ('','','','');";
         
         try {
             $pdo->exec($sql);

@@ -8,7 +8,7 @@
 <!-- Content -->
 <div class="list-group spacing">
     <li class="list-group-item active">
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {content}
+        {content}
     </li>
         <a href="$PHP_SELF?uri=news" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {news}
@@ -42,7 +42,7 @@
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {communication}
     </li>
         <a href="$PHP_SELF?uri=news" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-contact-book.svg"> {contact_inquiry}
+            {contact_inquiry}
             <span class="badge badge-light">0<!-- ##placeholder-inqiery##  --></span>
         </a>
 </div>
@@ -50,13 +50,16 @@
 <!-- Settings -->
 <div class="list-group spacing">
     <li class="list-group-item active">
-        <img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-gear-1.svg"> {settings}
+        {settings}
     </li>
         <a href="$PHP_SELF?uri=general" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-gear.svg"> {general}
         </a>
         <a href="$PHP_SELF?uri=mainpage" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-home-page.svg"> {mainpage}
+        </a>
+        <a href="$PHP_SELF?uri=newssettings" class="list-group-item list-group-item-action">
+            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {news}
         </a>
         <a href="$PHP_SELF?uri=linksettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}

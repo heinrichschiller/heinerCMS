@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
 			<div class="form-group">
-				<p class="text-right">{date}: <@datetime@></p>
+				<p class="text-right">{date}: ##placeholder-datetime##</p>
 			</div>
 		</div>
 	</div>

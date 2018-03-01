@@ -18,7 +18,7 @@
    				</tr>
    			</thead>
    			<tbody>
-				<@table_content@>
+				##placeholder-table-content##
    			</tbody>
    		</table>
    	</div>

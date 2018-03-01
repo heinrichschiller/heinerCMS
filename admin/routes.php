@@ -114,6 +114,9 @@ $route['linksettings'] = function() {
     return load_admin_link_settings();
 };
 
+$route['newssettings'] = function() {
+    return load_admin_news_settings();
+};
 $route['logout'] = function() {
 	header ('Location: logout.php');
 };

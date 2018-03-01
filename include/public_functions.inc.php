@@ -42,7 +42,7 @@ function load_public_navigation() : string
     }
     
     if ( countTableEntries('news') !== 0) {
-        $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">News</a>';
+        $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">Neuigkeiten</a>';
     }
     
     if ( countTableEntries('downloads') !== 0) {
@@ -111,14 +111,17 @@ function load_sites() : string
 function load_public_news() : string
 {
     $template = '';
-    $table_content = '';
+    $content = '';
     
-    $PHP_SELF = $_SERVER['PHP_SELF'];
+    $template = loadTemplate('pub_news');
+    $templateNewsContent = loadTemplate('pub_news_content');
     
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
-        . " FROM `news` WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+    $sql = 'SELECT news.id, news.title, news.message, UNIX_TIMESTAMP(news.created_at) AS datetime,'
+        . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment'
+        . ' FROM `news`, `news_settings`'
+        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -126,17 +129,62 @@ function load_public_news() : string
     } catch (PDOException $ex) {
         echo $ex->getMessage();
     }
-    
+
     while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= StrFTime ( '%d.%m.%Y %H:%M', $news->datetime );
-        $table_content .= " - <a href=\"$PHP_SELF?uri=newsdet&id=$news->id\">$news->title</a><br>\n";
+
+        $placeholderList = [
+            '##placeholder-news-page-tagline##' => $news->news_tagline,
+            '##placeholder-news-page-comment##' => $news->news_comment,
+            '##placeholder-news-datetime##'     => StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ),
+            '##placeholder-news-title##'        => $news->title,
+            '##placeholder-news-id##'           => $news->id
+        ];
+        
+        $content .= $templateNewsContent;
     }
-    
-    $template = loadTemplate('pub_news');
-    
-    $template = str_replace('<@news@>', $table_content, $template);
+
+    $template = str_replace('##placeholder-news##', $content, $template);
+    $template = strtr($template, $placeholderList);
     
     return $template;
+}
+
+/**
+ * Detailansicht einer Nachricht laden
+ *
+ * @param int $id
+ * @return string
+ */
+function load_public_newsdetailed(int $id) : string
+{
+    $content = '';
+    
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `id` = :id";
+    
+    $inputParameters = [
+        ':id' => $id
+    ];
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($inputParameters);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $placeholderList = [
+            '##placeholder-datetime##' => StrFTime( '%d.%m.%Y %H:%M', $news->datetime ),
+            '##placeholder-title##'    => $news->title,
+            '##placeholder-message##'  => $news->message
+        ];
+    }
+    
+    $template = loadTemplate('pub_news_detailed');
+    
+    return strtr($template, $placeholderList);
 }
 
 function load_public_articles() : string
@@ -247,30 +295,7 @@ function countTableEntries(string $table) : int
     
     return $id;
 }
-/* Detailansicht einer Nachricht laden */
-/**
- * 
- * @param int $id
- * @return string
- *
-function load_content_newsdetailed(int $id) : string
-{
-	$template = '';
-	$con = getDB ();
-	if ($con) {
-		
-		$sql = "SELECT `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$news = mysqli_fetch_object ( $result );
-			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ) . "</h5>";
-			$template .= "<h2>$news->title</h2>";
-			$template .= "<p>$news->message</p>";
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
+
 
 /* Gesamtübersicht der Downloads laden */
 /**

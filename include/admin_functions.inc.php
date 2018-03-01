@@ -89,7 +89,7 @@ function load_admin_news(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('<@table_content@>', $table_content, $template);
+    $template = str_replace('##placeholder-table-content##', $table_content, $template);
     
     return $template;
 }
@@ -122,12 +122,12 @@ function load_admin_news_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>' => $result['id'],
-        '<@title@>' => $result['title'],
-        '<@message@>' => $result['message'],
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
-        '@chk_yes@' => $chkYes,
-        '@chk_no@' => $chkNo
+        '##placeholder-id##' => $result['id'],
+        '##placeholder-title##' => $result['title'],
+        '##placeholder-message##' => $result['message'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-chk_yes##' => $chkYes,
+        '##placeholder-chk_no##' => $chkNo
     ];
 
     $template = loadTemplate('adm_news_edit');
@@ -145,7 +145,7 @@ function load_admin_news_add(): string
     $template = '';
     
     $placeholdeList = [
-        '<@datetime@>' => StrFTime('%d.%m.%Y %H:%M', time())
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = loadTemplate('adm_news_add');
@@ -167,8 +167,8 @@ function load_admin_news_del(int $id): string
     $title = getTitleFromTableById('news', $id);
     
     $placeholderList = [
-        '<@id@>' => $id,
-        '<@title@>' => $title
+        '##placeholder-id##' => $id,
+        '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_news_del');
@@ -176,6 +176,38 @@ function load_admin_news_del(int $id): string
     
     return $template;
 
+}
+
+/**
+ *
+ */
+function load_admin_news_settings()
+{
+    $placeholderList = [];
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `tagline`, `comment`'
+        . " FROM `news_settings` WHERE `id` = 1";
+        
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+        
+        while($link = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $placeholderList = [
+                '##placeholder-news-tagline##' => $link->tagline,
+                '##placeholder-news-comment##' => $link->comment
+            ];
+        }
+        
+        $template = loadTemplate('adm_news_settings');
+        
+        return strtr($template, $placeholderList);
 }
 
 /**

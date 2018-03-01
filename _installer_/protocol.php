@@ -41,6 +41,18 @@ if($_SESSION['isTabNewsCreated']) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// Created News Settings table ?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isTabNewsSettingsCreated']) {
+    $newsSettingsTrAttr = 'class="table-success"';
+    $newsSettingsRes = 'ja';
+} else {
+    $newsSettingsTrAttr = 'class="table-danger"';
+    $newsSettingsRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // Created Downloadstable ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +172,18 @@ if($_SESSION['isLinksConfWritten']) {
     $isLinksRes = 'nein';
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Is news configuration written?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isNewsConfWritten']) {
+    $isNewsConfTrAttr = 'class="table-success"';
+    $isNewsRes = 'ja';
+} else {
+    $isNewsConfTrAttr = 'class="table-danger"';
+    $isNewsRes = 'nein';
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -234,6 +258,10 @@ footer p {
 								<td>Tabelle news erstellt?</td>
 								<td><?= $newsRes; ?></td>
 							</tr>
+							<tr <?= $newsSettingsTrAttr; ?>>
+								<td>Tabelle news erstellt?</td>
+								<td><?= $newsSettingsRes; ?></td>
+							</tr>
 							<tr <?= $downloadsTrAttr; ?>>
 								<td>Tabelle downloads erstellt?</td>
 								<td><?= $downloadsRes; ?></td>
@@ -243,7 +271,7 @@ footer p {
 								<td><?= $linksRes; ?></td>
 							</tr>
 							<tr <?= $linksSettingsTrAttr; ?>>
-								<td>Tabelle links erstellt?</td>
+								<td>Tabelle links_settings erstellt?</td>
 								<td><?= $linksSettingsRes; ?></td>
 							</tr>
 							<tr <?= $artiklesTrAttr; ?>>
@@ -295,6 +323,10 @@ footer p {
 							<tr <?= $isLinksConfTrAttr; ?>>
 								<td>Standardkonfiguration für Links geschrieben?</td>
 								<td><?= $isLinksRes ?></td>
+							</tr>
+							<tr <?= $isNewsConfTrAttr; ?>>
+								<td>Standardkonfiguration für News geschrieben?</td>
+								<td><?= $isNewsRes ?></td>
 							</tr>
 						</tbody>
 					</table>
