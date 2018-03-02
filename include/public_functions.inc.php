@@ -115,14 +115,14 @@ function load_public_news() : string
 
     $template = loadTemplate('pub_news');
     $templateNewsContent = loadTemplate('pub_news_content');
-    
+
     $pdo = getPdoDB();
-    
+
     $sql = 'SELECT news.id, news.title, news.message, UNIX_TIMESTAMP(news.created_at) AS datetime,'
         . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment'
         . ' FROM `news`, `news_settings`'
         . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -135,18 +135,26 @@ function load_public_news() : string
         $placeholderList = [
             '##placeholder-news-page-tagline##' => $news->news_tagline,
             '##placeholder-news-page-comment##' => $news->news_comment,
-            '##placeholder-news-datetime##'     => StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ),
-            '##placeholder-news-title##'        => $news->title,
-            '##placeholder-news-id##'           => $news->id
         ];
-       
-        $content .= $templateNewsContent;
+
+        $content .= load_public_news_content($news, $templateNewsContent);
     }
 
     $template = str_replace('##placeholder-news##', $content, $template);
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
+}
+
+function load_public_news_content($news, $template)
+{
+    $placeholderList = [
+        '##placeholder-news-datetime##'     => StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ),
+        '##placeholder-news-title##'        => $news->title,
+        '##placeholder-news-id##'           => $news->id
+    ];
+
+    return strtr($template,$placeholderList);
 }
 
 /**
@@ -200,43 +208,49 @@ function load_public_downloads() : string
 function load_public_links() : string
 {
     $content = '';
-    
+
     $template = loadTemplate('pub_links');
     $templateLinksContent = loadTemplate('pub_links_content');
-    
+
     $pdo = getPdoDB();
-    
+
     $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,'
         . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
         . ' FROM `links`, `links_settings`'
         . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-        
-        try {
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-        
-        
-        while($links = $stmt->fetch(PDO::FETCH_OBJ)) {
 
-            $placeholderList = [
-                '##placeholder-links-page-tagline##' => $links->settings_tagline,
-                '##placeholder-links-page-comment##' => $links->settings_comment,
-                '##placeholder-links-title##'        => $links->title,
-                '##placeholder-links-tagline##'      => $links->tagline,
-                '##placeholder-links-uri##'          => $links->uri,
-                '##placeholder-links-comment##'      => $links->comment
-            ];
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
 
-            $content .= $templateLinksContent;
-        }
-        
-        $template = str_replace('##placeholder-links##', $content, $template);
-        $template = strtr($template, $placeholderList);
+    while($links = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $placeholderList = [
+            '##placeholder-links-page-tagline##' => $links->settings_tagline,
+            '##placeholder-links-page-comment##' => $links->settings_comment
+        ];
 
-        return $template;
+        $content .= load_public_links_content($links, $templateLinksContent);
+    }
+
+    $template = str_replace('##placeholder-links##', $content, $template);
+    $template = strtr($template, $placeholderList);
+
+    return $template;
+}
+
+function load_public_links_content($links, $template)
+{
+    $placeholderList = [
+        '##placeholder-links-title##'   => $links->title,
+        '##placeholder-links-tagline##' => $links->tagline,
+        '##placeholder-links-uri##'     => $links->uri,
+        '##placeholder-links-comment##' => $links->comment
+    ];
+
+    return strtr($template, $placeholderList);
 }
 
 function load_public_sites(int $id) : string
