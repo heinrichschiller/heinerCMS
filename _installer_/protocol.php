@@ -80,7 +80,7 @@ if($_SESSION['isTabLinksCreated']) {
 // Created Links Settings table ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-if($_SESSION['isTabLinkSettingsCreated']) {
+if($_SESSION['isTabLinksSettingsCreated']) {
     $linksSettingsTrAttr = 'class="table-success"';
     $linksSettingsRes = 'ja';
 } else {
@@ -259,7 +259,7 @@ footer p {
 								<td><?= $newsRes; ?></td>
 							</tr>
 							<tr <?= $newsSettingsTrAttr; ?>>
-								<td>Tabelle news erstellt?</td>
+								<td>Tabelle news_settings erstellt?</td>
 								<td><?= $newsSettingsRes; ?></td>
 							</tr>
 							<tr <?= $downloadsTrAttr; ?>>

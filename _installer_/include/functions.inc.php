@@ -461,7 +461,7 @@ function writeDefaultConfiguration(PDO $pdo) : bool
 function writeLinksSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
-        $sql = "INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`) VALUES ('','','','');";
+        $sql = "INSERT INTO `links_settings`(`tagline`, `comment`) VALUES ('','');";
         
         try {
             $pdo->exec($sql);
@@ -484,7 +484,7 @@ function writeLinksSettingsConfiguration(PDO $pdo) : bool
 function writeNewsSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
-        $sql = "INSERT INTO `news_settings`(`tagline`, `comment`, `created_at`, `update_at`) VALUES ('','','','');";
+        $sql = "INSERT INTO `news_settings`(`tagline`, `comment`) VALUES ('','');";
         
         try {
             $pdo->exec($sql);

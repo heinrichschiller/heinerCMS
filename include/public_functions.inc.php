@@ -112,7 +112,7 @@ function load_public_news() : string
 {
     $template = '';
     $content = '';
-    
+
     $template = loadTemplate('pub_news');
     $templateNewsContent = loadTemplate('pub_news_content');
     
@@ -139,7 +139,7 @@ function load_public_news() : string
             '##placeholder-news-title##'        => $news->title,
             '##placeholder-news-id##'           => $news->id
         ];
-        
+       
         $content .= $templateNewsContent;
     }
 
