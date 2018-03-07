@@ -9,7 +9,7 @@ var print = (function () {
       editor.getWin().print();
     });
   };
-  var $_6fsub8icjducwrt1 = { register: register };
+  var $_9ajm37icje5nvcl9 = { register: register };
 
   var register$1 = function (editor) {
     editor.addButton('print', {
@@ -22,11 +22,11 @@ var print = (function () {
       icon: 'print'
     });
   };
-  var $_2tbcilidjducwrt1 = { register: register$1 };
+  var $_ey1ci2idje5nvcla = { register: register$1 };
 
   PluginManager.add('print', function (editor) {
-    $_6fsub8icjducwrt1.register(editor);
-    $_2tbcilidjducwrt1.register(editor);
+    $_9ajm37icje5nvcl9.register(editor);
+    $_ey1ci2idje5nvcla.register(editor);
     editor.addShortcut('Meta+P', '', 'mcePrint');
   });
   function Plugin () {
