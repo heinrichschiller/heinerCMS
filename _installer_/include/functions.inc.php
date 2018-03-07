@@ -23,7 +23,7 @@ function loadTemplate(string $template): string
  * 
  * @return string
  */
-function load_start()
+function load_start() : string
 {
     return loadTemplate('start');
 }
@@ -33,7 +33,7 @@ function load_start()
  * 
  * @return string
  */
-function load_language()
+function load_language() : string
 {
     return loadTemplate('language');
 }
@@ -43,7 +43,7 @@ function load_language()
  * 
  * @return string
  */
-function load_licence()
+function load_licence() : string
 {
     return loadTemplate('licence');
 }
@@ -53,14 +53,27 @@ function load_licence()
  * 
  * @return string
  */
-function load_conditions()
+function load_conditions() : string
 {
+    $getModules = '';
+    
     $serverSoftware = $_SERVER['SERVER_SOFTWARE'];
     $infoList = explode(' ', $serverSoftware);
-
+    
+    if (version_compare(phpversion(), '5.6', '>')) {
+        $phpversion = 'PHP/'.phpversion();
+    } else {
+        $phpversion = 'Gefundene PHP-Version' . phpversion() . 'ist zu niedrig';
+    }
+    
+    foreach(get_loaded_extensions() as $item) {
+        $getModules .= $item .',&nbsp;';
+    }
+    
     $placeholderList = [
         '##placeholder_webserver##' => $infoList[0],
-        '##placeholder_php_version##' => $infoList[3],
+        '##placeholder_php_version##' => $phpversion,
+        '##placeholder_php_modules##' => $getModules,
         '##placeholder_database##' => 'MySQL'
     ];
     
@@ -74,7 +87,7 @@ function load_conditions()
  * 
  * @return string
  */
-function load_database()
+function load_database() : string
 {
     return loadTemplate('database');
 }
@@ -84,7 +97,7 @@ function load_database()
  * 
  * @return string
  */
-function load_user()
+function load_user() : string
 {
     return loadTemplate('user');
 }
@@ -94,7 +107,7 @@ function load_user()
  * 
  * @return string
  */
-function load_installation()
+function load_installation() : string
 {
     $placeholderList = [
         '##placeholder_database_address##' => $_SESSION['address'],
@@ -113,7 +126,7 @@ function load_installation()
  * 
  * @return string
  */
-function load_final()
+function load_final() : string
 {
     return loadTemplate('final');
 }

@@ -1,3 +1,7 @@
+Version 0.1.7 (2018-03-07)
+	update, installer
+	update, README.md
+	update, code clean
 Version 0.1.6 (2018-03-02)
 	added, integrate public news
 	added, integrate new settings

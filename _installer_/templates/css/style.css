@@ -37,3 +37,9 @@ footer {
 footer p {
     text-align: center;
 }
+
+.php-modules {
+	hyphens: auto;
+	font-size: 80%;
+	width: 50%;	
+}

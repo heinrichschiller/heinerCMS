@@ -7,11 +7,13 @@ Das Programm dient mir selbst weiter als Übungsprojekt. Ich beabsichtige die So
 
 Der Basic-Code dieser Software ist sehr simpel gehalten, weil der ursprüngliche Code rein zu lernzwecken gemacht wurde. 
 
-Ziel
+##Ziel
 
 Ich beabsichtige die Software später auf meiner Domäne zu installieren und zu nutzen.
 
 
 Systemanforderungen:
 
-XAMPP mit PHP 7.1
+XAMPP mit PHP 7.0
+oder
+LAMP mit PHP 7.0, PHP-Module simplexml, pdo-mysql(db)

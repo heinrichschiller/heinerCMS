@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
     <head>
         <title>##placeholder_title##</title>
         <meta charset="utf8">
@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/reboot.min.css">
         <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/grid.min.css">
         <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
-        	<link href="templates/css/style.css" rel="stylesheet">
+        <link href="templates/css/style.css" rel="stylesheet">
     </head>
     <body>
         	<div class="container">

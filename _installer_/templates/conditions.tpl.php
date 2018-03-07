@@ -25,9 +25,14 @@
             				<td>##placeholder_php_version##</td>
             			</tr>
             			<tr>
-       					<th>Datenbank</th>
-       					<td>MySQL oder MariaDB</td>
-       					<td></td>
+       						<th>PHP-Module</th>
+       						<td>pdo-mysqldb,simplexml</td>
+       						<td class="php-modules">##placeholder_php_modules##</td>
+            			</tr>
+            			<tr>
+       						<th>Datenbank</th>
+       						<td>MySQL oder MariaDB</td>
+       						<td></td>
             			</tr>
         			</tbody>
         		</table>
