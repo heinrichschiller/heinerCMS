@@ -1,34 +1,37 @@
 <?php
 
-/* ********************************************************************************
+/*
+ * *******************************************************************************
  * Contains all functions for heinerCMS
- * 
+ *
  * @author: Heinrich Schiller
  * @date: 2017-06-09
- * 
+ *
  * content
- * 
+ *
  * generic section
  * admin section
  * sql section
- * *******************************************************************************/
+ * ******************************************************************************
+ */
 
-/* ********************************************************************************
+/*
+ * *******************************************************************************
  * generic - section
- * *******************************************************************************/
-
+ * ******************************************************************************
+ */
 
 /**
  */
-function getBlogURL() : string
+function getBlogURL(): string
 {
     return $_SESSION['blog-url'];
 }
 
-function load_public_navigation() : string
+function load_public_navigation(): string
 {
     $template = '';
- 
+    
     $template .= '<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="$PHP_SELF?uri=mainpage"><@title@></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,26 +40,26 @@ function load_public_navigation() : string
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">';
     
-    if ( !empty(getBlogURL())) {
-        $template .= ' <a class="nav-item nav-link" href="' .getBlogURL().'" target="blank">Blog</a>';
+    if (! empty(getBlogURL())) {
+        $template .= ' <a class="nav-item nav-link" href="' . getBlogURL() . '" target="blank">Blog</a>';
     }
     
-    if ( countTableEntries('news') !== 0) {
+    if (countTableEntries('news') !== 0) {
         $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">Neuigkeiten</a>';
     }
     
-    if ( countTableEntries('downloads') !== 0) {
+    if (countTableEntries('downloads') !== 0) {
         $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=downloads">Downloads</a>';
     }
     
-    if ( countTableEntries('links') !== 0) {
+    if (countTableEntries('links') !== 0) {
         $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=links">Links</a>';
     }
     
-    if ( countTableEntries('articles') !== 0) {
+    if (countTableEntries('articles') !== 0) {
         $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=articles">Artikel</a>';
     }
-
+    
     $template .= load_sites();
     
     $template .= '<ul class="nav justify-content-end">
@@ -78,7 +81,7 @@ function load_public_navigation() : string
     return $template;
 }
 
-function load_sites() : string
+function load_sites(): string
 {
     $html = '';
     
@@ -91,70 +94,68 @@ function load_sites() : string
         $result = $pdo->query($sql);
         
         foreach ($result as $key) {
-            $html .= '<a  class="nav-item nav-link" href="$PHP_SELF?uri=sites&id='.$key[0].'">'.$key[1].'</a>';
+            $html .= '<a  class="nav-item nav-link" href="$PHP_SELF?uri=sites&id=' . $key[0] . '">' . $key[1] . '</a>';
         }
-        
     } catch (PDOException $ex) {
         
         echo $ex->getMessage();
         exit();
-        
     }
     
     return $html;
 }
 
 /**
- * 
+ *
  * @return string
  */
-function load_public_news() : string
+function load_public_news(): string
 {
     $template = '';
     $content = '';
-
+    
     $template = loadTemplate('pub_news');
     $templateNewsContent = loadTemplate('pub_news_content');
-
+    
     $pdo = getPdoDB();
-
-    $sql = 'SELECT news.id, news.title, news.message, UNIX_TIMESTAMP(news.created_at) AS datetime,'
-        . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment'
+    
+    $sql = 'SELECT news.id, news.title, news.message, UNIX_TIMESTAMP(news.created_at) AS datetime,' 
+        . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment' 
         . ' FROM `news`, `news_settings`'
         . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
     }
-
-    while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
-
+    
+    while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+        
         $placeholderList = [
             '##placeholder-news-page-tagline##' => $news->news_tagline,
-            '##placeholder-news-page-comment##' => $news->news_comment,
+            '##placeholder-news-page-comment##' => $news->news_comment
         ];
-
+        
         $content .= load_public_news_content($news, $templateNewsContent);
     }
-
+    
     $template = str_replace('##placeholder-news##', $content, $template);
     $template = strtr($template, $placeholderList);
-
+    
     return $template;
 }
 
 function load_public_news_content($news, $template)
 {
     $placeholderList = [
-        '##placeholder-news-datetime##'     => StrFTime ( '%d.%m.%Y %H:%M', $news->datetime ),
-        '##placeholder-news-title##'        => $news->title,
-        '##placeholder-news-id##'           => $news->id
+        '##placeholder-news-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
+        '##placeholder-news-title##' => $news->title,
+        '##placeholder-news-id##' => $news->id
     ];
-
-    return strtr($template,$placeholderList);
+    
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -163,7 +164,7 @@ function load_public_news_content($news, $template)
  * @param int $id
  * @return string
  */
-function load_public_newsdetailed(int $id) : string
+function load_public_news_detailed(int $id): string
 {
     $content = '';
     
@@ -182,11 +183,11 @@ function load_public_newsdetailed(int $id) : string
         echo $ex->getMessage();
     }
     
-    while($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+    while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
-            '##placeholder-datetime##' => StrFTime( '%d.%m.%Y %H:%M', $news->datetime ),
-            '##placeholder-title##'    => $news->title,
-            '##placeholder-message##'  => $news->message
+            '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
+            '##placeholder-title##' => $news->title,
+            '##placeholder-message##' => $news->message
         ];
     }
     
@@ -195,65 +196,151 @@ function load_public_newsdetailed(int $id) : string
     return strtr($template, $placeholderList);
 }
 
-function load_public_articles() : string
+/**
+ *
+ * @return string
+ */
+function load_public_articles(): string
 {
-    return loadTemplate('pub_articles');
-}
-
-function load_public_downloads() : string
-{
-    return  loadTemplate('pub_downloads');
-}
-
-function load_public_links() : string
-{
+    $template = '';
     $content = '';
-
-    $template = loadTemplate('pub_links');
-    $templateLinksContent = loadTemplate('pub_links_content');
-
+    
+    $template = loadTemplate('pub_articles');
+    $templateArticlesContent = loadTemplate('pub_articles_content');
+    
     $pdo = getPdoDB();
-
-    $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,'
-        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
-        . ' FROM `links`, `links_settings`'
+    
+    $sql = 'SELECT articles.id, articles.title, articles.content, UNIX_TIMESTAMP(articles.created_at) AS datetime,' 
+        . ' articles_settings.tagline as tagline, articles_settings.comment as comment' 
+        . ' FROM `articles`, `articles_settings`' 
         . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
     }
+    
+    while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
+        
+        $placeholderList = [
+            '##placeholder-articles-page-tagline##' => $articles->tagline,
+            '##placeholder-articles-page-comment##' => $articles->comment
+        ];
+        
+        $content .= load_public_articles_content($articles, $templateArticlesContent);
+    }
 
-    while($links = $stmt->fetch(PDO::FETCH_OBJ)) {
+    $template = str_replace('##placeholder-articles##', $content, $template);
+    $template = strtr($template, $placeholderList);
+    
+    return $template;
+}
+
+function load_public_articles_content($articles, $template)
+{
+    $placeholderList = [
+        '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
+        '##placeholder-articles-title##' => $articles->title,
+        '##placeholder-articles-id##' => $articles->id
+    ];
+    
+    return strtr($template, $placeholderList);
+}
+
+/**
+ * Detailansicht eines Artikels laden
+ *
+ * @param int $id
+ * @return string
+ */
+function load_public_articles_detailed(int $id): string
+{
+    $content = '';
+    
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = :id";
+    
+    $inputParameters = [
+        ':id' => $id
+    ];
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($inputParameters);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $placeholderList = [
+            '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
+            '##placeholder-title##' => $articles->title,
+            '##placeholder-message##' => $articles->content
+        ];
+    }
+    
+    $template = loadTemplate('pub_articles_detailed');
+    
+    return strtr($template, $placeholderList);
+}
+
+function load_public_downloads(): string
+{
+    return loadTemplate('pub_downloads');
+}
+
+function load_public_links(): string
+{
+    $content = '';
+    
+    $template = loadTemplate('pub_links');
+    $templateLinksContent = loadTemplate('pub_links_content');
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,' 
+        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment' 
+        . ' FROM `links`, `links_settings`' 
+        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+    
+    while ($links = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
             '##placeholder-links-page-tagline##' => $links->settings_tagline,
             '##placeholder-links-page-comment##' => $links->settings_comment
         ];
-
+        
         $content .= load_public_links_content($links, $templateLinksContent);
     }
-
+    
     $template = str_replace('##placeholder-links##', $content, $template);
     $template = strtr($template, $placeholderList);
-
+    
     return $template;
 }
 
 function load_public_links_content($links, $template)
 {
     $placeholderList = [
-        '##placeholder-links-title##'   => $links->title,
+        '##placeholder-links-title##' => $links->title,
         '##placeholder-links-tagline##' => $links->tagline,
-        '##placeholder-links-uri##'     => $links->uri,
+        '##placeholder-links-uri##' => $links->uri,
         '##placeholder-links-comment##' => $links->comment
     ];
-
+    
     return strtr($template, $placeholderList);
 }
 
-function load_public_sites(int $id) : string
+function load_public_sites(int $id): string
 {
     $template = '';
     
@@ -271,32 +358,30 @@ function load_public_sites(int $id) : string
         $stmt->execute($input_parameters);
         
         $site = $stmt->fetchObject();
-
+        
         $placeholderList = [
             '<@placeholder-title@>' => $site->title,
             '<@placeholder-tagline@>' => $site->tagline,
             '<@placeholder-content@>' => $site->content
         ];
-
-    } catch(PDOException $ex) {
+    } catch (PDOException $ex) {
         
         echo $ex->getMessage();
         exit();
-        
     }
-
+    
     $template = loadTemplate('pub_site');
-    $template = strtr($template,$placeholderList);
+    $template = strtr($template, $placeholderList);
     
     return $template;
 }
 
-function load_public_mainpage() : string
+function load_public_mainpage(): string
 {
     return loadTemplate('pub_mainpage');
 }
 
-function countTableEntries(string $table) : int
+function countTableEntries(string $table): int
 {
     $id = 0;
     $pdo = getPdoDB();

@@ -18,13 +18,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<@articles-content@>
+				##placeholder-articles-content##
 			</tbody>
 		</table>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<a href="$PHP_SELF?uri=articleadd" class="btn btn-primary" role="button">{create_article}</a>
+		<a href="index.php?uri=articleadd" class="btn btn-primary" role="button">{create_article}</a>
 	</div>
 </div>

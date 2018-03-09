@@ -15,6 +15,15 @@ CREATE TABLE `articles` (
   PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `articles_settings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+  `comment` TEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,  
+  PRIMARY KEY (`id`)
+  ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -- tables:
 CREATE TABLE `downloads` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -114,4 +123,7 @@ INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`)
 VALUES ('','','','');
 
 INSERT INTO `news_settings`(`tagline`, `comment`, `created_at`, `update_at`)
+VALUES ('','','','');
+
+INSERT INTO `articles_settings`(`tagline`, `comment`, `created_at`, `update_at`)
 VALUES ('','','','');

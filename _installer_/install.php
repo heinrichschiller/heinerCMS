@@ -31,20 +31,22 @@ try {
     selectDatabase($pdo, DB_NAME);
 
     // 3. Create tables
-    $_SESSION['isTabArticlesCreated']      = createTableArticles($pdo);
-    $_SESSION['isTabDownloadsCreated']     = createTableDownloads($pdo);
-    $_SESSION['isTabLinksCreated']         = createTableLinks($pdo);
-    $_SESSION['isTabLinksSettingsCreated'] = createTableLinksSettings($pdo);
-    $_SESSION['isTabNewsCreated']          = createTableNews($pdo);
-    $_SESSION['isTabNewsSettingsCreated']  = createTableNewsSettings($pdo);
-    $_SESSION['isTabSitesCreated']         = createTableSites($pdo);
-    $_SESSION['isTabUsersCreated']         = createTableUsers($pdo);
-    $_SESSION['isTabSettingsCreated']      = createTableSettings($pdo);
+    $_SESSION['isTabArticlesCreated']         = createTableArticles($pdo);
+    $_SESSION['isTabArticlesSettingsCreated'] = createTableArticlesSettings($pdo);
+    $_SESSION['isTabDownloadsCreated']        = createTableDownloads($pdo);
+    $_SESSION['isTabLinksCreated']            = createTableLinks($pdo);
+    $_SESSION['isTabLinksSettingsCreated']    = createTableLinksSettings($pdo);
+    $_SESSION['isTabNewsCreated']             = createTableNews($pdo);
+    $_SESSION['isTabNewsSettingsCreated']     = createTableNewsSettings($pdo);
+    $_SESSION['isTabSitesCreated']            = createTableSites($pdo);
+    $_SESSION['isTabUsersCreated']            = createTableUsers($pdo);
+    $_SESSION['isTabSettingsCreated']         = createTableSettings($pdo);
     
     // 4. Write default configuration
-    $_SESSION['isDefaultConfWritten'] = writeDefaultConfiguration($pdo);
-    $_SESSION['isLinksConfWritten']   = writeLinksSettingsConfiguration($pdo);
-    $_SESSION['isNewsConfWritten']    = writeNewsSettingsConfiguration($pdo);
+    $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
+    $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
+    $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
+    $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
     
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();
@@ -88,7 +90,5 @@ if ( checkDatabase($pdo) ) {
 } else {
     $_SESSION['isUserCreated'] = false;
 }
-
-
 
 header('Location: index.php?uri=final');

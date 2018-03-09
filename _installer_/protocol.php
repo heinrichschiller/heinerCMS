@@ -93,11 +93,23 @@ if($_SESSION['isTabLinksSettingsCreated']) {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 if($_SESSION['isTabArticlesCreated']) {
-    $artiklesTrAttr = 'class="table-success"';
-    $artiklesRes = 'ja';
+    $articlesTrAttr = 'class="table-success"';
+    $articlesRes = 'ja';
 } else {
-    $artiklesTrAttr = 'class="table-danger"';
-    $artiklesRes = 'nein';
+    $articlesTrAttr = 'class="table-danger"';
+    $articlesRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Created Links Settings table ?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isTabArticlesSettingsCreated']) {
+    $articlesSettingsTrAttr = 'class="table-success"';
+    $articlesSettingsRes = 'ja';
+} else {
+    $articlesSettingsTrAttr = 'class="table-danger"';
+    $articlesSettingsRes = 'nein';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,6 +194,18 @@ if($_SESSION['isNewsConfWritten']) {
 } else {
     $isNewsConfTrAttr = 'class="table-danger"';
     $isNewsRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Is articles configuration written?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isArticlesConfWritten']) {
+    $isArticlesConfTrAttr = 'class="table-success"';
+    $isArticlesRes = 'ja';
+} else {
+    $isArticlesConfTrAttr = 'class="table-danger"';
+    $isArticlesRes = 'nein';
 }
 
 ?>
@@ -274,9 +298,13 @@ footer p {
 								<td>Tabelle links_settings erstellt?</td>
 								<td><?= $linksSettingsRes; ?></td>
 							</tr>
-							<tr <?= $artiklesTrAttr; ?>>
+							<tr <?= $articlesTrAttr; ?>>
 								<td>Tabelle articles erstellt?</td>
-								<td><?= $artiklesRes; ?></td>
+								<td><?= $articlesRes; ?></td>
+							</tr>
+							<tr <?= $articlesSettingsTrAttr; ?>>
+								<td>Tabelle articles_settings erstellt?</td>
+								<td><?= $articlesSettingsRes; ?></td>
 							</tr>
 							<tr <?= $sitesTrAttr; ?>>
 								<td>Tabelle sites erstellt?</td>
@@ -327,6 +355,10 @@ footer p {
 							<tr <?= $isNewsConfTrAttr; ?>>
 								<td>Standardkonfiguration für News geschrieben?</td>
 								<td><?= $isNewsRes ?></td>
+							</tr>
+							<tr <?= $isArticlesConfTrAttr; ?>>
+								<td>Standardkonfiguration für Artikel geschrieben?</td>
+								<td><?= $isArticlesRes ?></td>
 							</tr>
 						</tbody>
 					</table>

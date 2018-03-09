@@ -1,3 +1,6 @@
+Version 0.1.9 (2018-03-09)
+	added, integrated public articles
+	update, clean code
 Version 0.1.8 (2018-03-07)
 	update, tinymce/tinymce (4.7.7 => 4.7.9)
 	update, components/jquery (3.2.1 => 3.3.1)
@@ -6,8 +9,8 @@ Version 0.1.7 (2018-03-07)
 	update, README.md
 	update, code clean
 Version 0.1.6 (2018-03-02)
-	added, integrate public news
-	added, integrate new settings
+	added, integrated public news
+	added, integrated new settings
 	bugfix, fixed many many other minor bugs
 	update, translates
 	update, installer

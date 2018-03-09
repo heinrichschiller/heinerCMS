@@ -64,6 +64,9 @@
         <a href="$PHP_SELF?uri=linksettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}
         </a>
+        <a href="$PHP_SELF?uri=articlessettings" class="list-group-item list-group-item-action">
+            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {articles}
+        </a>
         <a href="$PHP_SELF?uri=user" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-person-people.svg"> {user}
         </a>

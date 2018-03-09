@@ -9,7 +9,7 @@ $route['news'] = function()
 
 $route['newsdet'] = function($id)
 {
-    return load_public_newsdetailed($id);
+    return load_public_news_detailed($id);
 };
 
 $route['downloads'] = function()
@@ -29,7 +29,7 @@ $route['articles'] = function()
 
 $route['articlesdet'] = function($id)
 {
-    return load_public_articlesdetailed($id);
+    return load_public_articles_detailed($id);
 };
 
 $route['links'] = function()

@@ -176,7 +176,7 @@ function load_admin_news_del(int $id): string
 
 /**
  */
-function load_admin_news_settings()
+function load_admin_news_settings() : string
 {
     $placeholderList = [];
     
@@ -461,7 +461,7 @@ function load_admin_link_del(int $id): string
 
 /**
  */
-function load_admin_link_settings()
+function load_admin_link_settings() : string
 {
     $placeholderList = [];
     
@@ -534,7 +534,7 @@ function load_admin_articles(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('<@articles-content@>', $table_content, $template);
+    $template = str_replace('##placeholder-articles-content##', $table_content, $template);
     
     return $template;
 }
@@ -567,12 +567,12 @@ function load_admin_article_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>' => $result['id'],
-        '<@title@>' => $result['title'],
-        '<@content@>' => $result['content'],
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
-        '@chk_yes@' => $chkYes,
-        '@chk_no@' => $chkNo
+        '##placeholder-id##'       => $result['id'],
+        '##placeholder-title##'    => $result['title'],
+        '##placeholder-content##'  => $result['content'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
     $template = strtr($template, $placeholderList);
@@ -592,7 +592,7 @@ function load_admin_article_add(): string
     $template = loadTemplate('adm_article_add');
     
     $placeholderList = [
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = strtr($template, $placeholderList);
@@ -613,8 +613,8 @@ function load_admin_article_del(int $id): string
     $title = getTitleFromTableById('articles', $id);
     
     $placeholderList = [
-        '<@id@>' => $id,
-        '<@title@>' => $title
+        '##placeholder-id##' => $id,
+        '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_article_del');
@@ -622,6 +622,37 @@ function load_admin_article_del(int $id): string
     $template = strtr($template, $placeholderList);
     
     return $template;
+}
+
+/**
+ */
+function load_admin_articles_settings() : string
+{
+    $placeholderList = [];
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT `tagline`, `comment`' 
+        . " FROM `articles_settings` WHERE `id` = 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    while ($article = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $placeholderList = [
+            '##placeholder-article-tagline##' => $article->tagline,
+            '##placeholder-article-comment##' => $article->comment
+        ];
+    }
+    
+    $template = loadTemplate('adm_articles_settings');
+    
+    return strtr($template, $placeholderList);
 }
 
 /**

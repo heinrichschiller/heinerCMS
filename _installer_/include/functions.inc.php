@@ -184,6 +184,36 @@ function createTableArticles(PDO $pdo) : bool
 }
 
 /**
+ * Create table articles_settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function createTableArticlesSettings(PDO $pdo) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "CREATE TABLE `articles_settings` (
+               `id` INT NOT NULL AUTO_INCREMENT,
+               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+               `comment` TEXT NOT NULL,
+               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+               `update_at` timestamp NULL DEFAULT NULL,
+               PRIMARY KEY (`id`)
+               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
+
+/**
  * Create table downloads
  * 
  * @param PDO $pdo
@@ -512,12 +542,35 @@ function writeNewsSettingsConfiguration(PDO $pdo) : bool
 }
 
 /**
+ * Write news configuration into database
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function writeArticlesSettingsConfiguration(PDO $pdo) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "INSERT INTO `articles_settings`(`tagline`, `comment`) VALUES ('','');";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
+
+/**
  * Select database by name
  * 
- * @param unknown $pdo
- * @param unknown $database
+ * @param PDO $pdo
+ * @param string $database
  */
-function selectDatabase($pdo, $database) {
+function selectDatabase(PDO $pdo, string $database) {
     $sql = "USE `$database`";
     
     $pdo->exec($sql);
