@@ -1,7 +1,8 @@
 <?php
 
 /**
- *
+ * Load the admin navigation with badges
+ * 
  * @return string
  */
 function load_admin_navigation(): string
@@ -11,23 +12,22 @@ function load_admin_navigation(): string
     $entries = countEntries();
     
     $placeholderList = [
-        '##placeholder-news##' => $entries[0],
+        '##placeholder-news##'      => $entries[0],
         '##placeholder-downloads##' => $entries[1],
-        '##placeholder-links##' => $entries[2],
-        '##placeholder-articles##' => $entries[3],
-        '##placeholder-sites##' => $entries[4],
-        '##placeholder-trash##' => $entries[5]
+        '##placeholder-links##'     => $entries[2],
+        '##placeholder-articles##'  => $entries[3],
+        '##placeholder-sites##'     => $entries[4],
+        '##placeholder-trash##'     => $entries[5]
     ];
     
     $template = loadTemplate('adm_navigation');
     
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
- *
+ * Load the admin sidebar.
+ * 
  * @return string
  */
 function load_admin_sidebar(): string
@@ -86,15 +86,13 @@ function load_admin_news(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('##placeholder-table-content##', $table_content, $template);
-    
-    return $template;
+    return str_replace('##placeholder-table-content##', $table_content, $template);
 }
 
 /**
  * Formular zum Bearbeiten einer Nachricht laden
  *
- * @param int $id
+ * @param int $id Id of a news
  * @return string
  */
 function load_admin_news_edit(int $id): string
@@ -119,12 +117,12 @@ function load_admin_news_edit(int $id): string
     }
     
     $placeholderList = [
-        '##placeholder-id##' => $result['id'],
-        '##placeholder-title##' => $result['title'],
-        '##placeholder-message##' => $result['message'],
+        '##placeholder-id##'       => $result['id'],
+        '##placeholder-title##'    => $result['title'],
+        '##placeholder-message##'  => $result['message'],
         '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
-        '##placeholder-chk_yes##' => $chkYes,
-        '##placeholder-chk_no##' => $chkNo
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
     $template = loadTemplate('adm_news_edit');
@@ -146,15 +144,14 @@ function load_admin_news_add(): string
     ];
     
     $template = loadTemplate('adm_news_add');
-    $template = strtr($template, $placeholdeList);
-    
-    return $template;
+
+    return strtr($template, $placeholdeList);
 }
 
 /**
  * Delete a news
  *
- * @param int $id
+ * @param int $id Id of a news
  * @return string
  */
 function load_admin_news_del(int $id): string
@@ -164,25 +161,25 @@ function load_admin_news_del(int $id): string
     $title = getTitleFromTableById('news', $id);
     
     $placeholderList = [
-        '##placeholder-id##' => $id,
+        '##placeholder-id##'    => $id,
         '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_news_del');
-    $template = strtr($template, $placeholderList);
     
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
+ * Load news settings.
+ * 
+ * @return string
  */
 function load_admin_news_settings() : string
 {
-    $placeholderList = [];
-    
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `tagline`, `comment`' . " FROM `news_settings` WHERE `id` = 1";
+    $sql = "SELECT `tagline`, `comment` FROM `news_settings` WHERE `id` = 1";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -192,12 +189,12 @@ function load_admin_news_settings() : string
         exit();
     }
     
-    while ($link = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $placeholderList = [
-            '##placeholder-news-tagline##' => $link->tagline,
-            '##placeholder-news-comment##' => $link->comment
-        ];
-    }
+    $link = $stmt->fetch(PDO::FETCH_OBJ);
+    
+    $placeholderList = [
+        '##placeholder-news-tagline##' => $link->tagline,
+        '##placeholder-news-comment##' => $link->comment
+    ];
     
     $template = loadTemplate('adm_news_settings');
     
@@ -211,7 +208,6 @@ function load_admin_news_settings() : string
  */
 function load_admin_downloads(): string
 {
-    $template = '';
     $table_content = '';
     
     $pdo = getPdoDB();
@@ -254,12 +250,11 @@ function load_admin_downloads(): string
 /**
  * Formular zum Bearbeiten eines Downloads laden
  *
- * @param int $id
+ * @param int $id Id of a download.
  * @return string
  */
 function load_admin_downloads_edit(int $id): string
 {
-    $template = '';
     $chkNo = '';
     $chkYes = '';
     
@@ -292,10 +287,8 @@ function load_admin_downloads_edit(int $id): string
     ];
     
     $template = loadTemplate('adm_downloads_edit');
-    
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -305,19 +298,17 @@ function load_admin_downloads_edit(int $id): string
  */
 function load_admin_downloads_add(): string
 {
-    $template = '';
     $time = StrFTime('%d.%m.%Y %H:%M', time());
     
-    $template .= loadTemplate('adm_downloads_add');
-    $template = str_replace('<@time@>', $time, $template);
-    
-    return $template;
+    $template = loadTemplate('adm_downloads_add');
+
+    return str_replace('<@time@>', $time, $template);
 }
 
 /**
- * Download löschen
+ * Delete download
  *
- * @param int $id
+ * @param int $id Id of a download
  * @return string
  */
 function load_admin_downloads_del(int $id): string
@@ -330,9 +321,8 @@ function load_admin_downloads_del(int $id): string
     ];
     
     $template = loadTemplate('adm_downloads_del');
-    $template = strtr($template, $placeholderList);
     
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -376,9 +366,8 @@ function load_admin_links(): string
     }
     
     $template = loadTemplate('adm_links');
-    $template = str_replace('##placeholder-links-content##', $table_content, $template);
     
-    return $template;
+    return str_replace('##placeholder-links-content##', $table_content, $template);
 }
 
 /**
@@ -407,13 +396,13 @@ function load_admin_link_edit(int $id): string
     }
     
     $placeholderList = [
-        '##placeholder-id##' => $result['id'],
-        '##placeholder-title##' => $result['title'],
+        '##placeholder-id##'      => $result['id'],
+        '##placeholder-title##'   => $result['title'],
         '##placeholder-tagline##' => $result['tagline'],
-        '##placeholder-uri##' => $result['uri'],
+        '##placeholder-uri##'     => $result['uri'],
         '##placeholder-comment##' => $result['comment'],
         '##placeholder-chk_yes##' => $chkYes,
-        '##placeholder-chk_no##' => $chkNo
+        '##placeholder-chk_no##'  => $chkNo
     ];
     
     $template = loadTemplate('adm_link_edit');
@@ -449,7 +438,7 @@ function load_admin_link_del(int $id): string
     $title = getTitleFromTableById('links', $id);
     
     $placeholderList = [
-        '##placeholder-id##' => $id,
+        '##placeholder-id##'    => $id,
         '##placeholder-title##' => $title
     ];
     
@@ -613,7 +602,7 @@ function load_admin_article_del(int $id): string
     $title = getTitleFromTableById('articles', $id);
     
     $placeholderList = [
-        '##placeholder-id##' => $id,
+        '##placeholder-id##'    => $id,
         '##placeholder-title##' => $title
     ];
     
@@ -661,11 +650,7 @@ function load_admin_articles_settings() : string
  */
 function load_dashboard(): string
 {
-    $template = '';
-    
-    $template = loadTemplate('adm_dashboard');
-    
-    return $template;
+    return loadTemplate('adm_dashboard');
 }
 
 /**
@@ -709,9 +694,7 @@ function load_trash(): string
         $artikles
     ];
     
-    $template = loadTemplate('adm_trash');
-    
-    return $template;
+    return loadTemplate('adm_trash');
 }
 
 /**
@@ -723,9 +706,9 @@ function load_general_settings(): string
     $template = loadTemplate('adm_general_settings');
     
     $placeholderList = [
-        '<@placeholder-title@>' => $_SESSION['title'],
-        '<@placeholder-tagline@>' => $_SESSION['tagline'],
-        '<@placeholder-blog-url@>' => $_SESSION['blog-url'],
+        '<@placeholder-title@>'        => $_SESSION['title'],
+        '<@placeholder-tagline@>'      => $_SESSION['tagline'],
+        '<@placeholder-blog-url@>'     => $_SESSION['blog-url'],
         '<@placeholder-option-theme@>' => load_theme_options()
     ];
     
@@ -765,7 +748,6 @@ function load_theme_options(): string
  */
 function load_user_list(): string
 {
-    $template = '';
     $table_content = '';
     
     $pdo = getPdoDB();
@@ -800,9 +782,7 @@ function load_user_list(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('<@user_list_content@>', $table_content, $template);
-    
-    return $template;
+    return str_replace('<@user_list_content@>', $table_content, $template);
 }
 
 /**
@@ -812,7 +792,6 @@ function load_user_list(): string
  */
 function load_user_edit(int $id): string
 {
-    $template = '';
     $chkNo = '';
     $chkYes = '';
     
@@ -845,9 +824,7 @@ function load_user_edit(int $id): string
         '@chk_no@' => $chkNo
     ];
     
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -856,17 +833,13 @@ function load_user_edit(int $id): string
  */
 function load_user_add(): string
 {
-    $template = '';
-    
     $placeholderList = [
         '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = loadTemplate('adm_user_insert');
     
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -876,7 +849,6 @@ function load_user_add(): string
  */
 function load_user_del( int $id) : string
 {
-    $template = '';
     $placeholderList = [];
     
     $title = getUsernameById($id);
@@ -888,9 +860,7 @@ function load_user_del( int $id) : string
     
     $template = loadTemplate('adm_user_del');
     
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -899,7 +869,6 @@ function load_user_del( int $id) : string
  */
 function load_admin_sites(): string
 {
-    $template = '';
     $table_content = '';
     
     $pdo = getPdoDB();
@@ -936,9 +905,7 @@ function load_admin_sites(): string
         $table_content .= '</tr>';
     }
     
-    $template = str_replace('<@sites-content@>', $table_content, $template);
-    
-    return $template;
+    return str_replace('<@sites-content@>', $table_content, $template);
 }
 
 /**
@@ -946,17 +913,14 @@ function load_admin_sites(): string
  * @return string
  */
 function load_admin_site_add(): string
-{
-    $template = '';
-    
+{   
     $placeholdeList = [
         '<@datetime@>' => StrFTime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = loadTemplate('adm_site_add');
-    $template = strtr($template, $placeholdeList);
     
-    return $template;
+    return strtr($template, $placeholdeList);
 }
 
 /**
@@ -966,7 +930,6 @@ function load_admin_site_add(): string
  */
 function load_admin_site_edit(int $id): string
 {
-    $template = '';
     $params = [
         $id
     ];
@@ -995,16 +958,14 @@ function load_admin_site_edit(int $id): string
         '@chk_no@' => $chkNo
     ];
     
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
  *
  * @return string
  */
-function load_admin_mainpage()
+function load_admin_mainpage() : string
 {
     return loadTemplate('mainpage');
 }
@@ -1049,11 +1010,9 @@ function countEntries()
                 WHERE `trash` = 'true';";
     
     try {
-        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     } catch (PDOException $ex) {
-        
         echo $ex->getMessage();
         exit();
     }
@@ -1076,11 +1035,9 @@ function loadFromTable(string $table, int $count)
         . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
     
     try {
-        
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     } catch (PDOException $ex) {
-        
         echo $ex->getMessage();
         exit();
     }
@@ -1091,7 +1048,7 @@ function loadFromTable(string $table, int $count)
 /**
  * Get id, title and datetime from a table where trash-flag is true.
  *
- * @param string $table
+ * @param string $table Name of a table.
  * @return array
  */
 function loadTrashFromTable(string $table)
