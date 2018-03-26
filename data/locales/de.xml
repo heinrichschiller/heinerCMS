@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language lang="de">
+<language lang="Deutsch" short="de">
 	<terms>
 		<yes>ja</yes>
 		<no>nein</no>
@@ -68,5 +68,6 @@
 		<back_to_mainpage>Zurück zur Hauptseite</back_to_mainpage>
 		<communication>Kommunikation</communication>
 		<contact_inquiry>Kontakt anfragen</contact_inquiry>
+		<footer>Fußzeile</footer>
 	</terms>
 </language>
