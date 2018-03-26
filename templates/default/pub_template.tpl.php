@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="##placeholder-language##">
     <head>
-        <title><@title@></title>
+        <title>##placeholder-title##</title>
         <meta charset="utf8">
 
         <!-- Latest compiled and minified CSS -->
@@ -18,20 +18,20 @@
     </head>
     <body>
     	<div class="container-fluid">
-            <@navigation@>
+            ##placeholder-navigation##
         </div>
             <noscript>
             	<div class="alert alert-danger" role="alert">
-                        <p>JavaScript ist nicht verf�gbar oder es ist deaktiviert.</p>
-                        <p>Bitte verwenden Sie einen Browser, der JavaScript unterst�tzt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
+                        <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
+                        <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
                 </div>
             </noscript>
     		<div class="row">
-    				<div class="col-sm-12"><@content@></div>
+    				<div class="col-sm-12">##placeholder-content##</div>
     		</div>
         
         <footer>
-            <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017</p>
+            <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2018</p>
         </footer>
     </body>
 </html>

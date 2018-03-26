@@ -1,25 +1,22 @@
 <div class="container">
 	<header>
-        	<h2>Start</h2>
+        	<h2>{header_2}</h2>
 	</header>
 	<div class="row">
         	<div class="col-md-12">
-        		<p>Der heinerCMS-Installer bringt sie sicher durch die Installation.</p>
-        		<p>Zuerst benötigt heinerCMS einige Informationen wie:</p>
+        		<p>{text_5}</p>
+        		<p>{text_6}</p>
         		<ul>
-        			<li>Zugangsdaten für die Datenbank</li>
-        			<li>Informationen zum Benutzer</li>
+        			<li>{text_7}</li>
+        			<li>{text_8}</li>
         		</ul>
-        		<p>Danach sollte die Installation der Konfigurationsdateien beginnen. Falls
-        		die Installation der Konfigurationsdatei fehlschlägt, werden sie gebeten die 
-        		Konfigurationsdateien manuell einzuspielen. In diesem Fall wird die passende
-        		Konfiguration eingeblendet und weitere Schritte erklärt.</p>
-        		<p>Los geht's!!! ;-)</p>
+        		<p>{text_9}</p>
+        		<p>{text_10}</p>
         	</div>
     </div>
     <div class="row button_bottom">
         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        		<a href="index.php?uri=licence" class="btn btn-primary" role="button">Weiter</a>
+        		<a href="index.php?uri=licence&lang=##placeholder-lang##" class="btn btn-primary" role="button">{next}</a>
         	</div>
     </div>
 </div>

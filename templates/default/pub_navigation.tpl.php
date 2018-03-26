@@ -5,11 +5,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      	<a class="nav-item nav-link" href="<@url@>" target="blank">Blog</a>
-        <a class="nav-item nav-link" href="$PHP_SELF?uri=news">News</a>
-        <a class="nav-item nav-link" href="$PHP_SELF?uri=downloads">Downloads</a>
-        <a class="nav-item nav-link" href="$PHP_SELF?uri=links">Links</a>
-        <a class="nav-item nav-link" href="$PHP_SELF?uri=articles">Artikel</a>
+      	<a class="nav-item nav-link" href="##placeholder-url##" target="blank">Blog</a>
+        <a class="nav-item nav-link" href="index.php?uri=news">News</a>
+        <a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>
+        <a class="nav-item nav-link" href="index.php?uri=links">Links</a>
+        <a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>
     </div>
   </div>
 </nav>
