@@ -25,6 +25,6 @@
 </div>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    	<a href="$PHP_SELF?uri=newsadd" class="btn btn-primary" role="button">{create_news}</a>
+    	<a href="index.php?uri=newsadd" class="btn btn-primary" role="button">{create_news}</a>
 	</div>
 </div>
