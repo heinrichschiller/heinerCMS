@@ -112,12 +112,13 @@ CREATE TABLE `settings` (
   `tagline` VARCHAR(140) NOT NULL DEFAULT '',
   `theme` VARCHAR(64) NOT NULL DEFAULT '',
   `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
+  `lang_short` VARCHAR(3) NOT NULL DEFAULT ''
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- default configuration
 
-INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`)
-VALUES ('heinerCMS','','default','');
+INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`, `lang_short`)
+VALUES ('heinerCMS', '', 'default', '', '');
 
 INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`)
 VALUES ('','','','');

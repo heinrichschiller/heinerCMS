@@ -1,9 +1,14 @@
 <?php
 
+session_start();
+
 require __DIR__ . '/routes.php';
 require __DIR__ . '/include/functions.inc.php';
 
-$uri = filter_input ( INPUT_GET, 'uri' );
+$uri = filter_input (INPUT_GET, 'uri' );
+$lang = filter_input(INPUT_GET, 'lang');
+
+setLanguage($lang);
 
 $template = loadTemplate('main_template');
 
@@ -13,11 +18,25 @@ if(isset($route[$uri])) {
     $content = '';
 }
 
+/* render mainpage */
 $placeholderList = [
-    '##placeholder_title##' => 'heinerCMS-Installation',
-    '##placeholder_content##' => $content
+    '##placeholder-language##' => $lang,
+    '##placeholder-title##'    => 'heinerCMS-Installation',
+    '##placeholder-content##'  => $content
 ];
 
 $template = strtr($template, $placeholderList);
+
+/* render content */
+$contentPlaceholderList = [
+    '##placeholder-lang##' => $lang,
+    '##placeholder-locale-options##' => load_locale_options($lang)
+];
+
+$template = strtr($template, $contentPlaceholderList);
+
+/* translation */
+$languageList = getTranslation($lang);
+$template = strtr($template, $languageList);
 
 echo stripslashes($template);

@@ -9,6 +9,8 @@
  */
 include __DIR__ . '/include/functions.inc.php';
 
+$language = filter_input(INPUT_GET, 'lang');
+
 $configPath = __DIR__ . '/../cms-config.php';
 
 if (file_exists($configPath)) {
@@ -91,4 +93,4 @@ if ( checkDatabase($pdo) ) {
     $_SESSION['isUserCreated'] = false;
 }
 
-header('Location: index.php?uri=final');
+header('Location: index.php?uri=final&lang='.$language);

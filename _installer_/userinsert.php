@@ -8,6 +8,7 @@ $email = filter_input(INPUT_POST, 'email');
 $username = filter_input(INPUT_POST, 'username');
 $password1 = filter_input(INPUT_POST, 'password1');
 $password2 = filter_input(INPUT_POST, 'password2');
+$language = filter_input(INPUT_GET, 'lang');
 
 $_SESSION['firstname'] = $firstname;
 $_SESSION['lastname'] = $lastname;
@@ -16,4 +17,4 @@ $_SESSION['username'] = $username;
 $_SESSION['password1'] = $password1;
 $_SESSION['password2'] = $password2;
 
-header('Location: index.php?uri=installation');
+header('Location: index.php?uri=installation&lang='.$language);
