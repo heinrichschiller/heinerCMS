@@ -55,5 +55,9 @@
 		<site>Site</site>
 		<sites>Sites</sites>
 		<create_site>Create sites</create_site>
+        <footer>Footer</footer>
+        <communication>Communication</communication>
+        <contact_inquiry>Contact enquiry</contact_inquiry>
+        <mainpage>Mainpage</mainpage>
 	</terms>
 </language>
