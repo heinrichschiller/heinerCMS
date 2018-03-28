@@ -31,7 +31,7 @@
     		</div>
         
         <footer>
-            <p>Erstellt mit Bootstrap <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2018</p>
+            <p>##placeholder-footer##</p>
         </footer>
     </body>
 </html>

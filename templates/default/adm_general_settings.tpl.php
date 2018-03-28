@@ -13,7 +13,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="<@placeholder-title@>" class="form-control" id="title">
+				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title">
 			</div>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="tagline">{tagline}:</label>
-				<input type="text" name="tagline" value="<@placeholder-tagline@>" class="form-control" id="tagline">
+				<input type="text" name="tagline" value="##placeholder-tagline##" class="form-control" id="tagline">
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
 			<div class="form-group">
 				<label for="blogUrl">{blog}-URL:</label>
-				<input type="text" name="blogUrl" value="<@placeholder-blog-url@>" class="form-control" id="blogUrl">
+				<input type="text" name="blogUrl" value="##placeholder-blog-url##" class="form-control" id="blogUrl">
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
              <div class="form-group">
                 <label for="sel1">{theme}:</label>
                 <select class="custom-select" id="sel1" name="theme">
-					<@placeholder-option-theme@>
+					##placeholder-option-theme##
 				</select>
             </div> 
         </div>
@@ -46,13 +46,19 @@
              <div class="form-group">
                   <label for="sel1">{site_language}:</label>
                   <select class="custom-select" id="sel1" name="language">
-             		   <option>{german}</option>
-             		   <option>{english}</option>
-             		   <option>{russian}</option>
+                  	##placeholder-option-locale##
                   </select>
             </div> 
         </div>
-    </div>       
+    </div>
+    <div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<label for="discalimer">{footer}:</label>
+				<input type="text" name="footer" value="##placeholder-footer##" class="form-control" id="footer">
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
