@@ -2,26 +2,22 @@
 
 /*
  * *******************************************************************************
- * Contains all functions for heinerCMS
+ * Contains all public functions for heinerCMS
  *
  * @author: Heinrich Schiller
  * @date: 2017-06-09
+ * @licence: MIT
  *
  * content
  *
- * generic section
- * admin section
- * sql section
- * ******************************************************************************
- */
-
-/*
+ * public section
  * *******************************************************************************
- * generic - section
- * ******************************************************************************
  */
 
 /**
+ * Get blog url for a extern blog
+ * 
+ * @return string
  */
 function getBlogURL(): string
 {
@@ -33,7 +29,7 @@ function load_public_navigation(): string
     $template = '';
     
     $template .= '<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="$PHP_SELF?uri=mainpage"><@title@></a>
+        <a class="navbar-brand" href="index.php?uri=mainpage">##placeholder-title##</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -45,19 +41,19 @@ function load_public_navigation(): string
     }
     
     if (countTableEntries('news') !== 0) {
-        $template .= ' <a class="nav-item nav-link" href="$PHP_SELF?uri=news">Neuigkeiten</a>';
+        $template .= ' <a class="nav-item nav-link" href="index.php?uri=news">Neuigkeiten</a>';
     }
     
     if (countTableEntries('downloads') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=downloads">Downloads</a>';
+        $template .= '<a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>';
     }
     
     if (countTableEntries('links') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=links">Links</a>';
+        $template .= '<a class="nav-item nav-link" href="index.php?uri=links">Links</a>';
     }
     
     if (countTableEntries('articles') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="$PHP_SELF?uri=articles">Artikel</a>';
+        $template .= '<a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>';
     }
     
     $template .= load_sites();
@@ -72,8 +68,8 @@ function load_public_navigation(): string
         </nav>';
     
     $arr = [
-        '<@title@>' => 'Heinrich-Schiller.de',
-        '<@url@>' => getBlogURL()
+        '##placeholder-title##' => 'Heinrich-Schiller.de',
+        '##placeholder-url##' => getBlogURL()
     ];
     
     $template = strtr($template, $arr);
@@ -94,7 +90,7 @@ function load_sites(): string
         $result = $pdo->query($sql);
         
         foreach ($result as $key) {
-            $html .= '<a  class="nav-item nav-link" href="$PHP_SELF?uri=sites&id=' . $key[0] . '">' . $key[1] . '</a>';
+            $html .= '<a  class="nav-item nav-link" href="index.php?uri=sites&id=' . $key[0] . '">' . $key[1] . '</a>';
         }
     } catch (PDOException $ex) {
         
@@ -111,7 +107,6 @@ function load_sites(): string
  */
 function load_public_news(): string
 {
-    $template = '';
     $content = '';
     
     $template = loadTemplate('pub_news');
@@ -151,8 +146,8 @@ function load_public_news_content($news, $template)
 {
     $placeholderList = [
         '##placeholder-news-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
-        '##placeholder-news-title##' => $news->title,
-        '##placeholder-news-id##' => $news->id
+        '##placeholder-news-title##'    => $news->title,
+        '##placeholder-news-id##'       => $news->id
     ];
     
     return strtr($template, $placeholderList);
@@ -186,8 +181,8 @@ function load_public_news_detailed(int $id): string
     while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
             '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
-            '##placeholder-title##' => $news->title,
-            '##placeholder-message##' => $news->message
+            '##placeholder-title##'    => $news->title,
+            '##placeholder-message##'  => $news->message
         ];
     }
     
@@ -242,8 +237,8 @@ function load_public_articles_content($articles, $template)
 {
     $placeholderList = [
         '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
-        '##placeholder-articles-title##' => $articles->title,
-        '##placeholder-articles-id##' => $articles->id
+        '##placeholder-articles-title##'    => $articles->title,
+        '##placeholder-articles-id##'       => $articles->id
     ];
     
     return strtr($template, $placeholderList);
@@ -277,8 +272,8 @@ function load_public_articles_detailed(int $id): string
     while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
             '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
-            '##placeholder-title##' => $articles->title,
-            '##placeholder-message##' => $articles->content
+            '##placeholder-title##'    => $articles->title,
+            '##placeholder-message##'  => $articles->content
         ];
     }
     
@@ -331,9 +326,9 @@ function load_public_links(): string
 function load_public_links_content($links, $template)
 {
     $placeholderList = [
-        '##placeholder-links-title##' => $links->title,
+        '##placeholder-links-title##'   => $links->title,
         '##placeholder-links-tagline##' => $links->tagline,
-        '##placeholder-links-uri##' => $links->uri,
+        '##placeholder-links-uri##'     => $links->uri,
         '##placeholder-links-comment##' => $links->comment
     ];
     
@@ -360,10 +355,11 @@ function load_public_sites(int $id): string
         $site = $stmt->fetchObject();
         
         $placeholderList = [
-            '<@placeholder-title@>' => $site->title,
-            '<@placeholder-tagline@>' => $site->tagline,
-            '<@placeholder-content@>' => $site->content
+            '##placeholder-title##' => $site->title,
+            '##placeholder-tagline##' => $site->tagline,
+            '##placeholder-content##' => $site->content
         ];
+        
     } catch (PDOException $ex) {
         
         echo $ex->getMessage();
@@ -445,75 +441,4 @@ function load_content_downloadsdetailed(int $id) : string
 	return $template;
 }*/
 
-/* Gesamtübersicht der Artikel laden */
-/**
- * 
- * @return string
- *
-function load_content_articles() : string
-{
-	$template = '';
-	$con = getDB ();
-	
-	if ($con) {
-		
-		$sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `visible` > -1 ORDER BY `datetime` ASC';
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			while ( $articles = mysqli_fetch_object ( $result ) ) {
-				$template .= StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime );
-				$template .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=articlesdet&id='.$articles->id.'\"> - '.$articles->title.'</a><br>';
-			}
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
 
-/* Detailansicht eines Artikels laden */
-/**
- * 
- * @param int $id
- * @return string
- *
-function load_content_articlesdetailed(int $id) : string
-{
-	$template = '';
-	$con = getDB ();
-	if ($con) {
-		
-		$sql = "SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$articles = mysqli_fetch_object ( $result );
-			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $articles->datetime ) . "</h5>";
-			$template .= "<h2>$articles->title</h2>";
-			$template .= $articles->content;
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
-
-/* Gesamtübersicht der Links laden */
-/**
- * 
- * @return string
- *
-function load_content_links() : string
-{
-	$template = '';
-	$con = getDB ();
-	if ($con) {
-		
-		$sql = 'SELECT `title`, `uri`, `comment` FROM `links` WHERE `visible` > -1 ORDER BY `title` ASC';
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			while ( $links = mysqli_fetch_object ( $result ) ) {
-				$template .= "<p><a href=\"$links->uri\">$links->title</a><br>$links->comment<br><span class=\"uri\">$links->uri</span></p>";
-			}
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/

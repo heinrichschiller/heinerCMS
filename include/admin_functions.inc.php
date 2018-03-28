@@ -97,7 +97,6 @@ function load_admin_news(): string
  */
 function load_admin_news_edit(int $id): string
 {
-    $template = '';
     $chkNo = '';
     $chkYes = '';
     
@@ -137,8 +136,6 @@ function load_admin_news_edit(int $id): string
  */
 function load_admin_news_add(): string
 {
-    $template = '';
-    
     $placeholdeList = [
         '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
     ];
@@ -156,8 +153,6 @@ function load_admin_news_add(): string
  */
 function load_admin_news_del(int $id): string
 {
-    $template = '';
-    
     $title = getTitleFromTableById('news', $id);
     
     $placeholderList = [
@@ -706,10 +701,12 @@ function load_general_settings(): string
     $template = loadTemplate('adm_general_settings');
     
     $placeholderList = [
-        '<@placeholder-title@>'        => $_SESSION['title'],
-        '<@placeholder-tagline@>'      => $_SESSION['tagline'],
-        '<@placeholder-blog-url@>'     => $_SESSION['blog-url'],
-        '<@placeholder-option-theme@>' => load_theme_options()
+        '##placeholder-title##'         => $_SESSION['title'],
+        '##placeholder-tagline##'       => $_SESSION['tagline'],
+        '##placeholder-blog-url##'      => $_SESSION['blog-url'],
+        '##placeholder-option-theme##'  => load_theme_options(),
+        '##placeholder-option-locale##' => load_locale_options(),
+        '##placeholder-footer##'        => $_SESSION['footer']
     ];
     
     $template = strtr($template, $placeholderList);
@@ -739,6 +736,37 @@ function load_theme_options(): string
         $html .= "<option $select>$files[$i]</option>";
     }
     
+    return $html;
+}
+
+/**
+ * Get a files list of all locales in data/locales directory
+ *
+ * @return string
+ */
+function load_locale_options() : string
+{
+    $html = '';
+    
+    $locale_dir = __DIR__ . '/../data/locales/';
+    
+    $files = scandir($locale_dir);
+
+    for ($i = 2; $i <= count($files) -1; $i++) {
+        $xmlFile = $locale_dir . $files[$i];
+
+        $xmlString = file_get_contents($xmlFile);
+        $xml = simplexml_load_string($xmlString);
+        
+        if ( $xml->attributes()->short == $_SESSION['language'] ) {
+            $select = ' selected';
+        } else {
+            $select = '';
+        }
+
+        $html .= '<option value="' . $xml->attributes()->short .'"'.$select.'>' . $xml->attributes()->lang . '</option>';
+    }
+
     return $html;
 }
 
@@ -844,7 +872,7 @@ function load_user_add(): string
 
 /**
  *
- * @param unknown $id
+ * @param int $id
  * @return string
  */
 function load_user_del( int $id) : string
@@ -973,7 +1001,7 @@ function load_admin_mainpage() : string
 /*
  * *******************************************************************************
  * SQL - section
- * ******************************************************************************
+ * *******************************************************************************
  */
 
 /**
@@ -1107,11 +1135,7 @@ function getTitleFromTableById(string $table, int $id)
 /**
  * Get title from a table by id
  *
- * @param string $table
- *            - Name of a table
- * @param int $id
- *            - Id
- *            
+ * @param int $id Id of an user            
  * @return string
  */
 function getUsernameById(int $id)
@@ -1128,10 +1152,12 @@ function getUsernameById(int $id)
         
         $stmt = $pdo->prepare($sql);
         $stmt->execute($input_parameters);
+        
     } catch (PDOException $ex) {
         
         echo $ex->getMessage();
         exit();
+        
     }
     
     return $stmt->fetchColumn();

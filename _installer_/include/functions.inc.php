@@ -18,6 +18,72 @@ function loadTemplate(string $template): string
 
 }
 
+function setLanguage(string $lang)
+{
+    $_SESSION['lang'] = $lang;
+}
+
+/**
+ * Get a files list of all locales in data/locales directory
+ *
+ * @param string $lang Choosen language
+ * 
+ * @return string
+ */
+function load_locale_options(string $lang) : string
+{
+    $html = '';
+    
+    $locale_dir = __DIR__ . '/../data/locales/';
+    
+    $files = scandir($locale_dir);
+    
+    for ($i = 2; $i <= count($files) -1; $i++) {
+        $xmlFile = $locale_dir . $files[$i];
+        
+        $xmlString = file_get_contents($xmlFile);
+        $xml = simplexml_load_string($xmlString);
+        
+        if ( $xml->attributes()->short == $lang ) {
+            $select = ' selected';
+        } else {
+            $select = '';
+        }
+        
+        $html .= '<option value="' . $xml->attributes()->short .'"'.$select.'>' . $xml->attributes()->lang . '</option>';
+    }
+    
+    return $html;
+}
+
+/**
+ * Get a translation from translation file.
+ * 
+ * @param string $language Name of language
+ * 
+ * @return array
+ */
+function getTranslation(string $language) : array
+{
+    $xmlfile = __DIR__ . "/../data/locales/$language.xml";
+    
+    $xmlString = file_get_contents($xmlfile);
+    $xml = simplexml_load_string($xmlString);
+    
+    $arr_keys = [];
+    $arr_values = [];
+    $arr_language = [];
+    
+    foreach ($xml->children() as $second_gen) {
+        foreach ($second_gen->children() as $third_gen) {
+            array_push( $arr_keys, '{'.$third_gen->getName().'}');
+            array_push( $arr_values, (string)$third_gen);
+        }
+    }
+    
+    return array_combine($arr_keys, $arr_values);
+}
+
 /**
  * Load start-template
  * 
@@ -456,7 +522,9 @@ function createTableSettings(PDO $pdo) : bool
            `title` VARCHAR(64) NOT NULL DEFAULT '',
            `tagline` VARCHAR(140) NOT NULL DEFAULT '',
            `theme` VARCHAR(64) NOT NULL DEFAULT '',
-           `blog_url` VARCHAR(140) NOT NULL DEFAULT ''
+           `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
+           `lang_short` VARCHAR(3) NOT NULL DEFAULT '',
+           `footer` VARCHAR(140) NOT NULL DEFAULT ''
            ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
             
         try {
@@ -480,11 +548,22 @@ function createTableSettings(PDO $pdo) : bool
 function writeDefaultConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
-        $sql = 'INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`)'
-            . "VALUES ('heinerCMS','','default','')";
-            
+        $sql = 'INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`)'
+            . "VALUES (:title, :tagline, :theme, :blog_url, :lang_short, :footer)";
+
+        $input_parameters = [
+            ':title'      => 'heinerCMS',
+            ':tagline'    => '',
+            ':theme'      => 'default',
+            ':blog_url'   => '',
+            ':lang_short' => $_SESSION['lang'],
+            ':footer'     => 'heinerCMS 2018'
+        ];
+        
         try {
-            $pdo->exec($sql);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($input_parameters);
+
             return true;
         } catch(PDOException $ex) {
             echo $ex->getMessage();

@@ -1,5 +1,11 @@
 Version 0.2.0 ()
+	added, languages for the installer
+	added, edit/add footer in general settings to change the footer in application
+	bugfix, fixed many many other minor bugs
 	update, clean code
+	update, many new translations
+	update, extend table settings -> row 'lang_short'
+	update, extend and improve installer
 Version 0.1.9 (2018-03-09)
 	added, integrated public articles
 	update, clean code

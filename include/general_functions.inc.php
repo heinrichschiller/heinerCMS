@@ -6,7 +6,7 @@ function load_session()
 {
     $pdo = getPdoDB();
     
-    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url` FROM `settings` WHERE 1";
+    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer` FROM `settings` WHERE 1";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -21,8 +21,38 @@ function load_session()
         $_SESSION['tagline']  = $settings->tagline;
         $_SESSION['theme']    = $settings->theme;
         $_SESSION['blog-url'] = $settings->blog_url;
+        $_SESSION['language'] = $settings->lang_short;
+        $_SESSION['footer']   = $settings->footer;
     }
     
+}
+
+/**
+ * Get a translation.
+ * 
+ * @param string $language Name of language
+ * 
+ * @return array
+ */
+function get_translation(string $language) : array
+{
+    $xmlfile = __DIR__ . "/../data/locales/$language.xml";
+    
+    $xmlString = file_get_contents($xmlfile);
+    $xml = simplexml_load_string($xmlString);
+    
+    $arr_keys = [];
+    $arr_values = [];
+    $arr_language = [];
+    
+    foreach ($xml->children() as $second_gen) {
+        foreach ($second_gen->children() as $third_gen) {
+            array_push( $arr_keys, '{'.$third_gen->getName().'}');
+            array_push( $arr_values, (string)$third_gen);
+        }
+    }
+    
+    return array_combine($arr_keys, $arr_values);
 }
 
 /**

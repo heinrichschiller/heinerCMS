@@ -7,20 +7,24 @@ include __DIR__ . '/../include/login.inc.php';
 
 if (is_logged_in()) {
     
-    $title = filter_input(INPUT_POST, 'title');
-    $theme = filter_input(INPUT_POST, 'theme');
-    $tagline = filter_input(INPUT_POST, 'tagline');
-    $blogUrl = filter_input(INPUT_POST, 'blogUrl');
+    $title    = filter_input(INPUT_POST, 'title');
+    $theme    = filter_input(INPUT_POST, 'theme');
+    $tagline  = filter_input(INPUT_POST, 'tagline');
+    $blogUrl  = filter_input(INPUT_POST, 'blogUrl');
+    $language = filter_input(INPUT_POST, 'language');
+    $footer   = filter_input(INPUT_POST, 'footer');
     
     $pdo = getPdoDB();
     
-    $sql = 'UPDATE `settings` SET `title`=:title,`tagline`=:tagline,`theme`=:theme,`blog_url`=:blog_url WHERE 1';
+    $sql = 'UPDATE `settings` SET `title`=:title,`tagline`=:tagline,`theme`=:theme,`blog_url`=:blog_url, `lang_short`=:language, `footer`=:footer WHERE 1';
         
     $input_parameters = [
-        ':title'   => $title,
-        ':tagline' => $tagline,
-        ':theme' => $theme,
-        ':blog_url' => $blogUrl
+        ':title'    => $title,
+        ':tagline'  => $tagline,
+        ':theme'    => $theme,
+        ':blog_url' => $blogUrl,
+        ':language' => $language,
+        ':footer'   => $footer
     ];
 
     try {
