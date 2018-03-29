@@ -1,3 +1,9 @@
+Version 0.2.1 ()
+	added, public downloads
+	added, downloads settings
+	update, many new translations
+	update, installer writes downloads settings
+	bugfix, fixed other minor bugs
 Version 0.2.0 (2018-03-28)
 	added, languages for the installer
 	added, edit/add footer in general settings to change the footer in application

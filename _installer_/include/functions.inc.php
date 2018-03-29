@@ -314,6 +314,36 @@ function createTableDownloads(PDO $pdo) : bool
 }
 
 /**
+ * Create table downloads_settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function createTableDownloadsSettings(PDO $pdo) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "CREATE TABLE `downloads_settings` (
+               `id` INT NOT NULL AUTO_INCREMENT,
+               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+               `comment` TEXT NOT NULL,
+               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+               `update_at` timestamp NULL DEFAULT NULL,
+               PRIMARY KEY (`id`)
+               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+    
+    return false;
+}
+
+/**
  * Create table links
  * 
  * @param PDO $pdo
