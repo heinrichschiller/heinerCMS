@@ -38,6 +38,15 @@ CREATE TABLE `downloads` (
   PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `downloads_settings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+  `comment` TEXT NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT NULL,  
+  PRIMARY KEY (`id`)
+  ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `links` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(64) NOT NULL DEFAULT '',
@@ -120,11 +129,14 @@ CREATE TABLE `settings` (
 INSERT INTO `settings`(`title`, `tagline`, `theme`, `blog_url`, `lang_short`)
 VALUES ('heinerCMS', '', 'default', '', '');
 
-INSERT INTO `links_settings`(`tagline`, `comment`, `created_at`, `update_at`)
-VALUES ('','','','');
+INSERT INTO `links_settings`(`tagline`, `comment`)
+VALUES ('','');
 
-INSERT INTO `news_settings`(`tagline`, `comment`, `created_at`, `update_at`)
-VALUES ('','','','');
+INSERT INTO `news_settings`(`tagline`, `comment`)
+VALUES ('','');
 
-INSERT INTO `articles_settings`(`tagline`, `comment`, `created_at`, `update_at`)
-VALUES ('','','','');
+INSERT INTO `articles_settings`(`tagline`, `comment`)
+VALUES ('','');
+
+INSERT INTO `downloads_settings`(`tagline`, `comment`)
+VALUES ('','');

@@ -19,12 +19,17 @@
 		<content>Inhalt</content>
 		<news>Neuigkeiten</news>
 		<downloads>Downloads</downloads>
+		<downloads_settings>Downloads-Einstellungen</downloads_settings>
+		<create_download>Download erstellen</create_download>
+		<edit_download>Download bearbeiten</edit_download>
 		<links>Links</links>
+		<create_link>Link erstellen</create_link>
 		<edit_link>Link bearbeiten</edit_link>
 		<links_settings>Links-Einstellungen</links_settings>
 		<news_settings>Neuigkeiten-Einstellungen</news_settings>
 		<articles>Artikel</articles>
 		<article>Artikel</article>
+		<create_article>Artikel erstellen</create_article>
 		<edit_article>Artikel bearbeiten</edit_article>
 		<articles_settings>Artikel-Einstellungen</articles_settings>
 		<settings>Einstellungen</settings>

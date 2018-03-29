@@ -34,6 +34,10 @@ $route['downloadsdel'] = function($id) {
 	return load_admin_downloads_del($id);
 };
 
+$route['downloadssettings'] = function($id) {
+    return load_admin_downloads_settings();
+};
+
 $route['links'] = function($id) {
 	return load_admin_links();
 };

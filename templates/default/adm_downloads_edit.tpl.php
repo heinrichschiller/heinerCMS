@@ -1,7 +1,7 @@
 <div class="row">
    	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
    		<div class="panel">
-   			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-pen.svg"> {edit_downloads}</h4>
+   			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-file-download.svg"> {edit_download}</h4>
    		</div>
    	</div>
 </div>
@@ -9,13 +9,13 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
-				<label for="ident">#&nbsp;</label><span><@id@></span>
-				<input type="hidden" name="id" value="<@id@>">
+				<label for="ident">#&nbsp;</label><span>##placeholder-id##</span>
+				<input type="hidden" name="id" value="##placeholder-id##">
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
 			<div class="form-group">
-				<p class="text-right">{date}: <@datetime@></p>
+				<p class="text-right">{date}: ##placeholder-datetime##</p>
 			</div>
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="<@title@>" class="form-control" id="title">
+				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title">
 			</div>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="path">{path}:</label>
-				<input type="text" name="path" value="<@path@>" class="form-control" id="path">
+				<input type="text" name="path" value="##placeholder-path##" class="form-control" id="path">
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="filename">{filename}:</label>
-				<input type="text" name="filename" value="<@filename@>" class="form-control" id="filename">
+				<input type="text" name="filename" value="##placeholder-filename##" class="form-control" id="filename">
 			</div>
 		</div>
 	</div>
@@ -47,14 +47,22 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="comment">{comment}:</label>
-				<textarea name="comment" rows="10" class="form-control" id="comment"><@comment@></textarea>
+				<textarea name="comment" rows="10" class="form-control" id="comment">##placeholder-comment##</textarea>
 			</div>
 		</div>
 	</div>
-	<div class="checkbox">
-		<span>Sichtbar?</span>
-		<input type="radio" name="visible" value="0" @chk_yes@ > {yes} 
-		<input type="radio" name="visible" value="-1" @chk_no@ > {no}
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<span>{visible}?</span>
+        	<div class="custom-control custom-radio custom-control-inline">
+          		<input type="radio" id="customRadioInline1" name="visible" value="0" class="custom-control-input" ##placeholder-chk_yes##>
+          		<label class="custom-control-label" for="customRadioInline1">{yes}</label>
+        	</div>
+        	<div class="custom-control custom-radio custom-control-inline">
+          		<input type="radio" id="customRadioInline2" name="visible" value="-1" class="custom-control-input" ##placeholder-chk_no##>
+          		<label class="custom-control-label" for="customRadioInline2">{no}</label>
+        	</div>
+        </div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

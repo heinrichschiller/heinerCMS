@@ -237,7 +237,7 @@ function load_admin_downloads(): string
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
     }
     
-    $template = str_replace('<@downloads-content@>', $table_content, $template);
+    $template = str_replace('##placeholder-downloads-content##', $table_content, $template);
     
     return $template;
 }
@@ -271,14 +271,14 @@ function load_admin_downloads_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>' => $result['id'],
-        '<@title@>' => $result['title'],
-        '<@path@>' => $result['path'],
-        '<@filename@>' => $result['filename'],
-        '<@comment@>' => $result['comment'],
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
-        '@chk_yes@' => $chkYes,
-        '@chk_no@' => $chkNo
+        '##placeholder-id##'       => $result['id'],
+        '##placeholder-title##'    => $result['title'],
+        '##placeholder-path##'     => $result['path'],
+        '##placeholder-filename##' => $result['filename'],
+        '##placeholder-comment##'  => $result['comment'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
     $template = loadTemplate('adm_downloads_edit');
@@ -287,7 +287,7 @@ function load_admin_downloads_edit(int $id): string
 }
 
 /**
- * Formular zum Erstellen eines Downloads laden
+ * Load a formular to create a download
  *
  * @return string
  */
@@ -297,7 +297,7 @@ function load_admin_downloads_add(): string
     
     $template = loadTemplate('adm_downloads_add');
 
-    return str_replace('<@time@>', $time, $template);
+    return str_replace('##placeholder-datetime##', $time, $template);
 }
 
 /**
@@ -317,6 +317,37 @@ function load_admin_downloads_del(int $id): string
     
     $template = loadTemplate('adm_downloads_del');
     
+    return strtr($template, $placeholderList);
+}
+
+/**
+ * Load news settings.
+ *
+ * @return string
+ */
+function load_admin_downloads_settings() : string
+{
+    $pdo = getPdoDB();
+    
+    $sql = "SELECT `tagline`, `comment` FROM `downloads_settings` WHERE `id` = 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    $download = $stmt->fetch(PDO::FETCH_OBJ);
+    
+    $placeholderList = [
+        '##placeholder-downloads-tagline##' => $download->tagline,
+        '##placeholder-downloads-comment##' => $download->comment
+    ];
+    
+    $template = loadTemplate('adm_downloads_settings');
+
     return strtr($template, $placeholderList);
 }
 
@@ -504,7 +535,7 @@ function load_admin_articles(): string
         $table_content .= '<td>' . $article->id . '</td>';
         $table_content .= '<td>' . strftime('%d.%m.%Y', $article->datetime) . '</td>';
         $table_content .= '<td>' . $article->title . '</td>';
-        $table_content .= '<td>' . $article->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        $table_content .= $article->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -995,7 +1026,7 @@ function load_admin_site_edit(int $id): string
  */
 function load_admin_mainpage() : string
 {
-    return loadTemplate('mainpage');
+    return loadTemplate('adm_mainpage');
 }
 
 /*
@@ -1133,7 +1164,7 @@ function getTitleFromTableById(string $table, int $id)
 }
 
 /**
- * Get title from a table by id
+ * Get username by id
  *
  * @param int $id Id of an user            
  * @return string

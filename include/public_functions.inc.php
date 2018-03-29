@@ -108,6 +108,7 @@ function load_sites(): string
 function load_public_news(): string
 {
     $content = '';
+    $placeholderList = [];
     
     $template = loadTemplate('pub_news');
     $templateNewsContent = loadTemplate('pub_news_content');
@@ -197,9 +198,9 @@ function load_public_news_detailed(int $id): string
  */
 function load_public_articles(): string
 {
-    $template = '';
     $content = '';
-    
+    $placeholderList = [];
+
     $template = loadTemplate('pub_articles');
     $templateArticlesContent = loadTemplate('pub_articles_content');
     
@@ -284,12 +285,59 @@ function load_public_articles_detailed(int $id): string
 
 function load_public_downloads(): string
 {
-    return loadTemplate('pub_downloads');
+    $content = '';
+    $placeholderList = [];
+    
+    $template = loadTemplate('pub_downloads');
+    $templateNewsContent = loadTemplate('pub_downloads_content');
+    
+    $pdo = getPdoDB();
+    
+    $sql = 'SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, UNIX_TIMESTAMP(downloads.created_at) AS datetime,'
+        . ' downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment'
+        . ' FROM `downloads`, `downloads_settings`'
+        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+                
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+
+    while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
+
+        $placeholderList = [
+            '##placeholder-downloads-page-tagline##' => $downloads->downloads_tagline,
+            '##placeholder-downloads-page-comment##' => $downloads->downloads_comment
+        ];
+                    
+        $content .= load_public_downloads_content($downloads, $templateNewsContent);
+    }
+
+    $template = str_replace('##placeholder-downloads##', $content, $template);
+    $template = strtr($template, $placeholderList);
+
+    return $template;
+}
+
+function load_public_downloads_content($downloads, $template)
+{
+    $placeholderList = [
+        '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads->datetime),
+        '##placeholder-downloads-title##'    => $downloads->title,
+        '##placeholder-downloads-comment##'  => $downloads->comment,
+        '##placeholder-downloads-path##'     => $downloads->path,
+        '##placeholder-downloads-filename##' => $downloads->filename
+    ];
+
+    return strtr($template, $placeholderList);
 }
 
 function load_public_links(): string
 {
     $content = '';
+    $placeholderList = [];
     
     $template = loadTemplate('pub_links');
     $templateLinksContent = loadTemplate('pub_links_content');

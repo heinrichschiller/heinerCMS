@@ -61,6 +61,9 @@
         <a href="index.php?uri=newssettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-pen.svg"> {news}
         </a>
+        <a href="index.php?uri=downloadssettings" class="list-group-item list-group-item-action">
+            <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-file-download.svg"> {downloads}
+        </a>
         <a href="index.php?uri=linksettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-global.svg"> {links}
         </a>

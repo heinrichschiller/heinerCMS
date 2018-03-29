@@ -18,7 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<@downloads-content@>
+				##placeholder-downloads-content##
 			</tbody>
 		</table>
 	</div>

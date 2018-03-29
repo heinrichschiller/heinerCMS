@@ -1,3 +1,10 @@
+<div class="row">
+   	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+   		<div class="panel">
+   			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-pen.svg"> {create_article}</h4>
+   		</div>
+   	</div>
+</div>
 <form action="articleinsert.php" method="post">
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
@@ -28,10 +35,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="checkbox">
-		<span>{visible}?</span>
-		<input type="radio" name="visible" value="0" checked> {yes} 
-		<input type="radio" name="visible" value="-1"> {no}
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<span>{visible}?</span>
+        	<div class="custom-control custom-radio custom-control-inline">
+          		<input type="radio" id="customRadioInline1" name="visible" value="0" class="custom-control-input" checked>
+          		<label class="custom-control-label" for="customRadioInline1">{yes}</label>
+        	</div>
+        	<div class="custom-control custom-radio custom-control-inline">
+          		<input type="radio" id="customRadioInline2" name="visible" value="-1" class="custom-control-input">
+          		<label class="custom-control-label" for="customRadioInline2">{no}</label>
+        	</div>
+        </div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
