@@ -430,7 +430,7 @@ function countTableEntries(string $table): int
     $id = 0;
     $pdo = getPdoDB();
     
-    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false'";
+    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false' AND `visible` > -1";
     
     foreach ($pdo->query($sql) as $row) {
         $id = (int) $row[0];

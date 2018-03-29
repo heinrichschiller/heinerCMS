@@ -4,6 +4,7 @@ Version 0.2.1 ()
 	update, many new translations
 	update, installer writes downloads settings
 	bugfix, fixed other minor bugs
+	bugfix, public navigation shows no longer invisible content on public pages
 Version 0.2.0 (2018-03-28)
 	added, languages for the installer
 	added, edit/add footer in general settings to change the footer in application
@@ -29,7 +30,7 @@ Version 0.1.6 (2018-03-02)
 	update, translates
 	update, installer
 Version 0.1.5 (2018-02-27)
-	update, bugfix an small cosmetic improvements
+	update, bugfix a small cosmetic improvements
 	remove, cms-config.php
 Version 0.1.4 (2018-02-26)
 	remove, classic theme
