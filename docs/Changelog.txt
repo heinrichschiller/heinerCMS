@@ -5,6 +5,7 @@ Version 0.2.1 ()
 	update, installer writes downloads settings
 	bugfix, fixed other minor bugs
 	bugfix, public navigation shows no longer invisible content on public pages
+	delete, obsolete database.inc.php file
 Version 0.2.0 (2018-03-28)
 	added, languages for the installer
 	added, edit/add footer in general settings to change the footer in application
