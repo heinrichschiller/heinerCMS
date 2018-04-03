@@ -43,6 +43,15 @@
 			</div>
 		</div>
 	</div>
+	<div class="input-group mb-3">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile02">
+    <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+  </div>
+  <div class="input-group-append">
+    <span class="input-group-text" id="">Upload</span>
+  </div>
+</div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
