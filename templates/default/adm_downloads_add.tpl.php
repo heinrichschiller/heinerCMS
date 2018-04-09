@@ -5,7 +5,7 @@
    		</div>
    	</div>
 </div>
-<form action="downloadsinsert.php" method="post" enctype="multipart/form-data">
+<form action="downloadsinsert.php" method="post">
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
@@ -43,19 +43,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        	<div class="input-group mb-3">
-                <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile02">
-                    <label class="custom-file-label" for="inputGroupFile02"></label>
-                </div>
-                <div class="input-group-append">
-                    <span class="input-group-text" id="">Upload</span>
-                </div>
-        	</div>
-        </div>
-    </div>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">

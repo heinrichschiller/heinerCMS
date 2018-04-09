@@ -1,4 +1,4 @@
-Version 0.2.1 ()
+Version 0.2.1 (2018-03-09)
 	added, public downloads
 	added, downloads settings
 	update, many new translations
