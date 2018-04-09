@@ -3,6 +3,7 @@ Version 0.2.1 ()
 	added, downloads settings
 	update, many new translations
 	update, installer writes downloads settings
+	update, tinymce/tinymce (4.7.9 => 4.7.10)
 	bugfix, fixed other minor bugs
 	bugfix, public navigation shows no longer invisible content on public pages
 	bugfix, fixed a bug in admin user page
