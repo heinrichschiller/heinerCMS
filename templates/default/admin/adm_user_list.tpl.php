@@ -19,7 +19,7 @@
         <th>{actions}</th>
     </thead>
     <tbody>
-			<@user_list_content@>
+			##placeholder-user-list-content##
 	</tbody>
 </table>
 

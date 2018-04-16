@@ -4,42 +4,42 @@ $route = [];
 
 $route['news'] = function()
 {
-    return load_public_news();
+    return load_news();
 };
 
 $route['newsdet'] = function($id)
 {
-    return load_public_news_detailed($id);
+    return load_news_detailed($id);
 };
 
 $route['downloads'] = function()
 {
-    return load_public_downloads();
+    return load_downloads();
 };
 
 $route['downloadsdet'] = function($id)
 {
-    return load_public_downloadsdetailed($id);
+    return load_downloadsdetailed($id);
 };
 
 $route['articles'] = function()
 {
-    return load_public_articles();
+    return load_articles();
 };
 
 $route['articlesdet'] = function($id)
 {
-    return load_public_articles_detailed($id);
+    return load_articles_detailed($id);
 };
 
 $route['links'] = function()
 {
-    return load_public_links();
+    return load_links();
 };
 
-$route['sites'] = function($id)
+$route['pages'] = function($id)
 {
-    return load_public_sites($id);
+    return load_pages($id);
 };
 
 $route['mainpage'] = function() {

@@ -5,7 +5,7 @@
  * 
  * @return string
  */
-function load_admin_navigation(): string
+function load_navigation(): string
 {
     $template = '';
     
@@ -16,7 +16,7 @@ function load_admin_navigation(): string
         '##placeholder-downloads##' => $entries[1],
         '##placeholder-links##'     => $entries[2],
         '##placeholder-articles##'  => $entries[3],
-        '##placeholder-sites##'     => $entries[4],
+        '##placeholder-pages##'     => $entries[4],
         '##placeholder-trash##'     => $entries[5]
     ];
     
@@ -30,7 +30,7 @@ function load_admin_navigation(): string
  * 
  * @return string
  */
-function load_admin_sidebar(): string
+function load_sidebar(): string
 {
     $template = '';
     
@@ -44,7 +44,7 @@ function load_admin_sidebar(): string
  *
  * @return string
  */
-function load_admin_news(): string
+function load_news(): string
 {
     $template = '';
     $table_content = '';
@@ -95,7 +95,7 @@ function load_admin_news(): string
  * @param int $id Id of a news
  * @return string
  */
-function load_admin_news_edit(int $id): string
+function load_news_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
@@ -134,7 +134,7 @@ function load_admin_news_edit(int $id): string
  *
  * @return string
  */
-function load_admin_news_add(): string
+function load_news_add(): string
 {
     $placeholdeList = [
         '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
@@ -151,7 +151,7 @@ function load_admin_news_add(): string
  * @param int $id Id of a news
  * @return string
  */
-function load_admin_news_del(int $id): string
+function load_news_del(int $id): string
 {
     $title = getTitleFromTableById('news', $id);
     
@@ -170,7 +170,7 @@ function load_admin_news_del(int $id): string
  * 
  * @return string
  */
-function load_admin_news_settings() : string
+function load_news_settings() : string
 {
     $pdo = getPdoDB();
     
@@ -201,7 +201,7 @@ function load_admin_news_settings() : string
  *
  * @return string
  */
-function load_admin_downloads(): string
+function load_downloads(): string
 {
     $table_content = '';
     
@@ -248,7 +248,7 @@ function load_admin_downloads(): string
  * @param int $id Id of a download.
  * @return string
  */
-function load_admin_downloads_edit(int $id): string
+function load_downloads_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
@@ -291,7 +291,7 @@ function load_admin_downloads_edit(int $id): string
  *
  * @return string
  */
-function load_admin_downloads_add(): string
+function load_downloads_add(): string
 {
     $time = StrFTime('%d.%m.%Y %H:%M', time());
     
@@ -306,13 +306,13 @@ function load_admin_downloads_add(): string
  * @param int $id Id of a download
  * @return string
  */
-function load_admin_downloads_del(int $id): string
+function load_downloads_del(int $id): string
 {
     $title = getTitleFromTableById('downloads', $id);
     
     $placeholderList = [
-        '<@id@>' => $id,
-        '<@title@>' => $title
+        '##placeholder-id##' => $id,
+        '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_downloads_del');
@@ -325,7 +325,7 @@ function load_admin_downloads_del(int $id): string
  *
  * @return string
  */
-function load_admin_downloads_settings() : string
+function load_downloads_settings() : string
 {
     $pdo = getPdoDB();
     
@@ -356,7 +356,7 @@ function load_admin_downloads_settings() : string
  *
  * @return string
  */
-function load_admin_links(): string
+function load_links(): string
 {
     $table_content = '';
     
@@ -402,7 +402,7 @@ function load_admin_links(): string
  * @param int $id
  * @return string
  */
-function load_admin_link_edit(int $id): string
+function load_link_edit(int $id): string
 {
     $chkYes = '';
     $chkNo = '';
@@ -442,7 +442,7 @@ function load_admin_link_edit(int $id): string
  *
  * @return string
  */
-function load_admin_link_add(): string
+function load_link_add(): string
 {
     $placeholdeList = [
         '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
@@ -459,7 +459,7 @@ function load_admin_link_add(): string
  * @param int $id
  * @return string
  */
-function load_admin_link_del(int $id): string
+function load_link_del(int $id): string
 {
     $title = getTitleFromTableById('links', $id);
     
@@ -476,7 +476,7 @@ function load_admin_link_del(int $id): string
 
 /**
  */
-function load_admin_link_settings() : string
+function load_link_settings() : string
 {
     $placeholderList = [];
     
@@ -510,7 +510,7 @@ function load_admin_link_settings() : string
  *
  * @return string
  */
-function load_admin_articles(): string
+function load_articles(): string
 {
     $template = '';
     $table_content = '';
@@ -560,7 +560,7 @@ function load_admin_articles(): string
  * @param int $id
  * @return string
  */
-function load_admin_article_edit(int $id): string
+function load_article_edit(int $id): string
 {
     $template = '';
     $params = [
@@ -600,7 +600,7 @@ function load_admin_article_edit(int $id): string
  *
  * @return string
  */
-function load_admin_article_add(): string
+function load_article_add(): string
 {
     $template = '';
     
@@ -621,7 +621,7 @@ function load_admin_article_add(): string
  * @param int $id
  * @return string
  */
-function load_admin_article_del(int $id): string
+function load_article_del(int $id): string
 {
     $template = '';
     
@@ -641,7 +641,7 @@ function load_admin_article_del(int $id): string
 
 /**
  */
-function load_admin_articles_settings() : string
+function load_articles_settings() : string
 {
     $placeholderList = [];
     
@@ -841,7 +841,7 @@ function load_user_list(): string
         $table_content .= '</tr>';
     }
     
-    return str_replace('<@user_list_content@>', $table_content, $template);
+    return str_replace('##placeholder-user-list-content##', $table_content, $template);
 }
 
 /**
@@ -872,15 +872,15 @@ function load_user_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>' => $user['id'],
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $user['datetime']),
-        '<@firstname@>' => $user['firstname'],
-        '<@lastname@>' => $user['lastname'],
-        '<@username@>' => $user['username'],
-        '<@email@>' => $user['email'],
-        '<@public_as@>' => $user['username'],
-        '@chk_yes@' => $chkYes,
-        '@chk_no@' => $chkNo
+        '##placeholder-id##' => $user['id'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $user['datetime']),
+        '##placeholder-firstname##' => $user['firstname'],
+        '##placeholder-lastname##' => $user['lastname'],
+        '##placeholder-username##' => $user['username'],
+        '##placeholder-email##' => $user['email'],
+        '##placeholder-public-as##' => $user['username'],
+        '##placeholder-chk_yes##' => $chkYes,
+        '##placeholder-chk_no##' => $chkNo
     ];
     
     return strtr($template, $placeholderList);
@@ -893,7 +893,7 @@ function load_user_edit(int $id): string
 function load_user_add(): string
 {
     $placeholderList = [
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', time())
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
     $template = loadTemplate('adm_user_insert');
@@ -913,8 +913,8 @@ function load_user_del( int $id) : string
     $title = getUsernameById($id);
     
     $placeholderList = [
-        '<@id@>' => $id,
-        '<@title@>' => $title
+        '##placeholder-id##' => $id,
+        '##placeholder-title##' => $title
     ];
     
     $template = loadTemplate('adm_user_del');
@@ -926,13 +926,13 @@ function load_user_del( int $id) : string
  *
  * @return string
  */
-function load_admin_sites(): string
+function load_pages(): string
 {
     $table_content = '';
     
     $pdo = getPdoDB();
     
-    $template = loadTemplate('adm_sites');
+    $template = loadTemplate('adm_pages');
     
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
         . " FROM `sites` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
@@ -952,32 +952,32 @@ function load_admin_sites(): string
         $table_content .= '<td>' . $site->title . '</td>';
         $table_content .= '<td>' . $site->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=siteedit&id=" . $site->id . ">" 
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=sitedel&id=" . $site->id . ">" 
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $site->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }
     
-    return str_replace('<@sites-content@>', $table_content, $template);
+    return str_replace('##placeholder-pages-content##', $table_content, $template);
 }
 
 /**
  *
  * @return string
  */
-function load_admin_site_add(): string
+function load_page_add(): string
 {   
     $placeholdeList = [
-        '<@datetime@>' => StrFTime('%d.%m.%Y %H:%M', time())
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
     ];
     
-    $template = loadTemplate('adm_site_add');
+    $template = loadTemplate('adm_page_add');
     
     return strtr($template, $placeholdeList);
 }
@@ -987,7 +987,7 @@ function load_admin_site_add(): string
  * @param int $id
  * @return string
  */
-function load_admin_site_edit(int $id): string
+function load_page_edit(int $id): string
 {
     $params = [
         $id
@@ -999,7 +999,7 @@ function load_admin_site_edit(int $id): string
     
     $result = pdo_select($sql, $params);
     
-    $template = loadTemplate('adm_site_edit');
+    $template = loadTemplate('adm_page_edit');
     
     if ($result['visible'] > - 1) {
         $chkYes = ' checked';
@@ -1008,13 +1008,13 @@ function load_admin_site_edit(int $id): string
     }
     
     $placeholderList = [
-        '<@id@>' => $result['id'],
-        '<@title@>' => $result['title'],
-        '<@tagline@>' => $result['tagline'],
-        '<@content@>' => $result['content'],
-        '<@datetime@>' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
-        '@chk_yes@' => $chkYes,
-        '@chk_no@' => $chkNo
+        '##placeholder-id##'       => $result['id'],
+        '##placeholder-title##'    => $result['title'],
+        '##placeholder-tagline##'  => $result['tagline'],
+        '##placeholder-content##'  => $result['content'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
     return strtr($template, $placeholderList);
@@ -1024,7 +1024,16 @@ function load_admin_site_edit(int $id): string
  *
  * @return string
  */
-function load_admin_mainpage() : string
+function load_page_del(): string
+{
+    return loadTemplate('adm_page_del');
+}
+
+/**
+ *
+ * @return string
+ */
+function load_mainpage() : string
 {
     return loadTemplate('adm_mainpage');
 }

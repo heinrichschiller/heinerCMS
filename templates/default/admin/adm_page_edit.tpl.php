@@ -12,13 +12,13 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
-				<label for="ident">#&nbsp;</label><span><@id@></span>
-				<input type="hidden" name="id" value="<@id@>" class="form-control" id="ident">
+				<label for="ident">#&nbsp;</label><span>##placeholder-id##</span>
+				<input type="hidden" name="id" value="##placeholder-id##" class="form-control" id="ident">
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
 			<div class="form-group">
-				<p class="text-right">{date}: <@datetime@></p>
+				<p class="text-right">{date}: ##placeholder-datetime##</p>
 			</div>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="<@title@>" class="form-control" id="title">
+				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title">
 			</div>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="tagline">{tagline}:</label>
-				<input type="text" name="tagline" value="<@tagline@>" class="form-control" id="tagline" required>
+				<input type="text" name="tagline" value="##placeholder-tagline##" class="form-control" id="tagline" required>
 			</div>
 		</div>
 	</div>
@@ -42,7 +42,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="text">{text}:</label>
-				<textarea name="content" rows="10" class="form-control" id="text"><@content@></textarea>
+				<textarea name="content" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
 			</div>
 		</div>
 	</div>

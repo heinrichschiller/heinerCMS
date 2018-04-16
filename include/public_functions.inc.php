@@ -24,7 +24,7 @@ function getBlogURL(): string
     return $_SESSION['blog-url'];
 }
 
-function load_public_navigation(): string
+function load_navigation(): string
 {
     $template = '';
     
@@ -105,7 +105,7 @@ function load_sites(): string
  *
  * @return string
  */
-function load_public_news(): string
+function load_news(): string
 {
     $content = '';
     $placeholderList = [];
@@ -143,7 +143,7 @@ function load_public_news(): string
     return $template;
 }
 
-function load_public_news_content($news, $template)
+function load_news_content($news, $template)
 {
     $placeholderList = [
         '##placeholder-news-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
@@ -160,7 +160,7 @@ function load_public_news_content($news, $template)
  * @param int $id
  * @return string
  */
-function load_public_news_detailed(int $id): string
+function load_news_detailed(int $id): string
 {
     $content = '';
     
@@ -196,7 +196,7 @@ function load_public_news_detailed(int $id): string
  *
  * @return string
  */
-function load_public_articles(): string
+function load_articles(): string
 {
     $content = '';
     $placeholderList = [];
@@ -234,7 +234,7 @@ function load_public_articles(): string
     return $template;
 }
 
-function load_public_articles_content($articles, $template)
+function load_articles_content($articles, $template)
 {
     $placeholderList = [
         '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
@@ -251,7 +251,7 @@ function load_public_articles_content($articles, $template)
  * @param int $id
  * @return string
  */
-function load_public_articles_detailed(int $id): string
+function load_articles_detailed(int $id): string
 {
     $content = '';
     
@@ -283,7 +283,7 @@ function load_public_articles_detailed(int $id): string
     return strtr($template, $placeholderList);
 }
 
-function load_public_downloads(): string
+function load_downloads(): string
 {
     $content = '';
     $placeholderList = [];
@@ -321,7 +321,7 @@ function load_public_downloads(): string
     return $template;
 }
 
-function load_public_downloads_content($downloads, $template)
+function load_downloads_content($downloads, $template)
 {
     $placeholderList = [
         '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads->datetime),
@@ -334,7 +334,7 @@ function load_public_downloads_content($downloads, $template)
     return strtr($template, $placeholderList);
 }
 
-function load_public_links(): string
+function load_links(): string
 {
     $content = '';
     $placeholderList = [];
@@ -371,7 +371,7 @@ function load_public_links(): string
     return $template;
 }
 
-function load_public_links_content($links, $template)
+function load_links_content($links, $template)
 {
     $placeholderList = [
         '##placeholder-links-title##'   => $links->title,
@@ -383,7 +383,7 @@ function load_public_links_content($links, $template)
     return strtr($template, $placeholderList);
 }
 
-function load_public_sites(int $id): string
+function load_pages(int $id): string
 {
     $template = '';
     
@@ -420,7 +420,7 @@ function load_public_sites(int $id): string
     return $template;
 }
 
-function load_public_mainpage(): string
+function load_mainpage(): string
 {
     return loadTemplate('pub_mainpage');
 }
@@ -438,55 +438,3 @@ function countTableEntries(string $table): int
     
     return $id;
 }
-
-
-/* Gesamtübersicht der Downloads laden */
-/**
- * 
- * @return string
- *
-function load_content_downloads() : string
-{
-	$template = '';
-	$con = getDB ();
-	if ($con) {
-		
-		$sql = 'SELECT `id`, `title` FROM `downloads` WHERE `visible` > -1 ORDER BY `title` ASC';
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			while ( $downloads = mysqli_fetch_object ( $result ) ) {
-				$template .= '<a href="'.$_SERVER['PHP_SELF'].'?uri=downloadsdet&id='.$downloads->id.'"> - '.$downloads->title.'</a><br>';
-			}
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
-
-/* Detailansicht eines Downloads laden */
-/**
- * 
- * @param int $id
- * @return string
- *
-function load_content_downloadsdetailed(int $id) : string
-{
-	$template = '';
-	$con = getDB ();
-	if ($con) {
-		
-		$sql = "SELECT `title`, `comment`, `path`, `filename`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `downloads` WHERE `id` = $id";
-		$result = mysqli_query ( $con, $sql );
-		if ($result) {
-			$downloads = mysqli_fetch_object ( $result );
-			$template .= "<h5>" . StrFTime ( '%d.%m.%Y %H:%M', $downloads->datetime ) . "</h5>";
-			$template .= "<h2>$downloads->title</h2>";
-			$template .= "<p>$downloads->comment</p>";
-			$template .= "<p><a href=\"$downloads->path$downloads->filename\">Hier klicken!</a></p>";
-		}
-		mysqli_close ( $con );
-	}
-	return $template;
-}*/
-
-

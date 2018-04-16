@@ -2,86 +2,105 @@
 
 $route = [];
 
+/************************************************************
+ * news routes
+ ***********************************************************/
+
 $route['news'] = function($id) {
-	return load_admin_news();
+	return load_news();
 };
 
 $route['newsedit'] = function($id) {
-	return load_admin_news_edit ($id);
+	return load_news_edit ($id);
 };
 
 $route['newsadd'] = function($id) {
-	return load_admin_news_add($id);
+	return load_news_add($id);
 };
 
 $route['newsdel'] = function($id) {
-	return load_admin_news_del($id);
+	return load_news_del($id);
 };
 
+$route['newssettings'] = function() {
+    return load_news_settings();
+};
+
+/************************************************************
+ * downloads routes
+ ***********************************************************/
+
 $route['downloads'] = function($id) {
-	return load_admin_downloads();
+	return load_downloads();
 };
 
 $route['downloadsedit'] = function($id) {
-	return load_admin_downloads_edit($id);
+	return load_downloads_edit($id);
 };
 
 $route['downloadsadd'] = function($id) {
-	return load_admin_downloads_add($id);
+	return load_downloads_add($id);
 };
 
 $route['downloadsdel'] = function($id) {
-	return load_admin_downloads_del($id);
+	return load_downloads_del($id);
 };
 
 $route['downloadssettings'] = function($id) {
-    return load_admin_downloads_settings();
+    return load_downloads_settings();
 };
 
+/************************************************************
+ *  links routes
+ ***********************************************************/
+
 $route['links'] = function($id) {
-	return load_admin_links();
+	return load_links();
 };
 
 $route['linkedit'] = function($id) {
-	return load_admin_link_edit($id);
+	return load_link_edit($id);
 };
 
 $route['linkadd'] = function($id) {
-	return load_admin_link_add($id);
+	return load_link_add($id);
 };
 
 $route['linkdel'] = function($id) {
-	return load_admin_link_del($id);
+	return load_link_del($id);
 };
 
+$route['linksettings'] = function() {
+    return load_link_settings();
+};
+
+/************************************************************
+ * articles routes
+ ***********************************************************/
+
 $route['articles'] = function($id) {
-	return load_admin_articles($id);
+	return load_articles($id);
 };
 
 $route['articleedit'] = function($id) {
-	return load_admin_article_edit($id);
+	return load_article_edit($id);
 };
 
 $route['articleadd'] = function($id) {
-	return load_admin_article_add($id);
+	return load_article_add($id);
 };
 
 $route['articledel'] = function($id) {
-	return load_admin_article_del($id);
+	return load_article_del($id);
 };
 
-$route['dashboard'] = function() {
-    return load_dashboard();
+$route['articlessettings'] = function() {
+    return load_articles_settings();
 };
 
-$route['trash'] = function() {
-    return load_trash();
-};
-
-$route['general'] = function() {
-    return load_general_settings();
-};
-
+/************************************************************
+ * user routes
+ ***********************************************************/
 $route['user'] = function() {    
     return load_user_list();
 };
@@ -98,33 +117,56 @@ $route['userdel'] = function($id) {
     return load_user_del($id);
 };
 
-$route['sites'] = function() {
-    return load_admin_sites();
+/************************************************************
+ * pages routes
+ ***********************************************************/
+
+$route['pages'] = function() {
+    return load_pages();
 };
 
-$route['siteadd'] = function() {
-    return load_admin_site_add();
+$route['pageadd'] = function() {
+    return load_page_add();
 };
 
-$route['siteedit'] = function($id) {
-    return load_admin_site_edit($id);
+$route['pageedit'] = function($id) {
+    return load_page_edit($id);
+};
+
+$route['pagedel'] = function($id) {
+    return load_page_del($id);
 };
 
 $route['mainpage'] = function() {
-    return load_admin_mainpage();  
+    return load_mainpage();  
 };
 
-$route['linksettings'] = function() {
-    return load_admin_link_settings();
+/************************************************************
+ * dashboard route
+ ***********************************************************/
+
+$route['dashboard'] = function() {
+    return load_dashboard();
 };
 
-$route['newssettings'] = function() {
-    return load_admin_news_settings();
+/************************************************************
+ * trash route
+ ***********************************************************/
+
+$route['trash'] = function() {
+    return load_trash();
 };
 
-$route['articlessettings'] = function() {
-    return load_admin_articles_settings();
+/************************************************************
+ * general settings route
+ ***********************************************************/
+$route['general'] = function() {
+    return load_general_settings();
 };
+
+/************************************************************
+ * other routes
+ ***********************************************************/
 
 $route['logout'] = function() {
 	header ('Location: logout.php');
