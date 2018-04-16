@@ -8,6 +8,7 @@ if (!file_exists('cms-config.php')) {
 
 include __DIR__ . '/cms-config.php';
 
+include __DIR__ . '/include/pdo_db_functions.inc.php';
 include __DIR__ . '/include/general_functions.inc.php';
 include __DIR__ . '/include/public_functions.inc.php';
 include __DIR__ . '/include/routes.php';
