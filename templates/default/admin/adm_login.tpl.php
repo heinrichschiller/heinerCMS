@@ -24,7 +24,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<p class="text-center">
 			<a href="$PHP_SELF/../../index.php?uri=mainpage">
-				<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-arrow-left.svg">   Zurück zur Hauptseite</span>
+				<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-arrow-left.svg">   Zurück zur Hauptseite</span>
 			</a>
 		</p>
 	</div>
