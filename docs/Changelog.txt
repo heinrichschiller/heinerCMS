@@ -1,3 +1,7 @@
+Version 0.2.2 ()
+	added, temporaly page delete function. this function not working for now
+	update, refactory software, rename functions, refactor routes, templates has new structure
+	update, sites are called pages from now
 Version 0.2.1 (2018-03-09)
 	added, public downloads
 	added, downloads settings

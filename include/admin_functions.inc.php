@@ -74,13 +74,13 @@ function load_news(): string
         $table_content .= '<td>';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a>';
         
         $table_content .= '</td>';
         $table_content .= '</tr>';
@@ -228,13 +228,13 @@ function load_downloads(): string
         $table_content .= (($downloads->visible > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
     }
     
     $template = str_replace('##placeholder-downloads-content##', $table_content, $template);
@@ -381,13 +381,13 @@ function load_links(): string
         $table_content .= $link->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         $table_content .= '</tr>';
     }
     
@@ -538,13 +538,13 @@ function load_articles(): string
         $table_content .= $article->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -833,10 +833,10 @@ function load_user_list(): string
         $table_content .= '<td>' . $user->active . '</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }
@@ -953,13 +953,13 @@ function load_pages(): string
         $table_content .= '<td>' . $site->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
         $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $site->id . ">" 
-            . '<img class="glyph-icon-16" src="../templates/default/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
     }

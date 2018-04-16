@@ -1,7 +1,7 @@
 <div class="row">
    	<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
    		<div class="panel">
-			<h4><img class="glyph-icon-24" src="../templates/default/img/svg/si-glyph-document.svg"> {sites}</h4>
+			<h4><img class="glyph-icon-24" src="../templates/default/admin/img/svg/si-glyph-document.svg"> {sites}</h4>
    		</div>
    	</div>
 </div>
