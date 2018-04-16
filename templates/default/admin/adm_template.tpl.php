@@ -15,7 +15,7 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
-		<link href="../templates/default/css/admstyle.css" rel="stylesheet">
+		<link href="../templates/default/admin/css/admstyle.css" rel="stylesheet">
 	</head>
 	<body>
         <div class="container-fluid">

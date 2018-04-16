@@ -56,7 +56,7 @@ function load_navigation(): string
         $template .= '<a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>';
     }
     
-    $template .= load_sites();
+    $template .= load_nav_pages();
     
     $template .= '<ul class="nav justify-content-end">
                       <li class="nav-item">
@@ -77,7 +77,7 @@ function load_navigation(): string
     return $template;
 }
 
-function load_sites(): string
+function load_nav_pages(): string
 {
     $html = '';
     
@@ -90,7 +90,7 @@ function load_sites(): string
         $result = $pdo->query($sql);
         
         foreach ($result as $key) {
-            $html .= '<a  class="nav-item nav-link" href="index.php?uri=sites&id=' . $key[0] . '">' . $key[1] . '</a>';
+            $html .= '<a  class="nav-item nav-link" href="index.php?uri=pages&id=' . $key[0] . '">' . $key[1] . '</a>';
         }
     } catch (PDOException $ex) {
         
@@ -134,7 +134,7 @@ function load_news(): string
             '##placeholder-news-page-comment##' => $news->news_comment
         ];
         
-        $content .= load_public_news_content($news, $templateNewsContent);
+        $content .= load_news_content($news, $templateNewsContent);
     }
     
     $template = str_replace('##placeholder-news##', $content, $template);
@@ -225,7 +225,7 @@ function load_articles(): string
             '##placeholder-articles-page-comment##' => $articles->comment
         ];
         
-        $content .= load_public_articles_content($articles, $templateArticlesContent);
+        $content .= load_articles_content($articles, $templateArticlesContent);
     }
 
     $template = str_replace('##placeholder-articles##', $content, $template);
@@ -312,7 +312,7 @@ function load_downloads(): string
             '##placeholder-downloads-page-comment##' => $downloads->downloads_comment
         ];
                     
-        $content .= load_public_downloads_content($downloads, $templateNewsContent);
+        $content .= load_downloads_content($downloads, $templateNewsContent);
     }
 
     $template = str_replace('##placeholder-downloads##', $content, $template);
@@ -362,7 +362,7 @@ function load_links(): string
             '##placeholder-links-page-comment##' => $links->settings_comment
         ];
         
-        $content .= load_public_links_content($links, $templateLinksContent);
+        $content .= load_links_content($links, $templateLinksContent);
     }
     
     $template = str_replace('##placeholder-links##', $content, $template);
@@ -414,7 +414,7 @@ function load_pages(int $id): string
         exit();
     }
     
-    $template = loadTemplate('pub_site');
+    $template = loadTemplate('pub_page');
     $template = strtr($template, $placeholderList);
     
     return $template;

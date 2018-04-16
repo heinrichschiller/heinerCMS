@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title><@title@></title>
+		<title>##placeholder-title##</title>
 		<meta charset="utf8">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
         <div class="container">
 	        <div class="row">
 	        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0"></div>
-	        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><@content@></div>
+	        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">##placeholder-content##</div>
 	        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0"></div>
 	        </div>
         </div>

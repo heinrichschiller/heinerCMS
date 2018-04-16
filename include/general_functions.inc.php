@@ -118,14 +118,24 @@ function pdo_query(string $sql, array $params)
  */
 function loadTemplate(string $template): string
 {
-    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
+    $split = explode('_', $template);
+    $subdirectory = '';
     
-    $file = __DIR__ . '/../templates/' . $theme . '/' . $template . '.tpl.php';
-    $error = __DIR__ . '/../templates/' . $theme . '/error_template.tpl.php';
-    
-    if (file_exists($file)) {
-        return file_get_contents($file);
+    switch($split[0]) {
+        case 'adm' : $subdirectory .= '/admin/';
+            break;
+        case 'pub' : $subdirectory .= '/public/';
+            break;
     }
     
-    return file_get_contents($error);
+    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
+    
+    $tplPath = __DIR__ . '/../templates/' . $theme . $subdirectory . $template . '.tpl.php';
+    $error = __DIR__ . '/../templates/' . $theme . '/error/error_template.tpl.php';
+
+    if (file_exists($tplPath)) {
+        return file_get_contents($tplPath);
+    } else {
+        return file_get_contents($error);
+    }
 }

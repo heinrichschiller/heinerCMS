@@ -28,7 +28,7 @@ if (isset($route[$uri]) ) {
 $placeholderList = [
     '##placeholder-language##'   => $_SESSION['language'],
     '##placeholder-title##'      => $_SESSION['title'],
-    '##placeholder-navigation##' => load_public_navigation(),
+    '##placeholder-navigation##' => load_navigation(),
     '##placeholder-content##'    => $content,
     '##placeholder-footer##'     => $_SESSION['footer']
 ];

@@ -18,12 +18,12 @@ function is_logged_in() {
 		return true;
 	} else {
 		$login = loadTemplate('adm_login');
-		$template = loadTemplate('login_template');
+		$template = loadTemplate('adm_login_template');
 
-		$template = str_replace ( '<@title@>', $_SESSION['title'], $template );
-		$template = str_replace ( '<@shortnav@>', '&nbsp;', $template );
-		$template = str_replace ( '<@navigation@>', '&nbsp;', $template );
-		$template = str_replace ( '<@content@>', $login, $template );
+		$template = str_replace ( '##palceholder-title##', $_SESSION['title'], $template );
+		$template = str_replace ( '##placeholder-shortnav##', '&nbsp;', $template );
+		$template = str_replace ( '##placeholder-navigation##', '&nbsp;', $template );
+		$template = str_replace ( '##placeholder-content##', $login, $template );
 		$template = str_replace ( '$PHP_SELF', $PHP_SELF, $template );
 
 		echo stripslashes ( $template );

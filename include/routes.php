@@ -39,11 +39,11 @@ $route['links'] = function()
 
 $route['pages'] = function($id)
 {
-    return load_pages($id);
+    return load_nav_pages($id);
 };
 
 $route['mainpage'] = function() {
-    return load_public_mainpage();
+    return load_mainpage();
 };
 
 $route['admin'] = function()
