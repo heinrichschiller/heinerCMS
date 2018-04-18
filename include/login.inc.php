@@ -20,11 +20,8 @@ function is_logged_in() {
 		$login = loadTemplate('adm_login');
 		$template = loadTemplate('adm_login_template');
 
-		$template = str_replace ( '##palceholder-title##', $_SESSION['title'], $template );
-		$template = str_replace ( '##placeholder-shortnav##', '&nbsp;', $template );
-		$template = str_replace ( '##placeholder-navigation##', '&nbsp;', $template );
-		$template = str_replace ( '##placeholder-content##', $login, $template );
-		$template = str_replace ( '$PHP_SELF', $PHP_SELF, $template );
+		$template = str_replace ( '##placeholder-title##', $_SESSION['title'], $template );
+		$template = str_replace ( '##placeholder-form-signin##', $login, $template );
 
 		echo stripslashes ( $template );
 

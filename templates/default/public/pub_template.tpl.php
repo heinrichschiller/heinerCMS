@@ -3,7 +3,8 @@
     <head>
         <title>##placeholder-title##</title>
         <meta charset="utf8">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/reboot.min.css">
         <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/grid.min.css">

@@ -3,6 +3,7 @@ Version 0.2.2 ()
 	bugfix, fixed many many other minor bugs
 	update, twbs/bootstrap (4.0.0 => 4.1.0)
 	update, tinymce/tinymce (4.7.10 => 4.7.11)
+	update, sign has a new fresh style
 	update, refactory software, rename functions, refactor routes, templates has new structure
 	update, sites are called pages from now
 Version 0.2.1 (2018-03-09)
