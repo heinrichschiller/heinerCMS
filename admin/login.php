@@ -19,6 +19,7 @@ try {
 
 } catch (PDOException $ex) {
 	echo $ex->getMessage();
+	exit();
 }
 
 if ($user !== false && password_verify($login_password, $user['password'])) {

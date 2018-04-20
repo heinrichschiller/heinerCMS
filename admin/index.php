@@ -1,12 +1,13 @@
 <?php
 
+session_start();
+
 include __DIR__ . '/../cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
 include __DIR__ . '/../include/admin_functions.inc.php';
 include __DIR__ . '/routes.php';
-include __DIR__ . '/../include/login.inc.php';
 
 if (is_logged_in ()) {
 

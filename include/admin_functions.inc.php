@@ -1,6 +1,32 @@
 <?php
 
 /**
+ *  Überprüft, ob ein Login erfolgt ist 
+ */
+function is_logged_in() {
+    
+    $authenticated = isset($_SESSION['authenticated']) ? true : false;
+    
+    load_session();
+    
+    /* User angemeldet? */
+    if ($authenticated) {
+        return true;
+    } else {
+        
+        $login = loadTemplate('adm_login');
+        $template = loadTemplate('adm_login_template');
+        
+        $template = str_replace ( '##placeholder-title##', $_SESSION['title'], $template );
+        $template = str_replace ( '##placeholder-form-signin##', $login, $template );
+        
+        echo stripslashes ( $template );
+        
+        return false;
+    }
+}
+
+/**
  * Load the admin navigation with badges
  * 
  * @return string

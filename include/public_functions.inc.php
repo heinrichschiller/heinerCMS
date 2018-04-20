@@ -25,6 +25,7 @@ function getBlogURL(): string
 }
 
 /**
+ * Load navigation bar on public section
  * 
  * @return string
  */
@@ -73,13 +74,17 @@ function load_navigation(): string
     return strtr($template, $placeholderList);
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_nav_pages(): string
 {
     $html = '';
     
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `id`, `title` FROM `sites` WHERE `visible` = 0';
+    $sql = "SELECT `id`, `title` FROM `sites` WHERE `visible` = 0 AND `trash` = 'false'";
     
     try {
         
@@ -139,7 +144,13 @@ function load_news(): string
     return $template;
 }
 
-function load_news_content($news, $template)
+/**
+ * 
+ * @param unknown $news
+ * @param string $template
+ * @return string
+ */
+function load_news_content($news, string $template) : string
 {
     $placeholderList = [
         '##placeholder-news-datetime##' => StrFTime('%d.%m.%Y %H:%M', $news->datetime),
@@ -230,7 +241,13 @@ function load_articles(): string
     return $template;
 }
 
-function load_articles_content($articles, $template)
+/**
+ * 
+ * @param unknown $articles
+ * @param string $template
+ * @return string
+ */
+function load_articles_content($articles, string $template) : string
 {
     $placeholderList = [
         '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
@@ -279,6 +296,10 @@ function load_articles_detailed(int $id): string
     return strtr($template, $placeholderList);
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_downloads(): string
 {
     $content = '';
@@ -317,7 +338,13 @@ function load_downloads(): string
     return $template;
 }
 
-function load_downloads_content($downloads, $template)
+/**
+ * 
+ * @param unknown $downloads
+ * @param string $template
+ * @return string
+ */
+function load_downloads_content($downloads, string $template) : string
 {
     $placeholderList = [
         '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads->datetime),
@@ -330,6 +357,10 @@ function load_downloads_content($downloads, $template)
     return strtr($template, $placeholderList);
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_links(): string
 {
     $content = '';
@@ -367,7 +398,13 @@ function load_links(): string
     return $template;
 }
 
-function load_links_content($links, $template)
+/**
+ * 
+ * @param unknown $links
+ * @param string $template
+ * @return string
+ */
+function load_links_content($links, string $template)
 {
     $placeholderList = [
         '##placeholder-links-title##'   => $links->title,
@@ -379,6 +416,11 @@ function load_links_content($links, $template)
     return strtr($template, $placeholderList);
 }
 
+/**
+ * 
+ * @param int $id
+ * @return string
+ */
 function load_pages(int $id): string
 {
     $template = '';
@@ -416,11 +458,19 @@ function load_pages(int $id): string
     return $template;
 }
 
+/**
+ * 
+ */
 function load_mainpage(): string
 {
     return loadTemplate('pub_mainpage');
 }
 
+/**
+ * 
+ * @param string $table
+ * @return int
+ */
 function countTableEntries(string $table): int
 {
     $id = 0;
