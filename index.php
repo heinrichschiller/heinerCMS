@@ -11,7 +11,7 @@ include __DIR__ . '/cms-config.php';
 include __DIR__ . '/include/pdo_db_functions.inc.php';
 include __DIR__ . '/include/general_functions.inc.php';
 include __DIR__ . '/include/public_functions.inc.php';
-include __DIR__ . '/include/routes.php';
+include __DIR__ . '/include/routes.inc.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');

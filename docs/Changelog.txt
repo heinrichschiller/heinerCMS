@@ -92,5 +92,5 @@ Version 0.0.3 (2018-01-18)
 	update, deactivate dashboard and trash. new implementation.
 Version 0.0.2 (2018-01-17)
 	update, "user-edit" shows in header first and last name
-Version 0.0.1 ()
+Version 0.0.1 (2018-01-13)
 	added, directory "docs" with changelogs file
