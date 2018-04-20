@@ -1,4 +1,4 @@
-Version 0.2.2 ()
+Version 0.2.2 (2018-04-20)
 	added, temporaly page delete function. this function not working for now
 	bugfix, fixed many many other minor bugs
 	update, twbs/bootstrap (4.0.0 => 4.1.0)
@@ -6,7 +6,7 @@ Version 0.2.2 ()
 	update, sign has a new fresh style
 	update, refactory software, rename functions, refactor routes, templates has new structure
 	update, sites are called pages from now
-Version 0.2.1 (2018-03-09)
+Version 0.2.1 (2018-04-09)
 	added, public downloads
 	added, downloads settings
 	update, many new translations
