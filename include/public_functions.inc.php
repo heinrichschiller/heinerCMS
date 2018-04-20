@@ -24,57 +24,53 @@ function getBlogURL(): string
     return $_SESSION['blog-url'];
 }
 
+/**
+ * 
+ * @return string
+ */
 function load_navigation(): string
 {
     $template = '';
     
-    $template .= '<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.php?uri=mainpage">##placeholder-title##</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">';
-    
+    $blog = '';
+    $news = '';
+    $downloads = '';
+    $links = '';
+    $articles = '';
+
     if (! empty(getBlogURL())) {
-        $template .= ' <a class="nav-item nav-link" href="' . getBlogURL() . '" target="blank">Blog</a>';
+        $blog .= '<a class="nav-item nav-link" href="' . getBlogURL() . '" target="blank">Blog</a>';
     }
     
     if (countTableEntries('news') !== 0) {
-        $template .= ' <a class="nav-item nav-link" href="index.php?uri=news">Neuigkeiten</a>';
+        $news .= ' <a class="nav-item nav-link" href="index.php?uri=news">Neuigkeiten</a>';
     }
     
     if (countTableEntries('downloads') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>';
+        $downloads .= '<a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>';
     }
     
     if (countTableEntries('links') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="index.php?uri=links">Links</a>';
+        $links .= '<a class="nav-item nav-link" href="index.php?uri=links">Links</a>';
     }
     
     if (countTableEntries('articles') !== 0) {
-        $template .= '<a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>';
+        $articles .= '<a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>';
     }
-    
-    $template .= load_nav_pages();
-    
-    $template .= '<ul class="nav justify-content-end">
-                      <li class="nav-item">
-                        <a class="nav nav-link" href="index.php?uri=admin">Sign in</a>
-                      </li>
-                  </ul>
-            </div>
-          </div>
-        </nav>';
-    
-    $arr = [
+
+    $placeholderList = [
         '##placeholder-title##' => 'Heinrich-Schiller.de',
-        '##placeholder-url##' => getBlogURL()
+        '##placeholder-blog##' => $blog,
+        '##placeholder-news##' => $news,
+        '##placeholder-downloads##' => $downloads,
+        '##placeholder-links##' => $links,
+        '##placeholder-articles##' => $articles,
+        '##placeholder-pages##' => load_nav_pages()
     ];
-    
-    $template = strtr($template, $arr);
-    
-    return $template;
+
+    $template = loadTemplate('pub_navigation');
+
+    return strtr($template, $placeholderList);
 }
 
 function load_nav_pages(): string
@@ -83,7 +79,7 @@ function load_nav_pages(): string
     
     $pdo = getPdoDB();
     
-    $sql = 'SELECT `id`, `title` FROM `sites`';
+    $sql = 'SELECT `id`, `title` FROM `sites` WHERE `visible` = 0';
     
     try {
         
