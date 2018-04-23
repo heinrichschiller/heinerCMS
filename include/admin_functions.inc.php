@@ -1,32 +1,6 @@
 <?php
 
 /**
- *  Überprüft, ob ein Login erfolgt ist 
- */
-function is_logged_in() {
-    
-    $authenticated = isset($_SESSION['authenticated']) ? true : false;
-    
-    load_session();
-    
-    /* User angemeldet? */
-    if ($authenticated) {
-        return true;
-    } else {
-        
-        $login = loadTemplate('adm_login');
-        $template = loadTemplate('adm_login_template');
-        
-        $template = str_replace ( '##placeholder-title##', $_SESSION['title'], $template );
-        $template = str_replace ( '##placeholder-form-signin##', $login, $template );
-        
-        echo stripslashes ( $template );
-        
-        return false;
-    }
-}
-
-/**
  * Load the admin navigation with badges
  * 
  * @return string
@@ -72,28 +46,15 @@ function load_sidebar(): string
  */
 function load_news(): string
 {
-    $template = '';
     $table_content = '';
-    
-    $pdo = getPdoConnection();
-    
-    $template = loadTemplate('adm_news');
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
-        . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+
+    $stmt = loadNewsStatement();
     
     while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
+
         $table_content .= '<tr>';
         $table_content .= '<td>' . $news->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
+        //$table_content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
         $table_content .= '<td>' . $news->title . '</td>';
         $table_content .= $news->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
@@ -111,6 +72,8 @@ function load_news(): string
         $table_content .= '</td>';
         $table_content .= '</tr>';
     }
+    
+    $template = loadTemplate('adm_news');
     
     return str_replace('##placeholder-table-content##', $table_content, $template);
 }
