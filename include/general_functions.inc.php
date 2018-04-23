@@ -4,7 +4,7 @@
  */
 function load_session()
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer` FROM `settings` WHERE 1";
     

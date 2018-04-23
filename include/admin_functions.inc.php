@@ -75,7 +75,7 @@ function load_news(): string
     $template = '';
     $table_content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $template = loadTemplate('adm_news');
     
@@ -198,7 +198,7 @@ function load_news_del(int $id): string
  */
 function load_news_settings() : string
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `tagline`, `comment` FROM `news_settings` WHERE `id` = 1";
     
@@ -231,7 +231,7 @@ function load_downloads(): string
 {
     $table_content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $template = loadTemplate('adm_downloads');
     
@@ -283,7 +283,7 @@ function load_downloads_edit(int $id): string
         $id
     ];
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
         . " FROM `downloads` WHERE `id`=$id";
@@ -353,7 +353,7 @@ function load_downloads_del(int $id): string
  */
 function load_downloads_settings() : string
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `tagline`, `comment` FROM `downloads_settings` WHERE `id` = 1";
     
@@ -386,7 +386,7 @@ function load_links(): string
 {
     $table_content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible`' 
         . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
@@ -506,7 +506,7 @@ function load_link_settings() : string
 {
     $placeholderList = [];
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `tagline`, `comment`' 
         . " FROM `links_settings` WHERE `id` = 1";
@@ -541,7 +541,7 @@ function load_articles(): string
     $template = '';
     $table_content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $template = loadTemplate('adm_articles');
     
@@ -671,7 +671,7 @@ function load_articles_settings() : string
 {
     $placeholderList = [];
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `tagline`, `comment`' 
         . " FROM `articles_settings` WHERE `id` = 1";
@@ -835,7 +835,7 @@ function load_user_list(): string
 {
     $table_content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $template = loadTemplate('adm_user_list');
     $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' 
@@ -955,8 +955,9 @@ function load_user_del( int $id) : string
 function load_pages(): string
 {
     $table_content = '';
+    $php_self = 
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $template = loadTemplate('adm_pages');
     
@@ -971,20 +972,20 @@ function load_pages(): string
         exit();
     }
     
-    while ($site = $stmt->fetch(PDO::FETCH_OBJ)) {
+    while ($page = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
-        $table_content .= '<td>' . $site->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $site->datetime) . '</td>';
-        $table_content .= '<td>' . $site->title . '</td>';
-        $table_content .= '<td>' . $site->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        $table_content .= '<td>' . $page->id . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y', $page->datetime) . '</td>';
+        $table_content .= '<td>' . $page->title . '</td>';
+        $table_content .= '<td>' . $page->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
+        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $site->id . ">" 
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $site->id . ">" 
+        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $table_content .= '</tr>';
@@ -1077,7 +1078,7 @@ function load_mainpage() : string
  */
 function countEntries()
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
         UNION ALL
@@ -1123,7 +1124,7 @@ function countEntries()
  */
 function loadFromTable(string $table, int $count)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
         . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
@@ -1147,7 +1148,7 @@ function loadFromTable(string $table, int $count)
  */
 function loadTrashFromTable(string $table)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime' 
         . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
@@ -1177,7 +1178,7 @@ function loadTrashFromTable(string $table)
  */
 function getTitleFromTableById(string $table, int $id)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `title` FROM `$table` WHERE `id` = :id";
     
@@ -1201,12 +1202,13 @@ function getTitleFromTableById(string $table, int $id)
 /**
  * Get username by id
  *
- * @param int $id Id of an user            
+ * @param int $id Id of an user       
+ *      
  * @return string
  */
 function getUsernameById(int $id)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `username` FROM `users` WHERE `id` = :id";
     
@@ -1235,7 +1237,7 @@ function getUsernameById(int $id)
  */
 function deleteAllTrashItems(string $table)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "DELETE FROM `:table` WHERE `trash` = 'true'";
     
@@ -1257,7 +1259,7 @@ function deleteAllTrashItems(string $table)
  */
 function deleteItemsById(array $items, string $table)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "DELETE FROM `$table` WHERE `id` = '$items[0]'";
     array_shift($items);
@@ -1284,7 +1286,7 @@ function deleteItemsById(array $items, string $table)
  */
 function setFlagTrashById(int $id, string $table)
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
     

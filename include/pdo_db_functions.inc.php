@@ -1,15 +1,17 @@
 <?php
 
 /**
- * Database adapter for MySQL
- *
+ * Database connection for heinerCMS that use PDO-Connection.
+ * 
+ * @param string $driver Driver can be mysql or sqlite.
+ * 
  * @return PDO
  */
-function getPdoDB()
+function getPdoConnection()
 {
     try {
         
-        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+        $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
         
         return $pdo;
         
@@ -28,7 +30,7 @@ function getPdoDB()
  */
 function pdo_select(string $sql, array $params) : array
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     try {
         $stmt = $pdo->prepare($sql);

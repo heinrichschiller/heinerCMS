@@ -82,7 +82,7 @@ function load_nav_pages(): string
 {
     $html = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `id`, `title` FROM `sites` WHERE `visible` = 0 AND `trash` = 'false'";
     
@@ -114,7 +114,7 @@ function load_news(): string
     $template = loadTemplate('pub_news');
     $templateNewsContent = loadTemplate('pub_news_content');
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT news.id, news.title, news.message, UNIX_TIMESTAMP(news.created_at) AS datetime,' 
         . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment' 
@@ -171,7 +171,7 @@ function load_news_detailed(int $id): string
 {
     $content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `news` WHERE `id` = :id";
     
@@ -211,7 +211,7 @@ function load_articles(): string
     $template = loadTemplate('pub_articles');
     $templateArticlesContent = loadTemplate('pub_articles_content');
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT articles.id, articles.title, articles.content, UNIX_TIMESTAMP(articles.created_at) AS datetime,' 
         . ' articles_settings.tagline as tagline, articles_settings.comment as comment' 
@@ -268,7 +268,7 @@ function load_articles_detailed(int $id): string
 {
     $content = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = :id";
     
@@ -308,7 +308,7 @@ function load_downloads(): string
     $template = loadTemplate('pub_downloads');
     $templateNewsContent = loadTemplate('pub_downloads_content');
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, UNIX_TIMESTAMP(downloads.created_at) AS datetime,'
         . ' downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment'
@@ -369,7 +369,7 @@ function load_links(): string
     $template = loadTemplate('pub_links');
     $templateLinksContent = loadTemplate('pub_links_content');
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,' 
         . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment' 
@@ -425,7 +425,7 @@ function load_pages(int $id): string
 {
     $template = '';
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT `id`, `title`, `tagline`,`content` FROM `sites` WHERE `id` = :id";
     
@@ -474,7 +474,7 @@ function load_mainpage(): string
 function countTableEntries(string $table): int
 {
     $id = 0;
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false' AND `visible` > -1";
     
