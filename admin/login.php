@@ -4,13 +4,17 @@ session_start();
 
 include __DIR__ . '/../cms-config.php';
 
+include __DIR__ . '/../include/pdo_db_functions.inc.php';
+
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $login_password = filter_input(INPUT_POST, 'password');
 
 try {
-	$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+	//$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
 
+    $pdo = getPdoConnection();
+    
 	$sql = "SELECT `id`,`email`,`username`,`password` FROM `users` WHERE email = :email";
 
 	$stmt = $pdo->prepare($sql);
