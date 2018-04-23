@@ -1,15 +1,16 @@
 <?php
 
+session_start();
+
 include __DIR__ . '/../cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
-include __DIR__ . '/../include/login.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in()) {
     
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
     
     $title   = filter_input(INPUT_POST, 'title');
     $message = filter_input(INPUT_POST, 'message');
