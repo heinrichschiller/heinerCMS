@@ -11,7 +11,8 @@ function getPdoConnection()
 {
     try {
         
-        $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
+        //$pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
+        $pdo = new PDO (DB_DRIVER . ':' . DB_NAME);
         
         return $pdo;
         
@@ -48,12 +49,27 @@ function pdo_select(string $sql, array $params) : array
     return $stmt->fetch();
 }
 
-/**
- *
- * @param string $sql
- * @param array $params
- */
-function pdo_query(string $sql, array $params)
+function loadNewsStatement()
 {
-    $pdo = getPdoDB();
+    $pdo = getPdoConnection();
+    
+    $datetime = 'UNIX_TIMESTAMP(`created_at`) AS datetime';
+    
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = 'date(`created_at`) AS datetime';
+    }
+    
+    $sql = "SELECT `id`, `title`, $datetime, `visible`"
+    . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+
+    try {
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
 }
