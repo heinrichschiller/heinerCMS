@@ -6,7 +6,6 @@ include __DIR__ . '/../cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
-// include __DIR__ . '/../include/login.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in ()) {
@@ -17,23 +16,34 @@ if (is_logged_in ()) {
 	$filename = filter_input(INPUT_POST,'filename');
 	$visible  = filter_input(INPUT_POST,'visible');
 	
-	$pdo = getPdoDB();
+	$pdo = getPdoConnection();
 	
-    $sql = "INSERT INTO downloads (title,comment,path,filename,visible) VALUES (:title, :comment, :path, :filename, :visible)";
+    $sql = 'INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)'
+        . ' VALUES (:title, :comment, :path, :filename, :visible)';
     
-    $input_parameters = [
-        ':title' => $title,
-        ':comment' => $comment,
-        ':path' => $path,
-        ':filename' => $filename,
-        ':visible' => $visible
-    ];
+    if ( DB_DRIVE == 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+
+        $sql = 'INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visible`, `trash`)'
+            . ' VALUES (:title, :comment, :path, :filename, :created_at, :visible, :trash)';
+    }
     
     try {
-        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($input_parameters);
         
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':path', $path);
+        $stmt->bindParam(':filename', $filename);
+        $stmt->bindParam(':visible', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
     } catch (PDOException $ex) {
         
         echo $ex->getMessage();
@@ -42,8 +52,5 @@ if (is_logged_in ()) {
     }
     
     header('Location: index.php?uri=downloads');
-
-
-
 }
 
