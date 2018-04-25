@@ -51,15 +51,13 @@ function load_news(): string
     $stmt = loadNewsStatement();
     
     while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
-
         $table_content .= '<tr>';
         $table_content .= '<td>' . $news->id . '</td>';
-        //$table_content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
+        $table_content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
         $table_content .= '<td>' . $news->title . '</td>';
         $table_content .= $news->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $table_content .= '<td>';
-        
         $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
@@ -88,27 +86,20 @@ function load_news_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
+
+    $result = loadNewsEditStatement($id);
     
-    $params = [
-        $id
-    ];
-    
-    $sql = 'SELECT `id`, `title`, `message`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
-        . " FROM `news` WHERE `id` = $id";
-    
-    $result = pdo_select($sql, $params);
-    
-    if ($result['visible'] > - 1) {
+    if ($result->visible > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
     
     $placeholderList = [
-        '##placeholder-id##'       => $result['id'],
-        '##placeholder-title##'    => $result['title'],
-        '##placeholder-message##'  => $result['message'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-id##'       => $result->id,
+        '##placeholder-title##'    => $result->title,
+        '##placeholder-message##'  => $result->message,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result->datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -194,20 +185,7 @@ function load_downloads(): string
 {
     $table_content = '';
     
-    $pdo = getPdoConnection();
-    
-    $template = loadTemplate('adm_downloads');
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
-        . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    $stmt = loadDownloadsStatement();
     
     while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
@@ -226,6 +204,7 @@ function load_downloads(): string
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
     }
     
+    $template = loadTemplate('adm_downloads');
     $template = str_replace('##placeholder-downloads-content##', $table_content, $template);
     
     return $template;
@@ -310,23 +289,13 @@ function load_downloads_del(int $id): string
 }
 
 /**
- * Load news settings.
+ * Load download settings.
  *
  * @return string
  */
 function load_downloads_settings() : string
 {
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `tagline`, `comment` FROM `downloads_settings` WHERE `id` = 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    $stmt = loadDownloadsSettingsStatement();
     
     $download = $stmt->fetch(PDO::FETCH_OBJ);
     
@@ -349,18 +318,7 @@ function load_links(): string
 {
     $table_content = '';
     
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) as datetime, `visible`' 
-        . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    $stmt = loadLinksStatement();
     
     while ($link = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
@@ -501,23 +459,9 @@ function load_link_settings() : string
  */
 function load_articles(): string
 {
-    $template = '';
     $table_content = '';
     
-    $pdo = getPdoConnection();
-    
-    $template = loadTemplate('adm_articles');
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
-        . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    $stmt = loadArticlesStatement();
     
     while ($article = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
@@ -538,6 +482,7 @@ function load_articles(): string
         $table_content .= '</tr>';
     }
     
+    $template = loadTemplate('adm_articles');
     $template = str_replace('##placeholder-articles-content##', $table_content, $template);
     
     return $template;
@@ -918,22 +863,8 @@ function load_user_del( int $id) : string
 function load_pages(): string
 {
     $table_content = '';
-    $php_self = 
-    
-    $pdo = getPdoConnection();
-    
-    $template = loadTemplate('adm_pages');
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
-        . " FROM `sites` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+
+    $stmt = loadPagesStatement();
     
     while ($page = $stmt->fetch(PDO::FETCH_OBJ)) {
         $table_content .= '<tr>';
@@ -953,6 +884,8 @@ function load_pages(): string
         
         $table_content .= '</tr>';
     }
+    
+    $template = loadTemplate('adm_pages');
     
     return str_replace('##placeholder-pages-content##', $table_content, $template);
 }
@@ -1096,32 +1029,6 @@ function loadFromTable(string $table, int $count)
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    return $stmt->fetchAll();
-}
-
-/**
- * Get id, title and datetime from a table where trash-flag is true.
- *
- * @param string $table Name of a table.
- * @return array
- */
-function loadTrashFromTable(string $table)
-{
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime' 
-        . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
-    
-    try {
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        
         echo $ex->getMessage();
         exit();
     }

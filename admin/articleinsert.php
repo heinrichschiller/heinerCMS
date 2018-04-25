@@ -1,10 +1,12 @@
 <?php
 
+session_start();
+
 include __DIR__ . '/../cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
-include __DIR__ . '/../include/login.inc.php';
+// include __DIR__ . '/../include/login.inc.php';
 
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */

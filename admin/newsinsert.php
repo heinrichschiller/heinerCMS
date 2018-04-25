@@ -16,20 +16,30 @@ if (is_logged_in()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
     
-    $sql = 'INSERT INTO `news` (`title`,`message`,`visible`)'
+    $sql = 'INSERT INTO `news` (`title`, `message`, `visible`)'
         . " VALUES (:title, :message, :visible)";
     
-    $input_parameters = [
-        ':title'   => $title,
-        ':message' => $message,
-        ':visible' => $visible
-    ];
-    
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = 'INSERT INTO `news` (`title`, `message`, `created_at`, `visible`, `trash`)'
+            . " VALUES (:title, :message, :created_at, :visible, :trash)";
+    }
+// var_dump($sql, $input_parameters);die;
     try {
-        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($input_parameters);
         
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':message', $message);
+        $stmt->bindParam(':visible', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
     } catch (PDOException $ex) {
         
         echo $ex->getMessage();
