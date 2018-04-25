@@ -26,7 +26,7 @@ if (is_logged_in()) {
         $sql = 'INSERT INTO `news` (`title`, `message`, `created_at`, `visible`, `trash`)'
             . " VALUES (:title, :message, :created_at, :visible, :trash)";
     }
-// var_dump($sql, $input_parameters);die;
+
     try {
         $stmt = $pdo->prepare($sql);
         
