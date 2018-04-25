@@ -24,14 +24,14 @@ function getPdoConnection()
         return $pdo;
         
     } catch (PDOException $ex) {
-        echo $ex->getMessage() . DB_NAME;
+        echo $ex->getMessage();
         exit();
     }
     
 }
 
 /**
- *
+ * @deprecated
  * @param string $sql
  * @param array $params
  * @return array
@@ -54,16 +54,6 @@ function pdo_select(string $sql, array $params) : array
     }
     
     return $stmt->fetch();
-}
-
-/**
- *
- * @param string $sql
- * @param array $params
- */
-function pdo_query(string $sql, array $params)
-{
-    $pdo = getPdoDB();
 }
 
 function datetimeFormater() : string
