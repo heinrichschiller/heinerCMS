@@ -11,8 +11,15 @@ function getPdoConnection()
 {
     try {
         
-        //$pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
-        $pdo = new PDO (DB_DRIVER . ':' . DB_NAME);
+        if ( DB_DRIVER == 'mysql') {
+            $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
+        } else {
+            $pdo = new PDO (DB_DRIVER . ':' . DB_NAME);
+        }
+        
+        if (PDO_DEBUG_MODE == 'On') {
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
         
         return $pdo;
         
@@ -219,6 +226,74 @@ function loadTrashFromTable(string $table)
         
         return $stmt->fetchAll();
     } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ *
+ * @param array $items
+ * @param string $table
+ */
+function deleteItemsById(array $items, string $table)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "DELETE FROM `$table` WHERE `id` = '$items[0]'";
+    array_shift($items);
+    
+    foreach ($items as $key => $value) {
+        $sql .= " OR `id` = '$value'";
+    }
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ *
+ * @param string $table
+ */
+function deleteAllTrashItems(string $table)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "DELETE FROM `:table` WHERE `trash` = 'true'";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ *
+ * @param int $id
+ * @param string $table
+ */
+function setFlagTrashById(int $id, string $table)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
+    
+    try {
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ':id' => $id
+        ));
+    } catch (PDOException $ex) {
+        
         echo $ex->getMessage();
         exit();
     }
