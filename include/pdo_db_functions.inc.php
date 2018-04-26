@@ -17,7 +17,7 @@ function getPdoConnection()
             $pdo = new PDO (DB_DRIVER . ':' . DB_NAME);
         }
         
-        if (PDO_DEBUG_MODE == 'On') {
+        if ( PDO_DEBUG_MODE ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         
