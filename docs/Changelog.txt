@@ -1,5 +1,7 @@
 Version 0.2.3 ()
-	added, sqlite database for heinercms
+	added, sqlite database support for heinercms
+	added, database debug options for developers
+	bugfix, fixed bugs in public downloads section
 	update, refactory database connection
 Version 0.2.2 (2018-04-20)
 	added, temporaly page delete function. this function not working for now
