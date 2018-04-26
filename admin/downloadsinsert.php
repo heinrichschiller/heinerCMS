@@ -21,7 +21,7 @@ if (is_logged_in ()) {
     $sql = 'INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)'
         . ' VALUES (:title, :comment, :path, :filename, :visible)';
     
-    if ( DB_DRIVE == 'sqlite') {
+    if ( DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
