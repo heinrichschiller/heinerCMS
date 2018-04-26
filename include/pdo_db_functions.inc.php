@@ -250,6 +250,53 @@ function loadLinksStatement()
     }
 }
 
+function loadLinksEditStatement($id)
+{
+    $pdo = getPdoConnection();
+
+    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = :id";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute($input_parameters);
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+
+}
+
+function loadPublicLinksStatement() {
+    $pdo = getPdoConnection();
+
+    $datetime = 'UNIX_TIMESTAMP(links.created_at) AS datetime';
+    
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = "strftime('%s', links.created_at) AS datetime";
+    }
+
+    $sql = "SELECT links.title, links.tagline, links.uri, links.comment, $datetime,"
+        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
+        . ' FROM `links`, `links_settings`'
+        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+
+}
+
 function loadArticlesStatement()
 {
     $pdo = getPdoConnection();
@@ -396,7 +443,7 @@ function getTitleFromTableById(string $table, int $id)
 
         $stmt->bindParam(':id', $id);
 
-        $stmt->execute($input_parameters);
+        $stmt->execute();
 
         return $stmt->fetchColumn();
     } catch (PDOException $ex) {

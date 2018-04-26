@@ -344,34 +344,28 @@ function load_link_edit(int $id): string
 {
     $chkYes = '';
     $chkNo = '';
-    
-    $params = [
-        $id
-    ];
-    
-    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = $id";
-    
-    $result = pdo_select($sql, $params);
-    
-    if ($result['visible'] > - 1) {
+
+    $links = loadLinksEditStatement($id);
+
+    if ($links->visible > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
-    
+
     $placeholderList = [
-        '##placeholder-id##'      => $result['id'],
-        '##placeholder-title##'   => $result['title'],
-        '##placeholder-tagline##' => $result['tagline'],
-        '##placeholder-uri##'     => $result['uri'],
-        '##placeholder-comment##' => $result['comment'],
+        '##placeholder-id##'      => $links->id,
+        '##placeholder-title##'   => $links->title,
+        '##placeholder-tagline##' => $links->tagline,
+        '##placeholder-uri##'     => $links->uri,
+        '##placeholder-comment##' => $links->comment,
         '##placeholder-chk_yes##' => $chkYes,
         '##placeholder-chk_no##'  => $chkNo
     ];
-    
+
     $template = loadTemplate('adm_link_edit');
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
 }
 

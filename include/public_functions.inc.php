@@ -332,19 +332,7 @@ function load_links(): string
     $template = loadTemplate('pub_links');
     $templateLinksContent = loadTemplate('pub_links_content');
 
-    $pdo = getPdoConnection();
-
-    $sql = 'SELECT links.title, links.tagline, links.uri, links.comment, UNIX_TIMESTAMP(links.created_at) AS datetime,' 
-        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment' 
-        . ' FROM `links`, `links_settings`' 
-        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
+    $stmt = loadPublicLinksStatement();
 
     while ($links = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
