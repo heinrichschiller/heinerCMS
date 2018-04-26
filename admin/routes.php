@@ -7,19 +7,19 @@ $route = [];
  ***********************************************************/
 
 $route['news'] = function($id) {
-	return load_news();
+    return load_news();
 };
 
 $route['newsedit'] = function($id) {
-	return load_news_edit ($id);
+    return load_news_edit ($id);
 };
 
 $route['newsadd'] = function($id) {
-	return load_news_add($id);
+    return load_news_add($id);
 };
 
 $route['newsdel'] = function($id) {
-	return load_news_del($id);
+    return load_news_del($id);
 };
 
 $route['newssettings'] = function() {
@@ -31,19 +31,19 @@ $route['newssettings'] = function() {
  ***********************************************************/
 
 $route['downloads'] = function($id) {
-	return load_downloads();
+    return load_downloads();
 };
 
 $route['downloadsedit'] = function($id) {
-	return load_downloads_edit($id);
+    return load_downloads_edit($id);
 };
 
 $route['downloadsadd'] = function($id) {
-	return load_downloads_add($id);
+    return load_downloads_add($id);
 };
 
 $route['downloadsdel'] = function($id) {
-	return load_downloads_del($id);
+    return load_downloads_del($id);
 };
 
 $route['downloadssettings'] = function($id) {
@@ -55,19 +55,19 @@ $route['downloadssettings'] = function($id) {
  ***********************************************************/
 
 $route['links'] = function($id) {
-	return load_links();
+    return load_links();
 };
 
 $route['linkedit'] = function($id) {
-	return load_link_edit($id);
+    return load_link_edit($id);
 };
 
 $route['linkadd'] = function($id) {
-	return load_link_add($id);
+    return load_link_add($id);
 };
 
 $route['linkdel'] = function($id) {
-	return load_link_del($id);
+    return load_link_del($id);
 };
 
 $route['linksettings'] = function() {
@@ -79,19 +79,19 @@ $route['linksettings'] = function() {
  ***********************************************************/
 
 $route['articles'] = function($id) {
-	return load_articles($id);
+    return load_articles($id);
 };
 
 $route['articleedit'] = function($id) {
-	return load_article_edit($id);
+    return load_article_edit($id);
 };
 
 $route['articleadd'] = function($id) {
-	return load_article_add($id);
+    return load_article_add($id);
 };
 
 $route['articledel'] = function($id) {
-	return load_article_del($id);
+    return load_article_del($id);
 };
 
 $route['articlessettings'] = function() {
@@ -169,5 +169,5 @@ $route['general'] = function() {
  ***********************************************************/
 
 $route['logout'] = function() {
-	header ('Location: logout.php');
+    header ('Location: logout.php');
 };
