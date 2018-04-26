@@ -221,30 +221,21 @@ function load_downloads_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
     
-    $params = [
-        $id
-    ];
+    $download = loadDownloadsEditStatement($id);
     
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `id`, `title`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visible`' 
-        . " FROM `downloads` WHERE `id`=$id";
-    
-    $result = pdo_select($sql, $params);
-    
-    if ($result['visible'] > - 1) {
+    if ($download->visible > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
     
     $placeholderList = [
-        '##placeholder-id##'       => $result['id'],
-        '##placeholder-title##'    => $result['title'],
-        '##placeholder-path##'     => $result['path'],
-        '##placeholder-filename##' => $result['filename'],
-        '##placeholder-comment##'  => $result['comment'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-id##'       => $download->id,
+        '##placeholder-title##'    => $download->title,
+        '##placeholder-path##'     => $download->path,
+        '##placeholder-filename##' => $download->filename,
+        '##placeholder-comment##'  => $download->comment,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $download->datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -959,144 +950,4 @@ function load_page_del(): string
 function load_mainpage() : string
 {
     return loadTemplate('adm_mainpage');
-}
-
-/*
- * *******************************************************************************
- * SQL - section
- * *******************************************************************************
- */
-
-/**
- * Count all Entries for navigation information
- *
- * @return array
- */
-function countEntries()
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `sites` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(*) as result
-                FROM (
-                SELECT `trash` FROM `articles`
-                UNION ALL
-                SELECT `trash` FROM `news`
-                UNION ALL
-                SELECT `trash` FROM `downloads`
-                UNION ALL
-                SELECT `trash` FROM `links`
-                UNION ALL
-                SELECT `trash` FROM `sites`
-                ) as subquery
-                WHERE `trash` = 'true';";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-}
-
-/**
- *
- * @param string $db
- * @param int $count
- *
- * @return array
- */
-function loadFromTable(string $table, int $count)
-{
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`' 
-        . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    return $stmt->fetchAll();
-}
-
-/**
- * Get title from a table by id
- *
- * @param string $table
- *            - Name of a table
- * @param int $id
- *            - Id
- *            
- * @return string
- */
-function getTitleFromTableById(string $table, int $id)
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `title` FROM `$table` WHERE `id` = :id";
-    
-    $input_parameters = [
-        ':id' => $id
-    ];
-    
-    try {
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($input_parameters);
-    } catch (PDOException $ex) {
-        
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    return $stmt->fetchColumn();
-}
-
-/**
- * Get username by id
- *
- * @param int $id Id of an user       
- *      
- * @return string
- */
-function getUsernameById(int $id)
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `username` FROM `users` WHERE `id` = :id";
-    
-    $input_parameters = [
-        ':id' => $id
-    ];
-    
-    try {
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($input_parameters);
-        
-    } catch (PDOException $ex) {
-        
-        echo $ex->getMessage();
-        exit();
-        
-    }
-    
-    return $stmt->fetchColumn();
 }
