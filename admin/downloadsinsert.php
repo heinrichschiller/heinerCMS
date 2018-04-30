@@ -9,26 +9,25 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in ()) {
-    
-	$title    = filter_input(INPUT_POST, 'title');
-	$comment  = filter_input(INPUT_POST, 'comment');
-	$path     = filter_input(INPUT_POST,'path');
-	$filename = filter_input(INPUT_POST,'filename');
-	$visible  = filter_input(INPUT_POST,'visible');
-	
-	$pdo = getPdoConnection();
-	
-    $sql = 'INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)'
-        . ' VALUES (:title, :comment, :path, :filename, :visible)';
+    $title    = filter_input(INPUT_POST, 'title');
+    $comment  = filter_input(INPUT_POST, 'comment');
+    $path     = filter_input(INPUT_POST,'path');
+    $filename = filter_input(INPUT_POST,'filename');
+    $visible  = filter_input(INPUT_POST,'visible');
+
+    $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)
+        VALUES (:title, :comment, :path, :filename, :visible)";
     
     if ( DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
-        $sql = 'INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visible`, `trash`)'
-            . ' VALUES (:title, :comment, :path, :filename, :created_at, :visible, :trash)';
+        $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visible`, `trash`)
+            VALUES (:title, :comment, :path, :filename, :created_at, :visible, :trash)";
     }
-    
+
+    $pdo = getPdoConnection();
+
     try {
         $stmt = $pdo->prepare($sql);
         

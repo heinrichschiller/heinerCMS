@@ -9,18 +9,12 @@ include __DIR__ . '/../include/login.inc.php';
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 
 if (is_logged_in ()) {
-
-    $pdo = getPdoConnection();
-
     $tagline = filter_input(INPUT_POST, 'tagline');
     $comment = filter_input(INPUT_POST, 'comment');
 
     $sql = "UPDATE `articles_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
 
-    $input_parameters = [
-        ':tagline' => $tagline,
-        ':comment' => $comment
-    ];
+    $pdo = getPdoConnection();
 
     try {
         $stmt = $pdo->prepare($sql);

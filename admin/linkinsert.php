@@ -9,7 +9,6 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in ()) {
-
     $title   = filter_input(INPUT_POST, 'title');
     $tagline = filter_input(INPUT_POST, 'tagline');
 
@@ -21,8 +20,6 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $pdo = getPdoConnection();
-
     $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visible`) 
         VALUES (:title, :tagline,, :uri :comment, :visible)";
 
@@ -33,6 +30,8 @@ if (is_logged_in ()) {
         $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visible`, `trash`)
         VALUES (:title, :tagline, :uri, :comment, :created_at, :visible, :trash)";
     }
+
+    $pdo = getPdoConnection();
 
     try {
         $stmt = $pdo->prepare($sql);

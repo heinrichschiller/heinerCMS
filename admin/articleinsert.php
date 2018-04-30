@@ -10,9 +10,6 @@ include __DIR__ . '/../include/general_functions.inc.php';
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 
 if (is_logged_in ()) {
-
-    $pdo = getPdoConnection();
-
     $title   = filter_input(INPUT_POST, 'title');
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
@@ -26,6 +23,8 @@ if (is_logged_in ()) {
         $sql = "INSERT INTO `articles` (`title`, `content`, `created_at`, `visible`, `trash`) 
             VALUES (:title, :content, :created_at, :visible, :trash)";
     }
+
+    $pdo = getPdoConnection();
 
     try {
         $stmt = $pdo->prepare($sql);
