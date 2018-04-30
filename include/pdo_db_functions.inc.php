@@ -7,7 +7,7 @@
  * 
  * @return PDO
  */
-function getPdoConnection()
+function getPdoConnection() : PDO
 {
     try {
 
@@ -56,6 +56,10 @@ function pdo_select(string $sql, array $params) : array
     return $stmt->fetch();
 }
 
+/**
+ * 
+ * @return string
+ */
 function datetimeFormater() : string
 {
     $datetime = 'UNIX_TIMESTAMP(`created_at`) AS datetime';
@@ -67,7 +71,11 @@ function datetimeFormater() : string
     return $datetime;
 }
 
-function loadNewsStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadNewsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -86,7 +94,12 @@ function loadNewsStatement()
     }
 }
 
-function loadNewsDetailedStatement(int $id)
+/**
+ * 
+ * @param int $id
+ * @return PDOStatement
+ */
+function loadNewsDetailedStatement(int $id) : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -117,7 +130,7 @@ function loadNewsEditStatement(int $id)
 
         $stmt->bindParam(':id', $id);
 
-        $stmt->execute($input_parameters);
+        $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
     } catch (PDOException $ex) {
@@ -126,7 +139,11 @@ function loadNewsEditStatement(int $id)
     }
 }
 
-function loadPublicNewsStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadPublicNewsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -136,10 +153,10 @@ function loadPublicNewsStatement()
         $datetime = "strftime('%s', news.created_at) AS datetime";
     }
 
-    $sql = "SELECT news.id, news.title, news.message, $datetime,"
-        . ' news_settings.tagline as news_tagline, news_settings.comment as news_comment'
-        . ' FROM `news`, `news_settings`'
-        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+    $sql = "SELECT news.id, news.title, news.message, $datetime,
+        news_settings.tagline as news_tagline, news_settings.comment as news_comment
+        FROM `news`, `news_settings`
+        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -151,7 +168,11 @@ function loadPublicNewsStatement()
     }
 }
 
-function loadDownloadsStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -169,6 +190,11 @@ function loadDownloadsStatement()
     }
 }
 
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
 function loadDownloadsEditStatement(int $id)
 {
     $pdo = getPdoConnection();
@@ -190,7 +216,11 @@ function loadDownloadsEditStatement(int $id)
     }
 }
 
-function loadDownloadsSettingsStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadDownloadsSettingsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -207,7 +237,11 @@ function loadDownloadsSettingsStatement()
     }
 }
 
-function loadPublicDownloadsStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadPublicDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -217,10 +251,10 @@ function loadPublicDownloadsStatement()
         $datetime = "strftime('%s', downloads.created_at) AS datetime";
     }
 
-    $sql = "SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, $datetime,"
-        . ' downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment'
-        . ' FROM `downloads`, `downloads_settings`'
-        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+    $sql = "SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, $datetime,
+        downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment
+        FROM `downloads`, `downloads_settings`
+        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -232,7 +266,11 @@ function loadPublicDownloadsStatement()
     }
 }
 
-function loadLinksStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -250,7 +288,12 @@ function loadLinksStatement()
     }
 }
 
-function loadLinksEditStatement($id)
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function loadLinksEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
@@ -261,7 +304,7 @@ function loadLinksEditStatement($id)
 
         $stmt->bindParam(':id', $id);
 
-        $stmt->execute($input_parameters);
+        $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
     } catch (PDOException $ex) {
@@ -271,7 +314,12 @@ function loadLinksEditStatement($id)
 
 }
 
-function loadPublicLinksStatement() {
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadPublicLinksStatement() : PDOStatement
+{
     $pdo = getPdoConnection();
 
     $datetime = 'UNIX_TIMESTAMP(links.created_at) AS datetime';
@@ -280,10 +328,10 @@ function loadPublicLinksStatement() {
         $datetime = "strftime('%s', links.created_at) AS datetime";
     }
 
-    $sql = "SELECT links.title, links.tagline, links.uri, links.comment, $datetime,"
-        . ' links_settings.tagline as settings_tagline, links_settings.comment as settings_comment'
-        . ' FROM `links`, `links_settings`'
-        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+    $sql = "SELECT links.title, links.tagline, links.uri, links.comment, $datetime,
+        links_settings.tagline as settings_tagline, links_settings.comment as settings_comment
+        FROM `links`, `links_settings`
+        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -297,7 +345,11 @@ function loadPublicLinksStatement() {
 
 }
 
-function loadArticlesStatement()
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadArticlesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -315,7 +367,91 @@ function loadArticlesStatement()
     }
 }
 
-function loadPagesStatement()
+/**
+ * 
+ * @param int $id
+ * @return PDOStatement
+ */
+function loadArticlesDetailedStatement(int $id) : PDOStatement
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'SELECT `title`, `content`, ' . datetimeFormater() . ' FROM `articles` WHERE `id` = :id';
+
+    try {
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadPublicArticlesStatement() : PDOStatement
+{
+    $datetime = 'UNIX_TIMESTAMP(articles.created_at) AS datetime';
+
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = "strftime('%s', articles.created_at) AS datetime";
+    }
+
+    $sql = "SELECT articles.id, articles.title, articles.content, $datetime,
+        articles_settings.tagline as tagline, articles_settings.comment as comment
+        FROM `articles`, `articles_settings`
+        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+
+    $pdo = getPdoConnection();
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+    } catch (PDOException $ex) {
+         echo $ex->getMessage();
+         exit();
+    }
+}
+
+/**
+ * 
+ * @param int $id
+ * @return mixed
+ */
+function loadArticlesEditStatement(int $id)
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'SELECT `id`, `title`, `content`, ' . datetimeFormater() . ', `visible` FROM `articles` WHERE `id` = :id';
+
+    try {
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @return PDOStatement
+ */
+function loadPagesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
@@ -540,7 +676,7 @@ function getUsernameById(int $id)
 
         $stmt->bindParam(':id', $id);
 
-        $stmt->execute($input_parameters);
+        $stmt->execute();
 
         return $stmt->fetchColumn();
     } catch (PDOException $ex) {

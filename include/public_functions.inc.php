@@ -133,7 +133,7 @@ function load_news(): string
 
 /**
  * 
- * @param unknown $news
+ * @param mixed $news
  * @param string $template
  * @return string
  */
@@ -186,22 +186,9 @@ function load_articles(): string
     $template = loadTemplate('pub_articles');
     $templateArticlesContent = loadTemplate('pub_articles_content');
 
-    $pdo = getPdoConnection();
-
-    $sql = 'SELECT articles.id, articles.title, articles.content, UNIX_TIMESTAMP(articles.created_at) AS datetime,' 
-        . ' articles_settings.tagline as tagline, articles_settings.comment as comment' 
-        . ' FROM `articles`, `articles_settings`' 
-        . " WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
+    $stmt = loadPublicArticlesStatement();
 
     while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
-        
         $placeholderList = [
             '##placeholder-articles-page-tagline##' => $articles->tagline,
             '##placeholder-articles-page-comment##' => $articles->comment
@@ -218,7 +205,7 @@ function load_articles(): string
 
 /**
  * 
- * @param unknown $articles
+ * @param mixed $articles
  * @param string $template
  * @return string
  */
@@ -241,22 +228,9 @@ function load_articles_content($articles, string $template) : string
  */
 function load_articles_detailed(int $id): string
 {
-    $content = '';
+    $placeholderList = [];
 
-    $pdo = getPdoConnection();
-
-    $sql = "SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = :id";
-
-    $inputParameters = [
-        ':id' => $id
-    ];
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($inputParameters);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
+    $stmt = loadArticlesDetailedStatement($id);
 
     while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
         $placeholderList = [
@@ -303,7 +277,7 @@ function load_downloads(): string
 
 /**
  * 
- * @param unknown $downloads
+ * @param mixed $downloads
  * @param string $template
  * @return string
  */
@@ -351,7 +325,7 @@ function load_links(): string
 
 /**
  * 
- * @param unknown $links
+ * @param mixed $links
  * @param string $template
  * @return string
  */

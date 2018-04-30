@@ -481,37 +481,29 @@ function load_articles(): string
  */
 function load_article_edit(int $id): string
 {
-    $template = '';
-    $params = [
-        $id
-    ];
     $chkNo = '';
     $chkYes = '';
-    
-    $sql = "SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `articles` WHERE `id` = $id";
-    
-    $result = pdo_select($sql, $params);
-    
-    $template = loadTemplate('adm_article_edit');
-    
-    if ($result['visible'] > - 1) {
+
+    $article = loadArticlesEditStatement($id);
+
+    if ($article->visible > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
-    
+
     $placeholderList = [
-        '##placeholder-id##'       => $result['id'],
-        '##placeholder-title##'    => $result['title'],
-        '##placeholder-content##'  => $result['content'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-id##'       => $article->id,
+        '##placeholder-title##'    => $article->title,
+        '##placeholder-content##'  => $article->content,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$article->datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
-    
-    $template = strtr($template, $placeholderList);
-    
-    return $template;
+
+    $template = loadTemplate('adm_article_edit');
+
+    return strtr($template, $placeholderList);
 }
 
 /**
