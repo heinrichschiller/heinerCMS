@@ -31,8 +31,6 @@ function getBlogURL(): string
  */
 function load_navigation(): string
 {
-    $template = '';
-
     $blog = '';
     $news = '';
     $downloads = '';
@@ -60,15 +58,15 @@ function load_navigation(): string
     }
 
     $placeholderList = [
-        '##placeholder-title##' => 'Heinrich-Schiller.de',
-        '##placeholder-blog##' => $blog,
-        '##placeholder-news##' => $news,
+        '##placeholder-title##'     => 'Heinrich-Schiller.de',
+        '##placeholder-blog##'      => $blog,
+        '##placeholder-news##'      => $news,
         '##placeholder-downloads##' => $downloads,
-        '##placeholder-links##' => $links,
-        '##placeholder-articles##' => $articles,
-        '##placeholder-pages##' => load_nav_pages()
+        '##placeholder-links##'     => $links,
+        '##placeholder-articles##'  => $articles,
+        '##placeholder-pages##'     => load_nav_pages()
     ];
-
+    
     $template = loadTemplate('pub_navigation');
 
     return strtr($template, $placeholderList);
