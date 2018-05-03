@@ -39,7 +39,7 @@ $route['links'] = function()
 
 $route['pages'] = function($id)
 {
-    return load_nav_pages($id);
+    return load_pages($id);
 };
 
 $route['mainpage'] = function() {
