@@ -31,32 +31,6 @@ function getPdoConnection() : PDO
 }
 
 /**
- * @deprecated
- * @param string $sql
- * @param array $params
- * @return array
- */
-function pdo_select(string $sql, array $params) : array
-{
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        if (!empty($params)) {
-            $stmt->execute( [$params[0] ]);
-        } else {
-            $stmt->execute();
-        }
-
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
-
-    return $stmt->fetch();
-}
-
-/**
  * 
  * @return string
  */
@@ -463,6 +437,65 @@ function loadPagesStatement() : PDOStatement
         $stmt->execute();
 
         return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+function loadPageEditStatement(int $id)
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visible` FROM `sites` WHERE `id` = :id';
+
+    try {
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+function loadUserStatement()
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`'
+        . ' FROM `users` ORDER BY `firstname` DESC';
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+function loadUserEditStatement(int $id)
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, ' .datetimeFormater(). ', `username`, `active`'
+        . ' FROM `users`' . ' WHERE `id` = :id';
+
+    try {
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
