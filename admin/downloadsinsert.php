@@ -17,7 +17,7 @@ if (is_logged_in ()) {
 
     $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)
         VALUES (:title, :comment, :path, :filename, :visible)";
-    
+
     if ( DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
@@ -30,26 +30,23 @@ if (is_logged_in ()) {
 
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visible', $visible);
-        
+
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $datetime);
             $stmt->bindParam(':trash', $trash);
         }
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
-        
         echo $ex->getMessage();
         exit();
-        
     }
-    
+
     header('Location: index.php?uri=downloads');
 }
-
