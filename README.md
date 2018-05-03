@@ -1,5 +1,5 @@
 # heinerCMS Alpha
-heinerCMS basiert auf minicms einem kleinem Beispiel aus dem Buch "Webseiten programmieren und gestalten. Das umfassende Handbuch" von GalileoPress. Mit der Erlaubnis des Autors, darf ich die Software nutzen und weiterentwickeln.
+heinerCMS basiert auf minicms einem kleinem Beispiel aus dem Buch "Webseiten programmieren und gestalten. Das umfassende Handbuch" von ehemals GalileoPress, heute Rheinwerk Verlag. Mit der Erlaubnis des Autors, darf ich die Software nutzen und weiterentwickeln.
 
 Die Software ist im Alpha-Stadium und soll noch nicht produktiv genutzt werden, weil es noch keinerlei Sicherheitsmaßnahmen enthält. Das Login zb. ist unverschlüsselt und rein rudimäntär. Jeder darf die Software zu Lernzwecken nutzen und erweitern. 
 
@@ -14,6 +14,8 @@ Ich beabsichtige die Software später auf meiner Domäne zu installieren und zu 
 
 Systemanforderungen:
 
-XAMPP mit PHP 7.0
+XAMPP mit PHP 7.0 oder höher
+
 oder
-LAMP mit PHP 7.0, PHP-Module simplexml, pdo-mysql(db)
+
+LAMP mindestens mit PHP 7.0, PHP-Module: simplexml, pdo-mysql, pdo-sqlite
