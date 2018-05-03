@@ -46,34 +46,34 @@ function load_sidebar(): string
  */
 function load_news(): string
 {
-    $table_content = '';
+    $content = '';
 
     $stmt = loadNewsStatement();
     
     while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $news->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
-        $table_content .= '<td>' . $news->title . '</td>';
-        $table_content .= $news->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= '<tr>';
+        $content .= '<td>' . $news->id . '</td>';
+        $content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
+        $content .= '<td>' . $news->title . '</td>';
+        $content .= $news->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
-        $table_content .= '<td>';
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
+        $content .= '<td>';
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsdel&id=" . $news->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a>';
         
-        $table_content .= '</td>';
-        $table_content .= '</tr>';
+        $content .= '</td>';
+        $content .= '</tr>';
     }
     
     $template = loadTemplate('adm_news');
     
-    return str_replace('##placeholder-table-content##', $table_content, $template);
+    return str_replace('##placeholder-table-content##', $content, $template);
 }
 
 /**
@@ -183,29 +183,29 @@ function load_news_settings() : string
  */
 function load_downloads(): string
 {
-    $table_content = '';
+    $content = '';
     
     $stmt = loadDownloadsStatement();
     
     while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $downloads->id . '</td>';
-        $table_content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
-        $table_content .= '<td>' . $downloads->title . '</td>';
-        $table_content .= (($downloads->visible > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
+        $content .= '<tr>';
+        $content .= '<td>' . $downloads->id . '</td>';
+        $content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
+        $content .= '<td>' . $downloads->title . '</td>';
+        $content .= (($downloads->visible > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
     }
     
     $template = loadTemplate('adm_downloads');
-    $template = str_replace('##placeholder-downloads-content##', $table_content, $template);
+    $template = str_replace('##placeholder-downloads-content##', $content, $template);
     
     return $template;
 }
@@ -307,31 +307,31 @@ function load_downloads_settings() : string
  */
 function load_links(): string
 {
-    $table_content = '';
+    $content = '';
     
     $stmt = loadLinksStatement();
     
     while ($link = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $link->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $link->datetime) . '</td>';
-        $table_content .= '<td>' . $link->title . '</td>';
-        $table_content .= $link->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= '<tr>';
+        $content .= '<td>' . $link->id . '</td>';
+        $content .= '<td>' . strftime('%d.%m.%Y', $link->datetime) . '</td>';
+        $content .= '<td>' . $link->title . '</td>';
+        $content .= $link->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-        $table_content .= '</tr>';
+        $content .= '</tr>';
     }
     
     $template = loadTemplate('adm_links');
     
-    return str_replace('##placeholder-links-content##', $table_content, $template);
+    return str_replace('##placeholder-links-content##', $content, $template);
 }
 
 /**
@@ -444,31 +444,31 @@ function load_link_settings() : string
  */
 function load_articles(): string
 {
-    $table_content = '';
+    $content = '';
     
     $stmt = loadArticlesStatement();
     
     while ($article = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $article->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $article->datetime) . '</td>';
-        $table_content .= '<td>' . $article->title . '</td>';
-        $table_content .= $article->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= '<tr>';
+        $content .= '<td>' . $article->id . '</td>';
+        $content .= '<td>' . strftime('%d.%m.%Y', $article->datetime) . '</td>';
+        $content .= '<td>' . $article->title . '</td>';
+        $content .= $article->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
-        $table_content .= '</tr>';
+        $content .= '</tr>';
     }
     
     $template = loadTemplate('adm_articles');
-    $template = str_replace('##placeholder-articles-content##', $table_content, $template);
+    $template = str_replace('##placeholder-articles-content##', $content, $template);
     
     return $template;
 }
@@ -718,41 +718,31 @@ function load_locale_options() : string
  */
 function load_user_list(): string
 {
-    $table_content = '';
-    
-    $pdo = getPdoConnection();
-    
-    $template = loadTemplate('adm_user_list');
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`' 
-        . ' FROM `users` ORDER BY `firstname` DESC';
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    $content = '';
+
+    $stmt = loadUserStatement();
     
     while ($user = $stmt->fetch(PDO::FETCH_OBJ)) {
-        
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $user->id . '</td>';
-        $table_content .= '<td>' . $user->firstname . '</td>';
-        $table_content .= '<td>' . $user->lastname . '</td>';
-        $table_content .= '<td>' . $user->username . '</td>';
-        $table_content .= '<td>' . $user->active . '</td>';
-        
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">" 
+
+        $content .= '<tr>';
+        $content .= '<td>' . $user->id . '</td>';
+        $content .= '<td>' . $user->firstname . '</td>';
+        $content .= '<td>' . $user->lastname . '</td>';
+        $content .= '<td>' . $user->username . '</td>';
+        $content .= '<td>' . $user->active . '</td>';
+
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
-        
-        $table_content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">" 
+
+        $content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-        
-        $table_content .= '</tr>';
+
+        $content .= '</tr>';
     }
-    
-    return str_replace('##placeholder-user-list-content##', $table_content, $template);
+
+    $template = loadTemplate('adm_user_list');
+
+    return str_replace('##placeholder-user-list-content##', $content, $template);
 }
 
 /**
@@ -764,36 +754,29 @@ function load_user_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
-    
-    $params = [
-        $id
-    ];
-    
-    $template = loadTemplate('adm_user_edit');
-    
-    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, UNIX_TIMESTAMP(`created_at`) AS datetime, `updated_at`, `username`, `active`' 
-        . ' FROM `users`' . ' WHERE `id` = ?';
-    
-    $user = pdo_select($sql, $params);
-    
-    if (strcmp($user['active'], 'true') === 0) {
+
+    $user = loadUserEditStatement($id);
+
+    if (strcmp($user->active, 'true') === 0) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
-    
+
     $placeholderList = [
-        '##placeholder-id##' => $user['id'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $user['datetime']),
-        '##placeholder-firstname##' => $user['firstname'],
-        '##placeholder-lastname##' => $user['lastname'],
-        '##placeholder-username##' => $user['username'],
-        '##placeholder-email##' => $user['email'],
-        '##placeholder-public-as##' => $user['username'],
-        '##placeholder-chk_yes##' => $chkYes,
-        '##placeholder-chk_no##' => $chkNo
+        '##placeholder-id##'        => $user->id,
+        '##placeholder-datetime##'  => strftime('%d.%m.%Y %H:%M', $user->datetime),
+        '##placeholder-firstname##' => $user->firstname,
+        '##placeholder-lastname##'  => $user->lastname,
+        '##placeholder-username##'  => $user->username,
+        '##placeholder-email##'     => $user->email,
+        '##placeholder-public-as##' => $user->username,
+        '##placeholder-chk_yes##'   => $chkYes,
+        '##placeholder-chk_no##'    => $chkNo
     ];
-    
+
+    $template = loadTemplate('adm_user_edit');
+
     return strtr($template, $placeholderList);
 }
 
@@ -839,32 +822,32 @@ function load_user_del( int $id) : string
  */
 function load_pages(): string
 {
-    $table_content = '';
+    $content = '';
 
     $stmt = loadPagesStatement();
     
     while ($page = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $table_content .= '<tr>';
-        $table_content .= '<td>' . $page->id . '</td>';
-        $table_content .= '<td>' . strftime('%d.%m.%Y', $page->datetime) . '</td>';
-        $table_content .= '<td>' . $page->title . '</td>';
-        $table_content .= '<td>' . $page->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        $content .= '<tr>';
+        $content .= '<td>' . $page->id . '</td>';
+        $content .= '<td>' . strftime('%d.%m.%Y', $page->datetime) . '</td>';
+        $content .= '<td>' . $page->title . '</td>';
+        $content .= '<td>' . $page->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
-        $table_content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $table_content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $page->id . ">" 
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
-        $table_content .= '</tr>';
+        $content .= '</tr>';
     }
     
     $template = loadTemplate('adm_pages');
     
-    return str_replace('##placeholder-pages-content##', $table_content, $template);
+    return str_replace('##placeholder-pages-content##', $content, $template);
 }
 
 /**
@@ -889,34 +872,29 @@ function load_page_add(): string
  */
 function load_page_edit(int $id): string
 {
-    $params = [
-        $id
-    ];
     $chkNo = '';
     $chkYes = '';
-    
-    $sql = "SELECT `id`, `title`, `tagline`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible` FROM `sites` WHERE `id` = $id";
-    
-    $result = pdo_select($sql, $params);
-    
-    $template = loadTemplate('adm_page_edit');
-    
-    if ($result['visible'] > - 1) {
+
+    $page = loadPageEditStatement($id);
+
+    if ($page->visible > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
-    
+
     $placeholderList = [
-        '##placeholder-id##'       => $result['id'],
-        '##placeholder-title##'    => $result['title'],
-        '##placeholder-tagline##'  => $result['tagline'],
-        '##placeholder-content##'  => $result['content'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result['datetime']),
+        '##placeholder-id##'       => $page->id,
+        '##placeholder-title##'    => $page->title,
+        '##placeholder-tagline##'  => $page->tagline,
+        '##placeholder-content##'  => $page->content,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $page->datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
-    
+
+    $template = loadTemplate('adm_page_edit');
+
     return strtr($template, $placeholderList);
 }
 
