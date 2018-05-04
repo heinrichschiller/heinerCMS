@@ -1,7 +1,8 @@
-Version 0.2.3 ()
+Version 0.2.3 (2018-05-04)
 	added, sqlite database support for heinercms
 	added, database debug options for developers
 	bugfix, fixed bugs in public downloads section
+	bugfix, fixed many many other minor bugs
 	update, twbs/bootstrap (4.1.0 => 4.1.1)
 	update, refactory database connection
 Version 0.2.2 (2018-04-20)
