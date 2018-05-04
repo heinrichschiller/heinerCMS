@@ -43,14 +43,14 @@
         <text_13>foundet Software/Version</text_13>
         <text_14>PHP-Version</text_14>
         <text_15>PHP-Modules</text_15>
-        <text_16>MySQL or MariaDB</text_16>
+        <text_16>MySQL/MariaDB or SQLite3</text_16>
         <text_17>heinerCMS-Installer will guide you safely through the installation.</text_17>
-        <text_18> If possible create a new data base.</text_18>
-        <text_19>Adress - either localhost or the domain name of your webhoster.</text_19>
+        <text_18> If possible create a new database.</text_18>
+        <text_19>Address - either localhost or the domain name of your webhoster.</text_19>
         <text_20>User - The User of the Database for example: root. This is provided by your webhost.</text_20>
         <text_21>Database - name of ur data base. Also provided by your webhost.</text_21>
-        <text_22>This option will refuse the creation of new a data base if you dont have the rights to do so.</text_22>
-        <text_23>Password � Password of the Data base. Again provided by your webhost.</text_23>
+        <text_22>This option will refuse the creation of new a database if you dont have the rights to do so.</text_22>
+        <text_23>Password - Password of the Data base. Again provided by your webhost.</text_23>
         <text_24>Let's create the user. More user's can be created inside the settings of henier-CMS.</text_24>
         <text_25>We won't tell anyone your E-Mail adress.</text_25>
         <text_26>Please enter the first name of the User.</text_26>

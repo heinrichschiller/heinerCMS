@@ -43,7 +43,7 @@
         <text_13>gefundene Software/Version</text_13>
         <text_14>PHP-Version</text_14>
         <text_15>PHP-Module</text_15>
-        <text_16>MySQL oder MariaDB</text_16>
+        <text_16>MySQL/MariaDB oder SQLite3</text_16>
         <text_17>Der heinerCMS-Installer bringt sie sicher durch die Installation.</text_17>
         <text_18>Neue Datenbank erstellen, wenn möglich.</text_18>
         <text_19>Adresse - Entweder localhost oder die Webadresse ihres Webhosters.</text_19>
