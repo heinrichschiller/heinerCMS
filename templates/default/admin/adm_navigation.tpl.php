@@ -7,9 +7,9 @@
 
 <!-- Content -->
 <div class="list-group spacing">
-    <li class="list-group-item active">
+    <span class="list-group-item active">
         {content}
-    </li>
+    </span>
         <a href="index.php?uri=news" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {news}
             <span class="badge badge-light">##placeholder-news##</span>
@@ -38,9 +38,9 @@
 
 <!-- Communication -->
 <div class="list-group spacing">
-    <li class="list-group-item active">
+    <span class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {communication}
-    </li>
+    </span>
         <a href="index.php?uri=news" class="list-group-item list-group-item-action">
             {contact_inquiry}
             <span class="badge badge-light">0<!-- ##placeholder-inqiery##  --></span>
@@ -49,9 +49,9 @@
 
 <!-- Settings -->
 <div class="list-group spacing">
-    <li class="list-group-item active">
+    <span class="list-group-item active">
         {settings}
-    </li>
+    </span>
         <a href="index.php?uri=general" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-gear.svg"> {general}
         </a>

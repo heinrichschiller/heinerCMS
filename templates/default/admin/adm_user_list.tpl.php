@@ -10,16 +10,18 @@
 </div>
 <table class="table table-hover table-striped">
     <thead>
-        <th>#</th>
-        <th>{firstname}</th>
-        <th>{lastname}</th>
-        <th>{username}</th>
-        <th>{active}</th>
-        <!-- <th>Role</th>  -->
-        <th>{actions}</th>
+    	<tr>
+            <th>#</th>
+            <th>{firstname}</th>
+            <th>{lastname}</th>
+            <th>{username}</th>
+            <th>{active}</th>
+            <!-- <th>Role</th>  -->
+            <th>{actions}</th>
+        <tr>
     </thead>
     <tbody>
-			##placeholder-user-list-content##
+		##placeholder-user-list-content##
 	</tbody>
 </table>
 
