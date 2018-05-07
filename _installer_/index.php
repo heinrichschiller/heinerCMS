@@ -5,7 +5,9 @@ require __DIR__ . '/include/functions.inc.php';
 
 $uri = filter_input (INPUT_GET, 'uri' );
 $lang = filter_input(INPUT_GET, 'lang');
+$db = filter_input(INPUT_GET, 'db');
 
+setDatabase($db);
 setLanguage($lang);
 
 $template = loadTemplate('main_template');
@@ -27,7 +29,8 @@ $template = strtr($template, $placeholderList);
 
 /* render content */
 $contentPlaceholderList = [
-    '##placeholder-lang##' => $lang,
+    '##placeholder-db##'             => $db,
+    '##placeholder-lang##'           => $lang,
     '##placeholder-locale-options##' => load_locale_options($lang)
 ];
 

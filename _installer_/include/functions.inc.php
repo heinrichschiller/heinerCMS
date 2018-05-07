@@ -23,6 +23,11 @@ function setLanguage(string $lang)
     $_SESSION['lang'] = $lang;
 }
 
+function setDatabase(string $db)
+{
+    $_SESSION['db'] = $db;
+}
+
 /**
  * Get a files list of all locales in data/locales directory
  *
@@ -52,6 +57,28 @@ function load_locale_options(string $lang) : string
         
         $html .= '<option value="' . $xml->attributes()->short .'"'.$select.'>' . $xml->attributes()->lang . '</option>';
     }
+    
+    return $html;
+}
+
+function load_database_options(string $db) : string
+{
+    $html = '';
+    
+    if ( $_SESSION['db'] == 'mysql' ) {
+        $selectMySQL = ' selected';
+    } else {
+        $selectMySQL = '';
+    }
+    
+    if ( $_SESSION['db'] == 'sqlite' ) {
+        $selectSQLite = ' selected';
+    } else {
+        $selectSQLite = '';
+    }
+    
+    $html .= '<option value="mysql"' . $selectMySQL . '>MySQL</option>';
+    $html .= '<option value="sqlite"' . $selectSQLite . '>SQLite</option>';
     
     return $html;
 }
@@ -155,7 +182,21 @@ function load_conditions() : string
  */
 function load_database() : string
 {
-    return loadTemplate('database');
+    $template = loadTemplate('database');
+    
+    $db = $_SESSION['db'];
+    if ($db == 'mysql') {
+        $dbTemplate = loadTemplate('mysql_form');
+    } else {
+        $dbTemplate = loadTemplate('sqlite_form');
+    }
+    
+    $placeholderList = [
+        '##placeholder-db-options##' => load_database_options($db),
+        '##placeholder-db-type##'    => $dbTemplate
+    ];
+    
+    return strtr($template, $placeholderList);
 }
 
 /**

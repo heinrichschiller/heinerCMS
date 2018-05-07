@@ -3,7 +3,7 @@
 session_start();
 
 if (!file_exists('cms-config.php')) {
-    header("Location: _installer_/index.php?uri=language&lang=en");
+    header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
 }
 
 include __DIR__ . '/cms-config.php';

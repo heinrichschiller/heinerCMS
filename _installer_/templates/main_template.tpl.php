@@ -14,14 +14,14 @@
         <div class="container">
        		<nav>
        			<ul class="nav justify-content-end">
-        			<li class="nav-item"><a class="nav-link" href="index.php?uri=language&lang=##placeholder-lang##">{language}</a></li>
-        			<li class="nav-item"><a class="nav-link" href="index.php?uri=start&lang=##placeholder-lang##">{start}</a></li>
-        			<li class="nav-item"><a class="nav-link" href="index.php?uri=licence&lang=##placeholder-lang##">{licence}</a></li>
-        			<li class="nav-item"><a class="nav-link" href="index.php?uri=conditions&lang=##placeholder-lang##">{conditions}</a></li>
-       				<li class="nav-item"><a class="nav-link" href="index.php?uri=database&lang=##placeholder-lang##">{database}</a></li>
-       				<li class="nav-item"><a class="nav-link" href="index.php?uri=user&lang=##placeholder-lang##">{user}</a></li>
-       				<li class="nav-item"><a class="nav-link" href="index.php?uri=installation&lang=##placeholder-lang##">{installation}</a></li>
-       				<li class="nav-item"><a class="nav-link" href="index.php?uri=final&lang=##placeholder-lang##">{final}</a></li>
+        			<li class="nav-item"><a class="nav-link" href="index.php?uri=language&lang=##placeholder-lang##&db=##placeholder-db##">{language}</a></li>
+        			<li class="nav-item"><a class="nav-link" href="index.php?uri=start&lang=##placeholder-lang##&db=##placeholder-db##">{start}</a></li>
+        			<li class="nav-item"><a class="nav-link" href="index.php?uri=licence&lang=##placeholder-lang##&db=##placeholder-db##">{licence}</a></li>
+        			<li class="nav-item"><a class="nav-link" href="index.php?uri=conditions&lang=##placeholder-lang##&db=##placeholder-db##">{conditions}</a></li>
+       				<li class="nav-item"><a class="nav-link" href="index.php?uri=database&lang=##placeholder-lang##&db=##placeholder-db##">{database}</a></li>
+       				<li class="nav-item"><a class="nav-link" href="index.php?uri=user&lang=##placeholder-lang##&db=##placeholder-db##">{user}</a></li>
+       				<li class="nav-item"><a class="nav-link" href="index.php?uri=installation&lang=##placeholder-lang##&db=##placeholder-db##">{installation}</a></li>
+       				<li class="nav-item"><a class="nav-link" href="index.php?uri=final&lang=##placeholder-lang##&db=##placeholder-db##">{final}</a></li>
        			</ul>
        		</nav>
        	</div>

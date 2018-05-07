@@ -26,7 +26,7 @@
             			</tr>
             			<tr>
        						<th>{text_15}</th>
-       						<td>pdo-mysqldb,simplexml</td>
+       						<td>pdo-mysqldb, pdo-sqlitedb, simplexml</td>
        						<td class="php-modules">##placeholder_php_modules##</td>
             			</tr>
             			<tr>
