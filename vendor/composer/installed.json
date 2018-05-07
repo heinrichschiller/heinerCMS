@@ -44,54 +44,6 @@
         "homepage": "http://jquery.com"
     },
     {
-        "name": "tinymce/tinymce",
-        "version": "4.7.11",
-        "version_normalized": "4.7.11.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/tinymce/tinymce-dist.git",
-            "reference": "a7178e20d6053b92a177900531ffd2cdcb77f77c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/a7178e20d6053b92a177900531ffd2cdcb77f77c",
-            "reference": "a7178e20d6053b92a177900531ffd2cdcb77f77c",
-            "shasum": ""
-        },
-        "time": "2018-04-11T09:26:11+00:00",
-        "type": "component",
-        "extra": {
-            "component": {
-                "scripts": [
-                    "tinymce.js",
-                    "plugins/*/plugin.js",
-                    "themes/*/theme.js"
-                ],
-                "files": [
-                    "tinymce.min.js",
-                    "plugins/*/plugin.min.js",
-                    "themes/*/theme.min.js",
-                    "skins/**"
-                ]
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL-2.1-only"
-        ],
-        "description": "Web based JavaScript HTML WYSIWYG editor control.",
-        "homepage": "http://www.tinymce.com",
-        "keywords": [
-            "editor",
-            "html",
-            "javascript",
-            "richtext",
-            "tinymce",
-            "wysiwyg"
-        ]
-    },
-    {
         "name": "twbs/bootstrap",
         "version": "v4.1.1",
         "version_normalized": "4.1.1.0",
@@ -142,6 +94,54 @@
             "responsive",
             "sass",
             "web"
+        ]
+    },
+    {
+        "name": "tinymce/tinymce",
+        "version": "4.7.12",
+        "version_normalized": "4.7.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tinymce/tinymce-dist.git",
+            "reference": "914887eeeb9a28034045879defa09defccf7c68a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/914887eeeb9a28034045879defa09defccf7c68a",
+            "reference": "914887eeeb9a28034045879defa09defccf7c68a",
+            "shasum": ""
+        },
+        "time": "2018-05-03T13:38:00+00:00",
+        "type": "component",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "tinymce.js",
+                    "plugins/*/plugin.js",
+                    "themes/*/theme.js"
+                ],
+                "files": [
+                    "tinymce.min.js",
+                    "plugins/*/plugin.min.js",
+                    "themes/*/theme.min.js",
+                    "skins/**"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1-only"
+        ],
+        "description": "Web based JavaScript HTML WYSIWYG editor control.",
+        "homepage": "http://www.tinymce.com",
+        "keywords": [
+            "editor",
+            "html",
+            "javascript",
+            "richtext",
+            "tinymce",
+            "wysiwyg"
         ]
     }
 ]

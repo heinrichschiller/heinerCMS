@@ -1,3 +1,5 @@
+Version 0.2.4 ()
+	update, tinymce/tinymce (4.7.11 => 4.7.12)
 Version 0.2.3.1 (2018-05-07)
 	update, update the configuration file for the installer
 Version 0.2.3 (2018-05-04)
