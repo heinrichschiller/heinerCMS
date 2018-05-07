@@ -23,7 +23,11 @@ if (file_exists($configPath)) {
 try {
     
     // 1. Create database connection
-    $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASSWORD);
+    if ($_SESSION['db_driver'] == 'mysql') {
+        $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASSWORD);
+    } else {
+        $pdo = new PDO('sqlite');
+    }
 
     if ( $_SESSION['new_db'] == 1 ) {
         $_SESSION['isDatabaseCreated'] = createDatabase($pdo, DB_NAME);
@@ -33,23 +37,26 @@ try {
     selectDatabase($pdo, DB_NAME);
 
     // 3. Create tables
-    $_SESSION['isTabArticlesCreated']         = createTableArticles($pdo);
-    $_SESSION['isTabArticlesSettingsCreated'] = createTableArticlesSettings($pdo);
-    $_SESSION['isTabDownloadsCreated']        = createTableDownloads($pdo);
-    $_SESSION['isTabLinksCreated']            = createTableLinks($pdo);
-    $_SESSION['isTabLinksSettingsCreated']    = createTableLinksSettings($pdo);
-    $_SESSION['isTabNewsCreated']             = createTableNews($pdo);
-    $_SESSION['isTabNewsSettingsCreated']     = createTableNewsSettings($pdo);
-    $_SESSION['isTabSitesCreated']            = createTableSites($pdo);
-    $_SESSION['isTabUsersCreated']            = createTableUsers($pdo);
-    $_SESSION['isTabSettingsCreated']         = createTableSettings($pdo);
-    
-    // 4. Write default configuration
-    $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
-    $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
-    $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
-    $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
-    
+    if ($_SESSION['db_driver'] == 'mysql') {
+
+        $_SESSION['isTabArticlesCreated']         = createTableArticles($pdo);
+        $_SESSION['isTabArticlesSettingsCreated'] = createTableArticlesSettings($pdo);
+        $_SESSION['isTabDownloadsCreated']        = createTableDownloads($pdo);
+        $_SESSION['isTabLinksCreated']            = createTableLinks($pdo);
+        $_SESSION['isTabLinksSettingsCreated']    = createTableLinksSettings($pdo);
+        $_SESSION['isTabNewsCreated']             = createTableNews($pdo);
+        $_SESSION['isTabNewsSettingsCreated']     = createTableNewsSettings($pdo);
+        $_SESSION['isTabSitesCreated']            = createTableSites($pdo);
+        $_SESSION['isTabUsersCreated']            = createTableUsers($pdo);
+        $_SESSION['isTabSettingsCreated']         = createTableSettings($pdo);
+        
+        // 4. Write default configuration
+        $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
+        $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
+        $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
+        $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
+
+    }
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();
     exit();

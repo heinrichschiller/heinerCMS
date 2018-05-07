@@ -16,9 +16,10 @@
         </div>
         <div class="row button_bottom">
     		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    			<a href="index.php?uri=start&lang=##placeholder-lang##" class="btn btn-primary" role="button">{next}</a>
+    			<a href="index.php?uri=start&lang=##placeholder-lang##&db=mysql" class="btn btn-primary" role="button">{next}</a>
     		</div>
     	</div>
-    	<input type=hidden name=uri value=language>
+    	<input type="hidden" name="uri" value="language">
+    	<input type="hidden" name="db" value="mysql">
     </form>
 </div>

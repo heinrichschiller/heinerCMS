@@ -62,7 +62,7 @@ function load_locale_options(string $lang) : string
 }
 
 function load_database_options(string $db) : string
-{
+{echo $db;
     $html = '';
     
     if ( $_SESSION['db'] == 'mysql' ) {
@@ -185,14 +185,11 @@ function load_database() : string
     $template = loadTemplate('database');
     
     $db = $_SESSION['db'];
-    if ($db == 'mysql') {
-        $dbTemplate = loadTemplate('mysql_form');
-    } else {
-        $dbTemplate = loadTemplate('sqlite_form');
-    }
-    
+
+    $dbTemplate = loadTemplate($_SESSION['db'] . '_form');
+
     $placeholderList = [
-        '##placeholder-db-options##' => load_database_options($db),
+        '##placeholder-db-options##' => load_database_options($_SESSION['db']),
         '##placeholder-db-type##'    => $dbTemplate
     ];
     
@@ -216,15 +213,23 @@ function load_user() : string
  */
 function load_installation() : string
 {
-    $placeholderList = [
-        '##placeholder_database_address##' => $_SESSION['address'],
-        '##placeholder_database_user##' => $_SESSION['db_user'],
-        '##placeholder_database_name##' => $_SESSION['database'],
-        '##placeholder_database_password##' => $_SESSION['db_password']
-    ];
-    
+    $placeholderList = [];
+
+    if ($_SESSION['db_driver'] == 'mysql') {
+        $placeholderList = [
+            '##placeholder_database_address##'  => $_SESSION['address'],
+            '##placeholder_database_user##'     => $_SESSION['db_user'],
+            '##placeholder_database_name##'     => $_SESSION['database'],
+            '##placeholder_database_password##' => $_SESSION['db_password']
+        ];
+    }
+    //var_dump($_SESSION);
     $template = loadTemplate('installation');
     
+    $tplConfig = loadTemplate($_SESSION['db_driver'] . '_config');
+    
+    $template = str_replace('##placeholder-config##', $tplConfig, $template);
+
     return strtr($template, $placeholderList); 
 }
 

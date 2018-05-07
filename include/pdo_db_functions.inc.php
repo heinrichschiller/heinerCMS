@@ -14,7 +14,7 @@ function getPdoConnection() : PDO
         if ( DB_DRIVER == 'mysql') {
             $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
         } else {
-            $pdo = new PDO (DB_DRIVER . ':' . DB_NAME);
+            $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
         }
 
         if ( PDO_DEBUG_MODE ) {

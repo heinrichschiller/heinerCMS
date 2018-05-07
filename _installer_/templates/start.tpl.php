@@ -16,7 +16,7 @@
     </div>
     <div class="row button_bottom">
         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        		<a href="index.php?uri=licence&lang=##placeholder-lang##" class="btn btn-primary" role="button">{next}</a>
+        		<a href="index.php?uri=licence&lang=##placeholder-lang##&db=mysql" class="btn btn-primary" role="button">{next}</a>
         	</div>
     </div>
 </div>
