@@ -21,42 +21,41 @@ if (file_exists($configPath)) {
 }
 
 try {
-    
     // 1. Create database connection
     if ($_SESSION['db_driver'] == 'mysql') {
         $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASSWORD);
+
+        // 2. Select database
+        selectDatabase($pdo, DB_NAME);
     } else {
-        $pdo = new PDO('sqlite');
+        $sqliteName = __DIR__ . '/../data/sqlite/heinercms.db';
+        $pdo = new PDO("sqlite:$sqliteName");
     }
 
     if ( $_SESSION['new_db'] == 1 ) {
         $_SESSION['isDatabaseCreated'] = createDatabase($pdo, DB_NAME);
     }
-    
-    // 2. Select database
-    selectDatabase($pdo, DB_NAME);
 
-    // 3. Create tables
-    if ($_SESSION['db_driver'] == 'mysql') {
+    $dbDriver = $_SESSION['db_driver'];
 
-        $_SESSION['isTabArticlesCreated']         = createTableArticles($pdo);
-        $_SESSION['isTabArticlesSettingsCreated'] = createTableArticlesSettings($pdo);
-        $_SESSION['isTabDownloadsCreated']        = createTableDownloads($pdo);
-        $_SESSION['isTabLinksCreated']            = createTableLinks($pdo);
-        $_SESSION['isTabLinksSettingsCreated']    = createTableLinksSettings($pdo);
-        $_SESSION['isTabNewsCreated']             = createTableNews($pdo);
-        $_SESSION['isTabNewsSettingsCreated']     = createTableNewsSettings($pdo);
-        $_SESSION['isTabSitesCreated']            = createTableSites($pdo);
-        $_SESSION['isTabUsersCreated']            = createTableUsers($pdo);
-        $_SESSION['isTabSettingsCreated']         = createTableSettings($pdo);
-        
-        // 4. Write default configuration
-        $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
-        $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
-        $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
-        $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
+    $_SESSION['isTabArticlesCreated']          = createTableArticles($pdo, $dbDriver);
+    $_SESSION['isTabArticlesSettingsCreated']  = createTableArticlesSettings($pdo, $dbDriver);
+    $_SESSION['isTabDownloadsCreated']         = createTableDownloads($pdo, $dbDriver);
+    $_SESSION['isTabDownloadsSettingsCreated'] = createTableDownloadsSettings($pdo, $dbDriver);
+    $_SESSION['isTabLinksCreated']             = createTableLinks($pdo, $dbDriver);
+    $_SESSION['isTabLinksSettingsCreated']     = createTableLinksSettings($pdo, $dbDriver);
+    $_SESSION['isTabNewsCreated']              = createTableNews($pdo, $dbDriver);
+    $_SESSION['isTabNewsSettingsCreated']      = createTableNewsSettings($pdo, $dbDriver);
+    $_SESSION['isTabSitesCreated']             = createTableSites($pdo, $dbDriver);
+    $_SESSION['isTabUsersCreated']             = createTableUsers($pdo, $dbDriver);
+    $_SESSION['isTabSettingsCreated']          = createTableSettings($pdo, $dbDriver);
 
-    }
+    // 4. Write default configuration
+    $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
+    $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
+    $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
+    $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
+
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();
     exit();
@@ -82,16 +81,14 @@ if ( checkDatabase($pdo) ) {
         ':username'  => $_SESSION['username'],
         ':active'    => 'true'
     ];
-        
+
     try {
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($input_parameters);
 
         $_SESSION['isUserCreated'] = true;
-            
     } catch (PDOException $ex) {
-            
         echo $ex->getMessage();
         exit();
     }
@@ -100,4 +97,4 @@ if ( checkDatabase($pdo) ) {
     $_SESSION['isUserCreated'] = false;
 }
 
-header('Location: index.php?uri=final&lang='.$language);
+header('Location: index.php?uri=final&lang='.$language.'&db='.$_SESSION['db_driver']);

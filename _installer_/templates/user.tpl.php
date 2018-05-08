@@ -5,7 +5,7 @@
     </header>
     <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <form method="post" action="userinsert.php?lang=##placeholder-lang##">
+            <form method="post" action="userinsert.php?lang=##placeholder-lang##&db=##placeholder-db##">
                 <div class="form-group">
                     <input type="text" name="firstname" class="form-control" placeholder="{firstname}" value="" required>
         		</div>
@@ -26,7 +26,6 @@
                     <input type="password" name="password2" class="form-control" placeholder="{repeat_password}" required>
 			    </div>
 			    <button type="submit" class="btn btn-primary btn_bottom">{next}</button>
-			    <input type="hidden" name="db" value="##placeholder-db##">
         	</form>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">

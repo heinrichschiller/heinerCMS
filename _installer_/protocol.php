@@ -29,6 +29,18 @@ if($_SESSION['isConnected']) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// Created Downloads Settings table ?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isTabDownloadsSettingsCreated']) {
+    $downloadsSettingsTrAttr = 'class="table-success"';
+    $downloadsSettingsRes = 'ja';
+} else {
+    $downloadsSettingsTrAttr = 'class="table-danger"';
+    $downloadsSettingsRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // Created Newstable ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -289,6 +301,10 @@ footer p {
 							<tr <?= $downloadsTrAttr; ?>>
 								<td>Tabelle downloads erstellt?</td>
 								<td><?= $downloadsRes; ?></td>
+							</tr>
+							<tr <?= $downloadsSettingsTrAttr; ?>>
+								<td>Tabelle downloads_settings erstellt?</td>
+								<td><?= $downloadsSettingsRes; ?></td>
 							</tr>
 							<tr <?= $linksTrAttr; ?>>
 								<td>Tabelle links erstellt?</td>

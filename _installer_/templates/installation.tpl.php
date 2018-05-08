@@ -7,7 +7,7 @@
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="12">##placeholder-config##</textarea>
     <div class="row button_bottom">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        	<a href="install.php?lang=##placeholder-lang##" class="btn btn-primary" role="button">{next}</a>
+        	<a href="install.php?lang=##placeholder-lang##&db=##placeholder-db##" class="btn btn-primary" role="button">{next}</a>
         </div>
 	</div>
 </div>

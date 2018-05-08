@@ -38,48 +38,47 @@ function setDatabase(string $db)
 function load_locale_options(string $lang) : string
 {
     $html = '';
-    
+
     $locale_dir = __DIR__ . '/../data/locales/';
-    
+
     $files = scandir($locale_dir);
-    
+
     for ($i = 2; $i <= count($files) -1; $i++) {
         $xmlFile = $locale_dir . $files[$i];
-        
+
         $xmlString = file_get_contents($xmlFile);
         $xml = simplexml_load_string($xmlString);
-        
+
         if ( $xml->attributes()->short == $lang ) {
             $select = ' selected';
         } else {
             $select = '';
         }
-        
+
         $html .= '<option value="' . $xml->attributes()->short .'"'.$select.'>' . $xml->attributes()->lang . '</option>';
     }
-    
+
     return $html;
 }
 
 function load_database_options(string $db) : string
-{echo $db;
-    $html = '';
-    
+{
     if ( $_SESSION['db'] == 'mysql' ) {
         $selectMySQL = ' selected';
     } else {
         $selectMySQL = '';
     }
-    
+
     if ( $_SESSION['db'] == 'sqlite' ) {
         $selectSQLite = ' selected';
     } else {
         $selectSQLite = '';
     }
-    
+
+    $html = '';
     $html .= '<option value="mysql"' . $selectMySQL . '>MySQL</option>';
     $html .= '<option value="sqlite"' . $selectSQLite . '>SQLite</option>';
-    
+
     return $html;
 }
 
@@ -93,21 +92,21 @@ function load_database_options(string $db) : string
 function getTranslation(string $language) : array
 {
     $xmlfile = __DIR__ . "/../data/locales/$language.xml";
-    
+
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);
-    
+
     $arr_keys = [];
     $arr_values = [];
     $arr_language = [];
-    
+
     foreach ($xml->children() as $second_gen) {
         foreach ($second_gen->children() as $third_gen) {
             array_push( $arr_keys, '{'.$third_gen->getName().'}');
             array_push( $arr_values, (string)$third_gen);
         }
     }
-    
+
     return array_combine($arr_keys, $arr_values);
 }
 
@@ -148,30 +147,30 @@ function load_licence() : string
  */
 function load_conditions() : string
 {
-    $getModules = '';
-    
     $serverSoftware = $_SERVER['SERVER_SOFTWARE'];
     $infoList = explode(' ', $serverSoftware);
-    
-    if (version_compare(phpversion(), '5.6', '>')) {
-        $phpversion = 'PHP/'.phpversion();
-    } else {
-        $phpversion = 'Gefundene PHP-Version' . phpversion() . 'ist zu niedrig';
+
+    $phpVersion = 'PHP/'.phpversion();
+
+    if (version_compare(phpversion(), '7.0', '<')) {
+        $phpVersion = 'Gefundene PHP-Version' . phpversion() . 'ist zu niedrig';
     }
-    
+
+    $phpModules = '';
+
     foreach(get_loaded_extensions() as $item) {
-        $getModules .= $item .',&nbsp;';
+        $phpModules .= $item .',&nbsp;';
     }
-    
+
     $placeholderList = [
-        '##placeholder_webserver##' => $infoList[0],
-        '##placeholder_php_version##' => $phpversion,
-        '##placeholder_php_modules##' => $getModules,
-        '##placeholder_database##' => 'MySQL'
+        '##placeholder_webserver##'   => $infoList[0],
+        '##placeholder_php_version##' => $phpVersion,
+        '##placeholder_php_modules##' => $phpModules,
+        '##placeholder_database##'    => 'MySQL'
     ];
-    
+
     $template = loadTemplate('conditions');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -183,7 +182,7 @@ function load_conditions() : string
 function load_database() : string
 {
     $template = loadTemplate('database');
-    
+
     $db = $_SESSION['db'];
 
     $dbTemplate = loadTemplate($_SESSION['db'] . '_form');
@@ -192,7 +191,7 @@ function load_database() : string
         '##placeholder-db-options##' => load_database_options($_SESSION['db']),
         '##placeholder-db-type##'    => $dbTemplate
     ];
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -223,11 +222,11 @@ function load_installation() : string
             '##placeholder_database_password##' => $_SESSION['db_password']
         ];
     }
-    //var_dump($_SESSION);
+
     $template = loadTemplate('installation');
-    
+
     $tplConfig = loadTemplate($_SESSION['db_driver'] . '_config');
-    
+
     $template = str_replace('##placeholder-config##', $tplConfig, $template);
 
     return strtr($template, $placeholderList); 
@@ -252,7 +251,7 @@ function load_final() : string
 function createDatabase(PDO $pdo, string $database) : bool
 {
     $sql = "CREATE DATABASE IF NOT EXISTS `$database` CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-    
+
     try {
         $pdo->exec($sql);
         return true;
@@ -267,21 +266,32 @@ function createDatabase(PDO $pdo, string $database) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableArticles(PDO $pdo) : bool
+function createTableArticles(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `articles` (
             `id` INT NOT NULL AUTO_INCREMENT,
-        		`title` VARCHAR(64) NOT NULL DEFAULT '',
-        		`content` LONGTEXT NOT NULL,
-        		`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        		`update_at` timestamp NULL DEFAULT NULL,
-        		`nextPageId` INT NOT NULL DEFAULT '-1',
-        		`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `content` LONGTEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            `nextPageId` INT NOT NULL DEFAULT '-1',
+            `visible` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
-        		PRIMARY KEY (`id`)
-        		) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "articles" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `title` TEXT NOT NULL, 
+                `content` TEXT NOT NULL, 
+                `created_at` TEXT NOT NULL, 
+                `updated_at` TEXT, `nextPageId` INTEGER, 
+                `visible` INTEGER NOT NULL, 
+                `trash` TEXT NOT NULL )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -290,9 +300,9 @@ function createTableArticles(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
-    
+
 }
 
 /**
@@ -301,18 +311,26 @@ function createTableArticles(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableArticlesSettings(PDO $pdo) : bool
+function createTableArticlesSettings(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `articles_settings` (
-               `id` INT NOT NULL AUTO_INCREMENT,
-               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-               `comment` TEXT NOT NULL,
-               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-               `update_at` timestamp NULL DEFAULT NULL,
-               PRIMARY KEY (`id`)
-               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `comment` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "articles_settings" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `tagline` TEXT, `comment` TEXT, 
+                `created_at` TEXT, 
+                `updated_at` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -321,7 +339,7 @@ function createTableArticlesSettings(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -331,22 +349,35 @@ function createTableArticlesSettings(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableDownloads(PDO $pdo) : bool
+function createTableDownloads(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `downloads` (
-        		`id` INT NOT NULL AUTO_INCREMENT,
-        	    `title` VARCHAR(64) NOT NULL DEFAULT '',
-        	    `comment` TEXT NOT NULL,
-        		`path` VARCHAR(128) NOT NULL DEFAULT '',
-        	    `filename` VARCHAR(64) NOT NULL DEFAULT '',
-        	    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        		`update_at` timestamp NULL DEFAULT NULL,
-        		`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `comment` TEXT NOT NULL,
+            `path` VARCHAR(128) NOT NULL DEFAULT '',
+            `filename` VARCHAR(64) NOT NULL DEFAULT '',
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            `visible` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
-        		 PRIMARY KEY (`id`)
-        		 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE `downloads` ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `title` TEXT NOT NULL, 
+                `comment` TEXT, 
+                `path` TEXT, 
+                `filename` TEXT, 
+                `created_at` TEXT, 
+                `update_at` TEXT, 
+                `visible` TEXT, 
+                `trash` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -355,7 +386,7 @@ function createTableDownloads(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -365,18 +396,27 @@ function createTableDownloads(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableDownloadsSettings(PDO $pdo) : bool
+function createTableDownloadsSettings(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `downloads_settings` (
-               `id` INT NOT NULL AUTO_INCREMENT,
-               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-               `comment` TEXT NOT NULL,
-               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-               `update_at` timestamp NULL DEFAULT NULL,
-               PRIMARY KEY (`id`)
-               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `comment` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "downloads_settings" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `tagline` TEXT, 
+                `comment` TEXT, 
+                `created_at` TEXT, 
+                `update_at` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -385,7 +425,7 @@ function createTableDownloadsSettings(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -395,22 +435,35 @@ function createTableDownloadsSettings(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableLinks(PDO $pdo) : bool
+function createTableLinks(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `links` (
-        		`id` INT NOT NULL AUTO_INCREMENT,
-        		`title` VARCHAR(64) NOT NULL DEFAULT '',
-                `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-        		`uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
-        		`comment` TEXT NOT NULL,
-        		`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        		`update_at` timestamp NULL DEFAULT NULL,
-        		`visible` TINYINT(4) NOT NULL DEFAULT '0',
-                `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
-        		PRIMARY KEY (`id`)
-        		) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
+            `comment` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE `links` (
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                `title` TEXT NOT NULL,
+                `tagline` TEXT,
+                `uri` TEXT NOT NULL,
+                `comment` TEXT NOT NULL,
+                `created_at` TEXT,
+                `update_at` TEXT,
+                `visible` TEXT,
+                `trash` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -419,7 +472,7 @@ function createTableLinks(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -429,18 +482,27 @@ function createTableLinks(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableLinksSettings(PDO $pdo) : bool
+function createTableLinksSettings(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `links_settings` (
-               `id` INT NOT NULL AUTO_INCREMENT,
-               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-               `comment` TEXT NOT NULL,
-               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-               `update_at` timestamp NULL DEFAULT NULL,  
-               PRIMARY KEY (`id`)
-               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `comment` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,  
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+           $sql = 'CREATE TABLE `links_settings` ( 
+               `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+               `tagline` TEXT, 
+               `comment` TEXT, 
+               `created_at` TEXT, 
+               `update_at` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -449,7 +511,7 @@ function createTableLinksSettings(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -459,20 +521,30 @@ function createTableLinksSettings(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableNews(PDO $pdo) : bool
+function createTableNews(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `news` (
-        		`id` INT NOT NULL AUTO_INCREMENT,
-        		`title` VARCHAR(64) NOT NULL DEFAULT '',
-        		`message` TEXT NOT NULL,
-        		`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        		`update_at` timestamp NULL DEFAULT NULL,
-        		`visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `message` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            `visible` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
-        		PRIMARY KEY (`id`)
-        		) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "news" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `title` TEXT NOT NULL, `message` TEXT, 
+                `created_at` TEXT NOT NULL, 
+                `update_at` TEXT, 
+                `visible` TEXT, 
+                `trash` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -480,7 +552,7 @@ function createTableNews(PDO $pdo) : bool
             return false;
         }
     }
-    
+
     return false;
 }
 
@@ -490,18 +562,27 @@ function createTableNews(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableNewsSettings(PDO $pdo) : bool
+function createTableNewsSettings(PDO $pdo, string $dbDriver) : bool
 {
     if(checkDatabase($pdo)) {
         $sql = "CREATE TABLE `news_settings` (
-               `id` INT NOT NULL AUTO_INCREMENT,
-               `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-               `comment` TEXT NOT NULL,
-               `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-               `update_at` timestamp NULL DEFAULT NULL,
-               PRIMARY KEY (`id`)
-               ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `comment` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            PRIMARY KEY (`id`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE `news_settings` ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `tagline` TEXT, 
+                `comment` TEXT, 
+                `created_at` TEXT, 
+                `update_at` INTEGER )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -510,7 +591,7 @@ function createTableNewsSettings(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -520,24 +601,37 @@ function createTableNewsSettings(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableUsers(PDO $pdo) : bool
+function createTableUsers(PDO $pdo, string $dbDriver) : bool
 {
     if( checkDatabase($pdo) ) {
         $sql = "CREATE TABLE `users` (
-        		`id` int unsigned NOT NULL AUTO_INCREMENT,
-        		`firstname` varchar(255) NOT NULL,
-        		`lastname` varchar(255) NOT NULL,
-        		`email` varchar(255) NOT NULL,
-        		`password` varchar(255) NOT NULL,
-        		`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        		`updated_at` timestamp NULL DEFAULT NULL,
-        		`username` VARCHAR(64) NOT NULL,
-        		`active` ENUM('true','false') NOT NULL DEFAULT 'false',
-        		PRIMARY KEY (`id`),
-        		UNIQUE (`username`),
-        		UNIQUE (`email`)
-        		) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                
+            `id` int unsigned NOT NULL AUTO_INCREMENT,
+            `firstname` varchar(255) NOT NULL,
+            `lastname` varchar(255) NOT NULL,
+            `email` varchar(255) NOT NULL,
+            `password` varchar(255) NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `updated_at` timestamp NULL DEFAULT NULL,
+            `username` VARCHAR(64) NOT NULL,
+            `active` ENUM('true','false') NOT NULL DEFAULT 'false',
+            PRIMARY KEY (`id`),
+            UNIQUE (`username`),
+            UNIQUE (`email`)) 
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql='CREATE TABLE "users" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `firstname` TEXT NOT NULL, 
+                `lastname` TEXT NOT NULL, 
+                `email` TEXT NOT NULL, 
+                `password` TEXT NOT NULL, 
+                `created_at` TEXT, 
+                `updated_at` TEXT, 
+                `username` TEXT NOT NULL, 
+                `active` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -546,9 +640,8 @@ function createTableUsers(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
-    
 }
 
 /**
@@ -557,10 +650,10 @@ function createTableUsers(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableSites(PDO $pdo) : bool
+function createTableSites(PDO $pdo, string $dbDriver) : bool
 {
     if ( checkDatabase($pdo) ) {
-        
+
         $sql = "CREATE TABLE `sites` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `title` VARCHAR(64) NOT NULL DEFAULT '',
@@ -572,7 +665,19 @@ function createTableSites(PDO $pdo) : bool
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)
             ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-            
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE `sites` (
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                `title` TEXT NOT NULL,
+                `tagline` TEXT,
+                `content` TEXT,
+                `created_at` TEXT,
+                `update_at` TEXT,
+                `visible` TEXT,
+                `trash` TEXT )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -581,7 +686,7 @@ function createTableSites(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -591,18 +696,29 @@ function createTableSites(PDO $pdo) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableSettings(PDO $pdo) : bool
+function createTableSettings(PDO $pdo, string $dbDriver) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "CREATE TABLE `settings` (
-           `title` VARCHAR(64) NOT NULL DEFAULT '',
-           `tagline` VARCHAR(140) NOT NULL DEFAULT '',
-           `theme` VARCHAR(64) NOT NULL DEFAULT '',
-           `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
-           `lang_short` VARCHAR(3) NOT NULL DEFAULT '',
-           `footer` VARCHAR(140) NOT NULL DEFAULT ''
-           ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-            
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `tagline` VARCHAR(140) NOT NULL DEFAULT '',
+            `theme` VARCHAR(64) NOT NULL DEFAULT '',
+            `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
+            `lang_short` VARCHAR(3) NOT NULL DEFAULT '',
+            `footer` VARCHAR(140) NOT NULL DEFAULT ''
+            ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "settings" ( 
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+                `title` TEXT NOT NULL, 
+                `tagline` TEXT, 
+                `theme` TEXT NOT NULL, 
+                `blog_url` TEXT, 
+                `lang_short` TEXT NOT NULL, 
+                `footer` TEXT NOT NULL )';
+        }
+
         try {
             $pdo->exec($sql);
             return true;
@@ -635,7 +751,7 @@ function writeDefaultConfiguration(PDO $pdo) : bool
             ':lang_short' => $_SESSION['lang'],
             ':footer'     => 'heinerCMS 2018'
         ];
-        
+
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute($input_parameters);
@@ -646,7 +762,7 @@ function writeDefaultConfiguration(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -660,7 +776,7 @@ function writeLinksSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "INSERT INTO `links_settings`(`tagline`, `comment`) VALUES ('','');";
-        
+
         try {
             $pdo->exec($sql);
             return true;
@@ -669,7 +785,30 @@ function writeLinksSettingsConfiguration(PDO $pdo) : bool
             exit();
         }
     }
-    
+
+    return false;
+}
+
+/**
+ * Write downloads configuration into database
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function writeDownloadsSettingsConfiguration(PDO $pdo) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "INSERT INTO `downloads_settings`(`tagline`, `comment`) VALUES ('','');";
+
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            echo $ex->getMessage();
+            exit();
+        }
+    }
+
     return false;
 }
 
@@ -683,7 +822,7 @@ function writeNewsSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "INSERT INTO `news_settings`(`tagline`, `comment`) VALUES ('','');";
-        
+
         try {
             $pdo->exec($sql);
             return true;
@@ -692,7 +831,7 @@ function writeNewsSettingsConfiguration(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -706,7 +845,7 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "INSERT INTO `articles_settings`(`tagline`, `comment`) VALUES ('','');";
-        
+
         try {
             $pdo->exec($sql);
             return true;
@@ -715,7 +854,7 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
             exit();
         }
     }
-    
+
     return false;
 }
 
@@ -727,7 +866,7 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
  */
 function selectDatabase(PDO $pdo, string $database) {
     $sql = "USE `$database`";
-    
+
     $pdo->exec($sql);
 }
 
@@ -739,11 +878,16 @@ function selectDatabase(PDO $pdo, string $database) {
  */
 function checkDatabase(PDO $pdo) : bool
 {
-    $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".DB_NAME."'";
+    if ($_SESSION['db_driver'] == 'mysql') {
+        $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".DB_NAME."'";
     
-    foreach ($pdo->query($sql) as $result) {
-      return true;
+        foreach ($pdo->query($sql) as $result) {
+          return true;
+        }
+    } else {
+        if (file_exists(__DIR__ . '/../../data/sqlite/heinercms.db')) {
+            return true;
+        }
     }
-    
     return false;
 }
