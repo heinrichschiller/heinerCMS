@@ -1,4 +1,6 @@
 Version 0.2.4 ()
+	add, installer create sqlite database for heinercms
+	bugfix, fixed bugs in installer
 	update, tinymce/tinymce (4.7.11 => 4.7.12)
 Version 0.2.3.1 (2018-05-07)
 	update, update the configuration file for the installer
