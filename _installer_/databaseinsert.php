@@ -8,7 +8,16 @@ $new_db   = filter_input(INPUT_POST, 'new_db');
 $user     = filter_input(INPUT_POST, 'user');
 $password = filter_input(INPUT_POST, 'password');
 $language = filter_input(INPUT_GET, 'lang');
-$dbDriver = filter_input(INPUT_GET, 'db');
+
+/**
+ * This vars comes with get or post request :-(
+ * from mysql_form.tpl.php(post) and sqlite_form.tpl.php(get)
+ */
+if (isset($_GET['db'])) {
+    $dbDriver = filter_input(INPUT_GET, 'db');
+} else {
+    $dbDriver = filter_input(INPUT_POST, 'db');
+}
 
 try {
     if ($dbDriver == 'mysql') {
@@ -19,9 +28,9 @@ try {
         $_SESSION['new_db']      = $new_db;
         $_SESSION['db_user']     = $user;
         $_SESSION['db_password'] = $password;
-    } else {
-        $_SESSION['db_driver'] = $dbDriver;
     }
+
+    $_SESSION['db_driver'] = $dbDriver;
 
     $_SESSION['isConnected'] = true;
     

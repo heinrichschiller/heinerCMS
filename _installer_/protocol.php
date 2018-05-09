@@ -220,6 +220,18 @@ if($_SESSION['isArticlesConfWritten']) {
     $isArticlesRes = 'nein';
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Is downloads configuration written?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isDownloadsConfWritten']) {
+    $isDownloadsConfTrAttr = 'class="table-success"';
+    $isDownloadsRes = 'ja';
+} else {
+    $isDownloadsConfTrAttr = 'class="table-danger"';
+    $isDownloadsRes = 'nein';
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -376,6 +388,10 @@ footer p {
 								<td>Standardkonfiguration für Artikel geschrieben?</td>
 								<td><?= $isArticlesRes ?></td>
 							</tr>
+							<tr <?= $isDownloadsConfTrAttr; ?>>
+								<td>Standardkonfiguration für Downloads geschrieben?</td>
+								<td><?= $isDownloadsRes ?></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -387,7 +403,7 @@ footer p {
 	<footer>
 		<p>
 			Copyright <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a>
-			2018
+			2017 - 2018
 		</p>
 	</footer>
 

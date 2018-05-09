@@ -13,6 +13,7 @@
     		<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="{password}">
     	</div>
     	<button type="submit" class="btn btn-primary btn_bottom">{next}</button>
+    	<input type="hidden" name="db" value="mysql">
     </form>
 </div>
 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">

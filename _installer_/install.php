@@ -51,10 +51,11 @@ try {
     $_SESSION['isTabSettingsCreated']          = createTableSettings($pdo, $dbDriver);
 
     // 4. Write default configuration
-    $_SESSION['isDefaultConfWritten']  = writeDefaultConfiguration($pdo);
-    $_SESSION['isLinksConfWritten']    = writeLinksSettingsConfiguration($pdo);
-    $_SESSION['isNewsConfWritten']     = writeNewsSettingsConfiguration($pdo);
-    $_SESSION['isArticlesConfWritten'] = writeArticlesSettingsConfiguration($pdo);
+    $_SESSION['isDefaultConfWritten']   = writeDefaultConfiguration($pdo);
+    $_SESSION['isLinksConfWritten']     = writeLinksSettingsConfiguration($pdo);
+    $_SESSION['isNewsConfWritten']      = writeNewsSettingsConfiguration($pdo);
+    $_SESSION['isDownloadsConfWritten'] = writeDownloadsSettingsConfiguration($pdo);
+    $_SESSION['isArticlesConfWritten']  = writeArticlesSettingsConfiguration($pdo);
 
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();
