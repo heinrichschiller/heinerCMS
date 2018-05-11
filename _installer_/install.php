@@ -20,9 +20,6 @@ if (file_exists($configPath)) {
     exit();
 }
 
-$_SESSION['db_driver'] = 'mysql';
-$_SESSION['new_db'] = 1;
-
 try {
     // 1. Create database connection
     if ($_SESSION['db_driver'] == 'mysql') {
