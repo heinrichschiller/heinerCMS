@@ -20,20 +20,23 @@ if (file_exists($configPath)) {
     exit();
 }
 
+$_SESSION['db_driver'] = 'mysql';
+$_SESSION['new_db'] = 1;
+
 try {
     // 1. Create database connection
     if ($_SESSION['db_driver'] == 'mysql') {
         $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASSWORD);
+
+        if ( $_SESSION['new_db'] == 1 ) {
+            $_SESSION['isDatabaseCreated'] = createDatabase($pdo, DB_NAME);
+        }
 
         // 2. Select database
         selectDatabase($pdo, DB_NAME);
     } else {
         $sqliteName = __DIR__ . '/../data/sqlite/heinercms.db';
         $pdo = new PDO("sqlite:$sqliteName");
-    }
-
-    if ( $_SESSION['new_db'] == 1 ) {
-        $_SESSION['isDatabaseCreated'] = createDatabase($pdo, DB_NAME);
     }
 
     $dbDriver = $_SESSION['db_driver'];
