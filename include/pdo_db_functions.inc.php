@@ -31,6 +31,7 @@ function getPdoConnection() : PDO
 }
 
 /**
+ * Formats the time for mysql or sqlite.
  * 
  * @return string
  */
@@ -57,7 +58,6 @@ function loadNewsStatement() : PDOStatement
     . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
-
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
@@ -81,9 +81,7 @@ function loadNewsDetailedStatement(int $id) : PDOStatement
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt;
@@ -101,9 +99,7 @@ function loadNewsEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -178,9 +174,7 @@ function loadDownloadsEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -275,9 +269,7 @@ function loadLinksEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -354,9 +346,7 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt;
@@ -409,9 +399,7 @@ function loadArticlesEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -451,9 +439,7 @@ function loadPageEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -490,9 +476,7 @@ function loadUserEditStatement(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -583,9 +567,7 @@ function setFlagTrashById(int $id, string $table)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -609,9 +591,7 @@ function getTitleFromTableById(string $table, int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetchColumn();
@@ -641,18 +621,18 @@ function countEntries()
         SELECT COUNT(`id`) FROM `sites` WHERE `trash` = 'false'
         UNION ALL
         SELECT COUNT(*) as result
-                FROM (
-                SELECT `trash` FROM `articles`
-                UNION ALL
-                SELECT `trash` FROM `news`
-                UNION ALL
-                SELECT `trash` FROM `downloads`
-                UNION ALL
-                SELECT `trash` FROM `links`
-                UNION ALL
-                SELECT `trash` FROM `sites`
-                ) as subquery
-                WHERE `trash` = 'true';";
+            FROM (
+            SELECT `trash` FROM `articles`
+            UNION ALL
+            SELECT `trash` FROM `news`
+            UNION ALL
+            SELECT `trash` FROM `downloads`
+            UNION ALL
+            SELECT `trash` FROM `links`
+            UNION ALL
+            SELECT `trash` FROM `sites`
+            ) as subquery
+            WHERE `trash` = 'true';";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -706,9 +686,7 @@ function getUsernameById(int $id)
 
     try {
         $stmt = $pdo->prepare($sql);
-
         $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
         return $stmt->fetchColumn();
