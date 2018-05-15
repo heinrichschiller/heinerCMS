@@ -54,7 +54,7 @@ function loadNewsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visible`'
+    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visibility`'
     . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -94,7 +94,7 @@ function loadNewsEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `message`, ' . datetimeFormater() . ', `visible`'
+    $sql = 'SELECT `id`, `title`, `message`, ' . datetimeFormater() . ', `visibility`'
         . ' FROM `news` WHERE `id` = :id';
 
     try {
@@ -126,7 +126,7 @@ function loadPublicNewsStatement() : PDOStatement
     $sql = "SELECT news.id, news.title, news.message, $datetime,
         news_settings.tagline as news_tagline, news_settings.comment as news_comment
         FROM `news`, `news_settings`
-        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -146,7 +146,7 @@ function loadDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `path`, `filename`, `visible`'
+    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `path`, `filename`, `visibility`'
         . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -169,7 +169,7 @@ function loadDownloadsEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `comment`, ' . datetimeFormater() . ', `path`, `filename`, `visible`'
+    $sql = 'SELECT `id`, `title`, `comment`, ' . datetimeFormater() . ', `path`, `filename`, `visibility`'
         . ' FROM `downloads` WHERE `id`= :id';
 
     try {
@@ -222,7 +222,7 @@ function loadPublicDownloadsStatement() : PDOStatement
     $sql = "SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, $datetime,
         downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment
         FROM `downloads`, `downloads_settings`
-        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -242,7 +242,7 @@ function loadLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `uri`,' . datetimeFormater() . ', `visible`'
+    $sql = 'SELECT `id`, `title`, `uri`,' . datetimeFormater() . ', `visibility`'
         . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
 
     try {
@@ -265,7 +265,7 @@ function loadLinksEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visible` FROM `links` WHERE `id` = :id";
+    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visibility` FROM `links` WHERE `id` = :id";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -297,7 +297,7 @@ function loadPublicLinksStatement() : PDOStatement
     $sql = "SELECT links.title, links.tagline, links.uri, links.comment, $datetime,
         links_settings.tagline as settings_tagline, links_settings.comment as settings_comment
         FROM `links`, `links_settings`
-        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -319,7 +319,7 @@ function loadArticlesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() .', `visible`'
+    $sql = 'SELECT `id`, `title`,' . datetimeFormater() .', `visibility`'
         . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -371,7 +371,7 @@ function loadPublicArticlesStatement() : PDOStatement
     $sql = "SELECT articles.id, articles.title, articles.content, $datetime,
         articles_settings.tagline as tagline, articles_settings.comment as comment
         FROM `articles`, `articles_settings`
-        WHERE `visible` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
     $pdo = getPdoConnection();
 
@@ -395,7 +395,7 @@ function loadArticlesEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `content`, ' . datetimeFormater() . ', `visible` FROM `articles` WHERE `id` = :id';
+    $sql = 'SELECT `id`, `title`, `content`, ' . datetimeFormater() . ', `visibility` FROM `articles` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -417,7 +417,7 @@ function loadPagesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visible`'
+    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visibility`'
         . " FROM `sites` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -435,7 +435,7 @@ function loadPageEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visible` FROM `sites` WHERE `id` = :id';
+    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visibility` FROM `sites` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -656,8 +656,8 @@ function countEntries()
 function loadFromTable(string $table, int $count)
 {
     $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visible`'
+
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
         . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
 
     try {

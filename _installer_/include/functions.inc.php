@@ -276,7 +276,7 @@ function createTableArticles(PDO $pdo, string $dbDriver) : bool
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
             `nextPageId` INT NOT NULL DEFAULT '-1',
-            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)) 
             CHARSET=utf8 COLLATE=utf8_unicode_ci;";
@@ -288,7 +288,7 @@ function createTableArticles(PDO $pdo, string $dbDriver) : bool
                 `content` TEXT NOT NULL, 
                 `created_at` TEXT NOT NULL, 
                 `updated_at` TEXT, `nextPageId` INTEGER, 
-                `visible` INTEGER NOT NULL, 
+                `visibility` INTEGER NOT NULL, 
                 `trash` TEXT NOT NULL )';
         }
 
@@ -360,7 +360,7 @@ function createTableDownloads(PDO $pdo, string $dbDriver) : bool
             `filename` VARCHAR(64) NOT NULL DEFAULT '',
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
-            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)) 
             CHARSET=utf8 COLLATE=utf8_unicode_ci;";
@@ -374,7 +374,7 @@ function createTableDownloads(PDO $pdo, string $dbDriver) : bool
                 `filename` TEXT, 
                 `created_at` TEXT, 
                 `update_at` TEXT, 
-                `visible` TEXT, 
+                `visibility` TEXT, 
                 `trash` TEXT )';
         }
 
@@ -446,7 +446,7 @@ function createTableLinks(PDO $pdo, string $dbDriver) : bool
             `comment` TEXT NOT NULL,
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
-            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)) 
             CHARSET=utf8 COLLATE=utf8_unicode_ci;";
@@ -460,7 +460,7 @@ function createTableLinks(PDO $pdo, string $dbDriver) : bool
                 `comment` TEXT NOT NULL,
                 `created_at` TEXT,
                 `update_at` TEXT,
-                `visible` TEXT,
+                `visibility` TEXT,
                 `trash` TEXT )';
         }
 
@@ -530,7 +530,7 @@ function createTableNews(PDO $pdo, string $dbDriver) : bool
             `message` TEXT NOT NULL,
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
-            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)) 
             CHARSET=utf8 COLLATE=utf8_unicode_ci;";
@@ -541,7 +541,7 @@ function createTableNews(PDO $pdo, string $dbDriver) : bool
                 `title` TEXT NOT NULL, `message` TEXT, 
                 `created_at` TEXT NOT NULL, 
                 `update_at` TEXT, 
-                `visible` TEXT, 
+                `visibility` TEXT, 
                 `trash` TEXT )';
         }
 
@@ -661,7 +661,7 @@ function createTableSites(PDO $pdo, string $dbDriver) : bool
             `content` LONGTEXT NOT NULL,
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
-            `visible` TINYINT(4) NOT NULL DEFAULT '0',
+            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
             `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
             PRIMARY KEY (`id`)
             ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
@@ -674,7 +674,7 @@ function createTableSites(PDO $pdo, string $dbDriver) : bool
                 `content` TEXT,
                 `created_at` TEXT,
                 `update_at` TEXT,
-                `visible` TEXT,
+                `visibility` TEXT,
                 `trash` TEXT )';
         }
 

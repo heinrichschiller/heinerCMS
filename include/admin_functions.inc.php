@@ -55,7 +55,7 @@ function load_news(): string
         $content .= '<td>' . $news->id . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $news->datetime) . '</td>';
         $content .= '<td>' . $news->title . '</td>';
-        $content .= $news->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $news->visibility > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= '<td>';
         $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=newsedit&id=" . $news->id . ">" 
@@ -89,7 +89,7 @@ function load_news_edit(int $id): string
 
     $result = loadNewsEditStatement($id);
     
-    if ($result->visible > - 1) {
+    if ($result->visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
@@ -192,7 +192,7 @@ function load_downloads(): string
         $content .= '<td>' . $downloads->id . '</td>';
         $content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads->datetime) . '</td>';
         $content .= '<td>' . $downloads->title . '</td>';
-        $content .= (($downloads->visible > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
+        $content .= (($downloads->visibility > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
@@ -223,7 +223,7 @@ function load_downloads_edit(int $id): string
     
     $download = loadDownloadsEditStatement($id);
     
-    if ($download->visible > - 1) {
+    if ($download->visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
@@ -316,7 +316,7 @@ function load_links(): string
         $content .= '<td>' . $link->id . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $link->datetime) . '</td>';
         $content .= '<td>' . $link->title . '</td>';
-        $content .= $link->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $link->visibility > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -347,7 +347,7 @@ function load_link_edit(int $id): string
 
     $links = loadLinksEditStatement($id);
 
-    if ($links->visible > - 1) {
+    if ($links->visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
@@ -453,7 +453,7 @@ function load_articles(): string
         $content .= '<td>' . $article->id . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $article->datetime) . '</td>';
         $content .= '<td>' . $article->title . '</td>';
-        $content .= $article->visible > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $article->visibility > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -486,7 +486,7 @@ function load_article_edit(int $id): string
 
     $article = loadArticlesEditStatement($id);
 
-    if ($article->visible > - 1) {
+    if ($article->visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
@@ -604,7 +604,7 @@ function renderHtmlTable(array $dataList): string
         $html .= '<td>' . $data['id'] . '</td>';
         $html .= '<td>' . strftime('%d.%m.%Y', $data['datetime']) . '</td>';
         $html .= '<td>' . $data['title'] . '</td>';
-        $html .= '<td>' . (($data['visible'] > - 1) ? ' {yes}' : ' {no}') . '</td>';
+        $html .= '<td>' . (($data['visibility'] > - 1) ? ' {yes}' : ' {no}') . '</td>';
         $html .= '</tr>';
     }
     
@@ -831,7 +831,7 @@ function load_pages(): string
         $content .= '<td>' . $page->id . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $page->datetime) . '</td>';
         $content .= '<td>' . $page->title . '</td>';
-        $content .= '<td>' . $page->visible > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        $content .= '<td>' . $page->visibility > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -877,7 +877,7 @@ function load_page_edit(int $id): string
 
     $page = loadPageEditStatement($id);
 
-    if ($page->visible > - 1) {
+    if ($page->visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';

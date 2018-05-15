@@ -82,7 +82,7 @@ function load_nav_pages(): string
 
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `id`, `title` FROM `sites` WHERE `visible` = 0 AND `trash` = 'false'";
+    $sql = "SELECT `id`, `title` FROM `sites` WHERE `visibility` = 0 AND `trash` = 'false'";
 
     try {
 
@@ -399,7 +399,7 @@ function countTableEntries(string $table): int
     $id = 0;
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false' AND `visible` > -1";
+    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false' AND `visibility` > -1";
 
     foreach ($pdo->query($sql) as $row) {
         $id = (int) $row[0];
