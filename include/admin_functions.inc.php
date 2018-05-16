@@ -40,7 +40,7 @@ function load_sidebar(): string
 }
 
 /**
- * General overview of all news
+ * Load general overview of all news entries.
  *
  * @return string
  */
@@ -70,14 +70,14 @@ function load_news(): string
         $content .= '</td>';
         $content .= '</tr>';
     }
-    
+
     $template = loadTemplate('adm_news');
-    
+
     return str_replace('##placeholder-table-content##', $content, $template);
 }
 
 /**
- * Formular zum Bearbeiten einer Nachricht laden
+ * Loading a form to edit a news entry.
  *
  * @param int $id Id of a news
  * @return string
@@ -110,7 +110,7 @@ function load_news_edit(int $id): string
 }
 
 /**
- * Formular zum Erstellen einer Nachricht laden
+ * Loading a form to create a news entry.
  *
  * @return string
  */
@@ -126,7 +126,7 @@ function load_news_add(): string
 }
 
 /**
- * Delete a news
+ * Loading a form to delete a news message.
  *
  * @param int $id Id of a news
  * @return string
@@ -146,7 +146,7 @@ function load_news_del(int $id): string
 }
 
 /**
- * Load news settings.
+ * Load news settings form.
  * 
  * @return string
  */
@@ -177,7 +177,7 @@ function load_news_settings() : string
 }
 
 /**
- * Gesamtübersicht der Downloads laden
+ * Load general overview of all download entries.
  *
  * @return string
  */
@@ -211,9 +211,9 @@ function load_downloads(): string
 }
 
 /**
- * Formular zum Bearbeiten eines Downloads laden
+ * Loading a form to edit a downloads entry.
  *
- * @param int $id Id of a download.
+ * @param int $id Id of a downloads entry.
  * @return string
  */
 function load_downloads_edit(int $id): string
@@ -246,7 +246,7 @@ function load_downloads_edit(int $id): string
 }
 
 /**
- * Load a formular to create a download
+ * Loading a form to create a downloads entry.
  *
  * @return string
  */
@@ -260,7 +260,7 @@ function load_downloads_add(): string
 }
 
 /**
- * Delete download
+ * Loading a form to delete a downloads entry
  *
  * @param int $id Id of a download
  * @return string
@@ -280,7 +280,7 @@ function load_downloads_del(int $id): string
 }
 
 /**
- * Load download settings.
+ * Load downloads settings form.
  *
  * @return string
  */
@@ -301,7 +301,7 @@ function load_downloads_settings() : string
 }
 
 /**
- * Gesamtübersicht der Links laden
+ * Load general overview of all links entries.
  *
  * @return string
  */
@@ -335,7 +335,7 @@ function load_links(): string
 }
 
 /**
- * Formular zum Bearbeiten eines Links laden
+ * Loading a form to edit a link entry.
  *
  * @param int $id
  * @return string
@@ -370,7 +370,7 @@ function load_link_edit(int $id): string
 }
 
 /**
- * Formular zum Erstellen einer Nachricht laden
+ * Loading a form to create a link entry.
  *
  * @return string
  */
@@ -386,9 +386,9 @@ function load_link_add(): string
 }
 
 /**
- * Link löschen
+ * Loading a form to delete a link entry.
  *
- * @param int $id
+ * @param int $id - Id of a link entry.
  * @return string
  */
 function load_link_del(int $id): string
@@ -407,6 +407,9 @@ function load_link_del(int $id): string
 }
 
 /**
+ * Load links settings form.
+ * 
+ * @return string
  */
 function load_link_settings() : string
 {
@@ -438,7 +441,7 @@ function load_link_settings() : string
 }
 
 /**
- * Load general overview of all articles
+ * Load general overview of all articles.
  *
  * @return string
  */
@@ -474,9 +477,9 @@ function load_articles(): string
 }
 
 /**
- * Formular zum Bearbeiten eines Artikels laden
+ * Loading a form to edit an article entry.
  *
- * @param int $id
+ * @param int $id - Id of an article entry.
  * @return string
  */
 function load_article_edit(int $id): string
@@ -507,7 +510,7 @@ function load_article_edit(int $id): string
 }
 
 /**
- * Formular zum Erstellen eines Artikels laden
+ * Loading a form to create an article entry.
  *
  * @return string
  */
@@ -527,7 +530,7 @@ function load_article_add(): string
 }
 
 /**
- * Artikel löschen
+ * Loading a form to delete an article entry.
  *
  * @param int $id
  * @return string
@@ -551,6 +554,9 @@ function load_article_del(int $id): string
 }
 
 /**
+ * Load articles settings form.
+ * 
+ * @return string
  */
 function load_articles_settings() : string
 {
@@ -582,7 +588,8 @@ function load_articles_settings() : string
 }
 
 /**
- *
+ * Load dashboard form.
+ * 
  * @return string
  */
 function load_dashboard(): string
@@ -591,7 +598,9 @@ function load_dashboard(): string
 }
 
 /**
- *
+ * Render a HTML-Table.
+ * 
+ * @deprecated
  * @param array $dataList
  * @return string
  */
@@ -612,7 +621,9 @@ function renderHtmlTable(array $dataList): string
 }
 
 /**
- *
+ * Load entries that marked as 'trash'.
+ * 
+ * @deprecated
  * @return string
  */
 function load_trash(): string
@@ -635,7 +646,8 @@ function load_trash(): string
 }
 
 /**
- *
+ * Load general overview of heinerCMS settings.
+ * 
  * @return string
  */
 function load_general_settings(): string
@@ -657,7 +669,8 @@ function load_general_settings(): string
 }
 
 /**
- *
+ * Loading a string of theme options.
+ * 
  * @return string
  */
 function load_theme_options(): string
@@ -713,7 +726,8 @@ function load_locale_options() : string
 }
 
 /**
- *
+ * Load general overview of all users.
+ * 
  * @return string
  */
 function load_user_list(): string
@@ -746,8 +760,9 @@ function load_user_list(): string
 }
 
 /**
- *
- * @param int $id
+ * Loading a form to edit an user entry.
+ * 
+ * @param int $id - Id of an user entry.
  * @return string
  */
 function load_user_edit(int $id): string
@@ -781,7 +796,8 @@ function load_user_edit(int $id): string
 }
 
 /**
- *
+ * Loading a form to create an user entry.
+ * 
  * @return string
  */
 function load_user_add(): string
@@ -796,7 +812,7 @@ function load_user_add(): string
 }
 
 /**
- *
+ * Loading a form to delete a user entry.
  * @param int $id
  * @return string
  */
@@ -817,7 +833,7 @@ function load_user_del( int $id) : string
 }
 
 /**
- *
+ * Load general overview of all pages.
  * @return string
  */
 function load_pages(): string
@@ -851,7 +867,8 @@ function load_pages(): string
 }
 
 /**
- *
+ * Loading a form to create a page entry.
+ * 
  * @return string
  */
 function load_page_add(): string
@@ -866,8 +883,9 @@ function load_page_add(): string
 }
 
 /**
- *
- * @param int $id
+ * Loading a form to edit a page entry.
+ * 
+ * @param int $id - Id of a page entry.
  * @return string
  */
 function load_page_edit(int $id): string
@@ -899,7 +917,8 @@ function load_page_edit(int $id): string
 }
 
 /**
- *
+ * Loading a form to delete a page entry.
+ * 
  * @return string
  */
 function load_page_del(): string
@@ -908,7 +927,8 @@ function load_page_del(): string
 }
 
 /**
- *
+ * Load general overview of mainpage.
+ * 
  * @return string
  */
 function load_mainpage() : string
