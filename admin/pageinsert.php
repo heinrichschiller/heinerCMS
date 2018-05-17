@@ -14,15 +14,15 @@ if (is_logged_in ()) {
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visible`)
-        VALUES (:title, :tagline, :content, :visible)";
+    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visibility`)
+        VALUES (:title, :tagline, :content, :visibility)";
 
     if (DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
-        $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `created_at`, `visible`, `trash`)
-            VALUES (:title, :tagline, :content, :created_at, :visible, :trash)";
+        $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :tagline, :content, :created_at, :visibility, :trash)";
     }
 
     $pdo = getPdoConnection();
@@ -31,9 +31,9 @@ if (is_logged_in ()) {
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
 
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $datetime);

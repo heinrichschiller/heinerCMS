@@ -1,7 +1,24 @@
 <?php
 
+/****************************************************************************************
+ *
+ * General functions for heinerCMS.
+ *
+ * This file contains:
+ *
+ * * Comment here
+ * * Comment here
+ *
+ * @author: Heinrich Schiller
+ * @date: 2017-06-09
+ * @licence: MIT
+ *
+ ***************************************************************************************/
+
 /**
  * 
+ * 
+ * @since 0.2.5
  */
 function parseRequest()
 {

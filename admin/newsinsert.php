@@ -13,15 +13,15 @@ if (is_logged_in()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `news` (`title`, `message`, `visible`)
-        VALUES (:title, :message, :visible)";
+    $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
+        VALUES (:title, :message, :visibility)";
 
     if (DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
-        $sql = "INSERT INTO `news` (`title`, `message`, `created_at`, `visible`, `trash`)
-            VALUES (:title, :message, :created_at, :visible, :trash)";
+        $sql = "INSERT INTO `news` (`title`, `message`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :message, :created_at, :visibility, :trash)";
     }
 
     $pdo = getPdoConnection();
@@ -31,7 +31,7 @@ if (is_logged_in()) {
 
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
 
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $datetime);

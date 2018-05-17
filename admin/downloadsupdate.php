@@ -19,7 +19,7 @@ if (is_logged_in ()) {
 
     $pdo = getPdoConnection();
 
-    $sql = "UPDATE `downloads` SET `title` = :title, `comment` = :comment, `path` = :path, `filename` = :filename, `visible` = :visible 
+    $sql = "UPDATE `downloads` SET `title` = :title, `comment` = :comment, `path` = :path, `filename` = :filename, `visibility` = :visibility 
         WHERE `id` = :id";
 
     try {
@@ -29,7 +29,7 @@ if (is_logged_in ()) {
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute($input_parameters);

@@ -17,14 +17,14 @@ if (is_logged_in()) {
 
     $pdo = getPdoConnection();
 
-    $sql = "UPDATE `articles` SET `title` = :title, `content` = :content, `visible` = :visible WHERE `id` = :id";
+    $sql = "UPDATE `articles` SET `title` = :title, `content` = :content, `visibility` = :visibility WHERE `id` = :id";
 
     try {
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();

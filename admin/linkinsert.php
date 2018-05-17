@@ -20,15 +20,15 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visible`) 
-        VALUES (:title, :tagline,, :uri :comment, :visible)";
+    $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`) 
+        VALUES (:title, :tagline, :uri, :comment, :visibility)";
 
     if( DB_DRIVER == 'sqlite' ) {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
-        $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visible`, `trash`)
-        VALUES (:title, :tagline, :uri, :comment, :created_at, :visible, :trash)";
+        $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visibility`, `trash`)
+        VALUES (:title, :tagline, :uri, :comment, :created_at, :visibility, :trash)";
     }
 
     $pdo = getPdoConnection();
@@ -40,7 +40,7 @@ if (is_logged_in ()) {
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
 
         if ( DB_DRIVER == 'sqlite' ) {
             $stmt->bindParam(':created_at', $datetime);

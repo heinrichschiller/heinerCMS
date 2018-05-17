@@ -23,7 +23,7 @@ if (is_logged_in ()) {
 
     $pdo = getPdoConnection();
 
-    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visible` = :visible WHERE `id` = :id";
+    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visibility` = :visibility WHERE `id` = :id";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -31,7 +31,7 @@ if (is_logged_in ()) {
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();

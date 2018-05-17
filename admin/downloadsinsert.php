@@ -15,15 +15,15 @@ if (is_logged_in ()) {
     $filename = filter_input(INPUT_POST,'filename');
     $visible  = filter_input(INPUT_POST,'visible');
 
-    $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visible`)
-        VALUES (:title, :comment, :path, :filename, :visible)";
+    $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visibility`)
+        VALUES (:title, :comment, :path, :filename, :visibility)";
 
     if ( DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
 
-        $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visible`, `trash`)
-            VALUES (:title, :comment, :path, :filename, :created_at, :visible, :trash)";
+        $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :comment, :path, :filename, :created_at, :visibility, :trash)";
     }
 
     $pdo = getPdoConnection();
@@ -35,7 +35,7 @@ if (is_logged_in ()) {
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
-        $stmt->bindParam(':visible', $visible);
+        $stmt->bindParam(':visibility', $visible);
 
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $datetime);
