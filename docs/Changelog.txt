@@ -2,6 +2,7 @@ Version next
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
 	bugfix, fixed minor bugs
 	update, rename table cels
+	update, tinymce/tinymce (4.7.12 => 4.7.13)
 	update, many new comments for 'old' functions
 Version 0.2.4.1 (2018-05-11)
 	bugfix, SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Name or service not known
