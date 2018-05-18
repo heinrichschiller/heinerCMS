@@ -1,4 +1,4 @@
-Version next
+Version 0.2.5 (2018-05-18)
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
 	bugfix, fixed minor bugs
 	update, rename table cels
