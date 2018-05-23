@@ -358,6 +358,97 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 
 /**
  * 
+ * @param string $title
+ * @param string $content
+ * @param string $visible
+ */
+function insertArticleEntry(string $title, string $content, string $visible)
+{
+    $sql = "INSERT INTO `articles` (`title`, `content`, `visibility`) VALUES (:title, :content, :visibility)";
+    
+    if(DB_DRIVER === 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = "INSERT INTO `articles` (`title`, `content`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :content, :created_at, :visibility, :trash)";
+    }
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':visibility', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute($input_parameters);
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param int $id
+ * @param string $title
+ * @param string $content
+ * @param string $visibility
+ */
+function updateArticleEntry(int $id, string $title, string $content, string $visibility)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "UPDATE `articles` SET `title` = :title, `content` = :content, `visibility` = :visibility WHERE `id` = :id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':visibility', $visibility);
+        $stmt->bindParam(':id', $id);
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $tagline
+ * @param string $comment
+ */
+function updateArticleSettings(string $tagline, string $comment)
+{
+    $sql = "UPDATE `articles_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':comment', $comment);
+        
+        $stmt->execute();
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
  * @return PDOStatement
  */
 function loadPublicArticlesStatement() : PDOStatement

@@ -37,5 +37,3 @@ $placeholderList = [
 $template = strtr($template, $placeholderList);
 
 echo stripslashes($template);
-
-
