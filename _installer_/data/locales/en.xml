@@ -61,7 +61,7 @@
         <text_31>Please repeat the password one more time to prevent mistakes.</text_31>
         <text_32>Copy the following lines and create the file:</text_32>
         <text_33>on your computer.</text_33>
-        <text_34>Paste the copied lines here and save the file. Then copy the configuration file into the project directory and press �Next� to start the installation.</text_34>
+        <text_34>Paste the copied lines here and save the file. Then copy the configuration file into the config directory and press Next to start the installation.</text_34>
         <text_35>Congratulations! Your almost there :-)</text_35>
         <text_36>At the end press here</text_36>
         <text_37>to start the software</text_37>

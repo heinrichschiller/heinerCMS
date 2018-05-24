@@ -2,11 +2,11 @@
 
 session_start();
 
-if (!file_exists('cms-config.php')) {
+if (!file_exists( __DIR__ . '/config/cms-config.php')) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
 }
 
-include __DIR__ . '/cms-config.php';
+include __DIR__ . '/config/cms-config.php';
 
 include __DIR__ . '/include/pdo_db_functions.inc.php';
 include __DIR__ . '/include/general_functions.inc.php';

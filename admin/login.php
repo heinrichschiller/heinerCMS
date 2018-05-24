@@ -2,7 +2,7 @@
 
 session_start();
 
-include __DIR__ . '/../cms-config.php';
+include __DIR__ . '/../config/cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 
