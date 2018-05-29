@@ -13,21 +13,7 @@ if (is_logged_in ()) {
     $tagline = filter_input(INPUT_POST, 'tagline');
     $comment = filter_input(INPUT_POST, 'comment');
 
-    $sql = "UPDATE `links_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
-
-        $stmt->execute();
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    updateLinksSettings($tagline, $comment);
 
     header ( 'Location: index.php?uri=linksettings' );
 

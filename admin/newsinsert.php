@@ -13,36 +13,7 @@ if (is_logged_in()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
-        VALUES (:title, :message, :visibility)";
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-
-        $sql = "INSERT INTO `news` (`title`, `message`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :message, :created_at, :visibility, :trash)";
-    }
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visibility', $visible);
-
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
-
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    insertNewsEntry($title, $message, $visible);
 
     header('Location: index.php?uri=news');
 }

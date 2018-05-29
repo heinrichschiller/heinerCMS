@@ -17,26 +17,7 @@ if (is_logged_in ()) {
     $filename = filter_input(INPUT_POST,'filename');
     $visible  = filter_input(INPUT_POST,'visible');
 
-    $pdo = getPdoConnection();
-
-    $sql = "UPDATE `downloads` SET `title` = :title, `comment` = :comment, `path` = :path, `filename` = :filename, `visibility` = :visibility 
-        WHERE `id` = :id";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':comment', $comment);
-        $stmt->bindParam(':path', $path);
-        $stmt->bindParam(':filename', $filename);
-        $stmt->bindParam(':visibility', $visible);
-        $stmt->bindParam(':id', $id);
-
-        $stmt->execute($input_parameters);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    updateDownloadsEntry($title, $comment, $path, $filename, $visible);
 
     header('Location: index.php?uri=downloads');
 

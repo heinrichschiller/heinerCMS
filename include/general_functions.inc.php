@@ -95,7 +95,24 @@ function is_logged_in() {
 }
 
 /**
- * Get a XML-File for translation in heinerCMS.
+ * 
+ */
+function destroySession()
+{
+    /* Wert setzen */
+    $_SESSION ['authenticated'] = false;
+    $_SESSION ['username'] = '';
+    $_SESSION ['user_id'] = '';
+    
+    /* Session beenden */
+    session_destroy ();
+    
+    /* Umleitung */
+    header ( 'Location: index.php' );
+}
+
+/**
+ * Get a XML-File for translations in heinerCMS.
  * 
  * @param string $language - Name of language
  * 

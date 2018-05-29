@@ -140,6 +140,103 @@ function loadPublicNewsStatement() : PDOStatement
 
 /**
  * 
+ * @param string $title
+ * @param string $message
+ * @param string $visible
+ * 
+ * @since 0.2.6
+ */
+function insertNewsEntry(string $title, string $message, string $visible)
+{
+    $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
+        VALUES (:title, :message, :visibility)";
+    
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = "INSERT INTO `news` (`title`, `message`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :message, :created_at, :visibility, :trash)";
+    }
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':message', $message);
+        $stmt->bindParam(':visibility', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param int $id
+ * @param string $title
+ * @param string $message
+ * @param string $visible
+ * 
+ * @since 0.2.6
+ */
+function updateNewsEntry(int $id, string $title, string $message, string $visible)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "UPDATE `news` SET `title` = :title, `message` = :message, `visibility` = :visibility WHERE `id` = :id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':message', $message);
+        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':id', $id);
+        
+        $stmt->execute($inpuit_parameters);
+        
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $tagline
+ * @param string $comment
+ */
+function updateNewsSettings(string $tagline, string $comment)
+{
+    $sql = "UPDATE `news_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':comment', $comment);
+        
+        $stmt->execute($input_parameters);
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
  * @return PDOStatement
  */
 function loadDownloadsStatement() : PDOStatement
@@ -236,6 +333,110 @@ function loadPublicDownloadsStatement() : PDOStatement
 
 /**
  * 
+ * @param string $title
+ * @param string $comment
+ * @param string $path
+ * @param string $filename
+ * @param string $visible
+ */
+function insertDownloadsEntry(string $title, string $comment, string $path, string $filename, string $visible)
+{
+    $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visibility`)
+        VALUES (:title, :comment, :path, :filename, :visibility)";
+    
+    if ( DB_DRIVER == 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :comment, :path, :filename, :created_at, :visibility, :trash)";
+    }
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':path', $path);
+        $stmt->bindParam(':filename', $filename);
+        $stmt->bindParam(':visibility', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $title
+ * @param string $comment
+ * @param string $path
+ * @param string $filename
+ * @param string $visible
+ */
+function updateDownloadsEntry(string $title, string $comment, string $path, string $filename, string $visible)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "UPDATE `downloads` SET `title` = :title, 
+        `comment` = :comment, 
+        `path` = :path, 
+        `filename` = :filename, 
+        `visibility` = :visibility
+        WHERE `id` = :id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':path', $path);
+        $stmt->bindParam(':filename', $filename);
+        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':id', $id);
+        
+        $stmt->execute($input_parameters);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $tagline
+ * @param string $comment
+ */
+function updateDownloadsSettings(string $tagline, string $comment)
+{
+    $sql = "UPDATE `downloads_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':comment', $comment);
+        
+        $stmt->execute($input_parameters);
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
  * @return PDOStatement
  */
 function loadLinksStatement() : PDOStatement
@@ -309,6 +510,110 @@ function loadPublicLinksStatement() : PDOStatement
         exit();
     }
 
+}
+
+/**
+ * 
+ * @param string $title
+ * @param string $tagline
+ * @param string $comment
+ * @param string $uri
+ * @param string $visible
+ * 
+ * @since 0.2.6
+ */
+function insertLinksEntry(string $title, string $tagline, string $comment, string $uri, string $visible)
+{
+    $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`)
+        VALUES (:title, :tagline, :uri, :comment, :visibility)";
+    
+    if( DB_DRIVER == 'sqlite' ) {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visibility`, `trash`)
+        VALUES (:title, :tagline, :uri, :comment, :created_at, :visibility, :trash)";
+    }
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':uri', $uri);
+        $stmt->bindParam(':visibility', $visible);
+        
+        if ( DB_DRIVER == 'sqlite' ) {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param int $id
+ * @param string $title
+ * @param string $comment
+ * @param string $uri
+ * @param string $visible
+ * 
+ * @since 0.2.6
+ */
+function updateLinksEntry(int $id, string $title, string $comment, string $uri, string $visible)
+{
+    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visibility` = :visibility WHERE `id` = :id";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':uri', $uri);
+        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':id', $id);
+        
+        $stmt->execute();
+    } catch(PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $tagline
+ * @param string $comment
+ * 
+ * @since 0.2.6
+ */
+function updateLinksSettings(string $tagline, string $comment)
+{
+    $sql = "UPDATE `links_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':comment', $comment);
+        
+        $stmt->execute();
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
 }
 
 /**
@@ -540,6 +845,51 @@ function loadPageEditStatement(int $id)
     }
 }
 
+/**
+ * 
+ * @param string $title
+ * @param string $tagline
+ * @param string $content
+ * @param string $visible
+ * 
+ * @since 0.2.6
+ */
+function insertPageEntry(string $title, string $tagline, string $content, string $visible)
+{
+    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visibility`)
+        VALUES (:title, :tagline, :content, :visibility)";
+    
+    if (DB_DRIVER == 'sqlite') {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        $trash = 'false';
+        
+        $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
+            VALUES (:title, :tagline, :content, :created_at, :visibility, :trash)";
+    }
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':visibility', $visible);
+        
+        if (DB_DRIVER == 'sqlite') {
+            $stmt->bindParam(':created_at', $datetime);
+            $stmt->bindParam(':trash', $trash);
+        }
+        
+        $stmt->execute();
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+}
+
 function loadUserStatement()
 {
     $pdo = getPdoConnection();
@@ -596,6 +946,43 @@ function loadTrashFromTable(string $table)
 
         return $stmt->fetchAll();
     } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * 
+ * @param string $title
+ * @param string $tagline
+ * @param string $theme
+ * @param string $blogUrl
+ * @param string $language
+ * @param string $footer
+ */
+function updateGeneralSettings(string $title, string $tagline, string $theme, string $blogUrl, string $language, string $footer)
+{
+    $sql = 'UPDATE `settings` SET `title`=:title,
+        `tagline`=:tagline,
+        `theme`=:theme,
+        `blog_url`=:blog_url,
+        `lang_short`=:language,
+        `footer`=:footer WHERE 1';
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':theme', $theme);
+        $stmt->bindParam(':blog_url', $blogUrl);
+        $stmt->bindParam(':language', $language);
+        $stmt->bindParam(':footer', $footer);
+        
+        $stmt->execute();
+    } catch (Exception $ex) {
         echo $ex->getMessage();
         exit();
     }

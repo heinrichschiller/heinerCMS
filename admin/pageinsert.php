@@ -14,38 +14,8 @@ if (is_logged_in ()) {
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visibility`)
-        VALUES (:title, :tagline, :content, :visibility)";
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-
-        $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :tagline, :content, :created_at, :visibility, :trash)";
-    }
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':visibility', $visible);
-
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
-
-        $stmt->execute();
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-
+    insertPageEntry($title, $tagline, $content, $visible);
+    
     header ( 'Location: index.php?uri=pages' );
 }
 

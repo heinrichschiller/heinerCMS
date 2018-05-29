@@ -16,30 +16,7 @@ if (is_logged_in()) {
     $language = filter_input(INPUT_POST, 'language');
     $footer   = filter_input(INPUT_POST, 'footer');
 
-    $pdo = getPdoConnection();
-
-    $sql = 'UPDATE `settings` SET `title`=:title,
-        `tagline`=:tagline,
-        `theme`=:theme,
-        `blog_url`=:blog_url,
-        `lang_short`=:language,
-        `footer`=:footer WHERE 1';
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':theme', $theme);
-        $stmt->bindParam(':blog_url', $blogUrl);
-        $stmt->bindParam(':language', $language);
-        $stmt->bindParam(':footer', $footer);
-
-        $stmt->execute();
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    updateGeneralSettings($title, $tagline, $theme, $blogUrl, $language, $footer);
 
     header ( "Location: index.php?uri=general" );
 }

@@ -21,24 +21,7 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $pdo = getPdoConnection();
-
-    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visibility` = :visibility WHERE `id` = :id";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':comment', $comment);
-        $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visibility', $visible);
-        $stmt->bindParam(':id', $id);
-
-        $stmt->execute();
-    } catch(PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    updateLinksEntry($id, $title, $comment, $uri, $visible);
 
     header('Location: index.php?uri=links');
 

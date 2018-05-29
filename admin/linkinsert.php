@@ -20,38 +20,7 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`) 
-        VALUES (:title, :tagline, :uri, :comment, :visibility)";
-
-    if( DB_DRIVER == 'sqlite' ) {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-
-        $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visibility`, `trash`)
-        VALUES (:title, :tagline, :uri, :comment, :created_at, :visibility, :trash)";
-    }
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
-        $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visibility', $visible);
-
-        if ( DB_DRIVER == 'sqlite' ) {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
-
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
+    insertLinksEntry($title, $tagline, $comment, $uri, $visible);
 
     header('Location: index.php?uri=links');
 

@@ -11,22 +11,8 @@ if (is_logged_in ()) {
     $tagline = filter_input(INPUT_POST, 'tagline');
     $comment = filter_input(INPUT_POST, 'comment');
 
-    $sql = "UPDATE `downloads_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
-
-        $stmt->execute($input_parameters);
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-
+    updateDownloadsSettings($tagline, $comment);
+    
     header ( 'Location: index.php?uri=downloadssettings' );
 
 }

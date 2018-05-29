@@ -14,24 +14,7 @@ if (is_logged_in ()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    $pdo = getPdoConnection();
-
-    $sql = "UPDATE `news` SET `title` = :title, `message` = :message, `visibility` = :visibility WHERE `id` = :id";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visibility', $visible);
-        $stmt->bindParam(':id', $id);
-
-        $stmt->execute($inpuit_parameters);
-
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-	}
+    updateNewsEntry($id, $title, $message, $visible);
 
     header ('Location: index.php?uri=news');
 }
