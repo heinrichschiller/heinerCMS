@@ -2,7 +2,7 @@
 
 session_start();
 
-include __DIR__ . '/../cms-config.php';
+include __DIR__ . '/../config/cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
@@ -14,7 +14,6 @@ if (is_logged_in()) {
     $lastname  = filter_input(INPUT_POST, 'lastname');
     $username  = filter_input(INPUT_POST, 'username');
     $email     = filter_input(INPUT_POST, 'email');
-    $publicAs  = filter_input(INPUT_POST, 'public_as');
     $active    = filter_input(INPUT_POST, 'active');
 
     $pdo = getPdoConnection();

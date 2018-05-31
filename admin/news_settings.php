@@ -2,7 +2,7 @@
 
 session_start();
 
-include __DIR__ . '/../cms-config.php';
+include __DIR__ . '/../config/cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
@@ -14,6 +14,6 @@ if (is_logged_in ()) {
 
     updateNewsSettings($tagline, $comment);
 
-    header ( 'Location: index.php?uri=linksettings' );
+    header ( 'Location: index.php?uri=newssettings' );
 
 }

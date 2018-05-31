@@ -2,7 +2,7 @@
 
 session_start();
 
-include __DIR__ . '/../cms-config.php';
+include __DIR__ . '/../config/cms-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
@@ -17,7 +17,7 @@ if (is_logged_in ()) {
     $filename = filter_input(INPUT_POST,'filename');
     $visible  = filter_input(INPUT_POST,'visible');
 
-    updateDownloadsEntry($title, $comment, $path, $filename, $visible);
+    updateDownloadsEntry($id, $title, $comment, $path, $filename, $visible);
 
     header('Location: index.php?uri=downloads');
 

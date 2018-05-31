@@ -1,5 +1,6 @@
 <?php
 
+// @todo: prepare for delete, because it is obsolete
 session_start ();
 
 /* Wert setzen */

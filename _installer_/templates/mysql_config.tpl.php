@@ -61,7 +61,8 @@ define('DB_PASSWORD', '##placeholder_database_password##');
  ***************************************************************************************/
 
 /**
- * Set error handling for development and debugging on PDO connection.
+ * Set error handling for development and debugging on PDO connection.  It can be set in
+ * cms-config.php
  *
  * @since 0.2.3
  * @var string Set the value on 'On' to activate the debug mode

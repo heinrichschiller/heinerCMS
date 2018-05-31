@@ -383,7 +383,7 @@ function insertDownloadsEntry(string $title, string $comment, string $path, stri
  * @param string $filename
  * @param string $visible
  */
-function updateDownloadsEntry(string $title, string $comment, string $path, string $filename, string $visible)
+function updateDownloadsEntry(int $id, string $title, string $comment, string $path, string $filename, string $visible)
 {
     $pdo = getPdoConnection();
     
