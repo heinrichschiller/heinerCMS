@@ -1,6 +1,7 @@
 Version 0.2.6 (2018-05-31)
 	bugfix, fixed minor bugs
 	update, refactory functions
+	update, composer (1.4.3=>1.6.5)
 Version 0.2.5 (2018-05-18)
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
 	bugfix, fixed minor bugs
