@@ -1,3 +1,5 @@
+Version next
+	add, MIT-License translations in german, russian. It can be found in the docs-directory
 Version 0.2.6 (2018-05-31)
 	bugfix, fixed minor bugs
 	update, refactory functions
