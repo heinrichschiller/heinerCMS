@@ -1,4 +1,4 @@
-Version next
+Version 0.2.7 (2018-06-08)
 	added, MIT-License translations in german, russian. It can be found in the docs-directory
 	added, edit function for pages
 	update, composer (1.4.3=>1.6.5)
