@@ -847,7 +847,7 @@ function load_pages(): string
         $content .= '<td>' . $page->id . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $page->datetime) . '</td>';
         $content .= '<td>' . $page->title . '</td>';
-        $content .= '<td>' . $page->visibility > - 1 ? '<td> ja</td>' : '<td> nein</td>' . '</td>';
+        $content .= $page->visibility > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';

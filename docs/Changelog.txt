@@ -1,5 +1,6 @@
 Version next
-	add, MIT-License translations in german, russian. It can be found in the docs-directory
+	added, MIT-License translations in german, russian. It can be found in the docs-directory
+	added, edit function for pages
 	update, composer (1.4.3=>1.6.5)
 Version 0.2.6 (2018-05-31)
 	bugfix, fixed minor bugs

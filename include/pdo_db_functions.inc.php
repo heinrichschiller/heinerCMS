@@ -890,6 +890,35 @@ function insertPageEntry(string $title, string $tagline, string $content, string
     
 }
 
+/**
+ * 
+ * @param int $id
+ * @param string $title
+ * @param string $content
+ * @param string $visibility
+ */
+function updatePageEntry(int $id, string $title, string $tagline, string $content, string $visibility)
+{
+    $pdo = getPdoConnection();
+
+    $sql = 'UPDATE `sites` SET `title` = :title, `tagline` = :tagline, `content` = :content, `visibility` = :visibility WHERE `id` = :id';
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':visibility', $visibility);
+        $stmt->bindParam(':id', $id);
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
 function loadUserStatement()
 {
     $pdo = getPdoConnection();
