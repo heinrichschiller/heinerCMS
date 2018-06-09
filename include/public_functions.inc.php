@@ -386,7 +386,58 @@ function load_pages(int $id): string
  */
 function load_mainpage(): string
 {
-    return loadTemplate('pub_mainpage');
+    $template = loadTemplate('pub_mainpage');
+    
+    $placeholderList = [
+        '##placeholder-card##' => load_cards()
+    ];
+    
+    return strtr($template, $placeholderList);
+}
+
+/**
+ * 
+ * @return string
+ */
+function load_cards()
+{
+    $card = '';
+    $template = loadTemplate('pub_card');
+    
+    $sql = "SELECT id, title, content, created_at, 
+            (SELECT COUNT(id) FROM articles WHERE trash LIKE 'false' AND visibility = 0) as count
+            FROM articles 
+            WHERE trash like 'false' AND visibility = 0 ORDER By created_at DESC LIMIT 3";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    while ($article = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($article['count'] == '1') {
+            $columnNumber = 12;
+        } else if ($article['count'] == '2') {
+            $columnNumber = 6;
+        } else {
+            $columnNumber = 4;
+        }
+        
+        $placeholderList = [
+            '##placeholder-col-num##' => $columnNumber,
+            '##placeholder-title##'   => $article['title'],
+            '##placeholder-content##' => substr($article['content'], 0, 160)
+        ];
+        
+        $card .= strtr($template, $placeholderList);
+    }
+
+    return $card;
 }
 
 /**
