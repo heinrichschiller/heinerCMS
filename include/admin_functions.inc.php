@@ -47,7 +47,9 @@ function load_sidebar(): string
 function load_news(): string
 {
     $content = '';
-
+    
+    $hasEntry = false;
+    
     $stmt = loadNewsStatement();
     
     while ($news = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -69,11 +71,20 @@ function load_news(): string
         
         $content .= '</td>';
         $content .= '</tr>';
+        
+        $hasEntry = true;
     }
 
-    $template = loadTemplate('adm_news');
+    if($hasEntry) {
+        $template = loadTemplate('adm_news');
+    } else {
+        $template = loadTemplate('adm_no_entry');
+    }
 
-    return str_replace('##placeholder-table-content##', $content, $template);
+    $tplNewsEntries = loadTemplate('adm_news_entries');
+    $tplNewsEntries = str_replace('##placeholder-table-content##', $content, $tplNewsEntries);
+    
+    return str_replace('##placeholder-content##', $tplNewsEntries, $template);
 }
 
 /**
