@@ -749,7 +749,7 @@ function writeDefaultConfiguration(PDO $pdo) : bool
             ':theme'      => 'default',
             ':blog_url'   => '',
             ':lang_short' => $_SESSION['lang'],
-            ':footer'     => 'heinerCMS 2018'
+            ':footer'     => 'heinerCMS 2017 - 2018'
         ];
 
         try {
@@ -767,7 +767,7 @@ function writeDefaultConfiguration(PDO $pdo) : bool
 }
 
 /**
- * Write links configuration into database
+ * Write links configuration into the database.
  * 
  * @param PDO $pdo
  * @return bool

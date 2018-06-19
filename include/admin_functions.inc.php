@@ -78,7 +78,7 @@ function load_news(): string
     if($hasEntry) {
         $template = loadTemplate('adm_news');
     } else {
-        $template = loadTemplate('adm_no_entry');
+        $template = loadTemplate('adm_no_news');
     }
 
     $tplNewsEntries = loadTemplate('adm_news_entries');
@@ -196,6 +196,8 @@ function load_downloads(): string
 {
     $content = '';
     
+    $hasEntry = false;
+    
     $stmt = loadDownloadsStatement();
     
     while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -213,12 +215,20 @@ function load_downloads(): string
         
         $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+        
+        $hasEntry = true;
     }
     
-    $template = loadTemplate('adm_downloads');
-    $template = str_replace('##placeholder-downloads-content##', $content, $template);
+    if($hasEntry) {
+        $template = loadTemplate('adm_downloads');
+    } else {
+        $template = loadTemplate('adm_no_downloads');
+    }
+
+    $tplDownloadsEntries = loadTemplate('adm_downloads_entries');
+    $tplDownloadsEntries = str_replace('##placeholder-table-content##', $content, $tplDownloadsEntries);
     
-    return $template;
+    return str_replace('##placeholder-content##', $tplDownloadsEntries, $template);
 }
 
 /**
@@ -320,6 +330,8 @@ function load_links(): string
 {
     $content = '';
     
+    $hasEntry = false;
+    
     $stmt = loadLinksStatement();
     
     while ($link = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -338,11 +350,20 @@ function load_links(): string
         $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link->id . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         $content .= '</tr>';
+        
+        $hasEntry = true;
     }
     
-    $template = loadTemplate('adm_links');
+    if($hasEntry) {
+        $template = loadTemplate('adm_links');
+    } else {
+        $template = loadTemplate('adm_no_links');
+    }
     
-    return str_replace('##placeholder-links-content##', $content, $template);
+    $tplLinksEntries = loadTemplate('adm_links_entries');
+    $tplLinksEntries = str_replace('##placeholder-table-content##', $content, $tplLinksEntries);
+    
+    return str_replace('##placeholder-content##', $tplLinksEntries, $template);
 }
 
 /**
@@ -459,6 +480,7 @@ function load_link_settings() : string
 function load_articles(): string
 {
     $content = '';
+    $hasEntry = false;
     
     $stmt = loadArticlesStatement();
     
@@ -479,12 +501,20 @@ function load_articles(): string
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $content .= '</tr>';
+        
+        $hasEntry = true;
     }
     
-    $template = loadTemplate('adm_articles');
-    $template = str_replace('##placeholder-articles-content##', $content, $template);
+    if($hasEntry) {
+        $template = loadTemplate('adm_articles');
+    } else {
+        $template = loadTemplate('adm_no_articles');
+    }
     
-    return $template;
+    $tplArticlesEntries = loadTemplate('adm_articles_entries');
+    $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
+    
+    return str_replace('##placeholder-content##', $tplArticlesEntries, $template);
 }
 
 /**
