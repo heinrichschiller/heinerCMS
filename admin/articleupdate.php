@@ -15,7 +15,7 @@ if (is_logged_in()) {
     $content    = filter_input(INPUT_POST, 'content');
     $visibility = filter_input(INPUT_POST, 'visible');
 
-    updateArticleEntry($id, $title, $content, $visibility);
+    updateArticle($id, $title, $content, $visibility);
 
     header('Location: index.php?uri=articles');
 }

@@ -11,7 +11,7 @@ include __DIR__ . '/include/functions.inc.php';
 
 $language = filter_input(INPUT_GET, 'lang');
 
-$configPath = __DIR__ . '/../cms-config.php';
+$configPath = __DIR__ . '/../config/cms-config.php';
 
 if (file_exists($configPath)) {
     include $configPath;

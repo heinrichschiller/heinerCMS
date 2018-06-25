@@ -15,7 +15,7 @@ if (is_logged_in ()) {
     $filename = filter_input(INPUT_POST,'filename');
     $visible  = filter_input(INPUT_POST,'visible');
 
-    insertDownloadsEntry($title, $comment, $path, $filename, $visible);
+    addDownload($title, $comment, $path, $filename, $visible);
 
     header('Location: index.php?uri=downloads');
 }

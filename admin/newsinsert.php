@@ -13,7 +13,7 @@ if (is_logged_in()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    insertNewsEntry($title, $message, $visible);
+    addNews($title, $message, $visible);
 
     header('Location: index.php?uri=news');
 }

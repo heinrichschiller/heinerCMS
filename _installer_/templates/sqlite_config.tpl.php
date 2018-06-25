@@ -30,7 +30,7 @@ define('DB_DRIVER', 'sqlite');
  * @since 0.2.3
  * @var string Name of the SQLite database
  */
-define('DB_NAME', __DIR__ . '/data/sqlite/heinercms.db');
+define('DB_NAME', __DIR__ . '/../data/sqlite/heinercms.db');
 
 /****************************************************************************************
  * Debuging options for heinerCMS

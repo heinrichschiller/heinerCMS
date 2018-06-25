@@ -15,7 +15,7 @@ if (is_logged_in ()) {
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    updatePageEntry($id, $title, $tagline, $content, $visible);
+    updatePage($id, $title, $tagline, $content, $visible);
     
     header ( 'Location: index.php?uri=pages' );
 }

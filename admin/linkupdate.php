@@ -21,7 +21,7 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    updateLinksEntry($id, $title, $comment, $uri, $visible);
+    updateLink($id, $title, $comment, $uri, $visible);
 
     header('Location: index.php?uri=links');
 

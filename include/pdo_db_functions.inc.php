@@ -139,14 +139,15 @@ function loadPublicNewsStatement() : PDOStatement
 }
 
 /**
+ * Add news entry.
  * 
  * @param string $title
  * @param string $message
  * @param string $visible
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
-function insertNewsEntry(string $title, string $message, string $visible)
+function addNews(string $title, string $message, string $visible)
 {
     $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
         VALUES (:title, :message, :visibility)";
@@ -181,15 +182,16 @@ function insertNewsEntry(string $title, string $message, string $visible)
 }
 
 /**
+ * Update news entry.
  * 
  * @param int $id
  * @param string $title
  * @param string $message
  * @param string $visible
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
-function updateNewsEntry(int $id, string $title, string $message, string $visible)
+function updateNews(int $id, string $title, string $message, string $visible)
 {
     $pdo = getPdoConnection();
     
@@ -332,14 +334,17 @@ function loadPublicDownloadsStatement() : PDOStatement
 }
 
 /**
+ * Add a download.
  * 
  * @param string $title
  * @param string $comment
  * @param string $path
  * @param string $filename
  * @param string $visible
+ * 
+ * @since 0.3.0
  */
-function insertDownloadsEntry(string $title, string $comment, string $path, string $filename, string $visible)
+function addDownload(string $title, string $comment, string $path, string $filename, string $visible)
 {
     $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visibility`)
         VALUES (:title, :comment, :path, :filename, :visibility)";
@@ -376,14 +381,17 @@ function insertDownloadsEntry(string $title, string $comment, string $path, stri
 }
 
 /**
+ * Update download entry.
  * 
  * @param string $title
  * @param string $comment
  * @param string $path
  * @param string $filename
  * @param string $visible
+ * 
+ * @since 0.3.0
  */
-function updateDownloadsEntry(int $id, string $title, string $comment, string $path, string $filename, string $visible)
+function updateDownload(int $id, string $title, string $comment, string $path, string $filename, string $visible)
 {
     $pdo = getPdoConnection();
     
@@ -513,6 +521,7 @@ function loadPublicLinksStatement() : PDOStatement
 }
 
 /**
+ * Add link entry.
  * 
  * @param string $title
  * @param string $tagline
@@ -520,9 +529,9 @@ function loadPublicLinksStatement() : PDOStatement
  * @param string $uri
  * @param string $visible
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
-function insertLinksEntry(string $title, string $tagline, string $comment, string $uri, string $visible)
+function addLink(string $title, string $tagline, string $comment, string $uri, string $visible)
 {
     $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`)
         VALUES (:title, :tagline, :uri, :comment, :visibility)";
@@ -559,6 +568,7 @@ function insertLinksEntry(string $title, string $tagline, string $comment, strin
 }
 
 /**
+ * Update a link entry.
  * 
  * @param int $id
  * @param string $title
@@ -566,9 +576,9 @@ function insertLinksEntry(string $title, string $tagline, string $comment, strin
  * @param string $uri
  * @param string $visible
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
-function updateLinksEntry(int $id, string $title, string $comment, string $uri, string $visible)
+function updateLink(int $id, string $title, string $comment, string $uri, string $visible)
 {
     $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visibility` = :visibility WHERE `id` = :id";
     
@@ -595,7 +605,7 @@ function updateLinksEntry(int $id, string $title, string $comment, string $uri, 
  * @param string $tagline
  * @param string $comment
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
 function updateLinksSettings(string $tagline, string $comment)
 {
@@ -662,12 +672,15 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 }
 
 /**
+ * Add a new article.
  * 
  * @param string $title
  * @param string $content
  * @param string $visible
+ * 
+ * @since 0.3.0
  */
-function insertArticleEntry(string $title, string $content, string $visible)
+function addArticle(string $title, string $content, string $visible)
 {
     $sql = "INSERT INTO `articles` (`title`, `content`, `visibility`) VALUES (:title, :content, :visibility)";
     
@@ -701,13 +714,16 @@ function insertArticleEntry(string $title, string $content, string $visible)
 }
 
 /**
+ * Update a article by id.
  * 
  * @param int $id
  * @param string $title
  * @param string $content
  * @param string $visibility
+ * 
+ * @since 0.3.0
  */
-function updateArticleEntry(int $id, string $title, string $content, string $visibility)
+function updateArticle(int $id, string $title, string $content, string $visibility)
 {
     $pdo = getPdoConnection();
     
@@ -846,15 +862,16 @@ function loadPageEditStatement(int $id)
 }
 
 /**
+ * Add page.
  * 
  * @param string $title
  * @param string $tagline
  * @param string $content
  * @param string $visible
  * 
- * @since 0.2.6
+ * @since 0.3.0
  */
-function insertPageEntry(string $title, string $tagline, string $content, string $visible)
+function addPage(string $title, string $tagline, string $content, string $visible)
 {
     $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visibility`)
         VALUES (:title, :tagline, :content, :visibility)";
@@ -891,13 +908,16 @@ function insertPageEntry(string $title, string $tagline, string $content, string
 }
 
 /**
+ * Update page entry.
  * 
  * @param int $id
  * @param string $title
  * @param string $content
  * @param string $visibility
+ * 
+ * @since 0.3.0
  */
-function updatePageEntry(int $id, string $title, string $tagline, string $content, string $visibility)
+function updatePage(int $id, string $title, string $tagline, string $content, string $visibility)
 {
     $pdo = getPdoConnection();
 

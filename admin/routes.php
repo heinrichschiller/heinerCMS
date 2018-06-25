@@ -167,7 +167,10 @@ $route['general'] = function() {
 /************************************************************
  * other routes
  ***********************************************************/
-
 $route['logout'] = function() {
     header ('Location: logout.php');
+};
+
+$route['communication'] = function() {
+    return load_communication();
 };

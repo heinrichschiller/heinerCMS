@@ -4,6 +4,7 @@ session_start();
 
 if (!file_exists( __DIR__ . '/config/cms-config.php')) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
+    exit();
 }
 
 include __DIR__ . '/config/cms-config.php';
