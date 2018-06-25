@@ -1,4 +1,4 @@
-Version 0.3.0
+Version 0.3.0 (25.06.2018)
 	added, support for bootstrap cards on mainpage.
 		If you write an article, you see this article on mainpage in a bootstrap card.
 		Up to three bootstrap cards can be placed on mainpage.
@@ -6,7 +6,7 @@ Version 0.3.0
 		You can edit a created page from now.
 	update, optical improvements
 	update, rename functions
-Version 0.2.7
+Version 0.2.7 (2018-06-08)
 	added, MIT-License translations in german, russian. It can be found in the docs-directory
 	added, edit function for pages
 	update, composer (1.4.3=>1.6.5)
