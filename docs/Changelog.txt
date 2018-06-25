@@ -1,5 +1,6 @@
 Version next
 	added, support for bootstrap cards on mainpage
+	update, rename functions
 Version 0.2.7
 	added, MIT-License translations in german, russian. It can be found in the docs-directory
 	added, edit function for pages

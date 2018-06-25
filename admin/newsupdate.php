@@ -14,7 +14,7 @@ if (is_logged_in ()) {
     $message = filter_input(INPUT_POST, 'message');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    updateNewsEntry($id, $title, $message, $visible);
+    updateNews($id, $title, $message, $visible);
 
     header ('Location: index.php?uri=news');
 }

@@ -14,7 +14,7 @@ if (is_logged_in ()) {
     $content = filter_input(INPUT_POST, 'content');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    insertArticleEntry($title, $content, $visible);
+    addArticle($title, $content, $visible);
 
     header ( 'Location: index.php?uri=articles' );
 }

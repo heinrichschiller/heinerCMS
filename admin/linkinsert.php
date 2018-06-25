@@ -20,7 +20,7 @@ if (is_logged_in ()) {
     $comment = filter_input(INPUT_POST, 'comment');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    insertLinksEntry($title, $tagline, $comment, $uri, $visible);
+    addLink($title, $tagline, $comment, $uri, $visible);
 
     header('Location: index.php?uri=links');
 
