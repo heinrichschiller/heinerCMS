@@ -638,6 +638,11 @@ function load_dashboard(): string
     return loadTemplate('adm_dashboard');
 }
 
+function load_communication(): string
+{
+    return loadTemplate('adm_communication');
+}
+
 /**
  * Render a HTML-Table.
  * 

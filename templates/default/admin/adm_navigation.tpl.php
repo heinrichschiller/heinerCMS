@@ -41,7 +41,7 @@
     <span class="list-group-item active">
         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> {communication}
     </span>
-        <a href="index.php?uri=news" class="list-group-item list-group-item-action">
+        <a href="index.php?uri=communication" class="list-group-item list-group-item-action">
             {contact_inquiry}
             <span class="badge badge-light">0<!-- ##placeholder-inqiery##  --></span>
         </a>
