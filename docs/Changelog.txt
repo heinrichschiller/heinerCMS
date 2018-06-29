@@ -1,3 +1,9 @@
+Version 0.4.0
+	added, new functionality
+		You can delete pages in pages from now.
+	update, translations
+	update, optical improvements
+	update, fixed minor bugs
 Version 0.3.0 (2018-06-25)
 	added, support for bootstrap cards on mainpage.
 		If you write an article, you see this article on mainpage in a bootstrap card.
