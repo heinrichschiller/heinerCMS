@@ -1,9 +1,8 @@
 <div class="container-fluid">
     <div class="jumbotron">
     	<div class="container">
-    		<h1 class="display-4">Heinrich-Schiller.de</h1>
-    		<p class="lead">This is a modified jumbotron that occupies the entire
-    			horizontal space of its parent.</p>
+    		<h1 class="display-4">##placeholder-title##</h1>
+    		<p class="lead">##placeholder-tagline##</p>
     	</div>
     </div>
 </div>
@@ -30,9 +29,10 @@
 					explicabo reprehenderit optio amet ab temporibus asperiores quasi
 					cupiditate. Voluptatum ducimus voluptates voluptas!</p>
 
-				<a class="btn readmore" href="#">Weiterlesen</a> <a
+				<a class="btn readmore" href="#">Weiterlesen</a>
+				<!-- <a
 					class="btn comments" href="#">Kommentare <span
-					class="badge badge-secondary">20</span></a>
+					class="badge badge-secondary">20</span></a> -->
 
 			</article>
 

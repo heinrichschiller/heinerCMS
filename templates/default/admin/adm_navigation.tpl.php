@@ -10,6 +10,10 @@
     <span class="list-group-item active">
         {content}
     </span>
+        <a href="index.php?uri=articles" class="list-group-item list-group-item-action">
+            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
+            <span class="badge badge-light">##placeholder-articles##</span>
+        </a>
         <a href="index.php?uri=news" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {news}
             <span class="badge badge-light">##placeholder-news##</span>
@@ -22,12 +26,8 @@
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-global.svg"> {links}
             <span class="badge badge-light">##placeholder-links##</span>
         </a>
-        <a href="index.php?uri=articles" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
-            <span class="badge badge-light">##placeholder-articles##</span>
-        </a>
         <a href="index.php?uri=pages" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document.svg"> {sites}
+            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document.svg"> {pages}
             <span class="badge badge-light">##placeholder-pages##</span>
         </a>
         <a href="index.php?uri=trash" class="list-group-item list-group-item-action">
@@ -58,6 +58,9 @@
         <a href="index.php?uri=mainpage" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-home-page.svg"> {mainpage}
         </a>
+        <a href="index.php?uri=articlessettings" class="list-group-item list-group-item-action">
+            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
+        </a>
         <a href="index.php?uri=newssettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {news}
         </a>
@@ -67,9 +70,7 @@
         <a href="index.php?uri=linksettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-global.svg"> {links}
         </a>
-        <a href="index.php?uri=articlessettings" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
-        </a>
+        
         <a href="index.php?uri=user" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-person-people.svg"> {user}
         </a>
