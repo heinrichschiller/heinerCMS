@@ -90,7 +90,15 @@ function loadNewsDetailedStatement(int $id) : PDOStatement
     }
 }
 
-function loadNewsEditStatement(int $id)
+/**
+ * Get a news entry from table by id.
+ * 
+ * @param int $id
+ * @return array
+ * 
+ * @since 0.4.0
+ */
+function getNews(int $id) : array
 {
     $pdo = getPdoConnection();
 
@@ -102,7 +110,7 @@ function loadNewsEditStatement(int $id)
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_NUM);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -799,11 +807,14 @@ function loadPublicArticlesStatement() : PDOStatement
 }
 
 /**
+ * Get an article entry from database by id.
  * 
- * @param int $id
- * @return mixed
+ * @param int $id - Id from an article entry.
+ * @return array  - Article list from an entry.
+ * 
+ * @since 0.4.0
  */
-function loadArticlesEditStatement(int $id)
+function getArticle(int $id) : array
 {
     $pdo = getPdoConnection();
 
@@ -814,7 +825,7 @@ function loadArticlesEditStatement(int $id)
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_NUM);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();

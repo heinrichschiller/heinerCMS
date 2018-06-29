@@ -98,24 +98,26 @@ function load_news_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
 
-    $result = loadNewsEditStatement($id);
+    list($id, $title, $message, $datetime, $visibility) = getNews($id);
     
-    if ($result->visibility > - 1) {
+    if ($visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
     
     $placeholderList = [
-        '##placeholder-id##'       => $result->id,
-        '##placeholder-title##'    => $result->title,
-        '##placeholder-message##'  => $result->message,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $result->datetime),
+        '##placeholder-header##'   => '{edit_news}',
+        '##placeholder-action##'   => 'newsupdate.php',
+        '##placeholder-id##'       => $id,
+        '##placeholder-title##'    => $title,
+        '##placeholder-message##'  => $message,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = loadTemplate('adm_news_edit');
+    $template = loadTemplate('adm_news_form');
     
     return strtr($template, $placeholderList);
 }
@@ -127,11 +129,23 @@ function load_news_edit(int $id): string
  */
 function load_news_add(): string
 {
+    $chkNo   = '';
+    $chkYes   = ' checked';
+    $title   = '';
+    $message = '';
+    
     $placeholdeList = [
-        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
+        '##placeholder-header##'   => '{create_news}',
+        '##placeholder-action##'   => 'newsinset.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-title##'    => $title,
+        '##placeholder-message##'  => $message,
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time()),
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = loadTemplate('adm_news_add');
+    $template = loadTemplate('adm_news_form');
 
     return strtr($template, $placeholdeList);
 }
@@ -522,30 +536,34 @@ function load_articles(): string
  *
  * @param int $id - Id of an article entry.
  * @return string
+ * 
+ * @since 0.4.0
  */
 function load_article_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
-
-    $article = loadArticlesEditStatement($id);
-
-    if ($article->visibility > - 1) {
+    
+    list($id, $title, $content, $datetime, $visibility) = getArticle($id);
+    
+    if ($visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
-
+    
     $placeholderList = [
-        '##placeholder-id##'       => $article->id,
-        '##placeholder-title##'    => $article->title,
-        '##placeholder-content##'  => $article->content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$article->datetime),
+        '##placeholder-header##'   => '{edit_article}',
+        '##placeholder-action##'   => 'articleupdate.php',
+        '##placeholder-id##'       => $id,
+        '##placeholder-title##'    => $title,
+        '##placeholder-content##'  => $content,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$datetime),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
-
-    $template = loadTemplate('adm_article_edit');
+    
+    $template = loadTemplate('adm_article_form');
 
     return strtr($template, $placeholderList);
 }
@@ -554,20 +572,30 @@ function load_article_edit(int $id): string
  * Loading a form to create an article entry.
  *
  * @return string
+ * 
+ * @since 0.4.0
  */
 function load_article_add(): string
 {
-    $template = '';
-    
-    $template = loadTemplate('adm_article_add');
+    $chkNo = '';
+    $chkYes = ' checked';
+    $title   = '';
+    $content = '';
     
     $placeholderList = [
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time())
+        '##placeholder-header##'   => '{create_article}',
+        '##placeholder-action##'   => 'articlinsert.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-title##'    => $title,
+        '##placeholder-content##'  => $content,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time()),
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = strtr($template, $placeholderList);
+    $template = loadTemplate('adm_article_form');
     
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
