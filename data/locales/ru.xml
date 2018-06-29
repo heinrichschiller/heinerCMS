@@ -19,10 +19,20 @@
 		<content>содержание</content>
 		<news>Новости</news>
 		<downloads>Загрузки</downloads>
+		<downloads_settings>Downloads-Settings</downloads_settings>
+		<create_download>Create download</create_download>
+		<edit_download>Edit download</edit_download>
 		<links>Связи</links>
+		<create_link>Create link</create_link>
+		<edit_link>Edit link</edit_link>
+		<links_settings>Links-Settings</links_settings>
+		<news_settings>News-Settings</news_settings>
 		<articles>Артикль</articles>
 		<article>Артикль</article>
 		<settings>Настройки</settings>
+		<create_article>Create article</create_article>
+		<edit_article>Edit article</edit_article>
+		<articles_settings>Article-Settings</articles_settings>
 		<general>Основные</general>
 		<user>Пользователь</user>
 		<trash>Корзина</trash>
@@ -41,7 +51,7 @@
 		<german>Немецкий</german>
 		<english>Английский</english>
 		<russian>Русский</russian>
-		<site_language>Language</site_language>
+		<application_language>Language</application_language>
 		<path>Path</path>
 		<filename>Filename</filename>
 		<comment>Comment</comment>
@@ -52,8 +62,13 @@
 		<create_user>Create user</create_user>
 		<tagline>Tagline</tagline>
 		<blog>Blog</blog>
-		<site>Site</site>
-		<sites>Sites</sites>
-		<create_site>Create sites</create_site>
+		<page>Page</page>
+		<pages>Pages</pages>
+		<create_page>Create pages</create_page>
+        <footer>Footer</footer>
+        <communication>Communication</communication>
+        <contact_inquiry>Contact enquiry</contact_inquiry>
+        <mainpage>Mainpage</mainpage>
+        <back_to_mainpage>Back to mainpage</back_to_mainpage>
 	</terms>
 </language>

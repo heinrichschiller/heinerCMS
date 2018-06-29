@@ -51,7 +51,7 @@
 		<german>Deutsch</german>
 		<english>Englisch</english>
 		<russian>Russich</russian>
-		<site_language>Sprache der Anwendung</site_language>
+		<application_language>Sprache der Anwendung</application_language>
 		<path>Pfad</path>
 		<filename>Dateiname</filename>
 		<comment>Kommentar</comment>
@@ -65,9 +65,9 @@
 		<delete>Löschen</delete>
 		<tagline>Untertitel</tagline>
 		<blog>Blog</blog>
-		<site>Seite</site>
-		<sites>Seiten</sites>
-		<create_site>Seite erstellen</create_site>
+		<page>Seite</page>
+		<pages>Seiten</pages>
+		<create_page>Seite erstellen</create_page>
 		<edit_news>Nachricht bearbeiten</edit_news>
 		<mainpage>Hauptseite</mainpage>
 		<back_to_mainpage>Zurück zur Hauptseite</back_to_mainpage>
