@@ -1000,6 +1000,26 @@ function loadTrashFromTable(string $table)
     }
 }
 
+function getGeneralSettings()
+{
+    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
+        FROM `settings`
+        WHERE 1";
+    
+    $pdo = getPdoConnection();
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
 /**
  * 
  * @param string $title

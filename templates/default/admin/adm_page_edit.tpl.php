@@ -3,7 +3,7 @@
 		<div class="panel">
 			<h4>
 				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-				{site}:
+				{page}:
 			</h4>
 		</div>
 	</div>

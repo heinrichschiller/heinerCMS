@@ -388,7 +388,11 @@ function load_mainpage(): string
 {
     $template = loadTemplate('pub_mainpage');
     
+    $settings = getGeneralSettings();
+    
     $placeholderList = [
+        '##placeholder-title##' => $settings['title'],
+        '##placeholder-tagline##' => $settings['tagline'],
         '##placeholder-card##' => load_cards()
     ];
     

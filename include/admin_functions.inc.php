@@ -885,6 +885,8 @@ function load_user_del( int $id) : string
 function load_pages(): string
 {
     $content = '';
+    
+    $hasEntry = false;
 
     $stmt = loadPagesStatement();
     
@@ -905,11 +907,20 @@ function load_pages(): string
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $content .= '</tr>';
+        
+        $hasEntry = true;
+    }
+    //return str_replace('##placeholder-pages-content##', $content, $template);
+    if($hasEntry) {
+        $template = loadTemplate('adm_pages');
+    } else {
+        $template = loadTemplate('adm_no_pages');
     }
     
-    $template = loadTemplate('adm_pages');
+    $tplPages = loadTemplate('adm_pages_entries');
+    $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
     
-    return str_replace('##placeholder-pages-content##', $content, $template);
+    return str_replace('##placeholder-content##', $tplPages, $template);
 }
 
 /**
@@ -965,11 +976,24 @@ function load_page_edit(int $id): string
 /**
  * Loading a form to delete a page entry.
  * 
+ * @param int $id
+ * 
  * @return string
+ * 
+ * @since 0.4.0
  */
-function load_page_del(): string
+function load_page_del($id): string
 {
-    return loadTemplate('adm_page_del');
+    $title = getTitleFromTableById('sites', $id);
+        
+    $placeholderList = [
+        '##placeholder-id##'    => $id,
+        '##placeholder-title##' => $title
+    ];
+
+    $template = loadTemplate('adm_page_del');
+
+    return strtr($template, $placeholderList);
 }
 
 /**
