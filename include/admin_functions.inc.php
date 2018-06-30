@@ -177,23 +177,11 @@ function load_news_del(int $id): string
  */
 function load_news_settings() : string
 {
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `tagline`, `comment` FROM `news_settings` WHERE `id` = 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    $link = $stmt->fetch(PDO::FETCH_OBJ);
+    $link = getNewsSettings();
     
     $placeholderList = [
-        '##placeholder-news-tagline##' => $link->tagline,
-        '##placeholder-news-comment##' => $link->comment
+        '##placeholder-news-tagline##' => $link['tagline'],
+        '##placeholder-news-comment##' => $link['comment']
     ];
     
     $template = loadTemplate('adm_news_settings');

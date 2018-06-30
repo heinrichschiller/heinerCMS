@@ -91,10 +91,10 @@ function loadNewsDetailedStatement(int $id) : PDOStatement
 }
 
 /**
- * Get a news entry from table by id.
+ * Get a news entry from table 'news' by id.
  * 
- * @param int $id
- * @return array
+ * @param int $id - Id of a news entry.
+ * @return array - List of a news entry. 
  * 
  * @since 0.4.0
  */
@@ -147,15 +147,15 @@ function loadPublicNewsStatement() : PDOStatement
 }
 
 /**
- * Add news entry.
+ * Add news entry into 'news' table.
  * 
- * @param string $title
- * @param string $message
- * @param string $visible
+ * @param string $title      - Title of a news. 
+ * @param string $message    - Message of the news.
+ * @param string $visibility - Is news visible or not.
  * 
  * @since 0.3.0
  */
-function addNews(string $title, string $message, string $visible)
+function addNews(string $title, string $message, string $visibility)
 {
     $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
         VALUES (:title, :message, :visibility)";
@@ -175,7 +175,7 @@ function addNews(string $title, string $message, string $visible)
         
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':visibility', $visibility);
         
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $datetime);
@@ -190,12 +190,12 @@ function addNews(string $title, string $message, string $visible)
 }
 
 /**
- * Update news entry.
+ * Update news entry in 'new' table.
  * 
- * @param int $id
- * @param string $title
- * @param string $message
- * @param string $visible
+ * @param int $id         - Id of a news.
+ * @param string $title   - Title of a news.
+ * @param string $message - Message of a news.
+ * @param string $visible - Is news visible or not.
  * 
  * @since 0.3.0
  */
@@ -213,7 +213,7 @@ function updateNews(int $id, string $title, string $message, string $visible)
         $stmt->bindParam(':visibility', $visible);
         $stmt->bindParam(':id', $id);
         
-        $stmt->execute($inpuit_parameters);
+        $stmt->execute();
         
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -238,7 +238,7 @@ function updateNewsSettings(string $tagline, string $comment)
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':comment', $comment);
         
-        $stmt->execute($input_parameters);
+        $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
         exit();
@@ -420,7 +420,7 @@ function updateDownload(int $id, string $title, string $comment, string $path, s
         $stmt->bindParam(':visibility', $visible);
         $stmt->bindParam(':id', $id);
         
-        $stmt->execute($input_parameters);
+        $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -444,7 +444,7 @@ function updateDownloadsSettings(string $tagline, string $comment)
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':comment', $comment);
         
-        $stmt->execute($input_parameters);
+        $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
         exit();
@@ -680,11 +680,11 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 }
 
 /**
- * Add a new article.
+ * Add a new article in 'articles' table.
  * 
- * @param string $title
- * @param string $content
- * @param string $visible
+ * @param string $title   - Title of an article.
+ * @param string $content - Content of an article.
+ * @param string $visible - Is an article visible or not.
  * 
  * @since 0.3.0
  */
@@ -714,7 +714,7 @@ function addArticle(string $title, string $content, string $visible)
             $stmt->bindParam(':trash', $trash);
         }
         
-        $stmt->execute($input_parameters);
+        $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
         exit();
@@ -722,12 +722,12 @@ function addArticle(string $title, string $content, string $visible)
 }
 
 /**
- * Update a article by id.
+ * Update a article in 'articles' table by id.
  * 
- * @param int $id
- * @param string $title
- * @param string $content
- * @param string $visibility
+ * @param int $id            - Id of an article.
+ * @param string $title      - Title of an article.
+ * @param string $content    - Content of an article.
+ * @param string $visibility - Is article visible or not.
  * 
  * @since 0.3.0
  */
@@ -807,7 +807,7 @@ function loadPublicArticlesStatement() : PDOStatement
 }
 
 /**
- * Get an article entry from database by id.
+ * Get an article entry from 'articles' table by id.
  * 
  * @param int $id - Id from an article entry.
  * @return array  - Article list from an entry.
@@ -988,6 +988,30 @@ function loadUserEditStatement(int $id)
 }
 
 /**
+ * Get newssettings entries from table news_settings.
+ * 
+ * @return array - List of news settings.
+ * 
+ * @since 0.4.0
+ */
+function getNewsSettings() : array
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "SELECT `tagline`, `comment` FROM `news_settings` WHERE `id` = 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
  * Get id, title and datetime from a table where trash-flag is true.
  *
  * @param string $table Name of a table.
@@ -1011,7 +1035,14 @@ function loadTrashFromTable(string $table)
     }
 }
 
-function getGeneralSettings()
+/**
+ * Get a list from 'settings' table.
+ * 
+ * @return array - List of settings entries.
+ * 
+ * @since 0.4.0
+ */
+function getGeneralSettings() : array
 {
     $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
         FROM `settings`
@@ -1021,7 +1052,6 @@ function getGeneralSettings()
     
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
         $stmt->execute();
         
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -1080,6 +1110,7 @@ function deleteItemsById(array $items, string $table)
     $sql = "DELETE FROM `$table` WHERE `id` = '$items[0]'";
     array_shift($items);
 
+    // @todo: prüfen was das ist...
     foreach ($items as $key => $value) {
         $sql .= " OR `id` = '$value'";
     }
