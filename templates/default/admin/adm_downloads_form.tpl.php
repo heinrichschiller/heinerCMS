@@ -1,11 +1,11 @@
 <div class="row">
    	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
    		<div class="panel">
-   			<h4><img class="glyph-icon-24" src="../templates/default/admin/img/svg/si-glyph-file-download.svg"> {edit_download}</h4>
+   			<h4><img class="glyph-icon-24" src="../templates/default/admin/img/svg/si-glyph-file-download.svg"> ##placeholder-header##</h4>
    		</div>
    	</div>
 </div>
-<form action="downloadsupdate.php" method="post">
+<form action="##placeholder-action##" method="post">
 	<div class="row">
 		<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
 			<div class="form-group">
@@ -23,7 +23,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title">
+				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title" required>
 			</div>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="path">{path}:</label>
-				<input type="text" name="path" value="##placeholder-path##" class="form-control" id="path">
+				<input type="text" name="path" value="##placeholder-path##" class="form-control" id="path" required>
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="filename">{filename}:</label>
-				<input type="text" name="filename" value="##placeholder-filename##" class="form-control" id="filename">
+				<input type="text" name="filename" value="##placeholder-filename##" class="form-control" id="filename" required>
 			</div>
 		</div>
 	</div>

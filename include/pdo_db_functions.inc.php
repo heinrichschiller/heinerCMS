@@ -268,15 +268,18 @@ function loadDownloadsStatement() : PDOStatement
 }
 
 /**
+ * Get a download entry from table 'downloads' by id.
  * 
- * @param int $id
- * @return mixed
+ * @param int $id - Id of a download entry.
+ * @return array  - List of a download entry.
+ * 
+ * @since 0.4.0
  */
-function loadDownloadsEditStatement(int $id)
+function getDownloads(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `comment`, ' . datetimeFormater() . ', `path`, `filename`, `visibility`'
+    $sql = 'SELECT `id`, `title`, `comment`, `path`, `filename`, ' . datetimeFormater() . ', `visibility`'
         . ' FROM `downloads` WHERE `id`= :id';
 
     try {
@@ -284,7 +287,7 @@ function loadDownloadsEditStatement(int $id)
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_NUM);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();

@@ -98,7 +98,7 @@ function load_news_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
 
-    list($id, $title, $message, $datetime, $visibility) = getNews($id);
+    list($id, $title, $message, $created_at, $visibility) = getNews($id);
     
     if ($visibility > - 1) {
         $chkYes = ' checked';
@@ -112,7 +112,7 @@ function load_news_edit(int $id): string
         '##placeholder-id##'       => $id,
         '##placeholder-title##'    => $title,
         '##placeholder-message##'  => $message,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $datetime),
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -244,26 +244,28 @@ function load_downloads_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
     
-    $download = loadDownloadsEditStatement($id);
+    list($id, $title, $comment, $path, $filename, $created_at, $visibility) = getDownloads($id);
     
-    if ($download->visibility > - 1) {
+    if ($visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
     
     $placeholderList = [
-        '##placeholder-id##'       => $download->id,
-        '##placeholder-title##'    => $download->title,
-        '##placeholder-path##'     => $download->path,
-        '##placeholder-filename##' => $download->filename,
-        '##placeholder-comment##'  => $download->comment,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $download->datetime),
+        '##placeholder-header##'   => '{edit_download}',
+        '##placeholder-action##'   => 'downloadsupdate.php',
+        '##placeholder-id##'       => $id,
+        '##placeholder-title##'    => $title,
+        '##placeholder-path##'     => $path,
+        '##placeholder-filename##' => $filename,
+        '##placeholder-comment##'  => $comment,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = loadTemplate('adm_downloads_edit');
+    $template = loadTemplate('adm_downloads_form');
 
     return strtr($template, $placeholderList);
 }
@@ -275,11 +277,31 @@ function load_downloads_edit(int $id): string
  */
 function load_downloads_add(): string
 {
+    $title    = '';
+    $path     = '';
+    $filename = '';
+    $comment  = '';
+    $chkNo    = '';
+    $chkYes   = ' checked';
+    
     $time = StrFTime('%d.%m.%Y %H:%M', time());
     
-    $template = loadTemplate('adm_downloads_add');
+    $placeholderList = [
+        '##placeholder-header##'   => '{create_download}',
+        '##placeholder-action##'   => 'downloadsinsert.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-title##'    => $title,
+        '##placeholder-path##'     => $path,
+        '##placeholder-filename##' => $filename,
+        '##placeholder-comment##'  => $comment,
+        '##placeholder-datetime##' => $time,
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
+    ];
+    
+    $template = loadTemplate('adm_downloads_form');
 
-    return str_replace('##placeholder-datetime##', $time, $template);
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -532,7 +554,7 @@ function load_article_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
     
-    list($id, $title, $content, $datetime, $visibility) = getArticle($id);
+    list($id, $title, $content, $created_at, $visibility) = getArticle($id);
     
     if ($visibility > - 1) {
         $chkYes = ' checked';
@@ -546,7 +568,7 @@ function load_article_edit(int $id): string
         '##placeholder-id##'       => $id,
         '##placeholder-title##'    => $title,
         '##placeholder-content##'  => $content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$datetime),
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$created_at),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
