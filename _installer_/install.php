@@ -16,31 +16,27 @@ $configPath = __DIR__ . '/../config/cms-config.php';
 if (file_exists($configPath)) {
     include $configPath;
 } else {
-    echo 'No configurationfile found!';
+    echo 'Keine konfigurationsdatei gefunden!';
     exit();
-}
-
-$dbDriver = $_SESSION['db_driver'];
-$dsn = '';
-
-if ($dbDriver == 'mysql') {
-    $dsn .= 'mysql:host=' . DB_HOST . ',' . DB_USER . ',' . DB_PASSWORD;
-} else {
-    $dsn .= __DIR__ . '/../data/sqlite/heinercms.db';
 }
 
 try {
     // 1. Create database connection
-    $pdo = new PDO($dsn);
+    if ($_SESSION['db_driver'] == 'mysql') {
+        $pdo = new PDO('mysql:host=' . DB_HOST, DB_USER, DB_PASSWORD);
 
-    if ($dbDriver == 'mysql') {
         if ( $_SESSION['new_db'] == 1 ) {
             $_SESSION['isDatabaseCreated'] = createDatabase($pdo, DB_NAME);
         }
-        
-        // 2. Select database if database is mysql.
+
+        // 2. Select database
         selectDatabase($pdo, DB_NAME);
+    } else {
+        $sqliteName = __DIR__ . '/../data/sqlite/heinercms.db';
+        $pdo = new PDO("sqlite:$sqliteName");
     }
+
+    $dbDriver = $_SESSION['db_driver'];
 
     $_SESSION['isTabArticlesCreated']          = createTableArticles($pdo, $dbDriver);
     $_SESSION['isTabArticlesSettingsCreated']  = createTableArticlesSettings($pdo, $dbDriver);

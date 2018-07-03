@@ -2,23 +2,20 @@
 
 /**
  * Database connection for heinerCMS that use PDO-Connection.
- * This connection can be configured with the cms-config.php 
- * file in the heinerCMS '/config'-directory. For more informations
- * please read the README in '/config'-directory.
+ * 
+ * @param string $driver Driver can be mysql or sqlite.
  * 
  * @return PDO
  */
 function getPdoConnection() : PDO
 {
-    $dsn = '';
-    if ( DB_DRIVER == 'mysql') {
-        $dsn .= DB_DRIVER . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ',' . DB_USER .',' . DB_PASSWORD;
-    } else {
-        $dsn .= DB_DRIVER . ':' . DB_NAME;
-    }
-    
     try {
-        $pdo = new PDO($dsn);
+
+        if ( DB_DRIVER == 'mysql') {
+            $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
+        } else {
+            $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
+        }
 
         if ( PDO_DEBUG_MODE ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
