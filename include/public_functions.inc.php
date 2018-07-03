@@ -154,7 +154,6 @@ function load_news_content($news, string $template) : string
  */
 function load_news_detailed(int $id): string
 {
-    $content = '';
     $placeholderList = [];
 
     $stmt = loadNewsDetailedStatement($id);

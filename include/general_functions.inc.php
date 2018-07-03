@@ -45,7 +45,8 @@ function load_session()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer` FROM `settings` WHERE 1";
+    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer` 
+        FROM `settings` WHERE 1";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -127,7 +128,6 @@ function get_translation(string $language) : array
 
     $arr_keys = [];
     $arr_values = [];
-    $arr_language = [];
 
     foreach ($xml->children() as $second_gen) {
         foreach ($second_gen->children() as $third_gen) {
