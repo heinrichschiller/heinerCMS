@@ -23,14 +23,14 @@
 function parseRequest()
 {
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 3);
-    list($module, $action, $parameter) = explode('/', $path);
-
+    list($module, $action, $params) = explode('/', $path);
+echo $module, $action, $params;
     // module? Einbinden eines bestimmten Moduls (eines unterprograms)
     // Module können sein Artikel, Links, Downloads, News, Pages
     // Module liegen in Ordner "modules", die individuell nachgeladen werden können.
     // Module sind von einander getrennt und beeinflussen sich selbst nicht.
     // Neue Module können in Module abgelegt werden, damit diese genutzt werden können.
-    require __DIR__ . '/modules/' . $module . '/' . $module . '.php';
+    //require __DIR__ . '/modules/' . $module . '/' . $module . '.php';
 
     // action => function? Methoden/Funktionen eines Moduls
 

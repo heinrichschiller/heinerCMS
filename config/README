@@ -1,4 +1,4 @@
-README
+# README
 
 This directory contains all configuration files of heinerCMS.
 The main configuration file is cms-config.php file, that contains

@@ -477,22 +477,26 @@ function loadLinksStatement() : PDOStatement
 }
 
 /**
+ * Get a link entry from table 'links' by id.
  * 
- * @param int $id
- * @return mixed
+ * @param int $id - Id of a link entry.
+ * @return array  - List of a link entry.
+ * 
+ * @since 0.4.0
  */
-function loadLinksEditStatement(int $id)
+function getLinks(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `id`, `title`, `tagline`, `uri`, `comment`, `visibility` FROM `links` WHERE `id` = :id";
+    $sql = 'SELECT `id`, `title`, `tagline`, `uri`, `comment`, ' . datetimeFormater() . ', `visibility` 
+            FROM `links` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_NUM);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -857,18 +861,27 @@ function loadPagesStatement() : PDOStatement
     }
 }
 
-function loadPageEditStatement(int $id)
+/**
+ * Get a page entry from table 'pages' by id.
+ * 
+ * @param int $id
+ * @return array
+ * 
+ * @since 0.4.0
+ */
+function getPage(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visibility` FROM `sites` WHERE `id` = :id';
+    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visibility` 
+            FROM `sites` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_NUM);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();

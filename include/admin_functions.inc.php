@@ -99,11 +99,11 @@ function load_news_edit(int $id): string
     $chkYes = '';
 
     list($id, $title, $message, $created_at, $visibility) = getNews($id);
-    
+
     if ($visibility > - 1) {
-        $chkYes = ' checked';
+        $chkYes .= ' checked';
     } else {
-        $chkNo = ' checked';
+        $chkNo .= ' checked';
     }
     
     $placeholderList = [
@@ -129,20 +129,15 @@ function load_news_edit(int $id): string
  */
 function load_news_add(): string
 {
-    $chkNo   = '';
-    $chkYes   = ' checked';
-    $title   = '';
-    $message = '';
-    
     $placeholdeList = [
         '##placeholder-header##'   => '{create_news}',
-        '##placeholder-action##'   => 'newsinset.php',
+        '##placeholder-action##'   => 'newsinsert.php',
         '##placeholder-id##'       => '{new}',
-        '##placeholder-title##'    => $title,
-        '##placeholder-message##'  => $message,
+        '##placeholder-title##'    => '',
+        '##placeholder-message##'  => '',
         '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time()),
-        '##placeholder-chk_yes##'  => $chkYes,
-        '##placeholder-chk_no##'   => $chkNo
+        '##placeholder-chk_yes##'  => ' checked',
+        '##placeholder-chk_no##'   => ''
     ];
     
     $template = loadTemplate('adm_news_form');
@@ -161,11 +156,13 @@ function load_news_del(int $id): string
     $title = getTitleFromTableById('news', $id);
     
     $placeholderList = [
-        '##placeholder-id##'    => $id,
-        '##placeholder-title##' => $title
+        '##placeholder-action##' => 'newsdel.php',
+        '##placeholder-uri##'    => 'news',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_news_del');
+    $template = loadTemplate('adm_form_del');
     
     return strtr($template, $placeholderList);
 }
@@ -247,9 +244,9 @@ function load_downloads_edit(int $id): string
     list($id, $title, $comment, $path, $filename, $created_at, $visibility) = getDownloads($id);
     
     if ($visibility > - 1) {
-        $chkYes = ' checked';
+        $chkYes .= ' checked';
     } else {
-        $chkNo = ' checked';
+        $chkNo .= ' checked';
     }
     
     $placeholderList = [
@@ -277,26 +274,19 @@ function load_downloads_edit(int $id): string
  */
 function load_downloads_add(): string
 {
-    $title    = '';
-    $path     = '';
-    $filename = '';
-    $comment  = '';
-    $chkNo    = '';
-    $chkYes   = ' checked';
-    
     $time = StrFTime('%d.%m.%Y %H:%M', time());
     
     $placeholderList = [
         '##placeholder-header##'   => '{create_download}',
         '##placeholder-action##'   => 'downloadsinsert.php',
         '##placeholder-id##'       => '{new}',
-        '##placeholder-title##'    => $title,
-        '##placeholder-path##'     => $path,
-        '##placeholder-filename##' => $filename,
-        '##placeholder-comment##'  => $comment,
+        '##placeholder-title##'    => '',
+        '##placeholder-path##'     => '',
+        '##placeholder-filename##' => '',
+        '##placeholder-comment##'  => '',
         '##placeholder-datetime##' => $time,
-        '##placeholder-chk_yes##'  => $chkYes,
-        '##placeholder-chk_no##'   => $chkNo
+        '##placeholder-chk_yes##'  => ' checked',
+        '##placeholder-chk_no##'   => ''
     ];
     
     $template = loadTemplate('adm_downloads_form');
@@ -315,11 +305,13 @@ function load_downloads_del(int $id): string
     $title = getTitleFromTableById('downloads', $id);
     
     $placeholderList = [
-        '##placeholder-id##' => $id,
-        '##placeholder-title##' => $title
+        '##placeholder-action##' => 'downloadsdel.php',
+        '##placeholder-uri##'    => 'downloads',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_downloads_del');
+    $template = loadTemplate('adm_form_del');
     
     return strtr($template, $placeholderList);
 }
@@ -401,28 +393,31 @@ function load_link_edit(int $id): string
     $chkYes = '';
     $chkNo = '';
 
-    $links = loadLinksEditStatement($id);
+    list($id, $title, $tagline, $uri, $comment, $created_at, $visibility) = getLinks($id);
 
-    if ($links->visibility > - 1) {
-        $chkYes = ' checked';
+    if ($visibility > - 1) {
+        $chkYes .= ' checked';
     } else {
-        $chkNo = ' checked';
+        $chkNo .= ' checked';
     }
 
     $placeholderList = [
-        '##placeholder-id##'      => $links->id,
-        '##placeholder-title##'   => $links->title,
-        '##placeholder-tagline##' => $links->tagline,
-        '##placeholder-uri##'     => $links->uri,
-        '##placeholder-comment##' => $links->comment,
-        '##placeholder-chk_yes##' => $chkYes,
-        '##placeholder-chk_no##'  => $chkNo
+        '##placeholder-header##'   => '{create_link}',
+        '##placeholder-action##'   => 'linkinsert.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-id##'       => $id,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
+        '##placeholder-title##'    => $title,
+        '##placeholder-tagline##'  => $tagline,
+        '##placeholder-uri##'      => $uri,
+        '##placeholder-comment##'  => $comment,
+        '##placeholder-chk_yes##'  => $chkYes,
+        '##placeholder-chk_no##'   => $chkNo
     ];
 
-    $template = loadTemplate('adm_link_edit');
-    $template = strtr($template, $placeholderList);
+    $template = loadTemplate('adm_link_form');
 
-    return $template;
+    return strtr($template, $placeholderList);
 }
 
 /**
@@ -433,10 +428,19 @@ function load_link_edit(int $id): string
 function load_link_add(): string
 {
     $placeholdeList = [
-        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
+        '##placeholder-header##'   => '{create_link}',
+        '##placeholder-action##'   => 'linkinsert.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time()),
+        '##placeholder-title##'    => '',
+        '##placeholder-tagline##'  => '',
+        '##placeholder-uri##'      => '',
+        '##placeholder-comment##'  => '',
+        '##placeholder-chk_yes##'  => ' checked',
+        '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_link_add');
+    $template = loadTemplate('adm_link_form');
     
     return strtr($template, $placeholdeList);
 }
@@ -452,11 +456,13 @@ function load_link_del(int $id): string
     $title = getTitleFromTableById('links', $id);
     
     $placeholderList = [
-        '##placeholder-id##'    => $id,
-        '##placeholder-title##' => $title
+        '##placeholder-action##' => 'linkdel.php',
+        '##placeholder-uri##'    => 'links',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_link_del');
+    $template = loadTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
     
     return $template;
@@ -557,9 +563,9 @@ function load_article_edit(int $id): string
     list($id, $title, $content, $created_at, $visibility) = getArticle($id);
     
     if ($visibility > - 1) {
-        $chkYes = ' checked';
+        $chkYes .= ' checked';
     } else {
-        $chkNo = ' checked';
+        $chkNo .= ' checked';
     }
     
     $placeholderList = [
@@ -568,7 +574,7 @@ function load_article_edit(int $id): string
         '##placeholder-id##'       => $id,
         '##placeholder-title##'    => $title,
         '##placeholder-content##'  => $content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M',$created_at),
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -587,20 +593,15 @@ function load_article_edit(int $id): string
  */
 function load_article_add(): string
 {
-    $chkNo = '';
-    $chkYes = ' checked';
-    $title   = '';
-    $content = '';
-    
     $placeholderList = [
         '##placeholder-header##'   => '{create_article}',
         '##placeholder-action##'   => 'articlinsert.php',
         '##placeholder-id##'       => '{new}',
-        '##placeholder-title##'    => $title,
-        '##placeholder-content##'  => $content,
+        '##placeholder-title##'    => '',
+        '##placeholder-content##'  => '',
         '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time()),
-        '##placeholder-chk_yes##'  => $chkYes,
-        '##placeholder-chk_no##'   => $chkNo
+        '##placeholder-chk_yes##'  => ' checked',
+        '##placeholder-chk_no##'   => ''
     ];
     
     $template = loadTemplate('adm_article_form');
@@ -621,11 +622,13 @@ function load_article_del(int $id): string
     $title = getTitleFromTableById('articles', $id);
     
     $placeholderList = [
-        '##placeholder-id##'    => $id,
-        '##placeholder-title##' => $title
+        '##placeholder-action##' => 'articlesdel.php',
+        '##placeholder-uri##'    => 'articles',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_article_del');
+    $template = loadTemplate('adm_form_del');
     
     $template = strtr($template, $placeholderList);
     
@@ -969,10 +972,18 @@ function load_pages(): string
 function load_page_add(): string
 {   
     $placeholdeList = [
-        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time())
+        '##placeholder-header##'   => '{create_page}',
+        '##placeholder-action##'   => 'pageinsert.php',
+        '##placeholder-id##'       => '{new}',
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', time()),
+        '##placeholder-title##'    => '',
+        '##placeholder-tagline##'  => '',
+        '##placeholder-content##'  => '',
+        '##placeholder-chk_yes##'  => ' checked',
+        '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_page_add');
+    $template = loadTemplate('adm_page_form');
     
     return strtr($template, $placeholdeList);
 }
@@ -988,25 +999,27 @@ function load_page_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
 
-    $page = loadPageEditStatement($id);
+    list($id, $title, $tagline, $content, $created_at, $visibility) = getPage($id);
 
-    if ($page->visibility > - 1) {
+    if ($visibility > - 1) {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
     }
 
     $placeholderList = [
-        '##placeholder-id##'       => $page->id,
-        '##placeholder-title##'    => $page->title,
-        '##placeholder-tagline##'  => $page->tagline,
-        '##placeholder-content##'  => $page->content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $page->datetime),
+        '##placeholder-header##'   => '{edit_page}',
+        '##placeholder-action##'   => 'pageupdate.php',
+        '##placeholder-id##'       => $id,
+        '##placeholder-title##'    => $title,
+        '##placeholder-tagline##'  => $tagline,
+        '##placeholder-content##'  => $content,
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
 
-    $template = loadTemplate('adm_page_edit');
+    $template = loadTemplate('adm_page_form');
 
     return strtr($template, $placeholderList);
 }
@@ -1025,11 +1038,13 @@ function load_page_del($id): string
     $title = getTitleFromTableById('sites', $id);
         
     $placeholderList = [
+        '##placeholder-action##' => 'pagedel.php',
+        '##placeholder-uri##'    => 'pages',
         '##placeholder-id##'    => $id,
         '##placeholder-title##' => $title
     ];
 
-    $template = loadTemplate('adm_page_del');
+    $template = loadTemplate('adm_form_del');
 
     return strtr($template, $placeholderList);
 }
