@@ -1,4 +1,4 @@
-Version 0.4.0
+Version 0.4.0 (2018-07-05)
 	added, new functionality
 		You can delete pages in pages from now.
 	update, translations
