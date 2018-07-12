@@ -2,16 +2,6 @@
 
 $route = [];
 
-$route['news'] = function()
-{
-    return load_news();
-};
-
-$route['newsdet'] = function($id)
-{
-    return load_news_detailed($id);
-};
-
 $route['downloads'] = function()
 {
     return load_downloads();

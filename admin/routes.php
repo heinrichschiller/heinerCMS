@@ -3,30 +3,6 @@
 $route = [];
 
 /************************************************************
- * news routes
- ***********************************************************/
-
-$route['news'] = function($id) {
-    return load_news();
-};
-
-$route['newsedit'] = function($id) {
-    return load_news_edit ($id);
-};
-
-$route['newsadd'] = function($id) {
-    return load_news_add($id);
-};
-
-$route['newsdel'] = function($id) {
-    return load_news_del($id);
-};
-
-$route['newssettings'] = function() {
-    return load_news_settings();
-};
-
-/************************************************************
  * downloads routes
  ***********************************************************/
 

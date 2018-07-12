@@ -14,10 +14,6 @@
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
             <span class="badge badge-light">##placeholder-articles##</span>
         </a>
-        <a href="index.php?uri=news" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {news}
-            <span class="badge badge-light">##placeholder-news##</span>
-        </a>
         <a href="index.php?uri=downloads" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-file-download.svg"> {downloads}
             <span class="badge badge-light">##placeholder-downloads##</span>
@@ -60,9 +56,6 @@
         </a>
         <a href="index.php?uri=articlessettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}
-        </a>
-        <a href="index.php?uri=newssettings" class="list-group-item list-group-item-action">
-            <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {news}
         </a>
         <a href="index.php?uri=downloadssettings" class="list-group-item list-group-item-action">
             <img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-file-download.svg"> {downloads}
