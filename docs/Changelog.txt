@@ -1,5 +1,6 @@
 Version 0.4.1 (2018-07-12)
 	bugfix, article can be created again
+	bugfix, protocol in installer shows the config-file correctly
 Version 0.4.0 (2018-07-05)
 	added, new functionality
 		You can delete pages in pages from now.
