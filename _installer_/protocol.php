@@ -6,7 +6,7 @@ session_start();
 // Found cms-config.php ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-$filename = __DIR__ . '/../cms-config.php';
+$filename = __DIR__ . '/../config/cms-config.php';
 
 if(file_exists($filename)) {
     $configTrAttr = 'class="table-success"';

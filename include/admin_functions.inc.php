@@ -595,7 +595,7 @@ function load_article_add(): string
 {
     $placeholderList = [
         '##placeholder-header##'   => '{create_article}',
-        '##placeholder-action##'   => 'articlinsert.php',
+        '##placeholder-action##'   => 'articleinsert.php',
         '##placeholder-id##'       => '{new}',
         '##placeholder-title##'    => '',
         '##placeholder-content##'  => '',
