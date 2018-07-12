@@ -43,7 +43,6 @@
         		<div class="col-xl-3 col-lg-3 col-xs-12" id="hidden">
         			##placeholder-navigation##
         		</div>
-        		<div class="leiste" id="hide"></div>
         	    <div class="col-xl-6 col-lg-9 col-xs-12 content-section">
         	    	##placeholder-content##
         	    </div>
