@@ -44,8 +44,6 @@ try {
     $_SESSION['isTabDownloadsSettingsCreated'] = createTableDownloadsSettings($pdo, $dbDriver);
     $_SESSION['isTabLinksCreated']             = createTableLinks($pdo, $dbDriver);
     $_SESSION['isTabLinksSettingsCreated']     = createTableLinksSettings($pdo, $dbDriver);
-    $_SESSION['isTabNewsCreated']              = createTableNews($pdo, $dbDriver);
-    $_SESSION['isTabNewsSettingsCreated']      = createTableNewsSettings($pdo, $dbDriver);
     $_SESSION['isTabSitesCreated']             = createTableSites($pdo, $dbDriver);
     $_SESSION['isTabUsersCreated']             = createTableUsers($pdo, $dbDriver);
     $_SESSION['isTabSettingsCreated']          = createTableSettings($pdo, $dbDriver);
@@ -53,7 +51,6 @@ try {
     // 4. Write default configuration
     $_SESSION['isDefaultConfWritten']   = writeDefaultConfiguration($pdo);
     $_SESSION['isLinksConfWritten']     = writeLinksSettingsConfiguration($pdo);
-    $_SESSION['isNewsConfWritten']      = writeNewsSettingsConfiguration($pdo);
     $_SESSION['isDownloadsConfWritten'] = writeDownloadsSettingsConfiguration($pdo);
     $_SESSION['isArticlesConfWritten']  = writeArticlesSettingsConfiguration($pdo);
 

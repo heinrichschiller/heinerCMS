@@ -516,86 +516,6 @@ function createTableLinksSettings(PDO $pdo, string $dbDriver) : bool
 }
 
 /**
- * Create table news
- * 
- * @param PDO $pdo
- * @return bool
- */
-function createTableNews(PDO $pdo, string $dbDriver) : bool
-{
-    if(checkDatabase($pdo)) {
-        $sql = "CREATE TABLE `news` (
-            `id` INT NOT NULL AUTO_INCREMENT,
-            `title` VARCHAR(64) NOT NULL DEFAULT '',
-            `message` TEXT NOT NULL,
-            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `update_at` timestamp NULL DEFAULT NULL,
-            `visibility` TINYINT(4) NOT NULL DEFAULT '0',
-            `trash` ENUM('true','false') NOT NULL DEFAULT 'false',
-            PRIMARY KEY (`id`)) 
-            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-
-        if ($dbDriver == 'sqlite') {
-            $sql = 'CREATE TABLE "news" ( 
-                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
-                `title` TEXT NOT NULL, `message` TEXT, 
-                `created_at` TEXT NOT NULL, 
-                `update_at` TEXT, 
-                `visibility` TEXT, 
-                `trash` TEXT )';
-        }
-
-        try {
-            $pdo->exec($sql);
-            return true;
-        } catch(PDOException $ex) {
-            return false;
-        }
-    }
-
-    return false;
-}
-
-/**
- * Create table news_settings
- *
- * @param PDO $pdo
- * @return bool
- */
-function createTableNewsSettings(PDO $pdo, string $dbDriver) : bool
-{
-    if(checkDatabase($pdo)) {
-        $sql = "CREATE TABLE `news_settings` (
-            `id` INT NOT NULL AUTO_INCREMENT,
-            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
-            `comment` TEXT NOT NULL,
-            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `update_at` timestamp NULL DEFAULT NULL,
-            PRIMARY KEY (`id`)) 
-            CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-
-        if ($dbDriver == 'sqlite') {
-            $sql = 'CREATE TABLE `news_settings` ( 
-                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
-                `tagline` TEXT, 
-                `comment` TEXT, 
-                `created_at` TEXT, 
-                `update_at` INTEGER )';
-        }
-
-        try {
-            $pdo->exec($sql);
-            return true;
-        } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
-        }
-    }
-
-    return false;
-}
-
-/**
  * Create table users
  * 
  * @param PDO $pdo
@@ -799,29 +719,6 @@ function writeDownloadsSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "INSERT INTO `downloads_settings`(`tagline`, `comment`) VALUES ('','');";
-
-        try {
-            $pdo->exec($sql);
-            return true;
-        } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
-        }
-    }
-
-    return false;
-}
-
-/**
- * Write news configuration into database
- *
- * @param PDO $pdo
- * @return bool
- */
-function writeNewsSettingsConfiguration(PDO $pdo) : bool
-{
-    if ( checkDatabase($pdo) ) {
-        $sql = "INSERT INTO `news_settings`(`tagline`, `comment`) VALUES ('','');";
 
         try {
             $pdo->exec($sql);
