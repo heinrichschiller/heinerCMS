@@ -1,3 +1,5 @@
+Version 0.5.0 ()
+	update, news removed because it is the same as articles
 Version 0.4.1 (2018-07-12)
 	bugfix, article can be created again
 	bugfix, protocol in installer shows the config-file correctly
