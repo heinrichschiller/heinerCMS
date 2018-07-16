@@ -41,30 +41,6 @@ if($_SESSION['isTabDownloadsSettingsCreated']) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// Created Newstable ?
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-if($_SESSION['isTabNewsCreated']) {
-    $newsTrAttr = 'class="table-success"';
-    $newsRes = 'ja';
-} else {
-    $newsTrAttr = 'class="table-danger"';
-    $newsRes = 'nein';
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Created News Settings table ?
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-if($_SESSION['isTabNewsSettingsCreated']) {
-    $newsSettingsTrAttr = 'class="table-success"';
-    $newsSettingsRes = 'ja';
-} else {
-    $newsSettingsTrAttr = 'class="table-danger"';
-    $newsSettingsRes = 'nein';
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
 // Created Downloadstable ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -125,15 +101,15 @@ if($_SESSION['isTabArticlesSettingsCreated']) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// Created Sitesstable ?
+// Created Pagestable ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-if($_SESSION['isTabSitesCreated']) {
-    $sitesTrAttr = 'class="table-success"';
-    $sitesRes = 'ja';
+if($_SESSION['isTabPagesCreated']) {
+    $pagesTrAttr = 'class="table-success"';
+    $pagesRes = 'ja';
 } else {
-    $sitesTrAttr = 'class="table-danger"';
-    $sitesRes = 'nein';
+    $pagesTrAttr = 'class="table-danger"';
+    $pagesRes = 'nein';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,18 +170,6 @@ if($_SESSION['isLinksConfWritten']) {
 } else {
     $isLinksConfTrAttr = 'class="table-danger"';
     $isLinksRes = 'nein';
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Is news configuration written?
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-if($_SESSION['isNewsConfWritten']) {
-    $isNewsConfTrAttr = 'class="table-success"';
-    $isNewsRes = 'ja';
-} else {
-    $isNewsConfTrAttr = 'class="table-danger"';
-    $isNewsRes = 'nein';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -302,14 +266,6 @@ footer p {
 								<td>Verbindung zur Datenbank erfolgreich?</td>
 								<td><?= $databaseRes; ?></td>
 							</tr>
-							<tr <?= $newsTrAttr; ?>>
-								<td>Tabelle news erstellt?</td>
-								<td><?= $newsRes; ?></td>
-							</tr>
-							<tr <?= $newsSettingsTrAttr; ?>>
-								<td>Tabelle news_settings erstellt?</td>
-								<td><?= $newsSettingsRes; ?></td>
-							</tr>
 							<tr <?= $downloadsTrAttr; ?>>
 								<td>Tabelle downloads erstellt?</td>
 								<td><?= $downloadsRes; ?></td>
@@ -334,9 +290,9 @@ footer p {
 								<td>Tabelle articles_settings erstellt?</td>
 								<td><?= $articlesSettingsRes; ?></td>
 							</tr>
-							<tr <?= $sitesTrAttr; ?>>
-								<td>Tabelle sites erstellt?</td>
-								<td><?= $sitesRes; ?></td>
+							<tr <?= $pagesTrAttr; ?>>
+								<td>Tabelle pages erstellt?</td>
+								<td><?= $pagesRes; ?></td>
 							</tr>
 							<tr <?= $settingsTrAttr; ?>>
 								<td>Tabelle settings erstellt?</td>
@@ -380,10 +336,6 @@ footer p {
 								<td>Standardkonfiguration für Links geschrieben?</td>
 								<td><?= $isLinksRes ?></td>
 							</tr>
-							<tr <?= $isNewsConfTrAttr; ?>>
-								<td>Standardkonfiguration für News geschrieben?</td>
-								<td><?= $isNewsRes ?></td>
-							</tr>
 							<tr <?= $isArticlesConfTrAttr; ?>>
 								<td>Standardkonfiguration für Artikel geschrieben?</td>
 								<td><?= $isArticlesRes ?></td>
@@ -397,8 +349,6 @@ footer p {
 				</div>
 			</div>
 		</div>
-	</div>
-
 	</div>
 	<footer>
 		<p>

@@ -44,7 +44,7 @@ try {
     $_SESSION['isTabDownloadsSettingsCreated'] = createTableDownloadsSettings($pdo, $dbDriver);
     $_SESSION['isTabLinksCreated']             = createTableLinks($pdo, $dbDriver);
     $_SESSION['isTabLinksSettingsCreated']     = createTableLinksSettings($pdo, $dbDriver);
-    $_SESSION['isTabSitesCreated']             = createTableSites($pdo, $dbDriver);
+    $_SESSION['isTabPagesCreated']             = createTablePages($pdo, $dbDriver);
     $_SESSION['isTabUsersCreated']             = createTableUsers($pdo, $dbDriver);
     $_SESSION['isTabSettingsCreated']          = createTableSettings($pdo, $dbDriver);
 

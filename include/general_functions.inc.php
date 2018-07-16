@@ -121,7 +121,7 @@ function destroySession()
  */
 function get_translation(string $language) : array
 {
-    $xmlfile = __DIR__ . "/../data/locales/$language.xml";
+    $xmlfile = LOCALES_PATH . "$language.xml";
 
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);

@@ -12,12 +12,11 @@ function load_navigation(): string
     $entries = countEntries();
     
     $placeholderList = [
-        '##placeholder-news##'      => $entries[0],
-        '##placeholder-downloads##' => $entries[1],
-        '##placeholder-links##'     => $entries[2],
-        '##placeholder-articles##'  => $entries[3],
-        '##placeholder-pages##'     => $entries[4],
-        '##placeholder-trash##'     => $entries[5]
+        '##placeholder-downloads##' => $entries[0],
+        '##placeholder-links##'     => $entries[1],
+        '##placeholder-articles##'  => $entries[2],
+        '##placeholder-pages##'     => $entries[3],
+        '##placeholder-trash##'     => $entries[4]
     ];
     
     $template = loadTemplate('adm_navigation');
@@ -643,12 +642,10 @@ function load_locale_options() : string
 {
     $html = '';
     
-    $locale_dir = __DIR__ . '/../data/locales/';
-    
-    $files = scandir($locale_dir);
+    $files = scandir(LOCALES_PATH);
 
     for ($i = 2; $i <= count($files) -1; $i++) {
-        $xmlFile = $locale_dir . $files[$i];
+        $xmlFile = LOCALES_PATH . $files[$i];
 
         $xmlString = file_get_contents($xmlFile);
         $xml = simplexml_load_string($xmlString);

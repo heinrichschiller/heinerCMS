@@ -50,205 +50,6 @@ function datetimeFormater() : string
  * 
  * @return PDOStatement
  */
-function loadNewsStatement() : PDOStatement
-{
-    $pdo = getPdoConnection();
-
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visibility`'
-    . " FROM `news` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * 
- * @param int $id
- * @return PDOStatement
- */
-function loadNewsDetailedStatement(int $id) : PDOStatement
-{
-    $pdo = getPdoConnection();
-
-    $sql = 'SELECT `title`, `message`, ' . datetimeFormater() . ' FROM `news` WHERE `id` = :id';
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
-}
-
-/**
- * Get a news entry from table 'news' by id.
- * 
- * @param int $id - Id of a news entry.
- * @return array - List of a news entry. 
- * 
- * @since 0.4.0
- */
-function getNews(int $id) : array
-{
-    $pdo = getPdoConnection();
-
-    $sql = 'SELECT `id`, `title`, `message`, ' . datetimeFormater() . ', `visibility`'
-        . ' FROM `news` WHERE `id` = :id';
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_NUM);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * 
- * @return PDOStatement
- */
-function loadPublicNewsStatement() : PDOStatement
-{
-    $pdo = getPdoConnection();
-
-    $datetime = 'UNIX_TIMESTAMP(news.created_at) AS datetime';
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = "strftime('%s', news.created_at) AS datetime";
-    }
-
-    $sql = "SELECT news.id, news.title, news.message, $datetime,
-        news_settings.tagline as news_tagline, news_settings.comment as news_comment
-        FROM `news`, `news_settings`
-        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
-}
-
-/**
- * Add news entry into 'news' table.
- * 
- * @param string $title      - Title of a news. 
- * @param string $message    - Message of the news.
- * @param string $visibility - Is news visible or not.
- * 
- * @since 0.3.0
- */
-function addNews(string $title, string $message, string $visibility)
-{
-    $sql = "INSERT INTO `news` (`title`, `message`, `visibility`)
-        VALUES (:title, :message, :visibility)";
-    
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-        
-        $sql = "INSERT INTO `news` (`title`, `message`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :message, :created_at, :visibility, :trash)";
-    }
-    
-    $pdo = getPdoConnection();
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visibility', $visibility);
-        
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
-        
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Update news entry in 'new' table.
- * 
- * @param int $id         - Id of a news.
- * @param string $title   - Title of a news.
- * @param string $message - Message of a news.
- * @param string $visible - Is news visible or not.
- * 
- * @since 0.3.0
- */
-function updateNews(int $id, string $title, string $message, string $visible)
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "UPDATE `news` SET `title` = :title, `message` = :message, `visibility` = :visibility WHERE `id` = :id";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':message', $message);
-        $stmt->bindParam(':visibility', $visible);
-        $stmt->bindParam(':id', $id);
-        
-        $stmt->execute();
-        
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * 
- * @param string $tagline
- * @param string $comment
- */
-function updateNewsSettings(string $tagline, string $comment)
-{
-    $sql = "UPDATE `news_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
-    
-    $pdo = getPdoConnection();
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
-        
-        $stmt->execute();
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * 
- * @return PDOStatement
- */
 function loadDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
@@ -848,7 +649,7 @@ function loadPagesStatement() : PDOStatement
     $pdo = getPdoConnection();
 
     $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visibility`'
-        . " FROM `sites` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+        . " FROM `pages` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -874,7 +675,7 @@ function getPage(int $id) : array
     $pdo = getPdoConnection();
 
     $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visibility` 
-            FROM `sites` WHERE `id` = :id';
+            FROM `pages` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -900,14 +701,14 @@ function getPage(int $id) : array
  */
 function addPage(string $title, string $tagline, string $content, string $visible)
 {
-    $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `visibility`)
+    $sql = "INSERT INTO `pages` (`title`, `tagline`, `content`, `visibility`)
         VALUES (:title, :tagline, :content, :visibility)";
     
     if (DB_DRIVER == 'sqlite') {
         $datetime = strftime('%Y-%m-%d %H:%M', time());
         $trash = 'false';
         
-        $sql = "INSERT INTO `sites` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
+        $sql = "INSERT INTO `pages` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
             VALUES (:title, :tagline, :content, :created_at, :visibility, :trash)";
     }
     
@@ -948,7 +749,7 @@ function updatePage(int $id, string $title, string $tagline, string $content, st
 {
     $pdo = getPdoConnection();
 
-    $sql = 'UPDATE `sites` SET `title` = :title, `tagline` = :tagline, `content` = :content, `visibility` = :visibility WHERE `id` = :id';
+    $sql = 'UPDATE `pages` SET `title` = :title, `tagline` = :tagline, `content` = :content, `visibility` = :visibility WHERE `id` = :id';
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -997,30 +798,6 @@ function loadUserEditStatement(int $id)
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Get newssettings entries from table news_settings.
- * 
- * @return array - List of news settings.
- * 
- * @since 0.4.0
- */
-function getNewsSettings() : array
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `tagline`, `comment` FROM `news_settings` WHERE `id` = 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -1215,27 +992,23 @@ function countEntries()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) as result FROM `news` WHERE `trash` = 'false'
-        UNION ALL
-        SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
+    $sql = "SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
         UNION ALL
         SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
         UNION ALL
         SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
         UNION ALL
-        SELECT COUNT(`id`) FROM `sites` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `pages` WHERE `trash` = 'false'
         UNION ALL
         SELECT COUNT(*) as result
             FROM (
             SELECT `trash` FROM `articles`
             UNION ALL
-            SELECT `trash` FROM `news`
-            UNION ALL
             SELECT `trash` FROM `downloads`
             UNION ALL
             SELECT `trash` FROM `links`
             UNION ALL
-            SELECT `trash` FROM `sites`
+            SELECT `trash` FROM `pages`
             ) as subquery
             WHERE `trash` = 'true';";
 

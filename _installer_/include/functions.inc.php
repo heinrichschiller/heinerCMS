@@ -570,11 +570,11 @@ function createTableUsers(PDO $pdo, string $dbDriver) : bool
  * @param PDO $pdo
  * @return bool
  */
-function createTableSites(PDO $pdo, string $dbDriver) : bool
+function createTablePages(PDO $pdo, string $dbDriver) : bool
 {
     if ( checkDatabase($pdo) ) {
 
-        $sql = "CREATE TABLE `sites` (
+        $sql = "CREATE TABLE `pages` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `title` VARCHAR(64) NOT NULL DEFAULT '',
             `tagline` VARCHAR(140) NOT NULL DEFAULT '',
@@ -587,7 +587,7 @@ function createTableSites(PDO $pdo, string $dbDriver) : bool
             ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
         if ($dbDriver == 'sqlite') {
-            $sql = 'CREATE TABLE `sites` (
+            $sql = 'CREATE TABLE `pages` (
                 `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 `title` TEXT NOT NULL,
                 `tagline` TEXT,
