@@ -71,15 +71,24 @@ function load_downloads(): string
     }
     
     if($hasEntry) {
-        $template = loadTemplate('adm_downloads');
+        $placeholderList = [
+            '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-file-download.svg',
+            '##placeholder-header##' => ' {downloads}',
+            '##placeholder-uri##'    => 'index.php?uri=downloadsadd',
+            '##placeholder-button##' => '{create_download}'
+        ];
+        
+        $template = loadTemplate('adm_table');
+        $template = strtr($template, $placeholderList);
+
+        $tplDownloadsEntries = loadTemplate('adm_downloads_entries');
+        $tplDownloadsEntries = str_replace('##placeholder-table-content##', $content, $tplDownloadsEntries);
+        $template = str_replace('##placeholder-content##', $tplDownloadsEntries, $template);
     } else {
         $template = loadTemplate('adm_no_downloads');
     }
 
-    $tplDownloadsEntries = loadTemplate('adm_downloads_entries');
-    $tplDownloadsEntries = str_replace('##placeholder-table-content##', $content, $tplDownloadsEntries);
-    
-    return str_replace('##placeholder-content##', $tplDownloadsEntries, $template);
+    return $template;
 }
 
 /**
@@ -223,15 +232,25 @@ function load_links(): string
     }
     
     if($hasEntry) {
-        $template = loadTemplate('adm_links');
+        $placeholderList = [
+            '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-global.svg',
+            '##placeholder-header##' => ' {links}',
+            '##placeholder-uri##'    => 'index.php?uri=linksadd',
+            '##placeholder-button##' => '{create_link}'
+        ];
+        
+        $template = loadTemplate('adm_table');
+        $template = strtr($template, $placeholderList);
+        
+        $tplLinksEntries = loadTemplate('adm_links_entries');
+        $tplLinksEntries = str_replace('##placeholder-table-content##', $content, $tplLinksEntries);
+        
+        $template =str_replace('##placeholder-content##', $tplLinksEntries, $template);
     } else {
         $template = loadTemplate('adm_no_links');
     }
     
-    $tplLinksEntries = loadTemplate('adm_links_entries');
-    $tplLinksEntries = str_replace('##placeholder-table-content##', $content, $tplLinksEntries);
-    
-    return str_replace('##placeholder-content##', $tplLinksEntries, $template);
+    return $template;
 }
 
 /**
@@ -388,15 +407,25 @@ function load_articles(): string
     }
     
     if($hasEntry) {
-        $template = loadTemplate('adm_articles');
+        $placeholderList = [
+            '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-pen.svg',
+            '##placeholder-header##' => ' {articles}',
+            '##placeholder-uri##'    => 'index.php?uri=articleadd',
+            '##placeholder-button##' => '{create_article}'
+        ];
+        
+        $template = loadTemplate('adm_table');
+        $template = strtr($template, $placeholderList);
+        
+        $tplArticlesEntries = loadTemplate('adm_articles_entries');
+        $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
+        
+        $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
     } else {
         $template = loadTemplate('adm_no_articles');
     }
-    
-    $tplArticlesEntries = loadTemplate('adm_articles_entries');
-    $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
-    
-    return str_replace('##placeholder-content##', $tplArticlesEntries, $template);
+
+    return $template;
 }
 
 /**
@@ -799,9 +828,22 @@ function load_pages(): string
         
         $hasEntry = true;
     }
-    //return str_replace('##placeholder-pages-content##', $content, $template);
+
     if($hasEntry) {
+        $placeholderList = [
+            '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-document.svg',
+            '##placeholder-header##' => ' {pages}',
+            '##placeholder-uri##'    => 'index.php?uri=pageadd',
+            '##placeholder-button##' => '{create_page}'
+        ];
+        
         $template = loadTemplate('adm_pages');
+        $template = strtr($template, $placeholderList);
+        
+        $tplPages = loadTemplate('adm_pages_entries');
+        $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
+        
+        $template = str_replace('##placeholder-content##', $tplPages, $template);
     } else {
         $template = loadTemplate('adm_no_pages');
     }
@@ -809,7 +851,7 @@ function load_pages(): string
     $tplPages = loadTemplate('adm_pages_entries');
     $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
     
-    return str_replace('##placeholder-content##', $tplPages, $template);
+    return $template;
 }
 
 /**
