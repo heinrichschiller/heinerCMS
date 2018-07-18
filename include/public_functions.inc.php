@@ -41,10 +41,6 @@ function load_navigation(): string
         $blog .= '<a class="nav-item nav-link" href="' . getBlogURL() . '" target="blank">Blog</a>';
     }
 
-    if (countTableEntries('news') !== 0) {
-        $news .= ' <a class="nav-item nav-link" href="index.php?uri=news">Neuigkeiten</a>';
-    }
-
     if (countTableEntries('downloads') !== 0) {
         $downloads .= '<a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>';
     }
@@ -60,7 +56,6 @@ function load_navigation(): string
     $placeholderList = [
         '##placeholder-title##'     => 'Heinrich-Schiller.de',
         '##placeholder-blog##'      => $blog,
-        '##placeholder-news##'      => $news,
         '##placeholder-downloads##' => $downloads,
         '##placeholder-links##'     => $links,
         '##placeholder-articles##'  => $articles,
@@ -82,7 +77,7 @@ function load_nav_pages(): string
 
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `id`, `title` FROM `sites` WHERE `visibility` = 0 AND `trash` = 'false'";
+    $sql = "SELECT `id`, `title` FROM `pages` WHERE `visibility` = 0 AND `trash` = 'false'";
 
     try {
 

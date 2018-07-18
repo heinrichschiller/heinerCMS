@@ -568,14 +568,12 @@ function renderHtmlTable(array $dataList): string
 function load_trash(): string
 {
     $template = '';
-    
-    $news = loadTrashFromTable('news');
+
     $downloads = loadTrashFromTable('downloads');
     $links = loadTrashFromTable('links');
     $artikles = loadTrashFromTable('articles');
     
     $content = [
-        $news,
         $downloads,
         $links,
         $artikles

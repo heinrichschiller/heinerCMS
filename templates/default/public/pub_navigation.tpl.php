@@ -6,7 +6,6 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			##placeholder-blog##
-			##placeholder-news##
 			##placeholder-downloads##
 			##placeholder-links##
 			##placeholder-articles##
