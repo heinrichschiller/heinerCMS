@@ -3,6 +3,7 @@
 session_start();
 
 include __DIR__ . '/../config/cms-config.php';
+include __DIR__ . '/../config/db-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 
@@ -16,7 +17,7 @@ try {
     $sql = "SELECT `id`,`email`,`username`,`password` FROM `users` WHERE email = :email";
 
     $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute(array('email' => $email));
+    $stmt->execute(array('email' => $email));
     $user = $stmt->fetch();
 
 } catch (PDOException $ex) {
