@@ -31,13 +31,13 @@
 
 session_start();
 
-if (!file_exists( __DIR__ . '/config/db-config.php')) {
+if (!file_exists( __DIR__ . '/configs/db-config.php')) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
     exit();
 }
 
-include __DIR__ . '/config/cms-config.php';
-include __DIR__ . '/config/db-config.php';
+include __DIR__ . '/configs/cms-config.php';
+include __DIR__ . '/configs/db-config.php';
 
 include __DIR__ . '/include/pdo_db_functions.inc.php';
 include __DIR__ . '/include/general_functions.inc.php';

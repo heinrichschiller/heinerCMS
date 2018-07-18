@@ -2,7 +2,8 @@
 
 session_start();
 
-include __DIR__ . '/../config/cms-config.php';
+include __DIR__ . '/../configs/cms-config.php';
+include __DIR__ . '/../configs/db-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
@@ -22,11 +23,13 @@ if (is_logged_in()) {
         ,`lastname`= :lastname
         ,`email`= :email
         ,`username`= :username
-        ,`active`= :active';
+        ,`active`= :active
+        WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
 
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);

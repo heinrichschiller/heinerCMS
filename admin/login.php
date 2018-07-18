@@ -2,8 +2,8 @@
 
 session_start();
 
-include __DIR__ . '/../config/cms-config.php';
-include __DIR__ . '/../config/db-config.php';
+include __DIR__ . '/../configs/cms-config.php';
+include __DIR__ . '/../configs/db-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 

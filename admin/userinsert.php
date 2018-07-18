@@ -2,7 +2,8 @@
 
 session_start();
 
-include __DIR__ . '/../config/cms-config.php';
+include __DIR__ . '/../configs/cms-config.php';
+include __DIR__ . '/../configs/db-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
@@ -12,7 +13,6 @@ if (is_logged_in()) {
     $lastname  = filter_input(INPUT_POST, 'lastname');
     $username  = filter_input(INPUT_POST, 'username');
     $email     = filter_input(INPUT_POST, 'email');
-    $publicAs  = filter_input(INPUT_POST, 'public_as');
     $password1 = filter_input(INPUT_POST, 'password1');
     $password2 = filter_input(INPUT_POST, 'password2');
     $active    = filter_input(INPUT_POST, 'active');
@@ -51,7 +51,7 @@ if (is_logged_in()) {
             $stmt->bindParam(':created_at', $created_at);
         }
 
-        $stmt->execute($input_parameters);
+        $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
