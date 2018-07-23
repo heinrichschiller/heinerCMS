@@ -1,8 +1,8 @@
 # README
 
 This directory contains all configuration files of heinerCMS.
-The main configuration file is cms-config.php file, that contains
-all important data, to use heinerCMS. This file are be creating
+The database configuration file is db-config.php file, that contains
+all important database data, to use heinerCMS. This file are be creating
 with the Installer of heinerCMS, but you can create your own
 configuration file, if you want. This can be helpfull for testing
 your own configurations or settings.
@@ -35,5 +35,6 @@ define('DB_PASSWORD', '');
 define('PDO_DEBUG_MODE', true);
 
 SQLite config-example:
+
 define('DB_NAME', __DIR__ . '/../data/sqlite/heinercms.db');
 define('PDO_DEBUG_MODE', true);
