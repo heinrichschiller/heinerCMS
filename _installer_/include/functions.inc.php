@@ -98,7 +98,6 @@ function getTranslation(string $language) : array
 
     $arr_keys = [];
     $arr_values = [];
-    $arr_language = [];
 
     foreach ($xml->children() as $second_gen) {
         foreach ($second_gen->children() as $third_gen) {
@@ -182,8 +181,6 @@ function load_conditions() : string
 function load_database() : string
 {
     $template = loadTemplate('database');
-
-    $db = $_SESSION['db'];
 
     $dbTemplate = loadTemplate($_SESSION['db'] . '_form');
 
@@ -296,13 +293,9 @@ function createTableArticles(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
-
 }
 
 /**
@@ -335,12 +328,9 @@ function createTableArticlesSettings(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -382,12 +372,9 @@ function createTableDownloads(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -421,12 +408,9 @@ function createTableDownloadsSettings(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -468,12 +452,9 @@ function createTableLinks(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -507,12 +488,9 @@ function createTableLinksSettings(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -556,12 +534,9 @@ function createTableUsers(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -602,12 +577,9 @@ function createTablePages(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -643,12 +615,9 @@ function createTableSettings(PDO $pdo, string $dbDriver) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-    
-    return false;
 }
 
 /**
@@ -678,12 +647,9 @@ function writeDefaultConfiguration(PDO $pdo) : bool
 
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -701,12 +667,9 @@ function writeLinksSettingsConfiguration(PDO $pdo) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -724,12 +687,9 @@ function writeDownloadsSettingsConfiguration(PDO $pdo) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -747,12 +707,9 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
             $pdo->exec($sql);
             return true;
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
-            exit();
+            return false;
         }
     }
-
-    return false;
 }
 
 /**
@@ -777,7 +734,8 @@ function checkDatabase(PDO $pdo) : bool
 {
     if ($_SESSION['db_driver'] == 'mysql') {
         $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".DB_NAME."'";
-    
+
+        // checking for existed mysql database. If the database is exists, then go into loop
         foreach ($pdo->query($sql) as $result) {
           return true;
         }
@@ -787,4 +745,45 @@ function checkDatabase(PDO $pdo) : bool
         }
     }
     return false;
+}
+
+/**
+ * Create an user.
+ * 
+ * @param PDO $pdo          - Database connection.
+ * @param string $firstname - Firstname of an user.
+ * @param string $lastname  - Lastname of an user.
+ * @param string $email     - Email of an user.
+ * @param string $password  - Password of an user. 
+ * @param string $username  - Username of an user.
+ * 
+ * @return boolean
+ * 
+ * @since 0.5.0
+ */
+function createUser(PDO $pdo, string $firstname, string $lastname, string $email, string $password, string $username)
+{
+    if ( checkDatabase($pdo) ) {
+
+        $sql = 'INSERT INTO `users`(`firstname`, `lastname`, `email`, `password`, `username`, `active`)
+            VALUES (:firstname, :lastname, :email, :password, :username, :active);';
+
+        try {
+
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->bindParam(':firstname', $firstname);
+            $stmt->bindParam(':lastname', $lastname);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':active', 'true');
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
 }
