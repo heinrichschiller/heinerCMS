@@ -19,7 +19,7 @@
  * @var string
  * @since 0.5.0
  */
-define('CONFIG_PATH', __DIR__ . '/../config/');
+define('CONFIG_PATH', __DIR__ . '/');
 
 /**
  * Path to include directory
