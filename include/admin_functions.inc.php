@@ -1,6 +1,36 @@
 <?php
 
 /**
+ * Load a session for heinerCMS.
+ *
+ */
+function load_session()
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
+        FROM `settings` WHERE 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    while($settings = $stmt->fetch(PDO::FETCH_OBJ)) {
+        $_SESSION['title']    = $settings->title;
+        $_SESSION['tagline']  = $settings->tagline;
+        $_SESSION['theme']    = $settings->theme;
+        $_SESSION['blog-url'] = $settings->blog_url;
+        $_SESSION['language'] = $settings->lang_short;
+        $_SESSION['footer']   = $settings->footer;
+    }
+    
+}
+
+/**
  * Load the admin navigation with badges
  * 
  * @return string
@@ -837,7 +867,7 @@ function load_pages(): string
             '##placeholder-button##' => '{create_page}'
         ];
         
-        $template = loadTemplate('adm_pages');
+        $template = loadTemplate('adm_table');
         $template = strtr($template, $placeholderList);
         
         $tplPages = loadTemplate('adm_pages_entries');
