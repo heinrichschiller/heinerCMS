@@ -29,11 +29,6 @@
 	margin-bottom: 10px;
 }
 
-.leiste {
-	width: 3px;
-	border: 1px dotted rgba(115,115,155,0.6);
-}
-
 .hidden {
 	display: none;
 }
@@ -48,4 +43,9 @@
 
 .glyph-icon-24 {
 	height: 24px;
+}
+
+.btn-primary {
+	background-color: #337ab7;
+	border-color: #337ab7;
 }
