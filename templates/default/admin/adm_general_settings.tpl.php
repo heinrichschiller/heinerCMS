@@ -45,7 +45,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
              <div class="form-group">
                   <label for="sel1">{application_language}:</label>
-                  <select class="custom-select" id="sel1" name="language">
+                  <select class="custom-select" id="sel1" name="language" onchange="this.form.submit();">
                   	##placeholder-option-locale##
                   </select>
             </div> 
