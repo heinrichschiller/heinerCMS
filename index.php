@@ -29,18 +29,17 @@
  * SOFTWARE.
  */
 
-session_start();
+include __DIR__ . '/configs/cms-config.php';
+include __DIR__ . '/configs/db-config.php';
+include __DIR__ . '/include/general_functions.inc.php';
 
-if (!file_exists( __DIR__ . '/configs/db-config.php')) {
+if (!checkSystem()) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
     exit();
 }
 
-include __DIR__ . '/configs/cms-config.php';
-include __DIR__ . '/configs/db-config.php';
-
 include __DIR__ . '/include/pdo_db_functions.inc.php';
-include __DIR__ . '/include/general_functions.inc.php';
+
 include __DIR__ . '/include/public_functions.inc.php';
 include __DIR__ . '/include/routes.inc.php';
 
@@ -49,20 +48,20 @@ $id  = filter_input(INPUT_GET, 'id');
 
 $content = '';
 
-load_session();
-
 $template = loadTemplate('pub_template');
 
 if (isset($route[$uri]) ) {
     $content .= $route[$uri]($id);
 }
 
+$settings = getGeneralSettings();
+
 $placeholderList = [
-    '##placeholder-language##'   => $_SESSION['language'],
-    '##placeholder-title##'      => $_SESSION['title'],
+    '##placeholder-language##'   => $settings['lang_short'],
+    '##placeholder-title##'      => $settings['title'],
     '##placeholder-navigation##' => load_navigation(),
     '##placeholder-content##'    => $content,
-    '##placeholder-footer##'     => $_SESSION['footer']
+    '##placeholder-footer##'     => $settings['footer']
 ];
 
 $template = strtr($template, $placeholderList);
