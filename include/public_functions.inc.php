@@ -15,16 +15,6 @@
  */
 
 /**
- * Get blog url for a extern blog
- * 
- * @return string
- */
-function getBlogURL(): string
-{
-    return $_SESSION['blog-url'];
-}
-
-/**
  * Load navigation bar on public section
  * 
  * @return string
@@ -32,13 +22,14 @@ function getBlogURL(): string
 function load_navigation(): string
 {
     $blog = '';
-    $news = '';
     $downloads = '';
     $links = '';
     $articles = '';
 
-    if (! empty(getBlogURL())) {
-        $blog .= '<a class="nav-item nav-link" href="' . getBlogURL() . '" target="blank">Blog</a>';
+    $settings = getGeneralSettings();
+
+    if (! empty($settings['blog_url'])) {
+        $blog .= '<a class="nav-item nav-link" href="' . $settings['blog_url'] . '" target="blank">Blog</a>';
     }
 
     if (countTableEntries('downloads') !== 0) {
@@ -54,7 +45,7 @@ function load_navigation(): string
     }
 
     $placeholderList = [
-        '##placeholder-title##'     => 'Heinrich-Schiller.de',
+        '##placeholder-title##'     => $settings['title'],
         '##placeholder-blog##'      => $blog,
         '##placeholder-downloads##' => $downloads,
         '##placeholder-links##'     => $links,
