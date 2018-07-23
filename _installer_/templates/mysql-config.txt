@@ -2,14 +2,14 @@
 
 /****************************************************************************************
  *
- * The base configuration for heinerCMS.
+ * The database configuration file for heinerCMS.
  *
  * This file contains:
  *
  * * Database settings
  * * Debug mode settings
  *
- * @since 0.1.2
+ * @since 0.5.0
  *
  ***************************************************************************************/
 
@@ -68,5 +68,3 @@ define('DB_PASSWORD', '##placeholder_database_password##');
  * @var string Set the value on 'true' to activate the debug mode
  */
 define('PDO_DEBUG_MODE', false);
-
-?>
