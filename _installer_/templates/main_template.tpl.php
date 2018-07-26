@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="##placeholder-language##">
     <head>
-        <title>##placeholder-title##</title>
+        <title>heinerCMS-Installation</title>
         <meta charset="utf8">
         
         <!-- Latest compiled and minified CSS -->
@@ -30,10 +30,11 @@
        	</div>
        	<footer>
         	<p>
-        		Copyright <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2018
+        		Copyright <a href="https://www.heinrich-schiller.de">www.heinrich-schiller.de</a> 2017 - 2018
        		</p>
        	</footer>
-        	
+        
+        <script src="templates/js/main.js"></script>
         <!-- jQuery library -->
         <script src="../vendor/components/jquery/jquery.min.js"></script>
             
