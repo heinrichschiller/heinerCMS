@@ -38,6 +38,37 @@ echo $module, $action, $params;
 }
 
 /**
+ * Load a session for heinerCMS.
+ *
+ */
+function load_session()
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "SELECT `title`, `tagline`, `theme`, `darkmode`, `blog_url`, `lang_short`, `footer`
+        FROM `settings` WHERE 1";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+    while($settings = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $_SESSION['title']    = $settings['title'];
+        $_SESSION['tagline']  = $settings['tagline'];
+        $_SESSION['theme']    = $settings['theme'];
+        $_SESSION['darkmode'] = $settings['darkmode'];
+        $_SESSION['blog-url'] = $settings['blog_url'];
+        $_SESSION['language'] = $settings['lang_short'];
+        $_SESSION['footer']   = $settings['footer'];
+    }
+    
+}
+
+/**
  * Checks if a login has taken place.
  * 
  * @return boolean
@@ -142,9 +173,9 @@ function loadTemplate(string $template): string
 
 function checkSystem()
 {
-    if (!file_exists( CONFIG_PATH . 'db-config.php')) {
-        return true;
+    if (!defined('DB_DRIVER') && !defined('DB_NAME')) {
+        return false;
     }
-    
-    return false;
+
+    return true;
 }

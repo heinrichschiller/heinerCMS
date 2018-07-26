@@ -207,10 +207,10 @@ function load_user() : string
  * 
  * @return string
  */
-function load_installation() : string
+function getDBConfiguration() : string
 {
-    $placeholderList = [];
-
+    $filename = __DIR__ . '/../templates/' . $_SESSION['db_driver'] . '-config.txt';
+    
     if ($_SESSION['db_driver'] == 'mysql') {
         $placeholderList = [
             '##placeholder_database_address##'  => $_SESSION['address'],
@@ -218,15 +218,15 @@ function load_installation() : string
             '##placeholder_database_name##'     => $_SESSION['database'],
             '##placeholder_database_password##' => $_SESSION['db_password']
         ];
+        
+        $file = file_get_contents($filename);
+        
+        $result = strtr($file, $placeholderList);
+    } else {
+        $result = file_get_contents($filename);
     }
 
-    $template = loadTemplate('installation');
-
-    $tplConfig = loadTemplate($_SESSION['db_driver'] . '_config');
-
-    $template = str_replace('##placeholder-config##', $tplConfig, $template);
-
-    return strtr($template, $placeholderList); 
+    return $result;
 }
 
 /**
@@ -756,18 +756,19 @@ function checkDatabase(PDO $pdo) : bool
  * @param string $email     - Email of an user.
  * @param string $password  - Password of an user. 
  * @param string $username  - Username of an user.
+ * @param string $active    - Activity of an user.
  * 
  * @return boolean
  * 
  * @since 0.5.0
  */
-function createUser(PDO $pdo, string $firstname, string $lastname, string $email, string $password, string $username)
+function createUser(PDO $pdo, string $firstname, string $lastname, string $email, string $password, string $username, string $active = 'true')
 {
     if ( checkDatabase($pdo) ) {
 
         $sql = 'INSERT INTO `users`(`firstname`, `lastname`, `email`, `password`, `username`, `active`)
             VALUES (:firstname, :lastname, :email, :password, :username, :active);';
-
+        
         try {
 
             $stmt = $pdo->prepare($sql);
@@ -775,9 +776,9 @@ function createUser(PDO $pdo, string $firstname, string $lastname, string $email
             $stmt->bindParam(':firstname', $firstname);
             $stmt->bindParam(':lastname', $lastname);
             $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':active', 'true');
+            $stmt->bindParam(':active', $active);
 
             $stmt->execute();
 

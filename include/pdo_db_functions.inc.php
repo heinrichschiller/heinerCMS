@@ -859,15 +859,17 @@ function getGeneralSettings() : array
  * @param string $title
  * @param string $tagline
  * @param string $theme
+ * @param string $darkmode
  * @param string $blogUrl
  * @param string $language
  * @param string $footer
  */
-function updateGeneralSettings(string $title, string $tagline, string $theme, string $blogUrl, string $language, string $footer)
+function updateGeneralSettings(string $title, string $tagline, string $theme, string $darkmode, string $blogUrl, string $language, string $footer)
 {
     $sql = 'UPDATE `settings` SET `title`=:title,
         `tagline`=:tagline,
         `theme`=:theme,
+        `darkmode`=:darkmode,
         `blog_url`=:blog_url,
         `lang_short`=:language,
         `footer`=:footer WHERE 1';
@@ -880,6 +882,7 @@ function updateGeneralSettings(string $title, string $tagline, string $theme, st
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':theme', $theme);
+        $stmt->bindParam(':darkmode', $darkmode);
         $stmt->bindParam(':blog_url', $blogUrl);
         $stmt->bindParam(':language', $language);
         $stmt->bindParam(':footer', $footer);
