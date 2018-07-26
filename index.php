@@ -30,7 +30,7 @@
  */
 
 include __DIR__ . '/configs/cms-config.php';
-include __DIR__ . '/configs/db-config.php';
+include CONFIG_PATH . 'db-config.php';
 include __DIR__ . '/include/general_functions.inc.php';
 
 if (!checkSystem()) {
