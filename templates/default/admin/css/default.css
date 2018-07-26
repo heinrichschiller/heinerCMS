@@ -1,6 +1,8 @@
 @CHARSET "UTF-8";
 
-
+.navbar {
+	background-color: #f8f9fa  !important;
+}
 .col-xl-6 {
 	min-width: 944px;
 }
@@ -43,9 +45,4 @@
 
 .glyph-icon-24 {
 	height: 24px;
-}
-
-.btn-primary {
-	background-color: #337ab7;
-	border-color: #337ab7;
 }
