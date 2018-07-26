@@ -1,36 +1,6 @@
 <?php
 
 /**
- * Load a session for heinerCMS.
- *
- */
-function load_session()
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
-        FROM `settings` WHERE 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    while($settings = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $_SESSION['title']    = $settings->title;
-        $_SESSION['tagline']  = $settings->tagline;
-        $_SESSION['theme']    = $settings->theme;
-        $_SESSION['blog-url'] = $settings->blog_url;
-        $_SESSION['language'] = $settings->lang_short;
-        $_SESSION['footer']   = $settings->footer;
-    }
-    
-}
-
-/**
  * Load the admin navigation with badges
  * 
  * @return string
@@ -649,12 +619,13 @@ function load_trash(): string
 function load_general_settings(): string
 {
     $template = loadTemplate('adm_general_settings');
-    
+
     $placeholderList = [
         '##placeholder-title##'         => $_SESSION['title'],
         '##placeholder-tagline##'       => $_SESSION['tagline'],
         '##placeholder-blog-url##'      => $_SESSION['blog-url'],
         '##placeholder-option-theme##'  => load_theme_options(),
+        '##placeholder-checked##'       => $_SESSION['darkmode'],
         '##placeholder-option-locale##' => load_locale_options(),
         '##placeholder-footer##'        => $_SESSION['footer']
     ];

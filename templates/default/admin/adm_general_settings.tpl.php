@@ -37,6 +37,7 @@
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
              <div class="form-group">
                 <label for="sel1">{theme}:</label>
+                <span style="float: right">{dark_mode}: <input type="checkbox" name="darkmode" value="checked" aria-label="" ##placeholder-checked## onchange="this.form.submit();"></span>
                 <select class="custom-select" id="sel1" name="theme">
 					##placeholder-option-theme##
 				</select>

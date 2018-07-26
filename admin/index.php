@@ -28,6 +28,7 @@ if (is_logged_in ()) {
 	$placeholderList = [
 	    '##placeholder-language##'   => $_SESSION['language'],
 	    '##placeholder-title##'      => $_SESSION['title'],
+	    '##placeholder-style##'      => empty($_SESSION['darkmode']) ? 'default.css' : 'default-dark.css',
 	    '##placeholder-navigation##' => load_navigation(),
 	    '##placeholder-content##'    => $content,
 	    '##placeholder-footer##'     => $_SESSION['footer']

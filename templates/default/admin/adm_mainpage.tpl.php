@@ -25,6 +25,14 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
+				<label for="text">{text}:</label>
+				<textarea name="content" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group">
 				<button type="submit" class="btn btn-success">{save}</button>
 				<span></span>
 				<button type="reset" class="btn btn-danger">{reset}</button>

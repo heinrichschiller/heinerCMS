@@ -15,15 +15,15 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
-		<link href="../templates/default/admin/css/admstyle.css" rel="stylesheet">
+		<link href="../templates/default/admin/css/##placeholder-style##" rel="stylesheet">
 	</head>
 	<body>
         <div class="container-fluid">
-        	<nav class="navbar navbar-light bg-light">
+        	<nav class="navbar navbar-light bg-primary">
   				<a class="navbar-brand" href="#">##placeholder-title## - {administration}</a>
   				<ul class="nav justify-content-end">
                       <li class="nav-item">
-                        <a class="nav nav-link" href="?uri=logout">Sign out</a>
+                        <a class="nav nav-link dark" href="?uri=logout">Sign out</a>
                       </li>
                   </ul>
 			</nav>
