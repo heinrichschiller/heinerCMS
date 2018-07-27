@@ -837,7 +837,7 @@ function loadTrashFromTable(string $table)
  */
 function getGeneralSettings() : array
 {
-    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
+    $sql = "SELECT `title`, `tagline`, `theme`, `darkmode`, `blog_url`, `lang_short`, `footer`
         FROM `settings`
         WHERE 1";
     
