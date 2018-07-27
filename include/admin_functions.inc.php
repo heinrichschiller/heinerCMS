@@ -503,7 +503,7 @@ function load_article_del(int $id): string
     $title = getTitleFromTableById('articles', $id);
     
     $placeholderList = [
-        '##placeholder-action##' => 'articlesdel.php',
+        '##placeholder-action##' => 'articledel.php',
         '##placeholder-uri##'    => 'articles',
         '##placeholder-id##'     => $id,
         '##placeholder-title##'  => $title
