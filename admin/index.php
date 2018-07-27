@@ -13,6 +13,10 @@ include __DIR__ . '/routes.php';
 if (is_logged_in ()) {
 
     $content = '';
+    $defaultStyle = 'default.css';
+    $defaultDarkStyle = 'default-dark.css';
+    $editor = "tinymce.init({ selector:'textarea'});";
+    $editorDark = "tinymce.init({ selector:'textarea', skin: 'dark' });";
     
     $uri = filter_input ( INPUT_GET, 'uri' );
     $id = filter_input ( INPUT_GET, 'id' );
@@ -28,9 +32,10 @@ if (is_logged_in ()) {
 	$placeholderList = [
 	    '##placeholder-language##'   => $_SESSION['language'],
 	    '##placeholder-title##'      => $_SESSION['title'],
-	    '##placeholder-style##'      => empty($_SESSION['darkmode']) ? 'default.css' : 'default-dark.css',
+	    '##placeholder-style##'      => empty($_SESSION['darkmode']) ? $defaultStyle : $defaultDarkStyle,
 	    '##placeholder-navigation##' => load_navigation(),
 	    '##placeholder-content##'    => $content,
+	    '##placeholder-editor##'     => empty($_SESSION['darkmode']) ? $editor : $editorDark,
 	    '##placeholder-footer##'     => $_SESSION['footer']
 	];
 	

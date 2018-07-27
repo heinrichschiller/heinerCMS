@@ -54,7 +54,7 @@
         
         <!-- TinyMCE-Editor -->
 		<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
-  		<script>tinymce.init({ selector:'textarea' });</script>
+  		<script>##placeholder-editor##</script>
   		
   		<script src="../templates/default/admin/js/main.js"></script>
 	</body>

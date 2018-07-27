@@ -1,7 +1,9 @@
 Version 0.5.0 ()
-	add, darkmode for administration available in general settings
+	add, darkmode for administration
+		The darkmode is available in general settings.
+	add, tinymce darkskin
 	update, news removed because it is the same as articles
-	update, installer
+	update, installer can write the database configuration file
 	update, clean code
 	update, twbs/bootstrap (4.1.1 => 4.1.2)
 	update, tinymce/tinymce (4.7.13 => 4.8.0)

@@ -6,6 +6,7 @@ body {
 }
 
 .content-section {
+	padding-top: 0.4em;
 	background-color: #333;
 }
 
