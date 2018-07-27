@@ -3,6 +3,11 @@
 .navbar {
 	background-color: #f8f9fa  !important;
 }
+
+.content-section {
+	padding-top: 0.4em;
+}
+
 .col-xl-6 {
 	min-width: 944px;
 }
