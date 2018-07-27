@@ -595,6 +595,7 @@ function createTableSettings(PDO $pdo, string $dbDriver) : bool
             `title` VARCHAR(64) NOT NULL DEFAULT '',
             `tagline` VARCHAR(140) NOT NULL DEFAULT '',
             `theme` VARCHAR(64) NOT NULL DEFAULT '',
+            `darkmode` VARCHAR(7) NULL DEFAULT '',
             `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
             `lang_short` VARCHAR(3) NOT NULL DEFAULT '',
             `footer` VARCHAR(140) NOT NULL DEFAULT ''
@@ -605,7 +606,8 @@ function createTableSettings(PDO $pdo, string $dbDriver) : bool
                 `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
                 `title` TEXT NOT NULL, 
                 `tagline` TEXT, 
-                `theme` TEXT NOT NULL, 
+                `theme` TEXT NOT NULL,
+                `darkmode` VARCHAR(7) NULL,
                 `blog_url` TEXT, 
                 `lang_short` TEXT NOT NULL, 
                 `footer` TEXT NOT NULL )';
