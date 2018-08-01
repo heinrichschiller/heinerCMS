@@ -7,6 +7,11 @@ include __DIR__ . '/../configs/db-config.php';
 
 include __DIR__ . '/../include/pdo_db_functions.inc.php';
 
+if (!checkSystem()) {
+    header("Location: /../_installer_/index.php?uri=language&lang=en&db=mysql");
+    exit();
+}
+
 $email = filter_input(INPUT_POST, 'email');
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $login_password = filter_input(INPUT_POST, 'password');
