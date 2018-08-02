@@ -1,52 +1,6 @@
 <?php
 
 /**
- * Database connection for heinerCMS that use PDO-Connection.
- * 
- * @param string $driver Driver can be mysql or sqlite.
- * 
- * @return PDO
- */
-function getPdoConnection() : PDO
-{
-    try {
-
-        if ( DB_DRIVER == 'mysql') {
-            $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
-        } else {
-            $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
-        }
-
-        if ( PDO_DEBUG_MODE ) {
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-
-        return $pdo;
-
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-
-}
-
-/**
- * Formats the time for mysql or sqlite.
- * 
- * @return string
- */
-function datetimeFormater() : string
-{
-    $datetime = 'UNIX_TIMESTAMP(`created_at`) AS datetime';
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = "strftime('%s', `created_at`) AS datetime";
-    }
-
-    return $datetime;
-}
-
-/**
  * 
  * @return PDOStatement
  */
@@ -54,7 +8,7 @@ function loadDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `path`, `filename`, `visibility`'
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visibility`'
         . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -80,7 +34,7 @@ function getDownloads(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `comment`, `path`, `filename`, ' . datetimeFormater() . ', `visibility`'
+    $sql = 'SELECT `id`, `title`, `comment`, `path`, `filename`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
         . ' FROM `downloads` WHERE `id`= :id';
 
     try {
@@ -124,14 +78,13 @@ function loadPublicDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $datetime = 'UNIX_TIMESTAMP(downloads.created_at) AS datetime';
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = "strftime('%s', downloads.created_at) AS datetime";
-    }
-
-    $sql = "SELECT downloads.title, downloads.comment, downloads.path, downloads.filename, $datetime,
-        downloads_settings.tagline as downloads_tagline, downloads_settings.comment as downloads_comment
+    $sql = "SELECT downloads.title, 
+        downloads.comment, 
+        downloads.path, 
+        downloads.filename, 
+        UNIX_TIMESTAMP(downloads.created_at) AS datetime,
+        downloads_settings.tagline as downloads_tagline, 
+        downloads_settings.comment as downloads_comment
         FROM `downloads`, `downloads_settings`
         WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
@@ -161,14 +114,6 @@ function addDownload(string $title, string $comment, string $path, string $filen
     $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visibility`)
         VALUES (:title, :comment, :path, :filename, :visibility)";
     
-    if ( DB_DRIVER == 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-        
-        $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :comment, :path, :filename, :created_at, :visibility, :trash)";
-    }
-    
     $pdo = getPdoConnection();
     
     try {
@@ -179,11 +124,6 @@ function addDownload(string $title, string $comment, string $path, string $filen
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visible);
-        
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
         
         $stmt->execute();
     } catch (PDOException $ex) {
@@ -263,7 +203,7 @@ function loadLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `uri`,' . datetimeFormater() . ', `visibility`'
+    $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
         . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
 
     try {
@@ -289,7 +229,7 @@ function getLinks(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `uri`, `comment`, ' . datetimeFormater() . ', `visibility` 
+    $sql = 'SELECT `id`, `title`, `tagline`, `uri`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` 
             FROM `links` WHERE `id` = :id';
 
     try {
@@ -313,14 +253,12 @@ function loadPublicLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $datetime = 'UNIX_TIMESTAMP(links.created_at) AS datetime';
-    
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = "strftime('%s', links.created_at) AS datetime";
-    }
-
-    $sql = "SELECT links.title, links.tagline, links.uri, links.comment, $datetime,
-        links_settings.tagline as settings_tagline, links_settings.comment as settings_comment
+    $sql = "SELECT links.title, 
+        links.tagline, 
+        links.uri, links.comment, 
+        UNIX_TIMESTAMP(links.created_at) AS datetime,
+        links_settings.tagline as settings_tagline, 
+        links_settings.comment as settings_comment
         FROM `links`, `links_settings`
         WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
@@ -352,14 +290,6 @@ function addLink(string $title, string $tagline, string $comment, string $uri, s
     $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`)
         VALUES (:title, :tagline, :uri, :comment, :visibility)";
     
-    if( DB_DRIVER == 'sqlite' ) {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-        
-        $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `created_at`, `visibility`, `trash`)
-        VALUES (:title, :tagline, :uri, :comment, :created_at, :visibility, :trash)";
-    }
-    
     $pdo = getPdoConnection();
     
     try {
@@ -370,11 +300,6 @@ function addLink(string $title, string $tagline, string $comment, string $uri, s
         $stmt->bindParam(':comment', $comment);
         $stmt->bindParam(':uri', $uri);
         $stmt->bindParam(':visibility', $visible);
-        
-        if ( DB_DRIVER == 'sqlite' ) {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
         
         $stmt->execute();
     } catch (PDOException $ex) {
@@ -450,7 +375,7 @@ function loadArticlesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() .', `visibility`'
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
         . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -473,7 +398,7 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `title`, `content`, ' . datetimeFormater() . ' FROM `articles` WHERE `id` = :id';
+    $sql = 'SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -500,14 +425,6 @@ function addArticle(string $title, string $content, string $visible)
 {
     $sql = "INSERT INTO `articles` (`title`, `content`, `visibility`) VALUES (:title, :content, :visibility)";
     
-    if(DB_DRIVER === 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-        
-        $sql = "INSERT INTO `articles` (`title`, `content`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :content, :created_at, :visibility, :trash)";
-    }
-    
     $pdo = getPdoConnection();
     
     try {
@@ -516,11 +433,6 @@ function addArticle(string $title, string $content, string $visible)
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':visibility', $visible);
-        
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -590,14 +502,12 @@ function updateArticleSettings(string $tagline, string $comment)
  */
 function loadPublicArticlesStatement() : PDOStatement
 {
-    $datetime = 'UNIX_TIMESTAMP(articles.created_at) AS datetime';
-
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = "strftime('%s', articles.created_at) AS datetime";
-    }
-
-    $sql = "SELECT articles.id, articles.title, articles.content, $datetime,
-        articles_settings.tagline as tagline, articles_settings.comment as comment
+    $sql = "SELECT articles.id, 
+        articles.title, 
+        articles.content, 
+        UNIX_TIMESTAMP(articles.created_at) AS datetime,
+        articles_settings.tagline as tagline, 
+        articles_settings.comment as comment
         FROM `articles`, `articles_settings`
         WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
 
@@ -626,7 +536,7 @@ function getArticle(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `content`, ' . datetimeFormater() . ', `visibility` FROM `articles` WHERE `id` = :id';
+    $sql = 'SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` FROM `articles` WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -648,7 +558,7 @@ function loadPagesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`,' . datetimeFormater() . ', `visibility`'
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
         . " FROM `pages` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
 
     try {
@@ -674,7 +584,7 @@ function getPage(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `content`, ' .datetimeFormater() . ', `visibility` 
+    $sql = 'SELECT `id`, `title`, `tagline`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` 
             FROM `pages` WHERE `id` = :id';
 
     try {
@@ -704,14 +614,6 @@ function addPage(string $title, string $tagline, string $content, string $visibl
     $sql = "INSERT INTO `pages` (`title`, `tagline`, `content`, `visibility`)
         VALUES (:title, :tagline, :content, :visibility)";
     
-    if (DB_DRIVER == 'sqlite') {
-        $datetime = strftime('%Y-%m-%d %H:%M', time());
-        $trash = 'false';
-        
-        $sql = "INSERT INTO `pages` (`title`, `tagline`, `content`, `created_at`, `visibility`, `trash`)
-            VALUES (:title, :tagline, :content, :created_at, :visibility, :trash)";
-    }
-    
     $pdo = getPdoConnection();
     
     try {
@@ -721,11 +623,6 @@ function addPage(string $title, string $tagline, string $content, string $visibl
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':visibility', $visible);
-        
-        if (DB_DRIVER == 'sqlite') {
-            $stmt->bindParam(':created_at', $datetime);
-            $stmt->bindParam(':trash', $trash);
-        }
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -789,7 +686,7 @@ function loadUserEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, ' .datetimeFormater(). ', `username`, `active`'
+    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, UNIX_TIMESTAMP(`created_at`) AS datetime, `username`, `active`'
         . ' FROM `users`' . ' WHERE `id` = :id';
 
     try {
@@ -814,7 +711,7 @@ function loadTrashFromTable(string $table)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, ' . datetimeFormater() 
+    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
         . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
 
     try {
@@ -855,6 +752,7 @@ function getGeneralSettings() : array
 }
 
 /**
+ * Update settings-table.
  * 
  * @param string $title
  * @param string $tagline
