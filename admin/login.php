@@ -2,6 +2,7 @@
 
 session_start();
 
+include __DIR__ . '/../include/general_functions.inc.php';
 include __DIR__ . '/../configs/cms-config.php';
 include __DIR__ . '/../configs/db-config.php';
 
