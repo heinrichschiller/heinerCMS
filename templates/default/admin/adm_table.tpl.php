@@ -10,6 +10,9 @@
 		##placeholder-content##
 	</div>
 </div>
+<div id="dialog" title="{confirmation_required}">
+    Are you sure about this?
+</div>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<a href="##placeholder-uri##" class="btn btn-primary" role="button">##placeholder-button##</a>

@@ -14,6 +14,10 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<!-- jQuery UI -->
+		<link rel="stylesheet" href="../vendor/components/jqueryui/themes/base/jquery-ui.min.css">
+		<script src="../vendor/components/jqueryui/jquery-ui.min.js"></script>
 
 		<link href="../templates/default/admin/css/##placeholder-style##" rel="stylesheet">
 	</head>
