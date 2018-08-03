@@ -10,7 +10,7 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in()) {
-    $id     = filter_input(INPUT_POST, 'id');
+    $id     = filter_input(INPUT_GET, 'id');
     $action = filter_input(INPUT_POST, 'action');
     $uri    = '';
 
