@@ -1,4 +1,11 @@
-Version 0.6.0 ()
+Version 0.7.0 ()
+	added, confirmation dialog for delete function
+		Confirmation dialog are available in articles, downloads, links, pages.
+		This functionality makes heinercms more interactive.
+	update, clean code
+	update, translations
+	bugfix, delete pages works again
+Version 0.6.0 (2018-08-03)
 	update, twbs/bootstrap (4.1.2 => 4.1.3)
 	update, tinymce/tinymce (4.8.0 => 4.8.1)
 Version 0.5.0 (2018-07-27)
