@@ -10,7 +10,7 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in()) {
-    $id     = filter_input(INPUT_POST, 'id');
+    $id     = filter_input(INPUT_GET, 'id');
     $action = filter_input(INPUT_POST, 'action');
     $uri    = '';
 
@@ -18,13 +18,13 @@ if (is_logged_in()) {
     $list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
 
     switch ( $action ) {
-        case 'del' : deleteItemsById($list, 'sites');
+        case 'del' : deleteItemsById($list, 'pages');
             $uri = 'trash';
             break;
-        case 'del_all' : deleteAllTrashItems('sites');
+        case 'del_all' : deleteAllTrashItems('pages');
             $uri = 'trash';
             break;
-        default: setFlagTrashById($id, 'sites');
+        default: setFlagTrashById($id, 'pages');
             $uri = 'pages';
     }
 
