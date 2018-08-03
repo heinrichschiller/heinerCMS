@@ -46,6 +46,17 @@ function datetimeFormater() : string
     return $datetime;
 }
 
+function normalize(int $id, string $table)
+{
+    $sql = "SELECT COUNT(`id`) FROM `$table`";
+    
+    if ($id <= 0 && $id > count($result)) {
+        // @todo: entry not found
+    }
+    
+    return $id;
+}
+
 /**
  * 
  * @return PDOStatement
@@ -797,7 +808,7 @@ function loadUserEditStatement(int $id)
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
