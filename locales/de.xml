@@ -75,5 +75,6 @@
 		<contact_inquiry>Kontakt anfragen</contact_inquiry>
 		<footer>Fußzeile</footer>
 		<dark_mode>Dunkler Modus</dark_mode>
+		<confirmation_required>Bestätigung erforderlich</confirmation_required>
 	</terms>
 </language>
