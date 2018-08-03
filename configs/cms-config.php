@@ -30,6 +30,14 @@ define('CONFIG_PATH', __DIR__ . '/');
 define('INCLUDE_PATH', __DIR__ . '/../include/');
 
 /**
+ * Path to img_svg directory
+ *
+ * @var string
+ * @since 0.5.0
+ */
+define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
+
+/**
  * Path to locales directory
  *
  * @var string
