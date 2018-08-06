@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="row navi">
-        		<div class="col-xl-3 col-lg-3 col-xs-12" id="hidden">
+        		<div class="col-xl-3 col-lg-3 col-xs-12">
         			##placeholder-navigation##
         		</div>
         	    <div class="col-xl-6 col-lg-9 col-xs-12 content-section">
