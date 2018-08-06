@@ -18,7 +18,7 @@ if (is_logged_in ()) {
     $editor = "tinymce.init({ selector:'textarea'});";
     $editorDark = "tinymce.init({ selector:'textarea', skin: 'dark' });";
     
-    $uri = filter_input ( INPUT_GET, 'uri' );
+    $uri = isset($_GET['uri']) ? filter_input ( INPUT_GET, 'uri' ) : 'dashboard';
     $id = filter_input ( INPUT_GET, 'id' );
 
     $arr_language = get_translation($_SESSION['language']);
