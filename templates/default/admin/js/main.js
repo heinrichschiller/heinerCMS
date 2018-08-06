@@ -15,10 +15,10 @@ $(document).ready(function() {
 
     $("#dialog").dialog({
       buttons : {
-        "Confirm" : function() {
+        "Bestätigen" : function() {
           window.location.href = targetUrl;
         },
-        "Cancel" : function() {
+        "Zurück" : function() {
           $(this).dialog("close");
         }
       }
