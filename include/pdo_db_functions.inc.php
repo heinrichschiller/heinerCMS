@@ -57,6 +57,16 @@ function normalize(int $id, string $table)
     return $id;
 }
 
+function query()
+{
+    
+}
+
+function prepare()
+{
+    
+}
+
 /**
  * 
  * @return PDOStatement

@@ -156,6 +156,28 @@ function load_downloads_add(): string
 }
 
 /**
+ * Loading a form to delete a downloads entry
+ *
+ * @param int $id Id of a download
+ * @return string
+ */
+function load_downloads_del(int $id): string
+{
+    $title = getTitleFromTableById('downloads', $id);
+    
+    $placeholderList = [
+        '##placeholder-action##' => 'downloadsdel.php',
+        '##placeholder-uri##'    => 'downloads',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
+    ];
+    
+    $template = loadTemplate('adm_form_del');
+    
+    return strtr($template, $placeholderList);
+}
+
+/**
  * Load downloads settings form.
  *
  * @return string
@@ -292,6 +314,29 @@ function load_link_add(): string
     $template = loadTemplate('adm_link_form');
     
     return strtr($template, $placeholdeList);
+}
+
+/**
+ * Loading a form to delete a link entry.
+ *
+ * @param int $id - Id of a link entry.
+ * @return string
+ */
+function load_link_del(int $id): string
+{
+    $title = getTitleFromTableById('links', $id);
+    
+    $placeholderList = [
+        '##placeholder-action##' => 'linkdel.php',
+        '##placeholder-uri##'    => 'links',
+        '##placeholder-id##'     => $id,
+        '##placeholder-title##'  => $title
+    ];
+    
+    $template = loadTemplate('adm_form_del');
+    $template = strtr($template, $placeholderList);
+    
+    return $template;
 }
 
 /**
@@ -853,5 +898,10 @@ function load_page_edit(int $id): string
  */
 function load_mainpage() : string
 {
-    return loadTemplate('adm_mainpage');
+    $placeholderList = [
+        '##placeholder-content##' => ''
+    ];
+    
+    $template = loadTemplate('adm_mainpage');
+    return strtr($template, $placeholderList);
 }
