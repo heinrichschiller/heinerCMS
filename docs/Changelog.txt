@@ -5,6 +5,7 @@ Version 0.7.0 ()
 	update, clean code
 	update, translations
 	bugfix, delete pages works again
+	bugfix, fixed empty url
 Version 0.6.0 (2018-08-03)
 	update, twbs/bootstrap (4.1.2 => 4.1.3)
 	update, tinymce/tinymce (4.8.0 => 4.8.1)
