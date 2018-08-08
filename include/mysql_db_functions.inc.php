@@ -730,9 +730,9 @@ function getArticle(int $id) : array
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `visibility` 
         FROM `articles` 
-        WHERE `id` = :id, :title, :tagline
+        WHERE `id` = :id
     ';
-prepare($sql, 'FETCH_NUM', $id);
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
