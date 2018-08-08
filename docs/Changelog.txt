@@ -4,6 +4,8 @@ Version 0.7.0 ()
 		This functionality makes heinercms more interactive.
 	update, clean code
 	update, translations
+	update, pdo_db_functions.inc.php deleted because obsolete
+		heinerCMS using mysql_- and sqlite_db_functions.inc.php instead.
 	bugfix, delete pages works again
 	bugfix, fixed empty url
 Version 0.6.0 (2018-08-03)

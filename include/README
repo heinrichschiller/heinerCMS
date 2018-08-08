@@ -1,0 +1,18 @@
+# README
+
+This directory contains all the include files that heinerCMS needs.
+
+Include files:
+	* admin_functions.inc.php
+	* general_functions.inc.php
+	* mysql_db_functions.inc.php
+	* public_functions.inc.php
+	* routes.inc.php
+	* sqlite_db_functions.inc.php
+
+admin_functions.inc.php
+general_functions.inc.php
+mysql_db_functions.inc.php
+public_functions.inc.php
+routes.inc.php
+sqlite_db_functions.inc.php
