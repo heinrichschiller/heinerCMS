@@ -5,7 +5,7 @@ session_start();
 include __DIR__ . '/../configs/cms-config.php';
 include __DIR__ . '/../configs/db-config.php';
 
-include __DIR__ . '/../include/pdo_db_functions.inc.php';
+include __DIR__ . '/../include/' . DB_DRIVER . '_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
 include __DIR__ . '/../include/admin_functions.inc.php';
 include __DIR__ . '/routes.php';
@@ -18,7 +18,7 @@ if (is_logged_in ()) {
     $editor = "tinymce.init({ selector:'textarea'});";
     $editorDark = "tinymce.init({ selector:'textarea', skin: 'dark' });";
     
-    $uri = filter_input ( INPUT_GET, 'uri' );
+    $uri = isset($_GET['uri']) ? filter_input ( INPUT_GET, 'uri' ) : 'dashboard';
     $id = filter_input ( INPUT_GET, 'id' );
 
     $arr_language = get_translation($_SESSION['language']);

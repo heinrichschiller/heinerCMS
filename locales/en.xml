@@ -74,5 +74,6 @@
         <mainpage>Mainpage</mainpage>
         <back_to_mainpage>Back to mainpage</back_to_mainpage>
         <dark_mode>Dark Mode</dark_mode>
+        <confirmation_required>Confirmation Required</confirmation_required>
 	</terms>
 </language>

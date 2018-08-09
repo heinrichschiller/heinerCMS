@@ -1,6 +1,42 @@
 <?php
 
 /**
+ * Database connection for heinerCMS that use PDO-Connection.
+ *
+ * @param string $driver Driver can be mysql or sqlite.
+ *
+ * @return PDO
+ */
+function getPdoConnection() : PDO
+{
+    try {
+        $pdo = new PDO( DB_DRIVER . ':host=' . DB_HOST . ';dbname='.DB_NAME, DB_USER, DB_PASSWORD );
+        
+        if ( PDO_DEBUG_MODE ) {
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        
+        return $pdo;
+        
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+    
+}
+
+function normalize(int $id, string $table)
+{
+    $sql = "SELECT COUNT(`id`) FROM `$table`";
+    
+    if ($id <= 0 && $id > count($result)) {
+        // @todo: entry not found
+    }
+    
+    return $id;
+}
+
+/**
  * 
  * @return PDOStatement
  */
@@ -8,8 +44,17 @@ function loadDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `path`, `filename`, `visibility`'
-        . " FROM `downloads` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `path`, 
+        `filename`, 
+        `visibility`'
+        FROM `downloads` 
+        WHERE `trash` = 'false' 
+            ORDER BY `created_at` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -34,8 +79,17 @@ function getDownloads(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `comment`, `path`, `filename`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
-        . ' FROM `downloads` WHERE `id`= :id';
+    $sql = '
+    SELECT `id`, 
+        `title`, 
+        `comment`, 
+        `path`, 
+        `filename`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility`
+        FROM `downloads` 
+        WHERE `id`= :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -57,7 +111,12 @@ function loadDownloadsSettingsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `tagline`, `comment` FROM `downloads_settings` WHERE `id` = 1";
+    $sql = '
+    SELECT `tagline`, 
+        `comment` 
+        FROM `downloads_settings` 
+        WHERE `id` = 1
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -78,7 +137,8 @@ function loadPublicDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT downloads.title, 
+    $sql = "
+    SELECT downloads.title, 
         downloads.comment, 
         downloads.path, 
         downloads.filename, 
@@ -86,7 +146,10 @@ function loadPublicDownloadsStatement() : PDOStatement
         downloads_settings.tagline as downloads_tagline, 
         downloads_settings.comment as downloads_comment
         FROM `downloads`, `downloads_settings`
-        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 
+            AND `trash` = 'false' 
+            ORDER BY `datetime` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -109,10 +172,28 @@ function loadPublicDownloadsStatement() : PDOStatement
  * 
  * @since 0.3.0
  */
-function addDownload(string $title, string $comment, string $path, string $filename, string $visible)
+function addDownload(string $title, 
+    string $comment, 
+    string $path, 
+    string $filename, 
+    string $visible)
 {
-    $sql = "INSERT INTO `downloads` (`title`, `comment`, `path`, `filename`, `visibility`)
-        VALUES (:title, :comment, :path, :filename, :visibility)";
+    $sql = "
+    INSERT INTO `downloads` (
+        `title`, 
+        `comment`, 
+        `path`, 
+        `filename`, 
+        `visibility`
+        )
+        VALUES (
+            :title, 
+            :comment, 
+            :path, 
+            :filename, 
+            :visibility
+        )
+    ";
     
     $pdo = getPdoConnection();
     
@@ -143,16 +224,23 @@ function addDownload(string $title, string $comment, string $path, string $filen
  * 
  * @since 0.3.0
  */
-function updateDownload(int $id, string $title, string $comment, string $path, string $filename, string $visible)
+function updateDownload(int $id, 
+    string $title, 
+    string $comment, 
+    string $path, 
+    string $filename, 
+    string $visible)
 {
     $pdo = getPdoConnection();
     
-    $sql = "UPDATE `downloads` SET `title` = :title, 
-        `comment` = :comment, 
-        `path` = :path, 
-        `filename` = :filename, 
-        `visibility` = :visibility
-        WHERE `id` = :id";
+    $sql = "
+    UPDATE `downloads` 
+        SET `title` = :title, 
+            `comment` = :comment, 
+            `path` = :path, 
+            `filename` = :filename, 
+            `visibility` = :visibility
+            WHERE `id` = :id";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -178,7 +266,11 @@ function updateDownload(int $id, string $title, string $comment, string $path, s
  */
 function updateDownloadsSettings(string $tagline, string $comment)
 {
-    $sql = "UPDATE `downloads_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    $sql = '
+    UPDATE `downloads_settings` 
+        SET `tagline`= :tagline,
+        `comment`= :comment 
+        WHERE 1';
     
     $pdo = getPdoConnection();
     
@@ -203,8 +295,16 @@ function loadLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `uri`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
-        . " FROM `links` WHERE `trash` = 'false' ORDER BY `title` DESC";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        `uri`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility`
+        FROM `links` 
+        WHERE `trash` = 'false' 
+            ORDER BY `title` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -229,8 +329,17 @@ function getLinks(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `uri`, `comment`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` 
-            FROM `links` WHERE `id` = :id';
+    $sql = '
+    SELECT `id`, 
+        `title`, 
+        `tagline`, 
+        `uri`, 
+        `comment`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility` 
+        FROM `links` 
+        WHERE `id` = :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -253,14 +362,20 @@ function loadPublicLinksStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT links.title, 
+    $sql = "
+    SELECT links.title, 
         links.tagline, 
-        links.uri, links.comment, 
+        links.uri, 
+        links.comment, 
         UNIX_TIMESTAMP(links.created_at) AS datetime,
         links_settings.tagline as settings_tagline, 
         links_settings.comment as settings_comment
-        FROM `links`, `links_settings`
-        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        FROM `links`, 
+            `links_settings`
+        WHERE `visibility` > -1 
+            AND `trash` = 'false' 
+            ORDER BY `datetime` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -285,10 +400,27 @@ function loadPublicLinksStatement() : PDOStatement
  * 
  * @since 0.3.0
  */
-function addLink(string $title, string $tagline, string $comment, string $uri, string $visible)
+function addLink(string $title, 
+    string $tagline, 
+    string $comment, 
+    string $uri, 
+    string $visible)
 {
-    $sql = "INSERT INTO `links` (`title`, `tagline`, `uri`, `comment`, `visibility`)
-        VALUES (:title, :tagline, :uri, :comment, :visibility)";
+    $sql = "
+    INSERT INTO `links` (
+        `title`, 
+        `tagline`, 
+        `uri`, 
+        `comment`, 
+        `visibility`
+        )
+        VALUES (
+            :title, 
+            :tagline, 
+            :uri, 
+            :comment, 
+            :visibility
+        )";
     
     $pdo = getPdoConnection();
     
@@ -319,9 +451,20 @@ function addLink(string $title, string $tagline, string $comment, string $uri, s
  * 
  * @since 0.3.0
  */
-function updateLink(int $id, string $title, string $comment, string $uri, string $visible)
+function updateLink(int $id, 
+    string $title, 
+    string $comment, 
+    string $uri, 
+    string $visible)
 {
-    $sql = "UPDATE `links` SET `title` = :title, `comment` = :comment, `uri` = :uri, `visibility` = :visibility WHERE `id` = :id";
+    $sql = "
+    UPDATE `links` 
+        SET `title` = :title, 
+        `comment` = :comment, 
+        `uri` = :uri, 
+        `visibility` = :visibility 
+        WHERE `id` = :id
+    ";
     
     $pdo = getPdoConnection();
     
@@ -350,7 +493,12 @@ function updateLink(int $id, string $title, string $comment, string $uri, string
  */
 function updateLinksSettings(string $tagline, string $comment)
 {
-    $sql = "UPDATE `links_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    $sql = "
+    UPDATE `links_settings` 
+        SET `tagline`= :tagline,
+        `comment`= :comment 
+        WHERE 1
+    ";
     
     $pdo = getPdoConnection();
     
@@ -375,8 +523,15 @@ function loadArticlesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
-        . " FROM `articles` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility`
+        FROM `articles` 
+        WHERE `trash` = 'false' 
+            ORDER BY `created_at` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -398,7 +553,13 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime FROM `articles` WHERE `id` = :id';
+    $sql = '
+    SELECT `title`, 
+        `content`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime 
+        FROM `articles` 
+        WHERE `id` = :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -423,7 +584,18 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
  */
 function addArticle(string $title, string $content, string $visible)
 {
-    $sql = "INSERT INTO `articles` (`title`, `content`, `visibility`) VALUES (:title, :content, :visibility)";
+    $sql = "
+    INSERT INTO `articles` (
+        `title`, 
+        `content`, 
+        `visibility`
+        ) 
+        VALUES (
+            :title, 
+            :content, 
+            :visibility
+        )
+    ";
     
     $pdo = getPdoConnection();
     
@@ -455,7 +627,13 @@ function updateArticle(int $id, string $title, string $content, string $visibili
 {
     $pdo = getPdoConnection();
     
-    $sql = "UPDATE `articles` SET `title` = :title, `content` = :content, `visibility` = :visibility WHERE `id` = :id";
+    $sql = "
+    UPDATE `articles` 
+        SET `title` = :title, 
+        `content` = :content, 
+        `visibility` = :visibility 
+        WHERE `id` = :id
+    ";
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -479,7 +657,12 @@ function updateArticle(int $id, string $title, string $content, string $visibili
  */
 function updateArticleSettings(string $tagline, string $comment)
 {
-    $sql = "UPDATE `articles_settings` SET `tagline`= :tagline,`comment`= :comment WHERE 1";
+    $sql = '
+    UPDATE `articles_settings` 
+    SET `tagline`= :tagline,
+        `comment`= :comment 
+        WHERE 1
+    ';
     
     $pdo = getPdoConnection();
     
@@ -502,14 +685,18 @@ function updateArticleSettings(string $tagline, string $comment)
  */
 function loadPublicArticlesStatement() : PDOStatement
 {
-    $sql = "SELECT articles.id, 
+    $sql = "
+        SELECT articles.id, 
         articles.title, 
         articles.content, 
         UNIX_TIMESTAMP(articles.created_at) AS datetime,
         articles_settings.tagline as tagline, 
         articles_settings.comment as comment
         FROM `articles`, `articles_settings`
-        WHERE `visibility` > -1 AND `trash` = 'false' ORDER BY `datetime` DESC";
+        WHERE `visibility` > -1 
+            AND `trash` = 'false' 
+            ORDER BY `datetime` DESC
+    ";
 
     $pdo = getPdoConnection();
 
@@ -536,7 +723,15 @@ function getArticle(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` FROM `articles` WHERE `id` = :id';
+    $sql = '
+    SELECT `id`, 
+        `title`, 
+        `content`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility` 
+        FROM `articles` 
+        WHERE `id` = :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -558,8 +753,15 @@ function loadPagesStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
-        . " FROM `pages` WHERE `trash` = 'false' ORDER BY `created_at` DESC";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility`
+        FROM `pages` 
+        WHERE `trash` = 'false' 
+            ORDER BY `created_at` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -584,8 +786,15 @@ function getPage(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, `tagline`, `content`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility` 
-            FROM `pages` WHERE `id` = :id';
+    $sql = '
+    SELECT `id`, 
+        `title`, 
+        `tagline`, 
+        `content`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility` 
+        FROM `pages` 
+        WHERE `id` = :id';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -611,8 +820,19 @@ function getPage(int $id) : array
  */
 function addPage(string $title, string $tagline, string $content, string $visible)
 {
-    $sql = "INSERT INTO `pages` (`title`, `tagline`, `content`, `visibility`)
-        VALUES (:title, :tagline, :content, :visibility)";
+    $sql = "
+    INSERT INTO `pages` (
+        `title`, 
+        `tagline`, 
+        `content`, 
+        `visibility`
+        )
+        VALUES (
+            :title, 
+            :tagline, 
+            :content, 
+            :visibility
+        )";
     
     $pdo = getPdoConnection();
     
@@ -642,11 +862,22 @@ function addPage(string $title, string $tagline, string $content, string $visibl
  * 
  * @since 0.3.0
  */
-function updatePage(int $id, string $title, string $tagline, string $content, string $visibility)
+function updatePage(int $id, 
+    string $title, 
+    string $tagline, 
+    string $content, 
+    string $visibility)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'UPDATE `pages` SET `title` = :title, `tagline` = :tagline, `content` = :content, `visibility` = :visibility WHERE `id` = :id';
+    $sql = '
+    UPDATE `pages` 
+        SET `title` = :title, 
+            `tagline` = :tagline, 
+            `content` = :content, 
+            `visibility` = :visibility 
+            WHERE `id` = :id
+    ';
     
     try {
         $stmt = $pdo->prepare($sql);
@@ -668,8 +899,14 @@ function loadUserStatement()
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`,`firstname`,`lastname`,`username`,`active`'
-        . ' FROM `users` ORDER BY `firstname` DESC';
+    $sql = '
+    SELECT `id`,
+           `firstname`,
+           `lastname`,
+           `username`,
+           `active`
+           FROM `users` 
+               ORDER BY `firstname` DESC';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -686,8 +923,18 @@ function loadUserEditStatement(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `firstname`, `lastname` ,`email`, `password`, UNIX_TIMESTAMP(`created_at`) AS datetime, `username`, `active`'
-        . ' FROM `users`' . ' WHERE `id` = :id';
+    $sql = '
+    SELECT `id`, 
+        `firstname`, 
+        `lastname` , 
+        `email`, 
+        `password`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `username`, 
+        `active`
+        FROM `users` 
+        WHERE `id` = :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -711,8 +958,14 @@ function loadTrashFromTable(string $table)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime'
-        . " FROM `$table` WHERE `trash` = 'true' ORDER BY `created_at` DESC";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime
+        FROM `$table` 
+        WHERE `trash` = 'true' 
+            ORDER BY `created_at` DESC
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -734,10 +987,17 @@ function loadTrashFromTable(string $table)
  */
 function getGeneralSettings() : array
 {
-    $sql = "SELECT `title`, `tagline`, `theme`, `blog_url`, `lang_short`, `footer`
+    $sql = "
+    SELECT `title`, 
+        `tagline`, 
+        `theme`, 
+        `darkmode`, 
+        `blog_url`, 
+        `lang_short`, 
+        `footer`
         FROM `settings`
         WHERE 1";
-    
+
     $pdo = getPdoConnection();
     
     try {
@@ -761,14 +1021,25 @@ function getGeneralSettings() : array
  * @param string $language
  * @param string $footer
  */
-function updateGeneralSettings(string $title, string $tagline, string $theme, string $blogUrl, string $language, string $footer)
+function updateGeneralSettings(string $title, 
+    string $tagline, 
+    string $theme, 
+    string $darkmode,
+    string $blogUrl, 
+    string $language, 
+    string $footer)
 {
-    $sql = 'UPDATE `settings` SET `title`=:title,
-        `tagline`=:tagline,
-        `theme`=:theme,
-        `blog_url`=:blog_url,
-        `lang_short`=:language,
-        `footer`=:footer WHERE 1';
+    $sql = '
+    UPDATE `settings` 
+        SET `title`=:title,
+            `tagline`=:tagline,
+            `theme`=:theme,
+            `darkmode`=:darkmode,
+            `blog_url`=:blog_url,
+            `lang_short`=:language,
+            `footer`=:footer 
+            WHERE 1
+    ';
     
     $pdo = getPdoConnection();
     
@@ -778,6 +1049,7 @@ function updateGeneralSettings(string $title, string $tagline, string $theme, st
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':theme', $theme);
+        $stmt->bindParam(':darkmode', $darkmode);
         $stmt->bindParam(':blog_url', $blogUrl);
         $stmt->bindParam(':language', $language);
         $stmt->bindParam(':footer', $footer);
@@ -843,7 +1115,11 @@ function setFlagTrashById(int $id, string $table)
 {
     $pdo = getPdoConnection();
 
-    $sql = "UPDATE `$table` SET `trash`='true' WHERE `id`= :id";
+    $sql = "
+    UPDATE `$table` 
+        SET `trash`='true' 
+        WHERE `id`= :id
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -867,7 +1143,11 @@ function getTitleFromTableById(string $table, int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `title` FROM `$table` WHERE `id` = :id";
+    $sql = "
+    SELECT `title` 
+        FROM `$table` 
+        WHERE `id` = :id
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -933,8 +1213,16 @@ function loadFromTable(string $table, int $count)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `id`, `title`, UNIX_TIMESTAMP(`created_at`) AS datetime, `visibility`'
-        . " FROM `$table` WHERE `trash` = 'false' ORDER BY `created_at` DESC LIMIT $count";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+        `visibility`
+        FROM `$table` 
+        WHERE `trash` = 'false' 
+            ORDER BY `created_at` 
+            DESC LIMIT $count
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -958,7 +1246,11 @@ function getUsernameById(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = 'SELECT `username` FROM `users` WHERE `id` = :id';
+    $sql = '
+    SELECT `username` 
+        FROM `users` 
+        WHERE `id` = :id
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);

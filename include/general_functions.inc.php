@@ -43,29 +43,15 @@ echo $module, $action, $params;
  */
 function load_session()
 {
-    $pdo = getPdoConnection();
+    $settings = getGeneralSettings();
     
-    $sql = "SELECT `title`, `tagline`, `theme`, `darkmode`, `blog_url`, `lang_short`, `footer`
-        FROM `settings` WHERE 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    while($settings = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $_SESSION['title']    = $settings['title'];
-        $_SESSION['tagline']  = $settings['tagline'];
-        $_SESSION['theme']    = $settings['theme'];
-        $_SESSION['darkmode'] = $settings['darkmode'];
-        $_SESSION['blog-url'] = $settings['blog_url'];
-        $_SESSION['language'] = $settings['lang_short'];
-        $_SESSION['footer']   = $settings['footer'];
-    }
-    
+    $_SESSION['title']    = $settings['title'];
+    $_SESSION['tagline']  = $settings['tagline'];
+    $_SESSION['theme']    = $settings['theme'];
+    $_SESSION['darkmode'] = $settings['darkmode'];
+    $_SESSION['blog-url'] = $settings['blog_url'];
+    $_SESSION['language'] = $settings['lang_short'];
+    $_SESSION['footer']   = $settings['footer'];  
 }
 
 /**
@@ -179,3 +165,4 @@ function checkSystem()
 
     return true;
 }
+

@@ -14,6 +14,10 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<!-- jQuery UI -->
+		<link rel="stylesheet" href="../vendor/components/jqueryui/themes/base/jquery-ui.min.css">
+		<script src="../vendor/components/jqueryui/jquery-ui.min.js"></script>
 
 		<link href="../templates/default/admin/css/##placeholder-style##" rel="stylesheet">
 	</head>
@@ -40,7 +44,7 @@
                 </div>
             </div>
             <div class="row navi">
-        		<div class="col-xl-3 col-lg-3 col-xs-12" id="hidden">
+        		<div class="col-xl-3 col-lg-3 col-xs-12">
         			##placeholder-navigation##
         		</div>
         	    <div class="col-xl-6 col-lg-9 col-xs-12 content-section">

@@ -31,17 +31,16 @@
 
 include __DIR__ . '/configs/cms-config.php';
 include CONFIG_PATH . 'db-config.php';
-include __DIR__ . '/include/general_functions.inc.php';
+include INCLUDE_PATH . 'general_functions.inc.php';
 
 if (!checkSystem()) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
     exit();
 }
 
-include __DIR__ . '/include/pdo_db_functions.inc.php';
-
-include __DIR__ . '/include/public_functions.inc.php';
-include __DIR__ . '/include/routes.inc.php';
+include INCLUDE_PATH . DB_DRIVER . '_db_functions.inc.php';
+include INCLUDE_PATH . 'public_functions.inc.php';
+include INCLUDE_PATH . 'routes.inc.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
