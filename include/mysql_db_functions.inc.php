@@ -997,7 +997,7 @@ function getGeneralSettings() : array
         `footer`
         FROM `settings`
         WHERE 1";
-    
+
     $pdo = getPdoConnection();
     
     try {
@@ -1024,6 +1024,7 @@ function getGeneralSettings() : array
 function updateGeneralSettings(string $title, 
     string $tagline, 
     string $theme, 
+    string $darkmode,
     string $blogUrl, 
     string $language, 
     string $footer)
@@ -1033,6 +1034,7 @@ function updateGeneralSettings(string $title,
         SET `title`=:title,
             `tagline`=:tagline,
             `theme`=:theme,
+            `darkmode`=:darkmode
             `blog_url`=:blog_url,
             `lang_short`=:language,
             `footer`=:footer 
@@ -1047,6 +1049,7 @@ function updateGeneralSettings(string $title,
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':theme', $theme);
+        $stmt->bindParam(':darkmode', $darkmode);
         $stmt->bindParam(':blog_url', $blogUrl);
         $stmt->bindParam(':language', $language);
         $stmt->bindParam(':footer', $footer);
