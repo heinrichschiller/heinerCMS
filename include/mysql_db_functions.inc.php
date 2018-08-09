@@ -1034,7 +1034,7 @@ function updateGeneralSettings(string $title,
         SET `title`=:title,
             `tagline`=:tagline,
             `theme`=:theme,
-            `darkmode`=:darkmode
+            `darkmode`=:darkmode,
             `blog_url`=:blog_url,
             `lang_short`=:language,
             `footer`=:footer 
