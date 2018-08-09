@@ -14,6 +14,7 @@ function getPdoConnection() : PDO
         
         if ( PDO_DEBUG_MODE ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //exit();
         }
         
         return $pdo;
@@ -528,8 +529,8 @@ function loadArticlesStatement() : PDOStatement
         `title`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `visibility`
-        FROM `articles` 
-        WHERE `trash` = 'false' 
+        FROM `contents` 
+        WHERE `flag` = '' 
             ORDER BY `created_at` DESC
     ";
 
@@ -584,15 +585,19 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
  */
 function addArticle(string $title, string $content, string $visible)
 {
+    $contentType = 'article';
+    
     $sql = "
-    INSERT INTO `articles` (
+    INSERT INTO `contents` (
         `title`, 
-        `content`, 
+        `text`, 
+        `content_type`,
         `visibility`
         ) 
         VALUES (
             :title, 
-            :content, 
+            :text, 
+            :content_type,
             :visibility
         )
     ";
@@ -603,7 +608,8 @@ function addArticle(string $title, string $content, string $visible)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':text', $content);
+        $stmt->bindParam(':content_type', $contentType);
         $stmt->bindParam(':visibility', $visible);
         
         $stmt->execute();
@@ -628,9 +634,9 @@ function updateArticle(int $id, string $title, string $content, string $visibili
     $pdo = getPdoConnection();
     
     $sql = "
-    UPDATE `articles` 
+    UPDATE `contents` 
         SET `title` = :title, 
-        `content` = :content, 
+        `text` = :text, 
         `visibility` = :visibility 
         WHERE `id` = :id
     ";
@@ -639,7 +645,7 @@ function updateArticle(int $id, string $title, string $content, string $visibili
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':text', $content);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
         
@@ -723,15 +729,16 @@ function getArticle(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = '
+    $sql = "
     SELECT `id`, 
         `title`, 
-        `content`, 
+        `text`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `visibility` 
-        FROM `articles` 
-        WHERE `id` = :id
-    ';
+        FROM `contents` 
+        WHERE `id` = :id 
+            AND `flag` != 'trash'
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);

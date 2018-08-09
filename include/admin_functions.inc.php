@@ -7,9 +7,7 @@
  */
 function load_navigation(): string
 {
-    $template = '';
-    
-    $entries = countEntries();
+    /*$entries = countEntries();
     
     $placeholderList = [
         '##placeholder-downloads##' => $entries[0],
@@ -17,11 +15,12 @@ function load_navigation(): string
         '##placeholder-articles##'  => $entries[2],
         '##placeholder-pages##'     => $entries[3],
         '##placeholder-trash##'     => $entries[4]
-    ];
+    ];*/
     
-    $template = loadTemplate('adm_navigation');
+    //$template = loadTemplate('adm_navigation');
     
-    return strtr($template, $placeholderList);
+    //return strtr($template, $placeholderList);
+    return loadTemplate('adm_navigation');
 }
 
 /**
@@ -390,7 +389,7 @@ function load_articles(): string
         $content .= '<td>' . $article['id'] . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $article['datetime']) . '</td>';
         $content .= '<td>' . $article['title'] . '</td>';
-        $content .= $article['visibility'] > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $article['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -443,7 +442,7 @@ function load_article_edit(int $id): string
     
     list($id, $title, $content, $created_at, $visibility) = getArticle($id);
     
-    if ($visibility > - 1) {
+    if ($visibility == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
