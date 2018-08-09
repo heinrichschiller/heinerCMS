@@ -1,4 +1,4 @@
-Version 0.7.0 ()
+Version 0.7.0 (2018-08-09)
 	added, confirmation dialog for delete function
 		Confirmation dialog are available in articles, downloads, links, pages.
 		This functionality makes heinercms more interactive.
