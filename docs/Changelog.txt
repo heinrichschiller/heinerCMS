@@ -1,3 +1,10 @@
+Version 0.8.0 ()
+	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
+		This release brings a new database structure to heinerCMS and many features need to be redeployed.
+		My hope is the easier implementation of new features.
+	added, new database structure
+	update, refactored articles
+	update, clean code
 Version 0.7.0 (2018-08-09)
 	added, confirmation dialog for delete function
 		Confirmation dialog are available in articles, downloads, links, pages.
