@@ -55,7 +55,7 @@ function load_downloads(): string
         $content .= '<td>' . $downloads['id'] . '</td>';
         $content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads['datetime']) . '</td>';
         $content .= '<td>' . $downloads['title'] . '</td>';
-        $content .= (($downloads['visibility'] > - 1) ? '<td> {yes}</td>' : '<td> {no}</td>');
+        $content .= (($downloads['visibility'] == 'true') ? '<td> {yes}</td>' : '<td> {no}</td>');
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
@@ -103,7 +103,7 @@ function load_downloads_edit(int $id): string
     
     list($id, $title, $comment, $path, $filename, $created_at, $visibility) = getDownloads($id);
     
-    if ($visibility > - 1) {
+    if ($visibility == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
@@ -215,7 +215,7 @@ function load_links(): string
         $content .= '<td>' . $link['id'] . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $link['datetime']) . '</td>';
         $content .= '<td>' . $link['title'] . '</td>';
-        $content .= $link['visibility'] > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $link['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -223,7 +223,7 @@ function load_links(): string
         $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-        $content .= "<a href=/admin/linkdel.php?id=" . $link['id ']. " class='dialog-confirm'>" 
+        $content .= "<a href=/admin/linkdel.php?id=" . $link['id']. " class='dialog-confirm'>" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         $content .= '</tr>';
         
@@ -257,15 +257,17 @@ function load_links(): string
  *
  * @param int $id
  * @return string
+ * 
+ * @since 0.8.0
  */
 function load_link_edit(int $id): string
 {
     $chkYes = '';
     $chkNo = '';
 
-    list($id, $title, $tagline, $uri, $comment, $created_at, $visibility) = getLinks($id);
+    list($id, $title, $tagline, $uri, $text, $created_at, $visibility) = getLinks($id);
 
-    if ($visibility > - 1) {
+    if ($visibility == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
@@ -273,14 +275,14 @@ function load_link_edit(int $id): string
 
     $placeholderList = [
         '##placeholder-header##'   => '{create_link}',
-        '##placeholder-action##'   => 'linkinsert.php',
+        '##placeholder-action##'   => 'linkupdate.php',
         '##placeholder-id##'       => '{new}',
         '##placeholder-id##'       => $id,
         '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
         '##placeholder-title##'    => $title,
         '##placeholder-tagline##'  => $tagline,
         '##placeholder-uri##'      => $uri,
-        '##placeholder-comment##'  => $comment,
+        '##placeholder-comment##'  => $text,
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
