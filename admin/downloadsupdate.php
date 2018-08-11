@@ -13,12 +13,12 @@ if (is_logged_in ()) {
 
     $id       = filter_input(INPUT_POST, 'id');
     $title    = filter_input(INPUT_POST, 'title');
-    $comment  = filter_input(INPUT_POST, 'comment');
+    $text  = filter_input(INPUT_POST, 'text');
     $path     = filter_input(INPUT_POST,'path');
     $filename = filter_input(INPUT_POST,'filename');
     $visible  = filter_input(INPUT_POST,'visible');
 
-    updateDownload($id, $title, $comment, $path, $filename, $visible);
+    updateDownload($id, $title, $text, $path, $filename, $visible);
 
     header('Location: index.php?uri=downloads');
 

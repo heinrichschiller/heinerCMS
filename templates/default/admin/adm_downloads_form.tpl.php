@@ -46,8 +46,8 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="comment">{comment}:</label>
-				<textarea name="comment" rows="10" class="form-control" id="comment">##placeholder-comment##</textarea>
+				<label for="comment">{text}:</label>
+				<textarea name="text" rows="10" class="form-control" id="text">##placeholder-comment##</textarea>
 			</div>
 		</div>
 	</div>
@@ -55,11 +55,11 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<span>{visible}?</span>
         	<div class="custom-control custom-radio custom-control-inline">
-          		<input type="radio" id="customRadioInline1" name="visible" value="0" class="custom-control-input" ##placeholder-chk_yes##>
+          		<input type="radio" id="customRadioInline1" name="visible" value="true" class="custom-control-input" ##placeholder-chk_yes##>
           		<label class="custom-control-label" for="customRadioInline1">{yes}</label>
         	</div>
         	<div class="custom-control custom-radio custom-control-inline">
-          		<input type="radio" id="customRadioInline2" name="visible" value="-1" class="custom-control-input" ##placeholder-chk_no##>
+          		<input type="radio" id="customRadioInline2" name="visible" value="false" class="custom-control-input" ##placeholder-chk_no##>
           		<label class="custom-control-label" for="customRadioInline2">{no}</label>
         	</div>
         </div>
