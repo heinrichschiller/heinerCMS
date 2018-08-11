@@ -19,10 +19,10 @@ if (is_logged_in ()) {
     $uri     = filter_input(INPUT_POST, 'uri');
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    $comment = filter_input(INPUT_POST, 'comment');
-    $visible = filter_input(INPUT_POST, 'visible');
+    $comment = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
 
-    updateLink($id, $title, $comment, $uri, $visible);
+    updateLink($id, $title, $comment, $uri, $visibility);
 
     header('Location: index.php?uri=links');
 
