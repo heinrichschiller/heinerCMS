@@ -27,7 +27,10 @@ function getPdoConnection() : PDO
 
 function normalize(int $id, string $table)
 {
-    $sql = "SELECT COUNT(`id`) FROM `$table`";
+    $sql = "
+    SELECT COUNT(`id`) 
+    FROM `$table`
+    ";
     
     if ($id <= 0 && $id > count($result)) {
         // @todo: entry not found
@@ -790,8 +793,9 @@ function loadPagesStatement() : PDOStatement
         `title`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `visibility`
-        FROM `pages` 
-        WHERE `trash` = 'false' 
+        FROM `contents` 
+        WHERE `content_type` = 'page'
+            AND `flag` = '' 
             ORDER BY `created_at` DESC
     ";
 
@@ -807,7 +811,7 @@ function loadPagesStatement() : PDOStatement
 }
 
 /**
- * Get a page entry from table 'pages' by id.
+ * Get a page entry from table 'contents' by id.
  * 
  * @param int $id
  * @return array
@@ -818,15 +822,16 @@ function getPage(int $id) : array
 {
     $pdo = getPdoConnection();
 
-    $sql = '
+    $sql = "
     SELECT `id`, 
         `title`, 
         `tagline`, 
-        `content`, 
+        `text`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `visibility` 
-        FROM `pages` 
-        WHERE `id` = :id';
+        FROM `contents` 
+        WHERE `content_type`= 'page'
+            AND `id` = :id";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -841,40 +846,45 @@ function getPage(int $id) : array
 }
 
 /**
- * Add page.
+ * Add a page entry into `contents` table.
  * 
- * @param string $title
- * @param string $tagline
- * @param string $content
- * @param string $visible
+ * @param string $title      - Title of the page.
+ * @param string $tagline    - Tagline of the page.
+ * @param string $text       - Text of the page.
+ * @param string $visibility - 
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
-function addPage(string $title, string $tagline, string $content, string $visible)
+function addPage(string $title, string $tagline, string $text, string $visibility)
 {
     $sql = "
-    INSERT INTO `pages` (
+    INSERT INTO `contents` (
         `title`, 
         `tagline`, 
-        `content`, 
+        `text`, 
+        `content_type`, 
         `visibility`
         )
         VALUES (
             :title, 
             :tagline, 
-            :content, 
+            :text, 
+            :content_type,
             :visibility
         )";
     
     $pdo = getPdoConnection();
     
     try {
+        $contentType = 'page';
+        
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':text', $text);
+        $stmt->bindParam(':content_type', $contentType);
+        $stmt->bindParam(':visibility', $visibility);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -889,34 +899,35 @@ function addPage(string $title, string $tagline, string $content, string $visibl
  * 
  * @param int $id
  * @param string $title
- * @param string $content
+ * @param string $text
  * @param string $visibility
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
 function updatePage(int $id, 
     string $title, 
     string $tagline, 
-    string $content, 
+    string $text, 
     string $visibility)
 {
     $pdo = getPdoConnection();
 
-    $sql = '
-    UPDATE `pages` 
+    $sql = "
+    UPDATE `contents` 
         SET `title` = :title, 
             `tagline` = :tagline, 
-            `content` = :content, 
+            `text` = :text, 
             `visibility` = :visibility 
-            WHERE `id` = :id
-    ';
+            WHERE `content_type` = 'page'
+                AND `id` = :id
+    ";
     
     try {
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
         
@@ -1202,25 +1213,17 @@ function countEntries()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
+    $sql = "SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article'
         UNION ALL
-        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download'
         UNION ALL
-        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link'
         UNION ALL
-        SELECT COUNT(`id`) FROM `pages` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page'
         UNION ALL
         SELECT COUNT(*) as result
-            FROM (
-            SELECT `trash` FROM `articles`
-            UNION ALL
-            SELECT `trash` FROM `downloads`
-            UNION ALL
-            SELECT `trash` FROM `links`
-            UNION ALL
-            SELECT `trash` FROM `pages`
-            ) as subquery
-            WHERE `trash` = 'true';";
+            FROM `contents`
+            WHERE `flag`= 'trash'";
 
     try {
         $stmt = $pdo->prepare($sql);
