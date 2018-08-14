@@ -791,7 +791,7 @@ function load_pages(): string
         $content .= '<td>' . $page['id'] . '</td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $page['datetime']) . '</td>';
         $content .= '<td>' . $page['title'] . '</td>';
-        $content .= $page['visibility'] > - 1 ? '<td> {yes}</td>' : '<td> {no}</td>';
+        $content .= $page['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
         
         $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
@@ -869,7 +869,7 @@ function load_page_edit(int $id): string
 
     list($id, $title, $tagline, $content, $created_at, $visibility) = getPage($id);
 
-    if ($visibility > - 1) {
+    if ($visibility == 'true') {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';

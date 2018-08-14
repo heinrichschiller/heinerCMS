@@ -12,10 +12,10 @@ include __DIR__ . '/../include/general_functions.inc.php';
 if (is_logged_in ()) {
     $title   = filter_input(INPUT_POST, 'title');
     $tagline = filter_input(INPUT_POST, 'tagline');
-    $content = filter_input(INPUT_POST, 'content');
+    $text = filter_input(INPUT_POST, 'text');
     $visible = filter_input(INPUT_POST, 'visible');
 
-    addPage($title, $tagline, $content, $visible);
+    addPage($title, $tagline, $text, $visible);
     
     header ( 'Location: index.php?uri=pages' );
 }
