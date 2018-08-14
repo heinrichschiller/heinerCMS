@@ -247,7 +247,11 @@ function load_final() : string
  */
 function createDatabase(PDO $pdo, string $database) : bool
 {
-    $sql = "CREATE DATABASE IF NOT EXISTS `$database` CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+    $sql = "
+    CREATE DATABASE IF NOT EXISTS `$database` 
+        CHARSET=utf8 
+        COLLATE=utf8_unicode_ci;
+    ";
 
     try {
         $pdo->exec($sql);
@@ -289,6 +293,77 @@ function createTableArticles(PDO $pdo, string $dbDriver) : bool
                 `trash` TEXT NOT NULL )';
         }
 
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            return false;
+        }
+    }
+}
+
+/**
+ * Create table contents
+ *
+ * @param PDO $pdo
+ * @return bool
+ * 
+ * @since 0.8.0
+ */
+function createTableContents(PDO $pdo, string $dbDriver) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "
+        CREATE TABLE `contents` (
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `tagline` VARCHAR(200) NOT NULL DEFAULT '',
+            `text` LONGTEXT DEFAULT NULL,
+            `content_type` VARCHAR(10) NOT NULL DEFAULT '',
+            `next_page_id` INT NOT NULL DEFAULT '-1',
+            `path` VARCHAR(128) NOT NULL DEFAULT '',
+            `filename` VARCHAR(64) NOT NULL DEFAULT '',
+            `uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            `visibility` ENUM('true','false') NOT NULL DEFAULT 'false',
+            `trash` VARCHAR(10) NOT NULL DEFAULT '',
+            PRIMARY KEY (`id`))
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;
+        ";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            return false;
+        }
+    }
+}
+
+/**
+ * Create table contents_settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ * 
+ * @since 0.8.0
+ */
+function createTableContentsSettings(PDO $pdo, string $dbDriver) : bool
+{
+    if(checkDatabase($pdo)) {
+        $sql = "
+        CREATE TABLE `contents_settings` (
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `content_type` VARCHAR(100) NOT NULL DEFAULT '',
+            `tagline` VARCHAR(100) NOT NULL DEFAULT '',
+            `text` TEXT NOT NULL,
+            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` timestamp NULL DEFAULT NULL,
+            PRIMARY KEY (`id`))
+            CHARSET=utf8 COLLATE=utf8_unicode_ci;
+        ";
+        
         try {
             $pdo->exec($sql);
             return true;
