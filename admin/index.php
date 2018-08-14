@@ -15,7 +15,7 @@ if (is_logged_in ()) {
     $content = '';
     $defaultStyle = 'default.css';
     $defaultDarkStyle = 'default-dark.css';
-    $editor = "tinymce.init({ selector:'textarea'});";
+    $editor = "tinymce.init({ selector:'textarea#text'});";
     $editorDark = "tinymce.init({ selector:'textarea', skin: 'dark' });";
     
     $uri = isset($_GET['uri']) ? filter_input ( INPUT_GET, 'uri' ) : 'dashboard';
