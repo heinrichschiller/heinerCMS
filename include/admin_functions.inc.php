@@ -7,20 +7,19 @@
  */
 function load_navigation(): string
 {
-    /*$entries = countEntries();
-    
+    $entries = countEntries();
+
     $placeholderList = [
-        '##placeholder-downloads##' => $entries[0],
-        '##placeholder-links##'     => $entries[1],
-        '##placeholder-articles##'  => $entries[2],
+        '##placeholder-articles##'  => $entries[0],
+        '##placeholder-downloads##' => $entries[1],
+        '##placeholder-links##'     => $entries[2],
         '##placeholder-pages##'     => $entries[3],
         '##placeholder-trash##'     => $entries[4]
-    ];*/
+    ];
     
-    //$template = loadTemplate('adm_navigation');
+    $template = loadTemplate('adm_navigation');
     
-    //return strtr($template, $placeholderList);
-    return loadTemplate('adm_navigation');
+    return strtr($template, $placeholderList);
 }
 
 /**
