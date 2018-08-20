@@ -10,9 +10,9 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 if (is_logged_in ()) {
     $tagline = filter_input(INPUT_POST, 'tagline');
-    $comment = filter_input(INPUT_POST, 'comment');
+    $text = filter_input(INPUT_POST, 'text');
 
-    updateDownloadsSettings($tagline, $comment);
+    updateDownloadsSettings($tagline, $text);
     
     header ( 'Location: index.php?uri=downloadssettings' );
 

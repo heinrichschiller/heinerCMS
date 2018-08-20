@@ -182,13 +182,11 @@ function load_downloads_del(int $id): string
  */
 function load_downloads_settings() : string
 {
-    $stmt = loadDownloadsSettingsStatement();
-    
-    $download = $stmt->fetch(PDO::FETCH_OBJ);
+    $download = getDownloadSettings();
     
     $placeholderList = [
-        '##placeholder-downloads-tagline##' => $download->tagline,
-        '##placeholder-downloads-comment##' => $download->comment
+        '##placeholder-downloads-tagline##' => $download['tagline'],
+        '##placeholder-downloads-text##' => $download['text']
     ];
     
     $template = loadTemplate('adm_downloads_settings');
@@ -346,27 +344,12 @@ function load_link_del(int $id): string
  */
 function load_link_settings() : string
 {
-    $placeholderList = [];
+    $link = getLinksSettings();
     
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `tagline`, `comment`' 
-        . " FROM `links_settings` WHERE `id` = 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    while ($link = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $placeholderList = [
-            '##placeholder-link-tagline##' => $link['tagline'],
-            '##placeholder-link-comment##' => $link['comment']
-        ];
-    }
+    $placeholderList = [
+        '##placeholder-link-tagline##' => $link['tagline'],
+        '##placeholder-link-comment##' => $link['text']
+    ];
     
     $template = loadTemplate('adm_links_settings');
     
@@ -497,27 +480,12 @@ function load_article_add(): string
  */
 function load_articles_settings() : string
 {
-    $placeholderList = [];
+    $article = getArticleSettings();
     
-    $pdo = getPdoConnection();
-    
-    $sql = 'SELECT `tagline`, `comment`' 
-        . " FROM `articles_settings` WHERE `id` = 1";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
-    while ($article = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $placeholderList = [
-            '##placeholder-article-tagline##' => $article['tagline'],
-            '##placeholder-article-comment##' => $article['comment']
-        ];
-    }
+    $placeholderList = [
+        '##placeholder-article-tagline##' => $article['tagline'],
+        '##placeholder-article-comment##' => $article['text']
+    ];
     
     $template = loadTemplate('adm_articles_settings');
     

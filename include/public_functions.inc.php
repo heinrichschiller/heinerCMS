@@ -106,10 +106,10 @@ function load_articles(): string
 
     $stmt = loadPublicArticlesStatement();
 
-    while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
+    while ($articles = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $placeholderList = [
-            '##placeholder-articles-page-tagline##' => $articles->tagline,
-            '##placeholder-articles-page-comment##' => $articles->comment
+            '##placeholder-articles-page-tagline##' => $articles['tagline'],
+            '##placeholder-articles-page-comment##' => $articles['text']
         ];
 
         $content .= load_articles_content($articles, $templateArticlesContent);
@@ -130,9 +130,9 @@ function load_articles(): string
 function load_articles_content($articles, string $template) : string
 {
     $placeholderList = [
-        '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
-        '##placeholder-articles-title##'    => $articles->title,
-        '##placeholder-articles-id##'       => $articles->id
+        '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles['datetime']),
+        '##placeholder-articles-title##'    => $articles['title'],
+        '##placeholder-articles-id##'       => $articles['id']
     ];
 
     return strtr($template, $placeholderList);
@@ -150,11 +150,11 @@ function load_articles_detailed(int $id): string
 
     $stmt = loadArticlesDetailedStatement($id);
 
-    while ($articles = $stmt->fetch(PDO::FETCH_OBJ)) {
+    while ($articles = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $placeholderList = [
-            '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles->datetime),
-            '##placeholder-title##'    => $articles->title,
-            '##placeholder-message##'  => $articles->content
+            '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles['datetime']),
+            '##placeholder-title##'    => $articles['title'],
+            '##placeholder-message##'  => $articles['text']
         ];
     }
 
@@ -177,13 +177,13 @@ function load_downloads(): string
 
     $stmt = loadPublicDownloadsStatement();
 
-    while ($downloads = $stmt->fetch(PDO::FETCH_OBJ)) {
-
+    while ($downloads = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        
         $placeholderList = [
-            '##placeholder-downloads-page-tagline##' => $downloads->downloads_tagline,
-            '##placeholder-downloads-page-comment##' => $downloads->downloads_comment
+            '##placeholder-downloads-page-tagline##' => $downloads['downloads_tagline'],
+            '##placeholder-downloads-page-comment##' => $downloads['downloads_text']
         ];
-
+        
         $content .= load_downloads_content($downloads, $templateNewsContent);
     }
 
@@ -202,11 +202,11 @@ function load_downloads(): string
 function load_downloads_content($downloads, string $template) : string
 {
     $placeholderList = [
-        '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads->datetime),
-        '##placeholder-downloads-title##'    => $downloads->title,
-        '##placeholder-downloads-comment##'  => $downloads->comment,
-        '##placeholder-downloads-path##'     => $downloads->path,
-        '##placeholder-downloads-filename##' => $downloads->filename
+        '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads['datetime']),
+        '##placeholder-downloads-title##'    => $downloads['title'],
+        '##placeholder-downloads-comment##'  => $downloads['text'],
+        '##placeholder-downloads-path##'     => $downloads['path'],
+        '##placeholder-downloads-filename##' => $downloads['filename']
     ];
 
     return strtr($template, $placeholderList);
