@@ -13,15 +13,15 @@ if (is_logged_in ()) {
     $title   = filter_input(INPUT_POST, 'title');
     $tagline = filter_input(INPUT_POST, 'tagline');
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
     // @todo prüfen!!! uri überschneidet sich mit router=>uri
     $uri     = filter_input(INPUT_POST, 'uri');
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
 
-    $comment = filter_input(INPUT_POST, 'comment');
-    $visible = filter_input(INPUT_POST, 'visible');
+    $text = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
 
-    addLink($title, $tagline, $comment, $uri, $visible);
+    addLink($title, $tagline, $text, $uri, $visibility);
 
     header('Location: index.php?uri=links');
 
