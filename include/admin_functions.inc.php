@@ -866,9 +866,9 @@ function load_page_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
 
-    list($id, $title, $tagline, $content, $created_at, $visibility) = getPage($id);
+    $page = getPage($id);
 
-    if ($visibility == 'true') {
+    if ($page['visibility'] == 'true') {
         $chkYes = ' checked';
     } else {
         $chkNo = ' checked';
@@ -878,10 +878,10 @@ function load_page_edit(int $id): string
         '##placeholder-header##'   => '{edit_page}',
         '##placeholder-action##'   => 'pageupdate.php',
         '##placeholder-id##'       => $id,
-        '##placeholder-title##'    => $title,
-        '##placeholder-tagline##'  => $tagline,
-        '##placeholder-content##'  => $content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
+        '##placeholder-title##'    => $page['title'],
+        '##placeholder-tagline##'  => $page['tagline'],
+        '##placeholder-content##'  => $page['text'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $page['created_at']),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];

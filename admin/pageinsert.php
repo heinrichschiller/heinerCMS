@@ -13,9 +13,9 @@ if (is_logged_in ()) {
     $title   = filter_input(INPUT_POST, 'title');
     $tagline = filter_input(INPUT_POST, 'tagline');
     $text = filter_input(INPUT_POST, 'text');
-    $visible = filter_input(INPUT_POST, 'visible');
+    $visibility = filter_input(INPUT_POST, 'visibility');
 
-    addPage($title, $tagline, $text, $visible);
+    addPage($title, $tagline, $text, $visibility);
     
     header ( 'Location: index.php?uri=pages' );
 }

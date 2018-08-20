@@ -840,7 +840,7 @@ function loadPagesStatement() : PDOStatement
  * @param int $id
  * @return array
  * 
- * @since 0.4.0
+ * @since 0.8.0
  */
 function getPage(int $id) : array
 {
@@ -862,7 +862,7 @@ function getPage(int $id) : array
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_NUM);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();

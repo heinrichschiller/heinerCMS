@@ -266,42 +266,13 @@ function load_links_content($links, string $template)
  */
 function load_pages(int $id): string
 {
-    $template = '';
-
-    $pdo = getPdoConnection();
+    $page = getPage($id);
     
-    $sql = "
-    SELECT `id`, 
-        `title`, 
-        `tagline`, 
-        `content` 
-        FROM `contents` 
-        WHERE `content_type` = 'page'
-            AND `id` = :id
-    ";
-
-    $input_parameters = [
-        ':id' => $id
+    $placeholderList = [
+        '##placeholder-title##'   => $page['title'],
+        '##placeholder-tagline##' => $page['tagline'],
+        '##placeholder-content##' => $page['text']
     ];
-
-    try {
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($input_parameters);
-
-        $site = $stmt->fetchObject();
-
-        $placeholderList = [
-            '##placeholder-title##' => $site->title,
-            '##placeholder-tagline##' => $site->tagline,
-            '##placeholder-content##' => $site->content
-        ];
-
-    } catch (PDOException $ex) {
-
-        echo $ex->getMessage();
-        exit();
-    }
 
     $template = loadTemplate('pub_page');
     $template = strtr($template, $placeholderList);
@@ -314,8 +285,6 @@ function load_pages(int $id): string
  */
 function load_mainpage(): string
 {
-    $template = loadTemplate('pub_mainpage');
-    
     $settings = getGeneralSettings();
     
     $placeholderList = [
@@ -324,6 +293,7 @@ function load_mainpage(): string
         '##placeholder-card##' => ''
     ];
     
+    $template = loadTemplate('pub_mainpage');
     return strtr($template, $placeholderList);
 }
 
