@@ -52,7 +52,7 @@ function load_downloads(): string
     while ($downloads = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td>' . $downloads['id'] . '</td>';
-        $content .= '<td>' . StrFTime('%d.%m.%Y %H:%M', $downloads['datetime']) . '</td>';
+        $content .= '<td>' . StrFTime('%d.%m.%Y', $downloads['datetime']) . '</td>';
         $content .= '<td>' . $downloads['title'] . '</td>';
         $content .= (($downloads['visibility'] == 'true') ? '<td> {yes}</td>' : '<td> {no}</td>');
         
