@@ -145,18 +145,29 @@ function loadPublicDownloadsStatement() : PDOStatement
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT downloads.title, 
-        downloads.comment, 
-        downloads.path, 
-        downloads.filename, 
-        UNIX_TIMESTAMP(downloads.created_at) AS datetime,
-        downloads_settings.tagline as downloads_tagline, 
-        downloads_settings.comment as downloads_comment
-        FROM `downloads`, `downloads_settings`
-        WHERE `visibility` > -1 
-            AND `trash` = 'false' 
+    SELECT `title`, 
+        `text`, 
+        `path`, 
+        `filename`, 
+        UNIX_TIMESTAMP(created_at) AS datetime
+        FROM `contents`
+        WHERE `content_type` = 'download' 
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash' 
             ORDER BY `datetime` DESC
     ";
+//     SELECT downloads.title, 
+//         downloads.comment, 
+//         downloads.path, 
+//         downloads.filename, 
+//         UNIX_TIMESTAMP(downloads.created_at) AS datetime,
+//         downloads_settings.tagline as downloads_tagline, 
+//         downloads_settings.comment as downloads_comment
+//         FROM `downloads`, `downloads_settings`
+//         WHERE `visibility` > -1 
+//             AND `trash` = 'false' 
+//             ORDER BY `datetime` DESC
+//     ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -385,19 +396,21 @@ function loadPublicLinksStatement() : PDOStatement
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT links.title, 
-        links.tagline, 
-        links.uri, 
-        links.comment, 
-        UNIX_TIMESTAMP(links.created_at) AS datetime,
-        links_settings.tagline as settings_tagline, 
-        links_settings.comment as settings_comment
-        FROM `links`, 
-            `links_settings`
-        WHERE `visibility` > -1 
-            AND `trash` = 'false' 
+    SELECT contents.title, 
+        contents.tagline, 
+        contents.uri, 
+        contents.text, 
+        UNIX_TIMESTAMP(contents.created_at) AS datetime,
+        contents_settings.tagline as settings_tagline, 
+        contents_settings.text as settings_comment
+        FROM `contents`, 
+            `contents_settings`
+        WHERE `contents`.`content_type` = 'link'
+            AND `contents_settings`.`content_type` = 'link'
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash' 
             ORDER BY `datetime` DESC
-    ";
+    "; 
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -582,13 +595,14 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 {
     $pdo = getPdoConnection();
 
-    $sql = '
+    $sql = "
     SELECT `title`, 
-        `content`, 
+        `text`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime 
-        FROM `articles` 
-        WHERE `id` = :id
-    ';
+        FROM `contents` 
+        WHERE `content_type` = 'article'
+            AND `id` = :id
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -720,6 +734,16 @@ function updateArticleSettings(string $tagline, string $comment)
 function loadPublicArticlesStatement() : PDOStatement
 {
     $sql = "
+        SELECT `id`, 
+        `title`, 
+        `text`, 
+        UNIX_TIMESTAMP(created_at) AS datetime
+        FROM `contents`
+        WHERE `visibility` = 'true' 
+            AND `flag` = '' 
+            ORDER BY `datetime` DESC
+    ";
+    /* $sql = "
         SELECT articles.id, 
         articles.title, 
         articles.content, 
@@ -730,7 +754,7 @@ function loadPublicArticlesStatement() : PDOStatement
         WHERE `visibility` > -1 
             AND `trash` = 'false' 
             ORDER BY `datetime` DESC
-    ";
+    "; */
 
     $pdo = getPdoConnection();
 

@@ -32,15 +32,15 @@ function load_navigation(): string
         $blog .= '<a class="nav-item nav-link" href="' . $settings['blog_url'] . '" target="blank">Blog</a>';
     }
 
-    if (countTableEntries('downloads') !== 0) {
+    if (countContentType('download') !== 0) {
         $downloads .= '<a class="nav-item nav-link" href="index.php?uri=downloads">Downloads</a>';
     }
 
-    if (countTableEntries('links') !== 0) {
+    if (countContentType('link') !== 0) {
         $links .= '<a class="nav-item nav-link" href="index.php?uri=links">Links</a>';
     }
 
-    if (countTableEntries('articles') !== 0) {
+    if (countContentType('article') !== 0) {
         $articles .= '<a class="nav-item nav-link" href="index.php?uri=articles">Artikel</a>';
     }
 
@@ -68,7 +68,14 @@ function load_nav_pages(): string
 
     $pdo = getPdoConnection();
 
-    $sql = "SELECT `id`, `title` FROM `pages` WHERE `visibility` = 0 AND `trash` = 'false'";
+    $sql = "
+    SELECT `id`, 
+        `title` 
+        FROM `contents` 
+        WHERE `content_type` = 'page' 
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash'
+    ";
 
     try {
 
@@ -219,10 +226,10 @@ function load_links(): string
 
     $stmt = loadPublicLinksStatement();
 
-    while ($links = $stmt->fetch(PDO::FETCH_OBJ)) {
+    while ($links = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $placeholderList = [
-            '##placeholder-links-page-tagline##' => $links->settings_tagline,
-            '##placeholder-links-page-comment##' => $links->settings_comment
+            '##placeholder-links-page-tagline##' => $links['settings_tagline'],
+            '##placeholder-links-page-comment##' => $links['settings_comment']
         ];
 
         $content .= load_links_content($links, $templateLinksContent);
@@ -243,10 +250,10 @@ function load_links(): string
 function load_links_content($links, string $template)
 {
     $placeholderList = [
-        '##placeholder-links-title##'   => $links->title,
-        '##placeholder-links-tagline##' => $links->tagline,
-        '##placeholder-links-uri##'     => $links->uri,
-        '##placeholder-links-comment##' => $links->comment
+        '##placeholder-links-title##'   => $links['title'],
+        '##placeholder-links-tagline##' => $links['tagline'],
+        '##placeholder-links-uri##'     => $links['uri'],
+        '##placeholder-links-comment##' => $links['text']
     ];
 
     return strtr($template, $placeholderList);
@@ -263,7 +270,15 @@ function load_pages(int $id): string
 
     $pdo = getPdoConnection();
     
-    $sql = "SELECT `id`, `title`, `tagline`,`content` FROM `sites` WHERE `id` = :id";
+    $sql = "
+    SELECT `id`, 
+        `title`, 
+        `tagline`, 
+        `content` 
+        FROM `contents` 
+        WHERE `content_type` = 'page'
+            AND `id` = :id
+    ";
 
     $input_parameters = [
         ':id' => $id
@@ -306,7 +321,7 @@ function load_mainpage(): string
     $placeholderList = [
         '##placeholder-title##' => $settings['title'],
         '##placeholder-tagline##' => $settings['tagline'],
-        '##placeholder-card##' => load_cards()
+        '##placeholder-card##' => ''
     ];
     
     return strtr($template, $placeholderList);
@@ -321,10 +336,20 @@ function load_cards()
     $card = '';
     $template = loadTemplate('pub_card');
     
-    $sql = "SELECT id, title, content, created_at, 
-            (SELECT COUNT(id) FROM articles WHERE trash LIKE 'false' AND visibility = 0) as count
+    $sql = "
+    SELECT id, 
+        title, 
+        content, 
+        created_at, 
+            (SELECT COUNT(id) 
             FROM articles 
-            WHERE trash like 'false' AND visibility = 0 ORDER By created_at DESC LIMIT 3";
+            WHERE trash LIKE 'false' 
+                AND visibility = 0) as count
+        FROM articles 
+        WHERE trash like 'false' 
+            AND visibility = 0 
+            ORDER By created_at DESC LIMIT 3
+    ";
     
     $pdo = getPdoConnection();
     
@@ -359,15 +384,20 @@ function load_cards()
 
 /**
  * 
- * @param string $table
+ * @param string $contentType
  * @return int
  */
-function countTableEntries(string $table): int
+function countContentType(string $contentType): int
 {
-    $id = 0;
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `$table` WHERE `trash` = 'false' AND `visibility` > -1";
+    $sql = "
+    SELECT COUNT(`id`) 
+        FROM `contents` 
+        WHERE `content_type` = '$contentType'
+            AND `flag` != 'trash' 
+            AND `visibility` = 'true'
+    ";
 
     foreach ($pdo->query($sql) as $row) {
         $id = (int) $row[0];
