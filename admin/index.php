@@ -8,7 +8,7 @@ include __DIR__ . '/../configs/db-config.php';
 include __DIR__ . '/../include/' . DB_DRIVER . '_db_functions.inc.php';
 include __DIR__ . '/../include/general_functions.inc.php';
 include __DIR__ . '/../include/admin_functions.inc.php';
-include __DIR__ . '/routes.php';
+include __DIR__ . '/../routes/adm_routes.inc.php';
 
 if (is_logged_in ()) {
 

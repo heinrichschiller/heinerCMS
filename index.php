@@ -40,7 +40,7 @@ if (!checkSystem()) {
 
 include INCLUDE_PATH . DB_DRIVER . '_db_functions.inc.php';
 include INCLUDE_PATH . 'public_functions.inc.php';
-include INCLUDE_PATH . 'routes.inc.php';
+include __DIR__ . '/routes/pub_routes.inc.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
