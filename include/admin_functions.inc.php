@@ -381,7 +381,7 @@ function load_articles(): string
         $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
         
-            $content .= "<a href=/admin/articledel.php?id=" . $article['id'] . " class='dialog-confirm'>" 
+            $content .= "<a href=/admin/delete.php?id=" . $article['id'] . " class='dialog-confirm'>" 
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         
         $content .= '</tr>';
@@ -531,28 +531,60 @@ function renderHtmlTable(array $dataList): string
 }
 
 /**
- * Load entries that marked as 'trash'.
+ * Load entries from contents-table that marked as 'trash'.
  * 
- * @deprecated
  * @return string
+ * 
+ * @since 0.8.0
  */
 function load_trash(): string
 {
-    $template = '';
-
-    $downloads = loadTrashFromTable('downloads');
-    $links = loadTrashFromTable('links');
-    $artikles = loadTrashFromTable('articles');
-    $pages = loadTrashFromTable('pages');
+    $content = '';
+    $hasEntry = false;
     
-    $content = [
-        $downloads,
-        $links,
-        $artikles,
-        $pages
-    ];
+    $stmt = getTrashEntries();
     
-    return loadTemplate('adm_trash');
+    while ($article = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $content .= '<tr>';
+        $content .= '<td>' . $article['id'] . '</td>';
+        $content .= '<td>' . strftime('%d.%m.%Y', $article['datetime']) . '</td>';
+        $content .= '<td>' . $article['title'] . '</td>';
+        $content .= '<td>{' . $article['content_type'] . '}</td>';
+        
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">"
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
+            
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">"
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
+                
+        $content .= "<a href=/admin/delete.php?id=" . $article['id'] . " class='dialog-confirm'>"
+            . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
+                    
+        $content .= '</tr>';
+                    
+        $hasEntry = true;
+    }
+    
+    if($hasEntry) {
+        $placeholderList = [
+            '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-trash.svg',
+            '##placeholder-header##' => ' {trash}',
+            '##placeholder-uri##'    => 'index.php?uri=articleadd',
+            '##placeholder-button##' => '{create_article}'
+        ];
+        
+        $template = loadTemplate('adm_table');
+        $template = strtr($template, $placeholderList);
+        
+        $tplArticlesEntries = loadTemplate('adm_articles_entries');
+        $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
+        
+        $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
+    } else {
+        $template = loadTemplate('adm_no_articles');
+    }
+    
+    return $template;
 }
 
 /**

@@ -1057,16 +1057,17 @@ function loadUserEditStatement(int $id)
  * @param string $table Name of a table.
  * @return array
  */
-function loadTrashFromTable(string $table)
+function getTrashEntries()
 {
     $pdo = getPdoConnection();
 
     $sql = "
     SELECT `id`, 
         `title`, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime
-        FROM `$table` 
-        WHERE `trash` = 'true' 
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        `content_type`
+        FROM `contents` 
+        WHERE `flag` = 'trash' 
             ORDER BY `created_at` DESC
     ";
 
@@ -1074,7 +1075,7 @@ function loadTrashFromTable(string $table)
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -1165,24 +1166,25 @@ function updateGeneralSettings(string $title,
 }
 
 /**
- *
- * @param array $items
- * @param string $table
+ * Delete a content entry from contents-table by id.
+ * 
+ * @param int $id - Id of an item. 
+ * 
+ * @since 0.8.0
  */
-function deleteItemsById(array $items, string $table)
+function deleteContentById(int $id)
 {
     $pdo = getPdoConnection();
 
-    $sql = "DELETE FROM `$table` WHERE `id` = '$items[0]'";
-    array_shift($items);
-
-    // @todo: prüfen was das ist...
-    foreach ($items as $key => $value) {
-        $sql .= " OR `id` = '$value'";
-    }
+    $sql = "
+    DELETE FROM `contents` 
+    WHERE `id` = :id
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -1198,7 +1200,10 @@ function deleteAllTrashItems(string $table)
 {
     $pdo = getPdoConnection();
 
-    $sql = "DELETE FROM `:table` WHERE `trash` = 'true'";
+    $sql = "
+    DELETE FROM `:table` 
+    WHERE `trash` = 'true'
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -1210,23 +1215,27 @@ function deleteAllTrashItems(string $table)
 }
 
 /**
- *
+ * 
  * @param int $id
- * @param string $table
+ * @param string $flag
+ * 
+ * @since 0.8.0
  */
-function setFlagTrashById(int $id, string $table)
-{
+function setContentsFlagById(int $id, string $flag)
+{var_dump($id, $flag);
     $pdo = getPdoConnection();
 
     $sql = "
-    UPDATE `$table` 
-        SET `trash`='true' 
+    UPDATE `contents` 
+        SET `flag`=:flag 
         WHERE `id`= :id
     ";
 
     try {
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':flag', $flag);
         $stmt->bindParam(':id', $id);
+        
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -1239,6 +1248,7 @@ function setFlagTrashById(int $id, string $table)
  *
  * @param string $table - Name of a table
  * @param int $id - Id
+ * @deprecated
  *
  * @return string
  */
@@ -1273,17 +1283,17 @@ function countEntries()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article'
+    $sql = "SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash'
         UNION ALL
         SELECT COUNT(*) as result
             FROM `contents`
-            WHERE `flag`= 'trash'";
+            WHERE `flag` = 'trash'";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -1301,6 +1311,7 @@ function countEntries()
  *
  * @param string $db
  * @param int $count
+ * @deprecated
  *
  * @return array
  */
@@ -1331,7 +1342,7 @@ function loadFromTable(string $table, int $count)
 }
 
 /**
- * Get username by id
+ * Get username from users-table by id
  *
  * @param int $id Id of an user
  *

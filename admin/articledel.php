@@ -24,7 +24,7 @@ if (is_logged_in()) {
         case 'del_all' : deleteAllTrashItems('articles');
             $uri = 'trash';
             break;
-        default: setFlagTrashById($id, 'articles');
+        default: setContentsFlagById($id, 'trash');
             $uri = 'articles';
     }
 
