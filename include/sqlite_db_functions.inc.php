@@ -27,7 +27,10 @@ function getPdoConnection() : PDO
 
 function normalize(int $id, string $table)
 {
-    $sql = "SELECT COUNT(`id`) FROM `$table`";
+    $sql = "
+    SELECT COUNT(`id`) 
+    FROM `$table`
+    ";
     
     if ($id <= 0 && $id > count($result)) {
         // @todo: entry not found
