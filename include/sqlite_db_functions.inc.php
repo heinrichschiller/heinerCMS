@@ -54,8 +54,8 @@ function loadDownloadsStatement() : PDOStatement
         `path`, 
         `filename`, 
         `visibility`
-        FROM `downloads` 
-        WHERE `trash` = 'false' 
+        WHERE `content_type` = 'download' 
+            AND `flag` = ''
             ORDER BY `created_at` DESC
     ";
 
@@ -76,7 +76,7 @@ function loadDownloadsStatement() : PDOStatement
  * @param int $id - Id of a download entry.
  * @return array  - List of a download entry.
  * 
- * @since 0.4.0
+ * @since 0.8.0
  */
 function getDownloads(int $id) : array
 {
@@ -90,8 +90,9 @@ function getDownloads(int $id) : array
         `filename`, 
         strftime('%s', `created_at`) AS datetime, 
         `visibility`
-        FROM `downloads` 
-        WHERE `id`= :id
+        FROM `contents` 
+        WHERE `content_type` = 'download'
+            AND `id`= :id
     ";
 
     try {
@@ -99,7 +100,7 @@ function getDownloads(int $id) : array
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_NUM);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -116,9 +117,9 @@ function loadDownloadsSettingsStatement() : PDOStatement
 
     $sql = "
     SELECT `tagline`, 
-        `comment` 
-        FROM `downloads_settings` 
-        WHERE `id` = 1
+        `text` 
+        FROM `contents_settings` 
+        WHERE `content_type` = 'download';
     ";
 
     try {
@@ -135,23 +136,27 @@ function loadDownloadsSettingsStatement() : PDOStatement
 /**
  * 
  * @return PDOStatement
+ * 
+ * @since 0.8.0
  */
 function loadPublicDownloadsStatement() : PDOStatement
 {
     $pdo = getPdoConnection();
 
     $sql = "SELECT downloads.title, 
-        downloads.comment, 
+        downloads.text, 
         downloads.path, 
         downloads.filename, 
         strftime('%s', downloads.created_at) AS datetime,
         downloads_settings.tagline as downloads_tagline, 
-        downloads_settings.comment as downloads_comment
-        FROM `downloads`, 
-            `downloads_settings`
-        WHERE `visibility` > -1 
-            AND `trash` = 'false' 
-            ORDER BY `datetime` DESC
+        `contents_settings`.`text` as downloads_text 
+        FROM `contents`, 
+            `contents_settings`
+            WHERE `contents`.`content_type` = 'download' 
+                AND `contents_settings`.`content_type` = 'download' 
+                AND `visibility` = 'true' 
+                AND `flag` != 'trash' 
+                ORDER BY `datetime` DESC
     ";
 
     try {
@@ -168,7 +173,7 @@ function loadPublicDownloadsStatement() : PDOStatement
  * Add a download.
  * 
  * @param string $title         - Title of a download.
- * @param string $comment       - Comment of a download.
+ * @param string $text          - Text of a download.
  * @param string $path          - Path of a download.
  * @param string $filename      - Filename of a download.
  * @param string $visibility    - Is a download visible or not.
@@ -177,41 +182,40 @@ function loadPublicDownloadsStatement() : PDOStatement
  * @since 0.3.0
  */
 function addDownload(string $title, 
-    string $comment, 
+    string $text, 
     string $path, 
     string $filename, 
     string $visibility, 
     string $trash = 'false')
 {
-    $datetime = strftime('%Y-%m-%d %H:%M', time());
-        
     $sql = "
-    INSERT INTO `downloads` (
+    INSERT INTO `contents` (
         `title`, 
-        `comment`, 
+        `text`, 
+        `content_type`, 
         `path`, 
         `filename`, 
-        `created_at`, 
-        `visibility`, 
-        `trash`
+        `visibility`
         )
         VALUES (
             :title, 
-            :comment, 
+            :text, 
+            :content_type,
             :path, 
             :filename, 
-            :created_at, 
-            :visibility, 
-            :trash
-        )";
+            :visibility
+        )
+    ";
     
     $pdo = getPdoConnection();
     
     try {
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visibility);
@@ -229,7 +233,7 @@ function addDownload(string $title,
  * Update download entry.
  * 
  * @param string $title
- * @param string $comment
+ * @param string $text
  * @param string $path
  * @param string $filename
  * @param string $visibility
@@ -238,7 +242,7 @@ function addDownload(string $title,
  */
 function updateDownload(int $id, 
     string $title, 
-    string $comment, 
+    string $text, 
     string $path, 
     string $filename, 
     string $visibility)
@@ -246,20 +250,22 @@ function updateDownload(int $id,
     $pdo = getPdoConnection();
     
     $sql = "
-    UPDATE `downloads` 
+    UPDATE `contents` 
         SET `title` = :title, 
-            `comment` = :comment, 
+            `text` = :text, 
+            `content_type` = :content_type,
             `path` = :path, 
             `filename` = :filename, 
             `visibility` = :visibility
-            WHERE `id` = :id
+            WHERE `content_type` = 'download'
+                AND `id` = :id
     ";
     
     try {
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visibility);
@@ -276,14 +282,17 @@ function updateDownload(int $id,
  * 
  * @param string $tagline
  * @param string $comment
+ * 
+ * @since 0.8.0
  */
-function updateDownloadsSettings(string $tagline, string $comment)
+function updateDownloadsSettings(string $tagline, string $text)
 {
     $sql = "
-    UPDATE `downloads_settings` 
+    UPDATE `contents_settings` 
         SET `tagline`= :tagline,
-            `comment`= :comment 
-            WHERE 1";
+        `text`= :text 
+        WHERE `content_type`= 'download'
+    ";
     
     $pdo = getPdoConnection();
     
@@ -291,7 +300,7 @@ function updateDownloadsSettings(string $tagline, string $comment)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -303,6 +312,8 @@ function updateDownloadsSettings(string $tagline, string $comment)
 /**
  * 
  * @return PDOStatement
+ * 
+ * @since 0.8.0
  */
 function loadLinksStatement() : PDOStatement
 {
@@ -314,8 +325,9 @@ function loadLinksStatement() : PDOStatement
         `uri`, 
         strftime('%s', `created_at`) AS datetime, 
         `visibility`
-        FROM `links` 
-        WHERE `trash` = 'false' 
+        FROM `contents` 
+        WHERE `content_type` = 'link'
+            AND `flag` = '' 
             ORDER BY `title` DESC
     ";
 
@@ -331,12 +343,12 @@ function loadLinksStatement() : PDOStatement
 }
 
 /**
- * Get a link entry from table 'links' by id.
+ * Get a link entry from table 'contents' by id.
  * 
  * @param int $id - Id of a link entry.
  * @return array  - List of a link entry.
  * 
- * @since 0.4.0
+ * @since 0.8.0
  */
 function getLinks(int $id)
 {
@@ -350,8 +362,9 @@ function getLinks(int $id)
         `comment`, 
         strftime('%s', `created_at`) AS datetime, 
         `visibility` 
-        FROM `links` 
-        WHERE `id` = :id
+        FROM `contents` 
+        WHERE `content_type` = 'link'
+            AND `id` = :id
     ";
 
     try {
@@ -359,7 +372,7 @@ function getLinks(int $id)
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_NUM);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -383,11 +396,13 @@ function loadPublicLinksStatement() : PDOStatement
         strftime('%s', links.created_at) AS datetime,
         links_settings.tagline as settings_tagline, 
         links_settings.comment as settings_comment
-        FROM `links`, 
-            `links_settings`
-            WHERE `visibility` > -1 
-                AND `trash` = 'false' 
-                ORDER BY `datetime` DESC
+        FROM `contents`, 
+            `contents_settings`
+        WHERE `contents`.`content_type` = 'link'
+            AND `contents_settings`.`content_type` = 'link'
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash' 
+            ORDER BY `datetime` DESC
     ";
 
     try {
@@ -407,16 +422,16 @@ function loadPublicLinksStatement() : PDOStatement
  * 
  * @param string $title
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  * @param string $uri
  * @param string $visibility
  * @param string $trash
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
 function addLink(string $title, 
     string $tagline, 
-    string $comment, 
+    string $text, 
     string $uri, 
     string $visibility, 
     string $trash = 'false')
@@ -424,33 +439,35 @@ function addLink(string $title,
     $datetime = strftime('%Y-%m-%d %H:%M', time());
         
     $sql = "
-    INSERT INTO `links` (
+    INSERT INTO `contents` (
         `title`, 
         `tagline`, 
         `uri`, 
-        `comment`, 
-        `created_at`, 
-        `visibility`, 
-        `trash`
+        `text`, 
+        `content_type`, 
+        `visibility`
         )
         VALUES (
             :title, 
             :tagline, 
             :uri, 
-            :comment, 
-            :created_at, 
-            :visibility, 
-            :trash
+            :text, 
+            :content_type,
+            :visibility
         )";
     
     $pdo = getPdoConnection();
     
     try {
+        $content_type = 'link';
+        $datetime = strftime('%Y-%m-%d %H:%M', time());
+        
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
+        $stmt->bindParam(':content_type', $content_type);
         $stmt->bindParam(':uri', $uri);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':created_at', $datetime);
@@ -468,21 +485,26 @@ function addLink(string $title,
  * 
  * @param int $id
  * @param string $title
- * @param string $comment
+ * @param string $text
  * @param string $uri
- * @param string $visible
+ * @param string $visibility
  * 
  * @since 0.3.0
  */
-function updateLink(int $id, string $title, string $comment, string $uri, string $visible)
+function updateLink(int $id, 
+    string $title, 
+    string $text, 
+    string $uri, 
+    string $visibility)
 {
     $sql = "
-    UPDATE `links` 
+    UPDATE `contents` 
         SET `title` = :title, 
-        `comment` = :comment, 
+        `text` = :text, 
         `uri` = :uri, 
         `visibility` = :visibility 
-        WHERE `id` = :id
+        WHERE `content_type` = 'link'
+            AND `id` = :id
     ";
     
     $pdo = getPdoConnection();
@@ -491,9 +513,9 @@ function updateLink(int $id, string $title, string $comment, string $uri, string
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
         
         $stmt->execute();

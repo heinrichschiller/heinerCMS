@@ -232,7 +232,7 @@ function addDownload(string $title,
  * Update a download entry.
  * 
  * @param string $title
- * @param string $comment
+ * @param string $text
  * @param string $path
  * @param string $filename
  * @param string $visible
@@ -283,7 +283,7 @@ function updateDownload(int $id,
 /**
  * 
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  * 
  * @since 0.8.0
  */
@@ -345,7 +345,7 @@ function loadLinksStatement() : PDOStatement
 }
 
 /**
- * Get a link entry from table 'links' by id.
+ * Get a link entry from table 'contents' by id.
  * 
  * @param int $id - Id of a link entry.
  * @return array  - List of a link entry.
@@ -502,9 +502,9 @@ function addLink(string $title,
  * 
  * @param int $id
  * @param string $title
- * @param string $comment
+ * @param string $text
  * @param string $uri
- * @param string $visible
+ * @param string $visibility
  * 
  * @since 0.8.0
  */
