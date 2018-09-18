@@ -327,7 +327,7 @@ function createTableContents(PDO $pdo, string $dbDriver) : bool
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `update_at` timestamp NULL DEFAULT NULL,
             `visibility` ENUM('true','false') NOT NULL DEFAULT 'false',
-            `trash` VARCHAR(10) NOT NULL DEFAULT '',
+            `flag` VARCHAR(10) NOT NULL DEFAULT '',
             PRIMARY KEY (`id`))
             CHARSET=utf8 COLLATE=utf8_unicode_ci;
         ";
