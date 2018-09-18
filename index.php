@@ -33,6 +33,12 @@ include __DIR__ . '/configs/cms-config.php';
 include CONFIG_PATH . 'db-config.php';
 include INCLUDE_PATH . 'general_functions.inc.php';
 
+if (DEBUG_MODE) {
+    session_start();
+    error_reporting(-1);
+    ini_set('display_errors', true);
+}
+
 if (!checkSystem()) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
     exit();

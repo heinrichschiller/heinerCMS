@@ -10,6 +10,12 @@ include __DIR__ . '/../include/general_functions.inc.php';
 include __DIR__ . '/../include/admin_functions.inc.php';
 include __DIR__ . '/../routes/adm_routes.inc.php';
 
+if (DEBUG_MODE) {
+    session_start();
+    error_reporting(-1);
+    ini_set('display_errors', true);
+}
+
 if (is_logged_in ()) {
 
     $content = '';
