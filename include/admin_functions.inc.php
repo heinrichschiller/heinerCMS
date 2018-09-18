@@ -100,23 +100,23 @@ function load_downloads_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
     
-    list($id, $title, $comment, $path, $filename, $created_at, $visibility) = getDownloads($id);
+    $downloadItems = getDownloads($id);
     
-    if ($visibility == 'true') {
+    if ($downloadItems['visibility'] == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
     }
-    
+
     $placeholderList = [
         '##placeholder-header##'   => '{edit_download}',
         '##placeholder-action##'   => 'downloadsupdate.php',
-        '##placeholder-id##'       => $id,
-        '##placeholder-title##'    => $title,
-        '##placeholder-path##'     => $path,
-        '##placeholder-filename##' => $filename,
-        '##placeholder-comment##'  => $comment,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
+        '##placeholder-id##'       => $downloadItems['id'],
+        '##placeholder-title##'    => $downloadItems['title'],
+        '##placeholder-path##'     => $downloadItems['path'],
+        '##placeholder-filename##' => $downloadItems['filename'],
+        '##placeholder-comment##'  => $downloadItems['text'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $downloadItems['datetime']),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -262,9 +262,9 @@ function load_link_edit(int $id): string
     $chkYes = '';
     $chkNo = '';
 
-    list($id, $title, $tagline, $uri, $text, $created_at, $visibility) = getLinks($id);
+    $linkItems = getLinks($id);
 
-    if ($visibility == 'true') {
+    if ($linkItems['visibility'] == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
@@ -274,12 +274,12 @@ function load_link_edit(int $id): string
         '##placeholder-header##'   => '{create_link}',
         '##placeholder-action##'   => 'linkupdate.php',
         '##placeholder-id##'       => '{new}',
-        '##placeholder-id##'       => $id,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
-        '##placeholder-title##'    => $title,
-        '##placeholder-tagline##'  => $tagline,
-        '##placeholder-uri##'      => $uri,
-        '##placeholder-comment##'  => $text,
+        '##placeholder-id##'       => $linkItems['id'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $linkItems['datetime']),
+        '##placeholder-title##'    => $linkItems['title'],
+        '##placeholder-tagline##'  => $linkItems['tagline'],
+        '##placeholder-uri##'      => $linkItems['uri'],
+        '##placeholder-comment##'  => $linkItems['text'],
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -424,9 +424,9 @@ function load_article_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
     
-    list($id, $title, $content, $created_at, $visibility) = getArticle($id);
+    $articleItems = getArticle($id);
     
-    if ($visibility == 'true') {
+    if ($articleItems['visibility'] == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
@@ -435,10 +435,10 @@ function load_article_edit(int $id): string
     $placeholderList = [
         '##placeholder-header##'   => '{edit_article}',
         '##placeholder-action##'   => 'articleupdate.php',
-        '##placeholder-id##'       => $id,
-        '##placeholder-title##'    => $title,
-        '##placeholder-content##'  => $content,
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $created_at),
+        '##placeholder-id##'       => $articleItems['id'],
+        '##placeholder-title##'    => $articleItems['title'],
+        '##placeholder-content##'  => $articleItems['text'],
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $articleItems['datetime']),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
@@ -660,7 +660,11 @@ function load_locale_options() : string
             $select = '';
         }
 
-        $html .= '<option value="' . $xml->attributes()->short .'"'.$select.'>' . $xml->attributes()->lang . '</option>';
+        $html .= '<option value="' 
+            . $xml->attributes()->short 
+            .'"'.$select.'>' 
+                . $xml->attributes()->lang 
+                . '</option>';
     }
 
     return $html;
@@ -881,7 +885,7 @@ function load_page_edit(int $id): string
         '##placeholder-title##'    => $page['title'],
         '##placeholder-tagline##'  => $page['tagline'],
         '##placeholder-content##'  => $page['text'],
-        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $page['created_at']),
+        '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', $page['datetime']),
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
