@@ -57,4 +57,4 @@ define('LOCALES_PATH', __DIR__ . '/../locales/');
  * 
  * @since 0.8.0
  */
-define('DEBUG_MODE', true);
+define('DEBUG_MODE', false);
