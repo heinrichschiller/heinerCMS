@@ -288,7 +288,7 @@ function createTableContents(PDO $pdo, string $dbDriver) : bool
             `filename` VARCHAR(64) NOT NULL DEFAULT '',
             `uri` VARCHAR(255) NOT NULL DEFAULT 'http://',
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `update_at` timestamp NULL DEFAULT NULL,
+            `updated_at` timestamp NULL DEFAULT NULL,
             `visibility` ENUM('true','false') NOT NULL DEFAULT 'false',
             `flag` VARCHAR(10) NOT NULL DEFAULT '',
             PRIMARY KEY (`id`))
@@ -296,7 +296,22 @@ function createTableContents(PDO $pdo, string $dbDriver) : bool
         ";
         
         if($dbDriver=='sqlite') {
-            $sql = "";
+            $sql = "
+            CREATE TABLE `contents` (
+            	`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            	`title` TEXT NOT NULL,
+            	`tagline` TEXT,
+            	`text` TEXT NOT NULL,
+            	`content_type` TEXT NOT NULL,
+            	`next_page_id` INTEGER,
+            	`path` TEXT,
+            	`filename` TEXT,
+            	`uri` TEXT,
+            	`created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+            	`updated_at` DATETIME,
+            	`visibility` TEXT NOT NULL,
+            	`flag` TEXT);
+            ";
         }
         
         try {
@@ -325,11 +340,15 @@ function createTableContentsSettings(PDO $pdo, string $dbDriver) : bool
             `content_type` VARCHAR(100) NOT NULL DEFAULT '',
             `tagline` VARCHAR(100) NOT NULL DEFAULT '',
             `text` TEXT NOT NULL,
-            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `update_at` timestamp NULL DEFAULT NULL,
+            `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `update_at` TIMESTAMP NULL DEFAULT NULL,
             PRIMARY KEY (`id`))
             CHARSET=utf8 COLLATE=utf8_unicode_ci;
         ";
+        
+        if($dbDriver=='sqlite') {
+            $sql = "";
+        }
         
         try {
             $pdo->exec($sql);
@@ -349,7 +368,8 @@ function createTableContentsSettings(PDO $pdo, string $dbDriver) : bool
 function createTableUsers(PDO $pdo, string $dbDriver) : bool
 {
     if( checkDatabase($pdo) ) {
-        $sql = "CREATE TABLE `users` (
+        $sql = "
+        CREATE TABLE `users` (
             `id` int unsigned NOT NULL AUTO_INCREMENT,
             `firstname` varchar(255) NOT NULL,
             `lastname` varchar(255) NOT NULL,
@@ -365,14 +385,15 @@ function createTableUsers(PDO $pdo, string $dbDriver) : bool
             CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
         if ($dbDriver == 'sqlite') {
-            $sql='CREATE TABLE "users" ( 
+            $sql='
+            CREATE TABLE "users" ( 
                 `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
                 `firstname` TEXT NOT NULL, 
                 `lastname` TEXT NOT NULL, 
                 `email` TEXT NOT NULL, 
                 `password` TEXT NOT NULL, 
-                `created_at` TEXT, 
-                `updated_at` TEXT, 
+                `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, 
+                `updated_at` DATETIME, 
                 `username` TEXT NOT NULL, 
                 `active` TEXT )';
         }
