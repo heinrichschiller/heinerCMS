@@ -715,7 +715,7 @@ function load_user_edit(int $id): string
     $chkNo = '';
     $chkYes = '';
 
-    $user = loadUserEditStatement($id);
+    $user = getUser($id);
 
     if (strcmp($user['active'], 'true') === 0) {
         $chkYes = ' checked';

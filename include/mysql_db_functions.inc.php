@@ -112,7 +112,7 @@ function getDownloads(int $id) : array
 
 /**
  * 
- * @return PDOStatement
+ * @return array
  */
 function getDownloadSettings() : array
 {
@@ -139,6 +139,8 @@ function getDownloadSettings() : array
 /**
  * 
  * @return PDOStatement
+ * 
+ * @since 0.8.0
  */
 function loadPublicDownloadsStatement() : PDOStatement
 {
@@ -178,7 +180,7 @@ function loadPublicDownloadsStatement() : PDOStatement
  * @param string $text       - Text (content) of the download.
  * @param string $path       - Path to the download.
  * @param string $filename   - Filename of the download.
- * @param string $visibility - 
+ * @param string $visibility - Is a download visible or not.
  * 
  * @since 0.8.0
  */
@@ -252,7 +254,6 @@ function updateDownload(int $id,
     UPDATE `contents` 
         SET `title` = :title, 
             `text` = :text, 
-            `content_type` = :content_type,
             `path` = :path, 
             `filename` = :filename, 
             `visibility` = :visibility
@@ -407,6 +408,8 @@ function getLinksSettings() : array
 /**
  * 
  * @return PDOStatement
+ * 
+ * @since 0.8.0
  */
 function loadPublicLinksStatement() : PDOStatement
 {
@@ -458,6 +461,8 @@ function addLink(string $title,
     string $uri, 
     string $visible)
 {
+    $content_type = 'link';
+    
     $sql = "
     INSERT INTO `contents` (
         `title`, 
@@ -479,8 +484,6 @@ function addLink(string $title,
     $pdo = getPdoConnection();
     
     try {
-        $content_type = 'link';
-        
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
@@ -604,13 +607,14 @@ function loadArticlesStatement() : PDOStatement
 }
 
 /**
+ * Get a list if items from an article by id.
  * 
- * @param int $id
- * @return PDOStatement
+ * @param int $id - Id of an article.
+ * @return array  -
  * 
  * @since 0.8.0 
  */
-function loadArticlesDetailedStatement(int $id) : PDOStatement
+function getArticleDetailed(int $id) : array
 {
     $pdo = getPdoConnection();
 
@@ -627,10 +631,12 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
 
     try {
         $stmt = $pdo->prepare($sql);
+        
         $stmt->bindParam(':id', $id);
+        
         $stmt->execute();
 
-        return $stmt;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -891,7 +897,8 @@ function getPage(int $id) : array
         `visibility` 
         FROM `contents` 
         WHERE `content_type`= 'page'
-            AND `id` = :id";
+            AND `id` = :id
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -915,7 +922,10 @@ function getPage(int $id) : array
  * 
  * @since 0.8.0
  */
-function addPage(string $title, string $tagline, string $text, string $visibility)
+function addPage(string $title, 
+    string $tagline, 
+    string $text, 
+    string $visibility)
 {
     $sql = "
     INSERT INTO `contents` (
@@ -931,7 +941,8 @@ function addPage(string $title, string $tagline, string $text, string $visibilit
             :text, 
             :content_type,
             :visibility
-        )";
+        )
+    ";
     
     $pdo = getPdoConnection();
     
@@ -1022,7 +1033,15 @@ function loadUserStatement()
     }
 }
 
-function loadUserEditStatement(int $id)
+/**
+ * Get an user entry from 'users' table by id.
+ *
+ * @param int $id - Id from an user entry.
+ * @return array  - User list from an entry.
+ *
+ * @since 0.8.0
+ */
+function getUser(int $id) : array
 {
     $pdo = getPdoConnection();
 

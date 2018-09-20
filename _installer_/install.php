@@ -8,6 +8,9 @@
  * @desc: Simple installer for heinerCMS
  */
 include __DIR__ . '/include/functions.inc.php';
+session_start();
+error_reporting(-1);
+ini_set('display_errors', true);
 
 $firstname = filter_input(INPUT_POST, 'firstname');
 $lastname  = filter_input(INPUT_POST, 'lastname');

@@ -148,15 +148,13 @@ function load_articles_detailed(int $id): string
 {
     $placeholderList = [];
 
-    $stmt = loadArticlesDetailedStatement($id);
+    $articleItems = getArticleDetailed($id);
 
-    while ($articles = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $placeholderList = [
-            '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles['datetime']),
-            '##placeholder-title##'    => $articles['title'],
-            '##placeholder-message##'  => $articles['text']
-        ];
-    }
+    $placeholderList = [
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articleItems['datetime']),
+        '##placeholder-title##'    => $articleItems['title'],
+        '##placeholder-message##'  => $articleItems['text']
+    ];
 
     $template = loadTemplate('pub_articles_detailed');
 

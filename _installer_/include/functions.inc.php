@@ -564,7 +564,7 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
 {
     if ( checkDatabase($pdo) ) {
         $sql = "
-        INSERT INTO `articles_settings`(
+        INSERT INTO `contents_settings`(
             `content_type`,
             `tagline`, 
             `text`) 
