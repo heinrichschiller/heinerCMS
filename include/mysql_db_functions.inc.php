@@ -644,7 +644,7 @@ function loadArticlesDetailedStatement(int $id) : PDOStatement
  * @param string $content - Content of an article.
  * @param string $visible - Is an article visible or not.
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
 function addArticle(string $title, string $content, string $visible)
 {
@@ -1283,7 +1283,8 @@ function countEntries()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
+    $sql = "
+    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
         UNION ALL
         SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash'
         UNION ALL
@@ -1293,7 +1294,8 @@ function countEntries()
         UNION ALL
         SELECT COUNT(*) as result
             FROM `contents`
-            WHERE `flag` = 'trash'";
+            WHERE `flag` = 'trash'
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);

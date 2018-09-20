@@ -54,6 +54,7 @@ function loadDownloadsStatement() : PDOStatement
         `path`, 
         `filename`, 
         `visibility`
+        FROM `contents` 
         WHERE `content_type` = 'download' 
             AND `flag` = ''
             ORDER BY `created_at` DESC
@@ -569,8 +570,9 @@ function loadArticlesStatement() : PDOStatement
         `title`, 
         strftime('%s', `created_at`) AS datetime, 
         `visibility`
-        FROM `articles` 
-        WHERE `trash` = 'false' 
+        FROM `contents` 
+        WHERE `content_type`= 'article'
+            AND `flag` = '' 
             ORDER BY `created_at` DESC
     ";
 
@@ -629,20 +631,19 @@ function addArticle(string $title, string $content, string $visibility, string $
     $datetime = strftime('%Y-%m-%d %H:%M', time());
     
     $sql = "
-    INSERT INTO `articles` (
+    INSERT INTO `contents` (
         `title`, 
-        `content`, 
-        `created_at`, 
-        `visibility`, 
-        `trash`
-        )
+        `text`, 
+        `content_type`,
+        `visibility`
+        ) 
         VALUES (
             :title, 
-            :content, 
-            :created_at, 
-            :visibility, 
-            :trash
-        )";
+            :text, 
+            :content_type,
+            :visibility
+        )
+    ";
     
     $pdo = getPdoConnection();
     
@@ -808,8 +809,9 @@ function loadPagesStatement() : PDOStatement
         `title`, 
         strftime('%s', `created_at`) AS datetime, 
         `visibility`
-        FROM `pages` 
-        WHERE `trash` = 'false' 
+        FROM `contents` 
+        WHERE `content_type` = 'page'
+            AND `flag` = '' 
             ORDER BY `created_at` DESC
     ";
 
@@ -1240,25 +1242,19 @@ function countEntries()
 {
     $pdo = getPdoConnection();
 
-    $sql = "SELECT COUNT(`id`) FROM `downloads` WHERE `trash` = 'false'
+    $sql = "
+    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `links` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `articles` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `pages` WHERE `trash` = 'false'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash'
         UNION ALL
         SELECT COUNT(*) as result
-            FROM (
-            SELECT `trash` FROM `articles`
-            UNION ALL
-            SELECT `trash` FROM `downloads`
-            UNION ALL
-            SELECT `trash` FROM `links`
-            UNION ALL
-            SELECT `trash` FROM `pages`
-            ) as subquery
-            WHERE `trash` = 'true';";
+            FROM `contents`
+            WHERE `flag` = 'trash'
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);

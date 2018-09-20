@@ -368,6 +368,46 @@ function createTableContentsSettings(PDO $pdo, string $dbDriver) : bool
 }
 
 /**
+ * Create table settings
+ *
+ * @param PDO $pdo
+ * @return bool
+ */
+function createTableSettings(PDO $pdo, string $dbDriver) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "CREATE TABLE `settings` (
+            `title` VARCHAR(64) NOT NULL DEFAULT '',
+            `tagline` VARCHAR(140) NOT NULL DEFAULT '',
+            `theme` VARCHAR(64) NOT NULL DEFAULT '',
+            `darkmode` VARCHAR(7) NULL DEFAULT '',
+            `blog_url` VARCHAR(140) NOT NULL DEFAULT '',
+            `lang_short` VARCHAR(3) NOT NULL DEFAULT '',
+            `footer` VARCHAR(140) NOT NULL DEFAULT ''
+            ) CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        
+        if ($dbDriver == 'sqlite') {
+            $sql = 'CREATE TABLE "settings" (
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                `title` TEXT NOT NULL,
+                `tagline` TEXT,
+                `theme` TEXT NOT NULL,
+                `darkmode` VARCHAR(7) NULL,
+                `blog_url` TEXT,
+                `lang_short` TEXT NOT NULL,
+                `footer` TEXT NOT NULL )';
+        }
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            return false;
+        }
+    }
+}
+
+/**
  * Create table users
  * 
  * @param PDO $pdo
