@@ -347,7 +347,15 @@ function createTableContentsSettings(PDO $pdo, string $dbDriver) : bool
         ";
         
         if($dbDriver=='sqlite') {
-            $sql = "";
+            $sql = "
+            CREATE TABLE `contents_settings` (
+            	`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            	`content_type` TEXT NOT NULL,
+            	`tagline` TEXT,
+            	`text` TEXT,
+            	`created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+            	`updated_at` DATETIME);
+            ";
         }
         
         try {
