@@ -548,17 +548,17 @@ function updateLink(int $id,
 /**
  * 
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
-function updateLinksSettings(string $tagline, string $comment)
+function updateLinksSettings(string $tagline, string $text)
 {
     $sql = "
-    UPDATE `links_settings` 
+    UPDATE `contents_settings` 
         SET `tagline`= :tagline,
-        `comment`= :comment 
-        WHERE 1
+        `text`= :text 
+        WHERE `content_type`= 'link'
     ";
     
     $pdo = getPdoConnection();
@@ -567,7 +567,7 @@ function updateLinksSettings(string $tagline, string $comment)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -728,16 +728,18 @@ function updateArticle(int $id, string $title, string $content, string $visibili
 /**
  * 
  * @param string $tagline
- * @param string $comment
+ * @param string $text
+ * 
+ * @since 0.8.0
  */
-function updateArticleSettings(string $tagline, string $comment)
+function updateArticleSettings(string $tagline, string $text)
 {
-    $sql = '
-    UPDATE `articles_settings` 
-    SET `tagline`= :tagline,
-        `comment`= :comment 
-        WHERE 1
-    ';
+    $sql = "
+    UPDATE `contents_settings` 
+        SET `tagline`= :tagline,
+        `text`= :text 
+        WHERE `content_type`= 'article'
+    ";
     
     $pdo = getPdoConnection();
     
@@ -745,7 +747,7 @@ function updateArticleSettings(string $tagline, string $comment)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':comment', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -1241,7 +1243,7 @@ function deleteAllTrashItems(string $table)
  * @since 0.8.0
  */
 function setContentsFlagById(int $id, string $flag)
-{var_dump($id, $flag);
+{
     $pdo = getPdoConnection();
 
     $sql = "

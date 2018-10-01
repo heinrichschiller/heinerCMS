@@ -578,17 +578,17 @@ function updateLink(int $id,
 /**
  * 
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
-function updateLinksSettings(string $tagline, string $comment)
+function updateLinksSettings(string $tagline, string $text)
 {
     $sql = "
-    UPDATE `links_settings` 
+    UPDATE `contents_settings` 
         SET `tagline`= :tagline,
-        `comment`= :comment 
-        WHERE 1
+        `text`= :text 
+        WHERE `content_type`= 'link'
     ";
     
     $pdo = getPdoConnection();
@@ -597,7 +597,7 @@ function updateLinksSettings(string $tagline, string $comment)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -760,15 +760,15 @@ function updateArticle(int $id, string $title, string $text, string $visibility)
 /**
  * 
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  */
-function updateArticleSettings(string $tagline, string $comment)
+function updateArticleSettings(string $tagline, string $text)
 {
     $sql = "
-    UPDATE `articles_settings` 
+    UPDATE `contents_settings` 
         SET `tagline`= :tagline,
-            `comment`= :comment 
-            WHERE 1
+        `text`= :text 
+        WHERE `content_type`= 'article'
     ";
     
     $pdo = getPdoConnection();
@@ -777,7 +777,7 @@ function updateArticleSettings(string $tagline, string $comment)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':text', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -1278,23 +1278,27 @@ function deleteAllTrashItems(string $table)
 }
 
 /**
- *
+ * 
  * @param int $id
- * @param string $table
+ * @param string $flag
+ * 
+ * @since 0.8.0
  */
-function setFlagTrashById(int $id, string $table)
+function setContentsFlagById(int $id, string $flag)
 {
     $pdo = getPdoConnection();
 
     $sql = "
-    UPDATE `$table` 
-        SET `trash`='true' 
+    UPDATE `contents` 
+        SET `flag`=:flag 
         WHERE `id`= :id
     ";
 
     try {
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':flag', $flag);
         $stmt->bindParam(':id', $id);
+        
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -1303,20 +1307,19 @@ function setFlagTrashById(int $id, string $table)
 }
 
 /**
- * Get title from a table by id
+ * Get a title of a content by id.
  *
- * @param string $table - Name of a table
- * @param int $id - Id
+ * @param int $id - Id of a content title.
  *
  * @return string
  */
-function getTitleFromTableById(string $table, int $id)
+function getContentsTitleById(int $id)
 {
     $pdo = getPdoConnection();
 
     $sql = "
     SELECT `title` 
-        FROM `$table` 
+        FROM `contents` 
         WHERE `id` = :id
     ";
 
