@@ -10,23 +10,9 @@ include __DIR__ . '/../include/general_functions.inc.php';
 
 /* Überprüfen ob Login erfolgt ist, ggf. Anmeldemöglichkeit bieten */
 if (is_logged_in()) {
-    $id     = filter_input(INPUT_GET, 'id');
-    $action = filter_input(INPUT_POST, 'action');
-    $uri    = '';
+    $id     = filter_input(INPUT_POST, 'id');
 
-    // @todo Unsicher!!! Beheben!!!
-    $list = isset($_POST['chk_select']) ? $_POST['chk_select'] : array();
+    setContentsFlagById($id, 'trash');
 
-    switch ( $action ) {
-        case 'del' : deleteItemsById($list, 'pages');
-            $uri = 'trash';
-            break;
-        case 'del_all' : deleteAllTrashItems('pages');
-            $uri = 'trash';
-            break;
-        default: setContentsFlagById($id, 'trash');
-            $uri = 'pages';
-    }
-
-    header ( "Location: index.php?uri=$uri" );
+    header ( "Location: index.php?uri=pages" );
 }
