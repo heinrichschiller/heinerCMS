@@ -67,6 +67,7 @@ try {
     $_SESSION['isLinksConfWritten']     = writeLinksSettingsConfiguration($pdo);
     $_SESSION['isDownloadsConfWritten'] = writeDownloadsSettingsConfiguration($pdo);
     $_SESSION['isArticlesConfWritten']  = writeArticlesSettingsConfiguration($pdo);
+    $_SESSION['isMainpageConfWritten']  = writeMainpageConfiguration($pdo);
 
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();

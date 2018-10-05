@@ -5,20 +5,12 @@
    		</div>
    	</div>
 </div>
-<form action="mainpageedit.php" method="post">
+<form action="mainpageupdate.php" method="post">
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="title">{title}:</label>
-				<input type="text" name="title" value="" class="form-control" id="title" required>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<label for="title">{tagline}:</label>
-				<input type="text" name="tagline" class="form-control" id="title" value="">
+				<input type="text" name="title" value="##placeholder-title##" class="form-control" id="title" required>
 			</div>
 		</div>
 	</div>
@@ -26,7 +18,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="text">{text}:</label>
-				<textarea name="content" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
+				<textarea name="text" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
 			</div>
 		</div>
 	</div>

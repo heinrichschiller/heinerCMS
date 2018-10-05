@@ -1047,6 +1047,49 @@ function updatePage(int $id,
     }
 }
 
+function updateMainpage($title, $text)
+{
+    $pdo = getPdoConnection();
+    
+    $sql="
+    UPDATE `contents`
+        SET `title` = :title,
+            `text` = :text
+            WHERE `content_type` = 'mainpage'
+                AND `flag` = 'aboutme'
+    ";
+    
+    try {
+        $stmt=$pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':text', $text);
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+function getAboutMe()
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT `title`, 
+        `text`
+        FROM `contents`
+        WHERE `content_type` = 'mainpage'
+            AND `flag` = 'aboutme'
+    ";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function loadUserStatement()
 {
     $pdo = getPdoConnection();

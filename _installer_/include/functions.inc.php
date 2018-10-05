@@ -580,6 +580,26 @@ function writeArticlesSettingsConfiguration(PDO $pdo) : bool
     }
 }
 
+function writeMainpageConfiguration(PDO $pdo) : bool
+{
+    if ( checkDatabase($pdo) ) {
+        $sql = "
+        INSERT INTO `contents`(
+            `content_type`,
+            `text`,
+            `flag`)
+            VALUES ('mainpage',' ','aboutme');
+        ";
+        
+        try {
+            $pdo->exec($sql);
+            return true;
+        } catch(PDOException $ex) {
+            return false;
+        }
+    }
+}
+
 /**
  * Select database by name
  * 

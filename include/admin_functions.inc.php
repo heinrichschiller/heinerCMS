@@ -942,8 +942,11 @@ function load_page_edit(int $id): string
  */
 function load_mainpage() : string
 {
+    $contentList = getAboutMe();
+    
     $placeholderList = [
-        '##placeholder-content##' => ''
+        '##placeholder-title##'   => $contentList['title'],
+        '##placeholder-content##' => $contentList['text']
     ];
     
     $template = loadTemplate('adm_mainpage');

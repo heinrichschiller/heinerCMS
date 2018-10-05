@@ -38,14 +38,8 @@
 
 			<aside class="col-md-4">
 				<div class="alert alert-success">
-					<h4 class="alert-heading">Well done!</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum
-						explicabo reprehenderit optio amet ab temporibus asperiores quasi
-						cupiditate. Voluptatum ducimus voluptates voluptas?</p>
-					<p>Aww yeah, you successfully read this important alert message.
-						This example text is going to run a bit longer so that you can see
-						how spacing within an alert works with this kind of content.</p>
+					<h4 class="alert-heading">##placeholder-aboutme-title##</h4>
+					##placeholder-aboutme-content##
 				</div>
 			</aside>
 		</div>

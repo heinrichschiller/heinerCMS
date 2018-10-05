@@ -284,11 +284,14 @@ function load_pages(int $id): string
 function load_mainpage(): string
 {
     $settings = getGeneralSettings();
+    $aboutme = getAboutMe();
     
     $placeholderList = [
-        '##placeholder-title##' => $settings['title'],
-        '##placeholder-tagline##' => $settings['tagline'],
-        '##placeholder-card##' => ''
+        '##placeholder-title##'           => $settings['title'],
+        '##placeholder-tagline##'         => $settings['tagline'],
+        '##placeholder-card##'            => '',
+        '##placeholder-aboutme-title##'   => $aboutme['title'],
+        '##placeholder-aboutme-content##' => $aboutme['text'],
     ];
     
     $template = loadTemplate('pub_mainpage');
