@@ -698,7 +698,10 @@ function addArticle(string $title, string $content, string $visible)
  * 
  * @since 0.3.0
  */
-function updateArticle(int $id, string $title, string $content, string $visibility)
+function updateArticle(int $id, 
+    string $title, 
+    string $content, 
+    string $visibility)
 {
     $pdo = getPdoConnection();
     
@@ -765,10 +768,10 @@ function loadPublicArticlesStatement() : PDOStatement
     $sql = "
     SELECT `contents`.`id`, 
         `contents`.`title`, 
-        `contents`.`text`, 
+        `contents`.`text` as text, 
         UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime,
         `contents_settings`.`tagline` as tagline, 
-        `contents_settings`.`text` as text
+        `contents_settings`.`text` as cs_text
         FROM `contents`, 
             `contents_settings`
             WHERE `contents`.`content_type` = 'article'
