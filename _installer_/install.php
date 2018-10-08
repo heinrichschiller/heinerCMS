@@ -7,10 +7,12 @@
  * 
  * @desc: Simple installer for heinerCMS
  */
-include __DIR__ . '/include/functions.inc.php';
+
 session_start();
 error_reporting(-1);
 ini_set('display_errors', true);
+
+include __DIR__ . '/include/functions.inc.php';
 
 $firstname = filter_input(INPUT_POST, 'firstname');
 $lastname  = filter_input(INPUT_POST, 'lastname');
@@ -19,8 +21,6 @@ $username  = filter_input(INPUT_POST, 'username');
 $password1 = filter_input(INPUT_POST, 'password1');
 $password2 = filter_input(INPUT_POST, 'password2');
 $language  = filter_input(INPUT_GET, 'lang');
-
-$language = filter_input(INPUT_GET, 'lang');
 
 $configFile = __DIR__ . '/../configs/db-config.php';
 
@@ -31,7 +31,7 @@ if(is_writable($configFile)) {
     fwrite($handle, $config);
     fclose($handle);
 } else {
-    // @todo: other way
+    // @todo: other things
 }
 
 if (file_exists($configFile)) {
