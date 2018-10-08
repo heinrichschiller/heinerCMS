@@ -109,7 +109,7 @@ function load_articles(): string
     while ($articles = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $placeholderList = [
             '##placeholder-articles-page-tagline##' => $articles['tagline'],
-            '##placeholder-articles-page-comment##' => $articles['text']
+            '##placeholder-articles-page-comment##' => $articles['cs_text']
         ];
 
         $content .= load_articles_content($articles, $templateArticlesContent);
@@ -132,7 +132,8 @@ function load_articles_content($articles, string $template) : string
     $placeholderList = [
         '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles['datetime']),
         '##placeholder-articles-title##'    => $articles['title'],
-        '##placeholder-articles-id##'       => $articles['id']
+        '##placeholder-articles-id##'       => $articles['id'],
+        '##placeholder-articles-text##'     => cutString($articles['text'])
     ];
 
     return strtr($template, $placeholderList);
@@ -375,4 +376,20 @@ function countContentType(string $contentType): int
     }
 
     return $id;
+}
+
+/**
+ * To cut a string.
+ * 
+ * @param string $string
+ * @return string
+ * 
+ * @since 0.8.0
+ * 
+ * @todo replace the third static parameter with the dynamic parameter
+ * from the article settings
+ */
+function cutString(string $string)
+{
+    return substr($string, 0, 500);
 }

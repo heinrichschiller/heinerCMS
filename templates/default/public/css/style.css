@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+.content-header {
+	font-size: 1.6em;
+}
+
+.content-body {
+	margin-bottom: 2em;
+}
+
 .list-group-item.active {
 	background-color: #e9ecef;
 	border-color: rgba(0,0,0,0.125);
