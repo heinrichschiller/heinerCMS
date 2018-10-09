@@ -858,6 +858,39 @@ function getArticle(int $id) : array
     }
 }
 
+/**
+ * Get an actualy article entry from 'contents' table.
+ *
+ * @return array  - Article list from an entry.
+ *
+ * @since 0.8.0
+ */
+function getActuallyArticle() : array
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT `id`,
+        `title`,
+        `text`,
+        strftime('%s', `created_at`) AS datetime
+        FROM `contents`
+        WHERE `content_type` = 'article'
+            AND `flag` != 'trash'
+            ORDER BY `datetime` DESC
+    ";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
 function getArticleSettings() : array
 {
     $pdo = getPdoConnection();

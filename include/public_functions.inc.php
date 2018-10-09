@@ -381,8 +381,16 @@ function countContentType(string $contentType): int
 
 function renderArticles()
 {
+    $article = getActuallyArticle();
+
+    $placeholder = [
+        '##placeholder-id##'      => $article['id'],
+        '##placeholder-title##'   => $article['title'],
+        '##placeholder-content##' => cutString($article['text'], 2000)
+    ];
     
-    return getTemplate('pub_article_mainpage_content');
+    $template = getTemplate('pub_article_mainpage_content');
+    return strtr($template, $placeholder);
 }
 
 /**
@@ -396,7 +404,7 @@ function renderArticles()
  * @todo replace the third static parameter with the dynamic parameter
  * from the article settings
  */
-function cutString(string $string)
+function cutString(string $string, $length = 500)
 {
-    return substr($string, 0, 500);
+    return substr($string, 0, $length);
 }
