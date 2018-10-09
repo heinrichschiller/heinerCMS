@@ -29,7 +29,7 @@ if (is_logged_in ()) {
 
     $arr_language = get_translation($_SESSION['language']);
     
-	$template = loadTemplate( 'adm_template' );
+	$template = getTemplate( 'adm_template' );
 	
 	if(isset($route[$uri])) {
 		$content = $route[$uri]($id);

@@ -53,7 +53,7 @@ $id  = filter_input(INPUT_GET, 'id');
 
 $content = '';
 
-$template = loadTemplate('pub_template');
+$template = getTemplate('pub_template');
 
 if (isset($route[$uri]) ) {
     $content .= $route[$uri]($id);

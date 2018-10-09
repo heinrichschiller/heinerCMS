@@ -17,7 +17,7 @@ function load_navigation(): string
         '##placeholder-trash##'     => $entries[4]
     ];
     
-    $template = loadTemplate('adm_navigation');
+    $template = getTemplate('adm_navigation');
     
     return strtr($template, $placeholderList);
 }
@@ -31,7 +31,7 @@ function load_sidebar(): string
 {
     $template = '';
     
-    $template = loadTemplate('adm_sidebar');
+    $template = getTemplate('adm_sidebar');
     
     return $template;
 }
@@ -76,14 +76,14 @@ function load_downloads(): string
             '##placeholder-button##' => '{create_download}'
         ];
         
-        $template = loadTemplate('adm_table');
+        $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
 
-        $tplDownloadsEntries = loadTemplate('adm_downloads_entries');
+        $tplDownloadsEntries = getTemplate('adm_downloads_entries');
         $tplDownloadsEntries = str_replace('##placeholder-table-content##', $content, $tplDownloadsEntries);
         $template = str_replace('##placeholder-content##', $tplDownloadsEntries, $template);
     } else {
-        $template = loadTemplate('adm_no_downloads');
+        $template = getTemplate('adm_no_downloads');
     }
 
     return $template;
@@ -121,7 +121,7 @@ function load_downloads_edit(int $id): string
         '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = loadTemplate('adm_downloads_form');
+    $template = getTemplate('adm_downloads_form');
 
     return strtr($template, $placeholderList);
 }
@@ -148,7 +148,7 @@ function load_downloads_add(): string
         '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_downloads_form');
+    $template = getTemplate('adm_downloads_form');
 
     return strtr($template, $placeholderList);
 }
@@ -170,7 +170,7 @@ function load_downloads_del(int $id): string
         '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_form_del');
+    $template = getTemplate('adm_form_del');
     
     return strtr($template, $placeholderList);
 }
@@ -189,7 +189,7 @@ function load_downloads_settings() : string
         '##placeholder-downloads-text##' => $download['text']
     ];
     
-    $template = loadTemplate('adm_downloads_settings');
+    $template = getTemplate('adm_downloads_settings');
 
     return strtr($template, $placeholderList);
 }
@@ -235,15 +235,15 @@ function load_links(): string
             '##placeholder-button##' => '{create_link}'
         ];
         
-        $template = loadTemplate('adm_table');
+        $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
         
-        $tplLinksEntries = loadTemplate('adm_links_entries');
+        $tplLinksEntries = getTemplate('adm_links_entries');
         $tplLinksEntries = str_replace('##placeholder-table-content##', $content, $tplLinksEntries);
         
         $template =str_replace('##placeholder-content##', $tplLinksEntries, $template);
     } else {
-        $template = loadTemplate('adm_no_links');
+        $template = getTemplate('adm_no_links');
     }
     
     return $template;
@@ -284,7 +284,7 @@ function load_link_edit(int $id): string
         '##placeholder-chk_no##'   => $chkNo
     ];
 
-    $template = loadTemplate('adm_link_form');
+    $template = getTemplate('adm_link_form');
 
     return strtr($template, $placeholderList);
 }
@@ -309,7 +309,7 @@ function load_link_add(): string
         '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_link_form');
+    $template = getTemplate('adm_link_form');
     
     return strtr($template, $placeholdeList);
 }
@@ -331,7 +331,7 @@ function load_link_del(int $id): string
         '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_form_del');
+    $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
     
     return $template;
@@ -351,7 +351,7 @@ function load_link_settings() : string
         '##placeholder-link-comment##' => $link['text']
     ];
     
-    $template = loadTemplate('adm_links_settings');
+    $template = getTemplate('adm_links_settings');
     
     return strtr($template, $placeholderList);
 }
@@ -397,15 +397,15 @@ function load_articles(): string
             '##placeholder-button##' => '{create_article}'
         ];
         
-        $template = loadTemplate('adm_table');
+        $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
         
-        $tplArticlesEntries = loadTemplate('adm_articles_entries');
+        $tplArticlesEntries = getTemplate('adm_articles_entries');
         $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
         
         $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
     } else {
-        $template = loadTemplate('adm_no_articles');
+        $template = getTemplate('adm_no_articles');
     }
 
     return $template;
@@ -443,7 +443,7 @@ function load_article_edit(int $id): string
         '##placeholder-chk_no##'   => $chkNo
     ];
     
-    $template = loadTemplate('adm_article_form');
+    $template = getTemplate('adm_article_form');
 
     return strtr($template, $placeholderList);
 }
@@ -468,7 +468,7 @@ function load_article_add(): string
         '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_article_form');
+    $template = getTemplate('adm_article_form');
     
     return strtr($template, $placeholderList);
 }
@@ -490,7 +490,7 @@ function load_article_del(int $id): string
         '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_form_del');
+    $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
     
     return $template;
@@ -510,7 +510,7 @@ function load_articles_settings() : string
         '##placeholder-article-comment##' => $article['text']
     ];
     
-    $template = loadTemplate('adm_articles_settings');
+    $template = getTemplate('adm_articles_settings');
     
     return strtr($template, $placeholderList);
 }
@@ -522,12 +522,12 @@ function load_articles_settings() : string
  */
 function load_dashboard(): string
 {
-    return loadTemplate('adm_dashboard');
+    return getTemplate('adm_dashboard');
 }
 
 function load_communication(): string
 {
-    return loadTemplate('adm_communication');
+    return getTemplate('adm_communication');
 }
 
 /**
@@ -590,15 +590,15 @@ function load_trash(): string
             '##placeholder-button##' => '{delete}'
         ];
         
-        $template = loadTemplate('adm_table');
+        $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
         
-        $tplArticlesEntries = loadTemplate('adm_articles_entries');
+        $tplArticlesEntries = getTemplate('adm_articles_entries');
         $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
         
         $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
     } else {
-        $template = loadTemplate('adm_no_trash');
+        $template = getTemplate('adm_no_trash');
     }
     
     return $template;
@@ -611,7 +611,7 @@ function load_trash(): string
  */
 function load_general_settings(): string
 {
-    $template = loadTemplate('adm_general_settings');
+    $template = getTemplate('adm_general_settings');
 
     $placeholderList = [
         '##placeholder-title##'         => $_SESSION['title'],
@@ -716,7 +716,7 @@ function load_user_list(): string
         $content .= '</tr>';
     }
 
-    $template = loadTemplate('adm_user_list');
+    $template = getTemplate('adm_user_list');
 
     return str_replace('##placeholder-user-list-content##', $content, $template);
 }
@@ -752,7 +752,7 @@ function load_user_edit(int $id): string
         '##placeholder-chk_no##'    => $chkNo
     ];
 
-    $template = loadTemplate('adm_user_edit');
+    $template = getTemplate('adm_user_edit');
 
     return strtr($template, $placeholderList);
 }
@@ -768,7 +768,7 @@ function load_user_add(): string
         '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time())
     ];
     
-    $template = loadTemplate('adm_user_insert');
+    $template = getTemplate('adm_user_insert');
     
     return strtr($template, $placeholderList);
 }
@@ -789,7 +789,7 @@ function load_user_del( int $id) : string
         '##placeholder-title##' => $title
     ];
     
-    $template = loadTemplate('adm_user_del');
+    $template = getTemplate('adm_user_del');
     
     return strtr($template, $placeholderList);
 }
@@ -835,18 +835,18 @@ function load_pages(): string
             '##placeholder-button##' => '{create_page}'
         ];
         
-        $template = loadTemplate('adm_table');
+        $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
         
-        $tplPages = loadTemplate('adm_pages_entries');
+        $tplPages = getTemplate('adm_pages_entries');
         $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
         
         $template = str_replace('##placeholder-content##', $tplPages, $template);
     } else {
-        $template = loadTemplate('adm_no_pages');
+        $template = getTemplate('adm_no_pages');
     }
     
-    $tplPages = loadTemplate('adm_pages_entries');
+    $tplPages = getTemplate('adm_pages_entries');
     $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
     
     return $template;
@@ -871,7 +871,7 @@ function load_page_add(): string
         '##placeholder-chk_no##'   => ''
     ];
     
-    $template = loadTemplate('adm_page_form');
+    $template = getTemplate('adm_page_form');
     
     return strtr($template, $placeholdeList);
 }
@@ -893,7 +893,7 @@ function load_page_del(int $id): string
         '##placeholder-title##'  => $title
     ];
     
-    $template = loadTemplate('adm_form_del');
+    $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
     
     return $template;
@@ -930,7 +930,7 @@ function load_page_edit(int $id): string
         '##placeholder-chk_no##'   => $chkNo
     ];
 
-    $template = loadTemplate('adm_page_form');
+    $template = getTemplate('adm_page_form');
 
     return strtr($template, $placeholderList);
 }
@@ -949,6 +949,6 @@ function load_mainpage() : string
         '##placeholder-content##' => $contentList['text']
     ];
     
-    $template = loadTemplate('adm_mainpage');
+    $template = getTemplate('adm_mainpage');
     return strtr($template, $placeholderList);
 }

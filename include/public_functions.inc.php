@@ -53,7 +53,7 @@ function load_navigation(): string
         '##placeholder-pages##'     => load_nav_pages()
     ];
     
-    $template = loadTemplate('pub_navigation');
+    $template = getTemplate('pub_navigation');
 
     return strtr($template, $placeholderList);
 }
@@ -101,8 +101,8 @@ function load_articles(): string
     $content = '';
     $placeholderList = [];
 
-    $template = loadTemplate('pub_articles');
-    $templateArticlesContent = loadTemplate('pub_articles_content');
+    $template = getTemplate('pub_articles');
+    $templateArticlesContent = getTemplate('pub_articles_content');
 
     $stmt = loadPublicArticlesStatement();
 
@@ -157,7 +157,7 @@ function load_articles_detailed(int $id): string
         '##placeholder-message##'  => $articleItems['text']
     ];
 
-    $template = loadTemplate('pub_articles_detailed');
+    $template = getTemplate('pub_articles_detailed');
 
     return strtr($template, $placeholderList);
 }
@@ -171,8 +171,8 @@ function load_downloads(): string
     $content = '';
     $placeholderList = [];
 
-    $template = loadTemplate('pub_downloads');
-    $templateNewsContent = loadTemplate('pub_downloads_content');
+    $template = getTemplate('pub_downloads');
+    $templateNewsContent = getTemplate('pub_downloads_content');
 
     $stmt = loadPublicDownloadsStatement();
 
@@ -220,8 +220,8 @@ function load_links(): string
     $content = '';
     $placeholderList = [];
 
-    $template = loadTemplate('pub_links');
-    $templateLinksContent = loadTemplate('pub_links_content');
+    $template = getTemplate('pub_links');
+    $templateLinksContent = getTemplate('pub_links_content');
 
     $stmt = loadPublicLinksStatement();
 
@@ -273,7 +273,7 @@ function load_pages(int $id): string
         '##placeholder-content##' => $page['text']
     ];
 
-    $template = loadTemplate('pub_page');
+    $template = getTemplate('pub_page');
     $template = strtr($template, $placeholderList);
 
     return $template;
@@ -291,11 +291,12 @@ function load_mainpage(): string
         '##placeholder-title##'           => $settings['title'],
         '##placeholder-tagline##'         => $settings['tagline'],
         '##placeholder-card##'            => '',
+        '##placeholder-articles##'        => renderArticles(),
         '##placeholder-aboutme-title##'   => $aboutme['title'],
         '##placeholder-aboutme-content##' => $aboutme['text'],
     ];
     
-    $template = loadTemplate('pub_mainpage');
+    $template = getTemplate('pub_mainpage');
     return strtr($template, $placeholderList);
 }
 
@@ -306,7 +307,7 @@ function load_mainpage(): string
 function load_cards()
 {
     $card = '';
-    $template = loadTemplate('pub_card');
+    $template = getTemplate('pub_card');
     
     $sql = "
     SELECT id, 
@@ -376,6 +377,12 @@ function countContentType(string $contentType): int
     }
 
     return $id;
+}
+
+function renderArticles()
+{
+    
+    return getTemplate('pub_article_mainpage_content');
 }
 
 /**

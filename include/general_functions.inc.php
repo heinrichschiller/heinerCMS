@@ -70,8 +70,8 @@ function is_logged_in() {
         return true;
     } else {
 
-        $login = loadTemplate('adm_login');
-        $template = loadTemplate('adm_login_template');
+        $login = getTemplate('adm_login');
+        $template = getTemplate('adm_login_template');
 
         $template = str_replace ( '##placeholder-title##', $_SESSION['title'], $template );
         $template = str_replace ( '##placeholder-form-signin##', $login, $template );
@@ -127,13 +127,13 @@ function get_translation(string $language) : array
 }
 
 /**
- * Loads an HTML template by name and outputs it.
+ * Get an HTML template by name and outputs it.
  * 
  * @param string $template - Name of a html-template.
  * 
  * @return string html-template.
  */
-function loadTemplate(string $template): string
+function getTemplate(string $template): string
 {
     $split = explode('_', $template);
     $subdirectory = '';
