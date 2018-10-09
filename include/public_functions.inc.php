@@ -381,7 +381,7 @@ function countContentType(string $contentType): int
 
 function renderArticles()
 {
-    $article = getActuallyArticle();
+    $article = getCurrentArticle();
 
     $placeholder = [
         '##placeholder-id##'      => $article['id'],

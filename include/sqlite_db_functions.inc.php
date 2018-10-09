@@ -865,7 +865,7 @@ function getArticle(int $id) : array
  *
  * @since 0.8.0
  */
-function getActuallyArticle() : array
+function getCurrentArticle() : array
 {
     $pdo = getPdoConnection();
     
