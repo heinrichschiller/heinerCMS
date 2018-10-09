@@ -5,6 +5,7 @@ Version 0.8.0 ()
 	added, debug mode for developer
 	added, new database structure in mysql and sqlite database
 	added, trash functionality works again!
+	added, shows a current article on the main page
 	   When you delete an entry, you can see it in the trash and edit them.
 	update, tinymce/tinymce (4.8.2 => 4.8.3)
 	update, installer version 1.2.0
