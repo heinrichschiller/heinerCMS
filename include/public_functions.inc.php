@@ -92,50 +92,52 @@ function load_nav_pages(): string
     return $html;
 }
 
+function renderArticlesPage(): string
+{
+    $articlesPage = renderArticlePage();
+    $articlesContent = renderArticlesContent();
+    
+    return str_replace('##placeholder-articles##', $articlesContent, $articlesPage);
+}
+
 /**
  *
  * @return string
  */
-function load_articles(): string
+function renderArticlesContent(): string
 {
     $content = '';
     $placeholderList = [];
 
-    $template = getTemplate('pub_articles');
-    $templateArticlesContent = getTemplate('pub_articles_content');
+    $template = getTemplate('pub_articles_content');
 
     $stmt = loadPublicArticlesStatement();
 
     while ($articles = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $placeholderList = [
-            '##placeholder-articles-page-tagline##' => $articles['tagline'],
-            '##placeholder-articles-page-comment##' => $articles['cs_text']
+            '##placeholder-articles-id##' => $articles['id'],
+            '##placeholder-datetime##' => StrFTime('%d.%m.%Y', $articles['datetime']),
+            '##placeholder-title##' => $articles['title'],
+            '##placeholder-text##' => cutString($articles['text'])
         ];
 
-        $content .= load_articles_content($articles, $templateArticlesContent);
+        $content .= strtr($template, $placeholderList);
     }
 
-    $template = str_replace('##placeholder-articles##', $content, $template);
-    $template = strtr($template, $placeholderList);
-
-    return $template;
+    return strtr($content, $placeholderList);
 }
 
-/**
- * 
- * @param mixed $articles
- * @param string $template
- * @return string
- */
-function load_articles_content($articles, string $template) : string
+function renderArticlePage() : string
 {
+    $settings = getArticleSettings();
+    
     $placeholderList = [
-        '##placeholder-articles-datetime##' => StrFTime('%d.%m.%Y %H:%M', $articles['datetime']),
-        '##placeholder-articles-title##'    => $articles['title'],
-        '##placeholder-articles-id##'       => $articles['id'],
-        '##placeholder-articles-text##'     => cutString($articles['text'])
+        '##placeholder-articles-page-tagline##' => $settings['tagline'],
+        '##placeholder-articles-page-comment##' => $settings['text']
     ];
-
+    
+    $template = getTemplate('pub_articles');
+    
     return strtr($template, $placeholderList);
 }
 
@@ -160,6 +162,20 @@ function load_articles_detailed(int $id): string
     $template = getTemplate('pub_articles_detailed');
 
     return strtr($template, $placeholderList);
+}
+
+function renderCurrentArticle()
+{
+    $article = getCurrentArticle();
+    
+    $placeholder = [
+        '##placeholder-id##'      => $article['id'],
+        '##placeholder-title##'   => $article['title'],
+        '##placeholder-content##' => cutString($article['text'], 2000)
+    ];
+    
+    $template = getTemplate('pub_article_mainpage_content');
+    return strtr($template, $placeholder);
 }
 
 /**
@@ -291,7 +307,7 @@ function load_mainpage(): string
         '##placeholder-title##'           => $settings['title'],
         '##placeholder-tagline##'         => $settings['tagline'],
         '##placeholder-card##'            => '',
-        '##placeholder-articles##'        => renderArticles(),
+        '##placeholder-articles##'        => renderCurrentArticle(),
         '##placeholder-aboutme-title##'   => $aboutme['title'],
         '##placeholder-aboutme-content##' => $aboutme['text'],
     ];
@@ -377,20 +393,6 @@ function countContentType(string $contentType): int
     }
 
     return $id;
-}
-
-function renderArticles()
-{
-    $article = getCurrentArticle();
-
-    $placeholder = [
-        '##placeholder-id##'      => $article['id'],
-        '##placeholder-title##'   => $article['title'],
-        '##placeholder-content##' => cutString($article['text'], 2000)
-    ];
-    
-    $template = getTemplate('pub_article_mainpage_content');
-    return strtr($template, $placeholder);
 }
 
 /**
