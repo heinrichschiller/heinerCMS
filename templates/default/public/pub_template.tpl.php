@@ -21,16 +21,15 @@
     	<div class="container-fluid">
             ##placeholder-navigation##
         </div>
-            <noscript>
-            	<div class="alert alert-danger" role="alert">
-                    <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
-                    <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
-                </div>
-            </noscript>
-    		<div class="row">
-    				<div class="col-sm-12">##placeholder-content##</div>
-    		</div>
-        
+        <noscript>
+        	<div class="alert alert-danger" role="alert">
+                <p>JavaScript ist nicht verfügbar oder es ist deaktiviert.</p>
+                <p>Bitte verwenden Sie einen Browser, der JavaScript unterstützt oder aktivieren Sie JavaScript in Ihrem Browser.</p>
+            </div>
+        </noscript>
+		<div class="col-sm-12">
+			##placeholder-content##
+		</div>
         <footer>
             <p>##placeholder-footer##</p>
         </footer>

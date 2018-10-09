@@ -8,7 +8,7 @@
 </div>
 <div class="container">
 	<!-- News -->
-	<div class="row">
+	<div>
 		##placeholder-card##
 	</div>
 	<!-- Article -->
