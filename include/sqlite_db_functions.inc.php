@@ -795,19 +795,15 @@ function updateArticleSettings(string $tagline, string $text)
 function loadPublicArticlesStatement() : PDOStatement
 {
     $sql = "
-    SELECT `contents`.`id`, 
-        `contents`.`title`, 
-        `contents`.`text` as text, 
-        strftime('%s', contents.created_at) AS datetime,
-        `contents_settings`.`tagline` as tagline, 
-        `contents_settings`.`text` as cs_text
-        FROM `contents`, 
-            `contents_settings`
-            WHERE `contents`.`content_type` = 'article'
-                AND `contents_settings`.`content_type` = 'article'
-                AND `visibility` = 'true' 
-                AND `flag` != 'trash' 
-                ORDER BY `datetime` DESC
+    SELECT `id`, 
+        `title`, 
+        `text` as text, 
+        strftime('%s', `created_at`) AS datetime 
+        FROM `contents`
+        WHERE `content_type` = 'article' 
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash' 
+            ORDER BY `datetime` DESC
     ";
 
     $pdo = getPdoConnection();
