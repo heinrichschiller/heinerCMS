@@ -1,7 +1,17 @@
 @CHARSET "UTF-8";
 
+.article-content {
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+}
+
+.article-content.content-border {
+	border: 1px solid #e9ecef;
+	border-radius: 0.25em;
+}
+
 .content-header {
-	font-size: 1.6em;
+	font-size: 1.4em;
 }
 
 .content-body {

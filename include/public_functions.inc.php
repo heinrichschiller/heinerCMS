@@ -166,16 +166,23 @@ function load_articles_detailed(int $id): string
 
 function renderCurrentArticle()
 {
-    $article = getCurrentArticle();
+    $template = getTemplate('pub_no_articles');
     
-    $placeholder = [
-        '##placeholder-id##'      => $article['id'],
-        '##placeholder-title##'   => $article['title'],
-        '##placeholder-content##' => cutString($article['text'], 2000)
-    ];
+    if (countContentType('article') > 0) {
+        $article = getCurrentArticle();
+        
+        $placeholder = [
+            '##placeholder-id##'      => $article['id'],
+            '##placeholder-title##'   => $article['title'],
+            '##placeholder-content##' => cutString($article['text'], 2000)
+        ];
+        
+        $template = getTemplate('pub_article_mainpage_content');
+        $template = strtr($template, $placeholder);
+    }
     
-    $template = getTemplate('pub_article_mainpage_content');
-    return strtr($template, $placeholder);
+    
+    return $template;
 }
 
 /**
@@ -369,30 +376,6 @@ function load_cards()
     }
 
     return $card;
-}
-
-/**
- * 
- * @param string $contentType
- * @return int
- */
-function countContentType(string $contentType): int
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT COUNT(`id`) 
-        FROM `contents` 
-        WHERE `content_type` = '$contentType'
-            AND `flag` != 'trash' 
-            AND `visibility` = 'true'
-    ";
-
-    foreach ($pdo->query($sql) as $row) {
-        $id = (int) $row[0];
-    }
-
-    return $id;
 }
 
 /**

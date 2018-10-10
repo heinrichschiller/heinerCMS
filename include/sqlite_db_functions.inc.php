@@ -1408,9 +1408,35 @@ function getContentsTitleById(int $id)
 }
 
 /**
+ *
+ * @param string $type
+ * @return int
+ */
+function countContentType(string $type): int
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT COUNT(`id`)
+        FROM `contents`
+        WHERE `content_type` = '$type'
+            AND `flag` != 'trash'
+            AND `visibility` = 'true'
+    ";
+    
+    foreach ($pdo->query($sql) as $row) {
+        $id = (int) $row[0];
+    }
+    
+    return $id;
+}
+
+/**
  * Count all Entries for navigation information
  *
  * @return array
+ * 
+ * @since 0.8.0
  */
 function countEntries()
 {
