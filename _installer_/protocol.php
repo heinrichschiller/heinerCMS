@@ -34,7 +34,7 @@ if($_SESSION['isConnected']) {
 
 if($_SESSION['isTableContentsCreated']) {
     $contentsTrAttr = 'class="table-success"';
-    $contentsTrRes = 'ja';
+    $contentsRes = 'ja';
 } else {
     $contentsTrAttr = 'class="table-danger"';
     $contentsRes = 'nein';
@@ -44,12 +44,24 @@ if($_SESSION['isTableContentsCreated']) {
 // Created Links Settings table ?
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-if($_SESSION['isTabArticlesSettingsCreated']) {
-    $articlesSettingsTrAttr = 'class="table-success"';
-    $articlesSettingsRes = 'ja';
+if($_SESSION['isTableContentsSettingsCreated']) {
+    $contentsSettingsTrAttr = 'class="table-success"';
+    $contentsSettingsRes = 'ja';
 } else {
-    $articlesSettingsTrAttr = 'class="table-danger"';
-    $articlesSettingsRes = 'nein';
+    $contentsSettingsTrAttr = 'class="table-danger"';
+    $contentsSettingsRes = 'nein';
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Created user ?
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($_SESSION['isTableUsersCreated']) {
+    $usersTrAttr = 'class="table-success"';
+    $usersRes = 'ja';
+} else {
+    $usersTrAttr = 'class="table-danger"';
+    $usersRes = 'nein';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,13 +167,13 @@ footer p {
 								<td>Verbindung zur Datenbank erfolgreich?</td>
 								<td><?= $databaseRes; ?></td>
 							</tr>
-							<tr <?= $articlesTrAttr; ?>>
+							<tr <?= $contentsTrAttr; ?>>
 								<td>Tabelle contents erstellt?</td>
-								<td><?= $articlesRes; ?></td>
+								<td><?= $contentsRes; ?></td>
 							</tr>
-							<tr <?= $articlesSettingsTrAttr; ?>>
+							<tr <?= $contentsSettingsTrAttr; ?>>
 								<td>Tabelle contents_settings erstellt?</td>
-								<td><?= $articlesSettingsRes; ?></td>
+								<td><?= $contentsSettingsRes; ?></td>
 							</tr>
 							<tr <?= $usersTrAttr; ?>>
 								<td>Tabelle users erstellt?</td>
@@ -196,10 +208,6 @@ footer p {
 							<tr <?= $isConfTrAttr; ?>>
 								<td>Standardkonfiguration geschrieben?</td>
 								<td><?= $isConfRes ?></td>
-							</tr>
-							<tr <?= $isLinksConfTrAttr; ?>>
-								<td>Standardkonfiguration für Links geschrieben?</td>
-								<td><?= $isLinksRes ?></td>
 							</tr>
 						</tbody>
 					</table>

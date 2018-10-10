@@ -585,10 +585,12 @@ function writeMainpageConfiguration(PDO $pdo) : bool
     if ( checkDatabase($pdo) ) {
         $sql = "
         INSERT INTO `contents`(
+			`title`,
             `content_type`,
             `text`,
+			`visibility`,
             `flag`)
-            VALUES ('mainpage',' ','aboutme');
+            VALUES ('Infobox','mainpage','void','false','Hier steht noch nichts drin');
         ";
         
         try {
