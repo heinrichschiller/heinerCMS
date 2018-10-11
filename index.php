@@ -33,6 +33,12 @@ include __DIR__ . '/configs/cms-config.php';
 include CONFIG_PATH . 'db-config.php';
 include INCLUDE_PATH . 'general_functions.inc.php';
 
+if (DEBUG_MODE) {
+    session_start();
+    error_reporting(-1);
+    ini_set('display_errors', true);
+}
+
 if (!checkSystem()) {
     header("Location: _installer_/index.php?uri=language&lang=en&db=mysql");
     exit();
@@ -40,14 +46,14 @@ if (!checkSystem()) {
 
 include INCLUDE_PATH . DB_DRIVER . '_db_functions.inc.php';
 include INCLUDE_PATH . 'public_functions.inc.php';
-include INCLUDE_PATH . 'routes.inc.php';
+include __DIR__ . '/routes/pub_routes.inc.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
 
 $content = '';
 
-$template = loadTemplate('pub_template');
+$template = getTemplate('pub_template');
 
 if (isset($route[$uri]) ) {
     $content .= $route[$uri]($id);

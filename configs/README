@@ -28,6 +28,8 @@ database. This is important for developers.
 
 MYSQL/MariaDB config-example:
 
+define('DB_DRIVER', 'mysql');
+
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_NAME', 'cms_heinercms');
@@ -35,6 +37,8 @@ define('DB_PASSWORD', '');
 define('PDO_DEBUG_MODE', true);
 
 SQLite config-example:
+
+define('DB_DRIVER', 'sqlite');
 
 define('DB_NAME', __DIR__ . '/../data/sqlite/heinercms.db');
 define('PDO_DEBUG_MODE', true);

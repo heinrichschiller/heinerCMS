@@ -1,6 +1,18 @@
-<div class="alert alert-warning" role="alert">
-  <h4 class="alert-heading">Hinweis!</h4>
-  <hr>
-  <p class="mb-0">Mülleimer wird in der Zukunft neu implementiert.</p>
-  <p class="mb-0">Bitte haben sie geduld.</p>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>{date}</th>
+					<th>{title}</th>
+					<th>{content}</th>
+					<th>{actions}</th>
+				</tr>
+			</thead>
+			<tbody>
+				##placeholder-table-content##
+			</tbody>
+		</table>
+	</div>
 </div>

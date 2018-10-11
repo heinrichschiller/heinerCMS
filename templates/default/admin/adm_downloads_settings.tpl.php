@@ -17,8 +17,8 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<label for="comment">{comment}:</label>
-				<textarea name="comment" rows="5" class="form-control" id="comment">##placeholder-downloads-comment##</textarea>
+				<label for="comment">{text}:</label>
+				<textarea name="text" rows="5" class="form-control" id="comment">##placeholder-downloads-text##</textarea>
 			</div>
 		</div>
 	</div>

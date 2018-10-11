@@ -19,10 +19,12 @@
 		<content>Inhalt</content>
 		<news>Neuigkeiten</news>
 		<downloads>Downloads</downloads>
+		<download>Download</download>
 		<downloads_settings>Downloads-Einstellungen</downloads_settings>
 		<create_download>Download erstellen</create_download>
 		<edit_download>Download bearbeiten</edit_download>
 		<links>Links</links>
+		<link>Link</link>
 		<create_link>Link erstellen</create_link>
 		<edit_link>Link bearbeiten</edit_link>
 		<links_settings>Links-Einstellungen</links_settings>
@@ -66,6 +68,7 @@
 		<tagline>Untertitel</tagline>
 		<blog>Blog</blog>
 		<page>Seite</page>
+		<edit_page>Seite bearbeiten</edit_page>
 		<pages>Seiten</pages>
 		<create_page>Seite erstellen</create_page>
 		<edit_news>Nachricht bearbeiten</edit_news>

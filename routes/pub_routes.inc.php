@@ -14,7 +14,7 @@ $route['downloadsdet'] = function($id)
 
 $route['articles'] = function()
 {
-    return load_articles();
+    return renderArticlesPage();
 };
 
 $route['articlesdet'] = function($id)

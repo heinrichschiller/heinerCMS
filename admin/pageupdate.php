@@ -13,10 +13,10 @@ if (is_logged_in ()) {
     $id      = filter_input(INPUT_POST, 'id');
     $title   = filter_input(INPUT_POST, 'title');
     $tagline = filter_input(INPUT_POST, 'tagline');
-    $content = filter_input(INPUT_POST, 'content');
-    $visible = filter_input(INPUT_POST, 'visible');
+    $text = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
 
-    updatePage($id, $title, $tagline, $content, $visible);
+    updatePage($id, $title, $tagline, $text, $visibility);
     
     header ( 'Location: index.php?uri=pages' );
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     $("#dialog").dialog({
       autoOpen: false,
       modal: true,
@@ -25,4 +25,4 @@ $(document).ready(function() {
     });
 
     $("#dialog").dialog("open");
-  });
+  });*/

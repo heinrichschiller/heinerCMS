@@ -44,3 +44,17 @@ define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
  * @since 0.5.0
  */
 define('LOCALES_PATH', __DIR__ . '/../locales/');
+
+/****************************************************************************************
+ * Debuging options for heinerCMS
+ ***************************************************************************************/
+
+/**
+ * Set error handling for development and debugging on heinerCMS.  It can be set in
+ * cms-config.php
+ *
+ * @var string Set the value on 'true' to activate the debug mode
+ * 
+ * @since 0.8.0
+ */
+define('DEBUG_MODE', false);

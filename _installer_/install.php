@@ -7,6 +7,11 @@
  * 
  * @desc: Simple installer for heinerCMS
  */
+
+session_start();
+error_reporting(-1);
+ini_set('display_errors', true);
+
 include __DIR__ . '/include/functions.inc.php';
 
 $firstname = filter_input(INPUT_POST, 'firstname');
@@ -17,8 +22,6 @@ $password1 = filter_input(INPUT_POST, 'password1');
 $password2 = filter_input(INPUT_POST, 'password2');
 $language  = filter_input(INPUT_GET, 'lang');
 
-$language = filter_input(INPUT_GET, 'lang');
-
 $configFile = __DIR__ . '/../configs/db-config.php';
 
 if(is_writable($configFile)) {
@@ -28,7 +31,7 @@ if(is_writable($configFile)) {
     fwrite($handle, $config);
     fclose($handle);
 } else {
-    // @todo: other way
+    // @todo: other things
 }
 
 if (file_exists($configFile)) {
@@ -54,21 +57,17 @@ try {
         $pdo = new PDO("sqlite:$sqliteName");
     }
 
-    $_SESSION['isTabArticlesCreated']          = createTableArticles($pdo, DB_DRIVER);
-    $_SESSION['isTabArticlesSettingsCreated']  = createTableArticlesSettings($pdo, DB_DRIVER);
-    $_SESSION['isTabDownloadsCreated']         = createTableDownloads($pdo, DB_DRIVER);
-    $_SESSION['isTabDownloadsSettingsCreated'] = createTableDownloadsSettings($pdo, DB_DRIVER);
-    $_SESSION['isTabLinksCreated']             = createTableLinks($pdo, DB_DRIVER);
-    $_SESSION['isTabLinksSettingsCreated']     = createTableLinksSettings($pdo, DB_DRIVER);
-    $_SESSION['isTabPagesCreated']             = createTablePages($pdo, DB_DRIVER);
-    $_SESSION['isTabUsersCreated']             = createTableUsers($pdo, DB_DRIVER);
-    $_SESSION['isTabSettingsCreated']          = createTableSettings($pdo, DB_DRIVER);
+    $_SESSION['isTableContentsCreated']         = createTableContents($pdo, DB_DRIVER);
+    $_SESSION['isTableContentsSettingsCreated'] = createTableContentsSettings($pdo, DB_DRIVER);
+    $_SESSION['isTableUsersCreated']            = createTableUsers($pdo, DB_DRIVER);
+    $_SESSION['isTableSettingsCreated']         = createTableSettings($pdo, DB_DRIVER);
 
     // 4. Write default configuration
     $_SESSION['isDefaultConfWritten']   = writeDefaultConfiguration($pdo);
     $_SESSION['isLinksConfWritten']     = writeLinksSettingsConfiguration($pdo);
     $_SESSION['isDownloadsConfWritten'] = writeDownloadsSettingsConfiguration($pdo);
     $_SESSION['isArticlesConfWritten']  = writeArticlesSettingsConfiguration($pdo);
+    $_SESSION['isMainpageConfWritten']  = writeMainpageConfiguration($pdo);
 
 } catch (PDOException $ex) {
     echo 'Connection failed: ' . $ex->getMessage();

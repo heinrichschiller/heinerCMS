@@ -1,7 +1,25 @@
+Version 0.8.0 (2018-10-11)
+	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
+	   This release brings a new database structure to heinerCMS and many features need to be redeployed.
+	   My hope is the easier implementation of new features.
+	added, debug mode for developer
+	added, infobox on public mainpage
+	added, new database structure in mysql and sqlite database
+	added, trash functionality works again!
+	added, shows a current article on the main page
+	   When you delete an entry, you can see it in the trash and edit them.
+	update, tinymce/tinymce (4.8.2 => 4.8.3)
+	update, installer version 1.2.0
+	update, translation
+	update, refactored articles, downloads, links, pages
+	update, modernized the frontend of the articles in the public area
+	update, readme.md
+	update, clean code
+	bugfix, fixed minor bugs
 Version 0.7.0 (2018-08-09)
 	added, confirmation dialog for delete function
-		Confirmation dialog are available in articles, downloads, links, pages.
-		This functionality makes heinercms more interactive.
+	   Confirmation dialog are available in articles, downloads, links, pages.
+	   This functionality makes heinercms more interactive.
 	update, clean code
 	update, translations
 	update, pdo_db_functions.inc.php deleted because obsolete
@@ -14,7 +32,7 @@ Version 0.6.0 (2018-08-03)
 Version 0.5.0 (2018-07-27)
 	add, components/jqueryui (1.12.1)
 	add, darkmode for administration
-		The darkmode is available in general settings.
+	   The darkmode is available in general settings.
 	add, tinymce darkskin
 	update, news removed because it is the same as articles
 	update, installer can write the database configuration file
@@ -26,16 +44,16 @@ Version 0.4.1 (2018-07-12)
 	bugfix, protocol in installer shows the config-file correctly
 Version 0.4.0 (2018-07-05)
 	added, new functionality
-		You can delete pages in pages from now.
+	   You can delete pages in pages from now.
 	update, translations
 	update, optical improvements
 	update, fixed minor bugs
 Version 0.3.0 (2018-06-25)
 	added, support for bootstrap cards on mainpage.
-		If you write an article, you see this article on mainpage in a bootstrap card.
-		Up to three bootstrap cards can be placed on mainpage.
+	   If you write an article, you see this article on mainpage in a bootstrap card.
+	   Up to three bootstrap cards can be placed on mainpage.
 	added, edit page function
-		You can edit a created page from now.
+	   You can edit a created page from now.
 	update, optical improvements
 	update, rename functions
 Version 0.2.7 (2018-06-08)

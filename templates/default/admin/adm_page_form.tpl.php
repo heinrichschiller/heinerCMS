@@ -42,7 +42,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-group">
 				<label for="text">{text}:</label>
-				<textarea name="content" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
+				<textarea name="text" rows="10" class="form-control" id="text">##placeholder-content##</textarea>
 			</div>
 		</div>
 	</div>
@@ -50,11 +50,11 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<span>{visible}?</span>
         	<div class="custom-control custom-radio custom-control-inline">
-          		<input type="radio" id="customRadioInline1" name="visible" value="0" class="custom-control-input" ##placeholder-chk_yes##>
+          		<input type="radio" id="customRadioInline1" name="visibility" value="true" class="custom-control-input" ##placeholder-chk_yes##>
           		<label class="custom-control-label" for="customRadioInline1">{yes}</label>
         	</div>
         	<div class="custom-control custom-radio custom-control-inline">
-          		<input type="radio" id="customRadioInline2" name="visible" value="-1" class="custom-control-input" ##placeholder-chk_no##>
+          		<input type="radio" id="customRadioInline2" name="visibility" value="false" class="custom-control-input" ##placeholder-chk_no##>
           		<label class="custom-control-label" for="customRadioInline2">{no}</label>
         	</div>
         </div>
