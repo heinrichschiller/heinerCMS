@@ -42,7 +42,7 @@ function normalize(int $id, string $table)
 /**
  * 
  * @return PDOStatement
- * 
+ *
  * @since 0.8.0
  */
 function loadDownloadsStatement() : PDOStatement
@@ -111,17 +111,19 @@ function getDownloads(int $id) : array
 }
 
 /**
- * 
+ *
  * @return array
+ * 
+ * @since 0.8.0
  */
 function getDownloadSettings() : array
 {
     $pdo = getPdoConnection();
-
+    
     $sql = "
-    SELECT `tagline`, 
-        `text` 
-        FROM `contents_settings` 
+    SELECT `tagline`,
+        `text`
+        FROM `contents_settings`
         WHERE `content_type` = 'download';
     ";
 
@@ -176,11 +178,11 @@ function loadPublicDownloadsStatement() : PDOStatement
 /**
  * Add a download entry to contents table.
  * 
- * @param string $title      - Title of the download.
- * @param string $text       - Text (content) of the download.
- * @param string $path       - Path to the download.
- * @param string $filename   - Filename of the download.
- * @param string $visibility - Is a download visible or not.
+ * @param string $title         - Title of a download.
+ * @param string $text          - Text of a download.
+ * @param string $path          - Path of a download.
+ * @param string $filename      - Filename of a download.
+ * @param string $visibility    - Is a download visible or not.
  * 
  * @since 0.8.0
  */
@@ -237,7 +239,7 @@ function addDownload(string $title,
  * @param string $text
  * @param string $path
  * @param string $filename
- * @param string $visible
+ * @param string $visibility
  * 
  * @since 0.8.0
  */
@@ -246,7 +248,7 @@ function updateDownload(int $id,
     string $text, 
     string $path, 
     string $filename, 
-    string $visible)
+    string $visibility)
 {
     $pdo = getPdoConnection();
     
@@ -271,7 +273,7 @@ function updateDownload(int $id,
         $stmt->bindParam(':content_type', $content_type);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
         
         $stmt->execute();
@@ -388,12 +390,12 @@ function getLinksSettings() : array
     $pdo = getPdoConnection();
     
     $sql = "
-    SELECT `tagline`, 
+    SELECT `tagline`,
         `text`
-        FROM `contents_settings` 
+        FROM `contents_settings`
         WHERE `content_type` = 'link'
     ";
-        
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -430,7 +432,7 @@ function loadPublicLinksStatement() : PDOStatement
             AND `visibility` = 'true' 
             AND `flag` != 'trash' 
             ORDER BY `datetime` DESC
-    "; 
+    ";
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -449,9 +451,9 @@ function loadPublicLinksStatement() : PDOStatement
  * 
  * @param string $title
  * @param string $tagline
- * @param string $comment
+ * @param string $text
  * @param string $uri
- * @param string $visible
+ * @param string $visibility
  * 
  * @since 0.8.0
  */
@@ -459,7 +461,7 @@ function addLink(string $title,
     string $tagline, 
     string $text, 
     string $uri, 
-    string $visible)
+    string $visibility)
 {
     $content_type = 'link';
     
@@ -491,7 +493,7 @@ function addLink(string $title,
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $content_type);
         $stmt->bindParam(':uri', $uri);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':visibility', $visibility);
         
         $stmt->execute();
     } catch (PDOException $ex) {
@@ -612,7 +614,7 @@ function loadArticlesStatement() : PDOStatement
  * @param int $id - Id of an article.
  * @return array  -
  * 
- * @since 0.8.0 
+ * @since 0.8.0
  */
 function getArticleDetailed(int $id) : array
 {
@@ -646,13 +648,13 @@ function getArticleDetailed(int $id) : array
 /**
  * Add a new article in 'articles' table.
  * 
- * @param string $title   - Title of an article.
- * @param string $content - Content of an article.
- * @param string $visible - Is an article visible or not.
+ * @param string $title      - Title of an article.
+ * @param string $text       - Text of an article.
+ * @param string $visibility - Is an article visible or not.
  * 
  * @since 0.8.0
  */
-function addArticle(string $title, string $content, string $visible)
+function addArticle(string $title, string $text, string $visibility)
 {
     $contentType = 'article';
     
@@ -677,9 +679,9 @@ function addArticle(string $title, string $content, string $visible)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':text', $content);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $contentType);
-        $stmt->bindParam(':visibility', $visible);
+        $stmt->bindParam(':visibility', $visibility);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -693,14 +695,14 @@ function addArticle(string $title, string $content, string $visible)
  * 
  * @param int $id            - Id of an article.
  * @param string $title      - Title of an article.
- * @param string $content    - Content of an article.
+ * @param string $text       - Text of an article.
  * @param string $visibility - Is article visible or not.
  * 
- * @since 0.3.0
+ * @since 0.8.0
  */
-function updateArticle(int $id, 
-    string $title, 
-    string $content, 
+function updateArticle(int $id,
+    string $title,
+    string $text,
     string $visibility)
 {
     $pdo = getPdoConnection();
@@ -717,7 +719,7 @@ function updateArticle(int $id,
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':text', $content);
+        $stmt->bindParam(':text', $text);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
         
@@ -732,7 +734,7 @@ function updateArticle(int $id,
  * 
  * @param string $tagline
  * @param string $text
- * 
+ *
  * @since 0.8.0
  */
 function updateArticleSettings(string $tagline, string $text)
@@ -750,7 +752,7 @@ function updateArticleSettings(string $tagline, string $text)
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':comment', $text);
+        $stmt->bindParam(':text', $text);
         
         $stmt->execute();
     } catch (Exception $ex) {
@@ -762,23 +764,21 @@ function updateArticleSettings(string $tagline, string $text)
 /**
  * 
  * @return PDOStatement
+ * 
+ * @since 0.8.0
  */
 function loadPublicArticlesStatement() : PDOStatement
 {
     $sql = "
-    SELECT `contents`.`id`, 
-        `contents`.`title`, 
-        `contents`.`text` as text, 
-        UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime,
-        `contents_settings`.`tagline` as tagline, 
-        `contents_settings`.`text` as cs_text
-        FROM `contents`, 
-            `contents_settings`
-            WHERE `contents`.`content_type` = 'article'
-                AND `contents_settings`.`content_type` = 'article'
-                AND `visibility` = 'true' 
-                AND `flag` != 'trash' 
-                ORDER BY `datetime` DESC
+    SELECT `id`, 
+        `title`, 
+        `text` as text, 
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        FROM `contents`
+        WHERE `content_type` = 'article' 
+            AND `visibility` = 'true' 
+            AND `flag` != 'trash' 
+            ORDER BY `datetime` DESC
     ";
 
     $pdo = getPdoConnection();
@@ -800,7 +800,7 @@ function loadPublicArticlesStatement() : PDOStatement
  * @param int $id - Id from an article entry.
  * @return array  - Article list from an entry.
  * 
- * @since 0.4.0
+ * @since 0.8.0
  */
 function getArticle(int $id) : array
 {
@@ -829,21 +829,54 @@ function getArticle(int $id) : array
     }
 }
 
+/**
+ * Get an actualy article entry from 'contents' table.
+ *
+ * @return array  - Article list from an entry.
+ *
+ * @since 0.8.0
+ */
+function getCurrentArticle() : array
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT `id`,
+        `title`,
+        `text`,
+        UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime,
+        FROM `contents`
+        WHERE `content_type` = 'article'
+            AND `flag` != 'trash'
+            ORDER BY `datetime` DESC
+    ";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
 function getArticleSettings() : array
 {
     $pdo = getPdoConnection();
     
     $sql = "
-    SELECT `tagline`, 
+    SELECT `tagline`,
         `text`
-        FROM `contents_settings` 
+        FROM `contents_settings`
         WHERE `content_type` = 'article'
     ";
-        
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-            
+        
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -1014,18 +1047,62 @@ function updatePage(int $id,
     }
 }
 
+function updateMainpage($title, $text)
+{
+    $pdo = getPdoConnection();
+    
+    $sql="
+    UPDATE `contents`
+        SET `title` = :title,
+            `text` = :text
+            WHERE `content_type` = 'mainpage'
+                AND `flag` = 'aboutme'
+    ";
+    
+    try {
+        $stmt=$pdo->prepare($sql);
+        
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':text', $text);
+        
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+function getAboutMe()
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT `title`, 
+        `text`
+        FROM `contents`
+        WHERE `content_type` = 'mainpage'
+            AND `flag` = 'aboutme'
+    ";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function loadUserStatement()
 {
     $pdo = getPdoConnection();
 
     $sql = '
     SELECT `id`,
-           `firstname`,
-           `lastname`,
-           `username`,
-           `active`
-           FROM `users` 
-               ORDER BY `firstname` DESC';
+        `firstname`,
+        `lastname`,
+        `username`,
+        `active`
+        FROM `users` 
+            ORDER BY `firstname` DESC
+    ';
 
     try {
         $stmt = $pdo->prepare($sql);
@@ -1053,13 +1130,13 @@ function getUser(int $id) : array
     $sql = '
     SELECT `id`, 
         `firstname`, 
-        `lastname` , 
+        `lastname`,
         `email`, 
         `password`, 
         UNIX_TIMESTAMP(`created_at`) AS datetime, 
         `username`, 
         `active`
-        FROM `users` 
+        FROM `users`
         WHERE `id` = :id
     ';
 
@@ -1124,8 +1201,9 @@ function getGeneralSettings() : array
         `lang_short`, 
         `footer`
         FROM `settings`
-        WHERE 1";
-
+        WHERE 1
+    ";
+    
     $pdo = getPdoConnection();
     
     try {
@@ -1148,6 +1226,8 @@ function getGeneralSettings() : array
  * @param string $blogUrl
  * @param string $language
  * @param string $footer
+ * 
+ * @since 0.8.0
  */
 function updateGeneralSettings(string $title, 
     string $tagline, 
@@ -1196,7 +1276,7 @@ function updateGeneralSettings(string $title,
  * 
  * @since 0.8.0
  */
-function deleteContentById(int $id)
+function deleteItemsById(array $items, string $table)
 {
     $pdo = getPdoConnection();
 
@@ -1268,21 +1348,19 @@ function setContentsFlagById(int $id, string $flag)
 }
 
 /**
- * Get title from a table by id
+ * Get a title of a content by id.
  *
- * @param string $table - Name of a table
- * @param int $id - Id
- * @deprecated
+ * @param int $id - Id of a content title.
  *
  * @return string
  */
-function getTitleFromTableById(string $table, int $id)
+function getContentsTitleById(int $id)
 {
     $pdo = getPdoConnection();
 
     $sql = "
     SELECT `title` 
-        FROM `$table` 
+        FROM `contents` 
         WHERE `id` = :id
     ";
 
@@ -1299,9 +1377,35 @@ function getTitleFromTableById(string $table, int $id)
 }
 
 /**
+ *
+ * @param string $type
+ * @return int
+ */
+function countContentType(string $type): int
+{
+    $pdo = getPdoConnection();
+    
+    $sql = "
+    SELECT COUNT(`id`)
+        FROM `contents`
+        WHERE `content_type` = '$type'
+            AND `flag` != 'trash'
+            AND `visibility` = 'true'
+    ";
+    
+    foreach ($pdo->query($sql) as $row) {
+        $id = (int) $row[0];
+    }
+    
+    return $id;
+}
+
+/**
  * Count all Entries for navigation information
  *
  * @return array
+ * 
+ * @since 0.8.0
  */
 function countEntries()
 {
