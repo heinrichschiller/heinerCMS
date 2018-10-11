@@ -1067,7 +1067,7 @@ function updateMainpage($title, $text)
         SET `title` = :title,
             `text` = :text
             WHERE `content_type` = 'mainpage'
-                AND `flag` = 'aboutme'
+                AND `flag` = 'infobox'
     ";
     
     try {
