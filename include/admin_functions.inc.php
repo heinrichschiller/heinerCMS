@@ -569,7 +569,7 @@ function load_trash(): string
     
     while ($contentList = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
-        $content .= '<td><input type="checkbox" name="chkList[]"></td>';
+        $content .= '<td><!-- <input type="checkbox" name="chkList[]"> --></td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $contentList['datetime']) . '</td>';
         $content .= '<td>' . $contentList['title'] . '</td>';
         $content .= '<td>{' . $contentList['content_type'] . '}</td>';
@@ -586,14 +586,14 @@ function load_trash(): string
         $placeholderList = [
             '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-trash.svg',
             '##placeholder-header##' => ' {trash}',
-            '##placeholder-uri##'    => 'index.php?uri=articleadd',
+            '##placeholder-uri##'    => 'index.php?uri=delete',
             '##placeholder-button##' => '{delete}'
         ];
         
-        $template = getTemplate('adm_table');
+        $template = getTemplate('adm_trash_table');
         $template = strtr($template, $placeholderList);
         
-        $tplArticlesEntries = getTemplate('adm_articles_entries');
+        $tplArticlesEntries = getTemplate('adm_trash');
         $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
         
         $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
