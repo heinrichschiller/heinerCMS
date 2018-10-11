@@ -308,7 +308,7 @@ function load_pages(int $id): string
 function load_mainpage(): string
 {
     $settings = getGeneralSettings();
-    $aboutme = getAboutMe();
+    $aboutme = getInfobox();
     
     $placeholderList = [
         '##placeholder-title##'           => $settings['title'],

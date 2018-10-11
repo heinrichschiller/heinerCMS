@@ -1083,7 +1083,7 @@ function updateMainpage($title, $text)
     }
 }
 
-function getAboutMe()
+function getInfobox()
 {
     $pdo = getPdoConnection();
     
@@ -1092,7 +1092,7 @@ function getAboutMe()
         `text`
         FROM `contents`
         WHERE `content_type` = 'mainpage'
-            AND `flag` = 'aboutme'
+            AND `flag` = 'infobox'
     ";
     
     $stmt = $pdo->prepare($sql);

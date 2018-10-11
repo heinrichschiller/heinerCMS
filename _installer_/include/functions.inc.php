@@ -590,7 +590,7 @@ function writeMainpageConfiguration(PDO $pdo) : bool
             `text`,
 			`visibility`,
             `flag`)
-            VALUES ('Infobox','mainpage','void','false','Hier steht noch nichts drin');
+            VALUES ('Infobox','mainpage','Hier steht noch nichts drin','true','infobox');
         ";
         
         try {

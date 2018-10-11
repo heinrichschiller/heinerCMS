@@ -942,7 +942,7 @@ function load_page_edit(int $id): string
  */
 function load_mainpage() : string
 {
-    $contentList = getAboutMe();
+    $contentList = getInfobox();
     
     $placeholderList = [
         '##placeholder-title##'   => $contentList['title'],
