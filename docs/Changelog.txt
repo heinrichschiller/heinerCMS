@@ -1,4 +1,4 @@
-Pre-Version 0.8.1 (2018-10-11)
+Version 0.8.1 (2018-10-11)
 	bugfix, infobox sql-failure
 Version 0.8.0 (2018-10-11)
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
