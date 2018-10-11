@@ -224,11 +224,11 @@ function load_downloads(): string
 function load_downloads_content($downloads, string $template) : string
 {
     $placeholderList = [
-        '##placeholder-downloads-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads['datetime']),
-        '##placeholder-downloads-title##'    => $downloads['title'],
-        '##placeholder-downloads-comment##'  => $downloads['text'],
-        '##placeholder-downloads-path##'     => $downloads['path'],
-        '##placeholder-downloads-filename##' => $downloads['filename']
+        '##placeholder-datetime##' => StrFTime('%d.%m.%Y %H:%M', $downloads['datetime']),
+        '##placeholder-title##'    => $downloads['title'],
+        '##placeholder-comment##'  => $downloads['text'],
+        '##placeholder-path##'     => $downloads['path'],
+        '##placeholder-filename##' => $downloads['filename']
     ];
 
     return strtr($template, $placeholderList);

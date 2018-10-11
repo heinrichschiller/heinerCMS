@@ -10,6 +10,10 @@
 	border-radius: 0.25em;
 }
 
+.article-datetime {
+	float: right;
+}
+
 .content-header {
 	font-size: 1.4em;
 }
