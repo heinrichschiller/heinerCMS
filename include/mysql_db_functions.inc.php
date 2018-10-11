@@ -264,13 +264,10 @@ function updateDownload(int $id,
     ";
     
     try {
-        $content_type = 'download';
-        
         $stmt = $pdo->prepare($sql);
         
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
-        $stmt->bindParam(':content_type', $content_type);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visibility);
@@ -773,7 +770,7 @@ function loadPublicArticlesStatement() : PDOStatement
     SELECT `id`, 
         `title`, 
         `text` as text, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        UNIX_TIMESTAMP(`created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article' 
             AND `visibility` = 'true' 
@@ -844,7 +841,7 @@ function getCurrentArticle() : array
     SELECT `id`,
         `title`,
         `text`,
-        UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime,
+        UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article'
             AND `flag` != 'trash'
@@ -1276,13 +1273,14 @@ function updateGeneralSettings(string $title,
  * 
  * @since 0.8.0
  */
-function deleteItemsById(array $items, string $table)
+function deleteItemById(int $id)
 {
     $pdo = getPdoConnection();
 
     $sql = "
     DELETE FROM `contents` 
     WHERE `id` = :id
+        AND `flag`= 'trash'
     ";
 
     try {

@@ -1287,13 +1287,14 @@ function updateGeneralSettings(string $title,
  * 
  * @since 0.8.0
  */
-function deleteItemsById(array $items, string $table)
+function deleteItemById(int $id)
 {
     $pdo = getPdoConnection();
 
     $sql = "
     DELETE FROM `contents` 
     WHERE `id` = :id
+        AND `flag`= 'trash'
     ";
 
     try {
