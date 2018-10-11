@@ -1,8 +1,9 @@
-Version 0.8.0 ()
+Version 0.8.0 (2018-10-11)
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
 	   This release brings a new database structure to heinerCMS and many features need to be redeployed.
 	   My hope is the easier implementation of new features.
 	added, debug mode for developer
+	added, infobox on public mainpage
 	added, new database structure in mysql and sqlite database
 	added, trash functionality works again!
 	added, shows a current article on the main page
