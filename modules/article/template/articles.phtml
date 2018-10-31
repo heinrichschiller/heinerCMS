@@ -1,0 +1,26 @@
+<table class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>{date}</th>
+			<th>{title}</th>
+			<th>{visible}?</th>
+			<th>{actions}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($articles as $article): ?>
+		<tr>
+            <td></td>
+            <td><?= $article['datetime']; ?></td>
+            <td><?= $article['title']; ?></td>
+            <td><?= $article['visibility']; ?></td>
+    		<td>
+    			<a href="#">asd</a> &middot;
+    			<a href="#">asd</a> &middot;
+            	<a href="#">asd</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+	</tbody>
+</table>
