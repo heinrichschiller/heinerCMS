@@ -50,7 +50,7 @@ include __DIR__ . '/routes/pub_routes.inc.php';
 
 $uri = filter_input(INPUT_GET, 'uri');
 $id  = filter_input(INPUT_GET, 'id');
-
+parseRequest();
 $content = '';
 
 $template = getTemplate('pub_template');

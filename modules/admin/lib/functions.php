@@ -2,10 +2,20 @@
 
 function index()
 {
-    return render('dashboard.phtml');
+    $templateList = [
+        'navigation' => 'navigation.phtml',
+        'dashboard'  => 'dashboard.phtml'
+    ];
+    
+    return render($templateList);
 }
 
 function settings()
 {
-    return render('settings.phtml');
+    $templateList = [
+        'navigation' => 'navigation.phtml',
+        'dashboard'  => 'settings.phtml'
+    ];
+    
+    return render($templateList);
 }

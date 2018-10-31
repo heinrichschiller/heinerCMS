@@ -14,6 +14,14 @@
  ***************************************************************************************/
 
 /**
+ * Absolute path of heinerCMS
+ * 
+ * @var string
+ * @since 0.9.0
+ */
+define('ABS_PATH', __DIR__ . '/../');
+
+/**
  * Path to config directory
  * 
  * @var string
@@ -45,6 +53,30 @@ define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
  */
 define('LOCALES_PATH', __DIR__ . '/../locales/');
 
+/**
+ * Path to modules/article.
+ * 
+ * @var string
+ * @since 0.9.0
+ */
+define('MODULES_ARTICLE_PATH', __DIR__ . '/../modules/article/');
+
+/**
+ * Path to modules/article/lib.
+ *
+ * @var string
+ * @since 0.9.0
+ */
+define('MODULES_ARTICLE_LIB_PATH', __DIR__ . '/../modules/article/lib/');
+
+/**
+ * Path to modules/article/template.
+ * 
+ * @var string
+ * @since 0.9.0
+ */
+define('MODULES_ARTICLE_TEMPLATE_PATH', __DIR__ . '/../modules/article/template/');
+
 /****************************************************************************************
  * Debuging options for heinerCMS
  ***************************************************************************************/
@@ -57,4 +89,4 @@ define('LOCALES_PATH', __DIR__ . '/../locales/');
  * 
  * @since 0.8.0
  */
-define('DEBUG_MODE', false);
+define('DEBUG_MODE', true);

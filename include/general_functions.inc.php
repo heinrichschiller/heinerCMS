@@ -22,9 +22,9 @@
  */
 function parseRequest()
 {
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 3);
-    list($module, $action, $params) = explode('/', $path);
-echo $module, $action, $params;
+    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    list($module, $action, $params) = explode('/', $path, 3);
+    echo $module, $action, $params;
     // module? Einbinden eines bestimmten Moduls (eines unterprograms)
     // Module können sein Artikel, Links, Downloads, News, Pages
     // Module liegen in Ordner "modules", die individuell nachgeladen werden können.
@@ -32,14 +32,19 @@ echo $module, $action, $params;
     // Neue Module können in Module abgelegt werden, damit diese genutzt werden können.
     //require __DIR__ . '/modules/' . $module . '/' . $module . '.php';
 
-    // action => function? Methoden/Funktionen eines Moduls
+    include __DIR__ . "/../modules/$module/$module.php";
 
+    // action => function? Methoden/Funktionen eines Moduls
+    if (isset($action)) {
+        $actionFunction = sprintf("%sAction", strtolower($action));
+        echo $actionFunction();
+    }
     // parameter?
 }
 
 /**
  * Load a session for heinerCMS.
- *
+ * @deprecated
  */
 function load_session()
 {
@@ -135,26 +140,29 @@ function get_translation(string $language) : array
  */
 function getTemplate(string $template): string
 {
-    $split = explode('_', $template);
-    $subdirectory = '';
+    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $module = explode('/', $path);
 
-    switch($split[0]) {
-        case 'adm' : $subdirectory .= '/admin/';
-            break;
-        case 'pub' : $subdirectory .= '/public/';
-            break;
+    $file = __DIR__ . "/../modules/$module[0]/template/$template";
+
+    if (file_exists($file)) {
+        return file_get_contents($file);
     }
 
+    return 'No template found.';
+}
+
+function getMasterTemplate(string $template): string
+{
     $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
-
-    $tplPath = __DIR__ . '/../templates/' . $theme . $subdirectory . $template . '.tpl.php';
-    $error = __DIR__ . '/../templates/' . $theme . '/error/error_template.tpl.php';
-
-    if (file_exists($tplPath)) {
-        return file_get_contents($tplPath);
-    } else {
-        return file_get_contents($error);
+    
+    $file = __DIR__ . "/../templates/$theme/$template";
+    
+    if (file_exists($file)) {
+        return file_get_contents($file);
     }
+    
+    //return 'No template found.';
 }
 
 function checkSystem()
@@ -165,4 +173,40 @@ function checkSystem()
 
     return true;
 }
+
+function render(array $templates, array $data = [])
+{
+    $html = '';
+
+    $html .= getMasterTemplate('header.phtml');
+
+    foreach($templates as $key) {
+        $html .= renderTemplate($key, $data);
+    }
+    
+    $html .= getMasterTemplate('footer.phtml');
+
+    return $html;
+}
+
+function renderTemplate(string $template, array $data)
+{
+    //$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    //$module = explode('/', $path);
+    
+    //$file = __DIR__ . "/../modules/$module[0]/template/$template";
+
+    extract($data);
+
+    ob_start();
+    
+    include MODULES_ARTICLE_TEMPLATE_PATH . $template;
+    
+    $htmlResponse = ob_get_contents();
+    
+    ob_end_clean();
+    
+    return $htmlResponse;
+}
+
 
