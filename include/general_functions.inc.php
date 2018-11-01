@@ -191,16 +191,16 @@ function render(array $templates, array $data = [])
 
 function renderTemplate(string $template, array $data)
 {
-    //$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    //$module = explode('/', $path);
+    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $module = explode('/', $path);
     
-    //$file = __DIR__ . "/../modules/$module[0]/template/$template";
+    $tmpltFile = __DIR__ . "/../modules/$module[0]/template/$template";
 
     extract($data);
 
     ob_start();
-    
-    include MODULES_ARTICLE_TEMPLATE_PATH . $template;
+
+    include $tmpltFile;
     
     $htmlResponse = ob_get_contents();
     
