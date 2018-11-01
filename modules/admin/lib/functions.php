@@ -1,6 +1,6 @@
 <?php
 
-function index()
+function indexAction()
 {
     $templateList = [
         'navigation' => 'navigation.phtml',
@@ -10,7 +10,7 @@ function index()
     return render($templateList);
 }
 
-function settings()
+function settingsAction()
 {
     $templateList = [
         'navigation' => 'navigation.phtml',
