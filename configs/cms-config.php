@@ -14,6 +14,15 @@
  ***************************************************************************************/
 
 /**
+ * Base url of heinerCMS.
+ * 
+ * @var string
+ * 
+ * @since 0.9.0
+ */
+define('BASE_URL', 'http://heinercms.localhost/');
+
+/**
  * Absolute path of heinerCMS
  * 
  * @var string
