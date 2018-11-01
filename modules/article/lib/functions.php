@@ -64,6 +64,6 @@ function addAction()
     
     addArticle($title, $content, $visibility);
     
-    header("Location: /../admin/index");
+    header("Location: /../article/index");
 }
 

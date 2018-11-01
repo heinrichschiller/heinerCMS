@@ -36,6 +36,7 @@
 function getAllArticles(): array
 {
     $pdo = getPdoConnection();
+    $result = [];
 
     $sql = "
     SELECT `id`, 
@@ -51,9 +52,16 @@ function getAllArticles(): array
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-
+        
+        while( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        
+        if($result) {
+            return $result;
+        }
+        
+        return array();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
