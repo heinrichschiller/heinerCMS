@@ -54,15 +54,15 @@ define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
 define('LOCALES_PATH', __DIR__ . '/../locales/');
 
 /**
- * Path to modules/article.
+ * Path to modules/article/.
  * 
  * @var string
  * @since 0.9.0
  */
-define('MODULES_ARTICLE_PATH', __DIR__ . '/../modules/article/');
+//define('MODULES_ARTICLE_PATH', __DIR__ . '/../modules/article/');
 
 /**
- * Path to modules/article/lib.
+ * Path to modules/article/lib/.
  *
  * @var string
  * @since 0.9.0
@@ -70,12 +70,57 @@ define('MODULES_ARTICLE_PATH', __DIR__ . '/../modules/article/');
 define('MODULES_ARTICLE_LIB_PATH', __DIR__ . '/../modules/article/lib/');
 
 /**
- * Path to modules/article/template.
+ * Path to modules/download/.
+ * 
+ * @var unknown
+ * @since 0.9.0
+ */
+// define('MODULES_DOWNLOAD_PATH', __DIR__ . '/../modules/download/');
+
+/**
+ * Path to modules/download/lib/.
  * 
  * @var string
  * @since 0.9.0
  */
-define('MODULES_ARTICLE_TEMPLATE_PATH', __DIR__ . '/../modules/article/template/');
+define('MODULES_DOWNLOAD_LIB_PATH', __DIR__ . '/../modules/download/lib/');
+
+/**
+ * Path to modules/link/
+ *  
+ * @var string
+ * 
+ * @since 0.9.0
+ */
+// define('MODULES_LINK_PATH', __DIR__ . '/../modules/link/');
+
+/**
+ * Path to modules/link/lib/
+ * 
+ * @var string
+ * 
+ * @since 0.9.0
+ */
+define('MODULES_LINK_LIB_PATH', __DIR__ . '/../modules/link/lib/');
+
+/**
+ * Path to modules/page/
+ * 
+ * @var string
+ * 
+ * @since 0.9.0
+ */
+// define('MODULES_PAGE_PATH', __DIR__ . '/../modules/page/');
+
+/**
+ * Path to modules/page/lib/
+ * 
+ * @var string
+ * 
+ * @since 0.9.0
+ */
+define('MODULES_PAGE_LIB_PATH', __DIR__ . '/../modules/page/lib/');
+
 
 /****************************************************************************************
  * Debuging options for heinerCMS
