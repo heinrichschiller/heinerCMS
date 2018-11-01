@@ -855,6 +855,7 @@ function getCurrentArticle() : array
         FROM `contents`
         WHERE `content_type` = 'article'
             AND `flag` != 'trash'
+            AND `visibility` = 'true'
             ORDER BY `datetime` DESC
     ";
     
