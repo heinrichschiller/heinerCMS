@@ -1,5 +1,10 @@
 Pre-Version 0.9.0
 	Re-Engeniering of heinerCMS has began
+	added, module article
+	added, module download
+	added, module link
+	added, module page
+	bugfix, fixed minor bugs
 Pre-Version 0.8.1 (2018-10-11)
 	bugfix, infobox sql-failure
 Version 0.8.0 (2018-10-11)
