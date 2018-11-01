@@ -1,4 +1,6 @@
-Version 0.8.1 (2018-10-11)
+Version 0.8.2 (2018-11-1)
+	bugfix, mainpage shows invisible articles
+Pre-Version 0.8.1 (2018-10-11)
 	bugfix, infobox sql-failure
 Version 0.8.0 (2018-10-11)
 	Warning!!! This Version is not compatible to early Versions of heinerCMS any more.
