@@ -68,3 +68,26 @@ function addAction()
     
     header('Location: /../download/index');
 }
+
+function delAction()
+{
+    $id = filter_input(INPUT_POST, 'id');
+    
+    setContentsFlagById($id, 'trash');
+    
+    header('Location: /../download/index');
+}
+
+function updateAction()
+{
+    $id       = filter_input(INPUT_POST, 'id');
+    $title    = filter_input(INPUT_POST, 'title');
+    $text  = filter_input(INPUT_POST, 'text');
+    $path     = filter_input(INPUT_POST,'path');
+    $filename = filter_input(INPUT_POST,'filename');
+    $visible  = filter_input(INPUT_POST,'visible');
+    
+    updateDownload($id, $title, $text, $path, $filename, $visible);
+    
+    header('Location: /../download/index');
+}
