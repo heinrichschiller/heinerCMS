@@ -66,5 +66,32 @@ function addAction()
     
     addLink($title, $tagline, $text, $uri, $visibility);
     
+    redirectToLink();
+}
+
+function delAction()
+{
+    $id = filter_input(INPUT_POST, 'id');
+    
+    setContentsFlagById($id, 'trash');
+    
+    redirectToLink();
+}
+
+function updateAction()
+{
+    $id      = filter_input(INPUT_POST, 'id');
+    $title   = filter_input(INPUT_POST, 'title');
+    $uri     = filter_input(INPUT_POST, 'uri');
+    $comment = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
+    
+    updateLink($id, $title, $comment, $uri, $visibility);
+    
+    redirectToLink();
+}
+
+function redirectToLink()
+{
     header('Location: /../link/index');
 }
