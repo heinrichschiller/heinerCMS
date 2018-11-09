@@ -65,5 +65,32 @@ function addAction()
     
     addPage($title, $tagline, $text, $visibility);
     
+    redirectToPage();
+}
+
+function delAction()
+{
+    $id = filter_input(INPUT_POST, 'id');
+    
+    setContentsFlagById($id, 'trash');
+    
+    redirectToPage();
+}
+
+function updateAction()
+{
+    $id      = filter_input(INPUT_POST, 'id');
+    $title   = filter_input(INPUT_POST, 'title');
+    $tagline = filter_input(INPUT_POST, 'tagline');
+    $text = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
+    
+    updatePage($id, $title, $tagline, $text, $visibility);
+    
+    redirectToPage();
+}
+
+function redirectToPage()
+{
     header ( 'Location: /../page/index' );
 }
