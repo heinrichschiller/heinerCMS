@@ -67,3 +67,23 @@ function addAction()
     header("Location: /../article/index");
 }
 
+function delAction()
+{
+    $id = filter_input(INPUT_POST, 'id');
+    
+    setContentsFlagById($id, 'trash');
+    
+    header("Location: /../article/index");
+}
+
+function updateAction()
+{
+    $id         = filter_input(INPUT_POST, 'id');
+    $title      = filter_input(INPUT_POST, 'title');
+    $content    = filter_input(INPUT_POST, 'content');
+    $visibility = filter_input(INPUT_POST, 'visible');
+    
+    updateArticle($id, $title, $content, $visibility);
+    
+    header("Location: /../article/index");
+}
