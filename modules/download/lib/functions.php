@@ -66,7 +66,7 @@ function addAction()
     
     addDownload($title, $text, $path, $filename, $visible);
     
-    header('Location: /../download/index');
+    redirectToDownload();
 }
 
 function delAction()
@@ -75,7 +75,7 @@ function delAction()
     
     setContentsFlagById($id, 'trash');
     
-    header('Location: /../download/index');
+    redirectToDownload();
 }
 
 function updateAction()
@@ -89,5 +89,9 @@ function updateAction()
     
     updateDownload($id, $title, $text, $path, $filename, $visible);
     
-    header('Location: /../download/index');
+    redirectToDownload();
+}
+
+function redirectToDownload() {
+    header('Location: /../download/index');;
 }

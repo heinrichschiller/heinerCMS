@@ -64,7 +64,7 @@ function addAction()
     
     addArticle($title, $content, $visibility);
     
-    header("Location: /../article/index");
+    redirectToArticle();
 }
 
 function delAction()
@@ -73,7 +73,7 @@ function delAction()
     
     setContentsFlagById($id, 'trash');
     
-    header("Location: /../article/index");
+    redirectToArticle();
 }
 
 function updateAction()
@@ -85,5 +85,10 @@ function updateAction()
     
     updateArticle($id, $title, $content, $visibility);
     
+    redirectToArticle();
+}
+
+function redirectToArticle()
+{
     header("Location: /../article/index");
 }
