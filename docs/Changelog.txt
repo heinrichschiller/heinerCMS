@@ -4,7 +4,10 @@ Pre-Version 0.9.0
 	added, module download
 	added, module link
 	added, module page
+	added, module user
+	added, module public
 	bugfix, fixed minor bugs
+	removed, old routes because obsolete
 Pre-Version 0.8.1 (2018-10-11)
 	bugfix, infobox sql-failure
 Version 0.8.0 (2018-10-11)
