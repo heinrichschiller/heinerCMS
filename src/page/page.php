@@ -27,5 +27,5 @@
  * SOFTWARE.
  */
 
-include MODULES_PAGE_LIB_PATH . DB_DRIVER . '_db_functions.php';
-include MODULES_PAGE_LIB_PATH . 'functions.php';
+include PAGE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include PAGE_LIB_PATH . 'functions.php';
