@@ -1,6 +1,33 @@
 <?php
 
-/****************************************************************************************
+/**
+ * If you are reading this in your web browser, your server is probably
+ * not configured correctly to run PHP applications!
+ *
+ * MIT License
+ *
+ * Copyright (c) 2017 - 2018 Heinrich Schiller
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+/**
  *
  * The base configuration for heinerCMS.
  *
@@ -11,7 +38,7 @@
  *
  * @since 0.5.0
  *
- ***************************************************************************************/
+ **/
 
 /**
  * Base url of heinerCMS.
@@ -23,28 +50,36 @@
 define('BASE_URL', 'http://heinercms.localhost/');
 
 /**
- * Absolute path of heinerCMS
+ * Absolute path of heinerCMS.
  * 
  * @var string
  * @since 0.9.0
  */
-define('ABS_PATH', __DIR__ . '/../');
+define('ABS_PATH', __DIR__ . '/../../');
 
 /**
- * Path to config directory
+ * Source path of heinerCMS.
+ *
+ * @var string
+ * @since 0.9.0
+ */
+define('SRC_PATH', ABS_PATH . 'src/');
+
+/**
+ * Path to config directory.
  * 
  * @var string
  * @since 0.5.0
  */
-define('CONFIG_PATH', __DIR__ . '/');
+define('CONFIG_PATH', SRC_PATH . 'configs/');
 
 /**
- * Path to include directory
+ * Path to lib directory
  * 
  * @var string
- * @since 0.5.0
+ * @since 0.9.0
  */
-define('INCLUDE_PATH', __DIR__ . '/../include/');
+define('LIB_PATH', SRC_PATH . '/lib/');
 
 /**
  * Path to img_svg directory
@@ -52,7 +87,7 @@ define('INCLUDE_PATH', __DIR__ . '/../include/');
  * @var string
  * @since 0.5.0
  */
-define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
+define('IMG_SVG_PATH', SRC_PATH . '/../templates/default/admin/img/svg/');
 
 /**
  * Path to locales directory
@@ -60,7 +95,7 @@ define('IMG_SVG_PATH', __DIR__ . '/../templates/default/admin/img/svg/');
  * @var string
  * @since 0.5.0
  */
-define('LOCALES_PATH', __DIR__ . '/../locales/');
+define('LOCALES_PATH', SRC_PATH . 'locales/');
 
 /**
  * Path to modules/article/.
@@ -68,7 +103,7 @@ define('LOCALES_PATH', __DIR__ . '/../locales/');
  * @var string
  * @since 0.9.0
  */
-//define('MODULES_ARTICLE_PATH', __DIR__ . '/../modules/article/');
+define('ARTICLE_PATH', SRC_PATH . 'article/');
 
 /**
  * Path to modules/article/lib/.
@@ -76,7 +111,7 @@ define('LOCALES_PATH', __DIR__ . '/../locales/');
  * @var string
  * @since 0.9.0
  */
-define('MODULES_ARTICLE_LIB_PATH', __DIR__ . '/../modules/article/lib/');
+define('ARTICLE_LIB_PATH', SRC_PATH . 'article/lib/');
 
 /**
  * Path to modules/download/.
@@ -84,7 +119,7 @@ define('MODULES_ARTICLE_LIB_PATH', __DIR__ . '/../modules/article/lib/');
  * @var unknown
  * @since 0.9.0
  */
-// define('MODULES_DOWNLOAD_PATH', __DIR__ . '/../modules/download/');
+define('DOWNLOAD_PATH', SRC_PATH . 'download/');
 
 /**
  * Path to modules/download/lib/.
@@ -92,7 +127,7 @@ define('MODULES_ARTICLE_LIB_PATH', __DIR__ . '/../modules/article/lib/');
  * @var string
  * @since 0.9.0
  */
-define('MODULES_DOWNLOAD_LIB_PATH', __DIR__ . '/../modules/download/lib/');
+define('DOWNLOAD_LIB_PATH', SRC_PATH . 'download/lib/');
 
 /**
  * Path to modules/link/
@@ -101,7 +136,7 @@ define('MODULES_DOWNLOAD_LIB_PATH', __DIR__ . '/../modules/download/lib/');
  * 
  * @since 0.9.0
  */
-// define('MODULES_LINK_PATH', __DIR__ . '/../modules/link/');
+define('LINK_PATH', SRC_PATH . 'link/');
 
 /**
  * Path to modules/link/lib/
@@ -110,7 +145,7 @@ define('MODULES_DOWNLOAD_LIB_PATH', __DIR__ . '/../modules/download/lib/');
  * 
  * @since 0.9.0
  */
-define('MODULES_LINK_LIB_PATH', __DIR__ . '/../modules/link/lib/');
+define('LINK_LIB_PATH', SRC_PATH . 'link/lib/');
 
 /**
  * Path to modules/page/
@@ -119,7 +154,7 @@ define('MODULES_LINK_LIB_PATH', __DIR__ . '/../modules/link/lib/');
  * 
  * @since 0.9.0
  */
-// define('MODULES_PAGE_PATH', __DIR__ . '/../modules/page/');
+define('PAGE_PATH', SRC_PATH . 'page/');
 
 /**
  * Path to modules/page/lib/
@@ -128,19 +163,7 @@ define('MODULES_LINK_LIB_PATH', __DIR__ . '/../modules/link/lib/');
  * 
  * @since 0.9.0
  */
-define('MODULES_PAGE_LIB_PATH', __DIR__ . '/../modules/page/lib/');
+define('PAGE_LIB_PATH', __DIR__ . 'page/lib/');
 
-
-/****************************************************************************************
- * Debuging options for heinerCMS
- ***************************************************************************************/
-
-/**
- * Set error handling for development and debugging on heinerCMS.  It can be set in
- * cms-config.php
- *
- * @var string Set the value on 'true' to activate the debug mode
- * 
- * @since 0.8.0
- */
-define('DEBUG_MODE', true);
+define('USER_PATH', SRC_PATH . 'user/');
+define('USER_LIB_PATH', SRC_PATH . 'user/lib/');
