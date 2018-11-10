@@ -27,5 +27,30 @@
  * SOFTWARE.
  */
 
-include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
-include DOWNLOAD_LIB_PATH . 'functions.php';
+include_once __DIR__ . '/path-config.php';
+include_once __DIR__ . '/db-config.php';
+include_once LIB_PATH . '/../lib/general-functions.php';
+include_once LIB_PATH . DB_DRIVER . '_db_functions.inc.php';
+
+/****************************************************************************************
+ * Debuging options for heinerCMS
+ ***************************************************************************************/
+
+/**
+ * Set error handling for development and debugging on heinerCMS.  It can be set in
+ * cms-config.php
+ *
+ * @var string Set the value on 'true' to activate the debug mode
+ *
+ * @since 0.8.0
+ */
+define('DEBUG_MODE', true);
+
+/**
+ * Set error handling for development and debugging on PDO connection. It can be set in
+ * cms-config.php.
+ *
+ * @since 0.2.3
+ * @var string Set the value on 'true' to activate the debug mode
+ */
+define('PDO_DEBUG_MODE', true);
