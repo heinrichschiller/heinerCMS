@@ -163,7 +163,10 @@ define('PAGE_PATH', SRC_PATH . 'page/');
  * 
  * @since 0.9.0
  */
-define('PAGE_LIB_PATH', __DIR__ . 'page/lib/');
+define('PAGE_LIB_PATH', SRC_PATH . 'page/lib/');
+
+define('PUBLIC_PATH', SRC_PATH . 'public/');
+define('PUBLIC_LIB_PATH', SRC_PATH . 'public/lib/');
 
 define('USER_PATH', SRC_PATH . 'user/');
 define('USER_LIB_PATH', SRC_PATH . 'user/lib/');

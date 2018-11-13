@@ -64,24 +64,6 @@ function updateMainpage($title, $text)
     }
 }
 
-function getInfobox()
-{
-    $pdo = getPdoConnection();
-    
-    $sql = "
-    SELECT `title`, 
-        `text`
-        FROM `contents`
-        WHERE `content_type` = 'mainpage'
-            AND `flag` = 'infobox'
-    ";
-    
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
 function loadUserStatement()
 {
     $pdo = getPdoConnection();

@@ -46,7 +46,21 @@
 
 function bootstrap()
 {
-    parseRequest();
+    $requestItems = parseRequest();
+    
+    $controller = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
+
+    $action = !empty($requestItems['action']) ? $requestItems['action'] : 'index';
+    
+    include_once SRC_PATH . "$controller/$controller.php";
+    
+    // action => function? Methoden/Funktionen eines Moduls
+    if (isset($action)) {
+        $action = sprintf("%sAction", strtolower($action));
+        echo $action();
+    }
+    
+    // parameter?
 }
 
 /**
@@ -57,48 +71,15 @@ function bootstrap()
 function parseRequest()
 {
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    @list($module, $action, $params) = explode('/', $path, 3);
-    echo $module, $action, $params;
-
-    $module = !empty($module) ? $module : 'public';
+    $item = explode('/', $path, 3);
     
-    $action = !empty($action) ? $action : 'index';
+    $requestItems = [
+        'controller' => $item[0],
+        'action' => @$item[1],
+        'params' => @$item[2]
+    ];
     
-    include_once SRC_PATH . "$module/$module.php";
-    
-    // action => function? Methoden/Funktionen eines Moduls
-    if (isset($action)) {
-        $action = sprintf("%sAction", strtolower($action));
-        echo $action();
-    }
-    // parameter?
-}
-
-/**
- * 
- * 
- * @since 0.2.5
- */
-function parseModuleRequest()
-{
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    list($module, $action, $params) = explode('/', $path, 3);
-    echo $module, $action, $params;
-    // module? Einbinden eines bestimmten Moduls (eines unterprograms)
-    // Module können sein Artikel, Links, Downloads, News, Pages
-    // Module liegen in Ordner "modules", die individuell nachgeladen werden können.
-    // Module sind von einander getrennt und beeinflussen sich selbst nicht.
-    // Neue Module können in Module abgelegt werden, damit diese genutzt werden können.
-    //require __DIR__ . '/modules/' . $module . '/' . $module . '.php';
-
-    include __DIR__ . "/../modules/$module/$module.php";
-
-    // action => function? Methoden/Funktionen eines Moduls
-    if (isset($action)) {
-        $actionFunction = sprintf("%sAction", strtolower($action));
-        echo $actionFunction();
-    }
-    // parameter?
+    return $requestItems;
 }
 
 /**
@@ -199,8 +180,7 @@ function get_translation(string $language) : array
  */
 function getTemplate(string $template): string
 {
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    $module = explode('/', $path);
+    $module = parseRequest();
 
     $file = __DIR__ . "/../modules/$module[0]/template/$template";
 
@@ -235,10 +215,15 @@ function checkSystem()
 
 function render(array $templates, array $data = [])
 {
+    $module = parseRequest();
+    
+    $module = !empty($module['controller']) ? $module['controller'] : 'public';
+    $navbar = ($module == 'public') ? 'public_navigation.phtml' : 'admin_navigation.phtml';
+
     $html = '';
 
     $html .= getMasterTemplate('header.phtml');
-    $html .= getMasterTemplate('navigation.phtml');
+    $html .= getMasterTemplate($navbar);
 
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
@@ -251,10 +236,9 @@ function render(array $templates, array $data = [])
 
 function renderTemplate(string $template, array $data)
 {
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    $module = explode('/', $path);
+    $module = parseRequest();
 
-    $module = !empty($module[0]) ? $module[0] : 'public';
+    $module = !empty($module['controller']) ? $module['controller'] : 'public';
 
     $tmpltFile = __DIR__ . "/../$module/template/$template";
 
