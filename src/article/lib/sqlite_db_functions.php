@@ -305,11 +305,12 @@ function getCurrentArticle() : array
     $sql = "
     SELECT `id`,
         `title`,
-        `text`,
+        substr(`text`, 0, 2000) as text,
         strftime('%s', `created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article'
             AND `flag` != 'trash'
+            AND `visibility` = 'true'
             ORDER BY `datetime` DESC
     ";
     

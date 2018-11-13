@@ -29,9 +29,7 @@
 
 function indexAction()
 {
-    $templateList = [
-        'navigation.phtml'
-    ];
+    $templateList = [];
     
     $articleList = getAllArticles();
     
@@ -49,11 +47,21 @@ function indexAction()
 function newAction()
 {
     $templateList = [
-        'navigation.phtml',
         'new_article.phtml'
     ];
     
     return render($templateList);
+}
+
+function settingsAction()
+{
+    $settings = getArticleSettings();
+    
+    $templateList = [
+        'article_settings.phtml'
+    ];
+    
+    return render($templateList, array('settings' => $settings));
 }
 
 function addAction()
