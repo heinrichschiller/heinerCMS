@@ -29,9 +29,7 @@
 
 function indexAction()
 {
-    $templateList = [
-        'navigation.phtml'
-    ];
+    $templateList = [];
     
     $linkList = getAllLinks();
     
@@ -49,7 +47,6 @@ function indexAction()
 function newAction()
 {
     $templateList = [
-        'navigation.phtml',
         'new_link.phtml'
     ];
     
