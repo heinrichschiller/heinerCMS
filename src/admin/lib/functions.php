@@ -3,7 +3,6 @@
 function indexAction()
 {
     $templateList = [
-        'navigation' => 'navigation.phtml',
         'dashboard'  => 'dashboard.phtml'
     ];
     
@@ -13,7 +12,6 @@ function indexAction()
 function settingsAction()
 {
     $templateList = [
-        'navigation' => 'navigation.phtml',
         'dashboard'  => 'settings.phtml'
     ];
     
