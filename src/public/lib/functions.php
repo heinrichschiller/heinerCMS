@@ -29,5 +29,21 @@
 
 function indexAction()
 {
-    return render(array('mainpage.phtml'));
+    include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $settings = getGeneralSettings();
+    $article  = getCurrentArticle();
+    $info     = getInfobox();
+    
+    $templateList = [
+        'mainpage.phtml'
+    ];
+    
+    $list = [
+        'settings' => $settings,
+        'article'  => $article,
+        'info'     => $info
+    ];
+    
+    return render($templateList, $list);
 }
