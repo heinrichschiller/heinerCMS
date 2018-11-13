@@ -1,24 +1,29 @@
 <div class="container-fluid">
     <div class="jumbotron">
     	<div class="container">
-    		<h1 class="display-4">##placeholder-title##</h1>
-    		<p class="lead">##placeholder-tagline##</p>
+    		<h1 class="display-4"><?= $settings['title']; ?></h1>
+    		<p class="lead"><?= $settings['tagline']; ?></p>
     	</div>
     </div>
 </div>
 <div class="container">
-	<!-- News -->
-	<div>
-		##placeholder-card##
-	</div>
 	<!-- Article -->
 	<div class="content">
 		<div class="row">
-			##placeholder-articles##
+			<article class="col-md-8">
+            	<div>
+            		Aktueller Artikel<hr>
+            	</div>
+            	<h2><?php echo $article['title']; ?></h2>
+            	<div>
+            		<?php echo $article['text']; ?>
+            	</div>
+            	<a class="btn readmore" href="#">Weiterlesen</a>
+            </article>
 			<aside class="col-md-4">
 				<div class="alert alert-success">
-					<h4 class="alert-heading">##placeholder-aboutme-title##</h4>
-					##placeholder-aboutme-content##
+					<h4 class="alert-heading"><?php echo $info['title']; ?></h4>
+					<?php echo $info['text']; ?>
 				</div>
 			</aside>
 		</div>
