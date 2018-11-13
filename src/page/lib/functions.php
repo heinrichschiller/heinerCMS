@@ -29,9 +29,7 @@
 
 function indexAction()
 {
-    $templateList = [
-        'navigation.phtml'
-    ];
+    $templateList = [];
     
     $pageList = getAllPages();
     
@@ -49,7 +47,6 @@ function indexAction()
 function newAction()
 {
     $templateList = [
-        'navigation.phtml',
         'new_page.phtml'
     ];
     
