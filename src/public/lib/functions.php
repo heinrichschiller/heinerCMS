@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-function indexAction()
+function indexAction(): string
 {
     include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
     
@@ -46,4 +46,70 @@ function indexAction()
     ];
     
     return render($templateList, $list);
+}
+
+function articleAction(int $id): string
+{
+    include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'article.phtml'
+    ];
+    
+    return render($templateList);
+}
+
+function articlesAction(): string
+{
+    include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'articles.phtml'
+    ];
+    
+    return render($templateList);
+}
+
+function downloadAction(int $id): string
+{
+    include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'download.phtml'
+    ];
+    
+    return render($templateList);
+}
+
+function downloadsAction(): string
+{
+    include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'downloads.phtml'
+    ];
+    
+    return render($templateList);
+}
+
+function linkAction(int $id): string
+{
+    include LINK_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'link.phtml'
+    ];
+    
+    return render($templateList);
+}
+
+function linksAction(): string
+{
+    include LINK_LIB_PATH . DB_DRIVER . '_db_functions.php';
+    
+    $templateList = [
+        'links.phtml'
+    ];
+    
+    return render($templateList);
 }
