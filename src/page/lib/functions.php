@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-function indexAction()
+function indexAction(): string
 {
     $templateList = [];
     
@@ -44,7 +44,7 @@ function indexAction()
     return render($templateList, array('pages' => $pageList));
 }
 
-function newAction()
+function newAction(): string
 {
     $templateList = [
         'new_page.phtml'

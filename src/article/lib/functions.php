@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-function indexAction()
+function indexAction(): string
 {
     $templateList = [];
     
@@ -44,7 +44,7 @@ function indexAction()
     return render($templateList, array('articles' => $articleList));
 }
 
-function newAction()
+function newAction(): string
 {
     $templateList = [
         'new_article.phtml'
@@ -53,7 +53,7 @@ function newAction()
     return render($templateList);
 }
 
-function settingsAction()
+function settingsAction(): string
 {
     $settings = getArticleSettings();
     
