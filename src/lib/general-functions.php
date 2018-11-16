@@ -153,7 +153,7 @@ function destroySession()
  * 
  * @return array
  */
-function get_translation(string $language) : array
+function getTranslation(string $language) : array
 {
     $xmlfile = LOCALES_PATH . "$language.xml";
 
@@ -233,6 +233,9 @@ function render(array $templates, array $data = [])
     
     $html .= getMasterTemplate('footer.phtml');
 
+    //$arr_language = get_translation('de');
+    
+    //return strtr($html, $arr_language);
     return $html;
 }
 
