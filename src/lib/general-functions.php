@@ -54,13 +54,15 @@ function bootstrap()
     
     include_once SRC_PATH . "$controller/$controller.php";
     
+    // parameter?
+    $paramItems = !empty($requestItems['params']) ? $requestItems['params'] : array();
+    @$params = explode('/', $paramItems);
+    
     // action => function? Methoden/Funktionen eines Moduls
     if (isset($action)) {
         $action = sprintf("%sAction", strtolower($action));
-        echo $action();
+        echo $action($params);
     }
-    
-    // parameter?
 }
 
 /**
@@ -72,7 +74,7 @@ function parseRequest()
 {
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $item = explode('/', $path, 3);
-    
+
     $requestItems = [
         'controller' => $item[0],
         'action' => @$item[1],
