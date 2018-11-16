@@ -138,37 +138,40 @@ function getDownloadSettings() : array
 }
 
 /**
- *
- * @return PDOStatement
- *
- @since 0.8.0
+ * 
+ * @return array
+ * 
+ * @since 0.9.0
  */
-function loadPublicDownloadsStatement() : PDOStatement
+function getPublicDownloads(): array
 {
-    $pdo = getPdoConnection();
-    
     $sql = "
-    SELECT `contents`.`title`,
-        `contents`.`text`,
-        `contents`.`path`,
-        `contents`.`filename`,
-        strftime('%s', contents.created_at) AS datetime,
-        `contents_settings`.`tagline` as downloads_tagline,
-        `contents_settings`.`text` as downloads_text
-        FROM `contents`,
-            `contents_settings`
-            WHERE `contents`.`content_type` = 'download'
-                AND `contents_settings`.`content_type` = 'download'
+    SELECT `title`,
+        `text`,
+        `path`,
+        `filename`,
+        strftime('%s', created_at) AS datetime,
+        `tagline`,
+        `text`
+        FROM `contents`
+            WHERE `content_type` = 'download'
                 AND `visibility` = 'true'
                 AND `flag` != 'trash'
                 ORDER BY `datetime` DESC
     ";
     
+    $pdo = getPdoConnection();
+    $result = [];
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         
-        return $stmt;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        
+        return $result;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
     }

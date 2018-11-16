@@ -89,11 +89,13 @@ function downloadsAction(): string
 {
     include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
     
+    $downloadItems = getPublicDownloads();
+    
     $templateList = [
         'downloads.phtml'
     ];
-    
-    return render($templateList);
+
+    return render($templateList, array('downloads' => $downloadItems));
 }
 
 function linkAction(int $id): string
