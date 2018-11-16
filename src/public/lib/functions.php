@@ -48,15 +48,17 @@ function indexAction(): string
     return render($templateList, $list);
 }
 
-function articleAction(int $id): string
+function articleAction(array $params): string
 {
     include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
     
+    $articleItems = getArticleDetailed($params[1]);
+
     $templateList = [
         'article.phtml'
     ];
     
-    return render($templateList);
+    return render($templateList, array('article' => $articleItems));
 }
 
 function articlesAction(): string
@@ -67,7 +69,9 @@ function articlesAction(): string
         'articles.phtml'
     ];
     
-    return render($templateList);
+    $articlesList = getPublicArticles();
+    
+    return render($templateList, array('articles' => $articlesList));
 }
 
 function downloadAction(int $id): string

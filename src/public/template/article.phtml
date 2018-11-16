@@ -1,5 +1,5 @@
 <div class="container">
-    <h5>##placeholder-datetime##</h5>
-    <h2>##placeholder-title##</h2>
-    ##placeholder-message##
+    <h5><?php echo StrFTime('%d.%m.%Y %H:%M', $article['datetime']);?></h5>
+    <h2><?php echo $article['title'];?></h2>
+    <?php echo $article['text'];?>
 </div>

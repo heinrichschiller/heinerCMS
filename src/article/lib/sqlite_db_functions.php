@@ -35,9 +35,6 @@
  */
 function getAllArticles(): array
 {
-    $pdo = getPdoConnection();
-    $result = [];
-
     $sql = "
     SELECT `id`, 
         `title`, 
@@ -49,6 +46,9 @@ function getAllArticles(): array
             ORDER BY `created_at` DESC
     ";
 
+    $pdo = getPdoConnection();
+    $result = [];
+    
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -229,12 +229,12 @@ function updateArticleSettings(string $tagline, string $text)
  * 
  * @since 0.8.0
  */
-function loadPublicArticlesStatement() : PDOStatement
+function getPublicArticles(): array
 {
     $sql = "
     SELECT `id`, 
         `title`, 
-        `text` as text, 
+        substr(`text`, 0, 1000) as text, 
         strftime('%s', `created_at`) AS datetime 
         FROM `contents`
         WHERE `content_type` = 'article' 
@@ -244,12 +244,17 @@ function loadPublicArticlesStatement() : PDOStatement
     ";
 
     $pdo = getPdoConnection();
+    $result = [];
 
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        return $stmt;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        
+        return $result;
     } catch (PDOException $ex) {
          echo $ex->getMessage();
          exit();

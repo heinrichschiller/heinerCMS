@@ -64,6 +64,16 @@ function settingsAction(): string
     return render($templateList, array('settings' => $settings));
 }
 
+function updatesettingsAction()
+{
+    $tagline = filter_input(INPUT_POST, 'tagline');
+    $comment = filter_input(INPUT_POST, 'comment');
+    
+    updateArticleSettings($tagline, $comment);
+    
+    redirectToArticleSettings();
+}
+
 function addAction()
 {
     $title      = filter_input(INPUT_POST, 'title');
@@ -99,4 +109,9 @@ function updateAction()
 function redirectToArticle()
 {
     header("Location: /../article/index");
+}
+
+function redirectToArticleSettings()
+{
+    header ( 'Location: index.php?uri=articlessettings' );
 }
