@@ -4,6 +4,19 @@
 	background-color: #f8f9fa  !important;
 }
 
+.navigation {
+	margin-left: 1em;
+	float: left;
+}
+
+.content-container {
+	position: relative;
+	left: 1em;
+	top: 0.3em;
+	width:57em;
+	float: left;
+}
+
 .content-section {
 	padding-top: 0.4em;
 }
