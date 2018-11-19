@@ -64,68 +64,6 @@ function updateMainpage($title, $text)
     }
 }
 
-function loadUserStatement()
-{
-    $pdo = getPdoConnection();
-
-    $sql = '
-    SELECT `id`,
-        `firstname`,
-        `lastname`,
-        `username`,
-        `active`
-        FROM `users` 
-            ORDER BY `firstname` DESC
-    ';
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Get an user entry from 'users' table by id.
- *
- * @param int $id - Id from an user entry.
- * @return array  - User list from an entry.
- *
- * @since 0.8.0
- */
-function getUser(int $id) : array
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `id`, 
-        `firstname`, 
-        `lastname`,
-        `email`, 
-        `password`, 
-        strftime('%s', `created_at`) AS datetime, 
-        `username`, 
-        `active`
-        FROM `users`
-        WHERE `id` = :id
-	";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
 /**
  * Get id, title and datetime from a table where trash-flag is true.
  *
