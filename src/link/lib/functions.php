@@ -53,6 +53,15 @@ function newAction(): string
     return render($templateList);
 }
 
+function settingsAction(): string
+{
+    $templateList = [
+        'link-settings.phtml'
+    ];
+    
+    return render($templateList);
+}
+
 function addAction()
 {
     $title      = filter_input(INPUT_POST, 'title');

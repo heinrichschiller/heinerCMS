@@ -53,13 +53,22 @@ function newAction(): string
     return render($templateList);
 }
 
+function settingsAction(): string
+{
+    $templateList = [
+        'download-settings.phtml'
+    ];
+    
+    return render($templateList);
+}
+
 function addAction()
 {
     $title    = filter_input(INPUT_POST, 'title');
     $text     = filter_input(INPUT_POST, 'text');
-    $path     = filter_input(INPUT_POST,'path');
-    $filename = filter_input(INPUT_POST,'filename');
-    $visible  = filter_input(INPUT_POST,'visible');
+    $path     = filter_input(INPUT_POST, 'path');
+    $filename = filter_input(INPUT_POST, 'filename');
+    $visible  = filter_input(INPUT_POST, 'visible');
     
     addDownload($title, $text, $path, $filename, $visible);
     
@@ -79,10 +88,10 @@ function updateAction()
 {
     $id       = filter_input(INPUT_POST, 'id');
     $title    = filter_input(INPUT_POST, 'title');
-    $text  = filter_input(INPUT_POST, 'text');
-    $path     = filter_input(INPUT_POST,'path');
-    $filename = filter_input(INPUT_POST,'filename');
-    $visible  = filter_input(INPUT_POST,'visible');
+    $text     = filter_input(INPUT_POST, 'text');
+    $path     = filter_input(INPUT_POST, 'path');
+    $filename = filter_input(INPUT_POST, 'filename');
+    $visible  = filter_input(INPUT_POST, 'visible');
     
     updateDownload($id, $title, $text, $path, $filename, $visible);
     
