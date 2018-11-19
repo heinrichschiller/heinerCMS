@@ -133,36 +133,37 @@ function getLinksSettings() : array
 
 /**
  *
- * @return PDOStatement
+ * @return array
  *
- * @since 0.8.0
+ * @since 0.9.0
  */
-function loadPublicLinksStatement() : PDOStatement
+function getPublicLinks(): array
 {
-    $pdo = getPdoConnection();
-    
     $sql = "
-    SELECT contents.title,
-        contents.tagline,
-        contents.uri,
-        contents.text,
-        strftime('%s', contents.created_at) AS datetime,
-        contents_settings.tagline as settings_tagline,
-        contents_settings.text as settings_comment
-        FROM `contents`,
-            `contents_settings`
-        WHERE `contents`.`content_type` = 'link'
-            AND `contents_settings`.`content_type` = 'link'
-            AND `visibility` = 'true'
+    SELECT `title`,
+        `tagline`,
+        `uri`,
+        `text`,
+        strftime('%s', `created_at`) AS datetime
+        FROM `contents`
+        WHERE `content_type` = 'link'
+            AND `visibility` != 'false'
             AND `flag` != 'trash'
             ORDER BY `datetime` DESC
     ";
+    
+    $pdo = getPdoConnection();
+    $result = [];
     
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         
-        return $stmt;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        
+        return $result;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();

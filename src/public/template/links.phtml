@@ -10,11 +10,12 @@
 <div class="container">
 	<div class="row">
     	<div class="col-md-12">
-    		<ul class="list-group">
+    		<?php foreach($links as $link): ?>
     			<li class="list-group-item active">
-    				<a href="##placeholder-links-uri##" target="blank">##placeholder-links-title## - ##placeholder-links-tagline##</a>
+    				<a href="##placeholder-links-uri##" target="blank"><?php echo $link['title']; ?> - <?php echo $link['tagline']; ?></a>
     			</li>
-    			<li class="list-group-item">##placeholder-links-comment##</li>
+    			<li class="list-group-item"><?php echo $link['text']; ?></li>
+    			<?php endforeach; ?>
     		</ul>
     	</div>
     </div>

@@ -113,9 +113,11 @@ function linksAction(): string
 {
     include LINK_LIB_PATH . DB_DRIVER . '_db_functions.php';
     
+    $linkItems = getPublicLinks();
+    
     $templateList = [
         'links.phtml'
     ];
     
-    return render($templateList);
+    return render($templateList, array('links' => $linkItems));
 }
