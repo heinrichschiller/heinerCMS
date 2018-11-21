@@ -38,6 +38,12 @@
 	border-color: #337ab7;
 }
 
+.list-group-item.public {
+	background-color: #e9ecef;
+	border-color: rgba(0,0,0,0.125);
+	color: grey;
+}
+
 .list-group-item-action.active {
 	background-color: #f8f9fa;
 	border: 1px solid rgba(0,0,0, 0.125);

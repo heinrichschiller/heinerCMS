@@ -22,7 +22,7 @@
 	margin-bottom: 2em;
 }
 
-.list-group-item.active {
+.list-group-item.public {
 	background-color: #e9ecef;
 	border-color: rgba(0,0,0,0.125);
 	color: grey;
