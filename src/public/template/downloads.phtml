@@ -14,22 +14,20 @@
 <div class="container">
     <div class="row">
     	<div class="col-sm-12">
-    	<?php foreach($downloads as $download): ?>
-    		<ol>
+    		<?php foreach($downloads as $download): ?>
     		   <div class="row">
                 	<div class="col-md-12">
                 		<ul class="list-group">
-                			<li class="list-group-item active"><?php echo $download['title']?>
+                			<li class="list-group-item public"><?php echo $download['title']?>
                 				<span class="article-datetime"><?php echo strftime('%d.%m.%Y',$download['datetime']); ?></span>
                 			</li>
                 			<li class="list-group-item"><?php echo $download['text']?>
-                			<li class="list-group-item"><a href="#">Download</a></li>
+                			<li class="list-group-item"><a href="#">{download}</a></li>
                 		</ul>
                 	</div>
                 </div>
                 <br>
-    		</ol>
-    	<?php endforeach; ?>	
+    		<?php endforeach; ?>
     	</div>
     </div>
 </div>

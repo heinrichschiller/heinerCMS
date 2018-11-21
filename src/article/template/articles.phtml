@@ -2,7 +2,7 @@
 <div class="row">
    	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
    		<div class="panel">
-   			<h4><img class="glyph-icon-24" src="../templates/default/admin/img/svg/si-glyph-pen.svg"> {articles}</h4>
+   			<h4><img class="glyph-icon-24" src="<?php echo SVG_PATH; ?>si-glyph-pen.svg"> {articles}</h4>
    		</div>
    	</div>
 </div>
@@ -20,13 +20,19 @@
 		<?php foreach($articles as $article): ?>
 		<tr>
             <td></td>
-            <td><?= $article['datetime']; ?></td>
+            <td><?= strftime('%d.%m.%Y', $article['datetime']); ?></td>
             <td><?= $article['title']; ?></td>
-            <td><?= $article['visibility']; ?></td>
+            <td><?= $article['visibility'] === 'true' ? '{yes}' : '{no}'; ?></td>
     		<td>
-    			<a href="#">asd</a> &middot;
-    			<a href="#">asd</a> &middot;
-            	<a href="#">asd</a>
+    			<a href="<?= BASE_URL ?>article/edit/id/<?= $article['id'];?>">
+    				<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-edit.svg" title="{edit}">
+    			</a> &middot;
+    			<a href="<?= BASE_URL ?>article/copy/id/<?= $article['id'];?>">
+    				<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
+    			</a> &middot;
+            	<a href="<?= BASE_URL ?>article/del/id/<?= $article['id'];?>">
+            		<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
+            	</a>
             </td>
         </tr>
         <?php endforeach; ?>

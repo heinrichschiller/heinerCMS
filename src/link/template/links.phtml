@@ -20,13 +20,19 @@
 		<?php foreach($links as $link): ?>
 		<tr>
             <td></td>
-            <td><?= $link['datetime']; ?></td>
+            <td><?= strftime('%d.%m.%Y',$link['datetime']); ?></td>
             <td><?= $link['title']; ?></td>
-            <td><?= $link['visibility']; ?></td>
+            <td><?= ($link['visibility'] === 'true') ? '{yes}' : '{no}'; ?></td>
     		<td>
-    			<a href="#">asd</a> &middot;
-    			<a href="#">asd</a> &middot;
-            	<a href="#">asd</a>
+    			<a href="#">
+    				<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-edit.svg" title="{edit}">
+    			</a> &middot;
+    			<a href="#">
+    				<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
+    			</a> &middot;
+            	<a href="#">
+            		<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
+            	</a>
             </td>
         </tr>
         <?php endforeach; ?>

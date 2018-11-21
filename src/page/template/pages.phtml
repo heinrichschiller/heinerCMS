@@ -20,9 +20,9 @@
 		<?php foreach($pages as $page): ?>
 		<tr>
             <td></td>
-            <td><?= $page['datetime']; ?></td>
+            <td><?= strftime('%d.%m.%Y', $page['datetime']); ?></td>
             <td><?= $page['title']; ?></td>
-            <td><?= $page['visibility']; ?></td>
+            <td><?= ($page['visibility'] === 'true') ? '{yes}' : '{no}'; ?></td>
     		<td>
     			<a href="#">asd</a> &middot;
     			<a href="#">asd</a> &middot;
