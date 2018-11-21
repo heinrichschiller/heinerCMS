@@ -27,16 +27,22 @@
  * SOFTWARE.
  */
 
+if(!defined('ABS_PATH')) {
+    
+    /**
+     * Absolute path of heinerCMS.
+     *
+     * @var string
+     * @since 0.9.0
+     */
+    define('ABS_PATH', __DIR__ . '/');
+}
+
 include __DIR__ . '/src/configs/cms-config.php';
 
-
 if (DEBUG_MODE) {
-    session_start();
     error_reporting(-1);
     ini_set('display_errors', true);
 }
 
 bootstrap();
-
-//echo ABS_PATH;
-//echo 'It works!.';

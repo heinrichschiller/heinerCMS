@@ -216,7 +216,7 @@ function checkSystem()
 }
 
 function render(array $templates, array $data = [])
-{
+{    
     $module = parseRequest();
     
     $module = !empty($module['controller']) ? $module['controller'] : 'public';
@@ -233,9 +233,9 @@ function render(array $templates, array $data = [])
     
     $html .= getMasterTemplate('footer.phtml');
 
-    //$arr_language = get_translation('de');
+    // $arr_language = getTranslation('de');
     
-    //return strtr($html, $arr_language);
+    // return strtr($html, $arr_language);
     return $html;
 }
 
