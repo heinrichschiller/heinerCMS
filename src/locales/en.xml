@@ -37,7 +37,7 @@
 		<articles_settings>Article-Settings</articles_settings>
 		<general>General</general>
 		<user>User</user>
-		<trash>Trash</trash>
+		<wastebin>Wastebin</wastebin>
 		<new_user>New user</new_user>
 		<create>Create</create>
 		<create_news>Create news</create_news>
@@ -78,5 +78,7 @@
         <back_to_mainpage>Back to mainpage</back_to_mainpage>
         <dark_mode>Dark Mode</dark_mode>
         <confirmation_required>Confirmation Required</confirmation_required>
+        <sign_in>Sign in</sign_in>
+		<sign_out>Sign out</sign_out>
 	</terms>
 </language>

@@ -37,7 +37,7 @@
 		<articles_settings>Article-Settings</articles_settings>
 		<general>Основные</general>
 		<user>Пользователь</user>
-		<trash>Корзина</trash>
+		<wastebin>Корзина</wastebin>
 		<new_user>Новый пользователь</new_user>
 		<create>Создайте</create>
 		<create_news>Создать новость</create_news>
@@ -75,5 +75,7 @@
         <back_to_mainpage>Back to mainpage</back_to_mainpage>
         <dark_mode>Dark Mode</dark_mode>
         <confirmation_required>Confirmation Required</confirmation_required>
+        <sign_in>Sign in</sign_in>
+		<sign_out>Sign out</sign_out>
 	</terms>
 </language>

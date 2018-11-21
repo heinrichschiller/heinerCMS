@@ -37,7 +37,7 @@
 		<settings>Einstellungen</settings>
 		<general>Allgemein</general>
 		<user>Benutzer</user>
-		<trash>Mülleimer</trash>
+		<wastebin>Mülleimer</wastebin>
 		<new_user>Neuer Benutzer</new_user>
 		<create>Erstellen</create>
 		<create_news>Nachricht erstellen</create_news>
@@ -79,5 +79,7 @@
 		<footer>Fußzeile</footer>
 		<dark_mode>Dunkler Modus</dark_mode>
 		<confirmation_required>Bestätigung erforderlich</confirmation_required>
+		<sign_in>Anmelden</sign_in>
+		<sign_out>Abmelden</sign_out>
 	</terms>
 </language>
