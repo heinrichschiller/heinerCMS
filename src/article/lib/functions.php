@@ -53,6 +53,17 @@ function newAction(): string
     return render($templateList);
 }
 
+function editAction(array $params): string
+{
+    $articleList = getArticle($params[1]);
+
+    $templateList = [
+        'edit_article.phtml'
+    ];
+    
+    return render($templateList, array('article' => $articleList));
+}
+
 function settingsAction(): string
 {
     $settings = getArticleSettings();
@@ -85,9 +96,9 @@ function addAction()
     redirectToArticle();
 }
 
-function delAction()
+function delAction(array $params)
 {
-    $id = filter_input(INPUT_POST, 'id');
+    $id = filter_var($params[1]);
     
     setContentsFlagById($id, 'trash');
     
