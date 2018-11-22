@@ -1,3 +1,4 @@
 <?php
 
-include __DIR__ . '/lib/functions.php';
+include ADMIN_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include ADMIN_LIB_PATH . 'functions.php';
