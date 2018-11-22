@@ -29,9 +29,11 @@
 
 function indexAction()
 {
+    $userList = getUsers();
+    
     $templateList = [
         'users.phtml'
     ];
     
-    return render($templateList);
+    return render($templateList, array('users' => $userList));
 }

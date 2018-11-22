@@ -27,7 +27,12 @@
  * SOFTWARE.
  */
 
-function loadUserStatement()
+/**
+ * Get a user list from users table.
+ * 
+ * @return array - List of all users.
+ */
+function getUsers(): array
 {
     $sql = '
     SELECT `id`,
@@ -40,12 +45,17 @@ function loadUserStatement()
     ';
     
     $pdo = getPdoConnection();
+    $result = [];
     
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         
-        return $stmt;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        
+        return $result;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -83,6 +93,35 @@ function getUser(int $id) : array
         $stmt->execute();
         
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
+
+/**
+ * Get username from users-table by id
+ *
+ * @param int $id Id of an user
+ *
+ * @return string
+ */
+function getUsernameById(int $id)
+{
+    $pdo = getPdoConnection();
+    
+    $sql = '
+    SELECT `username`
+        FROM `users`
+        WHERE `id` = :id
+    ';
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+        return $stmt->fetchColumn();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
