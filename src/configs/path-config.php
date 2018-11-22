@@ -92,6 +92,22 @@ define('IMG_SVG_PATH', SRC_PATH . '/../templates/default/admin/img/svg/');
 define('LOCALES_PATH', SRC_PATH . 'locales/');
 
 /**
+ * Path to modules/admin/.
+ * 
+ * @var string
+ * @since 0.9.0
+ */
+define('ADMIN_PATH', SRC_PATH . 'admin/');
+
+/**
+ * Path to modules/admin/lib/.
+ *
+ * @var string
+ * @since 0.9.0
+ */
+define('ADMIN_LIB_PATH', SRC_PATH . 'admin/lib/');
+
+/**
  * Path to modules/article/.
  * 
  * @var string
