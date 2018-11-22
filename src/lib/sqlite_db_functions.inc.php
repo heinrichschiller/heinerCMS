@@ -65,37 +65,6 @@ function updateMainpage($title, $text)
 }
 
 /**
- * Get id, title and datetime from a table where trash-flag is true.
- *
- * @param string $table Name of a table.
- * @return array
- */
-function getTrashEntries()
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `id`, 
-        `title`, 
-        strftime('%s', `created_at`) AS datetime, 
-        `content_type`
-        FROM `contents` 
-        WHERE `flag` = 'trash' 
-            ORDER BY `created_at` DESC
-    ";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
  * Get a list from 'settings' table.
  * 
  * @return array - List of settings entries.
@@ -378,35 +347,6 @@ function loadFromTable(string $table, int $count)
         $stmt->execute();
 
         return $stmt->fetchAll();
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Get username from users-table by id
- *
- * @param int $id Id of an user
- *
- * @return string
- */
-function getUsernameById(int $id)
-{
-    $pdo = getPdoConnection();
-
-    $sql = '
-    SELECT `username` 
-        FROM `users` 
-        WHERE `id` = :id
-    ';
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetchColumn();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
