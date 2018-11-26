@@ -30,18 +30,29 @@
 function indexAction(): string
 {
     $templateList = [];
-    
+
     $pageList = getAllPages();
-    
+
     if(count($pageList) > 0 ) {
         $template = 'pages.phtml';
     } else {
         $template = 'no_pages.phtml';
     }
-    
+
     $templateList[] = $template;
-    
+
     return render($templateList, array('pages' => $pageList));
+}
+
+function editAction(array $params): string
+{
+    $pageItems = getPage($params['1']);
+
+    $templateList = [
+        'edit_page.phtml'
+    ];
+
+    return render($templateList, array('page' => $pageItems));
 }
 
 function newAction(): string
@@ -49,7 +60,7 @@ function newAction(): string
     $templateList = [
         'new_page.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -59,18 +70,18 @@ function addAction()
     $tagline    = filter_input(INPUT_POST, 'tagline');
     $text       = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
     addPage($title, $tagline, $text, $visibility);
-    
+
     redirectToPage();
 }
 
-function delAction()
+function delAction(array $params)
 {
-    $id = filter_input(INPUT_POST, 'id');
-    
+    $id = filter_var($params[1]);
+
     setContentsFlagById($id, 'trash');
-    
+
     redirectToPage();
 }
 
@@ -81,9 +92,9 @@ function updateAction()
     $tagline = filter_input(INPUT_POST, 'tagline');
     $text = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
     updatePage($id, $title, $tagline, $text, $visibility);
-    
+
     redirectToPage();
 }
 
