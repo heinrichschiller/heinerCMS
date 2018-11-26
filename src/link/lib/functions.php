@@ -30,18 +30,29 @@
 function indexAction(): string
 {
     $templateList = [];
-    
+
     $linkList = getAllLinks();
-    
+
     if(count($linkList) > 0) {
         $template = 'links.phtml';
     } else {
         $template = 'no_links.phtml';
     }
-    
+
     $templateList[] = $template;
-    
+
     return render($templateList, array('links' => $linkList));
+}
+
+function editAction(array $params): string
+{
+    $linkItems = getLinkById($params['1']);
+
+    $templateList = [
+        'edit_link.phtml'
+    ];
+
+    return render($templateList, array('link' => $linkItems));
 }
 
 function newAction(): string
@@ -49,7 +60,7 @@ function newAction(): string
     $templateList = [
         'new_link.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -58,7 +69,7 @@ function settingsAction(): string
     $templateList = [
         'link-settings.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -69,18 +80,18 @@ function addAction()
     $uri        = filter_input(INPUT_POST, 'uri');
     $text       = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
     addLink($title, $tagline, $text, $uri, $visibility);
-    
+
     redirectToLink();
 }
 
-function delAction()
+function delAction(array $params)
 {
-    $id = filter_input(INPUT_POST, 'id');
-    
+    $id = filter_var($params['1']);
+
     setContentsFlagById($id, 'trash');
-    
+
     redirectToLink();
 }
 
@@ -91,9 +102,9 @@ function updateAction()
     $uri     = filter_input(INPUT_POST, 'uri');
     $comment = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
     updateLink($id, $title, $comment, $uri, $visibility);
-    
+
     redirectToLink();
 }
 
