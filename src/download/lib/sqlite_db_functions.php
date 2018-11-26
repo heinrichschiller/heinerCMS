@@ -30,16 +30,16 @@
 /**
  * Get all downloads entries from contents-table, where downloads flag
  * is not marked as 'trash'.
- * 
+ *
  * @return array
- * 
+ *
  * @since 0.9.0
  */
 function getAllDownloads(): array
 {
     $pdo = getPdoConnection();
     $result = [];
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -52,11 +52,11 @@ function getAllDownloads(): array
             AND `flag` = ''
             ORDER BY `created_at` DESC
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         while( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
@@ -64,7 +64,7 @@ function getAllDownloads(): array
         if($result) {
             return $result;
         }
-        
+
         return array();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -80,10 +80,10 @@ function getAllDownloads(): array
  *
  * @since 0.8.0
  */
-function getDownloads(int $id) : array
+function getDownload(int $id) : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -96,12 +96,12 @@ function getDownloads(int $id) : array
         WHERE `content_type` = 'download'
             AND `id`= :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -118,18 +118,18 @@ function getDownloads(int $id) : array
 function getDownloadSettings() : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `tagline`,
         `text`
         FROM `contents_settings`
         WHERE `content_type` = 'download';
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -138,9 +138,9 @@ function getDownloadSettings() : array
 }
 
 /**
- * 
+ *
  * @return array
- * 
+ *
  * @since 0.9.0
  */
 function getPublicDownloads(): array
@@ -159,18 +159,18 @@ function getPublicDownloads(): array
                 AND `flag` != 'trash'
                 ORDER BY `datetime` DESC
     ";
-    
+
     $pdo = getPdoConnection();
     $result = [];
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
-        
+
         return $result;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -196,7 +196,7 @@ function addDownload(string $title,
 {
     $flag = '';
     $content_type = 'download';
-    
+
     $sql = "
     INSERT INTO `contents` (
         `title`,
@@ -217,12 +217,12 @@ function addDownload(string $title,
             :flag
         )
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $content_type);
@@ -230,7 +230,7 @@ function addDownload(string $title,
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':flag', $flag);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -257,7 +257,7 @@ function updateDownload(int $id,
     string $visibility)
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     UPDATE `contents`
         SET `title` = :title,
@@ -268,17 +268,17 @@ function updateDownload(int $id,
             WHERE `content_type` = 'download'
                 AND `id` = :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':path', $path);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -301,15 +301,15 @@ function updateDownloadsSettings(string $tagline, string $text)
         `text`= :text
         WHERE `content_type`= 'download'
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
-        
+
         $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();

@@ -30,7 +30,7 @@
 function indexAction(): string
 {
     $templateList = [];
-    
+
     $downloadList = getAllDownloads();
 
     if(count($downloadList) > 0 ) {
@@ -40,8 +40,19 @@ function indexAction(): string
     }
 
     $templateList[] = $template;
-    
+
     return render($templateList, array('downloads'=> $downloadList));
+}
+
+function editAction(array $params): string
+{
+    $downloadList = getDownload($params[1]);
+
+    $templateList = [
+        'edit_download.phtml'
+    ];
+
+    return render($templateList, array('download' => $downloadList));
 }
 
 function newAction(): string
@@ -49,7 +60,7 @@ function newAction(): string
     $templateList = [
         'new_download.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -58,7 +69,7 @@ function settingsAction(): string
     $templateList = [
         'download-settings.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -69,18 +80,18 @@ function addAction()
     $path     = filter_input(INPUT_POST, 'path');
     $filename = filter_input(INPUT_POST, 'filename');
     $visible  = filter_input(INPUT_POST, 'visible');
-    
+
     addDownload($title, $text, $path, $filename, $visible);
-    
+
     redirectToDownload();
 }
 
-function delAction()
+function delAction(array $params)
 {
-    $id = filter_input(INPUT_POST, 'id');
-    
+    $id = filter_var($params[1]);
+
     setContentsFlagById($id, 'trash');
-    
+
     redirectToDownload();
 }
 
@@ -92,12 +103,12 @@ function updateAction()
     $path     = filter_input(INPUT_POST, 'path');
     $filename = filter_input(INPUT_POST, 'filename');
     $visible  = filter_input(INPUT_POST, 'visible');
-    
+
     updateDownload($id, $title, $text, $path, $filename, $visible);
-    
+
     redirectToDownload();
 }
 
 function redirectToDownload() {
-    header('Location: /../download/index');;
+    header('Location: ' . BASE_URL . '../download/index');
 }

@@ -2,7 +2,7 @@
 <div class="row">
    	<div class="col-lg-10 col-md-10 col-sm-10 col-12">
    		<div class="panel">
-   			<h4><img class="glyph-icon-24" src="../templates/default/admin/img/svg/si-glyph-file-download.svg"> {downloads}</h4>
+   			<h4><img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}</h4>
    		</div>
    	</div>
 </div>
@@ -24,13 +24,13 @@
             <td><?= $download['title']; ?></td>
             <td><?= ($download['visibility'] === 'true') ? '{yes}' : '{no}'; ?></td>
     		<td>
-    			<a href="#">
+    			<a href="<?= BASE_URL; ?>download/edit/id/<?= $download['id']; ?>">
     				<img class="glyph-icon-16" src="<?php echo SVG_PATH;?>si-glyph-edit.svg" title="{edit}">
     			</a> &middot;
     			<a href="#">
     				<img class="glyph-icon-16" src="<?php echo SVG_PATH;?>si-glyph-document-copy.svg" title="{copy}">
     			</a> &middot;
-            	<a href="#">
+            	<a href="<?= BASE_URL; ?>download/del/id/<?= $download['id']; ?>">
             		<img class="glyph-icon-16" src="<?php echo SVG_PATH;?>si-glyph-delete.svg" title="{delete}">
             	</a>
             </td>
@@ -40,7 +40,7 @@
 </table>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<a href="/../download/new" class="btn btn-primary" role="button">{create_download}</a>
+		<a href="<?= BASE_URL; ?>download/new" class="btn btn-primary" role="button">{create_download}</a>
 	</div>
 </div>
 </div>
