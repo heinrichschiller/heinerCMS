@@ -47,17 +47,17 @@
 function bootstrap()
 {
     $requestItems = parseRequest();
-    
+
     $controller = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
 
     $action = !empty($requestItems['action']) ? $requestItems['action'] : 'index';
-    
+
     include_once SRC_PATH . "$controller/$controller.php";
-    
+
     // parameter?
     $paramItems = !empty($requestItems['params']) ? $requestItems['params'] : array();
     @$params = explode('/', $paramItems);
-    
+
     // action => function? Methoden/Funktionen eines Moduls
     if (isset($action)) {
         $action = sprintf("%sAction", strtolower($action));
@@ -66,8 +66,8 @@ function bootstrap()
 }
 
 /**
- * 
- * 
+ *
+ *
  * @since 0.9.0
  */
 function parseRequest()
@@ -80,7 +80,7 @@ function parseRequest()
         'action' => @$item[1],
         'params' => @$item[2]
     ];
-    
+
     return $requestItems;
 }
 
@@ -91,19 +91,19 @@ function parseRequest()
 function load_session()
 {
     $settings = getGeneralSettings();
-    
+
     $_SESSION['title']    = $settings['title'];
     $_SESSION['tagline']  = $settings['tagline'];
     $_SESSION['theme']    = $settings['theme'];
     $_SESSION['darkmode'] = $settings['darkmode'];
     $_SESSION['blog-url'] = $settings['blog_url'];
     $_SESSION['language'] = $settings['lang_short'];
-    $_SESSION['footer']   = $settings['footer'];  
+    $_SESSION['footer']   = $settings['footer'];
 }
 
 /**
  * Checks if a login has taken place.
- * 
+ *
  * @return boolean
  */
 function is_logged_in() {
@@ -130,7 +130,7 @@ function is_logged_in() {
 }
 
 /**
- * 
+ *
  */
 function destroySession()
 {
@@ -138,19 +138,19 @@ function destroySession()
     $_SESSION ['authenticated'] = false;
     $_SESSION ['username'] = '';
     $_SESSION ['user_id'] = '';
-    
+
     /* Session beenden */
     session_destroy ();
-    
+
     /* Umleitung */
     header ( 'Location: index.php' );
 }
 
 /**
  * Get a XML-File for translations in heinerCMS.
- * 
+ *
  * @param string $language - Name of language
- * 
+ *
  * @return array
  */
 function getTranslation(string $language) : array
@@ -175,9 +175,9 @@ function getTranslation(string $language) : array
 
 /**
  * Get an HTML template by name and outputs it.
- * 
+ *
  * @param string $template - Name of a html-template.
- * 
+ *
  * @return string html-template.
  */
 function getTemplate(string $template): string
@@ -196,13 +196,13 @@ function getTemplate(string $template): string
 function getMasterTemplate(string $template): string
 {
     $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
-    
+
     $file = SRC_PATH . "/templates/$theme/$template";
-    
+
     if (file_exists($file)) {
         return file_get_contents($file);
     }
-    
+
     //return 'No template found.';
 }
 
@@ -216,9 +216,9 @@ function checkSystem()
 }
 
 function render(array $templates, array $data = [])
-{    
+{
     $module = parseRequest();
-    
+
     $module = !empty($module['controller']) ? $module['controller'] : 'public';
     $navbar = ($module == 'public') ? 'public_navigation.phtml' : 'admin_navigation.phtml';
 
@@ -230,11 +230,11 @@ function render(array $templates, array $data = [])
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
     }
-    
+
     $html .= getMasterTemplate('footer.phtml');
 
     // $arr_language = getTranslation('de');
-    
+
     // return strtr($html, $arr_language);
     return $html;
 }
@@ -252,12 +252,10 @@ function renderTemplate(string $template, array $data)
     ob_start();
 
     include $tmpltFile;
-    
+
     $htmlResponse = ob_get_contents();
-    
+
     ob_end_clean();
-    
+
     return $htmlResponse;
 }
-
-
