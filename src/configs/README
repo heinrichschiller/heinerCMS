@@ -8,7 +8,7 @@ configuration file, if you want. This can be helpfull for testing
 your own configurations or settings.
 
 What heinerCMS need is:
-define('DB_DRIVER', 'mysql'); for using a Database. heinerCMS 
+define('DB_DRIVER', 'mysql'); for using a Database. heinerCMS
 supporting MYSQL/MariaDB and SQLite database. You can also set
 'mysql' for MYSQL/MariaDB or 'sqlite' for SQLite Database.
 
@@ -34,11 +34,11 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_NAME', 'cms_heinercms');
 define('DB_PASSWORD', '');
-define('PDO_DEBUG_MODE', true);
+define('PDO_DEBUG_MODE', false);
 
 SQLite config-example:
 
 define('DB_DRIVER', 'sqlite');
 
 define('DB_NAME', __DIR__ . '/../data/sqlite/heinercms.db');
-define('PDO_DEBUG_MODE', true);
+define('PDO_DEBUG_MODE', false);
