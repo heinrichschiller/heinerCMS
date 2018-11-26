@@ -32,7 +32,7 @@ function indexAction()
     $templateList = [
         'dashboard'  => 'dashboard.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -41,7 +41,7 @@ function settingsAction()
     $templateList = [
         'dashboard'  => 'settings.phtml'
     ];
-    
+
     return render($templateList);
 }
 
@@ -50,23 +50,23 @@ function mainpageAction()
     $templateList = [
         'mainpage.phtml'
     ];
-    
+
     return render($templateList);
 }
 
 function wastebinAction()
 {
     $templateList = [];
-    
+
     $itemList = getWastebinItems();
-    var_dump($itemList);
+
     if ( count($itemList) > 0 ) {
         $template = 'wastebin.phtml';
     } else {
         $template = 'no_trash.phtml';
     }
-    
+
     $templateList[] = $template;
-    
+
     return render($templateList, array('itemList' => $itemList));
 }
