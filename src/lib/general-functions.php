@@ -259,3 +259,8 @@ function renderTemplate(string $template, array $data)
 
     return $htmlResponse;
 }
+
+function currentDatetime()
+{
+    return strftime('%d.%m.%Y %H:%M', time());
+}
