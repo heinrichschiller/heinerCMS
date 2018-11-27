@@ -27,13 +27,25 @@
  * SOFTWARE.
  */
 
-function indexAction()
+function indexAction(): string
 {
     $userList = getUsers();
-    
+
     $templateList = [
         'users.phtml'
     ];
-    
+
     return render($templateList, array('users' => $userList));
+}
+
+function editAction(array $params): string
+{
+
+    $userList = getUser($params[1]);
+
+    $templateList = [
+        'edit_user.phtml'
+    ];
+
+    return render($templateList, array('user' => $userList));
 }
