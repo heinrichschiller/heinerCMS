@@ -29,6 +29,8 @@
 
 function indexAction(): string
 {
+    checkLogin();
+
     $userList = getUsers();
 
     $templateList = [
@@ -40,6 +42,8 @@ function indexAction(): string
 
 function newAction()
 {
+    checkLogin();
+
     $templateList = [
         'new_user.phtml'
     ];
@@ -49,6 +53,7 @@ function newAction()
 
 function editAction(array $params): string
 {
+    checkLogin();
 
     $userList = getUser($params[1]);
 
@@ -61,6 +66,8 @@ function editAction(array $params): string
 
 function addAction()
 {
+    checkLogin();
+
     $firstname = filter_input(INPUT_POST, 'firstname');
     $lastname  = filter_input(INPUT_POST, 'lastname');
     $username  = filter_input(INPUT_POST, 'username');
@@ -85,6 +92,8 @@ function addAction()
 
 function delAction(array $params)
 {
+    checkLogin();
+    
     deleteUser($params[1]);
 
     redirectUser();

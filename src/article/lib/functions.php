@@ -29,10 +29,12 @@
 
 function indexAction(): string
 {
+    checkLogin();
+
     $templateList = [];
-    
+
     $articleList = getAllArticles();
-    
+
     if (count($articleList) > 0 ) {
         $template = 'articles.phtml';
     } else {
@@ -40,80 +42,94 @@ function indexAction(): string
     }
 
     $templateList[] = $template;
-    
+
     return render($templateList, array('articles' => $articleList));
 }
 
 function newAction(): string
 {
+    checkLogin();
+
     $templateList = [
         'new_article.phtml'
     ];
-    
+
     return render($templateList);
 }
 
 function editAction(array $params): string
 {
+    checkLogin();
+
     $articleList = getArticle($params[1]);
 
     $templateList = [
         'edit_article.phtml'
     ];
-    
+
     return render($templateList, array('article' => $articleList));
 }
 
 function settingsAction(): string
 {
+    checkLogin();
+
     $settings = getArticleSettings();
-    
+
     $templateList = [
         'article_settings.phtml'
     ];
-    
+
     return render($templateList, array('settings' => $settings));
 }
 
 function updatesettingsAction()
 {
+    checkLogin();
+
     $tagline = filter_input(INPUT_POST, 'tagline');
     $comment = filter_input(INPUT_POST, 'comment');
-    
+
     updateArticleSettings($tagline, $comment);
-    
+
     redirectToArticleSettings();
 }
 
 function addAction()
 {
+    checkLogin();
+
     $title      = filter_input(INPUT_POST, 'title');
     $content    = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
     addArticle($title, $content, $visibility);
-    
+
     redirectToArticle();
 }
 
 function delAction(array $params)
 {
+    checkLogin();
+
     $id = filter_var($params[1]);
-    
+
     setContentsFlagById($id, 'trash');
-    
+
     redirectToArticle();
 }
 
 function updateAction()
 {
+    checkLogin();
+    
     $id         = filter_input(INPUT_POST, 'id');
     $title      = filter_input(INPUT_POST, 'title');
     $content    = filter_input(INPUT_POST, 'content');
     $visibility = filter_input(INPUT_POST, 'visible');
-    
+
     updateArticle($id, $title, $content, $visibility);
-    
+
     redirectToArticle();
 }
 

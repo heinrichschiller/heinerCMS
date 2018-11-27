@@ -29,6 +29,8 @@
 
 function indexAction(): string
 {
+    checkLogin();
+
     $templateList = [];
 
     $downloadList = getAllDownloads();
@@ -46,6 +48,8 @@ function indexAction(): string
 
 function editAction(array $params): string
 {
+    checkLogin();
+
     $downloadList = getDownload($params[1]);
 
     $templateList = [
@@ -57,6 +61,8 @@ function editAction(array $params): string
 
 function newAction(): string
 {
+    checkLogin();
+
     $templateList = [
         'new_download.phtml'
     ];
@@ -66,6 +72,8 @@ function newAction(): string
 
 function settingsAction(): string
 {
+    checkLogin();
+
     $templateList = [
         'download-settings.phtml'
     ];
@@ -75,6 +83,8 @@ function settingsAction(): string
 
 function addAction()
 {
+    checkLogin();
+
     $title    = filter_input(INPUT_POST, 'title');
     $text     = filter_input(INPUT_POST, 'text');
     $path     = filter_input(INPUT_POST, 'path');
@@ -88,6 +98,8 @@ function addAction()
 
 function delAction(array $params)
 {
+    checkLogin();
+
     $id = filter_var($params[1]);
 
     setContentsFlagById($id, 'trash');
@@ -97,6 +109,8 @@ function delAction(array $params)
 
 function updateAction()
 {
+    checkLogin();
+    
     $id       = filter_input(INPUT_POST, 'id');
     $title    = filter_input(INPUT_POST, 'title');
     $text     = filter_input(INPUT_POST, 'text');

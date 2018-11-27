@@ -29,6 +29,8 @@
 
 function indexAction(): string
 {
+    checkLogin();
+
     $templateList = [];
 
     $pageList = getAllPages();
@@ -46,6 +48,8 @@ function indexAction(): string
 
 function editAction(array $params): string
 {
+    checkLogin();
+
     $pageItems = getPage($params['1']);
 
     $templateList = [
@@ -57,6 +61,8 @@ function editAction(array $params): string
 
 function newAction(): string
 {
+    checkLogin();
+
     $templateList = [
         'new_page.phtml'
     ];
@@ -66,6 +72,8 @@ function newAction(): string
 
 function addAction()
 {
+    checkLogin();
+
     $title      = filter_input(INPUT_POST, 'title');
     $tagline    = filter_input(INPUT_POST, 'tagline');
     $text       = filter_input(INPUT_POST, 'text');
@@ -78,6 +86,8 @@ function addAction()
 
 function delAction(array $params)
 {
+    checkLogin();
+
     $id = filter_var($params[1]);
 
     setContentsFlagById($id, 'trash');
@@ -87,10 +97,12 @@ function delAction(array $params)
 
 function updateAction()
 {
-    $id      = filter_input(INPUT_POST, 'id');
-    $title   = filter_input(INPUT_POST, 'title');
-    $tagline = filter_input(INPUT_POST, 'tagline');
-    $text = filter_input(INPUT_POST, 'text');
+    checkLogin();
+
+    $id         = filter_input(INPUT_POST, 'id');
+    $title      = filter_input(INPUT_POST, 'title');
+    $tagline    = filter_input(INPUT_POST, 'tagline');
+    $text       = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
 
     updatePage($id, $title, $tagline, $text, $visibility);
@@ -100,5 +112,5 @@ function updateAction()
 
 function redirectToPage()
 {
-    header ( 'Location: /../page/index' );
+    header ( 'Location: ' . BASE_URL . 'page/index' );
 }

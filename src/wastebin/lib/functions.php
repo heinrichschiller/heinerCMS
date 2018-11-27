@@ -29,6 +29,8 @@
 
  function indexAction()
  {
+     checkLogin();
+     
      $templateList = [];
 
      $itemList = getWastebinItems();
