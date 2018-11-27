@@ -33,8 +33,8 @@
  *
  * This file contains:
  *
- * * 
- * * 
+ * *
+ * *
  *
  * @since 0.5.0
  *
@@ -42,14 +42,21 @@
 
 /**
  * Base url of heinerCMS.
- * 
+ *
  * @var string
- * 
+ *
  * @since 0.9.0
  */
 define('BASE_URL', 'http://heinercms.localhost/');
 
-define('SVG_PATH', BASE_URL . '/public/assets/img/svg/');
+/**
+ * Path to the SVG images.
+ *
+ * @var $xmlString*
+ *
+ * @since 0.9.0
+ */
+define('SVG_PATH', BASE_URL . 'public/assets/img/svg/');
 
 /**
  * Source path of heinerCMS.
@@ -61,7 +68,7 @@ define('SRC_PATH', ABS_PATH . 'src/');
 
 /**
  * Path to config directory.
- * 
+ *
  * @var string
  * @since 0.5.0
  */
@@ -69,7 +76,7 @@ define('CONFIG_PATH', SRC_PATH . 'configs/');
 
 /**
  * Path to lib directory
- * 
+ *
  * @var string
  * @since 0.9.0
  */
@@ -93,7 +100,7 @@ define('LOCALES_PATH', SRC_PATH . 'locales/');
 
 /**
  * Path to modules/admin/.
- * 
+ *
  * @var string
  * @since 0.9.0
  */
@@ -109,7 +116,7 @@ define('ADMIN_LIB_PATH', SRC_PATH . 'admin/lib/');
 
 /**
  * Path to modules/article/.
- * 
+ *
  * @var string
  * @since 0.9.0
  */
@@ -125,7 +132,7 @@ define('ARTICLE_LIB_PATH', SRC_PATH . 'article/lib/');
 
 /**
  * Path to modules/download/.
- * 
+ *
  * @var unknown
  * @since 0.9.0
  */
@@ -133,7 +140,7 @@ define('DOWNLOAD_PATH', SRC_PATH . 'download/');
 
 /**
  * Path to modules/download/lib/.
- * 
+ *
  * @var string
  * @since 0.9.0
  */
@@ -141,42 +148,90 @@ define('DOWNLOAD_LIB_PATH', SRC_PATH . 'download/lib/');
 
 /**
  * Path to modules/link/
- *  
+ *
  * @var string
- * 
+ *
  * @since 0.9.0
  */
 define('LINK_PATH', SRC_PATH . 'link/');
 
 /**
  * Path to modules/link/lib/
- * 
+ *
  * @var string
- * 
+ *
  * @since 0.9.0
  */
 define('LINK_LIB_PATH', SRC_PATH . 'link/lib/');
 
 /**
  * Path to modules/page/
- * 
+ *
  * @var string
- * 
+ *
  * @since 0.9.0
  */
 define('PAGE_PATH', SRC_PATH . 'page/');
 
 /**
  * Path to modules/page/lib/
- * 
+ *
  * @var string
- * 
+ *
  * @since 0.9.0
  */
 define('PAGE_LIB_PATH', SRC_PATH . 'page/lib/');
 
+/**
+ * Path to modules/public/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
 define('PUBLIC_PATH', SRC_PATH . 'public/');
+
+/**
+ * Path to modules/public/lib/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
 define('PUBLIC_LIB_PATH', SRC_PATH . 'public/lib/');
 
+/**
+ * Path to modules/user/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
 define('USER_PATH', SRC_PATH . 'user/');
+
+/**
+ * Path to modules/user/lib/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
 define('USER_LIB_PATH', SRC_PATH . 'user/lib/');
+
+/**
+ * Path to modules/wastebin/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
+define('WASTEBIN_PATH', SRC_PATH . 'wastebin/');
+
+/**
+ * Path to modules/wastebin/lib/
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
+define('WASTEBIN_LIB_PATH', SRC_PATH . 'wastebin/lib/');
