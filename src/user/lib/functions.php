@@ -38,6 +38,15 @@ function indexAction(): string
     return render($templateList, array('users' => $userList));
 }
 
+function newAction()
+{
+    $templateList = [
+        'new_user.phtml'
+    ];
+
+    return render($templateList);
+}
+
 function editAction(array $params): string
 {
 
@@ -48,4 +57,40 @@ function editAction(array $params): string
     ];
 
     return render($templateList, array('user' => $userList));
+}
+
+function addAction()
+{
+    $firstname = filter_input(INPUT_POST, 'firstname');
+    $lastname  = filter_input(INPUT_POST, 'lastname');
+    $username  = filter_input(INPUT_POST, 'username');
+    $email     = filter_input(INPUT_POST, 'email');
+    $password1 = filter_input(INPUT_POST, 'password1');
+    $password2 = filter_input(INPUT_POST, 'password2');
+    $active    = filter_input(INPUT_POST, 'active');
+
+    if ( strcmp($password1, $password2) === 0) {
+        $password = $password1;
+    } else {
+        // @todo replace this ...
+        die("Fehler beim passwort festgestellt.");
+    }
+
+    $pwHash = password_hash($password, PASSWORD_DEFAULT);
+
+    addUser($firstname, $lastname, $username, $email, $pwHash, $active);
+
+    redirectUser();
+}
+
+function delAction(array $params)
+{
+    deleteUser($params[1]);
+
+    redirectUser();
+}
+
+function redirectUser()
+{
+    header ( 'Location: ' . BASE_URL . 'user/index' );
 }

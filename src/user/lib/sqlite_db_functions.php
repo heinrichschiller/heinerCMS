@@ -29,7 +29,7 @@
 
 /**
  * Get a user list from users table.
- * 
+ *
  * @return array - List of all users.
  */
 function getUsers(): array
@@ -43,18 +43,18 @@ function getUsers(): array
         FROM `users`
             ORDER BY `firstname` DESC
     ';
-    
+
     $pdo = getPdoConnection();
     $result = [];
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
-        
+
         return $result;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -84,14 +84,14 @@ function getUser(int $id) : array
         FROM `users`
         WHERE `id` = :id
 	";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -109,18 +109,18 @@ function getUser(int $id) : array
 function getUsernameById(int $id)
 {
     $pdo = getPdoConnection();
-    
+
     $sql = '
     SELECT `username`
         FROM `users`
         WHERE `id` = :id
     ';
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         return $stmt->fetchColumn();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -130,25 +130,25 @@ function getUsernameById(int $id)
 
 /**
  * Delete an user from 'users' table by id.
- * 
+ *
  * @param int $id - Id from an user entry.
- * 
+ *
  * @since 0.9.0
  */
 function deleteUser(int $id)
 {
     $sql = '
-    DELETE FROM `users` 
+    DELETE FROM `users`
         WHERE id = :id
     ';
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -156,10 +156,15 @@ function deleteUser(int $id)
     }
 }
 
-function addUser()
+function addUser(string $firstname,
+    string $lastname,
+    string $username,
+    string $email,
+    string $pwHash,
+    string $active)
 {
-    $sql ='INSERT INTO `users`(`
-        firstname`,
+    $sql ='INSERT INTO `users`(
+        `firstname`,
         `lastname`,
         `email`,
         `password`,
@@ -175,21 +180,21 @@ function addUser()
             :active)
     ';
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $pwHash);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':active', $active);
-        
+
         if (DB_DRIVER == 'sqlite') {
             $stmt->bindParam(':created_at', $created_at);
         }
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -198,7 +203,7 @@ function addUser()
 }
 
 /**
- * 
+ *
  * @param int $id
  * @param string $firstname
  * @param string $lastname
@@ -221,19 +226,19 @@ function updateUser(int $id,
         `active`= :active,
         WHERE `id` = :id
     ';
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':active', $active);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
