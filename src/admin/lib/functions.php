@@ -53,20 +53,3 @@ function mainpageAction()
 
     return render($templateList);
 }
-
-function wastebinAction()
-{
-    $templateList = [];
-
-    $itemList = getWastebinItems();
-
-    if ( count($itemList) > 0 ) {
-        $template = 'wastebin.phtml';
-    } else {
-        $template = 'no_trash.phtml';
-    }
-
-    $templateList[] = $template;
-
-    return render($templateList, array('itemList' => $itemList));
-}
