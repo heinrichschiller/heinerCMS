@@ -245,3 +245,62 @@ function updateUser(int $id,
         exit();
     }
 }
+
+function authUser(string $email, string $password)
+{
+    $userItems = getUserByEmail($email);
+
+    if ($userItems !== false && password_verify($password, $userItems['password'])) {
+
+        $sql = "
+        SELECT `id`,
+            `email`
+            FROM `users`
+            WHERE `email` = %s
+                AND `password` = %s
+        ";
+
+        $pdo = getPdoConnection();
+
+        $tmp = sprintf($sql, $pdo->quote($email), $pdo->quote($userItems['password']));
+        $stmt = $pdo->query($tmp);
+
+        $userItems = [];
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user['email'] = $row['email'];
+            $user['id'] = $row['id'];
+
+            return $user;
+        }
+
+        return false;
+    }
+}
+
+function getUserByEmail(string $email)
+{
+    $sql = "
+    SELECT `id`,
+        `email`,
+        `username`,
+        `password`
+        FROM `users`
+        WHERE email = :email
+    ";
+
+    $pdo = getPdoConnection();
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+
+    return false;
+}

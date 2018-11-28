@@ -93,10 +93,25 @@ function addAction()
 function delAction(array $params)
 {
     checkLogin();
-    
+
     deleteUser($params[1]);
 
     redirectUser();
+}
+
+function loginAction()
+{
+    if(isPost()) {
+        if(login($_POST['email'], $_POST['password'])) {
+            header('Location:' . BASE_URL . 'admin/dashboard');
+        }
+    }
+
+    $templateList = [
+        'login.phtml'
+    ];
+
+    return render($templateList);
 }
 
 function redirectUser()
