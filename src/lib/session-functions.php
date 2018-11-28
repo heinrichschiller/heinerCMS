@@ -46,8 +46,7 @@ function isLoggedIn()
 function checkLogin()
 {
     if (!isLoggedIn()) {
-        echo BASE_URL;
-        header('Location:' . BASE_URL);
+        header('Location:' . BASE_URL . 'admin/dashboard');
     }
 }
 
@@ -62,4 +61,20 @@ function logout()
     session_destroy();
 
     header('Location:' . BASE_URL);
+}
+
+function login(string $username, string $email)
+{
+    initSession();
+
+    $user = authUser($username, $email);
+
+    if(!$user) {
+        $_SESSION['user'] == $user['user'];
+        $_SESSION['id'] == $user['id'];
+
+        return true;
+    }
+
+    return false;
 }

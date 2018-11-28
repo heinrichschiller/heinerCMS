@@ -84,6 +84,24 @@ function parseRequest()
     return $requestItems;
 }
 
+function isPost()
+{
+    if(!empty($_POST)) {
+        return true;
+    }
+
+    return false;
+}
+
+function isGet()
+{
+    if(count($_GET) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
 /**
  * Load a session for heinerCMS.
  * @deprecated
@@ -99,51 +117,6 @@ function load_session()
     $_SESSION['blog-url'] = $settings['blog_url'];
     $_SESSION['language'] = $settings['lang_short'];
     $_SESSION['footer']   = $settings['footer'];
-}
-
-/**
- * Checks if a login has taken place.
- *
- * @return boolean
- */
-function is_logged_in() {
-
-    $authenticated = isset($_SESSION['authenticated']) ? true : false;
-
-    load_session();
-
-    /* User angemeldet? */
-    if ($authenticated) {
-        return true;
-    } else {
-
-        $login = getTemplate('adm_login');
-        $template = getTemplate('adm_login_template');
-
-        $template = str_replace ( '##placeholder-title##', $_SESSION['title'], $template );
-        $template = str_replace ( '##placeholder-form-signin##', $login, $template );
-
-        echo stripslashes ( $template );
-
-        return false;
-    }
-}
-
-/**
- *
- */
-function destroySession()
-{
-    /* Wert setzen */
-    $_SESSION ['authenticated'] = false;
-    $_SESSION ['username'] = '';
-    $_SESSION ['user_id'] = '';
-
-    /* Session beenden */
-    session_destroy ();
-
-    /* Umleitung */
-    header ( 'Location: index.php' );
 }
 
 /**
@@ -219,13 +192,21 @@ function render(array $templates, array $data = [])
 {
     $module = parseRequest();
 
-    $module = !empty($module['controller']) ? $module['controller'] : 'public';
-    $navbar = ($module == 'public') ? 'public_navigation.phtml' : 'admin_navigation.phtml';
+    if($module['controller'] == 'user' && $module['action'] == 'login') {
+        $navbar = '';
+    } elseif (empty($module['controller']) || $module['controller'] == 'public') {
+        $navbar = 'public_navigation.phtml';
+    } else {
+        $navbar = 'admin_navigation.phtml';
+    }
 
     $html = '';
 
     $html .= getMasterTemplate('header.phtml');
-    $html .= getMasterTemplate($navbar);
+
+    if(!empty($navbar)) {
+        $html .= getMasterTemplate($navbar);
+    }
 
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
