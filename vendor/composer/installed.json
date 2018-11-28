@@ -132,20 +132,20 @@
     },
     {
         "name": "tinymce/tinymce",
-        "version": "4.8.3",
-        "version_normalized": "4.8.3.0",
+        "version": "4.9.0",
+        "version_normalized": "4.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/tinymce/tinymce-dist.git",
-            "reference": "e6ad606b0da07cc7d1847f01d5d89b42920d5bc2"
+            "reference": "e3ec3aea8938a08701b82492880d31327be30b30"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/e6ad606b0da07cc7d1847f01d5d89b42920d5bc2",
-            "reference": "e6ad606b0da07cc7d1847f01d5d89b42920d5bc2",
+            "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/e3ec3aea8938a08701b82492880d31327be30b30",
+            "reference": "e3ec3aea8938a08701b82492880d31327be30b30",
             "shasum": ""
         },
-        "time": "2018-09-13T14:31:22+00:00",
+        "time": "2018-11-27T14:43:37+00:00",
         "type": "component",
         "extra": {
             "component": {
