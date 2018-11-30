@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{downloads}</h1>
+    <p class="lead">##placeholder-downloads-page-tagline##</p>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+    		##placeholder-downloads-page-comment##
+    	</div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+    	<div class="col-sm-12">
+    		<?php foreach($downloads as $download): ?>
+    		   <div class="row">
+                	<div class="col-md-12">
+                		<ul class="list-group">
+                			<li class="list-group-item public"><?php echo $download['title']?>
+                				<span class="article-datetime"><?php echo strftime('%d.%m.%Y',$download['datetime']); ?></span>
+                			</li>
+                			<li class="list-group-item"><?php echo $download['text']?>
+                			<li class="list-group-item"><a href="#">{download}</a></li>
+                		</ul>
+                	</div>
+                </div>
+                <br>
+    		<?php endforeach; ?>
+    	</div>
+    </div>
+</div>

@@ -1,5 +1,14 @@
-Pre-Version 0.8.2 (2018-11-1)
-	bugfix, mainpage shows invisible articles
+Pre-Version 0.9.0
+	Re-Engeniering of heinerCMS has began
+	added, module article
+	added, module download
+	added, module link
+	added, module page
+	added, module user
+	added, module public
+	update, tinymce/tinymce (4.8.3 => 4.9.0)
+	bugfix, fixed minor bugs
+	removed, old routes because obsolete
 Pre-Version 0.8.1 (2018-10-11)
 	bugfix, infobox sql-failure
 Version 0.8.0 (2018-10-11)
@@ -135,7 +144,7 @@ Version 0.1.5 (2018-02-27)
 	remove, cms-config.php
 Version 0.1.4 (2018-02-26)
 	remove, classic theme
-	update, improve admin navigation 
+	update, improve admin navigation
 	added, Links-Settings and public links section
 Version 0.1.3 (2018-02-23)
 	bugfix, fixed many many other minor bugs

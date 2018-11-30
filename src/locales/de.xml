@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language lang="Deutsch" short="de">
+	<terms>
+		<yes>ja</yes>
+		<no>nein</no>
+		<new>neu</new>
+		<firstname>Vorname</firstname>
+		<lastname>Nachname</lastname>
+		<username>Benutzername</username>
+		<email>Email</email>
+		<show_publicly_as>Öffentlich anzeigen als</show_publicly_as>
+		<password>Passwort</password>
+		<repeat_password>Passwort wiederholen</repeat_password>
+		<generate_password>Passwort generieren</generate_password>
+		<save>Speichern</save>
+		<reset>Zurücksetzen</reset>
+		<visible>Sichtbar</visible>
+		<dashboard>Dashboard</dashboard>
+		<content>Inhalt</content>
+		<news>Neuigkeiten</news>
+		<downloads>Downloads</downloads>
+		<download>Download</download>
+		<downloads_settings>Downloads-Einstellungen</downloads_settings>
+		<create_download>Download erstellen</create_download>
+		<edit_download>Download bearbeiten</edit_download>
+		<links>Links</links>
+		<link>Link</link>
+		<create_link>Link erstellen</create_link>
+		<edit_link>Link bearbeiten</edit_link>
+		<links_settings>Links-Einstellungen</links_settings>
+		<news_settings>Neuigkeiten-Einstellungen</news_settings>
+		<articles>Artikel</articles>
+		<article>Artikel</article>
+		<create_article>Artikel erstellen</create_article>
+		<edit_article>Artikel bearbeiten</edit_article>
+		<articles_settings>Artikel-Einstellungen</articles_settings>
+		<settings>Einstellungen</settings>
+		<general>Allgemein</general>
+		<user>Benutzer</user>
+		<wastebin>Mülleimer</wastebin>
+		<new_user>Neuer Benutzer</new_user>
+		<create>Erstellen</create>
+		<create_news>Nachricht erstellen</create_news>
+		<create_download>Download erstellen</create_download>
+		<create_link>Link erstellen</create_link>
+		<create_article>Artikel erstellen</create_article>
+		<date>Datum</date>
+		<title>Titel</title>
+		<actions>Aktionen</actions>
+		<clear_selection>Auswahl löschen</clear_selection>
+		<clear_all>Alle löschen</clear_all>
+		<administration>Administration</administration>
+		<german>Deutsch</german>
+		<english>Englisch</english>
+		<russian>Russich</russian>
+		<application_language>Sprache der Anwendung</application_language>
+		<path>Pfad</path>
+		<filename>Dateiname</filename>
+		<comment>Kommentar</comment>
+		<uri>URI</uri>
+		<text>Text</text>
+		<theme>Theme</theme>
+		<active>Aktiv</active>
+		<create_user>Benutzer erstellen</create_user>
+		<edit>Bearbeiten</edit>
+		<copy>Kopieren</copy>
+		<delete>Löschen</delete>
+		<tagline>Untertitel</tagline>
+		<blog>Blog</blog>
+		<page>Seite</page>
+		<edit_page>Seite bearbeiten</edit_page>
+		<pages>Seiten</pages>
+		<create_page>Seite erstellen</create_page>
+		<edit_news>Nachricht bearbeiten</edit_news>
+		<mainpage>Hauptseite</mainpage>
+		<back_to_mainpage>Zurück zur Hauptseite</back_to_mainpage>
+		<communication>Kommunikation</communication>
+		<contact_inquiry>Kontakt anfragen</contact_inquiry>
+		<footer>Fußzeile</footer>
+		<dark_mode>Dunkler Modus</dark_mode>
+		<confirmation_required>Bestätigung erforderlich</confirmation_required>
+		<sign_in>Anmelden</sign_in>
+		<sign_out>Abmelden</sign_out>
+	</terms>
+</language>
