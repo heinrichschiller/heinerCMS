@@ -29,7 +29,8 @@
 
 include_once __DIR__ . '/path-config.php';
 include_once __DIR__ . '/db-config.php';
-include_once LIB_PATH . '/../lib/general-functions.php';
+include_once LIB_PATH . 'session-functions.php';
+include_once LIB_PATH . 'general-functions.php';
 include_once LIB_PATH . DB_DRIVER . '_db_functions.inc.php';
 
 /****************************************************************************************

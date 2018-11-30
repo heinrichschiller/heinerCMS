@@ -47,7 +47,7 @@
  *
  * @since 0.9.0
  */
-define('BASE_URL', 'http://heinercms.localhost/');
+define('BASE_URL', '');
 
 /**
  * Path to the SVG images.
