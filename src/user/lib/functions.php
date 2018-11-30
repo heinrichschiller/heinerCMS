@@ -103,7 +103,7 @@ function loginAction()
 {
     if(isPost()) {
         if(login($_POST['email'], $_POST['password'])) {
-            header('Location:' . BASE_URL . 'admin/dashboard');
+            header('Location:' . BASE_URL . 'admin/index');
         }
     }
 
@@ -112,6 +112,11 @@ function loginAction()
     ];
 
     return render($templateList);
+}
+
+function logoutAction()
+{
+    logout();
 }
 
 function redirectUser()

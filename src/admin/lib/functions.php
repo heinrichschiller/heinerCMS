@@ -29,6 +29,8 @@
 
 function indexAction()
 {
+    checkLogin();
+
     $templateList = [
         'dashboard'  => 'dashboard.phtml'
     ];
@@ -38,6 +40,8 @@ function indexAction()
 
 function settingsAction()
 {
+    checkLogin();
+
     $templateList = [
         'dashboard'  => 'settings.phtml'
     ];
@@ -47,6 +51,8 @@ function settingsAction()
 
 function mainpageAction()
 {
+    checkLogin();
+    
     $templateList = [
         'mainpage.phtml'
     ];

@@ -37,7 +37,7 @@ function initSession()
 function isLoggedIn()
 {
     initSession();
-    if(isset($_SESSION['user_id'])) {
+    if(isset($_SESSION['id'])) {
         return true;
     }
     return false;
@@ -46,7 +46,7 @@ function isLoggedIn()
 function checkLogin()
 {
     if (!isLoggedIn()) {
-        header('Location:' . BASE_URL . 'admin/dashboard');
+        header('Location:' . BASE_URL . 'public/index');
     }
 }
 
@@ -69,9 +69,9 @@ function login(string $username, string $email)
 
     $user = authUser($username, $email);
 
-    if(!$user) {
-        $_SESSION['user'] == $user['user'];
-        $_SESSION['id'] == $user['id'];
+    if($user) {
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['id'] = $user['id'];
 
         return true;
     }
