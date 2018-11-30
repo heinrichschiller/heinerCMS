@@ -214,10 +214,10 @@ function render(array $templates, array $data = [])
 
     $html .= getMasterTemplate('footer.phtml');
 
-    // $arr_language = getTranslation('de');
+    $arr_language = getTranslation('de');
 
-    // return strtr($html, $arr_language);
-    return $html;
+    return strtr($html, $arr_language);
+    //return $html;
 }
 
 function renderTemplate(string $template, array $data)
