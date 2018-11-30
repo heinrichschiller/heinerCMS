@@ -122,11 +122,11 @@ function delAction(array $params)
 function updateAction()
 {
     checkLogin();
-    
+
     $id         = filter_input(INPUT_POST, 'id');
     $title      = filter_input(INPUT_POST, 'title');
-    $content    = filter_input(INPUT_POST, 'content');
-    $visibility = filter_input(INPUT_POST, 'visible');
+    $content    = filter_input(INPUT_POST, 'text');
+    $visibility = filter_input(INPUT_POST, 'visibility');
 
     updateArticle($id, $title, $content, $visibility);
 
