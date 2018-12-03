@@ -27,28 +27,35 @@
  * SOFTWARE.
  */
 
-if(!defined('DOWNLOAD_PATH')) {
+function indexAction()
+{
+    checkLogin();
 
-    /**
-     * Path to modules/download/.
-     *
-     * @var unknown
-     * @since 0.9.0
-     */
-    define('DOWNLOAD_PATH', __DIR__ . '/');
+    $templateList = [
+        'dashboard'  => 'dashboard.phtml'
+    ];
+
+    return render($templateList);
 }
 
-if(!defined('DOWNLOAD_LIB_PATH')) {
+function settingsAction()
+{
+    checkLogin();
 
-    /**
-     * Path to modules/download/lib/.
-     *
-     * @var string
-     * @since 0.9.0
-     */
-    define('DOWNLOAD_LIB_PATH', __DIR__ . '/lib/');
+    $templateList = [
+        'dashboard'  => 'settings.phtml'
+    ];
+
+    return render($templateList);
 }
 
-include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
-include DOWNLOAD_LIB_PATH . 'actions.php';
-include DOWNLOAD_LIB_PATH . 'functions.php';
+function mainpageAction()
+{
+    checkLogin();
+    
+    $templateList = [
+        'mainpage.phtml'
+    ];
+
+    return render($templateList);
+}

@@ -27,5 +27,28 @@
  * SOFTWARE.
  */
 
+if(!defined('ARTICLE_PATH')) {
+
+    /**
+     * Path to modules/article/.
+     *
+     * @var string
+     * @since 0.9.0
+     */
+    define('ARTICLE_PATH', __DIR__ . '/');
+}
+
+if(!defined('ARTICLE_LIB_PATH')) {
+
+    /**
+     * Path to modules/article/lib/.
+     *
+     * @var string
+     * @since 0.9.0
+     */
+    define('ARTICLE_LIB_PATH', __DIR__ . '/lib/');
+}
+
 include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include ARTICLE_PATH . '/lib/actions.php';
 include ARTICLE_PATH . '/lib/functions.php';

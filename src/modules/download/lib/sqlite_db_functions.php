@@ -138,46 +138,6 @@ function getDownloadSettings() : array
 }
 
 /**
- *
- * @return array
- *
- * @since 0.9.0
- */
-function getPublicDownloads(): array
-{
-    $sql = "
-    SELECT `title`,
-        `text`,
-        `path`,
-        `filename`,
-        strftime('%s', created_at) AS datetime,
-        `tagline`,
-        `text`
-        FROM `contents`
-            WHERE `content_type` = 'download'
-                AND `visibility` = 'true'
-                AND `flag` != 'trash'
-                ORDER BY `datetime` DESC
-    ";
-
-    $pdo = getPdoConnection();
-    $result = [];
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = $row;
-        }
-
-        return $result;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-    }
-}
-
-/**
  * Add a download entry to contents table.
  *
  * @param string $title         - Title of a download.

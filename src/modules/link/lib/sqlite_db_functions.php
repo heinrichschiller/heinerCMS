@@ -30,16 +30,16 @@
 /**
  * Get all link entries from contents-table, where link flag
  * is not marked as 'trash'.
- * 
+ *
  * @return array
- * 
+ *
  * @since 0.9.0
  */
 function getAllLinks(): array
 {
     $pdo = getPdoConnection();
     $result = [];
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -51,19 +51,19 @@ function getAllLinks(): array
             AND `flag` = ''
             ORDER BY `title` DESC
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         while($row = $stmt->fetch((PDO::FETCH_ASSOC))) {
             $result[] = $row;
         }
-        
+
         if($result) {
             return $result;
         }
-        
+
         return array();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -82,7 +82,7 @@ function getAllLinks(): array
 function getLinkById(int $id)
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -95,80 +95,40 @@ function getLinkById(int $id)
         WHERE `content_type` = 'link'
             AND `id` = :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
     }
-    
+
 }
 
 function getLinksSettings() : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `tagline`,
         `text`
         FROM `contents_settings`
         WHERE `content_type` = 'link'
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
     }
-}
-
-/**
- *
- * @return array
- *
- * @since 0.9.0
- */
-function getPublicLinks(): array
-{
-    $sql = "
-    SELECT `title`,
-        `tagline`,
-        `uri`,
-        `text`,
-        strftime('%s', `created_at`) AS datetime
-        FROM `contents`
-        WHERE `content_type` = 'link'
-            AND `visibility` != 'false'
-            AND `flag` != 'trash'
-            ORDER BY `datetime` DESC
-    ";
-    
-    $pdo = getPdoConnection();
-    $result = [];
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = $row;
-        }
-        
-        return $result;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-    
 }
 
 /**
@@ -190,7 +150,7 @@ function addLink(string $title,
 {
     $content_type = 'link';
     $flag = '';
-    
+
     $sql = "
     INSERT INTO `contents` (
         `title`,
@@ -210,12 +170,12 @@ function addLink(string $title,
             :visibility,
             :flag
         )";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
@@ -223,7 +183,7 @@ function addLink(string $title,
         $stmt->bindParam(':uri', $uri);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':flag', $flag);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -257,18 +217,18 @@ function updateLink(int $id,
         WHERE `content_type` = 'link'
             AND `id` = :id
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':uri', $uri);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch(PDOException $ex) {
         echo $ex->getMessage();
@@ -291,15 +251,15 @@ function updateLinksSettings(string $tagline, string $text)
         `text`= :text
         WHERE `content_type`= 'link'
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
-        
+
         $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();

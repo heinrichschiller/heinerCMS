@@ -26,22 +26,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
- function indexAction()
- {
-     checkLogin();
-     
-     $templateList = [];
-
-     $itemList = getWastebinItems();
-
-     if ( count($itemList) > 0 ) {
-         $template = 'wastebin.phtml';
-     } else {
-         $template = 'no_trash.phtml';
-     }
-
-     $templateList[] = $template;
-
-     return render($templateList, array('itemList' => $itemList));
- }

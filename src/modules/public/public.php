@@ -27,5 +27,30 @@
  * SOFTWARE.
  */
 
+if(!defined('PUBLIC_PATH')) {
+
+    /**
+     * Path to modules/public/
+     *
+     * @var string
+     *
+     * @since 0.9.0
+     */
+    define('PUBLIC_PATH', __DIR__ . '/');
+}
+
+if(!defined('PUBLIC_LIB_PATH')) {
+
+    /**
+     * Path to modules/public/lib/
+     *
+     * @var string
+     *
+     * @since 0.9.0
+     */
+    define('PUBLIC_LIB_PATH', __DIR__ . '/lib/');
+}
+
 include PUBLIC_LIB_PATH . DB_DRIVER .'_db_functions.php';
+include PUBLIC_LIB_PATH . 'actions.php';
 include PUBLIC_LIB_PATH . 'functions.php';
