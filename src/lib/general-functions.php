@@ -52,7 +52,7 @@ function bootstrap()
 
     $action = !empty($requestItems['action']) ? $requestItems['action'] : 'index';
 
-    include_once SRC_PATH . "$controller/$controller.php";
+    include_once SRC_PATH . "modules/$controller/$controller.php";
 
     // parameter?
     $paramItems = !empty($requestItems['params']) ? $requestItems['params'] : array();
@@ -226,7 +226,7 @@ function renderTemplate(string $template, array $data)
 
     $module = !empty($module['controller']) ? $module['controller'] : 'public';
 
-    $tmpltFile = __DIR__ . "/../$module/template/$template";
+    $tmpltFile = __DIR__ . "/../modules/$module/template/$template";
 
     extract($data);
 
