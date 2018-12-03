@@ -49,3 +49,4 @@ if(!defined('ADMIN_LIB_PATH')) {
 
 include ADMIN_LIB_PATH . DB_DRIVER . '_db_functions.php';
 include ADMIN_LIB_PATH . 'actions.php';
+include ADMIN_LIB_PATH . 'functions.php';

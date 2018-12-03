@@ -26,13 +26,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 function redirectToArticle()
 {
-    header("Location: /../article/index");
+    header('Location: ' . BASE_URL . 'article/index');
 }
 
 function redirectToArticleSettings()
 {
-    header ( 'Location: index.php?uri=articlessettings' );
+    header ( 'Location: ' . BASE_URL . 'article/settings' );
 }

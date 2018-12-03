@@ -43,19 +43,46 @@ function settingsAction()
     checkLogin();
 
     $templateList = [
-        'dashboard'  => 'settings.phtml'
+        'settings.phtml'
     ];
 
-    return render($templateList);
+    $locales = getLocales();
+    $settings = getGeneralSettings();
+
+    $itemList = [
+        'locales'  => $locales,
+        'settings' => $settings
+    ];
+
+    return render($templateList, $itemList);
 }
 
 function mainpageAction()
 {
     checkLogin();
-    
+
     $templateList = [
         'mainpage.phtml'
     ];
 
     return render($templateList);
+}
+
+function updateAction()
+{
+    $title    = filter_input(INPUT_POST, 'title');
+    $theme    = filter_input(INPUT_POST, 'theme');
+    $darkmode = filter_input(INPUT_POST, 'darkmode');
+    $tagline  = filter_input(INPUT_POST, 'tagline');
+    $blogUrl  = filter_input(INPUT_POST, 'blogUrl');
+    $language = filter_input(INPUT_POST, 'language');
+    $footer   = filter_input(INPUT_POST, 'footer');
+
+    if(!isset($darkmode)) {
+        $darkmode = '';
+    }
+
+    updateGeneralSettings($title, $tagline, $theme, $darkmode, $blogUrl, $language, $footer);
+
+    redirectToAdmin();
 }

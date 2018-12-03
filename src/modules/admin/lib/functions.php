@@ -26,3 +26,65 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+/**
+ * Loading a string of theme options.
+ *
+ * @return string
+ */
+function load_theme_options(): string
+{
+     $html = '';
+
+     $template_dir = __DIR__ . '/../templates/';
+
+     $files = scandir($template_dir);
+
+     for ($i = 2; $i <= count($files) - 1; $i ++) {
+        if ($files[$i] === $_SESSION['theme']) {
+            $select = ' selected';
+        } else {
+            $select = '';
+        }
+
+        $html .= "<option $select>$files[$i]</option>";
+    }
+
+    return $html;
+}
+
+/**
+ * Get a list of all locales in data/locales directory
+ *
+ * @return array
+ *
+ * @since 0.9.0
+ */
+function getLocales() : array
+{
+    $files = scandir(LOCALES_PATH);
+
+    $xmlItem  = [];
+    $xmlItems = [];
+
+    for ($i = 2; $i <= count($files) -1; $i++) {
+        $xmlFile = LOCALES_PATH . $files[$i];
+
+        $xmlContents = file_get_contents($xmlFile);
+        $xmlString = simplexml_load_string($xmlContents);
+
+        $xmlItem = [
+            'short' => (string) $xmlString->attributes()->short,
+            'lang'  => (string) $xmlString->attributes()->lang
+        ];
+
+        $xmlItems[] = $xmlItem;
+    }
+
+    return $xmlItems;
+}
+
+function redirectToAdmin()
+{
+    header('Location: ' . BASE_URL . 'admin/settings');
+}

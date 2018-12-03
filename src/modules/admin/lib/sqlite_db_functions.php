@@ -26,3 +26,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+ /**
+  * Update settings-table.
+  *
+  * @param string $title
+  * @param string $tagline
+  * @param string $theme
+  * @param string $blogUrl
+  * @param string $language
+  * @param string $footer
+  *
+  * @since 0.8.0
+  */
+ function updateGeneralSettings(string $title,
+     string $tagline,
+     string $theme,
+     string $darkmode,
+     string $blogUrl,
+     string $language,
+     string $footer)
+ {
+     $sql = '
+     UPDATE `settings`
+         SET `title`=:title,
+             `tagline`=:tagline,
+             `theme`=:theme,
+             `darkmode`=:darkmode,
+             `blog_url`=:blog_url,
+             `lang_short`=:language,
+             `footer`=:footer
+             WHERE 1
+     ';
+
+     $pdo = getPdoConnection();
+
+     try {
+         $stmt = $pdo->prepare($sql);
+
+         $stmt->bindParam(':title', $title);
+         $stmt->bindParam(':tagline', $tagline);
+         $stmt->bindParam(':theme', $theme);
+         $stmt->bindParam(':darkmode', $darkmode);
+         $stmt->bindParam(':blog_url', $blogUrl);
+         $stmt->bindParam(':language', $language);
+         $stmt->bindParam(':footer', $footer);
+
+         $stmt->execute();
+     } catch (Exception $ex) {
+         echo $ex->getMessage();
+         exit();
+     }
+ }
