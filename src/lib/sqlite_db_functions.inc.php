@@ -11,38 +11,38 @@ function getPdoConnection() : PDO
 {
     try {
         $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
-        
+
         if ( PDO_DEBUG_MODE ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        
+
         return $pdo;
-        
+
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
     }
-    
+
 }
 
 function normalize(int $id, string $table)
 {
     $sql = "
-    SELECT COUNT(`id`) 
+    SELECT COUNT(`id`)
     FROM `$table`
     ";
-    
+
     if ($id <= 0 && $id > count($result)) {
         // @todo: entry not found
     }
-    
+
     return $id;
 }
 
 function updateMainpage($title, $text)
 {
     $pdo = getPdoConnection();
-    
+
     $sql="
     UPDATE `contents`
         SET `title` = :title,
@@ -50,13 +50,13 @@ function updateMainpage($title, $text)
             WHERE `content_type` = 'mainpage'
                 AND `flag` = 'infobox'
     ";
-    
+
     try {
         $stmt=$pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -66,31 +66,31 @@ function updateMainpage($title, $text)
 
 /**
  * Get a list from 'settings' table.
- * 
+ *
  * @return array - List of settings entries.
- * 
+ *
  * @since 0.4.0
  */
 function getGeneralSettings() : array
 {
     $sql = "
-    SELECT `title`, 
-        `tagline`, 
-        `theme`, 
-        `darkmode`, 
-        `blog_url`, 
-        `lang_short`, 
+    SELECT `title`,
+        `tagline`,
+        `theme`,
+        `darkmode`,
+        `blog_url`,
+        `lang_short`,
         `footer`
         FROM `settings`
         WHERE 1
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -99,62 +99,10 @@ function getGeneralSettings() : array
 }
 
 /**
- * Update settings-table.
- * 
- * @param string $title
- * @param string $tagline
- * @param string $theme
- * @param string $blogUrl
- * @param string $language
- * @param string $footer
- * 
- * @since 0.8.0
- */
-function updateGeneralSettings(string $title, 
-    string $tagline, 
-    string $theme, 
-    string $darkmode,
-    string $blogUrl, 
-    string $language, 
-    string $footer)
-{
-    $sql = '
-    UPDATE `settings` 
-        SET `title`=:title,
-            `tagline`=:tagline,
-            `theme`=:theme,
-            `darkmode`=:darkmode,
-            `blog_url`=:blog_url,
-            `lang_short`=:language,
-            `footer`=:footer 
-            WHERE 1
-    ';
-    
-    $pdo = getPdoConnection();
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':tagline', $tagline);
-        $stmt->bindParam(':theme', $theme);
-        $stmt->bindParam(':darkmode', $darkmode);
-        $stmt->bindParam(':blog_url', $blogUrl);
-        $stmt->bindParam(':language', $language);
-        $stmt->bindParam(':footer', $footer);
-        
-        $stmt->execute();
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
  * Delete a content entry from contents-table by id.
- * 
- * @param int $id - Id of an item. 
- * 
+ *
+ * @param int $id - Id of an item.
+ *
  * @since 0.8.0
  */
 function deleteItemById(int $id)
@@ -162,7 +110,7 @@ function deleteItemById(int $id)
     $pdo = getPdoConnection();
 
     $sql = "
-    DELETE FROM `contents` 
+    DELETE FROM `contents`
     WHERE `id` = :id
         AND `flag`= 'trash'
     ";
@@ -170,7 +118,7 @@ function deleteItemById(int $id)
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -187,7 +135,7 @@ function deleteAllTrashItems(string $table)
     $pdo = getPdoConnection();
 
     $sql = "
-    DELETE FROM `:table` 
+    DELETE FROM `:table`
     WHERE `trash` = 'true'
     ";
 
@@ -201,10 +149,10 @@ function deleteAllTrashItems(string $table)
 }
 
 /**
- * 
+ *
  * @param int $id
  * @param string $flag
- * 
+ *
  * @since 0.8.0
  */
 function setContentsFlagById(int $id, string $flag)
@@ -212,8 +160,8 @@ function setContentsFlagById(int $id, string $flag)
     $pdo = getPdoConnection();
 
     $sql = "
-    UPDATE `contents` 
-        SET `flag`=:flag 
+    UPDATE `contents`
+        SET `flag`=:flag
         WHERE `id`= :id
     ";
 
@@ -221,7 +169,7 @@ function setContentsFlagById(int $id, string $flag)
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':flag', $flag);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -241,8 +189,8 @@ function getContentsTitleById(int $id)
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `title` 
-        FROM `contents` 
+    SELECT `title`
+        FROM `contents`
         WHERE `id` = :id
     ";
 
@@ -266,7 +214,7 @@ function getContentsTitleById(int $id)
 function countContentType(string $type): int
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT COUNT(`id`)
         FROM `contents`
@@ -274,11 +222,11 @@ function countContentType(string $type): int
             AND `flag` != 'trash'
             AND `visibility` = 'true'
     ";
-    
+
     foreach ($pdo->query($sql) as $row) {
         $id = (int) $row[0];
     }
-    
+
     return $id;
 }
 
@@ -286,7 +234,7 @@ function countContentType(string $type): int
  * Count all Entries for navigation information
  *
  * @return array
- * 
+ *
  * @since 0.8.0
  */
 function countEntries()
@@ -332,13 +280,13 @@ function loadFromTable(string $table, int $count)
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `id`, 
-        `title`, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+    SELECT `id`,
+        `title`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
         `visibility`
-        FROM `$table` 
-        WHERE `trash` = 'false' 
-            ORDER BY `created_at` 
+        FROM `$table`
+        WHERE `trash` = 'false'
+            ORDER BY `created_at`
             DESC LIMIT $count
     ";
 

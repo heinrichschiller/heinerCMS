@@ -28,13 +28,13 @@
  */
 
 /**
- * 
+ *
  * @deprecated: This is a deprecated file and will be removed in the future.
- * 
+ *
  */
 /**
  * Load the admin navigation with badges
- * 
+ *
  * @return string
  */
 function load_navigation(): string
@@ -48,23 +48,23 @@ function load_navigation(): string
         '##placeholder-pages##'     => $entries[3],
         '##placeholder-trash##'     => $entries[4]
     ];
-    
+
     $template = getTemplate('adm_navigation');
-    
+
     return strtr($template, $placeholderList);
 }
 
 /**
  * Load the admin sidebar.
- * 
+ *
  * @return string
  */
 function load_sidebar(): string
 {
     $template = '';
-    
+
     $template = getTemplate('adm_sidebar');
-    
+
     return $template;
 }
 
@@ -76,30 +76,30 @@ function load_sidebar(): string
 function load_downloads(): string
 {
     $content = '';
-    
+
     $hasEntry = false;
-    
+
     $stmt = loadDownloadsStatement();
-    
+
     while ($downloads = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td></td>';
         $content .= '<td>' . StrFTime('%d.%m.%Y', $downloads['datetime']) . '</td>';
         $content .= '<td>' . $downloads['title'] . '</td>';
         $content .= (($downloads['visibility'] == 'true') ? '<td> {yes}</td>' : '<td> {no}</td>');
-        
-        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads['id'] . ">" 
+
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsedit&id=" . $downloads['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=downloadsdel&id=" . $downloads['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-        
+
         $hasEntry = true;
     }
-    
+
     if($hasEntry) {
         $placeholderList = [
             '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-file-download.svg',
@@ -107,7 +107,7 @@ function load_downloads(): string
             '##placeholder-uri##'    => 'index.php?uri=downloadsadd',
             '##placeholder-button##' => '{create_download}'
         ];
-        
+
         $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
 
@@ -131,9 +131,9 @@ function load_downloads_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
-    
+
     $downloadItems = getDownloads($id);
-    
+
     if ($downloadItems['visibility'] == 'true') {
         $chkYes .= ' checked';
     } else {
@@ -152,7 +152,7 @@ function load_downloads_edit(int $id): string
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
-    
+
     $template = getTemplate('adm_downloads_form');
 
     return strtr($template, $placeholderList);
@@ -166,7 +166,7 @@ function load_downloads_edit(int $id): string
 function load_downloads_add(): string
 {
     $time = StrFTime('%d.%m.%Y %H:%M', time());
-    
+
     $placeholderList = [
         '##placeholder-header##'   => '{create_download}',
         '##placeholder-action##'   => 'downloadsinsert.php',
@@ -179,7 +179,7 @@ function load_downloads_add(): string
         '##placeholder-chk_yes##'  => ' checked',
         '##placeholder-chk_no##'   => ''
     ];
-    
+
     $template = getTemplate('adm_downloads_form');
 
     return strtr($template, $placeholderList);
@@ -194,16 +194,16 @@ function load_downloads_add(): string
 function load_downloads_del(int $id): string
 {
     $title = getContentsTitleById($id);
-    
+
     $placeholderList = [
         '##placeholder-action##' => 'downloadsdel.php',
         '##placeholder-uri##'    => 'downloads',
         '##placeholder-id##'     => $id,
         '##placeholder-title##'  => $title
     ];
-    
+
     $template = getTemplate('adm_form_del');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -215,12 +215,12 @@ function load_downloads_del(int $id): string
 function load_downloads_settings() : string
 {
     $download = getDownloadSettings();
-    
+
     $placeholderList = [
         '##placeholder-downloads-tagline##' => $download['tagline'],
         '##placeholder-downloads-text##' => $download['text']
     ];
-    
+
     $template = getTemplate('adm_downloads_settings');
 
     return strtr($template, $placeholderList);
@@ -234,31 +234,31 @@ function load_downloads_settings() : string
 function load_links(): string
 {
     $content = '';
-    
+
     $hasEntry = false;
-    
+
     $stmt = loadLinksStatement();
-    
+
     while ($link = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td></td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $link['datetime']) . '</td>';
         $content .= '<td>' . $link['title'] . '</td>';
         $content .= $link['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
-        
-        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">" 
+
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkedit&id=" . $link['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link['id']. ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=linkdel&id=" . $link['id']. ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
         $content .= '</tr>';
-        
+
         $hasEntry = true;
     }
-    
+
     if($hasEntry) {
         $placeholderList = [
             '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-global.svg',
@@ -266,18 +266,18 @@ function load_links(): string
             '##placeholder-uri##'    => 'index.php?uri=linksadd',
             '##placeholder-button##' => '{create_link}'
         ];
-        
+
         $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
-        
+
         $tplLinksEntries = getTemplate('adm_links_entries');
         $tplLinksEntries = str_replace('##placeholder-table-content##', $content, $tplLinksEntries);
-        
+
         $template =str_replace('##placeholder-content##', $tplLinksEntries, $template);
     } else {
         $template = getTemplate('adm_no_links');
     }
-    
+
     return $template;
 }
 
@@ -286,7 +286,7 @@ function load_links(): string
  *
  * @param int $id
  * @return string
- * 
+ *
  * @since 0.8.0
  */
 function load_link_edit(int $id): string
@@ -340,9 +340,9 @@ function load_link_add(): string
         '##placeholder-chk_yes##'  => ' checked',
         '##placeholder-chk_no##'   => ''
     ];
-    
+
     $template = getTemplate('adm_link_form');
-    
+
     return strtr($template, $placeholdeList);
 }
 
@@ -355,36 +355,36 @@ function load_link_add(): string
 function load_link_del(int $id): string
 {
     $title = getContentsTitleById($id);
-    
+
     $placeholderList = [
         '##placeholder-action##' => 'linkdel.php',
         '##placeholder-uri##'    => 'links',
         '##placeholder-id##'     => $id,
         '##placeholder-title##'  => $title
     ];
-    
+
     $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
 }
 
 /**
  * Load links settings form.
- * 
+ *
  * @return string
  */
 function load_link_settings() : string
 {
     $link = getLinksSettings();
-    
+
     $placeholderList = [
         '##placeholder-link-tagline##' => $link['tagline'],
         '##placeholder-link-comment##' => $link['text']
     ];
-    
+
     $template = getTemplate('adm_links_settings');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -397,30 +397,30 @@ function load_articles(): string
 {
     $content = '';
     $hasEntry = false;
-    
+
     $stmt = loadArticlesStatement();
-    
+
     while ($article = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td></td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $article['datetime']) . '</td>';
         $content .= '<td>' . $article['title'] . '</td>';
         $content .= $article['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
-        
-        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">" 
+
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articleedit&id=" . $article['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=articledel&id=" . $article['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-        
+
         $content .= '</tr>';
-        
+
         $hasEntry = true;
     }
-    
+
     if($hasEntry) {
         $placeholderList = [
             '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-pen.svg',
@@ -428,13 +428,13 @@ function load_articles(): string
             '##placeholder-uri##'    => 'index.php?uri=articleadd',
             '##placeholder-button##' => '{create_article}'
         ];
-        
+
         $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
-        
+
         $tplArticlesEntries = getTemplate('adm_articles_entries');
         $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
-        
+
         $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
     } else {
         $template = getTemplate('adm_no_articles');
@@ -448,22 +448,22 @@ function load_articles(): string
  *
  * @param int $id - Id of an article entry.
  * @return string
- * 
+ *
  * @since 0.4.0
  */
 function load_article_edit(int $id): string
 {
     $chkNo = '';
     $chkYes = '';
-    
+
     $articleItems = getArticle($id);
-    
+
     if ($articleItems['visibility'] == 'true') {
         $chkYes .= ' checked';
     } else {
         $chkNo .= ' checked';
     }
-    
+
     $placeholderList = [
         '##placeholder-header##'   => '{edit_article}',
         '##placeholder-action##'   => 'articleupdate.php',
@@ -474,7 +474,7 @@ function load_article_edit(int $id): string
         '##placeholder-chk_yes##'  => $chkYes,
         '##placeholder-chk_no##'   => $chkNo
     ];
-    
+
     $template = getTemplate('adm_article_form');
 
     return strtr($template, $placeholderList);
@@ -484,7 +484,7 @@ function load_article_edit(int $id): string
  * Loading a form to create an article entry.
  *
  * @return string
- * 
+ *
  * @since 0.4.0
  */
 function load_article_add(): string
@@ -499,9 +499,9 @@ function load_article_add(): string
         '##placeholder-chk_yes##'  => ' checked',
         '##placeholder-chk_no##'   => ''
     ];
-    
+
     $template = getTemplate('adm_article_form');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -514,42 +514,42 @@ function load_article_add(): string
 function load_article_del(int $id): string
 {
     $title = getContentsTitleById($id);
-    
+
     $placeholderList = [
         '##placeholder-action##' => 'articledel.php',
         '##placeholder-uri##'    => 'articles',
         '##placeholder-id##'     => $id,
         '##placeholder-title##'  => $title
     ];
-    
+
     $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
 }
 
 /**
  * Load articles settings form.
- * 
+ *
  * @return string
  */
 function load_articles_settings() : string
 {
     $article = getArticleSettings();
-    
+
     $placeholderList = [
         '##placeholder-article-tagline##' => $article['tagline'],
         '##placeholder-article-comment##' => $article['text']
     ];
-    
+
     $template = getTemplate('adm_articles_settings');
-    
+
     return strtr($template, $placeholderList);
 }
 
 /**
  * Load dashboard form.
- * 
+ *
  * @return string
  */
 function load_dashboard(): string
@@ -564,7 +564,7 @@ function load_communication(): string
 
 /**
  * Render a HTML-Table.
- * 
+ *
  * @deprecated
  * @param array $dataList
  * @return string
@@ -572,7 +572,7 @@ function load_communication(): string
 function renderHtmlTable(array $dataList): string
 {
     $html = '';
-    
+
     foreach ($dataList as $data) {
         $html .= '<tr>';
         $html .= '<td>' . $data['id'] . '</td>';
@@ -581,39 +581,39 @@ function renderHtmlTable(array $dataList): string
         $html .= '<td>' . (($data['visibility'] > - 1) ? ' {yes}' : ' {no}') . '</td>';
         $html .= '</tr>';
     }
-    
+
     return $html;
 }
 
 /**
  * Load entries from contents-table that marked as 'trash'.
- * 
+ *
  * @return string
- * 
+ *
  * @since 0.8.0
  */
 function load_trash(): string
 {
     $content = '';
     $hasEntry = false;
-    
+
     $stmt = getTrashEntries();
-    
+
     while ($contentList = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td><!-- <input type="checkbox" name="chkList[]"> --></td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $contentList['datetime']) . '</td>';
         $content .= '<td>' . $contentList['title'] . '</td>';
         $content .= '<td>{' . $contentList['content_type'] . '}</td>';
-        
+
         $content .= "<td><a href=/admin/delete.php?id=" . $contentList['id'] . " class='dialog-confirm'>"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-                    
+
         $content .= '</tr>';
-                    
+
         $hasEntry = true;
     }
-    
+
     if($hasEntry) {
         $placeholderList = [
             '##placeholder-icon##'   => '../templates/default/admin/img/svg/si-glyph-trash.svg',
@@ -621,24 +621,24 @@ function load_trash(): string
             '##placeholder-uri##'    => 'index.php?uri=delete',
             '##placeholder-button##' => '{delete}'
         ];
-        
+
         $template = getTemplate('adm_trash_table');
         $template = strtr($template, $placeholderList);
-        
+
         $tplArticlesEntries = getTemplate('adm_trash');
         $tplArticlesEntries = str_replace('##placeholder-table-content##', $content, $tplArticlesEntries);
-        
+
         $template = str_replace('##placeholder-content##', $tplArticlesEntries, $template);
     } else {
         $template = getTemplate('adm_no_trash');
     }
-    
+
     return $template;
 }
 
 /**
  * Load general overview of heinerCMS settings.
- * 
+ *
  * @return string
  */
 function load_general_settings(): string
@@ -654,74 +654,15 @@ function load_general_settings(): string
         '##placeholder-option-locale##' => load_locale_options(),
         '##placeholder-footer##'        => $_SESSION['footer']
     ];
-    
+
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
 }
 
 /**
- * Loading a string of theme options.
- * 
- * @return string
- */
-function load_theme_options(): string
-{
-    $html = '';
-    
-    $template_dir = __DIR__ . '/../templates/';
-    
-    $files = scandir($template_dir);
-    
-    for ($i = 2; $i <= count($files) - 1; $i ++) {
-        if ($files[$i] === $_SESSION['theme']) {
-            $select = ' selected';
-        } else {
-            $select = '';
-        }
-        
-        $html .= "<option $select>$files[$i]</option>";
-    }
-    
-    return $html;
-}
-
-/**
- * Get a files list of all locales in data/locales directory
- *
- * @return string
- */
-function load_locale_options() : string
-{
-    $html = '';
-    
-    $files = scandir(LOCALES_PATH);
-
-    for ($i = 2; $i <= count($files) -1; $i++) {
-        $xmlFile = LOCALES_PATH . $files[$i];
-
-        $xmlString = file_get_contents($xmlFile);
-        $xml = simplexml_load_string($xmlString);
-        
-        if ( $xml->attributes()->short == $_SESSION['language'] ) {
-            $select = ' selected';
-        } else {
-            $select = '';
-        }
-
-        $html .= '<option value="' 
-            . $xml->attributes()->short 
-            .'"'.$select.'>' 
-                . $xml->attributes()->lang 
-                . '</option>';
-    }
-
-    return $html;
-}
-
-/**
  * Load general overview of all users.
- * 
+ *
  * @return string
  */
 function load_user_list(): string
@@ -729,7 +670,7 @@ function load_user_list(): string
     $content = '';
 
     $stmt = loadUserStatement();
-    
+
     while ($user = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         $content .= '<tr>';
@@ -739,10 +680,10 @@ function load_user_list(): string
         $content .= '<td>' . $user['username'] . '</td>';
         $content .= '<td>' . $user['active'] . '</td>';
 
-        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user['id'] . ">" 
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=useredit&id=" . $user['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
 
-        $content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user['id'] . ">" 
+        $content .= " <a href=" . $_SERVER['PHP_SELF'] . "?uri=userdel&id=" . $user['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
 
         $content .= '</tr>';
@@ -755,7 +696,7 @@ function load_user_list(): string
 
 /**
  * Loading a form to edit an user entry.
- * 
+ *
  * @param int $id - Id of an user entry.
  * @return string
  */
@@ -791,7 +732,7 @@ function load_user_edit(int $id): string
 
 /**
  * Loading a form to create an user entry.
- * 
+ *
  * @return string
  */
 function load_user_add(): string
@@ -799,9 +740,9 @@ function load_user_add(): string
     $placeholderList = [
         '##placeholder-datetime##' => strftime('%d.%m.%Y %H:%M', time())
     ];
-    
+
     $template = getTemplate('adm_user_insert');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -813,16 +754,16 @@ function load_user_add(): string
 function load_user_del( int $id) : string
 {
     $placeholderList = [];
-    
+
     $title = getUsernameById($id);
-    
+
     $placeholderList = [
         '##placeholder-id##' => $id,
         '##placeholder-title##' => $title
     ];
-    
+
     $template = getTemplate('adm_user_del');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -833,29 +774,29 @@ function load_user_del( int $id) : string
 function load_pages(): string
 {
     $content = '';
-    
+
     $hasEntry = false;
 
     $stmt = loadPagesStatement();
-    
+
     while ($page = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $content .= '<tr>';
         $content .= '<td></td>';
         $content .= '<td>' . strftime('%d.%m.%Y', $page['datetime']) . '</td>';
         $content .= '<td>' . $page['title'] . '</td>';
         $content .= $page['visibility'] == 'true' ? '<td> {yes}</td>' : '<td> {no}</td>';
-        
-        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page['id'] . ">" 
+
+        $content .= "<td><a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-edit.svg" title="{edit}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pageedit&id=" . $page['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-document-copy.svg" title="{copy}"></a> &middot;';
-        
-        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $page['id'] . ">" 
+
+        $content .= "<a href=" . $_SERVER['PHP_SELF'] . "?uri=pagedel&id=" . $page['id'] . ">"
             . '<img class="glyph-icon-16" src="../templates/default/admin/img/svg/si-glyph-delete.svg" title="{delete}"></a></td>';
-        
+
         $content .= '</tr>';
-        
+
         $hasEntry = true;
     }
 
@@ -866,31 +807,31 @@ function load_pages(): string
             '##placeholder-uri##'    => 'index.php?uri=pageadd',
             '##placeholder-button##' => '{create_page}'
         ];
-        
+
         $template = getTemplate('adm_table');
         $template = strtr($template, $placeholderList);
-        
+
         $tplPages = getTemplate('adm_pages_entries');
         $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
-        
+
         $template = str_replace('##placeholder-content##', $tplPages, $template);
     } else {
         $template = getTemplate('adm_no_pages');
     }
-    
+
     $tplPages = getTemplate('adm_pages_entries');
     $tplPages = str_replace('##placeholder-table-content##', $content, $tplPages);
-    
+
     return $template;
 }
 
 /**
  * Loading a form to create a page entry.
- * 
+ *
  * @return string
  */
 function load_page_add(): string
-{   
+{
     $placeholdeList = [
         '##placeholder-header##'   => '{create_page}',
         '##placeholder-action##'   => 'pageinsert.php',
@@ -902,9 +843,9 @@ function load_page_add(): string
         '##placeholder-chk_yes##'  => ' checked',
         '##placeholder-chk_no##'   => ''
     ];
-    
+
     $template = getTemplate('adm_page_form');
-    
+
     return strtr($template, $placeholdeList);
 }
 
@@ -917,23 +858,23 @@ function load_page_add(): string
 function load_page_del(int $id): string
 {
     $title = getContentsTitleById($id);
-    
+
     $placeholderList = [
         '##placeholder-action##' => 'pagedel.php',
         '##placeholder-uri##'    => 'pages',
         '##placeholder-id##'     => $id,
         '##placeholder-title##'  => $title
     ];
-    
+
     $template = getTemplate('adm_form_del');
     $template = strtr($template, $placeholderList);
-    
+
     return $template;
 }
 
 /**
  * Loading a form to edit a page entry.
- * 
+ *
  * @param int $id - Id of a page entry.
  * @return string
  */
@@ -969,18 +910,18 @@ function load_page_edit(int $id): string
 
 /**
  * Load general overview of mainpage.
- * 
+ *
  * @return string
  */
 function load_mainpage() : string
 {
     $contentList = getInfobox();
-    
+
     $placeholderList = [
         '##placeholder-title##'   => $contentList['title'],
         '##placeholder-content##' => $contentList['text']
     ];
-    
+
     $template = getTemplate('adm_mainpage');
     return strtr($template, $placeholderList);
 }

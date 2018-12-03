@@ -34,6 +34,24 @@ function initSession()
     }
 }
 
+/**
+ * Load a session for heinerCMS.
+ *
+ * @since 0.9.0
+ */
+function setSession()
+{
+    $settings = getGeneralSettings();
+
+    $_SESSION['title']    = $settings['title'];
+    $_SESSION['tagline']  = $settings['tagline'];
+    $_SESSION['theme']    = $settings['theme'];
+    $_SESSION['darkmode'] = $settings['darkmode'];
+    $_SESSION['blog-url'] = $settings['blog_url'];
+    $_SESSION['language'] = $settings['lang_short'];
+    $_SESSION['footer']   = $settings['footer'];
+}
+
 function isLoggedIn()
 {
     initSession();
@@ -66,6 +84,7 @@ function logout()
 function login(string $username, string $email)
 {
     initSession();
+    setSession();
 
     $user = authUser($username, $email);
 

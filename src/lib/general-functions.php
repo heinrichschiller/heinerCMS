@@ -103,23 +103,6 @@ function isGet()
 }
 
 /**
- * Load a session for heinerCMS.
- * @deprecated
- */
-function load_session()
-{
-    $settings = getGeneralSettings();
-
-    $_SESSION['title']    = $settings['title'];
-    $_SESSION['tagline']  = $settings['tagline'];
-    $_SESSION['theme']    = $settings['theme'];
-    $_SESSION['darkmode'] = $settings['darkmode'];
-    $_SESSION['blog-url'] = $settings['blog_url'];
-    $_SESSION['language'] = $settings['lang_short'];
-    $_SESSION['footer']   = $settings['footer'];
-}
-
-/**
  * Get a XML-File for translations in heinerCMS.
  *
  * @param string $language - Name of language
