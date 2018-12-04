@@ -74,11 +74,25 @@ function settingsAction(): string
 {
     checkLogin();
 
+    $settingsItems = getLinksSettings();
+
     $templateList = [
         'link-settings.phtml'
     ];
 
-    return render($templateList);
+    return render($templateList, array('settings' => $settingsItems));
+}
+
+function updatesettingsAction()
+{
+    checkLogin();
+
+    $tagline = filter_input(INPUT_POST, 'tagline');
+    $comment = filter_input(INPUT_POST, 'comment');
+
+    updateLinksSettings($tagline, $comment);
+
+    header ( 'Location: ' . BASE_URL. 'link/settings' );
 }
 
 function addAction()

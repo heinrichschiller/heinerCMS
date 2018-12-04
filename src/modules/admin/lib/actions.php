@@ -71,8 +71,8 @@ function mainpageAction()
 function updateAction()
 {
     $title    = filter_input(INPUT_POST, 'title');
-    $theme    = filter_input(INPUT_POST, 'theme');
-    $darkmode = filter_input(INPUT_POST, 'darkmode');
+    // $theme    = filter_input(INPUT_POST, 'theme');
+    // $darkmode = filter_input(INPUT_POST, 'darkmode');
     $tagline  = filter_input(INPUT_POST, 'tagline');
     $blogUrl  = filter_input(INPUT_POST, 'blogUrl');
     $language = filter_input(INPUT_POST, 'language');
@@ -80,6 +80,10 @@ function updateAction()
 
     if(!isset($darkmode)) {
         $darkmode = '';
+    }
+
+    if(!isset($theme)) {
+        $theme = 'default';
     }
 
     updateGeneralSettings($title, $tagline, $theme, $darkmode, $blogUrl, $language, $footer);

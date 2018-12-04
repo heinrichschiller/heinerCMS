@@ -74,11 +74,13 @@ function settingsAction(): string
 {
     checkLogin();
 
+    $settingsList = getDownloadSettings();
+
     $templateList = [
         'download-settings.phtml'
     ];
 
-    return render($templateList);
+    return render($templateList, array('settings' => $settingsList));
 }
 
 function addAction()
@@ -121,4 +123,16 @@ function updateAction()
     updateDownload($id, $title, $text, $path, $filename, $visible);
 
     redirectToDownload();
+}
+
+function updatesettingsAction()
+{
+    checkLogin();
+
+    $tagline = filter_input(INPUT_POST, 'tagline');
+    $text = filter_input(INPUT_POST, 'text');
+
+    updateDownloadsSettings($tagline, $text);
+
+    header('Location:' . BASE_URL . 'download/settings');
 }
