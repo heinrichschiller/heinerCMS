@@ -149,17 +149,71 @@ function getTemplate(string $template): string
     return 'No template found.';
 }
 
-function getMasterTemplate(string $template): string
+function renderHeader(): string
 {
-    $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
-
-    $file = SRC_PATH . "/templates/$theme/$template";
+    $file = SRC_PATH . "templates/header.phtml";
 
     if (file_exists($file)) {
-        return file_get_contents($file);
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    } else {
+        echo 'Template header.phtml not found.';
+        exit();
+    }
+}
+
+function renderFooter(): string
+{
+    $file = SRC_PATH . "templates/footer.phtml";
+
+    if (file_exists($file)) {
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    } else {
+        echo 'Template footer.phtml not found.';
+        exit();
+    }
+}
+
+function renderNavigation()
+{
+    $module = parseRequest();
+
+    if($module['controller'] == 'user' && $module['action'] == 'login') {
+        $navbar = '';
+    } elseif (empty($module['controller']) || $module['controller'] == 'public') {
+        $navbar = 'public_navigation';
+    } else {
+        $navbar = 'admin_navigation';
     }
 
-    //return 'No template found.';
+    $file = SRC_PATH . "templates/$navbar.phtml";
+
+    if (file_exists($file)) {
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    }
 }
 
 function checkSystem()
@@ -173,29 +227,16 @@ function checkSystem()
 
 function render(array $templates, array $data = [])
 {
-    $module = parseRequest();
-
-    if($module['controller'] == 'user' && $module['action'] == 'login') {
-        $navbar = '';
-    } elseif (empty($module['controller']) || $module['controller'] == 'public') {
-        $navbar = 'public_navigation.phtml';
-    } else {
-        $navbar = 'admin_navigation.phtml';
-    }
-
     $html = '';
 
-    $html .= getMasterTemplate('header.phtml');
-
-    if(!empty($navbar)) {
-        $html .= getMasterTemplate($navbar);
-    }
+    $html .= renderHeader();
+    $html .= renderNavigation();
 
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
     }
 
-    $html .= getMasterTemplate('footer.phtml');
+    $html .= renderFooter();
 
     $arr_language = getTranslation('de');
 
