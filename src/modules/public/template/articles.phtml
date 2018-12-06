@@ -2,11 +2,11 @@
     <div class="jumbotron">
     	<div class="container">
     		<h1 class="display-4">{article}</h1>
-    		<p class="lead">##placeholder-articles-page-tagline##</p>
+    		<p class="lead"><?= $settings['tagline']; ?></p>
     	</div>
     </div>
     <div class="container">
-    	##placeholder-articles-page-comment##
+    	<?= $settings['text']; ?>
     </div>
     <div class="container">
     <?php foreach ($articles as $article): ?>

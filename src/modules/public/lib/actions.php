@@ -59,13 +59,21 @@ function articleAction(array $params): string
 
 function articlesAction(): string
 {
+    include MODULES_PATH . 'article/lib/' . DB_DRIVER . '_db_functions.php';
+
     $templateList = [
         'articles.phtml'
     ];
 
     $articlesList = getPublicArticles();
+    $settingsItems = getArticleSettings();
 
-    return render($templateList, array('articles' => $articlesList));
+    $itemsList = [
+        'articles' => $articlesList,
+        'settings' => $settingsItems
+    ];
+
+    return render($templateList, $itemsList);
 }
 
 function downloadAction(int $id): string
@@ -79,13 +87,21 @@ function downloadAction(int $id): string
 
 function downloadsAction(): string
 {
-    $downloadItems = getPublicDownloads();
+    include MODULES_PATH . 'download/lib/' . DB_DRIVER . '_db_functions.php';
 
     $templateList = [
         'downloads.phtml'
     ];
 
-    return render($templateList, array('downloads' => $downloadItems));
+    $downloadItems = getPublicDownloads();
+    $settingsItems = getDownloadSettings();
+
+    $itemsList = [
+        'downloads' => $downloadItems,
+        'settings'  => $settingsItems
+    ];
+
+    return render($templateList, $itemsList);
 }
 
 function linkAction(int $id): string
@@ -99,11 +115,19 @@ function linkAction(int $id): string
 
 function linksAction(): string
 {
-    $linkItems = getPublicLinks();
+    include MODULES_PATH . 'link/lib/' . DB_DRIVER . '_db_functions.php';
 
     $templateList = [
         'links.phtml'
     ];
 
-    return render($templateList, array('links' => $linkItems));
+    $linkItems = getPublicLinks();
+    $settingsItems = getLinksSettings();
+
+    $itemsList = [
+        'links'    => $linkItems,
+        'settings' => $settingsItems
+    ];
+
+    return render($templateList, $itemsList);
 }

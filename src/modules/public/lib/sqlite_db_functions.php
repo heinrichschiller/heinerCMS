@@ -171,28 +171,6 @@ function getPublicDownloads(): array
     }
 }
 
-function getLinksSettings() : array
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `tagline`,
-        `text`
-        FROM `contents_settings`
-        WHERE `content_type` = 'link'
-    ";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
 /**
  *
  * @return array

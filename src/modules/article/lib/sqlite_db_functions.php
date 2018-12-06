@@ -69,41 +69,6 @@ function getAllArticles(): array
 }
 
 /**
- * Get a list if items from an article by id.
- *
- * @param int $id - Id of an article.
- * @return array  -
- *
- * @since 0.8.0
- */
-function getArticleDetailed(int $id) : array
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `title`,
-        `text`,
-        strftime('%s', `created_at`) AS datetime
-        FROM `contents`
-        WHERE `content_type` = 'article'
-            AND `visibility` = 'true'
-            AND `flag` != 'trash'
-            AND `id` = :id
-    ";
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
  * Add a new article in 'articles' table.
  *
  * @param string $title      - Title of an article.
