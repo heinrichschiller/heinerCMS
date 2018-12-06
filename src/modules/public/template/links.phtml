@@ -1,0 +1,23 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{links}</h1>
+    <p class="lead"><?= $settings['tagline']; ?></p>
+  </div>
+</div>
+<div class="container">
+	<?= $settings['text']; ?>
+</div>
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+    		<?php foreach($links as $link): ?>
+    			<li class="list-group-item public">
+    				<a href="##placeholder-links-uri##" target="blank"><?php echo $link['title']; ?> - <?php echo $link['tagline']; ?></a>
+    			</li>
+    			<li class="list-group-item"><?php echo $link['text']; ?></li>
+    			<?php endforeach; ?>
+    		</ul>
+    	</div>
+    </div>
+    <br>
+</div>
