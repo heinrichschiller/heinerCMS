@@ -47,7 +47,7 @@
  *
  * @since 0.9.0
  */
-define('BASE_URL', '');
+define('BASE_URL', 'http://heinercms.localhost/');
 
 /**
  * Path to the SVG images.
@@ -83,14 +83,6 @@ define('CONFIG_PATH', SRC_PATH . 'configs/');
 define('LIB_PATH', SRC_PATH . '/lib/');
 
 /**
- * Path to img_svg directory
- *
- * @var string
- * @since 0.5.0
- */
-define('IMG_SVG_PATH', SRC_PATH . '/../templates/default/admin/img/svg/');
-
-/**
  * Path to locales directory
  *
  * @var string
@@ -99,139 +91,10 @@ define('IMG_SVG_PATH', SRC_PATH . '/../templates/default/admin/img/svg/');
 define('LOCALES_PATH', SRC_PATH . 'locales/');
 
 /**
- * Path to modules/admin/.
- *
- * @var string
- * @since 0.9.0
- */
-define('ADMIN_PATH', SRC_PATH . 'admin/');
-
-/**
- * Path to modules/admin/lib/.
- *
- * @var string
- * @since 0.9.0
- */
-define('ADMIN_LIB_PATH', SRC_PATH . 'admin/lib/');
-
-/**
- * Path to modules/article/.
- *
- * @var string
- * @since 0.9.0
- */
-define('ARTICLE_PATH', SRC_PATH . 'article/');
-
-/**
- * Path to modules/article/lib/.
- *
- * @var string
- * @since 0.9.0
- */
-define('ARTICLE_LIB_PATH', SRC_PATH . 'article/lib/');
-
-/**
- * Path to modules/download/.
- *
- * @var unknown
- * @since 0.9.0
- */
-define('DOWNLOAD_PATH', SRC_PATH . 'download/');
-
-/**
- * Path to modules/download/lib/.
- *
- * @var string
- * @since 0.9.0
- */
-define('DOWNLOAD_LIB_PATH', SRC_PATH . 'download/lib/');
-
-/**
- * Path to modules/link/
+ * Path to modules directory
  *
  * @var string
  *
  * @since 0.9.0
  */
-define('LINK_PATH', SRC_PATH . 'link/');
-
-/**
- * Path to modules/link/lib/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('LINK_LIB_PATH', SRC_PATH . 'link/lib/');
-
-/**
- * Path to modules/page/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('PAGE_PATH', SRC_PATH . 'page/');
-
-/**
- * Path to modules/page/lib/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('PAGE_LIB_PATH', SRC_PATH . 'page/lib/');
-
-/**
- * Path to modules/public/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('PUBLIC_PATH', SRC_PATH . 'public/');
-
-/**
- * Path to modules/public/lib/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('PUBLIC_LIB_PATH', SRC_PATH . 'public/lib/');
-
-/**
- * Path to modules/user/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('USER_PATH', SRC_PATH . 'user/');
-
-/**
- * Path to modules/user/lib/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('USER_LIB_PATH', SRC_PATH . 'user/lib/');
-
-/**
- * Path to modules/wastebin/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('WASTEBIN_PATH', SRC_PATH . 'wastebin/');
-
-/**
- * Path to modules/wastebin/lib/
- *
- * @var string
- *
- * @since 0.9.0
- */
-define('WASTEBIN_LIB_PATH', SRC_PATH . 'wastebin/lib/');
+define('MODULES_PATH', SRC_PATH . 'modules/');
