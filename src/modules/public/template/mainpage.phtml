@@ -11,14 +11,17 @@
 	<div class="content">
 		<div class="row">
 			<article class="col-md-8">
-            	<div>
-            		{current_article}<hr>
+            	<div class="article-title">
+            		<strong>{current_article}</strong>
+                    <span class="article-datetime">
+                        <strong><?= strftime('%d.%m.%Y', $article['datetime']); ?></strong>
+                    </span>
             	</div>
-            	<h2><?php echo $article['title']; ?></h2>
+            	<h2><?= $article['title']; ?></h2>
             	<div>
-            		<?php echo $article['text']; ?>
+            		<?= $article['text']; ?>
             	</div>
-            	<a class="btn readmore" href="#">Weiterlesen</a>
+            	<a class="btn readmore" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">Weiterlesen</a>
             </article>
 			<aside class="col-md-4">
 				<div class="alert alert-success">
