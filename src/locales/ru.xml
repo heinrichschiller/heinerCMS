@@ -77,5 +77,6 @@
         <confirmation_required>Confirmation Required</confirmation_required>
         <sign_in>Sign in</sign_in>
 		<sign_out>Sign out</sign_out>
+		<current_article>Current Article</current_article>
 	</terms>
 </language>
