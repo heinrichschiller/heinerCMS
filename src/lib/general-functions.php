@@ -191,7 +191,7 @@ function renderNavigation()
 {
     $module = parseRequest();
 
-    if($module['controller'] == 'user' && $module['action'] == 'login') {
+    if($module['action'] == 'goodbye' || $module['action'] == 'login') {
         $navbar = '';
     } elseif (empty($module['controller']) || $module['controller'] == 'public') {
         $navbar = 'public_navigation';

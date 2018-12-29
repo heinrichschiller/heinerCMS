@@ -118,3 +118,8 @@ function logoutAction()
 {
     logout();
 }
+
+function goodbyeAction()
+{
+    return render(array('goodbye.phtml'));
+}

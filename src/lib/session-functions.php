@@ -78,7 +78,7 @@ function logout()
 
     session_destroy();
 
-    header('Location:' . BASE_URL);
+    header('Location:' . BASE_URL . 'user/goodbye');
 }
 
 function login(string $username, string $email)
