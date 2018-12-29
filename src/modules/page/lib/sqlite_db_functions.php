@@ -6,7 +6,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2017 - 2018 Heinrich Schiller
+ * Copyright (c) 2017 - 2019 Heinrich Schiller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,14 +30,14 @@
 /**
  * Get all page entries from contents-table, where page flag
  * is not marked as 'trash'.
- * 
+ *
  * @return array
  */
 function getAllPages(): array
 {
     $pdo = getPdoConnection();
     $result = [];
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -48,19 +48,19 @@ function getAllPages(): array
             AND `flag` = ''
             ORDER BY `created_at` DESC
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
-        
+
         if($result) {
             return $result;
         }
-        
+
         return array();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -79,7 +79,7 @@ function getAllPages(): array
 function getPage(int $id) : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -91,12 +91,12 @@ function getPage(int $id) : array
         WHERE `content_type`= 'page'
             AND `id` = :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -137,28 +137,28 @@ function addPage(string $title,
             :flag
         )
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $content_type = 'page';
         $flag = '';
-        
+
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $content_type);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':flag', $flag);
-        
+
         $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
         exit();
     }
-    
+
 }
 
 /**
@@ -178,7 +178,7 @@ function updatePage(int $id,
     string $visibility)
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     UPDATE `contents`
         SET `title` = :title,
@@ -188,16 +188,16 @@ function updatePage(int $id,
             WHERE `content_type` = 'page'
                 AND `id` = :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();

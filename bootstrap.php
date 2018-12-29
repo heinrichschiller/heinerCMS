@@ -6,7 +6,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2017 - 2018 Heinrich Schiller
+ * Copyright (c) 2017 - 2019 Heinrich Schiller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
  */
 
 if(!defined('ABS_PATH')) {
-    
+
     /**
      * Absolute path of heinerCMS.
      *

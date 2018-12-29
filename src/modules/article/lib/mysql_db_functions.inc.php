@@ -6,7 +6,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2017 - 2018 Heinrich Schiller
+ * Copyright (c) 2017 - 2019 Heinrich Schiller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
  */
 
 /**
- * 
+ *
  * @return PDOStatement
  */
 function loadArticlesStatement() : PDOStatement
@@ -36,13 +36,13 @@ function loadArticlesStatement() : PDOStatement
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `id`, 
-        `title`, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime, 
+    SELECT `id`,
+        `title`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
         `visibility`
-        FROM `contents` 
+        FROM `contents`
         WHERE `content_type`= 'article'
-            AND `flag` = '' 
+            AND `flag` = ''
             ORDER BY `created_at` DESC
     ";
 
@@ -59,10 +59,10 @@ function loadArticlesStatement() : PDOStatement
 
 /**
  * Get a list if items from an article by id.
- * 
+ *
  * @param int $id - Id of an article.
  * @return array  -
- * 
+ *
  * @since 0.8.0
  */
 function getArticleDetailed(int $id) : array
@@ -70,21 +70,21 @@ function getArticleDetailed(int $id) : array
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `title`, 
-        `text`, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime 
-        FROM `contents` 
+    SELECT `title`,
+        `text`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime
+        FROM `contents`
         WHERE `content_type` = 'article'
             AND `visibility` = 'true'
-            AND `flag` != 'trash' 
+            AND `flag` != 'trash'
             AND `id` = :id
     ";
 
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -96,42 +96,42 @@ function getArticleDetailed(int $id) : array
 
 /**
  * Add a new article in 'articles' table.
- * 
+ *
  * @param string $title      - Title of an article.
  * @param string $text       - Text of an article.
  * @param string $visibility - Is an article visible or not.
- * 
+ *
  * @since 0.8.0
  */
 function addArticle(string $title, string $text, string $visibility)
 {
     $contentType = 'article';
-    
+
     $sql = "
     INSERT INTO `contents` (
-        `title`, 
-        `text`, 
+        `title`,
+        `text`,
         `content_type`,
         `visibility`
-        ) 
+        )
         VALUES (
-            :title, 
-            :text, 
+            :title,
+            :text,
             :content_type,
             :visibility
         )
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $contentType);
         $stmt->bindParam(':visibility', $visibility);
-        
+
         $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
@@ -141,12 +141,12 @@ function addArticle(string $title, string $text, string $visibility)
 
 /**
  * Update a article in 'articles' table by id.
- * 
+ *
  * @param int $id            - Id of an article.
  * @param string $title      - Title of an article.
  * @param string $text       - Text of an article.
  * @param string $visibility - Is article visible or not.
- * 
+ *
  * @since 0.8.0
  */
 function updateArticle(int $id,
@@ -155,23 +155,23 @@ function updateArticle(int $id,
     string $visibility)
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
-    UPDATE `contents` 
-        SET `title` = :title, 
-        `text` = :text, 
-        `visibility` = :visibility 
+    UPDATE `contents`
+        SET `title` = :title,
+        `text` = :text,
+        `visibility` = :visibility
         WHERE `id` = :id
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
-        
+
         $stmt->execute();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -180,7 +180,7 @@ function updateArticle(int $id,
 }
 
 /**
- * 
+ *
  * @param string $tagline
  * @param string $text
  *
@@ -189,20 +189,20 @@ function updateArticle(int $id,
 function updateArticleSettings(string $tagline, string $text)
 {
     $sql = "
-    UPDATE `contents_settings` 
+    UPDATE `contents_settings`
         SET `tagline`= :tagline,
-        `text`= :text 
+        `text`= :text
         WHERE `content_type`= 'article'
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
-        
+
         $stmt->bindParam(':tagline', $tagline);
         $stmt->bindParam(':text', $text);
-        
+
         $stmt->execute();
     } catch (Exception $ex) {
         echo $ex->getMessage();
@@ -211,22 +211,22 @@ function updateArticleSettings(string $tagline, string $text)
 }
 
 /**
- * 
+ *
  * @return PDOStatement
- * 
+ *
  * @since 0.8.0
  */
 function loadPublicArticlesStatement() : PDOStatement
 {
     $sql = "
-    SELECT `id`, 
-        `title`, 
-        `text` as text, 
+    SELECT `id`,
+        `title`,
+        `text` as text,
         UNIX_TIMESTAMP(`created_at`) AS datetime
         FROM `contents`
-        WHERE `content_type` = 'article' 
-            AND `visibility` = 'true' 
-            AND `flag` != 'trash' 
+        WHERE `content_type` = 'article'
+            AND `visibility` = 'true'
+            AND `flag` != 'trash'
             ORDER BY `datetime` DESC
     ";
 
@@ -245,10 +245,10 @@ function loadPublicArticlesStatement() : PDOStatement
 
 /**
  * Get an article entry from 'articles' table by id.
- * 
+ *
  * @param int $id - Id from an article entry.
  * @return array  - Article list from an entry.
- * 
+ *
  * @since 0.8.0
  */
 function getArticle(int $id) : array
@@ -256,13 +256,13 @@ function getArticle(int $id) : array
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `id`, 
-        `title`, 
-        `text`, 
-        UNIX_TIMESTAMP(`created_at`) AS datetime, 
-        `visibility` 
-        FROM `contents` 
-        WHERE `id` = :id 
+    SELECT `id`,
+        `title`,
+        `text`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        `visibility`
+        FROM `contents`
+        WHERE `id` = :id
             AND `flag` != 'trash'
     ";
 
@@ -288,7 +288,7 @@ function getArticle(int $id) : array
 function getCurrentArticle() : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `id`,
         `title`,
@@ -299,11 +299,11 @@ function getCurrentArticle() : array
             AND `flag` != 'trash'
             ORDER BY `datetime` DESC
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -314,22 +314,21 @@ function getCurrentArticle() : array
 function getArticleSettings() : array
 {
     $pdo = getPdoConnection();
-    
+
     $sql = "
     SELECT `tagline`,
         `text`
         FROM `contents_settings`
         WHERE `content_type` = 'article'
     ";
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
     }
 }
- 

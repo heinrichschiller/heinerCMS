@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This is the main web entry point for heinerCMS.
- *
  * If you are reading this in your web browser, your server is probably
  * not configured correctly to run PHP applications!
  *
  * MIT License
  *
- * Copyright (c) 2017 - 2018 Heinrich Schiller
+ * Copyright (c) 2017 - 2019 Heinrich Schiller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
