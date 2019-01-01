@@ -31,17 +31,11 @@ function indexAction(): string
 {
     checkLogin();
 
-    $templateList = [];
-
     $downloadList = getAllDownloads();
 
-    if(count($downloadList) > 0 ) {
-        $template = 'downloads.phtml';
-    } else {
-        $template = 'no_downloads.phtml';
-    }
-
-    $templateList[] = $template;
+    $templateList = [
+        'downloads.phtml'
+    ];
 
     return render($templateList, array('downloads'=> $downloadList));
 }

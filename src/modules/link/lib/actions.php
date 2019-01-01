@@ -31,17 +31,11 @@ function indexAction(): string
 {
     checkLogin();
 
-    $templateList = [];
-
     $linkList = getAllLinks();
 
-    if(count($linkList) > 0) {
-        $template = 'links.phtml';
-    } else {
-        $template = 'no_links.phtml';
-    }
-
-    $templateList[] = $template;
+    $templateList = [
+        'links.phtml'
+    ];
 
     return render($templateList, array('links' => $linkList));
 }

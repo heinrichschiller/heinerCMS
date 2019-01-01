@@ -6,9 +6,17 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a class="nav-item nav-link" href="<?= BASE_URL; ?>wordpress" target="_blank" rel="noopener">{blog}</a>
-			<!--<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/downloads">{downloads}</a> -->
-			<!--<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/links">{links}</a> -->
-			<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/articles">{article}</a>
+			<?php if($entry[1] ==! 0): ?>
+				<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/downloads">{downloads}</a>
+			<?php endif; ?>
+
+			<?php if($entry[2] ==! 0): ?>
+				<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/links">{links}</a>
+			<?php endif; ?>
+
+			<?php if($entry[0] ==! 0): ?>
+				<a class="nav-item nav-link" href="<?= BASE_URL; ?>public/articles">{article}</a>
+			<?php endif; ?>
 			<!-- <a class="nav-item nav-link" href="/../public/pages">{pages}</a> -->
 			<a class="nav-item nav-link" href="<?= BASE_URL; ?>user/login">{sign_in}</a>
 		</div>

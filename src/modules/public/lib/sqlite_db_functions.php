@@ -54,9 +54,15 @@ function getCurrentArticle() : array
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($result) {
+            return $result;
+        }
+
+        return array();
     } catch (PDOException $ex) {
-        echo $ex->getMessage();
+        $ex->getMessage();
         exit();
     }
 }

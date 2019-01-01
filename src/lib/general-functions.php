@@ -52,11 +52,9 @@ function bootstrap()
 
     include_once SRC_PATH . "modules/$controller/$controller.php";
 
-    // parameter?
     $paramItems = !empty($requestItems['params']) ? $requestItems['params'] : array();
     @$params = explode('/', $paramItems);
 
-    // action => function? Methoden/Funktionen eines Moduls
     if (isset($action)) {
         $action = sprintf("%sAction", strtolower($action));
         echo $action($params);
@@ -202,6 +200,8 @@ function renderNavigation()
     $file = SRC_PATH . "templates/$navbar.phtml";
 
     if (file_exists($file)) {
+        extract(array('entry' => countEntries()));
+
         ob_start();
 
         include $file;

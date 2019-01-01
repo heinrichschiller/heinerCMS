@@ -32,6 +32,7 @@
  * @deprecated: This is a deprecated file and will be removed in the future.
  *
  */
+ 
 /**
  * Load the admin navigation with badges
  *

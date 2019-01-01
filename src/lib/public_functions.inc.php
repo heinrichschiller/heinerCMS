@@ -14,9 +14,15 @@
  * *******************************************************************************
  */
 
+ /**
+  *
+  * @deprecated: This is a deprecated file and will be removed in the future.
+  *
+  */
+  
 /**
  * Load navigation bar on public section
- * 
+ *
  * @return string
  */
 function load_navigation(): string
@@ -52,14 +58,14 @@ function load_navigation(): string
         '##placeholder-articles##'  => $articles,
         '##placeholder-pages##'     => load_nav_pages()
     ];
-    
+
     $template = getTemplate('pub_navigation');
 
     return strtr($template, $placeholderList);
 }
 
 /**
- * 
+ *
  * @return string
  */
 function load_nav_pages(): string
@@ -69,11 +75,11 @@ function load_nav_pages(): string
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT `id`, 
-        `title` 
-        FROM `contents` 
-        WHERE `content_type` = 'page' 
-            AND `visibility` = 'true' 
+    SELECT `id`,
+        `title`
+        FROM `contents`
+        WHERE `content_type` = 'page'
+            AND `visibility` = 'true'
             AND `flag` != 'trash'
     ";
 
@@ -96,7 +102,7 @@ function renderArticlesPage(): string
 {
     $articlesPage = renderArticlePage();
     $articlesContent = renderArticlesContent();
-    
+
     return str_replace('##placeholder-articles##', $articlesContent, $articlesPage);
 }
 
@@ -130,14 +136,14 @@ function renderArticlesContent(): string
 function renderArticlePage() : string
 {
     $settings = getArticleSettings();
-    
+
     $placeholderList = [
         '##placeholder-articles-page-tagline##' => $settings['tagline'],
         '##placeholder-articles-page-comment##' => $settings['text']
     ];
-    
+
     $template = getTemplate('pub_articles');
-    
+
     return strtr($template, $placeholderList);
 }
 
@@ -167,26 +173,26 @@ function load_articles_detailed(int $id): string
 function renderCurrentArticle()
 {
     $template = getTemplate('pub_no_articles');
-    
+
     if (countContentType('article') > 0) {
         $article = getCurrentArticle();
-        
+
         $placeholder = [
             '##placeholder-id##'      => $article['id'],
             '##placeholder-title##'   => $article['title'],
             '##placeholder-content##' => cutString($article['text'], 2000)
         ];
-        
+
         $template = getTemplate('pub_article_mainpage_content');
         $template = strtr($template, $placeholder);
     }
-    
-    
+
+
     return $template;
 }
 
 /**
- * 
+ *
  * @return string
  */
 function load_downloads(): string
@@ -200,12 +206,12 @@ function load_downloads(): string
     $stmt = loadPublicDownloadsStatement();
 
     while ($downloads = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        
+
         $placeholderList = [
             '##placeholder-downloads-page-tagline##' => $downloads['downloads_tagline'],
             '##placeholder-downloads-page-comment##' => $downloads['downloads_text']
         ];
-        
+
         $content .= load_downloads_content($downloads, $templateNewsContent);
     }
 
@@ -216,7 +222,7 @@ function load_downloads(): string
 }
 
 /**
- * 
+ *
  * @param mixed $downloads
  * @param string $template
  * @return string
@@ -235,7 +241,7 @@ function load_downloads_content($downloads, string $template) : string
 }
 
 /**
- * 
+ *
  * @return string
  */
 function load_links(): string
@@ -264,7 +270,7 @@ function load_links(): string
 }
 
 /**
- * 
+ *
  * @param mixed $links
  * @param string $template
  * @return string
@@ -282,14 +288,14 @@ function load_links_content($links, string $template)
 }
 
 /**
- * 
+ *
  * @param int $id
  * @return string
  */
 function load_pages(int $id): string
 {
     $page = getPage($id);
-    
+
     $placeholderList = [
         '##placeholder-title##'   => $page['title'],
         '##placeholder-tagline##' => $page['tagline'],
@@ -303,13 +309,13 @@ function load_pages(int $id): string
 }
 
 /**
- * 
+ *
  */
 function load_mainpage(): string
 {
     $settings = getGeneralSettings();
     $aboutme = getInfobox();
-    
+
     $placeholderList = [
         '##placeholder-title##'           => $settings['title'],
         '##placeholder-tagline##'         => $settings['tagline'],
@@ -318,37 +324,37 @@ function load_mainpage(): string
         '##placeholder-aboutme-title##'   => $aboutme['title'],
         '##placeholder-aboutme-content##' => $aboutme['text'],
     ];
-    
+
     $template = getTemplate('pub_mainpage');
     return strtr($template, $placeholderList);
 }
 
 /**
- * 
+ *
  * @return string
  */
 function load_cards()
 {
     $card = '';
     $template = getTemplate('pub_card');
-    
+
     $sql = "
-    SELECT id, 
-        title, 
-        content, 
-        created_at, 
-            (SELECT COUNT(id) 
-            FROM articles 
-            WHERE trash LIKE 'false' 
+    SELECT id,
+        title,
+        content,
+        created_at,
+            (SELECT COUNT(id)
+            FROM articles
+            WHERE trash LIKE 'false'
                 AND visibility = 0) as count
-        FROM articles 
-        WHERE trash like 'false' 
-            AND visibility = 0 
+        FROM articles
+        WHERE trash like 'false'
+            AND visibility = 0
             ORDER By created_at DESC LIMIT 3
     ";
-    
+
     $pdo = getPdoConnection();
-    
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -356,7 +362,7 @@ function load_cards()
         echo $ex->getMessage();
         exit();
     }
-    
+
     while ($article = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($article['count'] == '1') {
             $columnNumber = 12;
@@ -365,13 +371,13 @@ function load_cards()
         } else {
             $columnNumber = 4;
         }
-        
+
         $placeholderList = [
             '##placeholder-col-num##' => $columnNumber,
             '##placeholder-title##'   => $article['title'],
             '##placeholder-content##' => substr($article['content'], 0, 160)
         ];
-        
+
         $card .= strtr($template, $placeholderList);
     }
 
@@ -380,12 +386,12 @@ function load_cards()
 
 /**
  * To cut a string.
- * 
+ *
  * @param string $string
  * @return string
- * 
+ *
  * @since 0.8.0
- * 
+ *
  * @todo replace the third static parameter with the dynamic parameter
  * from the article settings
  */

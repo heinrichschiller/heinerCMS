@@ -31,17 +31,11 @@ function indexAction(): string
 {
     checkLogin();
 
-    $templateList = [];
-
     $articleList = getAllArticles();
 
-    if (count($articleList) > 0 ) {
-        $template = 'articles.phtml';
-    } else {
-        $template = 'no_articles.phtml';
-    }
-
-    $templateList[] = $template;
+    $templateList = [
+        'articles.phtml'
+    ];
 
     return render($templateList, array('articles' => $articleList));
 }

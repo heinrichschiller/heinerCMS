@@ -251,10 +251,10 @@ function countContentType(string $type): int
     ";
 
     foreach ($pdo->query($sql) as $row) {
-        $id = (int) $row[0];
+        $number = (int) $row[0];
     }
 
-    return $id;
+    return $number;
 }
 
 /**
@@ -269,13 +269,13 @@ function countEntries()
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
+    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash' AND `visibility` = 'true'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash' AND `visibility` = 'true'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash' AND `visibility` = 'true'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash' AND `visibility` = 'true'
         UNION ALL
         SELECT COUNT(*) as result
             FROM `contents`
