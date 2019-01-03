@@ -39,7 +39,7 @@
                   <label for="sel1">{application_language}:</label>
 				  <select class="custom-select" id="sel1" name="language" onchange="this.form.submit();">
 				  <?php foreach($locales as $locale): ?>
-                  	  <option <?= ($locale['short'] == $_SESSION['language']) ? ' selected' : ''; ?>><?= $locale['lang']; ?></option>
+                  	  <option value="<?= $locale['short']; ?>" <?= ($locale['short'] == $_SESSION['language']) ? ' selected' : ''; ?>><?= $locale['lang']; ?></option>
 				  <?php endforeach; ?>
                   </select>
             </div>

@@ -236,10 +236,10 @@ function render(array $templates, array $data = [])
 
     $html .= renderFooter();
 
-    $arr_language = getTranslation('de');
+    $settings = getGeneralSettings();
+    $arr_language = getTranslation($settings['lang_short']);
 
     return strtr($html, $arr_language);
-    //return $html;
 }
 
 function renderTemplate(string $template, array $data)

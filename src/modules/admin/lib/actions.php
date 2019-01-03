@@ -88,5 +88,7 @@ function updateAction()
 
     updateGeneralSettings($title, $tagline, $theme, $darkmode, $blogUrl, $language, $footer);
 
+    setSession();
+
     redirectToAdmin();
 }
