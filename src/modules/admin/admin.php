@@ -47,6 +47,6 @@ if(!defined('ADMIN_LIB_PATH')) {
     define('ADMIN_LIB_PATH', __DIR__ . '/lib/');
 }
 
-include ADMIN_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include ADMIN_LIB_PATH . DB_DRIVER . '-functions.php';
 include ADMIN_LIB_PATH . 'actions.php';
 include ADMIN_LIB_PATH . 'functions.php';
