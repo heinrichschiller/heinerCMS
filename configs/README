@@ -1,0 +1,42 @@
+# README
+
+This directory contains all configuration files of heinerCMS.
+The database configuration file is db-config.php file, that contains
+all important database data, to use heinerCMS. This file are be creating
+with the Installer of heinerCMS, but you can create your own
+configuration file, if you want. This can be helpfull for testing
+your own configurations or settings.
+
+What heinerCMS need is:
+define('DB_DRIVER', 'mysql'); for using a Database. heinerCMS
+supporting MYSQL/MariaDB and SQLite database. You can also set
+'mysql' for MYSQL/MariaDB or 'sqlite' for SQLite Database.
+
+If you use MYSQL/MariaDB database, you need more options.
+define('DB_HOST', ''); for host (for example: localhost or 127.0.0.1)
+define('DB_USER', ''); for database user (for example: root)
+define('DB_NAME', ''); for database name (for example: cms_heinercms)
+define('DB_PASSWORD', ''); for database password
+
+If you use SQLite database, you will need following options.
+define('DB_NAME', __DIR__ . '/path/to/database');
+
+At the end you must set the developer support option.
+define('PDO_DEBUG_MODE', false);
+If option is true, you can see advanced error messages from the
+database. This is important for developers.
+
+MYSQL/MariaDB config-example:
+
+define('DB_DRIVER', 'mysql');
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_NAME', 'cms_heinercms');
+define('DB_PASSWORD', '');
+
+SQLite config-example:
+
+define('DB_DRIVER', 'sqlite');
+
+define('DB_NAME', __DIR__ . '/../data/sqlite/heinercms.db');

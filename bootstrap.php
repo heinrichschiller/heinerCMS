@@ -38,7 +38,7 @@ if(!defined('ABS_PATH')) {
     define('ABS_PATH', __DIR__ . '/');
 }
 
-include __DIR__ . '/src/configs/base-config.php';
+include ABS_PATH . 'configs/base-config.php';
 
 if (DEBUG_MODE) {
     error_reporting(-1);
