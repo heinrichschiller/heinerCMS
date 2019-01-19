@@ -51,6 +51,6 @@ if(!defined('LINK_LIB_PATH')) {
     define('LINK_LIB_PATH', __DIR__ . '/lib/');
 }
 
-include LINK_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include LINK_LIB_PATH . DB_DRIVER . '-functions.php';
 include LINK_LIB_PATH . 'actions.php';
 include LINK_LIB_PATH . 'functions.php';

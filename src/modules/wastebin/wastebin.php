@@ -50,6 +50,6 @@ if(!defined('WASTEBIN_LIB_PATH')) {
     define('WASTEBIN_LIB_PATH', __DIR__ . '/lib/');
 }
 
-include WASTEBIN_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include WASTEBIN_LIB_PATH . DB_DRIVER . '-functions.php';
 include WASTEBIN_LIB_PATH . 'actions.php';
 include WASTEBIN_LIB_PATH . 'functions.php';
