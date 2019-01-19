@@ -49,6 +49,6 @@ if(!defined('DOWNLOAD_LIB_PATH')) {
     define('DOWNLOAD_LIB_PATH', __DIR__ . '/lib/');
 }
 
-include DOWNLOAD_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include DOWNLOAD_LIB_PATH . DB_DRIVER . '-functions.php';
 include DOWNLOAD_LIB_PATH . 'actions.php';
 include DOWNLOAD_LIB_PATH . 'functions.php';
