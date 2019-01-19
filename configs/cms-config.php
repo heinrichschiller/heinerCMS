@@ -29,16 +29,3 @@
 
  // content on this file will be creating by installer
  // for manual configuration, please read the README
-
- /**
-  * Base url of heinerCMS.
-  *
-  * @var string
-  *
-  * @since 0.9.0
-  */
- define('BASE_URL', 'http://heinercms.localhost/');
-
- define('DB_DRIVER', 'sqlite');
-
- define('DB_NAME', ABS_PATH . 'database/sqlite/heinercms.db');
