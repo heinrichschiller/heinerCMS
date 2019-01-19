@@ -49,6 +49,6 @@ if(!defined('ARTICLE_LIB_PATH')) {
     define('ARTICLE_LIB_PATH', __DIR__ . '/lib/');
 }
 
-include ARTICLE_LIB_PATH . DB_DRIVER . '_db_functions.php';
+include ARTICLE_LIB_PATH . DB_DRIVER . '-functions.php';
 include ARTICLE_PATH . '/lib/actions.php';
 include ARTICLE_PATH . '/lib/functions.php';
