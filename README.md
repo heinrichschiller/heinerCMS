@@ -1,20 +1,25 @@
 # heinerCMS Alpha
-heinerCMS ist eine kleine CMS Software die in HTML, JavaScript und PHP geschrieben ist.
 
-Die Software ist im Alpha-Stadium und soll noch nicht produktiv genutzt werden, weil es noch wenige Sicherheitsmaßnahmen enthält.
-Zum BEispiel ist das Login unverschlüsselt und rein rudimäntär. 
+heinerCMS is a small and simple Web-CMS written in HTML, CSS, JavaScript and PHP.
 
-Die Software ist Open Source, d.h. jeder darf die Software zu Lernzwecken nutzen und erweitern. 
+This software is in an early state. Please don't use it for production work, because the
+software is not secure.
+
+This Software is Open Source. The licence is MIT.
+
+##Features
+
+* easy creation of articles
 
 ##Ziel
 
-Ich beabsichtige die Software später auf meiner Domäne zu installieren und zu nutzen.
+Ich beabsichtige die Software später produktiv auf meiner Domäne zu installieren und zu nutzen.
 
 
-Systemanforderungen:
+Requirenments:
 
-XAMPP mit PHP 7.0 oder höher
+XAMPP with PHP 7.1 or higher
 
-oder
+or
 
-LAMP mindestens mit PHP 7.0, PHP-Module: simplexml, pdo-mysql, pdo-sqlite
+LAMP with PHP 7.1, PHP-Module: simplexml, pdo-mysql, pdo-sqlite
