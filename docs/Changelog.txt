@@ -1,4 +1,4 @@
-Pre-Release 0.10.0
+Release 0.10.0
 	added, success message after logout
 	bugfix, Fixed issue if URL is unknown. Error 404 is displayed.
 	bugfix, fixed minor bugs
