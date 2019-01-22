@@ -79,9 +79,9 @@ function parseRequest()
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $item = explode('/', $path, 3);
 
-    $controller = $item[0] ?? 'public';
-    $action     = $item[1] ?? 'index';
-    $params     = $item[2] ?? array();
+    $controller = !empty($item[0]) ? $item[0] : 'public';
+    $action     = !empty($item[1]) ? $item[1] : 'index';
+    $params     = !empty($item[2]) ? $item[2] : array();
 
     if(!empty($params)) {
         $params = explode('/', $params);
