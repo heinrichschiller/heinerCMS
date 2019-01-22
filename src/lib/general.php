@@ -283,3 +283,19 @@ function currentDatetime()
 {
     return strftime('%d.%m.%Y %H:%M', time());
 }
+
+/**
+ * Strip a HTML and PHP tags from a string and convert convert special characters
+ * to HTML entities.
+ *
+ * @param string $data
+ * @param string $encoding
+ *
+ * @return string - Clean string.
+ *
+ * @since 0.10.0
+ */
+function escapeString(string $data, string $encoding = 'UTF-8'): string
+{
+    return htmlspecialchars(strip_tag($data), ENT_QUOTES | ENT_HTML5, $encoding);
+}
