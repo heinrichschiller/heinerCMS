@@ -299,3 +299,9 @@ function escapeString(string $data, string $encoding = 'UTF-8'): string
 {
     return htmlspecialchars(strip_tag($data), ENT_QUOTES | ENT_HTML5, $encoding);
 }
+
+function error404()
+{
+    header('Content-Type:text/html;charset=utf-8');
+    header('HTTP/1.0 404 Not Found');
+}
