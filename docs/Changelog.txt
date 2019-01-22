@@ -1,5 +1,7 @@
 Pre-Release 0.10.0
-	added, new installer
+	added, success message after logout
+	bugfix, Fixed issue if URL is unknown. Error 404 is displayed.
+	bugfix, fixed minor bugs
 	update, twbs/bootstrap (4.1.3 => 4.2.1)
 	update, tinymce/tinymce (4.9.0 => 4.9.2)
 Pre-Version 0.9.0
