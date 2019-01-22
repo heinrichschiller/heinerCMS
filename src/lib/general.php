@@ -46,18 +46,26 @@ function bootstrap()
 {
     $requestItems = parseRequest();
 
-    $controller = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
+    $controller = $requestItems['controller'];
+    $action     = $requestItems['action'];
+    $params     = $requestItems['params'];
 
-    $action = !empty($requestItems['action']) ? $requestItems['action'] : 'index';
+    $modulesPath = SRC_PATH . "modules/$controller/$controller.php";
 
-    include_once SRC_PATH . "modules/$controller/$controller.php";
-
-    $paramItems = !empty($requestItems['params']) ? $requestItems['params'] : array();
-    @$params = explode('/', $paramItems);
+    if(file_exists($modulesPath)) {
+        include_once $modulesPath;
+    } else {
+        error404();
+    }
 
     if (isset($action)) {
         $action = sprintf("%sAction", strtolower($action));
-        echo $action($params);
+
+        if(function_exists($action)) {
+            echo $action($params);
+        } else {
+            error404();
+        }
     }
 }
 
@@ -71,10 +79,18 @@ function parseRequest()
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $item = explode('/', $path, 3);
 
+    $controller = $item[0] ?? 'public';
+    $action     = $item[1] ?? 'index';
+    $params     = $item[2] ?? array();
+
+    if(!empty($params)) {
+        $params = explode('/', $params);
+    }
+
     $requestItems = [
-        'controller' => $item[0],
-        'action' => @$item[1],
-        'params' => @$item[2]
+        'controller' => $controller,
+        'action'     => $action,
+        'params'     => $params
     ];
 
     return $requestItems;
