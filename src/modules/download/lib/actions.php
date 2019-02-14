@@ -47,7 +47,7 @@ function editAction(array $params): string
     $downloadList = getDownload($params[1]);
 
     $templateList = [
-        'edit_download.phtml'
+        'download.phtml'
     ];
 
     return render($templateList, array('download' => $downloadList));
@@ -58,7 +58,7 @@ function newAction(): string
     checkLogin();
 
     $templateList = [
-        'new_download.phtml'
+        'download.phtml'
     ];
 
     return render($templateList);

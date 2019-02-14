@@ -45,7 +45,7 @@ function newAction()
     checkLogin();
 
     $templateList = [
-        'new_user.phtml'
+        'user.phtml'
     ];
 
     return render($templateList);
@@ -58,7 +58,7 @@ function editAction(array $params): string
     $userList = getUser($params[1]);
 
     $templateList = [
-        'edit_user.phtml'
+        'user.phtml'
     ];
 
     return render($templateList, array('user' => $userList));

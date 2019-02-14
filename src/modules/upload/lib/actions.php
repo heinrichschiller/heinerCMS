@@ -27,30 +27,9 @@
  * SOFTWARE.
  */
 
-if(!defined('USER_PATH')) {
+function indexAction()
+{
+    checkLogin();
 
-    /**
-     * Path to modules/user/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('USER_PATH', __DIR__ . '/');
+    return render(array('upload.phtml'));
 }
-
-if(!defined('USER_LIB_PATH')) {
-
-    /**
-     * Path to modules/user/lib/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('USER_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include USER_LIB_PATH . DB_DRIVER . '-functions.php';
-include USER_LIB_PATH . 'actions.php';
-include USER_LIB_PATH . 'functions.php';

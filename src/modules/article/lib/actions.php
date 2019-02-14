@@ -45,7 +45,7 @@ function newAction(): string
     checkLogin();
 
     $templateList = [
-        'new_article.phtml'
+        'article.phtml'
     ];
 
     return render($templateList);
@@ -58,7 +58,7 @@ function editAction(array $params): string
     $articleList = getArticle($params[1]);
 
     $templateList = [
-        'edit_article.phtml'
+        'article.phtml'
     ];
 
     return render($templateList, array('article' => $articleList));
@@ -93,11 +93,13 @@ function addAction()
 {
     checkLogin();
 
-    $title      = filter_input(INPUT_POST, 'title');
-    $content    = filter_input(INPUT_POST, 'text');
-    $visibility = filter_input(INPUT_POST, 'visibility');
+    if(isPost()) {
+        $title      = filter_input(INPUT_POST, 'title');
+        $content    = filter_input(INPUT_POST, 'text');
+        $visibility = filter_input(INPUT_POST, 'visibility');
 
-    addArticle($title, $content, $visibility);
+        addArticle($title, $content, $visibility);
+    }
 
     redirectToArticle();
 }

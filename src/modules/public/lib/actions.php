@@ -59,7 +59,7 @@ function articleAction(array $params): string
 
 function articlesAction(): string
 {
-    include MODULES_PATH . 'article/lib/' . DB_DRIVER . '-functions.php';
+    include CMS_MODULES_PATH . 'article/lib/' . DB_DRIVER . '-functions.php';
 
     $templateList = [
         'articles.phtml'
@@ -87,7 +87,7 @@ function downloadAction(int $id): string
 
 function downloadsAction(): string
 {
-    include MODULES_PATH . 'download/lib/' . DB_DRIVER . '-functions.php';
+    include CMS_MODULES_PATH . 'download/lib/' . DB_DRIVER . '-functions.php';
 
     $templateList = [
         'downloads.phtml'
@@ -115,7 +115,7 @@ function linkAction(int $id): string
 
 function linksAction(): string
 {
-    include MODULES_PATH . 'link/lib/' . DB_DRIVER . '-functions.php';
+    include CMS_MODULES_PATH . 'link/lib/' . DB_DRIVER . '-functions.php';
 
     $templateList = [
         'links.phtml'

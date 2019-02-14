@@ -4,6 +4,47 @@ html, body {
 	height: 100%;
 }
 
+footer {
+	height: 6em;
+}
+
+@media screen and (max-width: 768px)
+{
+	.nav-pc,
+	.navigation {
+		display: none;
+	}
+
+	.list-group-item.active {
+		background-color: #337ab7;
+		border-color: #337ab7;
+	}
+}
+
+@media screen and (min-width: 768px)
+{
+	.nav-mobile {
+		display: none;
+	}
+}
+
+.jumbotron {
+	margin-top: 3.8em;
+	background-image: url("https://heinrich-schiller.de/public/assets/img/header.jpg");
+	background-repeat: no-repeat;
+	height: 360px;
+	color: #fefefe;
+}
+
+.footer-text {
+	text-align: center;
+	color: #999;
+}
+
+.article-container {
+	margin-top: 3.8em;
+}
+
 .article-title {
 	width: 100%;
 	border-bottom: 1px solid #ccc;
@@ -61,33 +102,8 @@ html, body {
 	font-weight: 400 !important;
 }
 
-.navbar {
-	background-color: #f8f9fa  !important;
-}
-
-.navigation {
-	margin-left: 1em;
-	float: left;
-}
-
-.content-container {
-	position: relative;
-	left: 1em;
-	top: 0.3em;
-	width:57em;
-	float: left;
-}
-
 .content-section {
 	padding-top: 0.4em;
-}
-
-.col-xl-6 {
-	min-width: 944px;
-}
-
-.col-lg-9 {
-	max-width: 1200px;
 }
 
 .list-group-item {
@@ -126,4 +142,10 @@ html, body {
 
 .glyph-icon-24 {
 	height: 24px;
+}
+
+.language-php {
+	border: 1px dotted grey;
+	padding: 5px;
+	background-color: #eee;
 }

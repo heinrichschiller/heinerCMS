@@ -64,7 +64,7 @@ define('SVG_PATH', BASE_URL . 'public/assets/img/svg/');
  * @var string
  * @since 0.9.0
  */
-define('SRC_PATH', ABS_PATH . 'src/');
+define('CMS_SRC_PATH', ABS_PATH . 'src/');
 
 /**
  * Path to config directory.
@@ -72,7 +72,7 @@ define('SRC_PATH', ABS_PATH . 'src/');
  * @var string
  * @since 0.5.0
  */
-define('CONFIG_PATH', SRC_PATH . 'configs/');
+define('CMS_CONFIG_PATH', CMS_SRC_PATH . 'configs/');
 
 /**
  * Path to lib directory
@@ -80,7 +80,7 @@ define('CONFIG_PATH', SRC_PATH . 'configs/');
  * @var string
  * @since 0.9.0
  */
-define('LIB_PATH', SRC_PATH . '/lib/');
+define('CMS_LIB_PATH', CMS_SRC_PATH . '/lib/');
 
 /**
  * Path to locales directory
@@ -88,7 +88,7 @@ define('LIB_PATH', SRC_PATH . '/lib/');
  * @var string
  * @since 0.5.0
  */
-define('LOCALES_PATH', SRC_PATH . 'locales/');
+define('CMS_LOCALES_PATH', CMS_SRC_PATH . 'locales/');
 
 /**
  * Path to modules directory
@@ -97,7 +97,16 @@ define('LOCALES_PATH', SRC_PATH . 'locales/');
  *
  * @since 0.9.0
  */
-define('MODULES_PATH', SRC_PATH . 'modules/');
+define('CMS_MODULES_PATH', CMS_SRC_PATH . 'modules/');
+
+/**
+ * Path to modules directory
+ *
+ * @var string
+ *
+ * @since 0.9.0
+ */
+define('CMS_TEMPLATES_PATH', CMS_SRC_PATH . 'templates/');
 
 /****************************************************************************************
  * Debuging options for heinerCMS

@@ -79,5 +79,11 @@
 		<sign_out>Sign out</sign_out>
 		<current_article>Current Article</current_article>
 		<upload>Upload</upload>
+		<options>Options</options>
+		<published>Published</published>
+		<published_at>Published at</published_at>
+		<updated_at>Updated at</updated_at>
+		<author>Author</author>
+		<preview>Preview</preview>
 	</terms>
 </language>

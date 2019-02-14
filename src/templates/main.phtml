@@ -1,0 +1,56 @@
+<html>
+	<head lang="de">
+		<title>Heinrich-Schiller.de</title>
+		<meta charset="utf8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap-reboot.min.css">
+		<link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap-grid.min.css">
+		<link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="/vendor/components/jquery/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- jQuery UI -->
+		<link rel="stylesheet" href="/vendor/components/jqueryui/themes/base/jquery-ui.min.css">
+		<script src="/vendor/components/jqueryui/jquery-ui.min.js"></script>
+
+		<link href="/public/assets/css/default.css" rel="stylesheet">
+	</head>
+	<body>
+
+        <?php require $template; ?>
+        <footer>
+            <div class="footer-text">
+                <p>&copy; 2017 - 2019 Heinrich-Schiller.de</p>
+                <p><i>powered by heinerCMS</i></p>
+            </div>
+        </footer>
+        <!-- TinyMCE-Editor -->
+        <script src="/vendor/tinymce/tinymce/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea#text',
+            plugins: "advlist autolink link image lists charmap print preview",
+            codesample_languages: [
+                {text: 'HTML/XML', value: 'markup'},
+                {text: 'JavaScript', value: 'javascript'},
+                {text: 'CSS', value: 'css'},
+                {text: 'PHP', value: 'php'},
+                {text: 'Ruby', value: 'ruby'},
+                {text: 'Python', value: 'python'},
+                {text: 'Java', value: 'java'},
+                {text: 'C', value: 'c'},
+                {text: 'C#', value: 'csharp'},
+                {text: 'C++', value: 'cpp'}
+            ],
+            toolbar: [
+                'undo redo | styleselect | bold italic | link image | alignleft  aligncenter alignright'
+            ]
+        });</script>
+
+        <script src="/public/assets/js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+   	        <div class="panel">
+           		<h4>
+                    <img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {link}
+                </h4>
+           	</div>
+
+            <?php if(isset($link['id'])): ?>
+            <form action="<?= BASE_URL;?>link/update" method="post">
+            <?php else: ?>
+            <form action="<?= BASE_URL;?>link/add" method="post">
+            <?php endif; ?>
+
+                <div class="row">
+                    <div class="col-2 col-sm-3 col-md-3 col-lg-3 col-xl-9">
+            			<div class="form-group">
+            				<label for="ident">#&nbsp;</label><span></span>
+            				<input type="hidden" name="id" value="<?= isset($link['id']) ? $link['id'] : ''; ?>" class="form-control" id="ident">
+            			</div>
+            		</div>
+            		<div class="col-10 col-sm-9 col-md-9 col-lg-9 col-xl-3">
+            			<div class="form-group">
+            				<p class="text-right">{date}: <?= isset($link['datetime']) ? strftime('%d.%m.%Y', $link['datetime']) : currentDatetime(); ?></p>
+            			</div>
+            		</div>
+            	</div>
+            	<div class="form-group">
+            		<label for="title">{title}:</label>
+            		<input type="text" name="title" value="<?= isset($link['title']) ? $link['title'] : ''; ?>" class="form-control" id="title">
+            	</div>
+                <div class="form-group">
+            		<label for="tagline">{tagline}:</label>
+            		<input type="text" name="tagline" value="<?= isset($link['tagline']) ? $link['tagline'] : ''; ?>" class="form-control" id="tagline">
+            	</div>
+            	<div class="form-group">
+            		<label for="uri">{uri}:</label>
+            		<input type="text" name="uri" value="<?= isset($link['uri']) ? $link['uri'] : ''; ?>" class="form-control" id="uid">
+            	</div>
+            	<div class="form-group">
+            		<label for="comment">{text}:</label>
+            		<textarea name="text" rows="10" class="form-control" id="text"><?= isset($link['text']) ? $link['text'] : ''; ?></textarea>
+            	</div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+                <div class="list-group spacing">
+                    {options}
+                </div>
+            	<span>{visible}?</span>
+                <div class="custom-control custom-radio custom-control-inline">
+                	<input type="radio" id="customRadioInline1" name="visibility" value="true" class="custom-control-input" <?= (isset($link['visibility']) && $link['visibility'] === 'true') ? 'checked': ''; ?>>
+                    <label class="custom-control-label" for="customRadioInline1">{yes}</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="visibility" value="false" class="custom-control-input" <?= (isset($link['visibility']) && $link['visibility'] === 'false' || !isset($link)) ? 'checked' : ''; ?>>
+                    <label class="custom-control-label" for="customRadioInline2">{no}</label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            	<div class="form-groupt">
+            		<button type="submit" class="btn btn-success">{save}</button>
+            		<span></span>
+            		<button type="reset" class="btn btn-danger">{reset}</button>
+            	</div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

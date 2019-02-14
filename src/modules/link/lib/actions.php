@@ -47,7 +47,7 @@ function editAction(array $params): string
     $linkItems = getLinkById($params['1']);
 
     $templateList = [
-        'edit_link.phtml'
+        'link.phtml'
     ];
 
     return render($templateList, array('link' => $linkItems));
@@ -58,7 +58,7 @@ function newAction(): string
     checkLogin();
 
     $templateList = [
-        'new_link.phtml'
+        'link.phtml'
     ];
 
     return render($templateList);

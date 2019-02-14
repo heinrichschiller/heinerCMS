@@ -83,5 +83,11 @@
 		<sign_out>Abmelden</sign_out>
 		<current_article>Aktueller Artikel</current_article>
 		<upload>Upload</upload>
+		<options>Optionen</options>
+		<published>Veröffentlicht</published>
+		<published_at>Veröffentlicht_am</published_at>
+		<updated_at>Aktualisiert am</updated_at>
+		<author>Autor</author>
+		<preview>Vorschau</preview>
 	</terms>
 </language>

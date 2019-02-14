@@ -161,6 +161,75 @@ function getTemplate(string $template): string
     return 'No template found.';
 }
 
+function renderHeader(): string
+{
+    $file = CMS_TEMPLATES_PATH . "header.phtml";
+
+    if (file_exists($file)) {
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    } else {
+        echo 'Template header.phtml not found.';
+        exit();
+    }
+}
+
+function renderFooter(): string
+{
+    $file = CMS_TEMPLATES_PATH . "footer.phtml";
+
+    if (file_exists($file)) {
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    } else {
+        echo 'Template footer.phtml not found.';
+        exit();
+    }
+}
+
+function renderNavigation()
+{
+    $module = parseRequest();
+
+    if($module['action'] == 'goodbye' || $module['action'] == 'login') {
+        $navbar = '';
+    } elseif (empty($module['controller']) || $module['controller'] == 'public') {
+        $navbar = 'public_navigation';
+    } else {
+        $navbar = 'admin_navigation';
+    }
+
+    $file = CMS_TEMPLATES_PATH . "$navbar.phtml";
+
+    if (file_exists($file)) {
+        extract(array('entry' => countEntries()));
+
+        ob_start();
+
+        include $file;
+
+        $htmlResponse = ob_get_contents();
+
+        ob_end_clean();
+
+        return $htmlResponse;
+    }
+}
+
 function checkSystem()
 {
     if (!defined('DB_DRIVER') && !defined('DB_NAME')) {
@@ -174,9 +243,14 @@ function render(array $templates, array $data = [])
 {
     $html = '';
 
+    $html .= renderHeader();
+    $html .= renderNavigation();
+
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
     }
+
+    $html .= renderFooter();
 
     $settings = getGeneralSettings();
     $arr_language = getTranslation($settings['lang_short']);
@@ -196,13 +270,13 @@ function renderTemplate(string $template, array $data)
 
     ob_start();
 
-    include CMS_SRC_PATH . 'template/main.phtml';
+    include $tmpltFile;
 
-    //$htmlResponse = ob_get_contents();
+    $htmlResponse = ob_get_contents();
 
     ob_end_clean();
 
-    //return $htmlResponse;
+    return $htmlResponse;
 }
 
 function currentDatetime()

@@ -27,64 +27,32 @@
  * SOFTWARE.
  */
 
-/**
- * Loading a string of theme options.
- *
- * @return string
- */
-function load_theme_options(): string
-{
-     $html = '';
+if(!defined('USER_PATH')) {
 
-     $template_dir = __DIR__ . '/../templates/';
-
-     $files = scandir($template_dir);
-
-     for ($i = 2; $i <= count($files) - 1; $i ++) {
-        if ($files[$i] === $_SESSION['theme']) {
-            $select = ' selected';
-        } else {
-            $select = '';
-        }
-
-        $html .= "<option $select>$files[$i]</option>";
-    }
-
-    return $html;
+    /**
+     * Path to modules/user/
+     *
+     * @var string
+     *
+     * @since 0.9.0
+     */
+    define('USER_PATH', __DIR__ . '/');
 }
 
-/**
- * Get a list of all locales in data/locales directory
- *
- * @return array
- *
- * @since 0.9.0
- */
-function getLocales() : array
-{
-    $files = scandir(CMS_LOCALES_PATH);
+if(!defined('USER_LIB_PATH')) {
 
-    $xmlItem  = [];
-    $xmlItems = [];
-
-    for ($i = 2; $i <= count($files) -1; $i++) {
-        $xmlFile = CMS_LOCALES_PATH . $files[$i];
-
-        $xmlContents = file_get_contents($xmlFile);
-        $xmlString = simplexml_load_string($xmlContents);
-
-        $xmlItem = [
-            'short' => (string) $xmlString->attributes()->short,
-            'lang'  => (string) $xmlString->attributes()->lang
-        ];
-
-        $xmlItems[] = $xmlItem;
-    }
-
-    return $xmlItems;
+    /**
+     * Path to modules/user/lib/
+     *
+     * @var string
+     *
+     * @since 0.9.0
+     */
+    define('USER_LIB_PATH', __DIR__ . '/lib/');
 }
 
-function redirectToAdmin()
-{
-    header('Location: ' . BASE_URL . 'admin/settings');
-}
+include USER_LIB_PATH . DB_DRIVER . '-functions.php';
+include USER_LIB_PATH . 'actions.php';
+include USER_LIB_PATH . 'functions.php';
+include USER_LIB_PATH . 'validate.php';
+include CMS_LIB_PATH . 'validate.php';

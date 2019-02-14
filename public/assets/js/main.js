@@ -1,5 +1,15 @@
 "use strict";
 
+$(function() {
+    $(".clickable-row").click(function() {
+        var href = $(this).data("href");
+
+        if(href) {
+            window.location = href;
+        }
+    });
+});
+
 /*$(document).ready(function() {
     $("#dialog").dialog({
       autoOpen: false,
