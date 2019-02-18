@@ -28,10 +28,12 @@
  */
 
 /**
+ * Get all article entries from contents-table, where articles flag
+ * is not marked as 'trash'.
  *
- * @return PDOStatement
+ * @return array
  */
-function loadArticlesStatement() : PDOStatement
+function getAllArticles(): array
 {
     $pdo = getPdoConnection();
 
@@ -46,48 +48,22 @@ function loadArticlesStatement() : PDOStatement
             ORDER BY `created_at` DESC
     ";
 
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Get a list if items from an article by id.
- *
- * @param int $id - Id of an article.
- * @return array  -
- *
- * @since 0.8.0
- */
-function getArticleDetailed(int $id) : array
-{
     $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `title`,
-        `text`,
-        UNIX_TIMESTAMP(`created_at`) AS datetime
-        FROM `contents`
-        WHERE `content_type` = 'article'
-            AND `visibility` = 'true'
-            AND `flag` != 'trash'
-            AND `id` = :id
-    ";
+    $resutl = [];
 
     try {
         $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':id', $id);
-
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+
+        if($result) {
+            return $result;
+        }
+
+        return array();
     } catch (PDOException $ex) {
         echo $ex->getMessage();
         exit();
@@ -211,40 +187,7 @@ function updateArticleSettings(string $tagline, string $text)
 }
 
 /**
- *
- * @return PDOStatement
- *
- * @since 0.8.0
- */
-function loadPublicArticlesStatement() : PDOStatement
-{
-    $sql = "
-    SELECT `id`,
-        `title`,
-        `text` as text,
-        UNIX_TIMESTAMP(`created_at`) AS datetime
-        FROM `contents`
-        WHERE `content_type` = 'article'
-            AND `visibility` = 'true'
-            AND `flag` != 'trash'
-            ORDER BY `datetime` DESC
-    ";
-
-    $pdo = getPdoConnection();
-
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        return $stmt;
-    } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
-    }
-}
-
-/**
- * Get an article entry from 'articles' table by id.
+ * Get an article entry from 'contents' table by id.
  *
  * @param int $id - Id from an article entry.
  * @return array  - Article list from an entry.
@@ -269,39 +212,6 @@ function getArticle(int $id) : array
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-}
-
-/**
- * Get an actualy article entry from 'contents' table.
- *
- * @return array  - Article list from an entry.
- *
- * @since 0.8.0
- */
-function getCurrentArticle() : array
-{
-    $pdo = getPdoConnection();
-
-    $sql = "
-    SELECT `id`,
-        `title`,
-        `text`,
-        UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime
-        FROM `contents`
-        WHERE `content_type` = 'article'
-            AND `flag` != 'trash'
-            ORDER BY `datetime` DESC
-    ";
-
-    try {
-        $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);

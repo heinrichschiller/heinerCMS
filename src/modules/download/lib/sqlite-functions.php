@@ -38,7 +38,6 @@
 function getAllDownloads(): array
 {
     $pdo = getPdoConnection();
-    $result = [];
 
     $sql = "
     SELECT `id`,
@@ -56,6 +55,8 @@ function getAllDownloads(): array
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+
+        $result = [];
 
         while( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;

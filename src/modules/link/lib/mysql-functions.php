@@ -27,13 +27,15 @@
  * SOFTWARE.
  */
 
- /**
-  *
-  * @return PDOStatement
-  *
-  * @since 0.8.0
-  */
- function loadLinksStatement() : PDOStatement
+/**
+ * Get all link entries from contents-table, where link flag
+ * is not marked as 'trash'.
+ *
+ * @return array
+ *
+ * @since 0.9.0
+ */
+function getAllLinks(): array
  {
      $pdo = getPdoConnection();
 
@@ -50,13 +52,23 @@
      ";
 
      try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-         return $stmt;
+        $result = [];
+
+        while($row = $stmt->fetch((PDO::FETCH_ASSOC))) {
+            $result[] = $row;
+        }
+
+        if($result) {
+            return $result;
+        }
+
+        return array();
      } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
+        echo $ex->getMessage();
+        exit();
      }
  }
 
@@ -68,7 +80,7 @@
   *
   * @since 0.8.0
   */
- function getLinks(int $id)
+ function getLinkById(int $id)
  {
      $pdo = getPdoConnection();
 
@@ -120,44 +132,7 @@
      }
  }
 
- /**
-  *
-  * @return PDOStatement
-  *
-  * @since 0.8.0
-  */
- function loadPublicLinksStatement() : PDOStatement
- {
-     $pdo = getPdoConnection();
 
-     $sql = "
-     SELECT contents.title,
-         contents.tagline,
-         contents.uri,
-         contents.text,
-         UNIX_TIMESTAMP(contents.created_at) AS datetime,
-         contents_settings.tagline as settings_tagline,
-         contents_settings.text as settings_comment
-         FROM `contents`,
-             `contents_settings`
-         WHERE `contents`.`content_type` = 'link'
-             AND `contents_settings`.`content_type` = 'link'
-             AND `visibility` = 'true'
-             AND `flag` != 'trash'
-             ORDER BY `datetime` DESC
-     ";
-
-     try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute();
-
-         return $stmt;
-     } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
-     }
-
- }
 
  /**
   * Add link entry.

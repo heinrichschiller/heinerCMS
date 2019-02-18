@@ -27,13 +27,15 @@
  * SOFTWARE.
  */
 
- /**
-  *
-  * @return PDOStatement
-  *
-  * @since 0.8.0
-  */
- function loadDownloadsStatement() : PDOStatement
+/**
+ * Get all downloads entries from contents-table, where downloads flag
+ * is not marked as 'trash'.
+ *
+ * @return array
+ *
+ * @since 0.9.0
+ */
+function getAllDownloads(): array
  {
      $pdo = getPdoConnection();
 
@@ -51,10 +53,20 @@
      ";
 
      try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-         return $stmt;
+        $result = [];
+
+        while( $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+
+        if($result) {
+            return $result;
+        }
+
+        return array();
      } catch (PDOException $ex) {
          echo $ex->getMessage();
          exit();
@@ -69,7 +81,7 @@
   *
   * @since 0.8.0
   */
- function getDownloads(int $id) : array
+ function getDownload(int $id) : array
  {
      $pdo = getPdoConnection();
 
@@ -123,43 +135,6 @@
      } catch (PDOException $ex) {
          echo $ex->getMessage();
          exit();
-     }
- }
-
- /**
-  *
-  * @return PDOStatement
-  *
-  * @since 0.8.0
-  */
- function loadPublicDownloadsStatement() : PDOStatement
- {
-     $pdo = getPdoConnection();
-
-     $sql = "
-     SELECT `contents`.`title`,
-         `contents`.`text`,
-         `contents`.`path`,
-         `contents`.`filename`,
-         UNIX_TIMESTAMP(`contents`.`created_at`) AS datetime,
-         `contents_settings`.`tagline` as downloads_tagline,
-         `contents_settings`.`text` as downloads_text
-         FROM `contents`,
-             `contents_settings`
-             WHERE `contents`.`content_type` = 'download'
-                 AND `contents_settings`.`content_type` = 'download'
-                 AND `visibility` = 'true'
-                 AND `flag` != 'trash'
-                 ORDER BY `datetime` DESC
-     ";
-
-     try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute();
-
-         return $stmt;
-     } catch (PDOException $ex) {
-         echo $ex->getMessage();
      }
  }
 

@@ -27,165 +27,165 @@
  * SOFTWARE.
  */
 
- /**
-  *
-  * @return PDOStatement
-  */
- function loadPagesStatement() : PDOStatement
- {
-     $pdo = getPdoConnection();
+/**
+ *
+ * @return PDOStatement
+ */
+function loadPagesStatement() : PDOStatement
+{
+    $pdo = getPdoConnection();
 
-     $sql = "
-     SELECT `id`,
-         `title`,
-         UNIX_TIMESTAMP(`created_at`) AS datetime,
-         `visibility`
-         FROM `contents`
-         WHERE `content_type` = 'page'
+    $sql = "
+    SELECT `id`,
+        `title`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        `visibility`
+        FROM `contents`
+        WHERE `content_type` = 'page'
              AND `flag` = ''
              ORDER BY `created_at` DESC
-     ";
+    ";
 
-     try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-         return $stmt;
-     } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
-     }
- }
+        return $stmt;
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
 
- /**
-  * Get a page entry from table 'contents' by id.
-  *
-  * @param int $id
-  * @return array
-  *
-  * @since 0.8.0
-  */
- function getPage(int $id) : array
- {
-     $pdo = getPdoConnection();
+/**
+ * Get a page entry from table 'contents' by id.
+ *
+ * @param int $id
+ * @return array
+ *
+ * @since 0.8.0
+ */
+function getPage(int $id) : array
+{
+    $pdo = getPdoConnection();
 
-     $sql = "
-     SELECT `id`,
-         `title`,
-         `tagline`,
-         `text`,
-         UNIX_TIMESTAMP(`created_at`) AS datetime,
-         `visibility`
-         FROM `contents`
-         WHERE `content_type`= 'page'
-             AND `id` = :id
-     ";
+    $sql = "
+    SELECT `id`,
+        `title`,
+        `tagline`,
+        `text`,
+        UNIX_TIMESTAMP(`created_at`) AS datetime,
+        `visibility`
+        FROM `contents`
+        WHERE `content_type`= 'page'
+            AND `id` = :id
+    ";
 
-     try {
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindParam(':id', $id);
-         $stmt->execute();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
 
-         return $stmt->fetch(PDO::FETCH_ASSOC);
-     } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
-     }
- }
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
 
- /**
-  * Add a page entry into `contents` table.
-  *
-  * @param string $title      - Title of the page.
-  * @param string $tagline    - Tagline of the page.
-  * @param string $text       - Text of the page.
-  * @param string $visibility -
-  *
-  * @since 0.8.0
-  */
- function addPage(string $title,
-     string $tagline,
-     string $text,
-     string $visibility)
- {
-     $sql = "
-     INSERT INTO `contents` (
-         `title`,
-         `tagline`,
-         `text`,
-         `content_type`,
-         `visibility`
-         )
-         VALUES (
-             :title,
-             :tagline,
-             :text,
-             :content_type,
-             :visibility
-         )
-     ";
+/**
+ * Add a page entry into `contents` table.
+ *
+ * @param string $title      - Title of the page.
+ * @param string $tagline    - Tagline of the page.
+ * @param string $text       - Text of the page.
+ * @param string $visibility -
+ *
+ * @since 0.8.0
+ */
+function addPage(string $title,
+    string $tagline,
+    string $text,
+    string $visibility)
+{
+    $sql = "
+    INSERT INTO `contents` (
+        `title`,
+        `tagline`,
+        `text`,
+        `content_type`,
+        `visibility`
+        )
+        VALUES (
+            :title,
+            :tagline,
+            :text,
+            :content_type,
+            :visibility
+        )
+    ";
 
-     $pdo = getPdoConnection();
+    $pdo = getPdoConnection();
 
-     try {
-         $contentType = 'page';
+    try {
+        $contentType = 'page';
 
-         $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
-         $stmt->bindParam(':title', $title);
-         $stmt->bindParam(':tagline', $tagline);
-         $stmt->bindParam(':text', $text);
-         $stmt->bindParam(':content_type', $contentType);
-         $stmt->bindParam(':visibility', $visibility);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':text', $text);
+        $stmt->bindParam(':content_type', $contentType);
+        $stmt->bindParam(':visibility', $visibility);
 
-         $stmt->execute();
-     } catch (Exception $ex) {
-         echo $ex->getMessage();
-         exit();
-     }
+        $stmt->execute();
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
 
- }
+}
 
- /**
-  * Update page entry.
-  *
-  * @param int $id
-  * @param string $title
-  * @param string $text
-  * @param string $visibility
-  *
-  * @since 0.8.0
-  */
- function updatePage(int $id,
-     string $title,
-     string $tagline,
-     string $text,
-     string $visibility)
- {
-     $pdo = getPdoConnection();
+/**
+ * Update page entry.
+ *
+ * @param int $id
+ * @param string $title
+ * @param string $text
+ * @param string $visibility
+ *
+ * @since 0.8.0
+ */
+function updatePage(int $id,
+    string $title,
+    string $tagline,
+    string $text,
+    string $visibility)
+{
+    $pdo = getPdoConnection();
 
-     $sql = "
-     UPDATE `contents`
-         SET `title` = :title,
-             `tagline` = :tagline,
-             `text` = :text,
-             `visibility` = :visibility
-             WHERE `content_type` = 'page'
-                 AND `id` = :id
-     ";
+    $sql = "
+    UPDATE `contents`
+        SET `title` = :title,
+            `tagline` = :tagline,
+            `text` = :text,
+            `visibility` = :visibility
+            WHERE `content_type` = 'page'
+                AND `id` = :id
+    ";
 
-     try {
-         $stmt = $pdo->prepare($sql);
+    try {
+        $stmt = $pdo->prepare($sql);
 
-         $stmt->bindParam(':title', $title);
-         $stmt->bindParam(':tagline', $tagline);
-         $stmt->bindParam(':text', $text);
-         $stmt->bindParam(':visibility', $visibility);
-         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':tagline', $tagline);
+        $stmt->bindParam(':text', $text);
+        $stmt->bindParam(':visibility', $visibility);
+        $stmt->bindParam(':id', $id);
 
-         $stmt->execute();
-     } catch (PDOException $ex) {
-         echo $ex->getMessage();
-         exit();
-     }
- }
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}
