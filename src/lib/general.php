@@ -74,7 +74,7 @@ function bootstrap()
  *
  * @since 0.9.0
  */
-function parseRequest()
+function parseRequest(): array
 {
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $item = explode('/', $path, 3);
@@ -141,26 +141,6 @@ function getTranslation(string $language) : array
     return array_combine($arr_keys, $arr_values);
 }
 
-/**
- * Get an HTML template by name and outputs it.
- *
- * @param string $template - Name of a html-template.
- *
- * @return string html-template.
- */
-function getTemplate(string $template): string
-{
-    $module = parseRequest();
-
-    $file = CMS_MODULES_PATH . "$module[0]/template/$template";
-
-    if (file_exists($file)) {
-        return file_get_contents($file);
-    }
-
-    return 'No template found.';
-}
-
 function checkSystem()
 {
     if (!defined('DB_DRIVER') && !defined('DB_NAME')) {
@@ -174,35 +154,55 @@ function render(array $templates, array $data = [])
 {
     $html = '';
 
+    $settings = getGeneralSettings();
+    $arr_language = getTranslation($settings['lang_short']);
+
     foreach($templates as $key) {
         $html .= renderTemplate($key, $data);
     }
 
-    $settings = getGeneralSettings();
-    $arr_language = getTranslation($settings['lang_short']);
-
     return strtr($html, $arr_language);
 }
 
-function renderTemplate(string $template, array $data)
+/**
+ * Render the template.
+ * 
+ * @param string $tplName Name of a template.
+ * @param array  $data 
+ * 
+ * @since 2019.02
+ */
+function renderTemplate(string $tplName, array $data)
 {
-    $module = parseRequest();
-
-    $module = !empty($module['controller']) ? $module['controller'] : 'public';
-
-    $tmpltFile = CMS_MODULES_PATH . "$module/template/$template";
-
     extract($data);
+    extract(array('entry' => countEntries()));
+
+    $requestItems = parseRequest();
+
+    if($requestItems['action'] == 'goodbye' || $requestItems['action'] == 'login') {
+        $navbar = '';
+    } elseif (empty($requestItems['controller']) || $requestItems['controller'] == 'public') {
+        $navbar = 'public_navigation.phtml';
+    } else {
+        $navbar = 'admin_navigation.phtml';
+    }
 
     ob_start();
 
-    include CMS_SRC_PATH . 'template/main.phtml';
+    if (!empty($navbar)) {
+        $nav = CMS_TEMPLATES_PATH . $navbar;
+    }
+    
+    $module = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
+    $template = CMS_MODULES_PATH . "$module/template/$tplName";
 
-    //$htmlResponse = ob_get_contents();
+    include CMS_TEMPLATES_PATH . 'main.phtml';
 
-    ob_end_clean();
+    $htmlResponse = ob_get_contents();
 
-    //return $htmlResponse;
+    ob_clean();
+
+    return $htmlResponse;
 }
 
 function currentDatetime()

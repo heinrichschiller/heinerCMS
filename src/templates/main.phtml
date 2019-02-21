@@ -22,7 +22,7 @@
 		<link href="/public/assets/css/default.css" rel="stylesheet">
 	</head>
 	<body>
-
+        <?php (!empty($nav)) ? require $nav : ''; ?>
         <?php require $template; ?>
         <footer>
             <div class="footer-text">
