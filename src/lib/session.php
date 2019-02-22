@@ -41,6 +41,8 @@ function initSession()
  */
 function setSession()
 {
+    initSession();
+
     $settings = getGeneralSettings();
 
     $_SESSION['title']    = $settings['title'];
