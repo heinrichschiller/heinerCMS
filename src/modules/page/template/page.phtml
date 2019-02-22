@@ -1,0 +1,66 @@
+<div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+			<div class="panel">
+				<h4>
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"> {pages}</span>
+				</h4>
+			</div>
+
+			<?php if(isset($article['id'])): ?>
+			<form action="<?= BASE_URL;?>page/update/id/<?= $page['id']; ?>" method="post">
+			<?php else: ?>
+			<form action="<?= BASE_URL;?>page/add" method="post">
+			<?php endif; ?>
+
+				<div class="row">
+					<div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+						<div class="form-group">
+							<label for="ident">#&nbsp;</label><span><?= isset($page['id']) ? $page['id'] : ''; ?></span>
+							<input type="hidden" name="id" value="<?= isset($page['id']) ? $page['id'] : ''; ?>" class="form-control" id="ident">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+						<div class="form-group">
+							<p class="text-right">{date}: <?= isset($page['datetime']) ? strftime('%d.%m.%Y', $page['datetime']) : currentDatetime(); ?></p>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="title">{title}:</label>
+					<input type="text" name="title" value="<?= isset($page['title']) ? $page['title'] : ''; ?>" class="form-control" id="title" required>
+				</div>
+				<div class="form-group">
+					<label for="tagline">{tagline}:</label>
+					<input type="text" name="tagline" value="<?= isset($page['tagline']) ? $page['tagline'] : ''; ?>" class="form-control" id="tagline">
+				</div>
+				<div class="form-group">
+					<label for="text">{text}:</label>
+					<textarea name="text" rows="10" class="form-control" id="text"><?= isset($page['text']) ? $page['text'] : ''; ?></textarea>
+				</div>
+			</div>
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+					<div class="list-group spacing">
+						<h5>{settings}</h5>
+					</div>
+					<span>{published}?</span>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="customRadioInline1" name="visibility" value="true" class="custom-control-input" <?= (isset($page['visibility']) && $page['visibility'] === 'true') ? 'checked' : ''; ?>>
+						<label class="custom-control-label" for="customRadioInline1">{yes}</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="customRadioInline2" name="visibility" value="false" class="custom-control-input"  <?= (isset($article['visibility']) && $article['visibility'] === 'false' || !isset($article)) ? 'checked' : ''; ?>>
+						<label class="custom-control-label" for="customRadioInline2">{no}</label>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">{save}</button>
+						<span></span>
+						<button type="reset" class="btn btn-danger">{reset}</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
