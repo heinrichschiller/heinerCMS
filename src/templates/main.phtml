@@ -1,6 +1,6 @@
 <html>
-	<head lang="de">
-		<title>Heinrich-Schiller.de</title>
+	<head lang="<?= $settings['lang_short']; ?>">
+		<title><?= $settings['title']; ?></title>
 		<meta charset="utf8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -26,7 +26,7 @@
         <?php require $template; ?>
         <footer>
             <div class="footer-text">
-                <p>&copy; 2017 - 2019 Heinrich-Schiller.de</p>
+                <p>&copy; <?= $settings['footer']; ?></p>
                 <p><i>powered by heinerCMS</i></p>
             </div>
         </footer>
