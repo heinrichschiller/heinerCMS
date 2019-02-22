@@ -6,7 +6,7 @@
     	</div>
     </div>
     <div class="container">
-    	<?= $settings['text']; ?>
+    	<?= (!empty($settings['text'])) ? $settings['text'] : ''; ?>
     </div>
     <div class="container">
     <?php foreach ($articles as $article): ?>
@@ -17,7 +17,7 @@
                 		<span class="article-datetime"><?= strftime('%d.%m.%Y', $article['datetime']); ?></span>
                 	</li>
                 	<li class="list-group-item"><?= $article['text']; ?> ...</li>
-                	<li class="list-group-item"><a href="/../public/article/id/<?php echo $article['id']; ?>">weiterlesen</a></li>
+                	<li class="list-group-item"><a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">weiterlesen</a></li>
         		</ul>
         	</div>
         </div>
