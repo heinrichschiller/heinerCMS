@@ -143,7 +143,11 @@ function getTranslation(string $language) : array
 
 function checkSystem()
 {
-    if (!defined('DB_DRIVER') && !defined('DB_NAME')) {
+    if (version_compare(phpversion(), '7.0', '<')) {
+        return false;
+    }
+
+    if (!defined('DB_DRIVER') || !defined('DB_NAME')) {
         return false;
     }
 
@@ -176,6 +180,7 @@ function renderTemplate(string $tplName, array $data)
 {
     extract($data);
     extract(array('entry' => countEntries()));
+    extract(array('settings' => getGeneralSettings()));
 
     $requestItems = parseRequest();
 
