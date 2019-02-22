@@ -1,66 +1,61 @@
-<div class="content-container">
-<form action="<?= BASE_URL; ?>admin/update" method="post">
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<label for="title">{title}:</label>
-				<input type="text" name="title" value="<?= $settings['title']; ?>" class="form-control" id="title">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<label for="tagline">{tagline}:</label>
-				<input type="text" name="tagline" value="<?= $settings['tagline']; ?>" class="form-control" id="tagline">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-			<div class="form-group">
-				<label for="blogUrl">{blog}-URL:</label>
-				<input type="text" name="blogUrl" value="<?= $settings['blog_url']; ?>" class="form-control" id="blogUrl">
-			</div>
-		</div>
-	</div>
+<div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
     <div class="row">
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-             <div class="form-group">
-                <label for="sel1">{theme}:</label>
-                <span style="float: right">{dark_mode}: <input type="checkbox" name="darkmode" value="checked" aria-label="" onchange="this.form.submit();" disabled></span>
-                <select class="custom-select" id="sel1" name="theme" disabled>
-					<option selected>default</default>
-				</select>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-             <div class="form-group">
-                  <label for="sel1">{application_language}:</label>
-				  <select class="custom-select" id="sel1" name="language" onchange="this.form.submit();">
-				  <?php foreach($locales as $locale): ?>
-                  	  <option value="<?= $locale['short']; ?>" <?= ($locale['short'] == $_SESSION['language']) ? ' selected' : ''; ?>><?= $locale['lang']; ?></option>
-				  <?php endforeach; ?>
-                  </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<label for="discalimer">{footer}:</label>
-				<input type="text" name="footer" value="<?= $settings['footer']; ?>" class="form-control" id="footer">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+			<div class="panel">
+				<h4><img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {settings}</h4>
 			</div>
+			<form action="<?= BASE_URL; ?>admin/update" method="post">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label for="title">{title}:</label>
+							<input type="text" name="title" value="<?= $settings['title']; ?>" class="form-control" id="title">
+						</div>
+						<div class="form-group">
+							<label for="tagline">{tagline}:</label>
+							<input type="text" name="tagline" value="<?= $settings['tagline']; ?>" class="form-control" id="tagline">
+						</div>
+						<div class="form-group">
+							<label for="blogUrl">{blog}-URL:</label>
+							<input type="text" name="blogUrl" value="<?= $settings['blog_url']; ?>" class="form-control" id="blogUrl">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="sel1">{theme}:</label>
+							<span style="float: right">{dark_mode}: <input type="checkbox" name="darkmode" value="checked" aria-label="" onchange="this.form.submit();" disabled></span>
+							<select class="custom-select" id="sel1" name="theme" disabled>
+								<option selected>default</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="sel1">{application_language}:</label>
+							<select class="custom-select" id="sel1" name="language" onchange="this.form.submit();">
+							<?php foreach($locales as $locale): ?>
+								<option value="<?= $locale['short']; ?>" <?= ($locale['short'] == $_SESSION['language']) ? ' selected' : ''; ?>><?= $locale['lang']; ?></option>
+							<?php endforeach; ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label for="discalimer">{footer}:</label>
+							<input type="text" name="footer" value="<?= $settings['footer']; ?>" class="form-control" id="footer">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">{save}</button>
+							<span></span>
+							<button type="reset" class="btn btn-danger">{reset}</button>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-group">
-				<button type="submit" class="btn btn-success">{save}</button>
-				<span></span>
-				<button type="reset" class="btn btn-danger">{reset}</button>
-			</div>
-		</div>
-	</div>
-</form>
 </div>
