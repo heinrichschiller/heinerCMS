@@ -47,7 +47,7 @@ function editAction(array $params): string
     $pageItems = getPage($params['1']);
 
     $templateList = [
-        'edit_page.phtml'
+        'page.phtml'
     ];
 
     return render($templateList, array('page' => $pageItems));
@@ -58,7 +58,7 @@ function newAction(): string
     checkLogin();
 
     $templateList = [
-        'new_page.phtml'
+        'page.phtml'
     ];
 
     return render($templateList);
@@ -68,12 +68,14 @@ function addAction()
 {
     checkLogin();
 
-    $title      = filter_input(INPUT_POST, 'title');
-    $tagline    = filter_input(INPUT_POST, 'tagline');
-    $text       = filter_input(INPUT_POST, 'text');
-    $visibility = filter_input(INPUT_POST, 'visibility');
+    if(isPost()) {
+        $title      = filter_input(INPUT_POST, 'title');
+        $tagline    = filter_input(INPUT_POST, 'tagline');
+        $text       = filter_input(INPUT_POST, 'text');
+        $visibility = filter_input(INPUT_POST, 'visibility');
 
-    addPage($title, $tagline, $text, $visibility);
+        addPage($title, $tagline, $text, $visibility);
+    }
 
     redirectToPage();
 }
@@ -93,13 +95,15 @@ function updateAction()
 {
     checkLogin();
 
-    $id         = filter_input(INPUT_POST, 'id');
-    $title      = filter_input(INPUT_POST, 'title');
-    $tagline    = filter_input(INPUT_POST, 'tagline');
-    $text       = filter_input(INPUT_POST, 'text');
-    $visibility = filter_input(INPUT_POST, 'visibility');
-
-    updatePage($id, $title, $tagline, $text, $visibility);
+    if(isPost()) {
+        $id         = filter_input(INPUT_POST, 'id');
+        $title      = filter_input(INPUT_POST, 'title');
+        $tagline    = filter_input(INPUT_POST, 'tagline');
+        $text       = filter_input(INPUT_POST, 'text');
+        $visibility = filter_input(INPUT_POST, 'visibility');
+    
+        updatePage($id, $title, $tagline, $text, $visibility);
+    }
 
     redirectToPage();
 }
