@@ -14,84 +14,60 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>admin/index" class="list-group-item list-group-item-action active">
+                    <a href="<?= BASE_URL; ?>admin/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dashboard.svg"> {dashboard}
                     </a>
-                <li>
                     <span class="list-group-item active">
-                        ...
+                        {content}
                     </span>
-                <li class="nav-item active">
-                    <a href="<?= BASE_URL; ?>article/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>article/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>download/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>download/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>link/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>link/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>page/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>page/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document.svg"> {pages}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>upload/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>upload/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dropbox.svg"> {upload}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>wastebin/index" class="list-group-item list-group-item-action">
+
+                    <a href="<?= BASE_URL; ?>wastebin/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-trash.svg"> {wastebin}
                         <span class="badge badge-light"></span>
                     </a>
-                </li>
                 <span class="list-group-item active">
                     {settings}
                 </span>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>admin/settings" class="list-group-item list-group-item-action">
+
+                    <a href="<?= BASE_URL; ?>admin/settings" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {general}
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>article/settings" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>article/settings" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>download/settings" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>download/settings" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>link/settings" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>link/settings" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>user/index" class="list-group-item list-group-item-action">
+                    <a href="<?= BASE_URL; ?>user/index" class="nav-item nav-link">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-person-people.svg"> {user}
                     </a>
-                </li>
                 <span class="list-group-item active">
                     ...
                 </span>
-                <li class="nav-item">
                 	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
-                </li>
             </ul>
         </div>
     </nav>
