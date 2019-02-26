@@ -7,7 +7,7 @@
 				</h4>
 			</div>
 
-			<?php if(isset($article['id'])): ?>
+			<?php if(isset($page['id'])): ?>
 			<form action="<?= BASE_URL;?>page/update/id/<?= $page['id']; ?>" method="post">
 			<?php else: ?>
 			<form action="<?= BASE_URL;?>page/add" method="post">
