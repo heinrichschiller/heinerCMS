@@ -8,6 +8,10 @@ $(function() {
             window.location = href;
         }
     });
+
+    $("#selLang").change(function() {
+        $("form").submit();
+    });
 });
 
 /*$(document).ready(function() {
