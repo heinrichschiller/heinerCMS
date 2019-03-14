@@ -120,7 +120,7 @@ define('CMS_TEMPLATES_PATH', CMS_SRC_PATH . 'templates/');
  *
  * @since 0.8.0
  */
-define('DEBUG_MODE', false);
+define('DEBUG_MODE', true);
 
 /**
  * Set error handling for development and debugging on PDO connection. It can be set in
@@ -129,4 +129,4 @@ define('DEBUG_MODE', false);
  * @since 0.2.3
  * @var string Set the value on 'true' to activate the debug mode
  */
-define('PDO_DEBUG_MODE', false);
+define('PDO_DEBUG_MODE', true);
