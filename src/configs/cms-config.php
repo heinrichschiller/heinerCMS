@@ -29,9 +29,3 @@
 
  // content on this file will be creating by installer
  // for manual configuration, please read the README
-
-define('BASE_URL', 'http://heinercms.localhost/');
-
-define('DB_DRIVER', 'sqlite');
-
-define('DB_NAME', __DIR__ . '/../database/sqlite/heinercms.db');
