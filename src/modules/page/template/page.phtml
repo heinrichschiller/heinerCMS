@@ -49,7 +49,7 @@
 						<label class="custom-control-label" for="customRadioInline1">{yes}</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="customRadioInline2" name="visibility" value="false" class="custom-control-input"  <?= (isset($article['visibility']) && $article['visibility'] === 'false' || !isset($article)) ? 'checked' : ''; ?>>
+						<input type="radio" id="customRadioInline2" name="visibility" value="false" class="custom-control-input"  <?= (isset($page['visibility']) && $page['visibility'] === 'false' || !isset($page)) ? 'checked' : ''; ?>>
 						<label class="custom-control-label" for="customRadioInline2">{no}</label>
 					</div>
 				</div>
