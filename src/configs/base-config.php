@@ -27,23 +27,14 @@
  * SOFTWARE.
  */
 
-/****************************************************************************************
- * include files for heinerCMS
- ***************************************************************************************/
-
-include_once __DIR__ . '/cms-config.php';
-include_once ABS_PATH . 'src/lib/session.php';
-include_once ABS_PATH . 'src/lib/general.php';
-include_once ABS_PATH . 'src/lib/' . DB_DRIVER . '-db.php';
-
 /**
  *
  * The base configuration for heinerCMS.
  *
  * This file contains:
  *
- * *
- * *
+ * * some path constants
+ * * debugging options for heinerCMS
  *
  * @since 0.5.0
  *
@@ -108,9 +99,9 @@ define('CMS_MODULES_PATH', CMS_SRC_PATH . 'modules/');
  */
 define('CMS_TEMPLATES_PATH', CMS_SRC_PATH . 'templates/');
 
-/****************************************************************************************
+/*******************************************************************************
  * Debuging options for heinerCMS
- ***************************************************************************************/
+ ******************************************************************************/
 
 /**
  * Set error handling for development and debugging on heinerCMS.  It can be set in
@@ -120,7 +111,7 @@ define('CMS_TEMPLATES_PATH', CMS_SRC_PATH . 'templates/');
  *
  * @since 0.8.0
  */
-define('DEBUG_MODE', true);
+define('DEBUG_MODE', false);
 
 /**
  * Set error handling for development and debugging on PDO connection. It can be set in
@@ -129,4 +120,4 @@ define('DEBUG_MODE', true);
  * @since 0.2.3
  * @var string Set the value on 'true' to activate the debug mode
  */
-define('PDO_DEBUG_MODE', true);
+define('PDO_DEBUG_MODE', false);
