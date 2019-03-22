@@ -107,11 +107,18 @@ function isPost()
 
 function isGet()
 {
-    if(count($_GET) > 0) {
+    if(!empty($_GET)) {
         return true;
     }
 
     return false;
+}
+
+function isFile()
+{
+    if(!empty($_FILE)) {
+        return true;
+    }
 }
 
 /**
@@ -170,10 +177,10 @@ function render(array $templates, array $data = [])
 
 /**
  * Render the template.
- * 
+ *
  * @param string $tplName Name of a template.
- * @param array  $data 
- * 
+ * @param array  $data
+ *
  * @since 2019.02
  */
 function renderTemplate(string $tplName, array $data)
@@ -197,7 +204,7 @@ function renderTemplate(string $tplName, array $data)
     if (!empty($navbar)) {
         $nav = CMS_TEMPLATES_PATH . $navbar;
     }
-    
+
     $module = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
     $template = CMS_MODULES_PATH . "$module/template/$tplName";
 
