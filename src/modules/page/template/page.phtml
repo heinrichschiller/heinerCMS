@@ -36,7 +36,9 @@
 				</div>
 				<div class="form-group">
 					<label for="text">{text}:</label>
-					<textarea name="text" rows="10" class="form-control" id="text"><?= isset($page['text']) ? $page['text'] : ''; ?></textarea>
+					<textarea name="text" id="texteditor">
+						<?= isset($page['text']) ? $page['text'] : ''; ?>
+					</textarea>
 				</div>
 			</div>
 				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">

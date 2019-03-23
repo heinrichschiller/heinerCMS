@@ -40,7 +40,9 @@
             	</div>
             	<div class="form-group">
             		<label for="comment">{text}:</label>
-            		<textarea name="text" rows="10" class="form-control" id="text"><?= isset($link['text']) ? $link['text'] : ''; ?></textarea>
+            		<textarea name="text" id="texteditor">
+                        <?= isset($link['text']) ? $link['text'] : ''; ?>
+                    </textarea>
             	</div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
