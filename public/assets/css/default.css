@@ -145,8 +145,9 @@ footer {
 	height: 24px;
 }
 
+.language-delphi,
 .language-php {
-	border: 1px dotted grey;
+	border: 1px solid #ddd;
 	padding: 5px;
-	background-color: #eee;
+	background-color: #fafafa;
 }
