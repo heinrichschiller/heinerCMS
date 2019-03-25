@@ -204,6 +204,9 @@ function getArticle(int $id) : array
     SELECT `id`,
         `title`,
         `text`,
+        (SELECT (`firstname` || ' ' || `lastname`) as author
+            FROM `users`
+            WHERE `users`.`id` = `contents`.`author_id`) as author,
         strftime('%s', `created_at`) AS datetime,
         `visibility`
         FROM `contents`

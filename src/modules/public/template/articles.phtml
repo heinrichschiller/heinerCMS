@@ -14,10 +14,13 @@
         	<div class="col-md-12">
         		<ul class="list-group">
                 	<li class="list-group-item public"><?= $article['title']; ?>
-                		<span class="article-datetime"><?= strftime('%d.%m.%Y', $article['datetime']); ?></span>
+                		<span class="article-datetime">
+                            <label>{author}:</label>&nbsp;<?= $article['author']; ?>&nbsp;
+                            <?= strftime('%d.%m.%Y', $article['datetime']); ?>
+                        </span>
                 	</li>
                 	<li class="list-group-item"><?= $article['text']; ?> ...</li>
-                	<li class="list-group-item"><a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">weiterlesen</a></li>
+                	<li class="list-group-item"><a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a></li>
         		</ul>
         	</div>
         </div>

@@ -42,6 +42,9 @@ function getCurrentArticle() : array
     SELECT `id`,
         `title`,
         substr(`text`, 0, 2000) as text,
+        (SELECT (`firstname` || ' ' || `lastname`) as author
+            FROM `users`
+            WHERE `users`.`id` = `contents`.`author_id`) as author,
         strftime('%s', `created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article'
@@ -79,6 +82,9 @@ function getPublicArticles(): array
     SELECT `id`,
         `title`,
         substr(`text`, 0, 1000) as text,
+        (SELECT (`firstname` || ' ' || `lastname`) as author
+            FROM `users`
+            WHERE `users`.`id` = `contents`.`author_id`) as author,
         strftime('%s', `created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article'
@@ -119,6 +125,9 @@ function getArticleDetailed(int $id) : array
     $sql = "
     SELECT `title`,
         `text`,
+        (SELECT (`firstname` || ' ' || `lastname`) as author
+            FROM `users`
+            WHERE `users`.`id` = `contents`.`author_id`) as author,
         strftime('%s', `created_at`) AS datetime
         FROM `contents`
         WHERE `content_type` = 'article'
@@ -126,6 +135,7 @@ function getArticleDetailed(int $id) : array
             AND `flag` != 'trash'
             AND `id` = :id
     ";
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);

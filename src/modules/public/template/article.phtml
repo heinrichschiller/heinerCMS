@@ -1,5 +1,8 @@
 <div class="container article-container">
-    <h5><?php echo StrFTime('%d.%m.%Y %H:%M', $article['datetime']);?></h5>
-    <h2><?php echo $article['title'];?></h2>
-    <?php echo $article['text'];?>
+    <h5>
+        <label>{author}:</label>&nbsp;<?= $article['author'];?>&nbsp;
+        <?= strftime('%d.%m.%Y %H:%M', $article['datetime']);?>
+    </h5>
+    <h2><?= $article['title'];?></h2>
+    <?= $article['text'];?>
 </div>
