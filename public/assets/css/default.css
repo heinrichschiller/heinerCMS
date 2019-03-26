@@ -30,9 +30,9 @@ footer {
 }
 
 .jumbotron {
-	margin-top: 0.8em;
 	background-image: url("https://heinrich-schiller.de/public/assets/img/header.jpg");
 	background-repeat: no-repeat;
+	border-radius: 0px;
 	height: 360px;
 	color: #fefefe;
 }
