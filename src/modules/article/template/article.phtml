@@ -11,7 +11,7 @@
             <form action="<?= BASE_URL;?>article/add" method="post">
             <?php endif; ?>
 
-                <div class="row">
+                <div class="row id-bar">
                     <div class="col-2 col-sm-3 col-md-3 col-lg-3 col-xl-9">
                 		<div class="form-group">
                 			<label for="ident">#&nbsp;</label><span><?= isset($article['id']) ? $article['id'] : '{new}'; ?></span>
@@ -34,11 +34,16 @@
                         <?= isset($article['text']) ? $article['text'] : ''; ?>
                     </textarea>
         		</div>
-                </div>
+            </div>
+            <!-- sidebar -->
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-                    <div class="list-group spacing">
-                        <h5>{settings}</h5>
+            		<div class="form-group">
+            			<label for="ident">#&nbsp;</label><span><?= isset($article['id']) ? $article['id'] : '{new}'; ?></span>
+                		<input type="hidden" name="id" value="<?= isset($article['id']) ? $article['id'] : ''; ?>" class="form-control" id="ident">
                 	</div>
+                    <div class="form-group">
+                        <button type="button" id="btn-preview" class="btn btn-light" data-href="<?= BASE_URL ?>public/article/preview">{preview}</button>
+                    </div>
         			<span>{published}?</span>
                 	<div class="custom-control custom-radio custom-control-inline">
                   		<input type="radio" id="customRadioInline1" name="visibility" value="true" class="custom-control-input" <?= (isset($article['visibility']) && $article['visibility'] === 'true') ? 'checked' : ''; ?>>
@@ -52,10 +57,15 @@
                         <span>{published_at}:</span>
                     </div>
                     <div class="form-group">
+                        <span>{created_at}:</span>
+                		<span class="elem-pos-right"><?= isset($article['datetime']) ? strftime('%d.%m.%Y', $article['datetime']) : currentDatetime(); ?></span>
+                	</div>
+                    <div class="form-group">
                         <span>{updated_at}:</span>
                     </div>
                     <div class="form-group">
-                        <span>{author}:</span>&nbsp;<?= $article['author']; ?>
+                        <span>{author}:</span>
+                        <span class="elem-pos-right"><?= $article['author']; ?></span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">

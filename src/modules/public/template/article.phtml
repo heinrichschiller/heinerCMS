@@ -1,7 +1,7 @@
 <div class="container article-container">
     <h5>
         <label>{author}:</label>&nbsp;<?= $article['author'];?>&nbsp;
-        <?= strftime('%d.%m.%Y %H:%M', $article['datetime']);?>
+        <?= (isset($article['datetime'])) ? strftime('%d.%m.%Y %H:%M', $article['datetime']) : currentDatetime(); ?>
     </h5>
     <h2><?= $article['title'];?></h2>
     <?= $article['text'];?>

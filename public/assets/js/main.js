@@ -14,6 +14,17 @@ $(function() {
     });
 });
 
+$("#btn-preview").click(function() {
+    var href = $(this).data("href");
+
+    if(href) {
+        $('form').attr('action', href);
+        $('form').attr('target', '_blank');
+        $('form').submit();
+    }
+    
+});
+
 /*$(document).ready(function() {
     $("#dialog").dialog({
       autoOpen: false,
