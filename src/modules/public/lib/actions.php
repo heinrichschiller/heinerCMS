@@ -48,7 +48,17 @@ function indexAction(): string
 
 function articleAction(array $params): string
 {
-    $articleItems = getArticleDetailed($params[1]);
+    if($params[0] == 'preview') {
+
+        $articleItems = [
+            'title'    => $_POST['title'],
+            'text'     => $_POST['text'],
+            'author'   => ''
+        ];
+
+    } else {
+        $articleItems = getArticleDetailed($params[1]);
+    }
 
     $templateList = [
         'article.phtml'
