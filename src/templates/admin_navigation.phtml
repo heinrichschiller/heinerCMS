@@ -1,74 +1,74 @@
-<div class="container-fluid">
-    <nav class="navbar navbar-light bg-light nav-pc">
-        <a class="navbar-brand" href="<?= BASE_URL; ?>admin/index">heinerCMS - {administration}</a>
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-            	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
-            </li>
+<nav class="navbar navbar-light bg-light nav-pc">
+    <a class="navbar-brand" href="<?= BASE_URL; ?>admin/index">heinerCMS - {administration}</a>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+        	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
+        </li>
+    </ul>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light nav-mobile">
+    <a class="navbar-brand" href="#">heinerCMS - {administration}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <a href="<?= BASE_URL; ?>admin/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dashboard.svg"> {dashboard}
+            </a>
+            <span class="list-group-item active">
+                {content}
+            </span>
+            <a href="<?= BASE_URL; ?>article/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+                <span class="badge badge-light"></span>
+            </a>
+            <a href="<?= BASE_URL; ?>download/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+                <span class="badge badge-light"></span>
+            </a>
+            <a href="<?= BASE_URL; ?>link/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+                <span class="badge badge-light"></span>
+            </a>
+            <a href="<?= BASE_URL; ?>page/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document.svg"> {pages}
+                <span class="badge badge-light"></span>
+            </a>
+            <a href="<?= BASE_URL; ?>upload/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dropbox.svg"> {upload}
+                <span class="badge badge-light"></span>
+            </a>
+                <a href="<?= BASE_URL; ?>wastebin/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-trash.svg"> {wastebin}
+                <span class="badge badge-light"></span>
+            </a>
+            <span class="list-group-item active">
+                {settings}
+            </span>
+            <a href="<?= BASE_URL; ?>admin/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {general}
+            </a>
+            <a href="<?= BASE_URL; ?>article/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+            </a>
+            <a href="<?= BASE_URL; ?>download/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+            </a>
+            <a href="<?= BASE_URL; ?>link/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+            </a>
+            <a href="<?= BASE_URL; ?>user/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-person-people.svg"> {user}
+            </a>
+            <span class="list-group-item active">
+                ...
+            </span>
+        	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
         </ul>
-    </nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-mobile">
-        <a class="navbar-brand" href="#">heinerCMS - {administration}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <a href="<?= BASE_URL; ?>admin/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dashboard.svg"> {dashboard}
-                </a>
-                <span class="list-group-item active">
-                    {content}
-                </span>
-                <a href="<?= BASE_URL; ?>article/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
-                    <span class="badge badge-light"></span>
-                </a>
-                <a href="<?= BASE_URL; ?>download/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
-                    <span class="badge badge-light"></span>
-                </a>
-                <a href="<?= BASE_URL; ?>link/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
-                    <span class="badge badge-light"></span>
-                </a>
-                <a href="<?= BASE_URL; ?>page/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document.svg"> {pages}
-                    <span class="badge badge-light"></span>
-                </a>
-                <a href="<?= BASE_URL; ?>upload/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dropbox.svg"> {upload}
-                    <span class="badge badge-light"></span>
-                </a>
-                    <a href="<?= BASE_URL; ?>wastebin/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-trash.svg"> {wastebin}
-                    <span class="badge badge-light"></span>
-                </a>
-                <span class="list-group-item active">
-                    {settings}
-                </span>
-                <a href="<?= BASE_URL; ?>admin/settings" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {general}
-                </a>
-                <a href="<?= BASE_URL; ?>article/settings" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
-                </a>
-                <a href="<?= BASE_URL; ?>download/settings" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
-                </a>
-                <a href="<?= BASE_URL; ?>link/settings" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
-                </a>
-                <a href="<?= BASE_URL; ?>user/index" class="nav-item nav-link">
-                    <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-person-people.svg"> {user}
-                </a>
-                <span class="list-group-item active">
-                    ...
-                </span>
-            	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
-            </ul>
-        </div>
-    </nav>
+    </div>
+</nav>
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
             <div class="sidebar-sticky">
