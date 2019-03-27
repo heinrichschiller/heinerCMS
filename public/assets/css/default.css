@@ -24,6 +24,7 @@ footer {
 
 @media screen and (min-width: 768px)
 {
+	.id-bar,
 	.nav-mobile {
 		display: none;
 	}
@@ -59,6 +60,10 @@ footer {
 .back-to-mainpage {
 	text-align: center;
 	margin-top: 1em;
+}
+
+.elem-pos-right {
+	float: right;
 }
 
 .text-center {
