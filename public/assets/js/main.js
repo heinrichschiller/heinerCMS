@@ -15,14 +15,19 @@ $(function() {
 });
 
 $("#btn-preview").click(function() {
+    var action = $('form').attr('action')
     var href = $(this).data("href");
 
     if(href) {
         $('form').attr('action', href);
         $('form').attr('target', '_blank');
+
         $('form').submit();
+
+        $('form').attr('action', action);
+        $('form').removeAttr('target');
     }
-    
+
 });
 
 /*$(document).ready(function() {
