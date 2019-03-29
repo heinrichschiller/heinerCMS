@@ -65,7 +65,7 @@
                     </div>
                     <div class="form-group">
                         <span>{author}:</span>
-                        <span class="elem-pos-right"><?= $article['author']; ?></span>
+                        <span class="elem-pos-right"><?= isset($article['author']) ? $article['author'] : ''; ?></span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
