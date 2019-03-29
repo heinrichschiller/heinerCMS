@@ -17,7 +17,11 @@
                     <?= strftime('%d.%m.%Y', $article['datetime']); ?>
                 </div>
             	<div>
-                    <h2><?= $article['title']; ?></h2>
+                    <h2>
+						<a class="content-header" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">
+							<?= $article['title']; ?>
+						</a>
+					</h2>
                 </div>
             	<div class="lead">
                     <?= $article['text']; ?> ...</div>

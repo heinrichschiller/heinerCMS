@@ -113,6 +113,15 @@ footer {
 	font-weight: 400 !important;
 }
 
+.content-header {
+	color: black;
+}
+
+.content-header:hover {
+	color: black;
+	text-decoration: underline;
+}
+
 .content-section {
 	padding-top: 0.4em;
 }

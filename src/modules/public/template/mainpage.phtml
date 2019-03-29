@@ -19,7 +19,9 @@
                     </span>
             	</div>
             	<h2>
-                    <?= $article['title']; ?>
+                    <a class="content-header" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">
+						<?= $article['title']; ?>
+					</a>
                 </h2>
             	<div>
             		<?= $article['text']; ?> ...
