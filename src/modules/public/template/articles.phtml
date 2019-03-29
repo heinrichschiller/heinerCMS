@@ -1,30 +1,32 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="display-4">{article}</h1>
+		<p class="lead"><?= $settings['tagline']; ?></p>
+	</div>
+</div>
+<div class="container">
+	<?= (!empty($settings['text'])) ? $settings['text'] : ''; ?>
+</div>
 <div class="container-fluid">
-    <div class="jumbotron">
-    	<div class="container">
-    		<h1 class="display-4">{article}</h1>
-    		<p class="lead"><?= $settings['tagline']; ?></p>
+<?php foreach ($articles as $article): ?>
+	<div class="row">
+    	<div class="col-md-12">
+    		<div class="container">
+                <div>
+                    <label>{author}:</label>&nbsp;<?= $article['author']; ?>&nbsp;
+                    <?= strftime('%d.%m.%Y', $article['datetime']); ?>
+                </div>
+            	<div>
+                    <h2><?= $article['title']; ?></h2>
+                </div>
+            	<div class="lead">
+                    <?= $article['text']; ?> ...</div>
+            	<div>
+                    <a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
+                </div>
+    		</div>
     	</div>
     </div>
-    <div class="container">
-    	<?= (!empty($settings['text'])) ? $settings['text'] : ''; ?>
-    </div>
-    <div class="container">
-    <?php foreach ($articles as $article): ?>
-    	<div class="row">
-        	<div class="col-md-12">
-        		<ul class="list-group">
-                	<li class="list-group-item public"><?= $article['title']; ?>
-                		<span class="article-datetime">
-                            <label>{author}:</label>&nbsp;<?= $article['author']; ?>&nbsp;
-                            <?= strftime('%d.%m.%Y', $article['datetime']); ?>
-                        </span>
-                	</li>
-                	<li class="list-group-item"><?= $article['text']; ?> ...</li>
-                	<li class="list-group-item"><a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a></li>
-        		</ul>
-        	</div>
-        </div>
-        <br>
-    <?php endforeach; ?>
-    </div>
+    <br>
+<?php endforeach; ?>
 </div>
