@@ -30,6 +30,11 @@ footer {
 	}
 }
 
+.sidebar-bg-light {
+	background-color: #f8f9fa;
+	height: 100vh;
+}
+
 .jumbotron {
 	background-image: url("https://heinrich-schiller.de/public/assets/img/header.jpg");
 	background-repeat: no-repeat;
