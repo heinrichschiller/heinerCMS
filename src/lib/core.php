@@ -76,12 +76,14 @@ function bootstrap()
  */
 function parseRequest(): array
 {
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    $item = explode('/', $path, 3);
+    $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-    $controller = !empty($item[0]) ? $item[0] : 'public';
-    $action     = !empty($item[1]) ? $item[1] : 'index';
-    $params     = !empty($item[2]) ? $item[2] : array();
+    $url = filter_var($url, FILTER_SANITIZE_URL);
+    $urlItems = explode('/', $url, 3);
+
+    $controller = !empty($urlItems[0]) ? $urlItems[0] : 'public';
+    $action     = !empty($urlItems[1]) ? $urlItems[1] : 'index';
+    $params     = !empty($urlItems[2]) ? $urlItems[2] : array();
 
     if(!empty($params)) {
         $params = explode('/', $params);
@@ -119,6 +121,8 @@ function isFile()
     if(!empty($_FILE)) {
         return true;
     }
+
+    return false;
 }
 
 /**
@@ -217,25 +221,9 @@ function renderTemplate(string $tplName, array $data)
     return $htmlResponse;
 }
 
-function currentDatetime()
+function getCurrentDatetime()
 {
     return strftime('%d.%m.%Y %H:%M', time());
-}
-
-/**
- * Strip a HTML and PHP tags from a string and convert convert special characters
- * to HTML entities.
- *
- * @param string $data
- * @param string $encoding
- *
- * @return string - Clean string.
- *
- * @since 0.10.0
- */
-function escapeString(string $data, string $encoding = 'UTF-8'): string
-{
-    return htmlspecialchars(strip_tag($data), ENT_QUOTES | ENT_HTML5, $encoding);
 }
 
 function error404()

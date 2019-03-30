@@ -37,7 +37,7 @@ include_once __DIR__ . '/configs/base-config.php';
 
 include_once ABS_PATH . 'src/lib/session.php';
 
-include_once ABS_PATH . 'src/lib/general.php';
+include_once ABS_PATH . 'src/lib/core.php';
 
 
 if(defined('DB_DRIVER')) {
