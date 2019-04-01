@@ -54,5 +54,3 @@ if(!defined('USER_LIB_PATH')) {
 include USER_LIB_PATH . DB_DRIVER . '-functions.php';
 include USER_LIB_PATH . 'actions.php';
 include USER_LIB_PATH . 'functions.php';
-include USER_LIB_PATH . 'validate.php';
-include CMS_LIB_PATH . 'validate.php';
