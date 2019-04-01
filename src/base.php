@@ -29,19 +29,26 @@
 
 /*******************************************************************************
  * include files for heinerCMS
+ *
+ * The order of the included files is very important, as each included file
+ * needs functions of the previously included file.
  ******************************************************************************/
 
 include_once __DIR__ . '/configs/cms-config.php';
 
 include_once __DIR__ . '/configs/base-config.php';
 
-include_once ABS_PATH . 'src/lib/session.php';
+include_once CMS_LIB_PATH . 'filters.php';
 
-include_once ABS_PATH . 'src/lib/core.php';
+include_once CMS_LIB_PATH . 'validations.php';
+
+include_once CMS_LIB_PATH . 'session.php';
+
+include_once CMS_LIB_PATH . 'core.php';
 
 
 if(defined('DB_DRIVER')) {
-    include_once ABS_PATH . 'src/lib/' . DB_DRIVER . '-db.php';
+    include_once CMS_LIB_PATH . DB_DRIVER . '-db.php';
 } else {
     echo 'cms-config is empty';
     die();
