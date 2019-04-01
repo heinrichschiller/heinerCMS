@@ -83,12 +83,12 @@ function logout()
     header('Location:' . BASE_URL . 'user/goodbye');
 }
 
-function login(string $username, string $email)
+function login(string $email, string $password)
 {
     initSession();
     setSession();
 
-    $user = authUser($username, $email);
+    $user = authUser($email, $password);
 
     if($user) {
         $_SESSION['email'] = $user['email'];
