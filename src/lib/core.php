@@ -78,7 +78,7 @@ function parseRequest(): array
 {
     $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-    $url = filter_var($url, FILTER_SANITIZE_URL);
+    $url = filterSanitizeUrl($url);
     $urlItems = explode('/', $url, 3);
 
     $controller = !empty($urlItems[0]) ? $urlItems[0] : 'public';
