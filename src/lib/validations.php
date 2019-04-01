@@ -26,3 +26,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+/**
+ * Validate password.
+ *
+ * @param string $password - Password
+ *
+ * @return boolean
+ *
+ * @since 0.11.0
+ */
+function validatePassword(string $password): boolean
+{
+    if (strlen($password) >= 5) {
+        return true;
+    }
+
+    return false;
+}
