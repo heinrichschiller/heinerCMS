@@ -269,13 +269,13 @@ function countEntries()
     $pdo = getPdoConnection();
 
     $sql = "
-    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash' AND `visibility` = 'true'
+    SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'article' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash' AND `visibility` = 'true'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'download' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash' AND `visibility` = 'true'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'link' AND `flag` != 'trash'
         UNION ALL
-        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash' AND `visibility` = 'true'
+        SELECT COUNT(`id`) FROM `contents` WHERE `content_type` = 'page' AND `flag` != 'trash'
         UNION ALL
         SELECT COUNT(*) as result
             FROM `contents`
