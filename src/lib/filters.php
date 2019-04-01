@@ -27,19 +27,58 @@
  * SOFTWARE.
  */
 
- /**
-  * Strip a HTML and PHP tags from a string and convert convert special characters
-  * to HTML entities.
-  *
-  * @param string $data
-  * @param string $encoding
-  *
-  * @return string - Clean string.
-  *
-  * @since 0.10.0
-  */
- function escapeString(string $data, string $encoding = 'UTF-8'): string
- {
-     return htmlspecialchars(strip_tag($data), ENT_QUOTES | ENT_HTML5, $encoding);
- }
- 
+function filterSanitizeInt(int $iNum): int
+{
+    return filter_var($iNum, FILTER_SANITIZE_NUMBER_INT);
+}
+
+function filterValidateInt(int $iNum): int
+{
+    return filter_var($iNum, FILTER_VALIDATE_INT);
+}
+
+function filterSanitizeFloat(float $fNum): float
+{
+    return filter_var($fNum, FILTER_SANITIZE_NUMBER_FLOAT);
+}
+
+function filterValidateFloat(float $fNum): float
+{
+    return filter_var($fNum, FILTER_VALIDATE_FLOAT);
+}
+
+function filterSanitizeEmail(string $email): string
+{
+    return filter_var($email, FILTER_SANITIZE_EMAIL);
+}
+
+function filterValidateEmail(string $email): string
+{
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function filterSanitizeUrl(string $url): string
+{
+    return filter_var($url, FILTER_SANITIZE_URL);
+}
+
+function filterValidateUrl(string $url): string
+{
+    return filter_var($url, FILTER_VALIDATE_URL);
+}
+
+/**
+ * Strip a HTML and PHP tags from a string and convert convert special characters
+ * to HTML entities.
+ *
+ * @param string $data
+ * @param string $encoding
+ *
+ * @return string - Clean string.
+ *
+ * @since 0.10.0
+ */
+function escapeString(string $data, string $encoding = 'UTF-8'): string
+{
+    return htmlspecialchars(strip_tag($data), ENT_QUOTES | ENT_HTML5, $encoding);
+}
