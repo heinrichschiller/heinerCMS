@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-10 col-sm-9 col-md-9 col-lg-9 col-xl-3">
                 		<div class="form-group">
-                			<p class="text-right">{date}: <?= isset($article['datetime']) ? strftime('%d.%m.%Y', $article['datetime']) : currentDatetime(); ?></p>
+                			<p class="text-right">{date}: <?= isset($article['datetime']) ? strftime('%d.%m.%Y', $article['datetime']) : getCurrentDatetime(); ?></p>
                 		</div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <span>{created_at}:</span>
-                		<span class="elem-pos-right"><?= isset($article['datetime']) ? strftime('%d.%m.%Y', $article['datetime']) : currentDatetime(); ?></span>
+                		<span class="elem-pos-right"><?= isset($article['datetime']) ? strftime('%d.%m.%Y', $article['datetime']) : getCurrentDatetime(); ?></span>
                 	</div>
                     <div class="form-group">
                         <span>{updated_at}:</span>
