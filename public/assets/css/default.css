@@ -24,6 +24,15 @@ footer {
 
 @media screen and (min-width: 768px)
 {
+	.nav-pc {
+		margin-bottom: 0.4em;
+	}
+
+	.sidebar-sticky {
+		position: relative;
+		top: -0.4em;
+	}
+
 	.id-bar,
 	.nav-mobile {
 		display: none;
