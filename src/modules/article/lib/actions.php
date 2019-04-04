@@ -37,7 +37,7 @@ function indexAction(): string
         'articles.phtml'
     ];
 
-    return render($templateList, array('articles' => $articleList));
+    return render($templateList, ['articles' => $articleList]);
 }
 
 function newAction(): string
@@ -61,7 +61,7 @@ function editAction(array $params): string
         'article.phtml'
     ];
 
-    return render($templateList, array('article' => $articleList));
+    return render($templateList, ['article' => $articleList]);
 }
 
 function settingsAction(): string
@@ -74,7 +74,7 @@ function settingsAction(): string
         'article_settings.phtml'
     ];
 
-    return render($templateList, array('settings' => $settings));
+    return render($templateList, ['settings' => $settings]);
 }
 
 function updatesettingsAction()

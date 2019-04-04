@@ -37,7 +37,7 @@ function indexAction(): string
         'links.phtml'
     ];
 
-    return render($templateList, array('links' => $linkList));
+    return render($templateList, ['links' => $linkList]);
 }
 
 function editAction(array $params): string
@@ -50,7 +50,7 @@ function editAction(array $params): string
         'link.phtml'
     ];
 
-    return render($templateList, array('link' => $linkItems));
+    return render($templateList, ['link' => $linkItems]);
 }
 
 function newAction(): string
@@ -74,7 +74,7 @@ function settingsAction(): string
         'link-settings.phtml'
     ];
 
-    return render($templateList, array('settings' => $settingsItems));
+    return render($templateList, ['settings' => $settingsItems]);
 }
 
 function updatesettingsAction()

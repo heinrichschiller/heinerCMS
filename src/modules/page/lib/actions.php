@@ -37,7 +37,7 @@ function indexAction(): string
         'pages.phtml'
     ];
 
-    return render($templateList, array('pages' => $pageList));
+    return render($templateList, ['pages' => $pageList]);
 }
 
 function editAction(array $params): string
@@ -50,7 +50,7 @@ function editAction(array $params): string
         'page.phtml'
     ];
 
-    return render($templateList, array('page' => $pageItems));
+    return render($templateList, ['page' => $pageItems]);
 }
 
 function newAction(): string
@@ -101,7 +101,7 @@ function updateAction()
         $tagline    = filter_input(INPUT_POST, 'tagline');
         $text       = filter_input(INPUT_POST, 'text');
         $visibility = filter_input(INPUT_POST, 'visibility');
-    
+
         updatePage($id, $title, $tagline, $text, $visibility);
     }
 

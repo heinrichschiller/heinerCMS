@@ -37,7 +37,7 @@ function indexAction(): string
         'downloads.phtml'
     ];
 
-    return render($templateList, array('downloads'=> $downloadList));
+    return render($templateList, ['downloads' => $downloadList]);
 }
 
 function editAction(array $params): string
@@ -50,7 +50,7 @@ function editAction(array $params): string
         'download.phtml'
     ];
 
-    return render($templateList, array('download' => $downloadList));
+    return render($templateList, ['download' => $downloadList]);
 }
 
 function newAction(): string
@@ -74,7 +74,7 @@ function settingsAction(): string
         'download-settings.phtml'
     ];
 
-    return render($templateList, array('settings' => $settingsList));
+    return render($templateList, ['settings' => $settingsList]);
 }
 
 function addAction()

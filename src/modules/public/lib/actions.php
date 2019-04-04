@@ -64,7 +64,7 @@ function articleAction(array $params): string
         'article.phtml'
     ];
 
-    return render($templateList, array('article' => $articleItems));
+    return render($templateList, ['article' => $articleItems]);
 }
 
 function articlesAction(): string
