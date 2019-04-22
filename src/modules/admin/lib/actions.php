@@ -92,3 +92,14 @@ function updateAction()
 
     redirectToAdmin();
 }
+
+function impressAction()
+{
+    checkLogin();
+
+    $templateList = [
+        'impress'  => 'impress.phtml'
+    ];
+
+    return render($templateList);
+}
