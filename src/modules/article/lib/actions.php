@@ -97,8 +97,9 @@ function addAction()
         $title      = filter_input(INPUT_POST, 'title');
         $content    = filter_input(INPUT_POST, 'text');
         $visibility = filter_input(INPUT_POST, 'visibility');
+        $userId     = $_SESSION['id'];
 
-        addArticle($title, $content, $visibility);
+        addArticle($title, $content, $visibility, $userId);
     }
 
     redirectToArticle();
@@ -123,8 +124,9 @@ function updateAction()
     $title      = filter_input(INPUT_POST, 'title');
     $content    = filter_input(INPUT_POST, 'text');
     $visibility = filter_input(INPUT_POST, 'visibility');
+    $userId     = $_SESSION['id'];
 
-    updateArticle($id, $title, $content, $visibility);
+    updateArticle($id, $title, $content, $userId, $visibility);
 
     redirectToArticle();
 }

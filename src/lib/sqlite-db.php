@@ -327,3 +327,32 @@ function loadFromTable(string $table, int $count)
         exit();
     }
 }
+
+/**
+ * Get the full name of the current user who is logged in.
+ *
+ * @return string - Full name of the user.
+ *
+ * @since 0.12.0
+ */
+function getCurrentAuthor()
+{
+    $pdo = getPdoConnection();
+
+    $sql = "
+    SELECT (`firstname` || ' ' || `lastname`) as author
+        FROM `users`
+        WHERE `id` = :id
+";
+
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $_SESSION['id']);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_COLUMN);
+    } catch (PDOException $ex) {
+        echo $ex->getMessage();
+        exit();
+    }
+}

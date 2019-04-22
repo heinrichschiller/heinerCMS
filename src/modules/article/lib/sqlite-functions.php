@@ -77,7 +77,10 @@ function getAllArticles(): array
  *
  * @since 0.8.0
  */
-function addArticle(string $title, string $text, string $visibility)
+function addArticle(string $title,
+    string $text,
+    string $visibility,
+    string $userId)
 {
     $contentType = 'article';
     $flag = '';
@@ -87,6 +90,7 @@ function addArticle(string $title, string $text, string $visibility)
         `title`,
         `text`,
         `content_type`,
+        `author_id`,
         `visibility`,
         `flag`
         )
@@ -94,6 +98,7 @@ function addArticle(string $title, string $text, string $visibility)
             :title,
             :text,
             :content_type,
+            :author_id,
             :visibility,
             :flag
         )
@@ -107,6 +112,7 @@ function addArticle(string $title, string $text, string $visibility)
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
         $stmt->bindParam(':content_type', $contentType);
+        $stmt->bindParam(':author_id', $userId);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':flag', $flag);
 
@@ -130,6 +136,7 @@ function addArticle(string $title, string $text, string $visibility)
 function updateArticle(int $id,
     string $title,
     string $text,
+    int    $userId,
     string $visibility)
 {
     $pdo = getPdoConnection();
@@ -138,6 +145,7 @@ function updateArticle(int $id,
     UPDATE `contents`
         SET `title` = :title,
         `text` = :text,
+        `author_id` = :author_id,
         `visibility` = :visibility
         WHERE `id` = :id
     ";
@@ -147,6 +155,7 @@ function updateArticle(int $id,
 
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':text', $text);
+        $stmt->bindParam(':author_id', $userId);
         $stmt->bindParam(':visibility', $visibility);
         $stmt->bindParam(':id', $id);
 
