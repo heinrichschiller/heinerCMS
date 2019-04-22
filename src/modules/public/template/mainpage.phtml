@@ -24,9 +24,14 @@
 					</a>
                 </h2>
             	<div>
-            		<?= $article['text']; ?> ...
+            		<?= $article['text']; ?>
+					<?php if($article['charCount'] > 2000): ?>
+					...
+					<div>
+	            	<a class="readmore" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
+					</div>
+					<?php endif; ?>
             	</div>
-            	<a class="btn readmore" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
             </article>
 
             <?php else: ?>
