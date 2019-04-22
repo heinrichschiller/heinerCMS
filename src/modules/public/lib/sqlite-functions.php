@@ -45,12 +45,14 @@ function getCurrentArticle() : array
         (SELECT (`firstname` || ' ' || `lastname`) as author
             FROM `users`
             WHERE `users`.`id` = `contents`.`author_id`) as author,
-        strftime('%s', `created_at`) AS datetime
+        strftime('%s', `created_at`) AS datetime,
+        length(`text`) AS charCount
         FROM `contents`
         WHERE `content_type` = 'article'
             AND `flag` != 'trash'
             AND `visibility` = 'true'
             ORDER BY `datetime` DESC
+            LIMIT 1
     ";
 
     try {
