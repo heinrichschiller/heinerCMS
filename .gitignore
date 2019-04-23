@@ -1,3 +1,2 @@
-src/configs/base-config.php
-src/configs/cms-config.php
-src/database/sqlite/heinercms.db
+/src/configs/
+/src/database/sqlite/
