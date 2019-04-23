@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * If you are reading this in your web browser, your server is probably
+ * not configured correctly to run PHP applications!
+ *
  * MIT License
  *
  * Copyright (c) 2017 - 2019 Heinrich Schiller
@@ -24,6 +27,65 @@
  * SOFTWARE.
  */
 
-require_once __DIR__ . '/src/base.php';
+/**
+ *
+ * @since 0.12.0
+ */
+function indexAction()
+{
+    echo 'Hello World!';
+}
 
-bootstrap();
+/**
+ *
+ * @since 0.12.0
+ */
+function conditionsAction()
+{
+
+}
+
+/**
+ *
+ * @since 0.12.0
+ */
+function databaseAction()
+{
+
+}
+
+/**
+ *
+ * @since 0.12.0
+ */
+function installationAction()
+{
+
+}
+
+/**
+ *
+ * @since 0.12.0
+ */
+function languageAction()
+{
+
+}
+
+/**
+ *
+ * @since 0.12.0
+ */
+function licenceAction()
+{
+
+}
+
+/**
+ *
+ * @since 0.12.0
+ */
+function userAction()
+{
+
+}

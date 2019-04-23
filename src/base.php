@@ -34,6 +34,11 @@
  * needs functions of the previously included file.
  ******************************************************************************/
 
+if(!file_exists(__DIR__ . '/configs/cms-config.php')) {
+    header('Location: /installer/index');
+    exit;
+}
+
 include_once __DIR__ . '/configs/cms-config.php';
 
 include_once __DIR__ . '/configs/base-config.php';

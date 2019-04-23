@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * If you are reading this in your web browser, your server is probably
+ * not configured correctly to run PHP applications!
+ *
  * MIT License
  *
  * Copyright (c) 2017 - 2019 Heinrich Schiller
@@ -24,6 +27,6 @@
  * SOFTWARE.
  */
 
-require_once __DIR__ . '/src/base.php';
-
-bootstrap();
+//include ARTICLE_LIB_PATH . DB_DRIVER . '-functions.php';
+include_once __DIR__ . '/lib/actions.php';
+include_once __DIR__ . '/lib/functions.php';

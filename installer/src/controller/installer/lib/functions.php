@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * If you are reading this in your web browser, your server is probably
+ * not configured correctly to run PHP applications!
+ *
  * MIT License
  *
  * Copyright (c) 2017 - 2019 Heinrich Schiller
@@ -23,7 +26,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-require_once __DIR__ . '/src/base.php';
-
-bootstrap();
