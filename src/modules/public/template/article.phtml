@@ -4,5 +4,7 @@
         <?= (isset($article['datetime'])) ? strftime('%d.%m.%Y %H:%M', $article['datetime']) : getCurrentDatetime(); ?>
     </h5>
     <h2><?= $article['title'];?></h2>
-    <?= $article['text'];?>
+    <article class="lead">
+        <?= $article['text'];?>
+    </article>
 </div>
