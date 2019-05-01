@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language lang="English" short="en">
+	<terms>
+        <address>Address</address>
+        <password>Password</password>
+        <repeat_password>Repeat password</repeat_password>
+		<language>Language</language>
+		<start>Start</start>
+		<licence>Licence</licence>
+		<conditions>Conditions</conditions>
+        <min-conditions>Min. conditions</min-conditions>
+		<database>Database</database>
+		<user>User</user>
+        <username>Username</username>
+		<installation>Installation</installation>
+		<final>Final</final>
+        <next>Next</next>
+        <webserver>Webserver</webserver>
+        <firstname>Firstname</firstname>
+        <lastname>Lastname</lastname>
+        <email>Email</email>
+        <show_protocol>Show protocol</show_protocol>
+        <header_1>Select your language</header_1>
+        <header_2>Start</header_2>
+        <header_3>Licence</header_3>
+        <header_4>Conditions</header_4>
+        <header_5>Database</header_5>
+        <header_6>Create a user</header_6>
+        <header_7>Installation</header_7>
+        <header_8>Final</header_8>
+        <text_1>heinerCMS supports different languages.</text_1>
+        <text_2>The chosen language will guide you through the installation and will be set as ur default language in heinerCMS.</text_2>
+        <text_3>The language can be switched inside the settings of heinerCMS anytime.</text_3>
+        <text_4>Selected language:</text_4>
+        <text_5>The heinerCMS-installer will guide you through the installation progress.</text_5>
+        <text_6>At first we need some information from you:</text_6>
+        <text_7>The access data for the Database.</text_7>
+        <text_8>Informations on the user</text_8>
+        <text_9>After that, the installation of the configuration files will beginn. In cases of an error, you will be asked to install the configuration files manually. Further instruction will for these steps will be explained there.</text_9>
+        <text_10>Let's start!!! ;-)</text_10>
+        <text_11>heinerCMS is protected by MIT-Lizenz.</text_11>
+        <text_12>The requirements for installation are:.</text_12>
+        <text_13>foundet Software/Version</text_13>
+        <text_14>PHP-Version</text_14>
+        <text_15>PHP-Modules</text_15>
+        <text_16>MySQL/MariaDB or SQLite3</text_16>
+        <text_17>heinerCMS-Installer will guide you safely through the installation.</text_17>
+        <text_18> If possible create a new database.</text_18>
+        <text_19>Address - either localhost or the domain name of your webhoster.</text_19>
+        <text_20>User - The User of the Database for example: root. This is provided by your webhost.</text_20>
+        <text_21>Database - name of ur data base. Also provided by your webhost.</text_21>
+        <text_22>This option will refuse the creation of new a database if you dont have the rights to do so.</text_22>
+        <text_23>Password - Password of the Data base. Again provided by your webhost.</text_23>
+        <text_24>Let's create the user. More user's can be created inside the settings of henier-CMS.</text_24>
+        <text_25>We won't tell anyone your E-Mail adress.</text_25>
+        <text_26>Please enter the first name of the User.</text_26>
+        <text_27>Please enter the last name of the User.</text_27>
+        <text_28>Please enter your E-Mail adress, it will be needet to log in into your account.</text_28>
+        <text_29>Benutzername des Benutzers. Wird verwendet um den Autor eines Beitrags anzuzeigen.</text_29>
+        <text_30>Please enter the password, this will be used to log in into your account.</text_30>
+        <text_31>Please repeat the password one more time to prevent mistakes.</text_31>
+        <text_32>Copy the following lines and create the file:</text_32>
+        <text_33>on your computer.</text_33>
+        <text_34>Paste the copied lines here and save the file. Then copy the configuration file into the config directory and press Next to start the installation.</text_34>
+        <text_35>Congratulations! Your almost there :-)</text_35>
+        <text_36>At the end press here</text_36>
+        <text_37>to start the software</text_37>
+        <text_38>Once you checked if evertyhing is installed properly,</text_38>
+        <text_39>delete the folder after the installation.</text_39>
+        <text_40>It will prevent unwanted re-installations by other users.</text_40>
+        <text_41>You can also check the installtion protocol to make sure everything is set correctly. </text_41>
+        <text_42></text_42>
+        <text_43></text_43>
+        <text_44></text_44>
+        <text_45></text_45>
+        <text_46></text_46>
+        <text_47></text_47>
+        <text_48></text_48>
+        <text_49></text_49>
+        <text_50></text_50>
+        <text_51></text_51>
+        <text_52></text_52>
+        <text_53></text_53>
+        <text_54></text_54>
+        <text_55></text_55>
+        <text_56></text_56>
+        <text_57></text_57>
+        <text_58></text_58>
+        <text_59></text_59>
+        <text_60></text_60>
+	</terms>
+</language>
