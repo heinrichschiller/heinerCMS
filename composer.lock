@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "008a3da2155c9bb12f141837a7511227",
@@ -135,16 +135,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "5.0.3",
+            "version": "5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "0d275010c122a955b14ff5ed5d9e4ebff058e677"
+                "reference": "dfb245d73b089cc40fc064832697cdbc7895bb7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/0d275010c122a955b14ff5ed5d9e4ebff058e677",
-                "reference": "0d275010c122a955b14ff5ed5d9e4ebff058e677",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/dfb245d73b089cc40fc064832697cdbc7895bb7f",
+                "reference": "dfb245d73b089cc40fc064832697cdbc7895bb7f",
                 "shasum": ""
             },
             "type": "component",
@@ -177,7 +177,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2019-03-19T05:27:15+00:00"
+            "time": "2019-04-23T05:01:20+00:00"
         },
         {
             "name": "twbs/bootstrap",
