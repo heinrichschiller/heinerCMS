@@ -33,7 +33,11 @@
  */
 function indexAction()
 {
-    echo 'Hello World!';
+    $templateList = [
+        'start.phtml'
+    ];
+
+    return render($templateList);
 }
 
 /**
@@ -42,7 +46,11 @@ function indexAction()
  */
 function conditionsAction()
 {
+    $templateList = [
+        'conditions.phtml'
+    ];
 
+    return render($templateList);
 }
 
 /**
@@ -51,7 +59,11 @@ function conditionsAction()
  */
 function databaseAction()
 {
+    $templateList = [
+        'database.phtml'
+    ];
 
+    return render($templateList);
 }
 
 /**
@@ -60,7 +72,11 @@ function databaseAction()
  */
 function installationAction()
 {
+    $templateList = [
+        'installationAction.phtml'
+    ];
 
+    return render($templateList);
 }
 
 /**
@@ -69,7 +85,11 @@ function installationAction()
  */
 function languageAction()
 {
+    $templateList = [
+        'language.phtml'
+    ];
 
+    return render($templateList);
 }
 
 /**
@@ -78,7 +98,11 @@ function languageAction()
  */
 function licenceAction()
 {
+    $templateList = [
+        'licence.phtml'
+    ];
 
+    return render($templateList);
 }
 
 /**
@@ -87,5 +111,9 @@ function licenceAction()
  */
 function userAction()
 {
+    $templateList = [
+        'user.phtml'
+    ];
 
+    return render($templateList);
 }
