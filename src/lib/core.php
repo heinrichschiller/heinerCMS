@@ -27,6 +27,10 @@
  * SOFTWARE.
  */
 
+/**
+ * @filesource /src/lib/core.php
+ * @since 0.9.0
+ */
 function bootstrap()
 {
     $requestItems = parseRequest();
