@@ -1,43 +1,17 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<header>
-		        <h2>{header_1}</h2>
-		    </header>
-		    <form>
-		        <div class="row">
-		    		<div class="col-md-12">
-		        		<p>{text_1}</p>
-		        		<p>{text_2}</p>
-		        		<p>{text_3}</p>
-		        		<p>{text_4} </p>
-		    			<select name="lang" class="custom-select" onchange="this.form.submit();">
-		        			##placeholder-locale-options##
-		        		</select>
-		        	</div>
-		        </div>
-		        <div class="row button_bottom">
-		    		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		    			<a href="/../installer/licence" class="btn btn-primary" role="button">{next}</a>
-		    		</div>
-		    	</div>
-		    	<input type="hidden" name="uri" value="language">
-		    	<input type="hidden" name="db" value="mysql">
-		    </form>
-		</div>
-		<div class="col-md-4">
-			<nav>
-       			<ul>
-					<li class="nav-item"><a class="nav-link" href="#">start</a></li>
-        			<li class="nav-item"><a class="nav-link" href="#">language</a></li>
-        			<li class="nav-item"><a class="nav-link" href="#">licence</a></li>
-        			<li class="nav-item"><a class="nav-link" href="#">conditions</a></li>
-       				<li class="nav-item"><a class="nav-link" href="#">database</a></li>
-       				<li class="nav-item"><a class="nav-link" href="#">user</a></li>
-       				<li class="nav-item"><a class="nav-link" href="#">installation</a></li>
-       				<li class="nav-item"><a class="nav-link" href="#">final</a></li>
-       			</ul>
-       		</nav>
-		</div>
-	</div>
+<div>
+	<h2>{header_1}</h2>
 </div>
+<form>
+    <div>
+		<p>{text_1}</p>
+		<p>{text_2}</p>
+		<p>{text_3}</p>
+		<p>{text_4} </p>
+		<select name="lang" class="custom-select" onchange="this.form.submit();">
+			##placeholder-locale-options##
+		</select>
+	</div>
+    <div>
+		<a href="/../installer/licence" class="btn btn-primary" role="button">{next}</a>
+	</div>
+</form>

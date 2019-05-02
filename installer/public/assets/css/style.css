@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+.viewport {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr 4fr 1fr 80px;
+    grid-template-columns: 100%;
+    grid-template-areas:
+        "header"
+        "box-left"
+        "box-content"
+        "box-right"
+        "footer"
+    ;
+}
+
+@media screen and (min-width: 1200px) {
+    .viewport {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr 80px;
+        grid-template-columns: 15% 1fr 15%;
+        grid-template-areas:
+            "header header header"
+            "box-left box-content box-right"
+            "box-left footer box-right"
+        ;
+    }
+}
+
+.box-left {
+    grid-area: box-left;
+}
+
+.box-right {
+    grid-area: box-right;
+}
+
+.box-content {
+    grid-area: box-content;
+}
+
+header {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.footer-text {
+	text-align: center;
+	color: #999;
+}

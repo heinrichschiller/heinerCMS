@@ -157,6 +157,7 @@ function renderTemplate(string $tplName, array $data)
       : 'index';
 
     $template = __DIR__ . "/../modules/$ctrl/templates/$tplName";
+    $navbar   = __DIR__ . '/../template/sidebar.phtml';
 
     include __DIR__ . '/../template/main.phtml';
 

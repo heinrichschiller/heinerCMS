@@ -19,22 +19,29 @@
 		<link rel="stylesheet" href="/vendor/components/jqueryui/themes/base/jquery-ui.min.css">
 		<script src="/vendor/components/jqueryui/jquery-ui.min.js"></script>
 
-		<link href="/public/assets/css/default.css" rel="stylesheet">
+		<link href="/../installer/public/assets/css/style.css" rel="stylesheet">
 	</head>
 	<body>
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="navbar-brand">
-                heinerCMS - Installation
-            </div>
-        </nav>
-        <?php (!empty($nav)) ? require $nav : ''; ?>
-        <?php require $template; ?>
-        <footer>
-            <div class="footer-text">
-                <p>&copy; Heinrich Schiller 2017 - 2019</p>
-                <p><i>powered by heinerCMS</i></p>
-            </div>
-        </footer>
+		<div class="viewport">
+			<header>
+				<nav class="navbar navbar-dark bg-dark">
+					<span class="navbar-brand">heinerCMS - Installation</span>
+				</nav>
+			</header>
+			<aside class="box-left"></aside>
+			<div class="box-content">
+				<?php require $template; ?>
+			</div>
+	        <aside class="box-right">
+	        	<?php require $navbar; ?>
+	        </aside>
+	        <footer>
+	            <div class="footer-text">
+	                <p>&copy; Heinrich Schiller 2017 - 2019</p>
+	                <p><i>powered by heinerCMS</i></p>
+	            </div>
+	        </footer>
+		</div>
         <!-- TinyMCE-Editor -->
         <script src="/vendor/tinymce/tinymce/tinymce.min.js"></script>
 		<script src="/public/assets/js/editor.js"></script>
