@@ -36,10 +36,12 @@
  */
 function getPdoConnection() : PDO
 {
-    try {
-        $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
+    $config = include_once ABS_PATH . 'src/configs/default.php';
 
-        if ( PDO_DEBUG_MODE ) {
+    try {
+        $pdo = new PDO($config['driver'] . ':' . $config['name']);
+
+        if ( $dbConfig['pdo_debug_mode'] ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 

@@ -39,7 +39,7 @@ function bootstrap()
     $action     = $requestItems['action'];
     $params     = $requestItems['params'];
 
-    $modulesPath = CMS_SRC_PATH . "modules/$controller/index.php";
+    $modulesPath = ABS_PATH . "src/modules/$controller/index.php";
 
     if(file_exists($modulesPath)) {
         include_once $modulesPath;
