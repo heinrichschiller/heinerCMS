@@ -40,7 +40,7 @@ if(!defined('ABS_PATH')) {
 
 include ABS_PATH . 'src/base.php';
 
-if (DEBUG_MODE) {
+if ($cmsConfig['debug_mode']) {
     error_reporting(-1);
     ini_set('display_errors', true);
 }

@@ -34,26 +34,23 @@
  * needs functions of the previously included file.
  ******************************************************************************/
 
-if(!file_exists(__DIR__ . '/configs/cms-config.php')) {
+if(!file_exists(ABS_PATH . 'src/configs/default.php')) {
     header('Location: /installer/index');
     exit;
+} else {
+    $cmsConfig = include ABS_PATH . 'src/configs/default.php';
 }
 
-include_once __DIR__ . '/configs/cms-config.php';
+require_once ABS_PATH . 'src/libs/filters.php';
 
-include_once __DIR__ . '/configs/base-config.php';
+require_once ABS_PATH . 'src/libs/validations.php';
 
-include_once CMS_LIB_PATH . 'filters.php';
+require_once ABS_PATH . 'src/libs/session.php';
 
-include_once CMS_LIB_PATH . 'validations.php';
+require_once ABS_PATH . 'src/libs/core.php';
 
-include_once CMS_LIB_PATH . 'session.php';
-
-include_once CMS_LIB_PATH . 'core.php';
-
-
-if(defined('DB_DRIVER')) {
-    include_once CMS_LIB_PATH . DB_DRIVER . '-db.php';
+if(isset($cmsConfig['driver'])) {
+    include_once ABS_PATH . 'src/libs/' . $cmsConfig['driver'] . '-db.php';
 } else {
     echo 'cms-config is empty';
     die();
