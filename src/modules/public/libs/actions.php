@@ -30,8 +30,8 @@
 function indexAction(): string
 {
     $settings = getGeneralSettings();
-    $article  = getCurrentArticle();
-    $info     = getInfobox();
+    //$article  = getCurrentArticle();
+    //$info     = getInfobox();
 
     $templateList = [
         'mainpage.phtml'

@@ -36,12 +36,12 @@
  */
 function getPdoConnection() : PDO
 {
-    $config = include_once ABS_PATH . 'src/configs/default.php';
+    $config = include ABS_PATH . 'src/configs/default.php';
 
     try {
         $pdo = new PDO($config['driver'] . ':' . $config['name']);
 
-        if ( $dbConfig['pdo_debug_mode'] ) {
+        if ( $config['pdo_debug_mode'] ) {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 
@@ -115,7 +115,7 @@ function getGeneralSettings() : array
     ";
 
     $pdo = getPdoConnection();
-
+var_dump($pdo);
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
