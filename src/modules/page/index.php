@@ -27,30 +27,10 @@
  * SOFTWARE.
  */
 
-if(!defined('PAGE_PATH')) {
+$config = include ABS_PATH . 'src/configs/default.php';
 
-    /**
-     * Path to modules/page/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('PAGE_PATH', __DIR__ . '/');
-}
+$path = ABS_PATH . 'src/modules/page/libs/';
 
-if(!defined('PAGE_LIB_PATH')) {
-
-    /**
-     * Path to modules/page/lib/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('PAGE_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include PAGE_LIB_PATH . DB_DRIVER . '-functions.php';
-include PAGE_LIB_PATH . 'actions.php';
-include PAGE_LIB_PATH . 'functions.php';
+require $path . $config['driver'] . '-functions.php';
+require $path . 'actions.php';
+require $path . 'functions.php';
