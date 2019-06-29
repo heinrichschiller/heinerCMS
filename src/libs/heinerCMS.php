@@ -28,10 +28,10 @@
  */
 
 /**
- * @filesource /src/lib/core.php
+ * @filesource /src/lib/heinerCMS.php
  * @since 0.9.0
  */
-function bootstrap()
+function heinerCMS()
 {
     $requestItems = parseRequest();
 
@@ -60,7 +60,7 @@ function bootstrap()
 
 /**
  *
- *
+ * @filesource /src/lib/heinerCMS.php
  * @since 0.9.0
  */
 function parseRequest(): array
@@ -87,6 +87,9 @@ function parseRequest(): array
     return $requestItems;
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function isPost()
 {
     if(!empty($_POST)) {
@@ -96,6 +99,9 @@ function isPost()
     return false;
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function isGet()
 {
     if(!empty($_GET)) {
@@ -105,6 +111,9 @@ function isGet()
     return false;
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function isFile()
 {
     if(!empty($_FILE)) {
@@ -120,10 +129,12 @@ function isFile()
  * @param string $language - Name of language
  *
  * @return array
+ *
+ * @filesource /src/lib/heinerCMS.php
  */
 function getTranslation(string $language) : array
 {
-    $xmlfile = CMS_LOCALES_PATH . "$language.xml";
+    $xmlfile = ABS_PATH . "src/locales/$language.xml";
 
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);
@@ -141,6 +152,9 @@ function getTranslation(string $language) : array
     return array_combine($arr_keys, $arr_values);
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function checkSystem()
 {
     if (version_compare(phpversion(), '7.0', '<')) {
@@ -154,6 +168,9 @@ function checkSystem()
     return true;
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function render(array $templates, array $data = [])
 {
     $html = '';
@@ -174,10 +191,13 @@ function render(array $templates, array $data = [])
  * @param string $tplName Name of a template.
  * @param array  $data
  *
+ * @filesource /src/lib/heinerCMS.php
  * @since 2019.02
  */
 function renderTemplate(string $tplName, array $data)
 {
+    $config = include ABS_PATH . 'src/configs/default.php';
+
     extract($data);
     extract(array('entry' => countEntries()));
     extract(array('settings' => getGeneralSettings()));
@@ -195,13 +215,13 @@ function renderTemplate(string $tplName, array $data)
     ob_start();
 
     if (!empty($navbar)) {
-        $nav = CMS_TEMPLATES_PATH . $navbar;
+        $nav = ABS_PATH . "src/templates/$navbar";
     }
 
     $module = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
-    $template = CMS_MODULES_PATH . "$module/template/$tplName";
+    $template = ABS_PATH . "src/modules/$module/templates/$tplName";
 
-    include CMS_TEMPLATES_PATH . 'main.phtml';
+    include ABS_PATH . 'src/templates/main.phtml';
 
     $htmlResponse = ob_get_contents();
 
@@ -210,11 +230,17 @@ function renderTemplate(string $tplName, array $data)
     return $htmlResponse;
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function getCurrentDatetime()
 {
     return strftime('%d.%m.%Y %H:%M', time());
 }
 
+/**
+ * @filesource /src/lib/heinerCMS.php
+ */
 function error404()
 {
     header('Content-Type:text/html;charset=utf-8');
