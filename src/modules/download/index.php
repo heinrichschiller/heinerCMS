@@ -27,28 +27,10 @@
  * SOFTWARE.
  */
 
-if(!defined('DOWNLOAD_PATH')) {
+$config = include ABS_PATH . 'src/configs/default.php';
 
-    /**
-     * Path to modules/download/.
-     *
-     * @var unknown
-     * @since 0.9.0
-     */
-    define('DOWNLOAD_PATH', __DIR__ . '/');
-}
+$path = ABS_PATH . 'src/modules/download/libs/';
 
-if(!defined('DOWNLOAD_LIB_PATH')) {
-
-    /**
-     * Path to modules/download/lib/.
-     *
-     * @var string
-     * @since 0.9.0
-     */
-    define('DOWNLOAD_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include DOWNLOAD_LIB_PATH . DB_DRIVER . '-functions.php';
-include DOWNLOAD_LIB_PATH . 'actions.php';
-include DOWNLOAD_LIB_PATH . 'functions.php';
+require $path . $config['driver'] . '-functions.php';
+require $path . 'actions.php';
+require $path . 'functions.php';

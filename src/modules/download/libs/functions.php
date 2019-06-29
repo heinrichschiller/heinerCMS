@@ -28,5 +28,5 @@
  */
 
 function redirectToDownload() {
-    header('Location: ' . BASE_URL . '../download/index');
+    header('Location: ' . $config['baseUrl'] . '/download/index');
 }
