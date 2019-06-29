@@ -29,5 +29,5 @@
 
 function redirectToLink()
 {
-    header('Location: ' . BASE_URL . 'link/index');
+    header('Location: ' . $config['baseUrl'] . 'link/index');
 }

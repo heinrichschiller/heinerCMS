@@ -3,14 +3,14 @@
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
    	        <div class="panel">
            		<h4>
-                    <img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {link}
+                    <img class="glyph-icon-24" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-pen.svg"> {link}
                 </h4>
            	</div>
 
             <?php if(isset($link['id'])): ?>
-            <form action="<?= BASE_URL;?>link/update" method="post">
+            <form action="<?= $config['baseUrl']; ?>link/update" method="post">
             <?php else: ?>
-            <form action="<?= BASE_URL;?>link/add" method="post">
+            <form action="<?= $config['baseUrl']; ?>link/add" method="post">
             <?php endif; ?>
 
                 <div class="row">
