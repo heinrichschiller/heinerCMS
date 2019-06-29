@@ -27,30 +27,9 @@
  * SOFTWARE.
  */
 
- if(!defined('UPLOAD_PATH')) {
+$config = include ABS_PATH . 'src/configs/default.php';
+$path = ABS_PATH . '/src/modules/upload/libs/';
 
-     /**
-      * Path to modules/public/
-      *
-      * @var string
-      *
-      * @since 0.9.0
-      */
-     define('UPLOAD_PATH', __DIR__ . '/');
- }
-
- if(!defined('UPLOAD_LIB_PATH')) {
-
-     /**
-      * Path to modules/public/lib/
-      *
-      * @var string
-      *
-      * @since 0.9.0
-      */
-     define('UPLOAD_LIB_PATH', __DIR__ . '/lib/');
- }
-
- include UPLOAD_LIB_PATH . DB_DRIVER .'-functions.php';
- include UPLOAD_LIB_PATH . 'actions.php';
- include UPLOAD_LIB_PATH . 'functions.php';
+require $path . $config['driver'] .'-functions.php';
+require $path . 'actions.php';
+require $path . 'functions.php';
