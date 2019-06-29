@@ -27,30 +27,9 @@
  * SOFTWARE.
  */
 
-if(!defined('USER_PATH')) {
+$config = include ABS_PATH . 'src/configs/default.php';
+$path = 'src/modules/user/libs/';
 
-    /**
-     * Path to modules/user/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('USER_PATH', __DIR__ . '/');
-}
-
-if(!defined('USER_LIB_PATH')) {
-
-    /**
-     * Path to modules/user/lib/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('USER_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include USER_LIB_PATH . DB_DRIVER . '-functions.php';
-include USER_LIB_PATH . 'actions.php';
-include USER_LIB_PATH . 'functions.php';
+require ABS_PATH . $path . $config['driver'] . '-functions.php';
+require ABS_PATH . $path . 'actions.php';
+require ABS_PATH . $path . 'functions.php';

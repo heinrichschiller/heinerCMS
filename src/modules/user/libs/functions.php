@@ -29,5 +29,7 @@
 
 function redirectUser()
 {
- header ( 'Location: ' . BASE_URL . 'user/index' );
+    $config = include ABS_PATH . 'src/configs/default.php';
+
+    header ( 'Location: ' . $config['baseUrl'] . 'user/index' );
 }

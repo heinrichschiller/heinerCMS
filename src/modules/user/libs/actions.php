@@ -101,9 +101,11 @@ function delAction(array $params)
 
 function loginAction()
 {
+    $config = include ABS_PATH . 'src/configs/default.php';
+
     if(isPost()) {
         if(login($_POST['email'], $_POST['password'])) {
-            header('Location:' . BASE_URL . 'admin/index');
+            header('Location:' . $config['baseUrl'] . 'admin/index');
         }
     }
 
