@@ -18,7 +18,7 @@
                 </div>
             	<div>
                     <h2>
-						<a class="content-header" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">
+						<a class="content-header" href="<?= $config['baseUrl']; ?>public/article/id/<?= $article['id']; ?>">
 							<?= $article['title']; ?>
 						</a>
 					</h2>
@@ -26,7 +26,7 @@
             	<div class="lead">
                     <?= $article['text']; ?> ...</div>
             	<div>
-                    <a href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
+                    <a href="<?= $config['baseUrl']; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
                 </div>
 				<hr class="featurette-divider">
     		</div>

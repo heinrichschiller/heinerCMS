@@ -30,8 +30,8 @@
 function indexAction(): string
 {
     $settings = getGeneralSettings();
-    //$article  = getCurrentArticle();
-    //$info     = getInfobox();
+    $article  = getCurrentArticle();
+    $info     = getInfobox();
 
     $templateList = [
         'mainpage.phtml'
@@ -69,7 +69,9 @@ function articleAction(array $params): string
 
 function articlesAction(): string
 {
-    include CMS_MODULES_PATH . 'article/lib/' . DB_DRIVER . '-functions.php';
+    $config = include ABS_PATH . 'src/configs/default.php';
+
+    include ABS_PATH . 'src/modules/article/lib/' . $config['driver'] . '-functions.php';
 
     $templateList = [
         'articles.phtml'
@@ -97,7 +99,8 @@ function downloadAction(int $id): string
 
 function downloadsAction(): string
 {
-    include CMS_MODULES_PATH . 'download/lib/' . DB_DRIVER . '-functions.php';
+    $config = include ABS_PATH . 'src/configs/default.php';
+    include ABS_PATH . 'src/modules/download/lib/' . $config['driver'] . '-functions.php';
 
     $templateList = [
         'downloads.phtml'
