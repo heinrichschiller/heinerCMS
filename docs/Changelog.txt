@@ -1,3 +1,7 @@
+Pre-Release 0.12.0
+	added, new heinerCMS - Installer
+	update, removed constants and replaced with values ​​from the configuration file
+	update, tinymce/tinymce (5.0.3 => 5.0.4)
 Pre-Release 0.11.0
 	update, heinercsm is responsive
 	update, tinymce/tinymce (4.9.2 => 5.0.3)
