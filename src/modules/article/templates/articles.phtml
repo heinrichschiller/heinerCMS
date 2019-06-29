@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
 	<div class="panel">
-		<h4><img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {articles}</h4>
+		<h4><img class="glyph-icon-24" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-pen.svg"> {articles}</h4>
 	</div>
 
     <?php if(count($articles) > 0): ?>
@@ -19,17 +19,17 @@
 
             <?php foreach($articles as $article): ?>
 
-        	<tr class="clickable-row" data-href="<?= BASE_URL ?>article/edit/id/<?= $article['id']; ?>">
+        	<tr class="clickable-row" data-href="<?= $config['baseUrl']; ?>article/edit/id/<?= $article['id']; ?>">
                 <td></td>
                 <td><?= strftime('%d.%m.%Y', $article['datetime']); ?></td>
                 <td><?= $article['title']; ?></td>
                 <td><?= $article['visibility'] === 'true' ? '{yes}' : '{no}'; ?></td>
         		<td>
-        			<a href="<?= BASE_URL ?>article/copy/id/<?= $article['id'];?>">
-        				<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
+        			<a href="<?= $config['baseUrl']; ?>article/copy/id/<?= $article['id'];?>">
+        				<img class="glyph-icon-16" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-document-copy.svg" title="{copy}">
         			</a> &middot;
-                	<a href="<?= BASE_URL ?>article/del/id/<?= $article['id'];?>">
-                		<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
+                	<a href="<?= $config['baseUrl']; ?>article/del/id/<?= $article['id'];?>">
+                		<img class="glyph-icon-16" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-delete.svg" title="{delete}">
                 	</a>
                 </td>
             </tr>

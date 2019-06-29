@@ -27,6 +27,9 @@
  * SOFTWARE.
  */
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function indexAction(): string
 {
     checkLogin();
@@ -40,6 +43,9 @@ function indexAction(): string
     return render($templateList, ['articles' => $articleList]);
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function newAction(): string
 {
     checkLogin();
@@ -51,6 +57,9 @@ function newAction(): string
     return render($templateList);
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function editAction(array $params): string
 {
     checkLogin();
@@ -64,6 +73,9 @@ function editAction(array $params): string
     return render($templateList, ['article' => $articleList]);
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function settingsAction(): string
 {
     checkLogin();
@@ -77,6 +89,9 @@ function settingsAction(): string
     return render($templateList, ['settings' => $settings]);
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function updatesettingsAction()
 {
     checkLogin();
@@ -89,6 +104,9 @@ function updatesettingsAction()
     redirectToArticleSettings();
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function addAction()
 {
     checkLogin();
@@ -105,6 +123,9 @@ function addAction()
     redirectToArticle();
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function delAction(array $params)
 {
     checkLogin();
@@ -116,6 +137,9 @@ function delAction(array $params)
     redirectToArticle();
 }
 
+/**
+ * @filesource /src/modules/article/actions.php
+ */
 function updateAction()
 {
     checkLogin();

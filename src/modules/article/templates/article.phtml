@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
         	<div class="panel">
-        		<h4><img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}</h4>
+        		<h4><img class="glyph-icon-24" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-pen.svg"> {article}</h4>
         	</div>
 
             <?php if(isset($article['id'])): ?>
-            <form action="<?= BASE_URL;?>article/update" method="post">
+            <form action="<?= $config['baseUrl']; ?>article/update" method="post">
             <?php else: ?>
-            <form action="<?= BASE_URL;?>article/add" method="post">
+            <form action="<?= $config['baseUrl']; ?>article/add" method="post">
             <?php endif; ?>
 
                 <div class="row id-bar">

@@ -27,12 +27,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @filesource /src/modules/article/functions.php
+ */
 function redirectToArticle()
 {
-    header('Location: ' . BASE_URL . 'article/index');
+    header('Location: ' . $config['baseUrl'] . '/article/index');
 }
 
+/**
+ * @filesource /src/modules/article/functions.php
+ */
 function redirectToArticleSettings()
 {
-    header ( 'Location: ' . BASE_URL . 'article/settings' );
+    header ( 'Location: ' . $config['baseUrl'] . '/article/settings' );
 }

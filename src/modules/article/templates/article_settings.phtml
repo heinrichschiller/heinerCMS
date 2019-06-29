@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
 			<div class="panel">
-				<h4><img class="glyph-icon-24" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {articles_settings}</h4>
+				<h4><img class="glyph-icon-24" src="<?= $config['baseUrl']; ?>public/assets/img/svg/si-glyph-pen.svg"> {articles_settings}</h4>
 			</div>
 		</div>
 	</div>
-	<form action="<?= BASE_URL; ?>article/updatesettings" method="post">
+	<form action="<?= $config['baseUrl']; ?>article/updatesettings" method="post">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="form-group">
