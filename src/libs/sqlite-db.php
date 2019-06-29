@@ -28,32 +28,8 @@
  */
 
 /**
- * Database connection for heinerCMS that use PDO-Connection.
- *
- * @param string $driver Driver can be mysql or sqlite.
- *
- * @return PDO
+ * @filesource /src/lib/sqlite-db.php
  */
-function getPdoConnection() : PDO
-{
-    $config = include ABS_PATH . 'src/configs/default.php';
-
-    try {
-        $pdo = new PDO($config['driver'] . ':' . $config['name']);
-
-        if ( $config['pdo_debug_mode'] ) {
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-
-        return $pdo;
-
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-
-}
-
 function normalize(int $id, string $table)
 {
     $sql = "
@@ -68,6 +44,9 @@ function normalize(int $id, string $table)
     return $id;
 }
 
+/**
+ * @filesource /src/lib/sqlite-db.php
+ */
 function updateMainpage($title, $text)
 {
     $pdo = getPdoConnection();
@@ -98,6 +77,7 @@ function updateMainpage($title, $text)
  *
  * @return array - List of settings entries.
  *
+ * @filesource /src/lib/sqlite-db.php
  * @since 0.4.0
  */
 function getGeneralSettings() : array
@@ -115,7 +95,7 @@ function getGeneralSettings() : array
     ";
 
     $pdo = getPdoConnection();
-var_dump($pdo);
+
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -132,6 +112,7 @@ var_dump($pdo);
  *
  * @param int $id - Id of an item.
  *
+ * @filesource /src/lib/sqlite-db.php
  * @since 0.8.0
  */
 function deleteItemById(int $id)
@@ -158,6 +139,8 @@ function deleteItemById(int $id)
 /**
  *
  * @param string $table
+ *
+ * @filesource /src/lib/sqlite-db.php
  */
 function deleteAllTrashItems(string $table)
 {
@@ -182,6 +165,7 @@ function deleteAllTrashItems(string $table)
  * @param int $id
  * @param string $flag
  *
+ * @filesource /src/lib/sqlite-db.php
  * @since 0.8.0
  */
 function setContentsFlagById(int $id, string $flag)
@@ -212,6 +196,8 @@ function setContentsFlagById(int $id, string $flag)
  * @param int $id - Id of a content title.
  *
  * @return string
+ *
+ * @filesource /src/lib/sqlite-db.php
  */
 function getContentsTitleById(int $id)
 {
@@ -239,6 +225,8 @@ function getContentsTitleById(int $id)
  *
  * @param string $type
  * @return int
+ *
+ * @filesource /src/lib/sqlite-db.php
  */
 function countContentType(string $type): int
 {
@@ -264,6 +252,7 @@ function countContentType(string $type): int
  *
  * @return array
  *
+ * @filesource /src/lib/sqlite-db.php
  * @since 0.8.0
  */
 function countEntries()
@@ -303,6 +292,8 @@ function countEntries()
  * @deprecated
  *
  * @return array
+ *
+ * @filesource /src/lib/sqlite-db.php
  */
 function loadFromTable(string $table, int $count)
 {
@@ -335,6 +326,7 @@ function loadFromTable(string $table, int $count)
  *
  * @return string - Full name of the user.
  *
+ * @filesource /src/lib/sqlite-db.php
  * @since 0.12.0
  */
 function getCurrentAuthor()
