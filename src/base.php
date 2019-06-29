@@ -47,9 +47,10 @@ require_once ABS_PATH . 'src/libs/validations.php';
 
 require_once ABS_PATH . 'src/libs/session.php';
 
-require_once ABS_PATH . 'src/libs/core.php';
+require_once ABS_PATH . 'src/libs/heinerCMS.php';
 
 if(isset($cmsConfig['driver'])) {
+    include_once ABS_PATH . 'src/libs/database.php';
     include_once ABS_PATH . 'src/libs/' . $cmsConfig['driver'] . '-db.php';
 } else {
     echo 'cms-config is empty';
