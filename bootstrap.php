@@ -33,6 +33,8 @@ if(!defined('ABS_PATH')) {
      * Absolute path of heinerCMS.
      *
      * @var string
+     *
+     * @filesource /bootstrap.php
      * @since 0.9.0
      */
     define('ABS_PATH', __DIR__ . '/');
@@ -45,4 +47,4 @@ if ($cmsConfig['debug_mode']) {
     ini_set('display_errors', true);
 }
 
-bootstrap();
+heinerCMS();
