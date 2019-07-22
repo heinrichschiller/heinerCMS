@@ -31,7 +31,7 @@
  * @filesource /src/lib/core.php
  * @since 0.9.0
  */
-function bootstrap()
+function heinerCms()
 {
     $requestItems = parseRequest();
 

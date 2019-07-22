@@ -45,4 +45,4 @@ if (DEBUG_MODE) {
     ini_set('display_errors', true);
 }
 
-bootstrap();
+heinerCms();

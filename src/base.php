@@ -49,7 +49,7 @@ include_once CMS_LIB_PATH . 'validations.php';
 
 include_once CMS_LIB_PATH . 'session.php';
 
-include_once CMS_LIB_PATH . 'core.php';
+include_once CMS_LIB_PATH . 'heinercms.php';
 
 
 if(defined('DB_DRIVER')) {
