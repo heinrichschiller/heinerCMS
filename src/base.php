@@ -34,30 +34,14 @@
  * needs functions of the previously included file.
  ******************************************************************************/
 
-$configPath = ROOT_PATH . 'src/configs/';
-$librariesPath = ROOT_PATH . 'src/libraries/';
+require_once $configs['paths']['libraries'] . 'database.php';
 
-if(!file_exists($configPath . 'cms-config.php')) {
-    header('Location: /installer/index');
-    exit;
-}
+require_once $configs['paths']['libraries'] . $configs['database']['driver'] . '-db.php';
 
-require_once $configPath . 'cms-config.php';
+require_once $configs['paths']['libraries'] . 'filters.php';
 
-require_once $configPath . 'base-config.php';
+require_once $configs['paths']['libraries'] . 'validations.php';
 
-require_once $librariesPath . 'filters.php';
+require_once $configs['paths']['libraries'] . 'session.php';
 
-require_once $librariesPath . 'validations.php';
-
-require_once $librariesPath . 'session.php';
-
-require_once $librariesPath . 'heinercms.php';
-
-
-if(defined('DB_DRIVER')) {
-    require_once $librariesPath . DB_DRIVER . '-db.php';
-} else {
-    echo 'cms-config is empty';
-    die();
-}
+require_once $configs['paths']['libraries'] . 'heinercms.php';
