@@ -27,29 +27,9 @@
  * SOFTWARE.
  */
 
-if(!defined('WASTEBIN_PATH')) {
+ $path = ROOT_PATH . 'src/modules/wastebin/src/';
 
-    /**
-     * Path to modules/wastebin/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('WASTEBIN_PATH', __DIR__ . '/');
-}
+ include $path . 'actions.php';
+ include $path . 'functions.php';
 
-if(!defined('WASTEBIN_LIB_PATH')) {
-    /**
-     * Path to modules/wastebin/lib/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('WASTEBIN_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include WASTEBIN_LIB_PATH . DB_DRIVER . '-functions.php';
-include WASTEBIN_LIB_PATH . 'actions.php';
-include WASTEBIN_LIB_PATH . 'functions.php';
+ include $path . $configs['database']['driver'] . '-functions.php';
