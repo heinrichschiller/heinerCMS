@@ -38,11 +38,13 @@ if(!defined('ROOT_PATH')) {
     define('ROOT_PATH', __DIR__ . '/');
 }
 
+$configs = include ROOT_PATH . 'src/configs/developer.php';
+
 require ROOT_PATH . 'src/base.php';
 
-if (DEBUG_MODE) {
+if ($configs['debug_mode']) {
     error_reporting(-1);
     ini_set('display_errors', true);
 }
 
-heinerCms();
+heinerCms($configs);
