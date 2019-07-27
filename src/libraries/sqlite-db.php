@@ -27,31 +27,6 @@
  * SOFTWARE.
  */
 
-/**
- * Database connection for heinerCMS that use PDO-Connection.
- *
- * @param string $driver Driver can be mysql or sqlite.
- *
- * @return PDO
- */
-function getPdoConnection() : PDO
-{
-    try {
-        $pdo = new PDO(DB_DRIVER . ':' . DB_NAME);
-
-        if ( PDO_DEBUG_MODE ) {
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-
-        return $pdo;
-
-    } catch (PDOException $ex) {
-        echo $ex->getMessage();
-        exit();
-    }
-
-}
-
 function normalize(int $id, string $table)
 {
     $sql = "
