@@ -1,8 +1,8 @@
 <nav class="navbar navbar-light bg-light nav-pc">
-    <a class="navbar-brand" href="<?= BASE_URL; ?>admin/index">heinerCMS - {administration}</a>
+    <a class="navbar-brand" href="<?= $configs['baseUrl']; ?>admin/index">heinerCMS - {administration}</a>
     <ul class="nav justify-content-end">
         <li class="nav-item">
-        	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
+        	<a class="nav nav-link dark" href="<?= $configs['baseUrl']; ?>user/logout">{sign_out}</a>
         </li>
     </ul>
 </nav>
@@ -13,58 +13,58 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <a href="<?= BASE_URL; ?>admin/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dashboard.svg"> {dashboard}
+            <a href="<?= $configs['baseUrl']; ?>admin/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-dashboard.svg"> {dashboard}
             </a>
             <span class="list-group-item active">
                 {content}
             </span>
-            <a href="<?= BASE_URL; ?>article/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+            <a href="<?= $configs['baseUrl']; ?>article/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-pen.svg"> {article}
                 <span class="badge badge-light"></span>
             </a>
-            <a href="<?= BASE_URL; ?>download/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+            <a href="<?= $configs['baseUrl']; ?>download/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-file-download.svg"> {downloads}
                 <span class="badge badge-light"></span>
             </a>
-            <a href="<?= BASE_URL; ?>link/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+            <a href="<?= $configs['baseUrl']; ?>link/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-global.svg"> {links}
                 <span class="badge badge-light"></span>
             </a>
-            <a href="<?= BASE_URL; ?>page/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document.svg"> {pages}
+            <a href="<?= $configs['baseUrl']; ?>page/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-document.svg"> {pages}
                 <span class="badge badge-light"></span>
             </a>
-            <a href="<?= BASE_URL; ?>upload/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dropbox.svg"> {upload}
+            <a href="<?= $configs['baseUrl']; ?>upload/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-dropbox.svg"> {upload}
                 <span class="badge badge-light"></span>
             </a>
-                <a href="<?= BASE_URL; ?>wastebin/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-trash.svg"> {wastebin}
+                <a href="<?= $configs['baseUrl']; ?>wastebin/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-trash.svg"> {wastebin}
                 <span class="badge badge-light"></span>
             </a>
             <span class="list-group-item active">
                 {settings}
             </span>
-            <a href="<?= BASE_URL; ?>admin/settings" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {general}
+            <a href="<?= $configs['baseUrl']; ?>admin/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-gear.svg"> {general}
             </a>
-            <a href="<?= BASE_URL; ?>article/settings" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+            <a href="<?= $configs['baseUrl']; ?>article/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-pen.svg"> {article}
             </a>
-            <a href="<?= BASE_URL; ?>download/settings" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+            <a href="<?= $configs['baseUrl']; ?>download/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-file-download.svg"> {downloads}
             </a>
-            <a href="<?= BASE_URL; ?>link/settings" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+            <a href="<?= $configs['baseUrl']; ?>link/settings" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-global.svg"> {links}
             </a>
-            <a href="<?= BASE_URL; ?>user/index" class="nav-item nav-link">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-person-people.svg"> {user}
+            <a href="<?= $configs['baseUrl']; ?>user/index" class="nav-item nav-link">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-person-people.svg"> {user}
             </a>
             <span class="list-group-item active">
                 ...
             </span>
-        	<a class="nav nav-link dark" href="<?= BASE_URL; ?>user/logout">{sign_out}</a>
+        	<a class="nav nav-link dark" href="<?= $configs['baseUrl']; ?>user/logout">{sign_out}</a>
         </ul>
     </div>
 </nav>
@@ -73,69 +73,69 @@
         <div class="sidebar-sticky sidebar-bg-light">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>admin/index" class="nav-link active">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dashboard.svg"> {dashboard}
+                    <a href="<?= $configs['baseUrl']; ?>admin/index" class="nav-link active">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-dashboard.svg"> {dashboard}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>article/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+                    <a href="<?= $configs['baseUrl']; ?>article/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-pen.svg"> {article}
                         <span class="badge badge-primary"><?= $entry[0]; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>download/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+                    <a href="<?= $configs['baseUrl']; ?>download/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-file-download.svg"> {downloads}
                         <span class="badge badge-primary"><?= $entry[1]; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>link/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+                    <a href="<?= $configs['baseUrl']; ?>link/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-global.svg"> {links}
                         <span class="badge badge-primary"><?= $entry[2]; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>page/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document.svg"> {pages}
+                    <a href="<?= $configs['baseUrl']; ?>page/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-document.svg"> {pages}
                         <span class="badge badge-primary"><?= $entry[3]; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>upload/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-dropbox.svg"> {upload}
+                    <a href="<?= $configs['baseUrl']; ?>upload/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-dropbox.svg"> {upload}
                         <span class="badge badge-primary"></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>wastebin/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-trash.svg"> {wastebin}
+                    <a href="<?= $configs['baseUrl']; ?>wastebin/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-trash.svg"> {wastebin}
                         <span class="badge badge-primary"><?= $entry[4]; ?></span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>admin/settings" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-gear.svg"> {general}
+                    <a href="<?= $configs['baseUrl']; ?>admin/settings" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-gear.svg"> {general}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>article/settings" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-pen.svg"> {article}
+                    <a href="<?= $configs['baseUrl']; ?>article/settings" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-pen.svg"> {article}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>download/settings" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-file-download.svg"> {downloads}
+                    <a href="<?= $configs['baseUrl']; ?>download/settings" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-file-download.svg"> {downloads}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>link/settings" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-global.svg"> {links}
+                    <a href="<?= $configs['baseUrl']; ?>link/settings" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-global.svg"> {links}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= BASE_URL; ?>user/index" class="nav-link">
-                        <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-person-people.svg"> {user}
+                    <a href="<?= $configs['baseUrl']; ?>user/index" class="nav-link">
+                        <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-person-people.svg"> {user}
                     </a>
                 </li>
             </ul>
@@ -153,6 +153,6 @@
             </div> -->
 
             <!-- Settings -->
-            <!--<a href="<?= BASE_URL; ?>admin/mainpage" class="list-group-item list-group-item-action">
-                <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-home-page.svg"> {mainpage}
+            <!--<a href="<?= $configs['baseUrl']; ?>admin/mainpage" class="list-group-item list-group-item-action">
+                <img class="glyph-icon-16" src="<?= $configs['paths']['svg']; ?>si-glyph-home-page.svg"> {mainpage}
             </a>-->
