@@ -27,30 +27,9 @@
  * SOFTWARE.
  */
 
-if(!defined('LINK_PATH')) {
+ $path = ROOT_PATH . 'src/modules/link/src/';
 
-    /**
-     * Path to modules/link/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('LINK_PATH', __DIR__ . '/');
-}
+ include $path . 'actions.php';
+ include $path . 'functions.php';
 
-if(!defined('LINK_LIB_PATH')) {
-
-    /**
-     * Path to modules/link/lib/
-     *
-     * @var string
-     *
-     * @since 0.9.0
-     */
-    define('LINK_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include LINK_LIB_PATH . DB_DRIVER . '-functions.php';
-include LINK_LIB_PATH . 'actions.php';
-include LINK_LIB_PATH . 'functions.php';
+ include $path . $configs['database']['driver'] . '-functions.php';
