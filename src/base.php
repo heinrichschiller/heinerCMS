@@ -34,26 +34,29 @@
  * needs functions of the previously included file.
  ******************************************************************************/
 
-if(!file_exists(__DIR__ . '/configs/cms-config.php')) {
+$configPath = ROOT_PATH . 'src/configs/';
+$librariesPath = ROOT_PATH . 'src/libraries/';
+
+if(!file_exists($configPath . 'cms-config.php')) {
     header('Location: /installer/index');
     exit;
 }
 
-include_once __DIR__ . '/configs/cms-config.php';
+require_once $configPath . 'cms-config.php';
 
-include_once __DIR__ . '/configs/base-config.php';
+require_once $configPath . 'base-config.php';
 
-include_once CMS_LIB_PATH . 'filters.php';
+require_once $librariesPath . 'filters.php';
 
-include_once CMS_LIB_PATH . 'validations.php';
+require_once $librariesPath . 'validations.php';
 
-include_once CMS_LIB_PATH . 'session.php';
+require_once $librariesPath . 'session.php';
 
-include_once CMS_LIB_PATH . 'heinercms.php';
+require_once $librariesPath . 'heinercms.php';
 
 
 if(defined('DB_DRIVER')) {
-    include_once CMS_LIB_PATH . DB_DRIVER . '-db.php';
+    require_once $librariesPath . DB_DRIVER . '-db.php';
 } else {
     echo 'cms-config is empty';
     die();
