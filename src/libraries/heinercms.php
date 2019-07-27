@@ -31,7 +31,7 @@
  * @filesource /src/lib/core.php
  * @since 0.9.0
  */
-function heinerCms()
+function heinerCms($configs = [])
 {
     $requestItems = parseRequest();
 
@@ -39,7 +39,7 @@ function heinerCms()
     $action     = $requestItems['action'];
     $params     = $requestItems['params'];
 
-    $modulesPath = CMS_SRC_PATH . "modules/$controller/index.php";
+    $modulesPath = ROOT_PATH . "src/modules/$controller/index.php";
 
     if(file_exists($modulesPath)) {
         include_once $modulesPath;
@@ -123,7 +123,7 @@ function isFile()
  */
 function getTranslation(string $language) : array
 {
-    $xmlfile = CMS_LOCALES_PATH . "$language.xml";
+    $xmlfile = ROOT_PATH . "/src/locales/$language.xml";
 
     $xmlString = file_get_contents($xmlfile);
     $xml = simplexml_load_string($xmlString);
@@ -144,10 +144,6 @@ function getTranslation(string $language) : array
 function checkSystem()
 {
     if (version_compare(phpversion(), '7.0', '<')) {
-        return false;
-    }
-
-    if (!defined('DB_DRIVER') || !defined('DB_NAME')) {
         return false;
     }
 
@@ -178,6 +174,8 @@ function render(array $templates, array $data = [])
  */
 function renderTemplate(string $tplName, array $data)
 {
+    $configs = include ROOT_PATH . 'src/configs/developer.php';
+
     extract($data);
     extract(array('entry' => countEntries()));
     extract(array('settings' => getGeneralSettings()));
@@ -195,13 +193,13 @@ function renderTemplate(string $tplName, array $data)
     ob_start();
 
     if (!empty($navbar)) {
-        $nav = CMS_TEMPLATES_PATH . $navbar;
+        $nav = ROOT_PATH . "src/templates/$navbar";
     }
 
     $module = !empty($requestItems['controller']) ? $requestItems['controller'] : 'public';
-    $template = CMS_MODULES_PATH . "$module/template/$tplName";
+    $template = ROOT_PATH . "src/modules/$module/templates/$tplName";
 
-    include CMS_TEMPLATES_PATH . 'main.phtml';
+    include ROOT_PATH . 'src/templates/main.phtml';
 
     $htmlResponse = ob_get_contents();
 
