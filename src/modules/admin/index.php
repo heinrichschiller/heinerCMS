@@ -27,26 +27,7 @@
  * SOFTWARE.
  */
 
-/**
- * Path to modules/admin/.
- *
- * @var string
- * @since 0.9.0
- */
-if(!defined('ADMIN_PATH')) {
-    define('ADMIN_PATH', __DIR__ . '/');
-}
+$path = ROOT_PATH . 'src/modules/admin/src/';
 
-/**
- * Path to modules/admin/lib/.
- *
- * @var string
- * @since 0.9.0
- */
-if(!defined('ADMIN_LIB_PATH')) {
-    define('ADMIN_LIB_PATH', __DIR__ . '/lib/');
-}
-
-include ADMIN_LIB_PATH . DB_DRIVER . '-functions.php';
-include ADMIN_LIB_PATH . 'actions.php';
-include ADMIN_LIB_PATH . 'functions.php';
+require $path . 'actions.php';
+require $path . 'functions.php';
