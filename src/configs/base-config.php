@@ -55,7 +55,7 @@ define('SVG_PATH', BASE_URL . 'public/assets/img/svg/');
  * @var string
  * @since 0.9.0
  */
-define('CMS_SRC_PATH', ABS_PATH . 'src/');
+define('CMS_SRC_PATH', ROOT_PATH . 'src/');
 
 /**
  * Path to config directory.

@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-if(!defined('ABS_PATH')) {
+if(!defined('ROOT_PATH')) {
 
     /**
      * Absolute path of heinerCMS.
@@ -35,10 +35,10 @@ if(!defined('ABS_PATH')) {
      * @var string
      * @since 0.9.0
      */
-    define('ABS_PATH', __DIR__ . '/');
+    define('ROOT_PATH', __DIR__ . '/');
 }
 
-include ABS_PATH . 'src/base.php';
+require ROOT_PATH . 'src/base.php';
 
 if (DEBUG_MODE) {
     error_reporting(-1);
