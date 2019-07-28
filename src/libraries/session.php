@@ -66,7 +66,8 @@ function isLoggedIn()
 function checkLogin()
 {
     if (!isLoggedIn()) {
-        header('Location:' . BASE_URL . 'public/index');
+        redirect('public/index');
+        exit;
     }
 }
 
@@ -80,7 +81,7 @@ function logout()
 
     session_destroy();
 
-    header('Location:' . BASE_URL . 'user/goodbye');
+    redirect('user/goodbye');
 }
 
 function login(string $email, string $password)
