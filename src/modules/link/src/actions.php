@@ -86,7 +86,7 @@ function updatesettingsAction()
 
     updateLinksSettings($tagline, $comment);
 
-    header ( 'Location: ' . BASE_URL. 'link/settings' );
+    redirect('link/index');
 }
 
 function addAction()
@@ -101,7 +101,7 @@ function addAction()
 
     addLink($title, $tagline, $text, $uri, $visibility);
 
-    redirectToLink();
+    redirect('link/index');
 }
 
 function delAction(array $params)
@@ -112,7 +112,7 @@ function delAction(array $params)
 
     setContentsFlagById($id, 'trash');
 
-    redirectToLink();
+    redirect('link/index');
 }
 
 function updateAction()
@@ -127,5 +127,5 @@ function updateAction()
 
     updateLink($id, $title, $comment, $uri, $visibility);
 
-    redirectToLink();
+    redirect('link/index');
 }

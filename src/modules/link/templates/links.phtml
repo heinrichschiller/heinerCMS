@@ -17,7 +17,7 @@
     	</thead>
     	<tbody>
     		<?php foreach($links as $link): ?>
-    		<tr class="clickable-row" data-href="<?= BASE_URL; ?>link/edit/id/<?= $link['id']; ?>">
+    		<tr class="clickable-row" data-href="<?= $configs['baseUrl']; ?>link/edit/id/<?= $link['id']; ?>">
                 <td></td>
                 <td><?= strftime('%d.%m.%Y',$link['datetime']); ?></td>
                 <td><?= $link['title']; ?></td>
@@ -26,7 +26,7 @@
         			<a href="#">
         				<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
         			</a> &middot;
-                	<a href="<?= BASE_URL; ?>link/del/id/<?= $link['id']; ?>">
+                	<a href="<?= $configs['baseUrl']; ?>link/del/id/<?= $link['id']; ?>">
                 		<img class="glyph-icon-16" src="<?php echo SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
                 	</a>
                 </td>
@@ -35,7 +35,7 @@
     	</tbody>
     </table>
 	<div>
-		<a href="<?= BASE_URL; ?>link/new" class="btn btn-primary" role="button">{create_link}</a>
+		<a href="<?= $configs['baseUrl']; ?>link/new" class="btn btn-primary" role="button">{create_link}</a>
 	</div>
 
 
@@ -49,7 +49,7 @@
       			<p>Hier können sie ihre Links einfach verfassen und ausgeben.</p>
     		</div>
     		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        		<a href="<?= BASE_URL; ?>link/new" class="btn btn-primary" role="button">{create_link}</a>
+        		<a href="<?= $configs['baseUrl']; ?>link/new" class="btn btn-primary" role="button">{create_link}</a>
     		</div>
        	</div>
     </div>
