@@ -86,7 +86,7 @@ function updatesettingsAction()
 
     updateArticleSettings($tagline, $comment);
 
-    redirectToArticleSettings();
+    redirect('article/settings');
 }
 
 function addAction()
@@ -102,7 +102,7 @@ function addAction()
         addArticle($title, $content, $visibility, $userId);
     }
 
-    redirectToArticle();
+    redirect('article/index');
 }
 
 function delAction(array $params)
@@ -113,7 +113,7 @@ function delAction(array $params)
 
     setContentsFlagById($id, 'trash');
 
-    redirectToArticle();
+    redirect('article/index');
 }
 
 function updateAction()
@@ -128,5 +128,5 @@ function updateAction()
 
     updateArticle($id, $title, $content, $userId, $visibility);
 
-    redirectToArticle();
+    redirect('article/index');
 }

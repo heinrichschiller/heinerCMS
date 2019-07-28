@@ -26,13 +26,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-function redirectToArticle()
-{
-    header('Location: ' . BASE_URL . 'article/index');
-}
-
-function redirectToArticleSettings()
-{
-    header ( 'Location: ' . BASE_URL . 'article/settings' );
-}

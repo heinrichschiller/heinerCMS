@@ -6,9 +6,9 @@
         	</div>
 
             <?php if(isset($article['id'])): ?>
-            <form action="<?= BASE_URL;?>article/update" method="post">
+            <form action="<?= $configs['baseUrl'];?>article/update" method="post">
             <?php else: ?>
-            <form action="<?= BASE_URL;?>article/add" method="post">
+            <form action="<?= $configs['baseUrl'];?>article/add" method="post">
             <?php endif; ?>
 
                 <div class="row id-bar">
@@ -42,7 +42,7 @@
                 		<input type="hidden" name="id" value="<?= isset($article['id']) ? $article['id'] : ''; ?>" class="form-control" id="ident">
                 	</div>
                     <div class="form-group">
-                        <button type="button" id="btn-preview" class="btn btn-light" data-href="<?= BASE_URL ?>public/article/preview">{preview}</button>
+                        <button type="button" id="btn-preview" class="btn btn-light" data-href="<?= $configs['baseUrl'] ?>public/article/preview">{preview}</button>
                     </div>
         			<span>{published}?</span>
                 	<div class="custom-control custom-radio custom-control-inline">

@@ -19,16 +19,16 @@
 
             <?php foreach($articles as $article): ?>
 
-        	<tr class="clickable-row" data-href="<?= BASE_URL ?>article/edit/id/<?= $article['id']; ?>">
+        	<tr class="clickable-row" data-href="<?= $configs['baseUrl'] ?>article/edit/id/<?= $article['id']; ?>">
                 <td></td>
                 <td><?= strftime('%d.%m.%Y', $article['datetime']); ?></td>
                 <td><?= $article['title']; ?></td>
                 <td><?= $article['visibility'] === 'true' ? '{yes}' : '{no}'; ?></td>
         		<td>
-        			<a href="<?= BASE_URL ?>article/copy/id/<?= $article['id'];?>">
+        			<a href="<?= $configs['baseUrl'] ?>article/copy/id/<?= $article['id'];?>">
         				<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
         			</a> &middot;
-                	<a href="<?= BASE_URL ?>article/del/id/<?= $article['id'];?>">
+                	<a href="<?= $configs['baseUrl'] ?>article/del/id/<?= $article['id'];?>">
                 		<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
                 	</a>
                 </td>
@@ -39,7 +39,7 @@
     	</tbody>
     </table>
     <div>
-    	<a href="<?= BASE_URL; ?>article/new" class="btn btn-primary" role="button">{create_article}</a>
+    	<a href="<?= $configs['baseUrl']; ?>article/new" class="btn btn-primary" role="button">{create_article}</a>
     </div>
 
     <?php else: ?>
@@ -53,7 +53,7 @@
             Artikel noch nicht publizieren, stellen sie den Artikel einfach auf unsichtbar.</p>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <a href="<?= BASE_URL; ?>article/new" class="btn btn-primary" role="button">{create_article}</a>
+            <a href="<?= $configs['baseUrl']; ?>article/new" class="btn btn-primary" role="button">{create_article}</a>
         </div>
     </div>
 
