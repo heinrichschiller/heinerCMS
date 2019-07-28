@@ -34,14 +34,12 @@
  * needs functions of the previously included file.
  ******************************************************************************/
 
-require_once $configs['paths']['libraries'] . 'database.php';
+$libsPath = $configs['paths']['libraries'];
 
-require_once $configs['paths']['libraries'] . $configs['database']['driver'] . '-db.php';
-
-require_once $configs['paths']['libraries'] . 'filters.php';
-
-require_once $configs['paths']['libraries'] . 'validations.php';
-
-require_once $configs['paths']['libraries'] . 'session.php';
-
-require_once $configs['paths']['libraries'] . 'heinercms.php';
+require_once $libsPath . 'database.php';
+require_once $libsPath . $configs['database']['driver'] . '-db.php';
+require_once $libsPath . 'filters.php';
+require_once $libsPath . 'functions.php';
+require_once $libsPath . 'validations.php';
+require_once $libsPath . 'session.php';
+require_once $libsPath . 'heinercms.php';
