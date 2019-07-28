@@ -90,7 +90,7 @@ function updateAction()
 
     setSession();
 
-    redirectToAdmin();
+    redirect('admin/index');
 }
 
 function impressAction()

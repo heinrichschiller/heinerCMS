@@ -62,13 +62,14 @@ function load_theme_options(): string
  */
 function getLocales() : array
 {
-    $files = scandir(CMS_LOCALES_PATH);
+    $localesPath = ROOT_PATH . 'src/locales/';
+    $files = scandir($localesPath);
 
     $xmlItem  = [];
     $xmlItems = [];
 
     for ($i = 2; $i <= count($files) -1; $i++) {
-        $xmlFile = CMS_LOCALES_PATH . $files[$i];
+        $xmlFile = $localesPath . $files[$i];
 
         $xmlContents = file_get_contents($xmlFile);
         $xmlString = simplexml_load_string($xmlContents);
@@ -82,11 +83,4 @@ function getLocales() : array
     }
 
     return $xmlItems;
-}
-
-function redirectToAdmin()
-{
-    $configs = include ROOT_PATH . 'src/configs/developer.php';
-
-    header("Location: ${configs['baseUrl']}admin/settings");
 }
