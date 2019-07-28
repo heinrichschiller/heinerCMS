@@ -18,7 +18,7 @@
     	</thead>
     	<tbody>
     		<?php foreach($downloads as $download): ?>
-    		<tr class="clickable-row" data-href="<?= BASE_URL; ?>download/edit/id/<?= $download['id']; ?>">
+    		<tr class="clickable-row" data-href="<?= $configs['baseUrl']; ?>download/edit/id/<?= $download['id']; ?>">
                 <td></td>
                 <td><?= strftime('%d.%m.%Y', $download['datetime']); ?></td>
                 <td><?= $download['title']; ?></td>
@@ -27,7 +27,7 @@
         			<a href="#">
         				<img class="glyph-icon-16" src="<?php echo SVG_PATH;?>si-glyph-document-copy.svg" title="{copy}">
         			</a> &middot;
-                	<a href="<?= BASE_URL; ?>download/del/id/<?= $download['id']; ?>">
+                	<a href="<?= $configs['baseUrl']; ?>download/del/id/<?= $download['id']; ?>">
                 		<img class="glyph-icon-16" src="<?php echo SVG_PATH;?>si-glyph-delete.svg" title="{delete}">
                 	</a>
                 </td>
@@ -37,7 +37,7 @@
     </table>
 
     <div>
-    	<a href="<?= BASE_URL; ?>download/new" class="btn btn-primary" role="button">{create_download}</a>
+    	<a href="<?= $configs['baseUrl']; ?>download/new" class="btn btn-primary" role="button">{create_download}</a>
     </div>
 
     <?php else: ?>
@@ -52,7 +52,7 @@
       			Artikel noch nicht publizieren, stellen sie den Artikel einfach auf unsichtbar.</p>
     		</div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        		<a href="<?= BASE_URL; ?>download/new" class="btn btn-primary" role="button">{create_download}</a>
+        		<a href="<?= $configs['baseUrl']; ?>download/new" class="btn btn-primary" role="button">{create_download}</a>
     		</div>
        	</div>
     </div>

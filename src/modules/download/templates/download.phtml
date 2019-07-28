@@ -6,9 +6,9 @@
             </div>
 
             <?php if(isset($download['id'])): ?>
-            <form action="<?= BASE_URL;?>download/update" method="post">
+            <form action="<?= $configs['baseUrl'];?>download/update" method="post">
             <?php else: ?>
-            <form action="<?= BASE_URL;?>download/add" method="post">
+            <form action="<?= $configs['baseUrl'];?>download/add" method="post">
             <?php endif; ?>
 
             	<div class="row">

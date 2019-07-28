@@ -26,7 +26,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-function redirectToDownload() {
-    header('Location: ' . BASE_URL . '../download/index');
-}

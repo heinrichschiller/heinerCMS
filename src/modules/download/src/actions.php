@@ -89,7 +89,7 @@ function addAction()
 
     addDownload($title, $text, $path, $filename, $visible);
 
-    redirectToDownload();
+    redirect('download/index');
 }
 
 function delAction(array $params)
@@ -100,7 +100,7 @@ function delAction(array $params)
 
     setContentsFlagById($id, 'trash');
 
-    redirectToDownload();
+    redirect('download/index');
 }
 
 function updateAction()
@@ -116,7 +116,7 @@ function updateAction()
 
     updateDownload($id, $title, $text, $path, $filename, $visible);
 
-    redirectToDownload();
+    redirect('download/index');
 }
 
 function updatesettingsAction()
@@ -128,5 +128,5 @@ function updatesettingsAction()
 
     updateDownloadsSettings($tagline, $text);
 
-    header('Location:' . BASE_URL . 'download/settings');
+    redirect('download/index');
 }
