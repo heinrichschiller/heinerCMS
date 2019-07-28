@@ -24,10 +24,10 @@
 	            <td><?= $user['username']; ?></td>
 	            <td><?= $user['active']; ?></td>
 	    		<td>
-	    			<a href="<?= BASE_URL?>user/edit/id/<?= $user['id']; ?>">
+	    			<a href="<?= $configs['baseUrl']?>user/edit/id/<?= $user['id']; ?>">
 	                	<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-edit.svg" title="{edit}">
 	                </a> &middot;
-	    			<a href="<?= BASE_URL?>user/del/id/<?= $user['id']; ?>">
+	    			<a href="<?= $configs['baseUrl']?>user/del/id/<?= $user['id']; ?>">
 	                	<img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
 	                </a>
 	            </td>
@@ -37,6 +37,6 @@
 	</table>
 
 	<div>
-		<a href="<?= BASE_URL; ?>user/new" class="btn btn-primary" role="button">{create_user}</a>
+		<a href="<?= $configs['baseUrl']; ?>user/new" class="btn btn-primary" role="button">{create_user}</a>
 	</div>
 </div>

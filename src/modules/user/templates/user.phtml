@@ -9,9 +9,9 @@
 			</div>
 
 			<?php if(isset($article['id'])): ?>
-            <form action="<?= BASE_URL;?>article/update" method="post">
+            <form action="<?= $configs['baseUrl'];?>article/update" method="post">
             <?php else: ?>
-            <form action="<?= BASE_URL;?>article/add" method="post">
+            <form action="<?= $configs['baseUrl'];?>article/add" method="post">
             <?php endif; ?>
 
                 <div class="row">

@@ -87,7 +87,7 @@ function addAction()
 
     addUser($firstname, $lastname, $username, $email, $pwHash, $active);
 
-    redirectUser();
+    redirect('user/index');
 }
 
 function delAction(array $params)
@@ -96,14 +96,16 @@ function delAction(array $params)
 
     deleteUser($params[1]);
 
-    redirectUser();
+    redirect('user/index');
 }
 
 function loginAction()
 {
+    $configs = include ROOT_PATH . 'src/configs/developer.php';
+
     if(isPost()) {
         if(login($_POST['email'], $_POST['password'])) {
-            header('Location:' . BASE_URL . 'admin/index');
+            header('Location: ' . $configs['baseUrl'] . 'admin/index');
         }
     }
 
