@@ -26,8 +26,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-function redirectToPage()
-{
-    header ( 'Location: ' . BASE_URL . 'page/index' );
-}

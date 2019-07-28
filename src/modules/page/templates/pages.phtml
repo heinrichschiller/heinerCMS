@@ -17,7 +17,7 @@
        	</thead>
        	<tbody>
        		<?php foreach($pages as $page): ?>
-       		<tr class="clickable-row" data-href="<?= BASE_URL; ?>page/edit/id/<?= $page['id']; ?>">
+       		<tr class="clickable-row" data-href="<?= $configs['baseUrl']; ?>page/edit/id/<?= $page['id']; ?>">
                 <td></td>
                 <td><?= strftime('%d.%m.%Y', $page['datetime']); ?></td>
                 <td><?= $page['title']; ?></td>
@@ -26,7 +26,7 @@
            			<a href="#">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-document-copy.svg" title="{copy}">
                     </a> &middot;
-                   	<a href="<?= BASE_URL; ?>page/del/id/<?= $page['id']; ?>">
+                   	<a href="<?= $configs['baseUrl']; ?>page/del/id/<?= $page['id']; ?>">
                         <img class="glyph-icon-16" src="<?= SVG_PATH; ?>si-glyph-delete.svg" title="{delete}">
                     </a>
                 </td>
@@ -35,7 +35,7 @@
     	</tbody>
     </table>
     <div >
-    	<a href="<?= BASE_URL; ?>page/new" class="btn btn-primary" role="button">{create_page}</a>
+    	<a href="<?= $configs['baseUrl']; ?>page/new" class="btn btn-primary" role="button">{create_page}</a>
     </div>
 
     <?php else: ?>
@@ -48,7 +48,7 @@
        			<p>Hier können sie neue Seiten einfach verfassen und ausgeben.</p>
        		</div>
        		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-           		<a href="<?= BASE_URL; ?>page/new" class="btn btn-primary" role="button">{create_page}</a>
+           		<a href="<?= $configs['baseUrl']; ?>page/new" class="btn btn-primary" role="button">{create_page}</a>
        		</div>
           	</div>
     </div>

@@ -8,9 +8,9 @@
 			</div>
 
 			<?php if(isset($page['id'])): ?>
-			<form action="<?= BASE_URL;?>page/update/id/<?= $page['id']; ?>" method="post">
+			<form action="<?= $configs['baseUrl'];?>page/update/id/<?= $page['id']; ?>" method="post">
 			<?php else: ?>
-			<form action="<?= BASE_URL;?>page/add" method="post">
+			<form action="<?= $configs['baseUrl'];?>page/add" method="post">
 			<?php endif; ?>
 
 				<div class="row">

@@ -77,7 +77,7 @@ function addAction()
         addPage($title, $tagline, $text, $visibility);
     }
 
-    redirectToPage();
+    redirect('page/index');
 }
 
 function delAction(array $params)
@@ -88,7 +88,7 @@ function delAction(array $params)
 
     setContentsFlagById($id, 'trash');
 
-    redirectToPage();
+    redirect('page/index');
 }
 
 function updateAction()
@@ -105,5 +105,5 @@ function updateAction()
         updatePage($id, $title, $tagline, $text, $visibility);
     }
 
-    redirectToPage();
+    redirect('page/index');
 }
