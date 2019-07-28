@@ -86,5 +86,7 @@ function getLocales() : array
 
 function redirectToAdmin()
 {
-    header('Location: ' . BASE_URL . 'admin/settings');
+    $configs = include ROOT_PATH . 'src/configs/developer.php';
+
+    header("Location: ${configs['baseUrl']}admin/settings");
 }
