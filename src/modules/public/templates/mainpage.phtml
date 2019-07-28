@@ -19,7 +19,7 @@
                     </span>
             	</div>
             	<h2>
-                    <a class="content-header" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">
+                    <a class="content-header" href="<?= $configs['baseUrl']; ?>public/article/id/<?= $article['id']; ?>">
 						<?= $article['title']; ?>
 					</a>
                 </h2>
@@ -28,7 +28,7 @@
 					<?php if($article['charCount'] > 2000): ?>
 					...
 					<div>
-	            	<a class="readmore" href="<?= BASE_URL; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
+	            	<a class="readmore" href="<?= $configs['baseUrl']; ?>public/article/id/<?= $article['id']; ?>">{readmore}</a>
 					</div>
 					<?php endif; ?>
             	</div>

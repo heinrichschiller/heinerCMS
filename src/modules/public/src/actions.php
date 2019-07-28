@@ -69,7 +69,7 @@ function articleAction(array $params): string
 
 function articlesAction(): string
 {
-    include CMS_MODULES_PATH . 'article/lib/' . DB_DRIVER . '-functions.php';
+    include ROOT_PATH . 'src/modules/article/src/sqlite-functions.php';
 
     $templateList = [
         'articles.phtml'
@@ -97,7 +97,7 @@ function downloadAction(int $id): string
 
 function downloadsAction(): string
 {
-    include CMS_MODULES_PATH . 'download/lib/' . DB_DRIVER . '-functions.php';
+    include ROOT_PATH . 'src/modules/download/src/sqlite-functions.php';
 
     $templateList = [
         'downloads.phtml'
@@ -125,7 +125,7 @@ function linkAction(int $id): string
 
 function linksAction(): string
 {
-    include CMS_MODULES_PATH . 'link/lib/' . DB_DRIVER . '-functions.php';
+    include ROOT_PATH . 'src/modules/link/src/sqlite-functions.php';
 
     $templateList = [
         'links.phtml'
