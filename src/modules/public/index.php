@@ -27,9 +27,9 @@
  * SOFTWARE.
  */
 
- $path = ROOT_PATH . 'src/modules/public/src/';
+$path = ROOT_PATH . 'src/modules/public/src/';
 
- include $path . 'actions.php';
- include $path . 'functions.php';
+require $path . 'actions.php';
+require $path . 'functions.php';
 
- include $path . $configs['database']['driver'] . '-functions.php';
+require $path . $configs['database']['driver'] . '-functions.php';

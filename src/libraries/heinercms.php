@@ -31,7 +31,7 @@
  * @filesource /src/lib/core.php
  * @since 0.9.0
  */
-function heinerCms($configs = [])
+function heinerCms()
 {
     $requestItems = parseRequest();
 
@@ -42,6 +42,7 @@ function heinerCms($configs = [])
     $modulesPath = ROOT_PATH . "src/modules/$controller/index.php";
 
     if(file_exists($modulesPath)) {
+        $configs = getAppConfig();
         include_once $modulesPath;
     } else {
         error404();
@@ -174,7 +175,7 @@ function render(array $templates, array $data = [])
  */
 function renderTemplate(string $tplName, array $data)
 {
-    $configs = include ROOT_PATH . 'src/configs/developer.php';
+    $configs = getAppConfig();
 
     extract($data);
     extract(array('entry' => countEntries()));
@@ -206,15 +207,4 @@ function renderTemplate(string $tplName, array $data)
     ob_clean();
 
     return $htmlResponse;
-}
-
-function getCurrentDatetime()
-{
-    return strftime('%d.%m.%Y %H:%M', time());
-}
-
-function error404()
-{
-    header('Content-Type:text/html;charset=utf-8');
-    header('HTTP/1.0 404 Not Found');
 }

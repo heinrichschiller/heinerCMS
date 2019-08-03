@@ -27,9 +27,25 @@
  * SOFTWARE.
  */
 
+function getAppConfig()
+{
+    return include ROOT_PATH . 'src/configs/developer.php';
+}
+
 function redirect(string $target)
 {
-    $configs = include ROOT_PATH . 'src/configs/developer.php';
+    $configs = getAppConfig();
 
     header("Location: ${configs['baseUrl']}$target");
+}
+
+function getCurrentDatetime()
+{
+    return strftime('%d.%m.%Y %H:%M', time());
+}
+
+function error404()
+{
+    header('Content-Type:text/html;charset=utf-8');
+    header('HTTP/1.0 404 Not Found');
 }
