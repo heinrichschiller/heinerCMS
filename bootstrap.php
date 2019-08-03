@@ -47,4 +47,4 @@ if ($configs['debug_mode']) {
     ini_set('display_errors', true);
 }
 
-heinerCms($configs);
+heinerCms();
